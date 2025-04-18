@@ -1,0 +1,11 @@
+package com.google.android.gms.internal.ads;
+
+import androidx.annotation.Nullable;
+
+/* loaded from: classes3.dex */
+public interface zzym {
+    zzyl zzc();
+
+    @Nullable
+    zzym zzd();
+}

@@ -1,0 +1,88 @@
+package com.bytedance.sdk.openadsdk.core.widget.YFl;
+
+import android.net.Uri;
+import android.text.TextUtils;
+import android.view.View;
+import android.webkit.ConsoleMessage;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import androidx.annotation.NonNull;
+import com.bytedance.sdk.openadsdk.AlY.eT;
+import com.bytedance.sdk.openadsdk.core.hQ;
+import com.bytedance.sdk.openadsdk.core.pDU;
+import com.bytedance.sdk.openadsdk.utils.rkt;
+
+/* loaded from: classes.dex */
+public class AlY extends WebChromeClient {
+    private static final String YFl = WebChromeClient.class.getSimpleName();
+    private com.bytedance.sdk.openadsdk.common.tN AlY;
+    private final hQ Sg;
+    private eT tN;
+
+    public AlY(hQ hQVar) {
+        this.Sg = hQVar;
+    }
+
+    @Override // android.webkit.WebChromeClient
+    public void onConsoleMessage(String str, int i10, String str2) {
+        if (!TextUtils.isEmpty(str)) {
+            YFl(str);
+        }
+        super.onConsoleMessage(str, i10, str2);
+    }
+
+    @Override // android.webkit.WebChromeClient
+    public void onProgressChanged(WebView webView, int i10) {
+        super.onProgressChanged(webView, i10);
+        eT eTVar = this.tN;
+        if (eTVar != null) {
+            eTVar.YFl(webView, i10);
+        }
+        com.bytedance.sdk.openadsdk.common.tN tNVar = this.AlY;
+        if (tNVar != null) {
+            tNVar.YFl(webView, i10);
+        }
+    }
+
+    @Override // android.webkit.WebChromeClient
+    public void onShowCustomView(View view, WebChromeClient.CustomViewCallback customViewCallback) {
+        super.onShowCustomView(view, customViewCallback);
+    }
+
+    private boolean YFl(@NonNull final String str) {
+        if (TextUtils.isEmpty(str)) {
+            return false;
+        }
+        try {
+            if (str.regionMatches(true, 0, "bytedance:", 0, 10)) {
+                pDU.tN().post(new Runnable() { // from class: com.bytedance.sdk.openadsdk.core.widget.YFl.AlY.1
+                    @Override // java.lang.Runnable
+                    public void run() {
+                        rkt.YFl(Uri.parse(str), AlY.this.Sg);
+                    }
+                });
+                return true;
+            }
+        } catch (Exception unused) {
+        }
+        return false;
+    }
+
+    public AlY(hQ hQVar, eT eTVar, com.bytedance.sdk.openadsdk.common.tN tNVar) {
+        this(hQVar, eTVar);
+        this.AlY = tNVar;
+    }
+
+    @Override // android.webkit.WebChromeClient
+    public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+        if (consoleMessage == null || TextUtils.isEmpty(consoleMessage.message()) || !YFl(consoleMessage.message())) {
+            return super.onConsoleMessage(consoleMessage);
+        }
+        return true;
+    }
+
+    public AlY(hQ hQVar, eT eTVar) {
+        this.Sg = hQVar;
+        this.tN = eTVar;
+    }
+}
