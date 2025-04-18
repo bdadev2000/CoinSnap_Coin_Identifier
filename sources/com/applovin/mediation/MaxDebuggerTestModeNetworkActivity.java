@@ -1,0 +1,15 @@
+package com.applovin.mediation;
+
+import android.view.MotionEvent;
+import com.applovin.impl.vn;
+import com.safedk.android.analytics.brandsafety.DetectTouchUtils;
+import com.safedk.android.utils.g;
+
+/* loaded from: classes.dex */
+public class MaxDebuggerTestModeNetworkActivity extends vn {
+    @Override // com.applovin.impl.vn, com.applovin.impl.se, android.app.Activity, android.view.Window.Callback
+    public boolean dispatchTouchEvent(MotionEvent me) {
+        DetectTouchUtils.activityOnTouch(g.f30048a, me);
+        return super.dispatchTouchEvent(me);
+    }
+}

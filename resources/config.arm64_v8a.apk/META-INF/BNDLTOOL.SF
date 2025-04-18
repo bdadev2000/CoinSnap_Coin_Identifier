@@ -1,0 +1,77 @@
+Signature-Version: 1.0
+Created-By: 1.0 (Android)
+SHA1-Digest-Manifest: Q1wNX44j47lliKwzQEAdBSpemh8=
+X-Android-APK-Signed: 2, 3
+
+Name: AndroidManifest.xml
+SHA1-Digest: OMFw95Fg2oUS90lbINrak6aOego=
+
+Name: lib/arm64-v8a/libandroidx.graphics.path.so
+SHA1-Digest: qdPELWZ8G0EiUHhBZOMomwUjY54=
+
+Name: lib/arm64-v8a/libapplovin-native-crash-reporter.so
+SHA1-Digest: tdGhT7uPuWDNtDwjRrM3KhQMd1I=
+
+Name: lib/arm64-v8a/libcitra_libretro_android.so
+SHA1-Digest: YoTYV4YP8Dt7tuOES9kEB9U1kNI=
+
+Name: lib/arm64-v8a/libdesmume_libretro_android.so
+SHA1-Digest: jOrMey1SDpQYTcUIw7xCrrLia5o=
+
+Name: lib/arm64-v8a/libdosbox_pure_libretro_android.so
+SHA1-Digest: vXopkG7kGZy9u7ScY+sTa+v7zNE=
+
+Name: lib/arm64-v8a/libfceumm_libretro_android.so
+SHA1-Digest: AE20QvXldzaBLLojqw5nAFrVAO0=
+
+Name: lib/arm64-v8a/libgambatte_libretro_android.so
+SHA1-Digest: 4YF0thBt7iMBdzgV6Mcx0NB4TS4=
+
+Name: lib/arm64-v8a/libgenesis_plus_gx_libretro_android.so
+SHA1-Digest: xQvhygOKoa21eRO+r7kC1FZDGoc=
+
+Name: lib/arm64-v8a/libhandy_libretro_android.so
+SHA1-Digest: aQt9LDVsYulvH4DHK1b1LAQuCR8=
+
+Name: lib/arm64-v8a/liblibretrodroid.so
+SHA1-Digest: cyCaPAD95d8oXT0hzV91scJG6Sw=
+
+Name: lib/arm64-v8a/libmame2003_plus_libretro_android.so
+SHA1-Digest: Y6xKDHUCbm+i+LupEvzkgnvXS4c=
+
+Name: lib/arm64-v8a/libmednafen_ngp_libretro_android.so
+SHA1-Digest: ur8bHDcoZsUh8ljdieui17NWHZU=
+
+Name: lib/arm64-v8a/libmednafen_pce_fast_libretro_android.so
+SHA1-Digest: Jq3mpyecwY3wN3ASbg9JruyRMv4=
+
+Name: lib/arm64-v8a/libmednafen_wswan_libretro_android.so
+SHA1-Digest: OUmUs8EFjWtyuVcrPq6Tj47OcmI=
+
+Name: lib/arm64-v8a/libmelonds_libretro_android.so
+SHA1-Digest: 4il3rW6O8Vkz44gLRZs24NBzMSs=
+
+Name: lib/arm64-v8a/libmgba_libretro_android.so
+SHA1-Digest: Lq3S2eZmnCqSFgUhbG+NlV/gAHU=
+
+Name: lib/arm64-v8a/libmupen64plus_next_gles3_libretro_android.so
+SHA1-Digest: QVRDCCy30+hjwBDDd+WnQ4ezrho=
+
+Name: lib/arm64-v8a/libpcsx_rearmed_libretro_android.so
+SHA1-Digest: G7L9hM4W1BNJ2e/S13OHtYPJbtI=
+
+Name: lib/arm64-v8a/libppsspp_libretro_android.so
+SHA1-Digest: EVSOOSkZTuE5jMCnavpn8P3R0FQ=
+
+Name: lib/arm64-v8a/libprosystem_libretro_android.so
+SHA1-Digest: LyQzqWJIMj/JL+cqlNaB44LVhJQ=
+
+Name: lib/arm64-v8a/libsnes9x_libretro_android.so
+SHA1-Digest: RweUiJeIbwQyhpsEglCS1U0RA3M=
+
+Name: lib/arm64-v8a/libstella_libretro_android.so
+SHA1-Digest: uKJVN/XQPFhyj9ZCm9pMfkOQHMc=
+
+Name: stamp-cert-sha256
+SHA1-Digest: Bs40BvDZ1xrbgQrPTD2x5w/NfHQ=
+

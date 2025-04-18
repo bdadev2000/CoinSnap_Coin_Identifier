@@ -1,0 +1,37 @@
+package com.google.android.gms.internal.ads;
+
+import android.text.TextUtils;
+import java.lang.ref.WeakReference;
+import java.util.Map;
+
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes4.dex */
+public final class zzdji implements zzbjw {
+    private final WeakReference zza;
+
+    public /* synthetic */ zzdji(zzdjl zzdjlVar, zzdjh zzdjhVar) {
+        this.zza = new WeakReference(zzdjlVar);
+    }
+
+    @Override // com.google.android.gms.internal.ads.zzbjw
+    public final void zza(Object obj, Map map) {
+        zzcxy zzcxyVar;
+        zzdfy zzdfyVar;
+        zzdfy zzdfyVar2;
+        zzdjl zzdjlVar = (zzdjl) this.zza.get();
+        if (zzdjlVar == null) {
+            return;
+        }
+        zzcxyVar = zzdjlVar.zzh;
+        zzcxyVar.onAdClicked();
+        if (((Boolean) com.google.android.gms.ads.internal.client.zzbe.zzc().zza(zzbcv.zzkr)).booleanValue()) {
+            zzdfyVar = zzdjlVar.zzi;
+            zzdfyVar.zzdG();
+            if (TextUtils.isEmpty((CharSequence) map.get("sccg"))) {
+                return;
+            }
+            zzdfyVar2 = zzdjlVar.zzi;
+            zzdfyVar2.zzdf();
+        }
+    }
+}

@@ -1,0 +1,14 @@
+package androidx.compose.foundation.lazy;
+
+import b1.f0;
+import kotlin.jvm.internal.r;
+import q0.p;
+
+/* loaded from: classes3.dex */
+final class LazyListState$Companion$saver$3 extends r implements p {
+    @Override // q0.p
+    public final Object invoke(Object obj, Object obj2) {
+        LazyListState lazyListState = (LazyListState) obj2;
+        return f0.v(Integer.valueOf(lazyListState.g()), Integer.valueOf(lazyListState.h()));
+    }
+}

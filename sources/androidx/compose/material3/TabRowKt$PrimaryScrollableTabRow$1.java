@@ -1,0 +1,35 @@
+package androidx.compose.material3;
+
+import androidx.compose.runtime.Composer;
+import d0.b0;
+import kotlin.jvm.internal.r;
+import q0.q;
+
+/* loaded from: classes3.dex */
+final class TabRowKt$PrimaryScrollableTabRow$1 extends r implements q {
+
+    /* renamed from: a, reason: collision with root package name */
+    public final /* synthetic */ int f11821a;
+
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public TabRowKt$PrimaryScrollableTabRow$1(int i2) {
+        super(3);
+        this.f11821a = i2;
+    }
+
+    @Override // q0.q
+    public final Object invoke(Object obj, Object obj2, Object obj3) {
+        TabIndicatorScope tabIndicatorScope = (TabIndicatorScope) obj;
+        Composer composer = (Composer) obj2;
+        int intValue = ((Number) obj3).intValue();
+        if ((intValue & 6) == 0) {
+            intValue |= (intValue & 8) == 0 ? composer.I(tabIndicatorScope) : composer.w(tabIndicatorScope) ? 4 : 2;
+        }
+        if ((intValue & 19) == 18 && composer.i()) {
+            composer.A();
+        } else {
+            TabRowDefaults.f11797a.a(Float.NaN, 0.0f, 196656, 28, 0L, composer, tabIndicatorScope.a(this.f11821a, true), null);
+        }
+        return b0.f30125a;
+    }
+}

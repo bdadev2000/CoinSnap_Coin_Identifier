@@ -1,0 +1,17 @@
+package androidx.compose.foundation.layout;
+
+import androidx.compose.foundation.layout.Arrangement;
+import androidx.compose.ui.unit.Density;
+import androidx.compose.ui.unit.LayoutDirection;
+
+/* loaded from: classes.dex */
+public final class Arrangement$Absolute$Left$1 implements Arrangement.Horizontal {
+    @Override // androidx.compose.foundation.layout.Arrangement.Horizontal
+    public final void c(Density density, int i2, int[] iArr, LayoutDirection layoutDirection, int[] iArr2) {
+        Arrangement.b(iArr, iArr2, false);
+    }
+
+    public final String toString() {
+        return "AbsoluteArrangement#Left";
+    }
+}
