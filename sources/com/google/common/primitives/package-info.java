@@ -1,6 +1,0 @@
-
-@CheckReturnValue
-package com.google.common.primitives;
-
-import com.google.errorprone.annotations.CheckReturnValue;
-

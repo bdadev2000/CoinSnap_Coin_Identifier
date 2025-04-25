@@ -1,5 +1,0 @@
-package androidx.navigation.common.ktx;
-
-/* loaded from: classes3.dex */
-public final class R {
-}
