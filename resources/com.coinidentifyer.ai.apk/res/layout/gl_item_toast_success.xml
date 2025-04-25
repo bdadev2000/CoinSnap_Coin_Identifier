@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/gl_toast_bg_conner12"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/x72"
+        android:layout_height="@dimen/x72"
+        android:layout_marginTop="@dimen/x64"
+        android:src="@drawable/gl_icon_successful"/>
+    <TextView
+        android:textSize="@dimen/x28"
+        android:textColor="#ffffff"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:id="@+id/gl_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x16"
+        android:layout_marginBottom="@dimen/x64"
+        android:maxWidth="@dimen/x296"
+        android:minWidth="@dimen/x188"
+        android:maxLines="2"
+        android:layout_marginStart="@dimen/x32"
+        android:layout_marginEnd="@dimen/x32"/>
+</LinearLayout>

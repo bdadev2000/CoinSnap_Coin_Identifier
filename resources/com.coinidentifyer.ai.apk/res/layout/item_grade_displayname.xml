@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_gravity="center_vertical"
+            android:id="@+id/selected_v"
+            android:background="?attr/colorPrimary"
+            android:layout_width="@dimen/x6"
+            android:layout_height="@dimen/x52"/>
+        <com.glority.widget.GlTextView
+            android:textSize="@dimen/x32"
+            android:textColor="@color/gl_text_color1"
+            android:id="@+id/name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/x40"
+            android:paddingVertical="@dimen/x24"
+            app:auto_resize="false"
+            app:medium_style="true"/>
+    </FrameLayout>
+    <com.glority.widget.GlDividerView
+        android:id="@+id/divider_v"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:layout_marginHorizontal="@dimen/x32"/>
+</LinearLayout>

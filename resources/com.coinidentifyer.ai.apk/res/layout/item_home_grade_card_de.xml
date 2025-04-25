@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:tag="layout/item_home_grade_card_de_0"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:id="@+id/grading_ll"
+        android:background="@drawable/bg_ffffff_r12"
+        android:padding="@dimen/x24"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x24"
+        android:foreground="@drawable/ripple_r10"
+        android:layout_marginHorizontal="@dimen/x24">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/x64"
+            android:layout_height="@dimen/x64"
+            android:src="?attr/iconHomeGradingIconRes"/>
+        <com.glority.widget.GlTextView
+            android:textSize="@dimen/x32"
+            android:textColor="@color/gl_text_color1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/home_text_grading"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/x12"
+            app:medium_style="true"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_arrow_right"/>
+    </LinearLayout>
+</FrameLayout>

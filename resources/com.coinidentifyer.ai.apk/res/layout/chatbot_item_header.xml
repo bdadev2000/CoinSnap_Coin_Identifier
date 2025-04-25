@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/x32"
+    android:paddingEnd="@dimen/x136">
+    <ImageView
+        android:layout_width="@dimen/x112"
+        android:layout_height="@dimen/x112"
+        android:layout_marginTop="@dimen/x32"
+        android:src="?attr/chatbotIconRes"/>
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x32"
+        android:textColor="@color/gl_text_color1"
+        android:background="@drawable/bg_chatbot_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x20"
+        android:text="@string/chatbot_messagebox_welcomemessage"
+        android:paddingHorizontal="@dimen/x32"
+        android:paddingVertical="@dimen/x20"
+        app:auto_resize="false"
+        app:medium_style="true"/>
+</LinearLayout>

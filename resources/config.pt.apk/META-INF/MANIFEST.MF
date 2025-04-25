@@ -1,0 +1,41 @@
+Manifest-Version: 1.0
+
+Name: AndroidManifest.xml
+SHA1-Digest: SO0CmbHYqPURBG8/I7nyUrJd2FQ=
+
+Name: res/drawable-pt-rPT-xxhdpi-v4/icon_grading_snaptips_1.webp
+SHA1-Digest: xs6Vd/j88ZBgIySMijAfwuypTuQ=
+
+Name: res/drawable-pt-rPT-xxhdpi-v4/icon_grading_snaptips_2.webp
+SHA1-Digest: svt7JPTTtFcwHcMN7sn7ZS/3aTc=
+
+Name: res/drawable-pt-rPT-xxhdpi-v4/icon_snap_tips_bottom1.webp
+SHA1-Digest: nfY7zWH1/XZa/uH6pbYmB5VnFj4=
+
+Name: res/drawable-pt-rPT-xxhdpi-v4/icon_snap_tips_bottom2.webp
+SHA1-Digest: ts1hZfPVWoM+7ZFTSoRyjIEawCQ=
+
+Name: res/drawable-pt-rPT-xxhdpi-v4/icon_snap_tips_top1.webp
+SHA1-Digest: Gz6U8ffZX3jQsBRB0h63w3wrYLg=
+
+Name: res/drawable-pt-rPT-xxhdpi-v4/icon_snap_tips_top2.webp
+SHA1-Digest: 7GMc0FYbGCY2QX3lh+Ga8pflGLE=
+
+Name: res/drawable-pt-xxhdpi-v4/image_onboarding_sample_coin.png
+SHA1-Digest: uPw8U/LfK7LLvOQtfkS4DhOqKGs=
+
+Name: res/drawable-pt-xxhdpi-v4/image_onboarding_sample_coin_phone.png
+SHA1-Digest: pPyEOH9B6CAWzj9weEWhp/JSC0w=
+
+Name: res/drawable-pt-xxhdpi-v4/img_home_country_border.png
+SHA1-Digest: //w8NcaBF/IkCJUib9s9lmXWesQ=
+
+Name: res/drawable-pt-xxhdpi-v4/img_home_scan_coin.png
+SHA1-Digest: oufNwkDoTT+NWdVl2OgQ5nPe6Lk=
+
+Name: resources.arsc
+SHA1-Digest: foKAzVLdLO7koMyknPIIo8T/niE=
+
+Name: stamp-cert-sha256
+SHA1-Digest: 5vTkm69vqAbusD/fho7oWwc7j+I=
+

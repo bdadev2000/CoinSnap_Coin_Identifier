@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:textColor="@color/Black"
+        android:id="@+id/et_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="输入转化页memoId"
+        android:inputType="number"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <Button
+        android:id="@+id/btn_ensure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="确定"
+        android:layout_marginHorizontal="@dimen/x30"
+        app:layout_constraintTop_toBottomOf="@+id/et_input"/>
+    <Button
+        android:id="@+id/btn_ab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x30"
+        android:text="打开ab转化页"
+        android:layout_marginHorizontal="@dimen/x30"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ensure"/>
+    <Button
+        android:id="@+id/btn_default"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x30"
+        android:text="打开默认转化页"
+        android:layout_marginHorizontal="@dimen/x30"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ab"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

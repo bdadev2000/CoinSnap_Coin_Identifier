@@ -1,0 +1,81 @@
+Manifest-Version: 1.0
+
+Name: AndroidManifest.xml
+SHA1-Digest: mhDl6BQNkaPqaCMxvkvZ5qqEn28=
+
+Name: res/drawable-en-rAU-xxhdpi-v4/image_onboarding_sample_coin.png
+SHA1-Digest: Ci+358nWdPJ5xT6uQrlJ9gHb66s=
+
+Name: res/drawable-en-rAU-xxhdpi-v4/image_onboarding_sample_coin_phone
+ .png
+SHA1-Digest: 0TQ2niF8B2R7W+IIgyOzoseNuG8=
+
+Name: res/drawable-en-rAU-xxhdpi-v4/img_home_country_border.png
+SHA1-Digest: SQ5WkDm/Zqk1p6WSaozS7Citt6c=
+
+Name: res/drawable-en-rAU-xxhdpi-v4/img_home_scan_coin.png
+SHA1-Digest: Wxey0WqalI97i9tWe5l//yaPawE=
+
+Name: res/drawable-en-rCA-xxhdpi-v4/image_onboarding_sample_coin.png
+SHA1-Digest: zE2qjRNtUEtMG4NvKReC/g1N+rw=
+
+Name: res/drawable-en-rCA-xxhdpi-v4/image_onboarding_sample_coin_phone
+ .png
+SHA1-Digest: VAAKxiaWu69gA8jjT2dDwTaPuzc=
+
+Name: res/drawable-en-rCA-xxhdpi-v4/img_home_country_border.png
+SHA1-Digest: ER1f6cCv92uh8vFyRe6WWn2l9BY=
+
+Name: res/drawable-en-rCA-xxhdpi-v4/img_home_scan_coin.png
+SHA1-Digest: VosRsoC3Rewmjg2uAWtHPh7aJik=
+
+Name: res/drawable-en-rGB-xxhdpi-v4/icon_grading_snaptips_1.webp
+SHA1-Digest: HS+p4br5FKbcEIiwDa5SFM0UhmE=
+
+Name: res/drawable-en-rGB-xxhdpi-v4/icon_grading_snaptips_2.webp
+SHA1-Digest: zijYeXjsfdFJHtDGo4bzsQfaCYc=
+
+Name: res/drawable-en-rGB-xxhdpi-v4/icon_snap_tips_bottom1.webp
+SHA1-Digest: SMHq/FOfUS3VBAXf6P4VAT4tib0=
+
+Name: res/drawable-en-rGB-xxhdpi-v4/icon_snap_tips_bottom2.webp
+SHA1-Digest: 2BF4DYaJjSerG791+NDF8ggtvHc=
+
+Name: res/drawable-en-rGB-xxhdpi-v4/icon_snap_tips_top1.webp
+SHA1-Digest: p+QyG8LaIv9QIOWiV4R7XivzcCo=
+
+Name: res/drawable-en-rGB-xxhdpi-v4/icon_snap_tips_top2.webp
+SHA1-Digest: Rkzw2ApUNESlb1e/dZ+0KnG3/hQ=
+
+Name: res/drawable-en-rGB-xxhdpi-v4/image_onboarding_sample_coin.png
+SHA1-Digest: 2M3M1qkcZVG7YLGzkb5D0v1dWxE=
+
+Name: res/drawable-en-rGB-xxhdpi-v4/image_onboarding_sample_coin_phone
+ .png
+SHA1-Digest: /yw/bOgy43BvFO2ecHGw0ShKKRo=
+
+Name: res/drawable-en-rGB-xxhdpi-v4/img_home_country_border.png
+SHA1-Digest: FWf4GGxlGifTIGWczE70G49dTxA=
+
+Name: res/drawable-en-rGB-xxhdpi-v4/img_home_scan_coin.png
+SHA1-Digest: W/7vlN2lYtO6qJSDQvd3YWJ/xS8=
+
+Name: res/drawable-en-rUS-xxhdpi-v4/image_onboarding_sample_coin.png
+SHA1-Digest: FzJ0a7FbW+OQ/1+hHGPB2Byb6Og=
+
+Name: res/drawable-en-rUS-xxhdpi-v4/image_onboarding_sample_coin_phone
+ .png
+SHA1-Digest: xMTd2v1StBmy608aHSXZrvDaxvA=
+
+Name: res/drawable-en-rUS-xxhdpi-v4/img_home_country_border.png
+SHA1-Digest: FpeQnqlpQIafVAwWNcoKdiG8MgI=
+
+Name: res/drawable-en-rUS-xxhdpi-v4/img_home_scan_coin.png
+SHA1-Digest: z+QaFTemny1uZ3teWgpcIr5tAMI=
+
+Name: resources.arsc
+SHA1-Digest: pyRcrgc9zmS6S2znn3DEJnjz/dU=
+
+Name: stamp-cert-sha256
+SHA1-Digest: 5vTkm69vqAbusD/fho7oWwc7j+I=
+

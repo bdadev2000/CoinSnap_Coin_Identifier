@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:id="@+id/flag_ll"
+    android:tag="layout/item_identify_results_flag_0"
+    android:background="@drawable/bg_flag_best"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="@dimen/x124"
+    android:paddingHorizontal="@dimen/x16"
+    android:paddingVertical="@dimen/x3">
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/flag_iv"
+        android:layout_width="@dimen/x24"
+        android:layout_height="@dimen/x24"/>
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x28"
+        android:textColor="@color/white"
+        android:id="@+id/country_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:layout_marginStart="@dimen/x8"
+        app:medium_style="true"/>
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/btn_retake"
+    android:background="@drawable/bg_theme_gradient_btn_r100"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/x92"
+    android:layout_marginBottom="@dimen/x90"
+    android:foreground="?attr/selectableItemBackground"
+    android:layout_marginStart="@dimen/x32"
+    android:layout_marginEnd="@dimen/x32"
+    android:elevation="@dimen/x4"
+    app:layout_constraintBottom_toBottomOf="parent">
+    <TextView
+        android:textSize="@dimen/x36"
+        android:textColor="@color/White"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_retake"
+        android:drawablePadding="@dimen/x10"
+        android:textAllCaps="false"
+        android:drawableStart="@drawable/icon_camera_white_24"/>
+</FrameLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/x32"
+    android:layout_marginEnd="@dimen/x32">
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x32"
+        android:textColor="@color/gl_text_color1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thanks for your feedback!"
+        android:maxLines="1"
+        app:medium_style="true"/>
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x28"
+        android:textColor="@color/gl_text_color2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x8"
+        android:text="Doesn&apos;t look right? Try correcting it"
+        android:maxLines="2"/>
+    <com.google.android.material.button.MaterialButton
+        android:textSize="@dimen/x28"
+        android:textColor="?attr/colorAccent"
+        android:gravity="center"
+        android:id="@+id/correct_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x64"
+        android:layout_marginTop="@dimen/x20"
+        android:text="Correct the Result"
+        android:textAllCaps="false"
+        app:cornerRadius="?attr/appButtonCornerBig"
+        app:layout_constraintTop_toBottomOf="@+id/tv"
+        style="@style/GlButtonStyle.big.outline"/>
+</LinearLayout>

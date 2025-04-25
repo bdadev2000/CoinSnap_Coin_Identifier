@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:tag="layout/fragment_business_js_webview_0"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/toolbar_include"
+        layout="@layout/layout_toolbar"/>
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/pb"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x4"
+        android:max="100"/>
+    <com.glority.base.widget.webview.JsbWebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>

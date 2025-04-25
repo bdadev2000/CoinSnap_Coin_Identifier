@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x32"
+        android:textColor="@color/gl_text_color2"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x440"
+        android:text="@string/offseries_detail_nothing"
+        android:paddingHorizontal="@dimen/x64"
+        app:medium_style="true"/>
+</FrameLayout>

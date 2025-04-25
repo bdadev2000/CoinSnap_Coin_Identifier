@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:tag="layout/item_multi_capture_small_image_0"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x26"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:id="@+id/tv_title"
+        android:padding="@dimen/x5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:maxLines="1"
+        app:auto_resize="true"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_multi_capture_image"
+        app:layout_constraintEnd_toEndOf="@+id/iv_multi_capture_image"
+        app:layout_constraintStart_toStartOf="@+id/iv_multi_capture_image"
+        app:layout_constraintTop_toTopOf="@+id/iv_multi_capture_image"
+        app:medium_style="true"/>
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_multi_capture_image"
+        android:layout_width="@dimen/x96"
+        android:layout_height="@dimen/x96"
+        android:layout_margin="@dimen/x18"
+        android:foreground="@drawable/shape_solid_33ffffff_stroke_ffffff_g_4"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/roundedCornerImageStyle12"/>
+    <ImageView
+        android:id="@+id/iv_multi_capture_delete"
+        android:visibility="invisible"
+        android:layout_width="@dimen/x40"
+        android:layout_height="@dimen/x40"
+        android:src="@drawable/icon_multi_image_delete"
+        android:elevation="@dimen/x4"
+        app:layout_constraintBottom_toTopOf="@+id/iv_multi_capture_image"
+        app:layout_constraintEnd_toEndOf="@+id/iv_multi_capture_image"
+        app:layout_constraintStart_toEndOf="@+id/iv_multi_capture_image"
+        app:layout_constraintTop_toTopOf="@+id/iv_multi_capture_image"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:tag="layout/item_home_banner_vip_0"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/x24">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/ll_banknote_offer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x32"
+        android:foreground="@drawable/ripple_r10"
+        android:elevation="0dp"
+        app:cardCornerRadius="?attr/appCorner"
+        app:cardElevation="0dp">
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_home_banner_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/x112"
+            android:paddingHorizontal="@dimen/x32"
+            android:paddingVertical="@dimen/x12">
+            <ImageView
+                android:layout_width="@dimen/x80"
+                android:layout_height="@dimen/x88"
+                android:src="@drawable/icon_home_banner_1"
+                android:adjustViewBounds="true"/>
+            <com.glority.widget.GlTextView
+                android:textSize="@dimen/x28"
+                android:textColor="#ffe5b0"
+                android:id="@+id/tips_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Your free 7-day Premium hasn’t \10been claimed yet. Tap to claim."
+                android:maxLines="2"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/x24"
+                android:layout_marginEnd="@dimen/x24"/>
+            <ImageView
+                android:layout_width="@dimen/x12"
+                android:layout_height="@dimen/x24"
+                android:src="@drawable/icon_home_banner_arrow"
+                android:adjustViewBounds="true"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

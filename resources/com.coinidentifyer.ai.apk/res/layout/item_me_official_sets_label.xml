@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/x40">
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x28"
+        android:textStyle="bold"
+        android:textColor="#6e737d"
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/offseries_list_sort_title_all"
+        android:drawablePadding="@dimen/x8"
+        android:drawableEnd="@drawable/icon_small_arrow_down"
+        android:layout_marginStart="@dimen/x32"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:medium_style="true"/>
+    <TextView
+        android:id="@+id/desc_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Click to see details and create series."
+        android:layout_marginHorizontal="@dimen/x32"
+        app:layout_constraintTop_toBottomOf="@+id/hight_v"/>
+</LinearLayout>

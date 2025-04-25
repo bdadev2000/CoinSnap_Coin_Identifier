@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <cache-path
+        name="mis_1"
+        path="."/>
+    <external-path
+        name="mis_2"
+        path="."/>
+    <files-path
+        name="mis_3"
+        path="."/>
+    <external-files-path
+        name="mis_4"
+        path="."/>
+    <external-cache-path
+        name="mis_5"
+        path="."/>
+</paths>

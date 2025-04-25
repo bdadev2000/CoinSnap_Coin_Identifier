@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x32"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:id="@+id/try_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Try  days free, then /year"
+        android:maxLines="1"
+        android:includeFontPadding="false"/>
+    <TextView
+        android:textSize="@dimen/x24"
+        android:gravity="center_horizontal"
+        android:id="@+id/desc_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x4"
+        android:text="No need to pay if you cancel the subscription at\10least a day before the 3-day free trial ends. "
+        android:includeFontPadding="false"
+        android:fontFamily="@string/Roboto_Light"/>
+    <TextView
+        android:textSize="@dimen/x44"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:id="@+id/continue_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x112"
+        android:layout_marginTop="@dimen/x4"
+        android:foreground="@drawable/ripple_rect_r_30dp"
+        android:text="Continue"
+        android:layout_marginStart="@dimen/x72"
+        android:layout_marginEnd="@dimen/x72"/>
+</LinearLayout>

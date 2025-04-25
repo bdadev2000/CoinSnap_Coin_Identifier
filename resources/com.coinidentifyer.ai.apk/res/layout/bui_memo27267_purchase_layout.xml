@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x32"
+        android:textColor="@color/White"
+        android:id="@+id/price_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:medium_style="true"/>
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x32"
+        android:textColor="#ffffff"
+        android:id="@+id/info_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x8"
+        app:medium_style="true"/>
+    <TextView
+        android:textSize="@dimen/x44"
+        android:textStyle="bold"
+        android:textColor="@color/gl_text_color1"
+        android:gravity="center"
+        android:id="@+id/purchase_tv"
+        android:background="@drawable/bui_memo27267_purchase_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x112"
+        android:layout_marginTop="@dimen/x24"
+        android:text="@string/base_widget_text_continue"/>
+</LinearLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textSize="@dimen/x32"
+        android:textColor="#333333"
+        android:id="@+id/tv_tips_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x36"
+        android:text="@string/result_nomatch_title"
+        android:layout_marginStart="@dimen/x48"
+        android:layout_marginEnd="@dimen/x48"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/ll_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/x48"
+        android:layout_marginEnd="@dimen/x48"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tips_title"/>
+    <include
+        android:id="@+id/show_more_container"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/x48"
+        android:layout_marginEnd="@dimen/x48"
+        app:layout_constraintBottom_toTopOf="@+id/cv_cms_separator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        layout="@layout/item_cms_learn_more_mask"/>
+    <include
+        android:id="@+id/cv_cms_separator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        layout="@layout/cms_separator"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

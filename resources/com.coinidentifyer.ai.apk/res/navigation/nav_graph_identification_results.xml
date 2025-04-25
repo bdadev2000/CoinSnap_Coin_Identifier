@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_identify"
+    app:startDestination="@+id/identificationResultsFragment">
+    <fragment
+        android:label="IdentificationResultsFragment"
+        android:name="com.glority.android.picturexx.view.recognize.IdentificationResultsFragment"
+        android:id="@+id/identificationResultsFragment">
+        <action
+            android:id="@+id/action_identificationResultsFragment_to_nav_graph_grading_identify2"
+            app:destination="@+id/nav_graph_grading_identify"/>
+        <action
+            android:id="@+id/action_identificationResultsFragment_to_nav_graph_grading_value_check"
+            app:destination="@+id/nav_graph_identify_value_check"/>
+    </fragment>
+    <include app:graph="@navigation/nav_graph_identification_result"/>
+    <include app:graph="@navigation/nav_graph_identification_value_check"/>
+</navigation>

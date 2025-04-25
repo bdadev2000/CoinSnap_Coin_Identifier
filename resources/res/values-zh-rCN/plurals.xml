@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="exo_controls_fastforward_by_amount_description">
+        <item quantity="one">快进 %d 秒</item>
+        <item quantity="other">快进 %d 秒</item>
+    </plurals>
+    <plurals name="exo_controls_rewind_by_amount_description">
+        <item quantity="one">快退 %d 秒</item>
+        <item quantity="other">快退 %d 秒</item>
+    </plurals>
+    <plurals name="mtrl_badge_content_description">
+        <item quantity="one">%d 条新通知</item>
+        <item quantity="other">%d 条新通知</item>
+    </plurals>
+    <plurals name="permission_denied_message">
+        <item quantity="other">没有权限，请授予&lt;b&gt;%s&lt;/b&gt;权限之后再次尝试。</item>
+    </plurals>
+    <plurals name="permission_set_in_settings_message">
+        <item quantity="other">打开设置的程序信息页面，轻触&quot;权限&quot;，将&lt;b&gt;%s&lt;/b&gt;设置为打开，并再次尝试。</item>
+    </plurals>
+</resources>

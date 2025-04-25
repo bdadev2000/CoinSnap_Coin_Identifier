@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.glority.imagepicker.view.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#ebebeb"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.glority.imagepicker.view.SquaredImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:src="0x7f08044e"
+        android:scaleType="centerInside"/>
+    <View
+        android:id="@+id/mask"
+        android:background="#88000000"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <TextView
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:layout_gravity="end|top"
+        android:id="@+id/checkmark"
+        android:background="@drawable/mis_image_select_background"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"/>
+</com.glority.imagepicker.view.SquareFrameLayout>

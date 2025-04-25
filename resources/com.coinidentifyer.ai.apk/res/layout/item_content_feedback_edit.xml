@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:tag="layout/item_content_feedback_edit_0"
+    android:background="@color/transparent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:textSize="@dimen/x28"
+        android:gravity="top"
+        android:id="@+id/notes_et"
+        android:background="@drawable/rectangle_f8f8f8_solid"
+        android:paddingTop="@dimen/x18"
+        android:paddingBottom="@dimen/x18"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x268"
+        android:layout_marginTop="@dimen/x12"
+        android:paddingStart="@dimen/x34"
+        android:paddingEnd="@dimen/x34"
+        android:layout_marginHorizontal="@dimen/x40"/>
+    <com.google.android.material.button.MaterialButton
+        android:enabled="false"
+        android:id="@+id/submit_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x32"
+        android:text="@string/text_submit"
+        android:layout_marginHorizontal="@dimen/x40"
+        style="@style/GlButtonStyle.big"/>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x80"/>
+</LinearLayout>

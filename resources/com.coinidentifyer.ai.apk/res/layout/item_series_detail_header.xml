@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:background="@drawable/shape_rect_1afaaf19_r_8"
+    android:padding="@dimen/x30"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/x20"
+    android:foreground="@drawable/ripple_r20_deep"
+    android:layout_marginHorizontal="@dimen/x20">
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x32"
+        android:textColor="#cb8700"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/collection_seriesdetails_introduce"
+        android:maxLines="1"
+        android:drawablePadding="@dimen/x8"
+        android:layout_weight="1"
+        app:auto_resize="true"
+        app:drawableStartCompat="@drawable/icon_series_introduce"
+        app:medium_style="true"/>
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_arrow_right"
+        app:tint="#cb8700"/>
+</LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_ffffff_r12"
+    android:layout_width="@dimen/x583"
+    android:layout_height="@dimen/x232"
+    android:foreground="@drawable/ripple_r10"
+    android:paddingHorizontal="@dimen/x24"
+    android:paddingVertical="@dimen/x32">
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x32"
+        android:textColor="#222222"
+        android:ellipsize="end"
+        android:id="@+id/title_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:layout_marginEnd="@dimen/x16"
+        app:auto_resize="false"
+        app:layout_constraintBottom_toTopOf="@+id/type_tv"
+        app:layout_constraintEnd_toStartOf="@+id/iv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:medium_style="true"/>
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x28"
+        android:textColor="#8f949a"
+        android:ellipsize="end"
+        android:id="@+id/type_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x8"
+        android:maxLines="1"
+        android:layout_marginEnd="@dimen/x16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/iv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_tv"
+        app:medium_style="true"/>
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv"
+        android:layout_width="@dimen/x200"
+        android:layout_height="@dimen/x168"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/roundedCornerImageStyle4"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

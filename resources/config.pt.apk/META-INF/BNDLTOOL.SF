@@ -1,0 +1,44 @@
+Signature-Version: 1.0
+Created-By: 1.0 (Android)
+SHA1-Digest-Manifest: c15hZnSQgDHMfAUTaezRK5OAX7c=
+X-Android-APK-Signed: 2, 3
+
+Name: AndroidManifest.xml
+SHA1-Digest: h2iE7wBbS8JpzS8iYKDBJiCEEwc=
+
+Name: res/drawable-pt-rPT-xxhdpi-v4/icon_grading_snaptips_1.webp
+SHA1-Digest: 3Tb7ThxinnSPp1b9xlhQP2NqK7M=
+
+Name: res/drawable-pt-rPT-xxhdpi-v4/icon_grading_snaptips_2.webp
+SHA1-Digest: 9T63x2vjZ0dRFWMd7UrLcs4uXjk=
+
+Name: res/drawable-pt-rPT-xxhdpi-v4/icon_snap_tips_bottom1.webp
+SHA1-Digest: dQQy2SeT0A0kmkule2CM1zjaEEU=
+
+Name: res/drawable-pt-rPT-xxhdpi-v4/icon_snap_tips_bottom2.webp
+SHA1-Digest: Q6jvGlIpgxw/ebupIr47xAoChcU=
+
+Name: res/drawable-pt-rPT-xxhdpi-v4/icon_snap_tips_top1.webp
+SHA1-Digest: NaWsQd1fmob3XEcGeKe03ks78lM=
+
+Name: res/drawable-pt-rPT-xxhdpi-v4/icon_snap_tips_top2.webp
+SHA1-Digest: +z67YsoIC4nMjKl0fPMGHTj+Hdo=
+
+Name: res/drawable-pt-xxhdpi-v4/image_onboarding_sample_coin.png
+SHA1-Digest: JeerHWb9Qz9XChTqtW90NglI24U=
+
+Name: res/drawable-pt-xxhdpi-v4/image_onboarding_sample_coin_phone.png
+SHA1-Digest: x/sO3SsPmon58Ur8dliL7dAqADg=
+
+Name: res/drawable-pt-xxhdpi-v4/img_home_country_border.png
+SHA1-Digest: fOE1/gDT9o01svjlJRiv7knfy1Y=
+
+Name: res/drawable-pt-xxhdpi-v4/img_home_scan_coin.png
+SHA1-Digest: 7mwAhTMjx49LbJXNR1eXWGmh+pI=
+
+Name: resources.arsc
+SHA1-Digest: F4hdXP8pnG6VI4DGT28CzZE2veo=
+
+Name: stamp-cert-sha256
+SHA1-Digest: Bs40BvDZ1xrbgQrPTD2x5w/NfHQ=
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/bg_rectagnle_white_cornner9"
+    android:layout_width="@dimen/x520"
+    android:layout_height="@dimen/x228">
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x36"
+        android:textColor="@color/Black"
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:medium_style="true"/>
+</LinearLayout>

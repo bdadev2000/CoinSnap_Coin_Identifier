@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:tag="layout/item_me_wish_empty_0"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="@dimen/x240"
+        android:layout_height="@dimen/x240"
+        android:layout_marginTop="@dimen/x114"
+        android:src="@drawable/icon_me_empty"/>
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x32"
+        android:textColor="@color/gl_text_color1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x56"
+        android:text="@string/wishlist_empty"
+        app:medium_style="true"/>
+</LinearLayout>

@@ -1,0 +1,116 @@
+{
+  "backgroundColorParameter": {
+    "a": 0.0,
+    "b": 0.0,
+    "g": 0.0,
+    "r": 0.0,
+    "white": false
+  },
+  "continueColorParameter": {
+    "a": 1.0,
+    "b": 0.14509805,
+    "g": 0.14509805,
+    "r": 0.14509805,
+    "white": false
+  },
+  "continueSelectedBackground": {
+    "id": "1:766",
+    "localFilePath": "md5_e2898b068425eb4e77c6daad27336b6e"
+  },
+  "continueUnselectedBackground": {
+    "id": "1:1483",
+    "localFilePath": "md5_0408c33504bc8fe02a9ed7ee84118f2f"
+  },
+  "cornerRadius": 0,
+  "endPoint": 333,
+  "endToEnd": "window",
+  "figmaName": "GlPurchaseView3_main_selected",
+  "floating": false,
+  "height": -2,
+  "id": "1:747",
+  "mainPriceColorParameter": {
+    "a": 1.0,
+    "b": 0.7416667,
+    "g": 0.7416667,
+    "r": 0.7416667,
+    "white": false
+  },
+  "mainSkuSelectedBackground": {
+    "id": "1:761",
+    "localFilePath": "md5_eb03c351b7994dc36d5b895be3b62813"
+  },
+  "mainSkuSelectedColorParameter": {
+    "a": 1.0,
+    "b": 1.0,
+    "g": 1.0,
+    "r": 1.0,
+    "white": true
+  },
+  "mainSkuUnselectedBackground": {
+    "id": "1:1478",
+    "localFilePath": "md5_c54ae63973906ac8dda793f368de14101"
+  },
+  "mainSkuUnselectedColorParameter": {
+    "a": 1.0,
+    "b": 1.0,
+    "g": 1.0,
+    "r": 1.0,
+    "white": true
+  },
+  "marginBottom": 0,
+  "marginEnd": 0,
+  "marginStart": 0,
+  "marginTop": 20,
+  "maxHeight": 0,
+  "maxWidth": 0,
+  "minHeight": 0,
+  "minWidth": 0,
+  "mostPopularColorParameter": {
+    "a": 1.0,
+    "b": 0.14509805,
+    "g": 0.14509805,
+    "r": 0.14509805,
+    "white": false
+  },
+  "opacity": 1.0,
+  "originalHeight": 164,
+  "originalWidth": 306,
+  "otherBilledColorParameter": {
+    "a": 1.0,
+    "b": 0.5647059,
+    "g": 0.5647059,
+    "r": 0.5647059,
+    "white": false
+  },
+  "otherPriceColorParameter": {
+    "a": 1.0,
+    "b": 1.0,
+    "g": 1.0,
+    "r": 1.0,
+    "white": true
+  },
+  "otherSkuColorParameter": {
+    "a": 1.0,
+    "b": 1.0,
+    "g": 1.0,
+    "r": 1.0,
+    "white": true
+  },
+  "otherSkuSelectedBackground": {
+    "id": "1:1466",
+    "localFilePath": "md5_851039bb722a4c05961dd0107148aec8"
+  },
+  "otherSkuUnselectedBackground": {
+    "id": "1:754",
+    "localFilePath": "md5_68807bbd685487f5262df6319700a315"
+  },
+  "parentViewParameter": {
+    "$ref": "$"
+  },
+  "startToStart": "window",
+  "topToBottom": "billingDesGroup",
+  "viewName": "GlPurchaseView3",
+  "width": -1,
+  "x": 27,
+  "y": 436
+}

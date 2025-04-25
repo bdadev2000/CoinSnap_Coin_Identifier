@@ -1,0 +1,29 @@
+Signature-Version: 1.0
+Created-By: 1.0 (Android)
+SHA1-Digest-Manifest: 1a06wct+Vt4zCvkcX+njlUo9BE4=
+X-Android-APK-Signed: 2, 3
+
+Name: AndroidManifest.xml
+SHA1-Digest: SXcio5ya9f6GWNlWTnKdBSnkxOQ=
+
+Name: lib/arm64-v8a/libandroidx.graphics.path.so
+SHA1-Digest: qdPELWZ8G0EiUHhBZOMomwUjY54=
+
+Name: lib/arm64-v8a/libencrypt.so
+SHA1-Digest: 7Rz9Hg/OET7SzhPIbM1ZlIF1Erc=
+
+Name: lib/arm64-v8a/libimage_processing_util_jni.so
+SHA1-Digest: bY/Kgy5V846MW2SSgGRYyfvYwls=
+
+Name: lib/arm64-v8a/libsurface_util_jni.so
+SHA1-Digest: 6EMAtNAjZUtxGFvk9x6kMYc8Y68=
+
+Name: lib/arm64-v8a/libtensorflowlite_jni.so
+SHA1-Digest: I/z4hdhbuJvEZs1V/AOcd5/nIRU=
+
+Name: lib/arm64-v8a/libtensorflowlite_jni_gms_client.so
+SHA1-Digest: qP0zDKYHxX2X7KqzVGVE2Dd0loI=
+
+Name: stamp-cert-sha256
+SHA1-Digest: Bs40BvDZ1xrbgQrPTD2x5w/NfHQ=
+

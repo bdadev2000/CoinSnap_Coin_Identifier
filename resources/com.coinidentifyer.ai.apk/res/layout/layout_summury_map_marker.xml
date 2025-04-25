@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:tag="layout/layout_summury_map_marker_0"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:translationZ="5dp">
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:id="@+id/ll_marker_container"
+        android:background="@drawable/shape_rect_solid_white_r_100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/x12"
+        android:paddingVertical="@dimen/x8">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_marker"
+            android:layout_width="@dimen/x36"
+            android:layout_height="@dimen/x36"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:textSize="@dimen/x28"
+            android:textStyle="bold"
+            android:textColor="@color/color_333333"
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/x8"
+            android:lineHeight="@dimen/x34"/>
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/iv_triangle"
+        android:layout_width="10dp"
+        android:layout_height="7dp"
+        android:src="@drawable/icon_distribution_marker_triangle_white_down"/>
+</LinearLayout>

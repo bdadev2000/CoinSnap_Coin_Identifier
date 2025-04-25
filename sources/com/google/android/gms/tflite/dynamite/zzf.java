@@ -1,0 +1,12 @@
+package com.google.android.gms.tflite.dynamite;
+
+import android.os.IInterface;
+import android.os.RemoteException;
+import com.google.android.gms.dynamic.IObjectWrapper;
+import com.google.android.gms.tflite.dynamite.internal.CustomerInfo;
+
+/* compiled from: com.google.android.gms:play-services-tflite-impl@@16.1.0 */
+/* loaded from: classes12.dex */
+public interface zzf extends IInterface {
+    IObjectWrapper zzd(IObjectWrapper iObjectWrapper, CustomerInfo customerInfo) throws RemoteException;
+}

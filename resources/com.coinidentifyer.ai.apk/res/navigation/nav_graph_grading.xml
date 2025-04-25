@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_grading_core"
+    app:startDestination="@+id/gradingCaptureFragment">
+    <fragment
+        android:label="result_fragment"
+        android:name="com.glority.android.picturexx.recognize.fragment.ResultFragment"
+        android:id="@+id/result_fragment"/>
+    <fragment
+        android:label="GradingCaptureFragment"
+        android:name="com.glority.android.picturexx.recognize.fragment.grading.GradingCaptureFragment"
+        android:id="@+id/gradingCaptureFragment">
+        <action
+            android:id="@+id/action_gradingCaptureFragment_to_result_fragment"
+            app:destination="@+id/result_fragment"/>
+    </fragment>
+</navigation>

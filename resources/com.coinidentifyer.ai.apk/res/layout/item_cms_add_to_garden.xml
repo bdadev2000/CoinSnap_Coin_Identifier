@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/ll_add_to_garden_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <include layout="@layout/cms_separator"/>
+    <FrameLayout
+        android:id="@+id/fl_add_to_garden"
+        android:background="@drawable/bg_btn_problem_diagnosis"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x82"
+        android:layout_marginTop="@dimen/x48"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_marginStart="@dimen/x36"
+        android:layout_marginEnd="@dimen/x36"
+        android:elevation="@dimen/x4">
+        <TextView
+            android:textSize="@dimen/x36"
+            android:textColor="@color/White"
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_add_to_garden"
+            android:drawablePadding="@dimen/x16"
+            android:drawableStart="@drawable/icon_detail_garden"/>
+    </FrameLayout>
+    <TextView
+        android:textSize="@dimen/x24"
+        android:textColor="@color/LightGray"
+        android:gravity="center"
+        android:padding="@dimen/x16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/item_detail_add_to_my_garden_bottom_title"
+        android:layout_marginStart="@dimen/x36"
+        android:layout_marginEnd="@dimen/x36"
+        app:autoSizeMaxTextSize="@dimen/x24"
+        app:autoSizeMinTextSize="@dimen/x10"
+        app:autoSizeTextType="uniform"/>
+</LinearLayout>

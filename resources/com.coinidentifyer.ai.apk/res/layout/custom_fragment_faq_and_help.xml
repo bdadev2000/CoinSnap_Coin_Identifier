@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:tag="layout/custom_fragment_faq_and_help_0"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:tag="binding_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            android:id="@+id/navi_bar"
+            layout="@layout/layout_toolbar"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_faq"
+            android:background="@color/White"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <com.google.android.material.button.MaterialButton
+            android:textSize="18sp"
+            android:textColor="@color/White"
+            android:id="@+id/btn_contact_us"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/faq_help_text_contact_us"
+            android:textAllCaps="false"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="25dp"
+            app:cornerRadius="?attr/appButtonCornerBig"
+            style="@style/GlButtonStyle.big"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

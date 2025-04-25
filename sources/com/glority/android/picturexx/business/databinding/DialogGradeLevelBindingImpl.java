@@ -1,0 +1,76 @@
+package com.glority.android.picturexx.business.databinding;
+
+import android.util.SparseIntArray;
+import android.view.View;
+import android.widget.ImageView;
+import androidx.core.widget.NestedScrollView;
+import androidx.databinding.DataBindingComponent;
+import androidx.databinding.ViewDataBinding;
+import androidx.recyclerview.widget.RecyclerView;
+import com.glority.android.picturexx.business.R;
+import com.glority.widget.GlTextView;
+import com.google.android.material.button.MaterialButton;
+
+/* loaded from: classes2.dex */
+public class DialogGradeLevelBindingImpl extends DialogGradeLevelBinding {
+    private static final ViewDataBinding.IncludedLayouts sIncludes = null;
+    private static final SparseIntArray sViewsWithIds;
+    private long mDirtyFlags;
+    private final NestedScrollView mboundView0;
+
+    @Override // androidx.databinding.ViewDataBinding
+    protected boolean onFieldChange(int localFieldId, Object object, int fieldId) {
+        return false;
+    }
+
+    @Override // androidx.databinding.ViewDataBinding
+    public boolean setVariable(int variableId, Object variable) {
+        return true;
+    }
+
+    static {
+        SparseIntArray sparseIntArray = new SparseIntArray();
+        sViewsWithIds = sparseIntArray;
+        sparseIntArray.put(R.id.title, 1);
+        sparseIntArray.put(R.id.iv_close, 2);
+        sparseIntArray.put(R.id.name_rv, 3);
+        sparseIntArray.put(R.id.level_rv, 4);
+        sparseIntArray.put(R.id.save_bt, 5);
+    }
+
+    public DialogGradeLevelBindingImpl(DataBindingComponent bindingComponent, View root) {
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 6, sIncludes, sViewsWithIds));
+    }
+
+    private DialogGradeLevelBindingImpl(DataBindingComponent bindingComponent, View root, Object[] bindings) {
+        super(bindingComponent, root, 0, (ImageView) bindings[2], (RecyclerView) bindings[4], (RecyclerView) bindings[3], (MaterialButton) bindings[5], (GlTextView) bindings[1]);
+        this.mDirtyFlags = -1L;
+        NestedScrollView nestedScrollView = (NestedScrollView) bindings[0];
+        this.mboundView0 = nestedScrollView;
+        nestedScrollView.setTag(null);
+        setRootTag(root);
+        invalidateAll();
+    }
+
+    @Override // androidx.databinding.ViewDataBinding
+    public void invalidateAll() {
+        synchronized (this) {
+            this.mDirtyFlags = 1L;
+        }
+        requestRebind();
+    }
+
+    @Override // androidx.databinding.ViewDataBinding
+    public boolean hasPendingBindings() {
+        synchronized (this) {
+            return this.mDirtyFlags != 0;
+        }
+    }
+
+    @Override // androidx.databinding.ViewDataBinding
+    protected void executeBindings() {
+        synchronized (this) {
+            this.mDirtyFlags = 0L;
+        }
+    }
+}

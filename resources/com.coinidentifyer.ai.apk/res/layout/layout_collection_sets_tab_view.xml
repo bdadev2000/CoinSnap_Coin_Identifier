@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:tag="layout/layout_collection_sets_tab_view_0"
+    android:padding="@dimen/x8"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:textSize="@dimen/x32"
+        android:textStyle="bold"
+        android:textColor="@color/DarkGray"
+        android:id="@+id/sets_my_sets_tab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sets_mysets_tab"/>
+    <Space
+        android:layout_width="@dimen/x80"
+        android:layout_height="0dp"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:textSize="@dimen/x32"
+        android:textColor="@color/Grey666666"
+        android:id="@+id/sets_official_set_tab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/offseries_entry_title"/>
+</LinearLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_splash_onboarding"
+    app:startDestination="@+id/f_fragment_splash_agreement">
+    <fragment
+        android:label="fragment_splash_agreement"
+        android:name="com.glority.android.picturexx.splash.fragment.splash.SplashAgreementFragment"
+        android:id="@+id/f_fragment_splash_agreement">
+        <action
+            android:id="@+id/action_fragment_splash_agreement_to_fragment_splash_onboarding"
+            app:destination="@+id/f_fragment_splash_onboarding"/>
+    </fragment>
+    <fragment
+        android:label="fragment_splash_onboarding"
+        android:name="com.glority.android.picturexx.splash.fragment.splashguide.OnBoardingSplashGuideFragment"
+        android:id="@+id/f_fragment_splash_onboarding"/>
+</navigation>

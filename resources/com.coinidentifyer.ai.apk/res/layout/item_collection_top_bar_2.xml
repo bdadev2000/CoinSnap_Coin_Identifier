@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/icon_custom_series_collection_empyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x32"
+        android:layout_marginHorizontal="@dimen/x32">
+        <ImageView
+            android:layout_width="@dimen/x76"
+            android:layout_height="@dimen/x60"
+            android:src="@drawable/icon_custom_series_collection_camera"/>
+        <com.glority.widget.GlTextView
+            android:textColor="?attr/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x24"
+            android:text="@string/myseries_add_title"
+            app:medium_style="true"/>
+    </LinearLayout>
+</FrameLayout>

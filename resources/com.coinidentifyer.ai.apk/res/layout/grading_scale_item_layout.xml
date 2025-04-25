@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:paddingTop="@dimen/x40"
+    android:paddingBottom="@dimen/x8"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/x32">
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x32"
+        android:textColor="@color/gl_text_color1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gradescale_titletext"
+        app:medium_style="true"/>
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:id="@+id/scale_type_ll"
+        android:background="@drawable/price_scale_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/x16"
+        android:paddingHorizontal="@dimen/x24"
+        android:paddingVertical="@dimen/x14">
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="@dimen/x36"
+            android:layout_height="@dimen/x36"
+            android:src="@drawable/icon_price_scale_global"/>
+        <com.glority.widget.GlTextView
+            android:textSize="@dimen/x28"
+            android:textColor="@color/gl_text_color1"
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sheldon"
+            android:layout_marginStart="@dimen/x12"
+            app:medium_style="true"/>
+        <ImageView
+            android:id="@+id/arrow_iv"
+            android:layout_width="@dimen/x16"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_arrow_down_small"
+            android:layout_marginStart="@dimen/x12"/>
+    </LinearLayout>
+</LinearLayout>

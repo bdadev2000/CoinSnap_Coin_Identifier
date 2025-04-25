@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x28"
+        android:textColor="#bdbdbd"
+        android:gravity="center"
+        android:id="@+id/title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/base_widget_text_cancel_any_time_in_google_play"
+        app:auto_resize="false"/>
+    <com.glority.widget.GlTextView
+        android:textSize="@dimen/x20"
+        android:textColor="#a4a6a5"
+        android:id="@+id/data_tv"
+        android:paddingBottom="@dimen/y34"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bui_text_payment_will_be_charged"
+        android:lineSpacingMultiplier="1.5"
+        app:auto_resize="false"/>
+</LinearLayout>
