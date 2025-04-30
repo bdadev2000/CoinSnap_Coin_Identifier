@@ -1,42 +1,38 @@
 package com.google.firebase.perf.v1;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
+import i5.AbstractC2348c;
+import i5.C2349d;
+import i5.InterfaceC2350e;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-/* loaded from: classes3.dex */
-public final class AndroidMemoryReading extends GeneratedMessageLite<AndroidMemoryReading, Builder> implements AndroidMemoryReadingOrBuilder {
+/* loaded from: classes2.dex */
+public final class AndroidMemoryReading extends L2 implements InterfaceC2350e {
     public static final int CLIENT_TIME_US_FIELD_NUMBER = 1;
     private static final AndroidMemoryReading DEFAULT_INSTANCE;
-    private static volatile Parser<AndroidMemoryReading> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int USED_APP_JAVA_HEAP_MEMORY_KB_FIELD_NUMBER = 2;
     private int bitField0_;
     private long clientTimeUs_;
     private int usedAppJavaHeapMemoryKb_;
 
+    static {
+        AndroidMemoryReading androidMemoryReading = new AndroidMemoryReading();
+        DEFAULT_INSTANCE = androidMemoryReading;
+        L2.registerDefaultInstance(AndroidMemoryReading.class, androidMemoryReading);
+    }
+
     private AndroidMemoryReading() {
-    }
-
-    @Override // com.google.firebase.perf.v1.AndroidMemoryReadingOrBuilder
-    public boolean hasClientTimeUs() {
-        return (this.bitField0_ & 1) != 0;
-    }
-
-    @Override // com.google.firebase.perf.v1.AndroidMemoryReadingOrBuilder
-    public long getClientTimeUs() {
-        return this.clientTimeUs_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setClientTimeUs(long j) {
-        this.bitField0_ |= 1;
-        this.clientTimeUs_ = j;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -45,202 +41,70 @@ public final class AndroidMemoryReading extends GeneratedMessageLite<AndroidMemo
         this.clientTimeUs_ = 0L;
     }
 
-    @Override // com.google.firebase.perf.v1.AndroidMemoryReadingOrBuilder
-    public boolean hasUsedAppJavaHeapMemoryKb() {
-        return (this.bitField0_ & 2) != 0;
-    }
-
-    @Override // com.google.firebase.perf.v1.AndroidMemoryReadingOrBuilder
-    public int getUsedAppJavaHeapMemoryKb() {
-        return this.usedAppJavaHeapMemoryKb_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setUsedAppJavaHeapMemoryKb(int i) {
-        this.bitField0_ |= 2;
-        this.usedAppJavaHeapMemoryKb_ = i;
-    }
-
     /* JADX INFO: Access modifiers changed from: private */
     public void clearUsedAppJavaHeapMemoryKb() {
         this.bitField0_ &= -3;
         this.usedAppJavaHeapMemoryKb_ = 0;
     }
 
-    public static AndroidMemoryReading parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (AndroidMemoryReading) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    public static AndroidMemoryReading getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    public static AndroidMemoryReading parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (AndroidMemoryReading) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static AndroidMemoryReading parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (AndroidMemoryReading) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static AndroidMemoryReading parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (AndroidMemoryReading) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static AndroidMemoryReading parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (AndroidMemoryReading) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static AndroidMemoryReading parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (AndroidMemoryReading) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static AndroidMemoryReading parseFrom(InputStream inputStream) throws IOException {
-        return (AndroidMemoryReading) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static AndroidMemoryReading parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (AndroidMemoryReading) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static C2349d newBuilder() {
+        return (C2349d) DEFAULT_INSTANCE.createBuilder();
     }
 
     public static AndroidMemoryReading parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (AndroidMemoryReading) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+        return (AndroidMemoryReading) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
     }
 
-    public static AndroidMemoryReading parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (AndroidMemoryReading) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static AndroidMemoryReading parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (AndroidMemoryReading) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
     }
 
-    public static AndroidMemoryReading parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (AndroidMemoryReading) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
-    public static AndroidMemoryReading parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (AndroidMemoryReading) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setClientTimeUs(long j7) {
+        this.bitField0_ |= 1;
+        this.clientTimeUs_ = j7;
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setUsedAppJavaHeapMemoryKb(int i9) {
+        this.bitField0_ |= 2;
+        this.usedAppJavaHeapMemoryKb_ = i9;
     }
 
-    public static Builder newBuilder(AndroidMemoryReading androidMemoryReading) {
-        return DEFAULT_INSTANCE.createBuilder(androidMemoryReading);
-    }
-
-    /* loaded from: classes3.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<AndroidMemoryReading, Builder> implements AndroidMemoryReadingOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(AndroidMemoryReading.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.firebase.perf.v1.AndroidMemoryReadingOrBuilder
-        public boolean hasClientTimeUs() {
-            return ((AndroidMemoryReading) this.instance).hasClientTimeUs();
-        }
-
-        @Override // com.google.firebase.perf.v1.AndroidMemoryReadingOrBuilder
-        public long getClientTimeUs() {
-            return ((AndroidMemoryReading) this.instance).getClientTimeUs();
-        }
-
-        public Builder setClientTimeUs(long j) {
-            copyOnWrite();
-            ((AndroidMemoryReading) this.instance).setClientTimeUs(j);
-            return this;
-        }
-
-        public Builder clearClientTimeUs() {
-            copyOnWrite();
-            ((AndroidMemoryReading) this.instance).clearClientTimeUs();
-            return this;
-        }
-
-        @Override // com.google.firebase.perf.v1.AndroidMemoryReadingOrBuilder
-        public boolean hasUsedAppJavaHeapMemoryKb() {
-            return ((AndroidMemoryReading) this.instance).hasUsedAppJavaHeapMemoryKb();
-        }
-
-        @Override // com.google.firebase.perf.v1.AndroidMemoryReadingOrBuilder
-        public int getUsedAppJavaHeapMemoryKb() {
-            return ((AndroidMemoryReading) this.instance).getUsedAppJavaHeapMemoryKb();
-        }
-
-        public Builder setUsedAppJavaHeapMemoryKb(int i) {
-            copyOnWrite();
-            ((AndroidMemoryReading) this.instance).setUsedAppJavaHeapMemoryKb(i);
-            return this;
-        }
-
-        public Builder clearUsedAppJavaHeapMemoryKb() {
-            copyOnWrite();
-            ((AndroidMemoryReading) this.instance).clearUsedAppJavaHeapMemoryKb();
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.firebase.perf.v1.AndroidMemoryReading$1, reason: invalid class name */
-    /* loaded from: classes3.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (AbstractC2348c.f20671a[k22.ordinal()]) {
             case 1:
                 return new AndroidMemoryReading();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001ဂ\u0000\u0002င\u0001", new Object[]{"bitField0_", "clientTimeUs_", "usedAppJavaHeapMemoryKb_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001ဂ\u0000\u0002င\u0001", new Object[]{"bitField0_", "clientTimeUs_", "usedAppJavaHeapMemoryKb_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<AndroidMemoryReading> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (AndroidMemoryReading.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -250,17 +114,69 @@ public final class AndroidMemoryReading extends GeneratedMessageLite<AndroidMemo
         }
     }
 
-    static {
-        AndroidMemoryReading androidMemoryReading = new AndroidMemoryReading();
-        DEFAULT_INSTANCE = androidMemoryReading;
-        GeneratedMessageLite.registerDefaultInstance(AndroidMemoryReading.class, androidMemoryReading);
+    public long getClientTimeUs() {
+        return this.clientTimeUs_;
     }
 
-    public static AndroidMemoryReading getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public int getUsedAppJavaHeapMemoryKb() {
+        return this.usedAppJavaHeapMemoryKb_;
     }
 
-    public static Parser<AndroidMemoryReading> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public boolean hasClientTimeUs() {
+        if ((this.bitField0_ & 1) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hasUsedAppJavaHeapMemoryKb() {
+        if ((this.bitField0_ & 2) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public static C2349d newBuilder(AndroidMemoryReading androidMemoryReading) {
+        return (C2349d) DEFAULT_INSTANCE.createBuilder(androidMemoryReading);
+    }
+
+    public static AndroidMemoryReading parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (AndroidMemoryReading) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static AndroidMemoryReading parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (AndroidMemoryReading) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static AndroidMemoryReading parseFrom(H h6) throws C1912g3 {
+        return (AndroidMemoryReading) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static AndroidMemoryReading parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (AndroidMemoryReading) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static AndroidMemoryReading parseFrom(byte[] bArr) throws C1912g3 {
+        return (AndroidMemoryReading) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static AndroidMemoryReading parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (AndroidMemoryReading) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static AndroidMemoryReading parseFrom(InputStream inputStream) throws IOException {
+        return (AndroidMemoryReading) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static AndroidMemoryReading parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (AndroidMemoryReading) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static AndroidMemoryReading parseFrom(S s5) throws IOException {
+        return (AndroidMemoryReading) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static AndroidMemoryReading parseFrom(S s5, W1 w1) throws IOException {
+        return (AndroidMemoryReading) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

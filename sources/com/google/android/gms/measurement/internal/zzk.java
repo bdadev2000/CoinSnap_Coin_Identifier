@@ -1,23 +1,23 @@
 package com.google.android.gms.measurement.internal;
 
-/* compiled from: com.google.android.gms:play-services-measurement-sdk@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzk implements Runnable {
-    private final /* synthetic */ com.google.android.gms.internal.measurement.zzdo zza;
-    private final /* synthetic */ zzbf zzb;
+    private final /* synthetic */ com.google.android.gms.internal.measurement.zzdg zza;
+    private final /* synthetic */ String zzb;
     private final /* synthetic */ String zzc;
-    private final /* synthetic */ AppMeasurementDynamiteService zzd;
+    private final /* synthetic */ boolean zzd;
+    private final /* synthetic */ AppMeasurementDynamiteService zze;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzk(AppMeasurementDynamiteService appMeasurementDynamiteService, com.google.android.gms.internal.measurement.zzdo zzdoVar, zzbf zzbfVar, String str) {
-        this.zza = zzdoVar;
-        this.zzb = zzbfVar;
-        this.zzc = str;
-        this.zzd = appMeasurementDynamiteService;
+    public zzk(AppMeasurementDynamiteService appMeasurementDynamiteService, com.google.android.gms.internal.measurement.zzdg zzdgVar, String str, String str2, boolean z8) {
+        this.zza = zzdgVar;
+        this.zzb = str;
+        this.zzc = str2;
+        this.zzd = z8;
+        this.zze = appMeasurementDynamiteService;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        this.zzd.zza.zzr().zza(this.zza, this.zzb, this.zzc);
+        this.zze.zza.zzr().zza(this.zza, this.zzb, this.zzc, this.zzd);
     }
 }

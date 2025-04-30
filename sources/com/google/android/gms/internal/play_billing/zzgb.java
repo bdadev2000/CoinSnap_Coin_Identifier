@@ -1,36 +1,43 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public final class zzgb extends zzbx implements zzdg {
-    /* JADX WARN: Illegal instructions before constructor call */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
+/* loaded from: classes2.dex */
+final class zzgb implements zzcw {
+    static final zzcw zza = new zzgb();
+
     private zzgb() {
-        /*
-            r1 = this;
-            com.google.android.gms.internal.play_billing.zzgd r0 = com.google.android.gms.internal.play_billing.zzgd.zzv()
-            r1.<init>(r0)
-            return
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.internal.play_billing.zzgb.<init>():void");
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* JADX WARN: Illegal instructions before constructor call */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public /* synthetic */ zzgb(com.google.android.gms.internal.play_billing.zzga r1) {
-        /*
-            r0 = this;
-            com.google.android.gms.internal.play_billing.zzgd r1 = com.google.android.gms.internal.play_billing.zzgd.zzv()
-            r0.<init>(r1)
-            return
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.internal.play_billing.zzgb.<init>(com.google.android.gms.internal.play_billing.zzga):void");
+    @Override // com.google.android.gms.internal.play_billing.zzcw
+    public final boolean zza(int i9) {
+        switch (i9) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+                return true;
+            default:
+                switch (i9) {
+                    case 22:
+                    case 23:
+                    case 24:
+                    case 25:
+                    case 26:
+                        return true;
+                    default:
+                        return false;
+                }
+        }
     }
 }

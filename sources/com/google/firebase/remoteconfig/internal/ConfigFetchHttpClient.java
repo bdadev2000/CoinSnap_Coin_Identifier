@@ -1,21 +1,11 @@
 package com.google.firebase.remoteconfig.internal;
 
+import J.a;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.util.Log;
-import androidx.core.content.pm.PackageInfoCompat;
-import com.google.android.gms.common.util.AndroidUtilsLight;
-import com.google.android.gms.common.util.Hex;
-import com.google.firebase.remoteconfig.BuildConfig;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigClientException;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigException;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigServerException;
-import com.google.firebase.remoteconfig.RemoteConfigConstants;
-import com.google.firebase.remoteconfig.internal.ConfigContainer;
-import com.google.firebase.remoteconfig.internal.ConfigFetchHandler;
+import g4.h;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,195 +14,57 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes3.dex */
+/* loaded from: classes2.dex */
 public class ConfigFetchHttpClient {
-    private static final String API_KEY_HEADER = "X-Goog-Api-Key";
-    private static final String ETAG_HEADER = "ETag";
-    private static final Pattern GMP_APP_ID_PATTERN = Pattern.compile("^[^:]+:([0-9]+):(android|ios|web):([0-9a-f]+)");
-    private static final String IF_NONE_MATCH_HEADER = "If-None-Match";
-    private static final String INSTALLATIONS_AUTH_TOKEN_HEADER = "X-Goog-Firebase-Installations-Auth";
-    private static final String ISO_DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-    private static final String X_ANDROID_CERT_HEADER = "X-Android-Cert";
-    private static final String X_ANDROID_PACKAGE_HEADER = "X-Android-Package";
-    private static final String X_GOOGLE_GFE_CAN_RETRY = "X-Google-GFE-Can-Retry";
-    private final String apiKey;
-    private final String appId;
-    private final long connectTimeoutInSeconds;
-    private final Context context;
-    private final String namespace;
-    private final String projectNumber;
-    private final long readTimeoutInSeconds;
 
-    public ConfigFetchHttpClient(Context context, String str, String str2, String str3, long j, long j2) {
-        this.context = context;
-        this.appId = str;
-        this.apiKey = str2;
-        this.projectNumber = extractProjectNumberFromAppId(str);
-        this.namespace = str3;
-        this.connectTimeoutInSeconds = j;
-        this.readTimeoutInSeconds = j2;
-    }
+    /* renamed from: h, reason: collision with root package name */
+    public static final Pattern f14373h = Pattern.compile("^[^:]+:([0-9]+):(android|ios|web):([0-9a-f]+)");
 
-    public long getConnectTimeoutInSeconds() {
-        return this.connectTimeoutInSeconds;
-    }
+    /* renamed from: a, reason: collision with root package name */
+    public final Context f14374a;
+    public final String b;
 
-    public long getReadTimeoutInSeconds() {
-        return this.readTimeoutInSeconds;
-    }
+    /* renamed from: c, reason: collision with root package name */
+    public final String f14375c;
 
-    private static String extractProjectNumberFromAppId(String str) {
-        Matcher matcher = GMP_APP_ID_PATTERN.matcher(str);
+    /* renamed from: d, reason: collision with root package name */
+    public final String f14376d;
+
+    /* renamed from: e, reason: collision with root package name */
+    public final String f14377e;
+
+    /* renamed from: f, reason: collision with root package name */
+    public final long f14378f;
+
+    /* renamed from: g, reason: collision with root package name */
+    public final long f14379g;
+
+    public ConfigFetchHttpClient(Context context, String str, String str2, String str3, long j7, long j9) {
+        String str4;
+        this.f14374a = context;
+        this.b = str;
+        this.f14375c = str2;
+        Matcher matcher = f14373h.matcher(str);
         if (matcher.matches()) {
-            return matcher.group(1);
+            str4 = matcher.group(1);
+        } else {
+            str4 = null;
         }
-        return null;
+        this.f14376d = str4;
+        this.f14377e = str3;
+        this.f14378f = j7;
+        this.f14379g = j9;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public HttpURLConnection createHttpURLConnection() throws FirebaseRemoteConfigException {
-        try {
-            return (HttpURLConnection) new URL(getFetchUrl(this.projectNumber, this.namespace)).openConnection();
-        } catch (IOException e) {
-            throw new FirebaseRemoteConfigException(e.getMessage());
-        }
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public ConfigFetchHandler.FetchResponse fetch(HttpURLConnection httpURLConnection, String str, String str2, Map<String, String> map, String str3, Map<String, String> map2, Long l, Date date) throws FirebaseRemoteConfigException {
-        setUpUrlConnection(httpURLConnection, str3, str2, map2);
-        try {
-            try {
-                setFetchRequestBody(httpURLConnection, createFetchRequestBody(str, str2, map, l).toString().getBytes("utf-8"));
-                httpURLConnection.connect();
-                int responseCode = httpURLConnection.getResponseCode();
-                if (responseCode != 200) {
-                    throw new FirebaseRemoteConfigServerException(responseCode, httpURLConnection.getResponseMessage());
-                }
-                String headerField = httpURLConnection.getHeaderField("ETag");
-                JSONObject fetchResponseBody = getFetchResponseBody(httpURLConnection);
-                try {
-                    httpURLConnection.getInputStream().close();
-                } catch (IOException unused) {
-                }
-                ConfigContainer extractConfigs = extractConfigs(fetchResponseBody, date);
-                if (!backendHasUpdates(fetchResponseBody)) {
-                    return ConfigFetchHandler.FetchResponse.forBackendHasNoUpdates(date, extractConfigs);
-                }
-                return ConfigFetchHandler.FetchResponse.forBackendUpdatesFetched(extractConfigs, headerField);
-            } catch (IOException | JSONException e) {
-                throw new FirebaseRemoteConfigClientException("The client had an error while calling the backend!", e);
-            }
-        } finally {
-            httpURLConnection.disconnect();
-            try {
-                httpURLConnection.getInputStream().close();
-            } catch (IOException unused2) {
-            }
-        }
-    }
-
-    private void setUpUrlConnection(HttpURLConnection httpURLConnection, String str, String str2, Map<String, String> map) {
-        httpURLConnection.setDoOutput(true);
-        httpURLConnection.setConnectTimeout((int) TimeUnit.SECONDS.toMillis(this.connectTimeoutInSeconds));
-        httpURLConnection.setReadTimeout((int) TimeUnit.SECONDS.toMillis(this.readTimeoutInSeconds));
-        httpURLConnection.setRequestProperty("If-None-Match", str);
-        setCommonRequestHeaders(httpURLConnection, str2);
-        setCustomRequestHeaders(httpURLConnection, map);
-    }
-
-    private String getFetchUrl(String str, String str2) {
-        return String.format(RemoteConfigConstants.FETCH_REGEX_URL, str, str2);
-    }
-
-    private void setCommonRequestHeaders(HttpURLConnection httpURLConnection, String str) {
-        httpURLConnection.setRequestProperty(API_KEY_HEADER, this.apiKey);
-        httpURLConnection.setRequestProperty(X_ANDROID_PACKAGE_HEADER, this.context.getPackageName());
-        httpURLConnection.setRequestProperty(X_ANDROID_CERT_HEADER, getFingerprintHashForPackage());
-        httpURLConnection.setRequestProperty(X_GOOGLE_GFE_CAN_RETRY, "yes");
-        httpURLConnection.setRequestProperty(INSTALLATIONS_AUTH_TOKEN_HEADER, str);
-        httpURLConnection.setRequestProperty("Content-Type", "application/json");
-        httpURLConnection.setRequestProperty("Accept", "application/json");
-    }
-
-    private void setCustomRequestHeaders(HttpURLConnection httpURLConnection, Map<String, String> map) {
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-            httpURLConnection.setRequestProperty(entry.getKey(), entry.getValue());
-        }
-    }
-
-    private String getFingerprintHashForPackage() {
-        try {
-            Context context = this.context;
-            byte[] packageCertificateHashBytes = AndroidUtilsLight.getPackageCertificateHashBytes(context, context.getPackageName());
-            if (packageCertificateHashBytes == null) {
-                Log.e(FirebaseRemoteConfig.TAG, "Could not get fingerprint hash for package: " + this.context.getPackageName());
-                return null;
-            }
-            return Hex.bytesToStringUppercase(packageCertificateHashBytes, false);
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.e(FirebaseRemoteConfig.TAG, "No such package: " + this.context.getPackageName(), e);
-            return null;
-        }
-    }
-
-    private JSONObject createFetchRequestBody(String str, String str2, Map<String, String> map, Long l) throws FirebaseRemoteConfigClientException {
-        HashMap hashMap = new HashMap();
-        if (str == null) {
-            throw new FirebaseRemoteConfigClientException("Fetch failed: Firebase installation id is null.");
-        }
-        hashMap.put(RemoteConfigConstants.RequestFieldKey.INSTANCE_ID, str);
-        hashMap.put(RemoteConfigConstants.RequestFieldKey.INSTANCE_ID_TOKEN, str2);
-        hashMap.put(RemoteConfigConstants.RequestFieldKey.APP_ID, this.appId);
-        Locale locale = this.context.getResources().getConfiguration().locale;
-        hashMap.put(RemoteConfigConstants.RequestFieldKey.COUNTRY_CODE, locale.getCountry());
-        hashMap.put(RemoteConfigConstants.RequestFieldKey.LANGUAGE_CODE, locale.toLanguageTag());
-        hashMap.put(RemoteConfigConstants.RequestFieldKey.PLATFORM_VERSION, Integer.toString(Build.VERSION.SDK_INT));
-        hashMap.put(RemoteConfigConstants.RequestFieldKey.TIME_ZONE, TimeZone.getDefault().getID());
-        try {
-            PackageInfo packageInfo = this.context.getPackageManager().getPackageInfo(this.context.getPackageName(), 0);
-            if (packageInfo != null) {
-                hashMap.put(RemoteConfigConstants.RequestFieldKey.APP_VERSION, packageInfo.versionName);
-                hashMap.put(RemoteConfigConstants.RequestFieldKey.APP_BUILD, Long.toString(PackageInfoCompat.getLongVersionCode(packageInfo)));
-            }
-        } catch (PackageManager.NameNotFoundException unused) {
-        }
-        hashMap.put(RemoteConfigConstants.RequestFieldKey.PACKAGE_NAME, this.context.getPackageName());
-        hashMap.put(RemoteConfigConstants.RequestFieldKey.SDK_VERSION, BuildConfig.VERSION_NAME);
-        hashMap.put(RemoteConfigConstants.RequestFieldKey.ANALYTICS_USER_PROPERTIES, new JSONObject(map));
-        if (l != null) {
-            hashMap.put(RemoteConfigConstants.RequestFieldKey.FIRST_OPEN_TIME, convertToISOString(l.longValue()));
-        }
-        return new JSONObject(hashMap);
-    }
-
-    private String convertToISOString(long j) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
-        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-        return simpleDateFormat.format(Long.valueOf(j));
-    }
-
-    private void setFetchRequestBody(HttpURLConnection httpURLConnection, byte[] bArr) throws IOException {
-        httpURLConnection.setFixedLengthStreamingMode(bArr.length);
-        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(httpURLConnection.getOutputStream());
-        bufferedOutputStream.write(bArr);
-        bufferedOutputStream.flush();
-        bufferedOutputStream.close();
-    }
-
-    private JSONObject getFetchResponseBody(URLConnection uRLConnection) throws IOException, JSONException {
+    public static JSONObject c(URLConnection uRLConnection) {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(uRLConnection.getInputStream(), "utf-8"));
         StringBuilder sb = new StringBuilder();
         while (true) {
@@ -225,59 +77,75 @@ public class ConfigFetchHttpClient {
         }
     }
 
-    private boolean backendHasUpdates(JSONObject jSONObject) {
+    public static void d(HttpURLConnection httpURLConnection, byte[] bArr) {
+        httpURLConnection.setFixedLengthStreamingMode(bArr.length);
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(httpURLConnection.getOutputStream());
+        bufferedOutputStream.write(bArr);
+        bufferedOutputStream.flush();
+        bufferedOutputStream.close();
+    }
+
+    public final JSONObject a(String str, String str2, Map map, Long l) {
+        long j7;
+        HashMap hashMap = new HashMap();
+        if (str != null) {
+            hashMap.put("appInstanceId", str);
+            hashMap.put("appInstanceIdToken", str2);
+            hashMap.put("appId", this.b);
+            Context context = this.f14374a;
+            Locale locale = context.getResources().getConfiguration().locale;
+            hashMap.put("countryCode", locale.getCountry());
+            int i9 = Build.VERSION.SDK_INT;
+            hashMap.put("languageCode", locale.toLanguageTag());
+            hashMap.put("platformVersion", Integer.toString(i9));
+            hashMap.put("timeZone", TimeZone.getDefault().getID());
+            try {
+                PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+                if (packageInfo != null) {
+                    hashMap.put("appVersion", packageInfo.versionName);
+                    if (i9 >= 28) {
+                        j7 = a.b(packageInfo);
+                    } else {
+                        j7 = packageInfo.versionCode;
+                    }
+                    hashMap.put("appBuild", Long.toString(j7));
+                }
+            } catch (PackageManager.NameNotFoundException unused) {
+            }
+            hashMap.put("packageName", context.getPackageName());
+            hashMap.put("sdkVersion", "22.0.0");
+            hashMap.put("analyticsUserProperties", new JSONObject(map));
+            if (l != null) {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+                simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+                hashMap.put("firstOpenTime", simpleDateFormat.format(l));
+            }
+            return new JSONObject(hashMap);
+        }
+        throw new h("Fetch failed: Firebase installation id is null.");
+    }
+
+    public final HttpURLConnection b() {
         try {
-            return !jSONObject.get("state").equals("NO_CHANGE");
-        } catch (JSONException unused) {
-            return true;
+            return (HttpURLConnection) new URL("https://firebaseremoteconfig.googleapis.com/v1/projects/" + this.f14376d + "/namespaces/" + this.f14377e + ":fetch").openConnection();
+        } catch (IOException e4) {
+            throw new h(e4.getMessage());
         }
     }
 
-    private static ConfigContainer extractConfigs(JSONObject jSONObject, Date date) throws FirebaseRemoteConfigClientException {
-        JSONObject jSONObject2;
-        JSONArray jSONArray;
-        JSONObject jSONObject3;
-        try {
-            ConfigContainer.Builder withFetchTime = ConfigContainer.newBuilder().withFetchTime(date);
-            JSONArray jSONArray2 = null;
-            try {
-                jSONObject2 = jSONObject.getJSONObject(RemoteConfigConstants.ResponseFieldKey.ENTRIES);
-            } catch (JSONException unused) {
-                jSONObject2 = null;
-            }
-            if (jSONObject2 != null) {
-                withFetchTime = withFetchTime.replaceConfigsWith(jSONObject2);
-            }
-            try {
-                jSONArray = jSONObject.getJSONArray(RemoteConfigConstants.ResponseFieldKey.EXPERIMENT_DESCRIPTIONS);
-            } catch (JSONException unused2) {
-                jSONArray = null;
-            }
-            if (jSONArray != null) {
-                withFetchTime = withFetchTime.withAbtExperiments(jSONArray);
-            }
-            try {
-                jSONObject3 = jSONObject.getJSONObject(RemoteConfigConstants.ResponseFieldKey.PERSONALIZATION_METADATA);
-            } catch (JSONException unused3) {
-                jSONObject3 = null;
-            }
-            if (jSONObject3 != null) {
-                withFetchTime = withFetchTime.withPersonalizationMetadata(jSONObject3);
-            }
-            String string = jSONObject.has(RemoteConfigConstants.ResponseFieldKey.TEMPLATE_VERSION_NUMBER) ? jSONObject.getString(RemoteConfigConstants.ResponseFieldKey.TEMPLATE_VERSION_NUMBER) : null;
-            if (string != null) {
-                withFetchTime.withTemplateVersionNumber(Long.parseLong(string));
-            }
-            try {
-                jSONArray2 = jSONObject.getJSONArray(RemoteConfigConstants.ResponseFieldKey.ROLLOUT_METADATA);
-            } catch (JSONException unused4) {
-            }
-            if (jSONArray2 != null) {
-                withFetchTime = withFetchTime.withRolloutMetadata(jSONArray2);
-            }
-            return withFetchTime.build();
-        } catch (JSONException e) {
-            throw new FirebaseRemoteConfigClientException("Fetch failed: fetch response could not be parsed.", e);
-        }
+    /* JADX WARN: Removed duplicated region for block: B:11:0x009e A[LOOP:0: B:8:0x0098->B:11:0x009e, LOOP_END] */
+    /* JADX WARN: Removed duplicated region for block: B:15:0x00d0 A[Catch: all -> 0x017f, IOException | JSONException -> 0x0181, IOException -> 0x0183, TRY_LEAVE, TryCatch #15 {all -> 0x017f, blocks: (B:13:0x00b4, B:15:0x00d0, B:83:0x0185, B:84:0x018e, B:86:0x018f, B:87:0x0196), top: B:9:0x009c }] */
+    /* JADX WARN: Removed duplicated region for block: B:83:0x0185 A[Catch: all -> 0x017f, IOException | JSONException -> 0x0181, IOException -> 0x0183, TRY_ENTER, TryCatch #15 {all -> 0x017f, blocks: (B:13:0x00b4, B:15:0x00d0, B:83:0x0185, B:84:0x018e, B:86:0x018f, B:87:0x0196), top: B:9:0x009c }] */
+    @androidx.annotation.Keep
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    public l5.f fetch(java.net.HttpURLConnection r8, java.lang.String r9, java.lang.String r10, java.util.Map<java.lang.String, java.lang.String> r11, java.lang.String r12, java.util.Map<java.lang.String, java.lang.String> r13, java.lang.Long r14, java.util.Date r15) throws k5.d {
+        /*
+            Method dump skipped, instructions count: 418
+            To view this dump change 'Code comments level' option to 'DEBUG'
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.firebase.remoteconfig.internal.ConfigFetchHttpClient.fetch(java.net.HttpURLConnection, java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.util.Map, java.lang.Long, java.util.Date):l5.f");
     }
 }

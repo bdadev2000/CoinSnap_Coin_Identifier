@@ -3,25 +3,24 @@ package com.google.android.gms.common.images;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.widget.ImageView;
-import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.internal.Asserts;
 import com.google.android.gms.common.internal.Objects;
 import com.google.android.gms.internal.base.zak;
 import com.google.android.gms.internal.base.zal;
 import java.lang.ref.WeakReference;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zae extends zag {
     private final WeakReference zac;
 
-    public zae(ImageView imageView, int i) {
-        super(Uri.EMPTY, i);
+    public zae(ImageView imageView, int i9) {
+        super(Uri.EMPTY, i9);
         Asserts.checkNotNull(imageView);
         this.zac = new WeakReference(imageView);
     }
 
-    public final boolean equals(Object obj) {
+    public final boolean equals(@Nullable Object obj) {
         if (this == obj) {
             return true;
         }
@@ -30,40 +29,44 @@ public final class zae extends zag {
         }
         ImageView imageView = (ImageView) this.zac.get();
         ImageView imageView2 = (ImageView) ((zae) obj).zac.get();
-        return (imageView2 == null || imageView == null || !Objects.equal(imageView2, imageView)) ? false : true;
+        if (imageView2 != null && imageView != null && Objects.equal(imageView2, imageView)) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
         return 0;
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.google.android.gms.common.images.zag
-    public final void zaa(Drawable drawable, boolean z, boolean z2, boolean z3) {
+    public final void zaa(@Nullable Drawable drawable, boolean z8, boolean z9, boolean z10) {
         ImageView imageView = (ImageView) this.zac.get();
         if (imageView != null) {
-            if (z2 || z3 || !(imageView instanceof zal)) {
-                boolean z4 = false;
-                if (!z2 && !z) {
-                    z4 = true;
-                }
-                if (z4) {
-                    Drawable drawable2 = imageView.getDrawable();
-                    if (drawable2 == null) {
-                        drawable2 = null;
-                    } else if (drawable2 instanceof zak) {
+            if (!z9 && !z10 && (imageView instanceof zal)) {
+                throw null;
+            }
+            boolean z11 = false;
+            if (!z9 && !z8) {
+                z11 = true;
+            }
+            if (z11) {
+                Drawable drawable2 = imageView.getDrawable();
+                if (drawable2 != null) {
+                    if (drawable2 instanceof zak) {
                         drawable2 = ((zak) drawable2).zaa();
                     }
-                    drawable = new zak(drawable2, drawable);
+                } else {
+                    drawable2 = null;
                 }
-                imageView.setImageDrawable(drawable);
-                if (imageView instanceof zal) {
-                    throw null;
-                }
-                if (drawable == null || !z4) {
+                drawable = new zak(drawable2, drawable);
+            }
+            imageView.setImageDrawable(drawable);
+            if (!(imageView instanceof zal)) {
+                if (drawable != null && z11) {
+                    ((zak) drawable).zab(250);
                     return;
                 }
-                ((zak) drawable).zab(ItemTouchHelper.Callback.DEFAULT_SWIPE_ANIMATION_DURATION);
                 return;
             }
             throw null;

@@ -1,18 +1,21 @@
 package com.google.android.gms.common.api;
 
+import androidx.annotation.NonNull;
 import com.google.android.gms.common.Feature;
+import com.google.android.gms.common.annotation.KeepForSdk;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class UnsupportedApiCallException extends UnsupportedOperationException {
     private final Feature zza;
 
-    public UnsupportedApiCallException(Feature feature) {
+    @KeepForSdk
+    public UnsupportedApiCallException(@NonNull Feature feature) {
         this.zza = feature;
     }
 
     @Override // java.lang.Throwable
+    @NonNull
     public String getMessage() {
-        return "Missing ".concat(String.valueOf(String.valueOf(this.zza)));
+        return "Missing ".concat(String.valueOf(this.zza));
     }
 }

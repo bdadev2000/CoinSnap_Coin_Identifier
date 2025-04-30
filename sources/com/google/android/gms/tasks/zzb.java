@@ -1,8 +1,9 @@
 package com.google.android.gms.tasks;
 
+import androidx.annotation.NonNull;
+
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzb extends CancellationToken {
     private final zzw zza = new zzw();
 
@@ -12,7 +13,7 @@ public final class zzb extends CancellationToken {
     }
 
     @Override // com.google.android.gms.tasks.CancellationToken
-    public final CancellationToken onCanceledRequested(OnTokenCanceledListener onTokenCanceledListener) {
+    public final CancellationToken onCanceledRequested(@NonNull OnTokenCanceledListener onTokenCanceledListener) {
         this.zza.addOnSuccessListener(TaskExecutors.MAIN_THREAD, new zza(this, onTokenCanceledListener));
         return this;
     }

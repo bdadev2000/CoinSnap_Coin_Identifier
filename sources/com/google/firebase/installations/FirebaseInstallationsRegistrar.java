@@ -1,39 +1,50 @@
 package com.google.firebase.installations;
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.annotations.concurrent.Background;
-import com.google.firebase.annotations.concurrent.Blocking;
-import com.google.firebase.components.Component;
-import com.google.firebase.components.ComponentContainer;
-import com.google.firebase.components.ComponentFactory;
+import A4.a;
+import L4.f;
+import L4.g;
+import O4.d;
+import O4.e;
+import R2.b;
+import androidx.annotation.Keep;
 import com.google.firebase.components.ComponentRegistrar;
-import com.google.firebase.components.Dependency;
-import com.google.firebase.components.Qualified;
-import com.google.firebase.concurrent.FirebaseExecutors;
-import com.google.firebase.heartbeatinfo.HeartBeatConsumerComponent;
-import com.google.firebase.heartbeatinfo.HeartBeatController;
-import com.google.firebase.platforminfo.LibraryVersionComponent;
+import g4.C2296f;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
+import n4.InterfaceC2477a;
+import n4.InterfaceC2478b;
+import o4.C2495a;
+import o4.C2496b;
+import o4.C2502h;
+import o4.InterfaceC2497c;
+import o4.q;
+import p4.k;
 
-/* loaded from: classes11.dex */
+@Keep
+/* loaded from: classes2.dex */
 public class FirebaseInstallationsRegistrar implements ComponentRegistrar {
     private static final String LIBRARY_NAME = "fire-installations";
 
-    @Override // com.google.firebase.components.ComponentRegistrar
-    public List<Component<?>> getComponents() {
-        return Arrays.asList(Component.builder(FirebaseInstallationsApi.class).name(LIBRARY_NAME).add(Dependency.required((Class<?>) FirebaseApp.class)).add(Dependency.optionalProvider((Class<?>) HeartBeatController.class)).add(Dependency.required((Qualified<?>) Qualified.qualified(Background.class, ExecutorService.class))).add(Dependency.required((Qualified<?>) Qualified.qualified(Blocking.class, Executor.class))).factory(new ComponentFactory() { // from class: com.google.firebase.installations.FirebaseInstallationsRegistrar$$ExternalSyntheticLambda0
-            @Override // com.google.firebase.components.ComponentFactory
-            public final Object create(ComponentContainer componentContainer) {
-                return FirebaseInstallationsRegistrar.lambda$getComponents$0(componentContainer);
-            }
-        }).build(), HeartBeatConsumerComponent.create(), LibraryVersionComponent.create(LIBRARY_NAME, "18.0.0"));
+    public static e lambda$getComponents$0(InterfaceC2497c interfaceC2497c) {
+        return new d((C2296f) interfaceC2497c.b(C2296f.class), interfaceC2497c.c(g.class), (ExecutorService) interfaceC2497c.f(new q(InterfaceC2477a.class, ExecutorService.class)), new k((Executor) interfaceC2497c.f(new q(InterfaceC2478b.class, Executor.class))));
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ FirebaseInstallationsApi lambda$getComponents$0(ComponentContainer componentContainer) {
-        return new FirebaseInstallations((FirebaseApp) componentContainer.get(FirebaseApp.class), componentContainer.getProvider(HeartBeatController.class), (ExecutorService) componentContainer.get(Qualified.qualified(Background.class, ExecutorService.class)), FirebaseExecutors.newSequentialExecutor((Executor) componentContainer.get(Qualified.qualified(Blocking.class, Executor.class))));
+    @Override // com.google.firebase.components.ComponentRegistrar
+    public List<C2496b> getComponents() {
+        C2495a a6 = C2496b.a(e.class);
+        a6.f21938a = LIBRARY_NAME;
+        a6.a(C2502h.b(C2296f.class));
+        a6.a(C2502h.a(g.class));
+        a6.a(new C2502h(new q(InterfaceC2477a.class, ExecutorService.class), 1, 0));
+        a6.a(new C2502h(new q(InterfaceC2478b.class, Executor.class), 1, 0));
+        a6.f21942f = new a(14);
+        C2496b b = a6.b();
+        f fVar = new f(0);
+        C2495a a9 = C2496b.a(f.class);
+        a9.f21941e = 1;
+        a9.f21942f = new F2.d(fVar, 19);
+        return Arrays.asList(b, a9.b(), b.k(LIBRARY_NAME, "18.0.0"));
     }
 }

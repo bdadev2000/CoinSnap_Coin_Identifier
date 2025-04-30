@@ -1,67 +1,52 @@
 package com.google.rpc;
 
-import com.google.protobuf.AbstractMessageLite;
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.Internal;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.MessageLiteOrBuilder;
-import com.google.protobuf.Parser;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1891d3;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.O3;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.Collections;
 import java.util.List;
+import w5.AbstractC2907a;
+import w5.InterfaceC2908b;
 
-/* loaded from: classes5.dex */
-public final class BadRequest extends GeneratedMessageLite<BadRequest, Builder> implements BadRequestOrBuilder {
+/* loaded from: classes3.dex */
+public final class BadRequest extends L2 implements O3 {
     private static final BadRequest DEFAULT_INSTANCE;
     public static final int FIELD_VIOLATIONS_FIELD_NUMBER = 1;
-    private static volatile Parser<BadRequest> PARSER;
-    private Internal.ProtobufList<FieldViolation> fieldViolations_ = emptyProtobufList();
+    private static volatile InterfaceC1948l4 PARSER;
+    private InterfaceC1891d3 fieldViolations_ = L2.emptyProtobufList();
 
-    /* loaded from: classes5.dex */
-    public interface FieldViolationOrBuilder extends MessageLiteOrBuilder {
-        String getDescription();
-
-        ByteString getDescriptionBytes();
-
-        String getField();
-
-        ByteString getFieldBytes();
-    }
-
-    private BadRequest() {
-    }
-
-    /* loaded from: classes5.dex */
-    public static final class FieldViolation extends GeneratedMessageLite<FieldViolation, Builder> implements FieldViolationOrBuilder {
+    /* loaded from: classes3.dex */
+    public static final class FieldViolation extends L2 implements InterfaceC2908b {
         private static final FieldViolation DEFAULT_INSTANCE;
         public static final int DESCRIPTION_FIELD_NUMBER = 2;
         public static final int FIELD_FIELD_NUMBER = 1;
-        private static volatile Parser<FieldViolation> PARSER;
+        private static volatile InterfaceC1948l4 PARSER;
         private String field_ = "";
         private String description_ = "";
+
+        static {
+            FieldViolation fieldViolation = new FieldViolation();
+            DEFAULT_INSTANCE = fieldViolation;
+            L2.registerDefaultInstance(FieldViolation.class, fieldViolation);
+        }
 
         private FieldViolation() {
         }
 
-        @Override // com.google.rpc.BadRequest.FieldViolationOrBuilder
-        public String getField() {
-            return this.field_;
-        }
-
-        @Override // com.google.rpc.BadRequest.FieldViolationOrBuilder
-        public ByteString getFieldBytes() {
-            return ByteString.copyFromUtf8(this.field_);
-        }
-
         /* JADX INFO: Access modifiers changed from: private */
-        public void setField(String str) {
-            str.getClass();
-            this.field_ = str;
+        public void clearDescription() {
+            this.description_ = getDefaultInstance().getDescription();
         }
 
         /* JADX INFO: Access modifiers changed from: private */
@@ -69,20 +54,24 @@ public final class BadRequest extends GeneratedMessageLite<BadRequest, Builder> 
             this.field_ = getDefaultInstance().getField();
         }
 
-        /* JADX INFO: Access modifiers changed from: private */
-        public void setFieldBytes(ByteString byteString) {
-            checkByteStringIsUtf8(byteString);
-            this.field_ = byteString.toStringUtf8();
+        public static FieldViolation getDefaultInstance() {
+            return DEFAULT_INSTANCE;
         }
 
-        @Override // com.google.rpc.BadRequest.FieldViolationOrBuilder
-        public String getDescription() {
-            return this.description_;
+        public static b newBuilder() {
+            return (b) DEFAULT_INSTANCE.createBuilder();
         }
 
-        @Override // com.google.rpc.BadRequest.FieldViolationOrBuilder
-        public ByteString getDescriptionBytes() {
-            return ByteString.copyFromUtf8(this.description_);
+        public static FieldViolation parseDelimitedFrom(InputStream inputStream) throws IOException {
+            return (FieldViolation) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+        }
+
+        public static FieldViolation parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+            return (FieldViolation) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+        }
+
+        public static InterfaceC1948l4 parser() {
+            return DEFAULT_INSTANCE.getParserForType();
         }
 
         /* JADX INFO: Access modifiers changed from: private */
@@ -92,163 +81,49 @@ public final class BadRequest extends GeneratedMessageLite<BadRequest, Builder> 
         }
 
         /* JADX INFO: Access modifiers changed from: private */
-        public void clearDescription() {
-            this.description_ = getDefaultInstance().getDescription();
+        public void setDescriptionBytes(H h6) {
+            AbstractC1880c.checkByteStringIsUtf8(h6);
+            this.description_ = h6.toStringUtf8();
         }
 
         /* JADX INFO: Access modifiers changed from: private */
-        public void setDescriptionBytes(ByteString byteString) {
-            checkByteStringIsUtf8(byteString);
-            this.description_ = byteString.toStringUtf8();
+        public void setField(String str) {
+            str.getClass();
+            this.field_ = str;
         }
 
-        public static FieldViolation parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-            return (FieldViolation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+        /* JADX INFO: Access modifiers changed from: private */
+        public void setFieldBytes(H h6) {
+            AbstractC1880c.checkByteStringIsUtf8(h6);
+            this.field_ = h6.toStringUtf8();
         }
 
-        public static FieldViolation parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-            return (FieldViolation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-        }
-
-        public static FieldViolation parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-            return (FieldViolation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-        }
-
-        public static FieldViolation parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-            return (FieldViolation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-        }
-
-        public static FieldViolation parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-            return (FieldViolation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-        }
-
-        public static FieldViolation parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-            return (FieldViolation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-        }
-
-        public static FieldViolation parseFrom(InputStream inputStream) throws IOException {
-            return (FieldViolation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-        }
-
-        public static FieldViolation parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-            return (FieldViolation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-        }
-
-        public static FieldViolation parseDelimitedFrom(InputStream inputStream) throws IOException {
-            return (FieldViolation) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
-        }
-
-        public static FieldViolation parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-            return (FieldViolation) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-        }
-
-        public static FieldViolation parseFrom(CodedInputStream codedInputStream) throws IOException {
-            return (FieldViolation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
-        }
-
-        public static FieldViolation parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-            return (FieldViolation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
-        }
-
-        public static Builder newBuilder() {
-            return DEFAULT_INSTANCE.createBuilder();
-        }
-
-        public static Builder newBuilder(FieldViolation fieldViolation) {
-            return DEFAULT_INSTANCE.createBuilder(fieldViolation);
-        }
-
-        /* loaded from: classes5.dex */
-        public static final class Builder extends GeneratedMessageLite.Builder<FieldViolation, Builder> implements FieldViolationOrBuilder {
-            /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-                this();
-            }
-
-            private Builder() {
-                super(FieldViolation.DEFAULT_INSTANCE);
-            }
-
-            @Override // com.google.rpc.BadRequest.FieldViolationOrBuilder
-            public String getField() {
-                return ((FieldViolation) this.instance).getField();
-            }
-
-            @Override // com.google.rpc.BadRequest.FieldViolationOrBuilder
-            public ByteString getFieldBytes() {
-                return ((FieldViolation) this.instance).getFieldBytes();
-            }
-
-            public Builder setField(String str) {
-                copyOnWrite();
-                ((FieldViolation) this.instance).setField(str);
-                return this;
-            }
-
-            public Builder clearField() {
-                copyOnWrite();
-                ((FieldViolation) this.instance).clearField();
-                return this;
-            }
-
-            public Builder setFieldBytes(ByteString byteString) {
-                copyOnWrite();
-                ((FieldViolation) this.instance).setFieldBytes(byteString);
-                return this;
-            }
-
-            @Override // com.google.rpc.BadRequest.FieldViolationOrBuilder
-            public String getDescription() {
-                return ((FieldViolation) this.instance).getDescription();
-            }
-
-            @Override // com.google.rpc.BadRequest.FieldViolationOrBuilder
-            public ByteString getDescriptionBytes() {
-                return ((FieldViolation) this.instance).getDescriptionBytes();
-            }
-
-            public Builder setDescription(String str) {
-                copyOnWrite();
-                ((FieldViolation) this.instance).setDescription(str);
-                return this;
-            }
-
-            public Builder clearDescription() {
-                copyOnWrite();
-                ((FieldViolation) this.instance).clearDescription();
-                return this;
-            }
-
-            public Builder setDescriptionBytes(ByteString byteString) {
-                copyOnWrite();
-                ((FieldViolation) this.instance).setDescriptionBytes(byteString);
-                return this;
-            }
-        }
-
-        @Override // com.google.protobuf.GeneratedMessageLite
-        protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-            AnonymousClass1 anonymousClass1 = null;
-            switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+        @Override // com.google.protobuf.L2
+        public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+            switch (AbstractC2907a.f23982a[k22.ordinal()]) {
                 case 1:
                     return new FieldViolation();
                 case 2:
-                    return new Builder(anonymousClass1);
+                    return new D2(DEFAULT_INSTANCE);
                 case 3:
-                    return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001Ȉ\u0002Ȉ", new Object[]{"field_", "description_"});
+                    return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001Ȉ\u0002Ȉ", new Object[]{"field_", "description_"});
                 case 4:
                     return DEFAULT_INSTANCE;
                 case 5:
-                    Parser<FieldViolation> parser = PARSER;
-                    if (parser == null) {
+                    InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                    if (interfaceC1948l4 == null) {
                         synchronized (FieldViolation.class) {
-                            parser = PARSER;
-                            if (parser == null) {
-                                parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                                PARSER = parser;
+                            try {
+                                interfaceC1948l4 = PARSER;
+                                if (interfaceC1948l4 == null) {
+                                    interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                    PARSER = interfaceC1948l4;
+                                }
+                            } finally {
                             }
                         }
                     }
-                    return parser;
+                    return interfaceC1948l4;
                 case 6:
                     return (byte) 1;
                 case 7:
@@ -258,96 +133,80 @@ public final class BadRequest extends GeneratedMessageLite<BadRequest, Builder> 
             }
         }
 
-        static {
-            FieldViolation fieldViolation = new FieldViolation();
-            DEFAULT_INSTANCE = fieldViolation;
-            GeneratedMessageLite.registerDefaultInstance(FieldViolation.class, fieldViolation);
+        public String getDescription() {
+            return this.description_;
         }
 
-        public static FieldViolation getDefaultInstance() {
-            return DEFAULT_INSTANCE;
+        public H getDescriptionBytes() {
+            return H.copyFromUtf8(this.description_);
         }
 
-        public static Parser<FieldViolation> parser() {
-            return DEFAULT_INSTANCE.getParserForType();
+        public String getField() {
+            return this.field_;
+        }
+
+        public H getFieldBytes() {
+            return H.copyFromUtf8(this.field_);
+        }
+
+        public static b newBuilder(FieldViolation fieldViolation) {
+            return (b) DEFAULT_INSTANCE.createBuilder(fieldViolation);
+        }
+
+        public static FieldViolation parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+            return (FieldViolation) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+        }
+
+        public static FieldViolation parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+            return (FieldViolation) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+        }
+
+        public static FieldViolation parseFrom(H h6) throws C1912g3 {
+            return (FieldViolation) L2.parseFrom(DEFAULT_INSTANCE, h6);
+        }
+
+        public static FieldViolation parseFrom(H h6, W1 w1) throws C1912g3 {
+            return (FieldViolation) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+        }
+
+        public static FieldViolation parseFrom(byte[] bArr) throws C1912g3 {
+            return (FieldViolation) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+        }
+
+        public static FieldViolation parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+            return (FieldViolation) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+        }
+
+        public static FieldViolation parseFrom(InputStream inputStream) throws IOException {
+            return (FieldViolation) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+        }
+
+        public static FieldViolation parseFrom(InputStream inputStream, W1 w1) throws IOException {
+            return (FieldViolation) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+        }
+
+        public static FieldViolation parseFrom(S s5) throws IOException {
+            return (FieldViolation) L2.parseFrom(DEFAULT_INSTANCE, s5);
+        }
+
+        public static FieldViolation parseFrom(S s5, W1 w1) throws IOException {
+            return (FieldViolation) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
         }
     }
 
-    /* renamed from: com.google.rpc.BadRequest$1, reason: invalid class name */
-    /* loaded from: classes5.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
+    static {
+        BadRequest badRequest = new BadRequest();
+        DEFAULT_INSTANCE = badRequest;
+        L2.registerDefaultInstance(BadRequest.class, badRequest);
     }
 
-    @Override // com.google.rpc.BadRequestOrBuilder
-    public List<FieldViolation> getFieldViolationsList() {
-        return this.fieldViolations_;
-    }
-
-    public List<? extends FieldViolationOrBuilder> getFieldViolationsOrBuilderList() {
-        return this.fieldViolations_;
-    }
-
-    @Override // com.google.rpc.BadRequestOrBuilder
-    public int getFieldViolationsCount() {
-        return this.fieldViolations_.size();
-    }
-
-    @Override // com.google.rpc.BadRequestOrBuilder
-    public FieldViolation getFieldViolations(int i) {
-        return this.fieldViolations_.get(i);
-    }
-
-    public FieldViolationOrBuilder getFieldViolationsOrBuilder(int i) {
-        return this.fieldViolations_.get(i);
-    }
-
-    private void ensureFieldViolationsIsMutable() {
-        Internal.ProtobufList<FieldViolation> protobufList = this.fieldViolations_;
-        if (protobufList.isModifiable()) {
-            return;
-        }
-        this.fieldViolations_ = GeneratedMessageLite.mutableCopy(protobufList);
+    private BadRequest() {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setFieldViolations(int i, FieldViolation fieldViolation) {
-        fieldViolation.getClass();
+    public void addAllFieldViolations(Iterable<? extends FieldViolation> iterable) {
         ensureFieldViolationsIsMutable();
-        this.fieldViolations_.set(i, fieldViolation);
+        AbstractC1880c.addAll((Iterable) iterable, (List) this.fieldViolations_);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -358,189 +217,76 @@ public final class BadRequest extends GeneratedMessageLite<BadRequest, Builder> 
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void addFieldViolations(int i, FieldViolation fieldViolation) {
-        fieldViolation.getClass();
-        ensureFieldViolationsIsMutable();
-        this.fieldViolations_.add(i, fieldViolation);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void addAllFieldViolations(Iterable<? extends FieldViolation> iterable) {
-        ensureFieldViolationsIsMutable();
-        AbstractMessageLite.addAll((Iterable) iterable, (List) this.fieldViolations_);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
     public void clearFieldViolations() {
-        this.fieldViolations_ = emptyProtobufList();
+        this.fieldViolations_ = L2.emptyProtobufList();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void removeFieldViolations(int i) {
-        ensureFieldViolationsIsMutable();
-        this.fieldViolations_.remove(i);
+    private void ensureFieldViolationsIsMutable() {
+        InterfaceC1891d3 interfaceC1891d3 = this.fieldViolations_;
+        if (!interfaceC1891d3.isModifiable()) {
+            this.fieldViolations_ = L2.mutableCopy(interfaceC1891d3);
+        }
     }
 
-    public static BadRequest parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (BadRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    public static BadRequest getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    public static BadRequest parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (BadRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static BadRequest parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (BadRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static BadRequest parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (BadRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static BadRequest parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (BadRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static BadRequest parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (BadRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static BadRequest parseFrom(InputStream inputStream) throws IOException {
-        return (BadRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static BadRequest parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (BadRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static a newBuilder() {
+        return (a) DEFAULT_INSTANCE.createBuilder();
     }
 
     public static BadRequest parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (BadRequest) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+        return (BadRequest) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
     }
 
-    public static BadRequest parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (BadRequest) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static BadRequest parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (BadRequest) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
     }
 
-    public static BadRequest parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (BadRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
-    public static BadRequest parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (BadRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void removeFieldViolations(int i9) {
+        ensureFieldViolationsIsMutable();
+        this.fieldViolations_.remove(i9);
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setFieldViolations(int i9, FieldViolation fieldViolation) {
+        fieldViolation.getClass();
+        ensureFieldViolationsIsMutable();
+        this.fieldViolations_.set(i9, fieldViolation);
     }
 
-    public static Builder newBuilder(BadRequest badRequest) {
-        return DEFAULT_INSTANCE.createBuilder(badRequest);
-    }
-
-    /* loaded from: classes5.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<BadRequest, Builder> implements BadRequestOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(BadRequest.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.rpc.BadRequestOrBuilder
-        public List<FieldViolation> getFieldViolationsList() {
-            return Collections.unmodifiableList(((BadRequest) this.instance).getFieldViolationsList());
-        }
-
-        @Override // com.google.rpc.BadRequestOrBuilder
-        public int getFieldViolationsCount() {
-            return ((BadRequest) this.instance).getFieldViolationsCount();
-        }
-
-        @Override // com.google.rpc.BadRequestOrBuilder
-        public FieldViolation getFieldViolations(int i) {
-            return ((BadRequest) this.instance).getFieldViolations(i);
-        }
-
-        public Builder setFieldViolations(int i, FieldViolation fieldViolation) {
-            copyOnWrite();
-            ((BadRequest) this.instance).setFieldViolations(i, fieldViolation);
-            return this;
-        }
-
-        public Builder setFieldViolations(int i, FieldViolation.Builder builder) {
-            copyOnWrite();
-            ((BadRequest) this.instance).setFieldViolations(i, builder.build());
-            return this;
-        }
-
-        public Builder addFieldViolations(FieldViolation fieldViolation) {
-            copyOnWrite();
-            ((BadRequest) this.instance).addFieldViolations(fieldViolation);
-            return this;
-        }
-
-        public Builder addFieldViolations(int i, FieldViolation fieldViolation) {
-            copyOnWrite();
-            ((BadRequest) this.instance).addFieldViolations(i, fieldViolation);
-            return this;
-        }
-
-        public Builder addFieldViolations(FieldViolation.Builder builder) {
-            copyOnWrite();
-            ((BadRequest) this.instance).addFieldViolations(builder.build());
-            return this;
-        }
-
-        public Builder addFieldViolations(int i, FieldViolation.Builder builder) {
-            copyOnWrite();
-            ((BadRequest) this.instance).addFieldViolations(i, builder.build());
-            return this;
-        }
-
-        public Builder addAllFieldViolations(Iterable<? extends FieldViolation> iterable) {
-            copyOnWrite();
-            ((BadRequest) this.instance).addAllFieldViolations(iterable);
-            return this;
-        }
-
-        public Builder clearFieldViolations() {
-            copyOnWrite();
-            ((BadRequest) this.instance).clearFieldViolations();
-            return this;
-        }
-
-        public Builder removeFieldViolations(int i) {
-            copyOnWrite();
-            ((BadRequest) this.instance).removeFieldViolations(i);
-            return this;
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (AbstractC2907a.f23982a[k22.ordinal()]) {
             case 1:
                 return new BadRequest();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0001\u0000\u0001\u001b", new Object[]{"fieldViolations_", FieldViolation.class});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0001\u0000\u0001\u001b", new Object[]{"fieldViolations_", FieldViolation.class});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<BadRequest> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (BadRequest.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -550,17 +296,74 @@ public final class BadRequest extends GeneratedMessageLite<BadRequest, Builder> 
         }
     }
 
-    static {
-        BadRequest badRequest = new BadRequest();
-        DEFAULT_INSTANCE = badRequest;
-        GeneratedMessageLite.registerDefaultInstance(BadRequest.class, badRequest);
+    public FieldViolation getFieldViolations(int i9) {
+        return (FieldViolation) this.fieldViolations_.get(i9);
     }
 
-    public static BadRequest getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public int getFieldViolationsCount() {
+        return this.fieldViolations_.size();
     }
 
-    public static Parser<BadRequest> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public List<FieldViolation> getFieldViolationsList() {
+        return this.fieldViolations_;
+    }
+
+    public InterfaceC2908b getFieldViolationsOrBuilder(int i9) {
+        return (InterfaceC2908b) this.fieldViolations_.get(i9);
+    }
+
+    public List<? extends InterfaceC2908b> getFieldViolationsOrBuilderList() {
+        return this.fieldViolations_;
+    }
+
+    public static a newBuilder(BadRequest badRequest) {
+        return (a) DEFAULT_INSTANCE.createBuilder(badRequest);
+    }
+
+    public static BadRequest parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (BadRequest) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static BadRequest parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (BadRequest) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static BadRequest parseFrom(H h6) throws C1912g3 {
+        return (BadRequest) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void addFieldViolations(int i9, FieldViolation fieldViolation) {
+        fieldViolation.getClass();
+        ensureFieldViolationsIsMutable();
+        this.fieldViolations_.add(i9, fieldViolation);
+    }
+
+    public static BadRequest parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (BadRequest) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static BadRequest parseFrom(byte[] bArr) throws C1912g3 {
+        return (BadRequest) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static BadRequest parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (BadRequest) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static BadRequest parseFrom(InputStream inputStream) throws IOException {
+        return (BadRequest) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static BadRequest parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (BadRequest) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static BadRequest parseFrom(S s5) throws IOException {
+        return (BadRequest) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static BadRequest parseFrom(S s5, W1 w1) throws IOException {
+        return (BadRequest) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

@@ -1,19 +1,21 @@
 package com.google.android.gms.measurement.internal;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzne implements Runnable {
-    private final /* synthetic */ long zza;
-    private final /* synthetic */ zznb zzb;
+import java.util.List;
+import java.util.Map;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzne(zznb zznbVar, long j) {
-        this.zza = j;
-        this.zzb = zznbVar;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzne implements zzgc {
+    private final /* synthetic */ String zza;
+    private final /* synthetic */ zznc zzb;
+
+    public zzne(zznc zzncVar, String str) {
+        this.zza = str;
+        this.zzb = zzncVar;
     }
 
-    @Override // java.lang.Runnable
-    public final void run() {
-        zznb.zzb(this.zzb, this.zza);
+    @Override // com.google.android.gms.measurement.internal.zzgc
+    public final void zza(String str, int i9, Throwable th, byte[] bArr, Map<String, List<String>> map) {
+        this.zzb.zza(true, i9, th, bArr, this.zza);
     }
 }

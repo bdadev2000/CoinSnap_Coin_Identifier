@@ -1,30 +1,42 @@
 package com.google.android.gms.internal.measurement;
 
-import com.google.android.gms.internal.measurement.zzgd;
+import com.google.android.gms.internal.measurement.zzft;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzb {
     zzac zza;
     private final zzf zzb;
     private zzh zzc;
     private final zzaa zzd;
 
+    public zzb() {
+        this(new zzf());
+    }
+
     public final zzac zza() {
         return this.zza;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public final /* synthetic */ zzal zzb() throws Exception {
         return new zzw(this.zzd);
     }
 
-    public zzb() {
-        this(new zzf());
+    public final boolean zzc() {
+        if (!this.zza.zzc().isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean zzd() {
+        if (!this.zza.zzb().equals(this.zza.zza())) {
+            return true;
+        }
+        return false;
     }
 
     private zzb(zzf zzfVar) {
@@ -46,38 +58,42 @@ public final class zzb {
         });
     }
 
-    public final void zza(zzgd.zzc zzcVar) throws zzc {
+    public final void zza(zzft.zzc zzcVar) throws zzc {
         zzal zzalVar;
         try {
             this.zzc = this.zzb.zza.zza();
-            if (this.zzb.zza(this.zzc, (zzgd.zzd[]) zzcVar.zzc().toArray(new zzgd.zzd[0])) instanceof zzaj) {
-                throw new IllegalStateException("Program loading failed");
-            }
-            for (zzgd.zzb zzbVar : zzcVar.zza().zzd()) {
-                List<zzgd.zzd> zzc = zzbVar.zzc();
-                String zzb = zzbVar.zzb();
-                Iterator<zzgd.zzd> it = zzc.iterator();
-                while (it.hasNext()) {
-                    zzaq zza = this.zzb.zza(this.zzc, it.next());
-                    if (!(zza instanceof zzap)) {
-                        throw new IllegalArgumentException("Invalid rule definition");
-                    }
-                    zzh zzhVar = this.zzc;
-                    if (zzhVar.zzb(zzb)) {
-                        zzaq zza2 = zzhVar.zza(zzb);
-                        if (!(zza2 instanceof zzal)) {
-                            throw new IllegalStateException("Invalid function name: " + zzb);
+            if (!(this.zzb.zza(this.zzc, (zzft.zzd[]) zzcVar.zzc().toArray(new zzft.zzd[0])) instanceof zzaj)) {
+                for (zzft.zzb zzbVar : zzcVar.zza().zzd()) {
+                    List<zzft.zzd> zzc = zzbVar.zzc();
+                    String zzb = zzbVar.zzb();
+                    Iterator<zzft.zzd> it = zzc.iterator();
+                    while (it.hasNext()) {
+                        zzaq zza = this.zzb.zza(this.zzc, it.next());
+                        if (zza instanceof zzap) {
+                            zzh zzhVar = this.zzc;
+                            if (zzhVar.zzb(zzb)) {
+                                zzaq zza2 = zzhVar.zza(zzb);
+                                if (zza2 instanceof zzal) {
+                                    zzalVar = (zzal) zza2;
+                                } else {
+                                    throw new IllegalStateException("Invalid function name: " + zzb);
+                                }
+                            } else {
+                                zzalVar = null;
+                            }
+                            if (zzalVar != null) {
+                                zzalVar.zza(this.zzc, Collections.singletonList(zza));
+                            } else {
+                                throw new IllegalStateException("Rule function is undefined: " + zzb);
+                            }
+                        } else {
+                            throw new IllegalArgumentException("Invalid rule definition");
                         }
-                        zzalVar = (zzal) zza2;
-                    } else {
-                        zzalVar = null;
                     }
-                    if (zzalVar == null) {
-                        throw new IllegalStateException("Rule function is undefined: " + zzb);
-                    }
-                    zzalVar.zza(this.zzc, Collections.singletonList(zza));
                 }
+                return;
             }
+            throw new IllegalStateException("Program loading failed");
         } catch (Throwable th) {
             throw new zzc(th);
         }
@@ -99,13 +115,5 @@ public final class zzb {
         } catch (Throwable th) {
             throw new zzc(th);
         }
-    }
-
-    public final boolean zzc() {
-        return !this.zza.zzc().isEmpty();
-    }
-
-    public final boolean zzd() {
-        return !this.zza.zzb().equals(this.zza.zza());
     }
 }

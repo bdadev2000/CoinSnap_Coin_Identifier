@@ -2,14 +2,11 @@ package com.google.android.gms.dynamic;
 
 import android.os.Bundle;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
-public final class zac implements zah {
+/* loaded from: classes2.dex */
+final class zac implements zah {
     final /* synthetic */ Bundle zaa;
     final /* synthetic */ DeferredLifecycleHelper zab;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zac(DeferredLifecycleHelper deferredLifecycleHelper, Bundle bundle) {
         this.zab = deferredLifecycleHelper;
         this.zaa = bundle;

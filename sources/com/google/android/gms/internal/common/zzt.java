@@ -1,11 +1,9 @@
 package com.google.android.gms.internal.common;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzt extends zzw {
     final /* synthetic */ zzu zza;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public zzt(zzu zzuVar, zzx zzxVar, CharSequence charSequence) {
         super(zzxVar, charSequence);
@@ -13,21 +11,22 @@ final class zzt extends zzw {
     }
 
     @Override // com.google.android.gms.internal.common.zzw
-    final int zzc(int i) {
-        return i + 1;
+    public final int zzc(int i9) {
+        return i9 + 1;
     }
 
     @Override // com.google.android.gms.internal.common.zzw
-    final int zzd(int i) {
-        CharSequence charSequence = this.zzb;
+    public final int zzd(int i9) {
+        CharSequence charSequence = ((zzw) this).zzb;
         int length = charSequence.length();
-        zzs.zzb(i, length, "index");
-        while (i < length) {
+        zzs.zzb(i9, length, "index");
+        while (i9 < length) {
             zzu zzuVar = this.zza;
-            if (zzuVar.zza.zza(charSequence.charAt(i))) {
-                return i;
+            if (!zzuVar.zza.zza(charSequence.charAt(i9))) {
+                i9++;
+            } else {
+                return i9;
             }
-            i++;
         }
         return -1;
     }

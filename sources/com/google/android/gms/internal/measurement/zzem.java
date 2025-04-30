@@ -2,27 +2,31 @@ package com.google.android.gms.internal.measurement;
 
 import android.os.RemoteException;
 import com.google.android.gms.common.internal.Preconditions;
-import com.google.android.gms.internal.measurement.zzdy;
+import com.google.android.gms.dynamic.ObjectWrapper;
+import com.google.android.gms.internal.measurement.zzdq;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-sdk-api@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzem extends zzdy.zza {
-    private final /* synthetic */ String zzc;
-    private final /* synthetic */ zzdy zzd;
+/* loaded from: classes2.dex */
+public final class zzem extends zzdq.zza {
+    private final /* synthetic */ String zzd;
+    private final /* synthetic */ Object zze;
+    private final /* synthetic */ zzdq zzh;
+    private final /* synthetic */ int zzc = 5;
+    private final /* synthetic */ Object zzf = null;
+    private final /* synthetic */ Object zzg = null;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public zzem(zzdy zzdyVar, String str) {
-        super(zzdyVar);
-        this.zzc = str;
-        this.zzd = zzdyVar;
+    public zzem(zzdq zzdqVar, boolean z8, int i9, String str, Object obj, Object obj2, Object obj3) {
+        super(false);
+        this.zzd = str;
+        this.zze = obj;
+        this.zzh = zzdqVar;
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzdy.zza
-    final void zza() throws RemoteException {
-        zzdj zzdjVar;
-        zzdjVar = this.zzd.zzj;
-        ((zzdj) Preconditions.checkNotNull(zzdjVar)).beginAdUnitExposure(this.zzc, this.zzb);
+    @Override // com.google.android.gms.internal.measurement.zzdq.zza
+    public final void zza() throws RemoteException {
+        zzdb zzdbVar;
+        zzdbVar = this.zzh.zzj;
+        ((zzdb) Preconditions.checkNotNull(zzdbVar)).logHealthData(this.zzc, this.zzd, ObjectWrapper.wrap(this.zze), ObjectWrapper.wrap(null), ObjectWrapper.wrap(null));
     }
 }

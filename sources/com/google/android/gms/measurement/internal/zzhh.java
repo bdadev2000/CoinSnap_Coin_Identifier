@@ -1,85 +1,81 @@
 package com.google.android.gms.measurement.internal;
 
-import android.content.ServiceConnection;
-import android.net.Uri;
-import android.os.Bundle;
-import com.adjust.sdk.Constants;
-import com.google.android.gms.common.stats.ConnectionTracker;
-import com.google.android.gms.internal.measurement.zzov;
-import com.google.firebase.messaging.Constants;
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.internal.Preconditions;
+import java.lang.Thread;
+import java.util.concurrent.Callable;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.atomic.AtomicLong;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzhh implements Runnable {
-    private final /* synthetic */ com.google.android.gms.internal.measurement.zzbz zza;
-    private final /* synthetic */ ServiceConnection zzb;
-    private final /* synthetic */ zzhi zzc;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzhh<V> extends FutureTask<V> implements Comparable<zzhh<V>> {
+    final boolean zza;
+    private final long zzb;
+    private final String zzc;
+    private final /* synthetic */ zzhc zzd;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzhh(zzhi zzhiVar, com.google.android.gms.internal.measurement.zzbz zzbzVar, ServiceConnection serviceConnection) {
-        this.zza = zzbzVar;
-        this.zzb = serviceConnection;
-        this.zzc = zzhiVar;
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public zzhh(zzhc zzhcVar, Runnable runnable, boolean z8, String str) {
+        super(com.google.android.gms.internal.measurement.zzcy.zza().zza(runnable), null);
+        AtomicLong atomicLong;
+        this.zzd = zzhcVar;
+        Preconditions.checkNotNull(str);
+        atomicLong = zzhc.zza;
+        long andIncrement = atomicLong.getAndIncrement();
+        this.zzb = andIncrement;
+        this.zzc = str;
+        this.zza = z8;
+        if (andIncrement == Long.MAX_VALUE) {
+            zzhcVar.zzj().zzg().zza("Tasks index overflow");
+        }
     }
 
-    @Override // java.lang.Runnable
-    public final void run() {
-        String str;
-        zzhf zzhfVar = this.zzc.zza;
-        str = this.zzc.zzb;
-        com.google.android.gms.internal.measurement.zzbz zzbzVar = this.zza;
-        ServiceConnection serviceConnection = this.zzb;
-        Bundle zza = zzhfVar.zza(str, zzbzVar);
-        zzhfVar.zza.zzl().zzt();
-        zzhfVar.zza.zzy();
-        if (zza != null) {
-            long j = zza.getLong("install_begin_timestamp_seconds", 0L) * 1000;
-            if (j == 0) {
-                zzhfVar.zza.zzj().zzu().zza("Service response is missing Install Referrer install timestamp");
-            } else {
-                String string = zza.getString(Constants.INSTALL_REFERRER);
-                if (string == null || string.isEmpty()) {
-                    zzhfVar.zza.zzj().zzg().zza("No referrer defined in Install Referrer response");
-                } else {
-                    zzhfVar.zza.zzj().zzp().zza("InstallReferrer API result", string);
-                    boolean z = zzov.zza() && zzhfVar.zza.zzf().zza(zzbh.zzcu);
-                    Bundle zza2 = zzhfVar.zza.zzt().zza(Uri.parse("?" + string), z);
-                    if (zza2 == null) {
-                        zzhfVar.zza.zzj().zzg().zza("No campaign params defined in Install Referrer result");
-                    } else {
-                        if (z) {
-                            if (zza2.containsKey("gclid") || zza2.containsKey("gbraid")) {
-                                long j2 = zza.getLong("referrer_click_timestamp_server_seconds", 0L) * 1000;
-                                if (j2 > 0) {
-                                    zza2.putLong("click_timestamp", j2);
-                                }
-                            }
-                        } else {
-                            String string2 = zza2.getString("medium");
-                            if (string2 != null && !"(not set)".equalsIgnoreCase(string2) && !"organic".equalsIgnoreCase(string2)) {
-                                long j3 = zza.getLong("referrer_click_timestamp_seconds", 0L) * 1000;
-                                if (j3 == 0) {
-                                    zzhfVar.zza.zzj().zzg().zza("Install Referrer is missing click timestamp for ad campaign");
-                                } else {
-                                    zza2.putLong("click_timestamp", j3);
-                                }
-                            }
-                        }
-                        if (j == zzhfVar.zza.zzn().zzd.zza()) {
-                            zzhfVar.zza.zzj().zzp().zza("Logging Install Referrer campaign from module while it may have already been logged.");
-                        }
-                        if (zzhfVar.zza.zzac()) {
-                            zzhfVar.zza.zzn().zzd.zza(j);
-                            zzhfVar.zza.zzj().zzp().zza("Logging Install Referrer campaign from gmscore with ", "referrer API v2");
-                            zza2.putString("_cis", "referrer API v2");
-                            zzhfVar.zza.zzp().zza("auto", Constants.ScionAnalytics.EVENT_FIREBASE_CAMPAIGN, zza2, str);
-                        }
-                    }
-                }
+    @Override // java.lang.Comparable
+    public final /* synthetic */ int compareTo(@NonNull Object obj) {
+        zzhh zzhhVar = (zzhh) obj;
+        boolean z8 = this.zza;
+        if (z8 != zzhhVar.zza) {
+            if (!z8) {
+                return 1;
             }
+            return -1;
         }
-        if (serviceConnection != null) {
-            ConnectionTracker.getInstance().unbindService(zzhfVar.zza.zza(), serviceConnection);
+        long j7 = this.zzb;
+        long j9 = zzhhVar.zzb;
+        if (j7 < j9) {
+            return -1;
+        }
+        if (j7 > j9) {
+            return 1;
+        }
+        this.zzd.zzj().zzm().zza("Two tasks share the same index. index", Long.valueOf(this.zzb));
+        return 0;
+    }
+
+    @Override // java.util.concurrent.FutureTask
+    public final void setException(Throwable th) {
+        Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler;
+        this.zzd.zzj().zzg().zza(this.zzc, th);
+        if ((th instanceof zzhf) && (defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()) != null) {
+            defaultUncaughtExceptionHandler.uncaughtException(Thread.currentThread(), th);
+        }
+        super.setException(th);
+    }
+
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public zzhh(zzhc zzhcVar, Callable<V> callable, boolean z8, String str) {
+        super(com.google.android.gms.internal.measurement.zzcy.zza().zza(callable));
+        AtomicLong atomicLong;
+        this.zzd = zzhcVar;
+        Preconditions.checkNotNull(str);
+        atomicLong = zzhc.zza;
+        long andIncrement = atomicLong.getAndIncrement();
+        this.zzb = andIncrement;
+        this.zzc = str;
+        this.zza = z8;
+        if (andIncrement == Long.MAX_VALUE) {
+            zzhcVar.zzj().zzg().zza("Tasks index overflow");
         }
     }
 }

@@ -1,20 +1,16 @@
 package com.google.protobuf;
 
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.Internal;
-import com.google.protobuf.Option;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.Collections;
 import java.util.List;
 
-/* loaded from: classes5.dex */
-public final class Method extends GeneratedMessageLite<Method, Builder> implements MethodOrBuilder {
+/* loaded from: classes3.dex */
+public final class Method extends L2 implements V3 {
     private static final Method DEFAULT_INSTANCE;
     public static final int NAME_FIELD_NUMBER = 1;
     public static final int OPTIONS_FIELD_NUMBER = 6;
-    private static volatile Parser<Method> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int REQUEST_STREAMING_FIELD_NUMBER = 3;
     public static final int REQUEST_TYPE_URL_FIELD_NUMBER = 2;
     public static final int RESPONSE_STREAMING_FIELD_NUMBER = 5;
@@ -26,158 +22,21 @@ public final class Method extends GeneratedMessageLite<Method, Builder> implemen
     private String name_ = "";
     private String requestTypeUrl_ = "";
     private String responseTypeUrl_ = "";
-    private Internal.ProtobufList<Option> options_ = emptyProtobufList();
+    private InterfaceC1891d3 options_ = L2.emptyProtobufList();
+
+    static {
+        Method method = new Method();
+        DEFAULT_INSTANCE = method;
+        L2.registerDefaultInstance(Method.class, method);
+    }
 
     private Method() {
     }
 
-    @Override // com.google.protobuf.MethodOrBuilder
-    public String getName() {
-        return this.name_;
-    }
-
-    @Override // com.google.protobuf.MethodOrBuilder
-    public ByteString getNameBytes() {
-        return ByteString.copyFromUtf8(this.name_);
-    }
-
     /* JADX INFO: Access modifiers changed from: private */
-    public void setName(String str) {
-        str.getClass();
-        this.name_ = str;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearName() {
-        this.name_ = getDefaultInstance().getName();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setNameBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.name_ = byteString.toStringUtf8();
-    }
-
-    @Override // com.google.protobuf.MethodOrBuilder
-    public String getRequestTypeUrl() {
-        return this.requestTypeUrl_;
-    }
-
-    @Override // com.google.protobuf.MethodOrBuilder
-    public ByteString getRequestTypeUrlBytes() {
-        return ByteString.copyFromUtf8(this.requestTypeUrl_);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setRequestTypeUrl(String str) {
-        str.getClass();
-        this.requestTypeUrl_ = str;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearRequestTypeUrl() {
-        this.requestTypeUrl_ = getDefaultInstance().getRequestTypeUrl();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setRequestTypeUrlBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.requestTypeUrl_ = byteString.toStringUtf8();
-    }
-
-    @Override // com.google.protobuf.MethodOrBuilder
-    public boolean getRequestStreaming() {
-        return this.requestStreaming_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setRequestStreaming(boolean z) {
-        this.requestStreaming_ = z;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearRequestStreaming() {
-        this.requestStreaming_ = false;
-    }
-
-    @Override // com.google.protobuf.MethodOrBuilder
-    public String getResponseTypeUrl() {
-        return this.responseTypeUrl_;
-    }
-
-    @Override // com.google.protobuf.MethodOrBuilder
-    public ByteString getResponseTypeUrlBytes() {
-        return ByteString.copyFromUtf8(this.responseTypeUrl_);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setResponseTypeUrl(String str) {
-        str.getClass();
-        this.responseTypeUrl_ = str;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearResponseTypeUrl() {
-        this.responseTypeUrl_ = getDefaultInstance().getResponseTypeUrl();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setResponseTypeUrlBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.responseTypeUrl_ = byteString.toStringUtf8();
-    }
-
-    @Override // com.google.protobuf.MethodOrBuilder
-    public boolean getResponseStreaming() {
-        return this.responseStreaming_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setResponseStreaming(boolean z) {
-        this.responseStreaming_ = z;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearResponseStreaming() {
-        this.responseStreaming_ = false;
-    }
-
-    @Override // com.google.protobuf.MethodOrBuilder
-    public List<Option> getOptionsList() {
-        return this.options_;
-    }
-
-    public List<? extends OptionOrBuilder> getOptionsOrBuilderList() {
-        return this.options_;
-    }
-
-    @Override // com.google.protobuf.MethodOrBuilder
-    public int getOptionsCount() {
-        return this.options_.size();
-    }
-
-    @Override // com.google.protobuf.MethodOrBuilder
-    public Option getOptions(int i) {
-        return this.options_.get(i);
-    }
-
-    public OptionOrBuilder getOptionsOrBuilder(int i) {
-        return this.options_.get(i);
-    }
-
-    private void ensureOptionsIsMutable() {
-        Internal.ProtobufList<Option> protobufList = this.options_;
-        if (protobufList.isModifiable()) {
-            return;
-        }
-        this.options_ = GeneratedMessageLite.mutableCopy(protobufList);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setOptions(int i, Option option) {
-        option.getClass();
+    public void addAllOptions(Iterable<? extends Option> iterable) {
         ensureOptionsIsMutable();
-        this.options_.set(i, option);
+        AbstractC1880c.addAll((Iterable) iterable, (List) this.options_);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -188,48 +47,33 @@ public final class Method extends GeneratedMessageLite<Method, Builder> implemen
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void addOptions(int i, Option option) {
-        option.getClass();
-        ensureOptionsIsMutable();
-        this.options_.add(i, option);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void addAllOptions(Iterable<? extends Option> iterable) {
-        ensureOptionsIsMutable();
-        AbstractMessageLite.addAll((Iterable) iterable, (List) this.options_);
+    public void clearName() {
+        this.name_ = getDefaultInstance().getName();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void clearOptions() {
-        this.options_ = emptyProtobufList();
+        this.options_ = L2.emptyProtobufList();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void removeOptions(int i) {
-        ensureOptionsIsMutable();
-        this.options_.remove(i);
-    }
-
-    @Override // com.google.protobuf.MethodOrBuilder
-    public int getSyntaxValue() {
-        return this.syntax_;
-    }
-
-    @Override // com.google.protobuf.MethodOrBuilder
-    public Syntax getSyntax() {
-        Syntax forNumber = Syntax.forNumber(this.syntax_);
-        return forNumber == null ? Syntax.UNRECOGNIZED : forNumber;
+    public void clearRequestStreaming() {
+        this.requestStreaming_ = false;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setSyntaxValue(int i) {
-        this.syntax_ = i;
+    public void clearRequestTypeUrl() {
+        this.requestTypeUrl_ = getDefaultInstance().getRequestTypeUrl();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setSyntax(Syntax syntax) {
-        this.syntax_ = syntax.getNumber();
+    public void clearResponseStreaming() {
+        this.responseStreaming_ = false;
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearResponseTypeUrl() {
+        this.responseTypeUrl_ = getDefaultInstance().getResponseTypeUrl();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -237,351 +81,129 @@ public final class Method extends GeneratedMessageLite<Method, Builder> implemen
         this.syntax_ = 0;
     }
 
-    public static Method parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (Method) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    private void ensureOptionsIsMutable() {
+        InterfaceC1891d3 interfaceC1891d3 = this.options_;
+        if (!interfaceC1891d3.isModifiable()) {
+            this.options_ = L2.mutableCopy(interfaceC1891d3);
+        }
     }
 
-    public static Method parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Method) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
+    public static Method getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    public static Method parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (Method) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static Method parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Method) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static Method parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (Method) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static Method parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Method) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static Method parseFrom(InputStream inputStream) throws IOException {
-        return (Method) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static Method parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Method) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static U3 newBuilder() {
+        return (U3) DEFAULT_INSTANCE.createBuilder();
     }
 
     public static Method parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (Method) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+        return (Method) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
     }
 
-    public static Method parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Method) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static Method parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (Method) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
     }
 
-    public static Method parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (Method) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
-    public static Method parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Method) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void removeOptions(int i9) {
+        ensureOptionsIsMutable();
+        this.options_.remove(i9);
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setName(String str) {
+        str.getClass();
+        this.name_ = str;
     }
 
-    public static Builder newBuilder(Method method) {
-        return DEFAULT_INSTANCE.createBuilder(method);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setNameBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.name_ = h6.toStringUtf8();
     }
 
-    /* loaded from: classes5.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<Method, Builder> implements MethodOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(Method.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.protobuf.MethodOrBuilder
-        public String getName() {
-            return ((Method) this.instance).getName();
-        }
-
-        @Override // com.google.protobuf.MethodOrBuilder
-        public ByteString getNameBytes() {
-            return ((Method) this.instance).getNameBytes();
-        }
-
-        public Builder setName(String str) {
-            copyOnWrite();
-            ((Method) this.instance).setName(str);
-            return this;
-        }
-
-        public Builder clearName() {
-            copyOnWrite();
-            ((Method) this.instance).clearName();
-            return this;
-        }
-
-        public Builder setNameBytes(ByteString byteString) {
-            copyOnWrite();
-            ((Method) this.instance).setNameBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.protobuf.MethodOrBuilder
-        public String getRequestTypeUrl() {
-            return ((Method) this.instance).getRequestTypeUrl();
-        }
-
-        @Override // com.google.protobuf.MethodOrBuilder
-        public ByteString getRequestTypeUrlBytes() {
-            return ((Method) this.instance).getRequestTypeUrlBytes();
-        }
-
-        public Builder setRequestTypeUrl(String str) {
-            copyOnWrite();
-            ((Method) this.instance).setRequestTypeUrl(str);
-            return this;
-        }
-
-        public Builder clearRequestTypeUrl() {
-            copyOnWrite();
-            ((Method) this.instance).clearRequestTypeUrl();
-            return this;
-        }
-
-        public Builder setRequestTypeUrlBytes(ByteString byteString) {
-            copyOnWrite();
-            ((Method) this.instance).setRequestTypeUrlBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.protobuf.MethodOrBuilder
-        public boolean getRequestStreaming() {
-            return ((Method) this.instance).getRequestStreaming();
-        }
-
-        public Builder setRequestStreaming(boolean z) {
-            copyOnWrite();
-            ((Method) this.instance).setRequestStreaming(z);
-            return this;
-        }
-
-        public Builder clearRequestStreaming() {
-            copyOnWrite();
-            ((Method) this.instance).clearRequestStreaming();
-            return this;
-        }
-
-        @Override // com.google.protobuf.MethodOrBuilder
-        public String getResponseTypeUrl() {
-            return ((Method) this.instance).getResponseTypeUrl();
-        }
-
-        @Override // com.google.protobuf.MethodOrBuilder
-        public ByteString getResponseTypeUrlBytes() {
-            return ((Method) this.instance).getResponseTypeUrlBytes();
-        }
-
-        public Builder setResponseTypeUrl(String str) {
-            copyOnWrite();
-            ((Method) this.instance).setResponseTypeUrl(str);
-            return this;
-        }
-
-        public Builder clearResponseTypeUrl() {
-            copyOnWrite();
-            ((Method) this.instance).clearResponseTypeUrl();
-            return this;
-        }
-
-        public Builder setResponseTypeUrlBytes(ByteString byteString) {
-            copyOnWrite();
-            ((Method) this.instance).setResponseTypeUrlBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.protobuf.MethodOrBuilder
-        public boolean getResponseStreaming() {
-            return ((Method) this.instance).getResponseStreaming();
-        }
-
-        public Builder setResponseStreaming(boolean z) {
-            copyOnWrite();
-            ((Method) this.instance).setResponseStreaming(z);
-            return this;
-        }
-
-        public Builder clearResponseStreaming() {
-            copyOnWrite();
-            ((Method) this.instance).clearResponseStreaming();
-            return this;
-        }
-
-        @Override // com.google.protobuf.MethodOrBuilder
-        public List<Option> getOptionsList() {
-            return Collections.unmodifiableList(((Method) this.instance).getOptionsList());
-        }
-
-        @Override // com.google.protobuf.MethodOrBuilder
-        public int getOptionsCount() {
-            return ((Method) this.instance).getOptionsCount();
-        }
-
-        @Override // com.google.protobuf.MethodOrBuilder
-        public Option getOptions(int i) {
-            return ((Method) this.instance).getOptions(i);
-        }
-
-        public Builder setOptions(int i, Option option) {
-            copyOnWrite();
-            ((Method) this.instance).setOptions(i, option);
-            return this;
-        }
-
-        public Builder setOptions(int i, Option.Builder builder) {
-            copyOnWrite();
-            ((Method) this.instance).setOptions(i, builder.build());
-            return this;
-        }
-
-        public Builder addOptions(Option option) {
-            copyOnWrite();
-            ((Method) this.instance).addOptions(option);
-            return this;
-        }
-
-        public Builder addOptions(int i, Option option) {
-            copyOnWrite();
-            ((Method) this.instance).addOptions(i, option);
-            return this;
-        }
-
-        public Builder addOptions(Option.Builder builder) {
-            copyOnWrite();
-            ((Method) this.instance).addOptions(builder.build());
-            return this;
-        }
-
-        public Builder addOptions(int i, Option.Builder builder) {
-            copyOnWrite();
-            ((Method) this.instance).addOptions(i, builder.build());
-            return this;
-        }
-
-        public Builder addAllOptions(Iterable<? extends Option> iterable) {
-            copyOnWrite();
-            ((Method) this.instance).addAllOptions(iterable);
-            return this;
-        }
-
-        public Builder clearOptions() {
-            copyOnWrite();
-            ((Method) this.instance).clearOptions();
-            return this;
-        }
-
-        public Builder removeOptions(int i) {
-            copyOnWrite();
-            ((Method) this.instance).removeOptions(i);
-            return this;
-        }
-
-        @Override // com.google.protobuf.MethodOrBuilder
-        public int getSyntaxValue() {
-            return ((Method) this.instance).getSyntaxValue();
-        }
-
-        public Builder setSyntaxValue(int i) {
-            copyOnWrite();
-            ((Method) this.instance).setSyntaxValue(i);
-            return this;
-        }
-
-        @Override // com.google.protobuf.MethodOrBuilder
-        public Syntax getSyntax() {
-            return ((Method) this.instance).getSyntax();
-        }
-
-        public Builder setSyntax(Syntax syntax) {
-            copyOnWrite();
-            ((Method) this.instance).setSyntax(syntax);
-            return this;
-        }
-
-        public Builder clearSyntax() {
-            copyOnWrite();
-            ((Method) this.instance).clearSyntax();
-            return this;
-        }
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setOptions(int i9, Option option) {
+        option.getClass();
+        ensureOptionsIsMutable();
+        this.options_.set(i9, option);
     }
 
-    /* renamed from: com.google.protobuf.Method$1, reason: invalid class name */
-    /* loaded from: classes5.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setRequestStreaming(boolean z8) {
+        this.requestStreaming_ = z8;
     }
 
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setRequestTypeUrl(String str) {
+        str.getClass();
+        this.requestTypeUrl_ = str;
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setRequestTypeUrlBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.requestTypeUrl_ = h6.toStringUtf8();
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setResponseStreaming(boolean z8) {
+        this.responseStreaming_ = z8;
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setResponseTypeUrl(String str) {
+        str.getClass();
+        this.responseTypeUrl_ = str;
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setResponseTypeUrlBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.responseTypeUrl_ = h6.toStringUtf8();
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setSyntax(Z4 z42) {
+        this.syntax_ = z42.getNumber();
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setSyntaxValue(int i9) {
+        this.syntax_ = i9;
+    }
+
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        T3 t32 = null;
+        switch (T3.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[k22.ordinal()]) {
             case 1:
                 return new Method();
             case 2:
-                return new Builder(anonymousClass1);
+                return new U3(t32);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0007\u0000\u0000\u0001\u0007\u0007\u0000\u0001\u0000\u0001Ȉ\u0002Ȉ\u0003\u0007\u0004Ȉ\u0005\u0007\u0006\u001b\u0007\f", new Object[]{"name_", "requestTypeUrl_", "requestStreaming_", "responseTypeUrl_", "responseStreaming_", "options_", Option.class, "syntax_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0007\u0000\u0000\u0001\u0007\u0007\u0000\u0001\u0000\u0001Ȉ\u0002Ȉ\u0003\u0007\u0004Ȉ\u0005\u0007\u0006\u001b\u0007\f", new Object[]{"name_", "requestTypeUrl_", "requestStreaming_", "responseTypeUrl_", "responseStreaming_", "options_", Option.class, "syntax_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<Method> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (Method.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -591,17 +213,131 @@ public final class Method extends GeneratedMessageLite<Method, Builder> implemen
         }
     }
 
-    static {
-        Method method = new Method();
-        DEFAULT_INSTANCE = method;
-        GeneratedMessageLite.registerDefaultInstance(Method.class, method);
+    @Override // com.google.protobuf.V3
+    public String getName() {
+        return this.name_;
     }
 
-    public static Method getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    @Override // com.google.protobuf.V3
+    public H getNameBytes() {
+        return H.copyFromUtf8(this.name_);
     }
 
-    public static Parser<Method> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    @Override // com.google.protobuf.V3
+    public Option getOptions(int i9) {
+        return (Option) this.options_.get(i9);
+    }
+
+    @Override // com.google.protobuf.V3
+    public int getOptionsCount() {
+        return this.options_.size();
+    }
+
+    @Override // com.google.protobuf.V3
+    public List<Option> getOptionsList() {
+        return this.options_;
+    }
+
+    public InterfaceC1941k4 getOptionsOrBuilder(int i9) {
+        return (InterfaceC1941k4) this.options_.get(i9);
+    }
+
+    public List<? extends InterfaceC1941k4> getOptionsOrBuilderList() {
+        return this.options_;
+    }
+
+    @Override // com.google.protobuf.V3
+    public boolean getRequestStreaming() {
+        return this.requestStreaming_;
+    }
+
+    @Override // com.google.protobuf.V3
+    public String getRequestTypeUrl() {
+        return this.requestTypeUrl_;
+    }
+
+    @Override // com.google.protobuf.V3
+    public H getRequestTypeUrlBytes() {
+        return H.copyFromUtf8(this.requestTypeUrl_);
+    }
+
+    @Override // com.google.protobuf.V3
+    public boolean getResponseStreaming() {
+        return this.responseStreaming_;
+    }
+
+    @Override // com.google.protobuf.V3
+    public String getResponseTypeUrl() {
+        return this.responseTypeUrl_;
+    }
+
+    @Override // com.google.protobuf.V3
+    public H getResponseTypeUrlBytes() {
+        return H.copyFromUtf8(this.responseTypeUrl_);
+    }
+
+    @Override // com.google.protobuf.V3
+    public Z4 getSyntax() {
+        Z4 forNumber = Z4.forNumber(this.syntax_);
+        if (forNumber == null) {
+            return Z4.UNRECOGNIZED;
+        }
+        return forNumber;
+    }
+
+    @Override // com.google.protobuf.V3
+    public int getSyntaxValue() {
+        return this.syntax_;
+    }
+
+    public static U3 newBuilder(Method method) {
+        return (U3) DEFAULT_INSTANCE.createBuilder(method);
+    }
+
+    public static Method parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Method) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Method parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (Method) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static Method parseFrom(H h6) throws C1912g3 {
+        return (Method) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void addOptions(int i9, Option option) {
+        option.getClass();
+        ensureOptionsIsMutable();
+        this.options_.add(i9, option);
+    }
+
+    public static Method parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (Method) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static Method parseFrom(byte[] bArr) throws C1912g3 {
+        return (Method) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static Method parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (Method) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static Method parseFrom(InputStream inputStream) throws IOException {
+        return (Method) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static Method parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Method) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Method parseFrom(S s5) throws IOException {
+        return (Method) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static Method parseFrom(S s5, W1 w1) throws IOException {
+        return (Method) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

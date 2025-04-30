@@ -1,99 +1,41 @@
 package com.google.api;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import a4.AbstractC0351c0;
+import a4.C0353d0;
+import a4.EnumC0355e0;
+import a4.InterfaceC0357f0;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-/* loaded from: classes12.dex */
-public final class JwtLocation extends GeneratedMessageLite<JwtLocation, Builder> implements JwtLocationOrBuilder {
+/* loaded from: classes2.dex */
+public final class JwtLocation extends L2 implements InterfaceC0357f0 {
     private static final JwtLocation DEFAULT_INSTANCE;
     public static final int HEADER_FIELD_NUMBER = 1;
-    private static volatile Parser<JwtLocation> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int QUERY_FIELD_NUMBER = 2;
     public static final int VALUE_PREFIX_FIELD_NUMBER = 3;
     private Object in_;
     private int inCase_ = 0;
     private String valuePrefix_ = "";
 
+    static {
+        JwtLocation jwtLocation = new JwtLocation();
+        DEFAULT_INSTANCE = jwtLocation;
+        L2.registerDefaultInstance(JwtLocation.class, jwtLocation);
+    }
+
     private JwtLocation() {
-    }
-
-    /* loaded from: classes12.dex */
-    public enum InCase {
-        HEADER(1),
-        QUERY(2),
-        IN_NOT_SET(0);
-
-        private final int value;
-
-        InCase(int i) {
-            this.value = i;
-        }
-
-        @Deprecated
-        public static InCase valueOf(int i) {
-            return forNumber(i);
-        }
-
-        public static InCase forNumber(int i) {
-            if (i == 0) {
-                return IN_NOT_SET;
-            }
-            if (i == 1) {
-                return HEADER;
-            }
-            if (i != 2) {
-                return null;
-            }
-            return QUERY;
-        }
-
-        public int getNumber() {
-            return this.value;
-        }
-    }
-
-    @Override // com.google.api.JwtLocationOrBuilder
-    public InCase getInCase() {
-        return InCase.forNumber(this.inCase_);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearIn() {
-        this.inCase_ = 0;
-        this.in_ = null;
-    }
-
-    @Override // com.google.api.JwtLocationOrBuilder
-    public String getHeader() {
-        if (this.inCase_ != 1) {
-            return "";
-        }
-        return (String) this.in_;
-    }
-
-    @Override // com.google.api.JwtLocationOrBuilder
-    public ByteString getHeaderBytes() {
-        String str;
-        if (this.inCase_ != 1) {
-            str = "";
-        } else {
-            str = (String) this.in_;
-        }
-        return ByteString.copyFromUtf8(str);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setHeader(String str) {
-        str.getClass();
-        this.inCase_ = 1;
-        this.in_ = str;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -105,36 +47,9 @@ public final class JwtLocation extends GeneratedMessageLite<JwtLocation, Builder
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setHeaderBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.in_ = byteString.toStringUtf8();
-        this.inCase_ = 1;
-    }
-
-    @Override // com.google.api.JwtLocationOrBuilder
-    public String getQuery() {
-        if (this.inCase_ != 2) {
-            return "";
-        }
-        return (String) this.in_;
-    }
-
-    @Override // com.google.api.JwtLocationOrBuilder
-    public ByteString getQueryBytes() {
-        String str;
-        if (this.inCase_ != 2) {
-            str = "";
-        } else {
-            str = (String) this.in_;
-        }
-        return ByteString.copyFromUtf8(str);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setQuery(String str) {
-        str.getClass();
-        this.inCase_ = 2;
-        this.in_ = str;
+    public void clearIn() {
+        this.inCase_ = 0;
+        this.in_ = null;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -146,20 +61,56 @@ public final class JwtLocation extends GeneratedMessageLite<JwtLocation, Builder
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setQueryBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.in_ = byteString.toStringUtf8();
+    public void clearValuePrefix() {
+        this.valuePrefix_ = getDefaultInstance().getValuePrefix();
+    }
+
+    public static JwtLocation getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    public static C0353d0 newBuilder() {
+        return (C0353d0) DEFAULT_INSTANCE.createBuilder();
+    }
+
+    public static JwtLocation parseDelimitedFrom(InputStream inputStream) throws IOException {
+        return (JwtLocation) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static JwtLocation parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (JwtLocation) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    }
+
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setHeader(String str) {
+        str.getClass();
+        this.inCase_ = 1;
+        this.in_ = str;
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setHeaderBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.in_ = h6.toStringUtf8();
+        this.inCase_ = 1;
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setQuery(String str) {
+        str.getClass();
         this.inCase_ = 2;
+        this.in_ = str;
     }
 
-    @Override // com.google.api.JwtLocationOrBuilder
-    public String getValuePrefix() {
-        return this.valuePrefix_;
-    }
-
-    @Override // com.google.api.JwtLocationOrBuilder
-    public ByteString getValuePrefixBytes() {
-        return ByteString.copyFromUtf8(this.valuePrefix_);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setQueryBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.in_ = h6.toStringUtf8();
+        this.inCase_ = 2;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -169,241 +120,37 @@ public final class JwtLocation extends GeneratedMessageLite<JwtLocation, Builder
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearValuePrefix() {
-        this.valuePrefix_ = getDefaultInstance().getValuePrefix();
+    public void setValuePrefixBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.valuePrefix_ = h6.toStringUtf8();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setValuePrefixBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.valuePrefix_ = byteString.toStringUtf8();
-    }
-
-    public static JwtLocation parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (JwtLocation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
-    }
-
-    public static JwtLocation parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (JwtLocation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static JwtLocation parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (JwtLocation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static JwtLocation parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (JwtLocation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static JwtLocation parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (JwtLocation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static JwtLocation parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (JwtLocation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static JwtLocation parseFrom(InputStream inputStream) throws IOException {
-        return (JwtLocation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static JwtLocation parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (JwtLocation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static JwtLocation parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (JwtLocation) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static JwtLocation parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (JwtLocation) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static JwtLocation parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (JwtLocation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
-    }
-
-    public static JwtLocation parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (JwtLocation) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
-    }
-
-    public static Builder newBuilder(JwtLocation jwtLocation) {
-        return DEFAULT_INSTANCE.createBuilder(jwtLocation);
-    }
-
-    /* loaded from: classes12.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<JwtLocation, Builder> implements JwtLocationOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(JwtLocation.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.api.JwtLocationOrBuilder
-        public InCase getInCase() {
-            return ((JwtLocation) this.instance).getInCase();
-        }
-
-        public Builder clearIn() {
-            copyOnWrite();
-            ((JwtLocation) this.instance).clearIn();
-            return this;
-        }
-
-        @Override // com.google.api.JwtLocationOrBuilder
-        public String getHeader() {
-            return ((JwtLocation) this.instance).getHeader();
-        }
-
-        @Override // com.google.api.JwtLocationOrBuilder
-        public ByteString getHeaderBytes() {
-            return ((JwtLocation) this.instance).getHeaderBytes();
-        }
-
-        public Builder setHeader(String str) {
-            copyOnWrite();
-            ((JwtLocation) this.instance).setHeader(str);
-            return this;
-        }
-
-        public Builder clearHeader() {
-            copyOnWrite();
-            ((JwtLocation) this.instance).clearHeader();
-            return this;
-        }
-
-        public Builder setHeaderBytes(ByteString byteString) {
-            copyOnWrite();
-            ((JwtLocation) this.instance).setHeaderBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.api.JwtLocationOrBuilder
-        public String getQuery() {
-            return ((JwtLocation) this.instance).getQuery();
-        }
-
-        @Override // com.google.api.JwtLocationOrBuilder
-        public ByteString getQueryBytes() {
-            return ((JwtLocation) this.instance).getQueryBytes();
-        }
-
-        public Builder setQuery(String str) {
-            copyOnWrite();
-            ((JwtLocation) this.instance).setQuery(str);
-            return this;
-        }
-
-        public Builder clearQuery() {
-            copyOnWrite();
-            ((JwtLocation) this.instance).clearQuery();
-            return this;
-        }
-
-        public Builder setQueryBytes(ByteString byteString) {
-            copyOnWrite();
-            ((JwtLocation) this.instance).setQueryBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.api.JwtLocationOrBuilder
-        public String getValuePrefix() {
-            return ((JwtLocation) this.instance).getValuePrefix();
-        }
-
-        @Override // com.google.api.JwtLocationOrBuilder
-        public ByteString getValuePrefixBytes() {
-            return ((JwtLocation) this.instance).getValuePrefixBytes();
-        }
-
-        public Builder setValuePrefix(String str) {
-            copyOnWrite();
-            ((JwtLocation) this.instance).setValuePrefix(str);
-            return this;
-        }
-
-        public Builder clearValuePrefix() {
-            copyOnWrite();
-            ((JwtLocation) this.instance).clearValuePrefix();
-            return this;
-        }
-
-        public Builder setValuePrefixBytes(ByteString byteString) {
-            copyOnWrite();
-            ((JwtLocation) this.instance).setValuePrefixBytes(byteString);
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.api.JwtLocation$1, reason: invalid class name */
-    /* loaded from: classes12.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (AbstractC0351c0.f3998a[k22.ordinal()]) {
             case 1:
                 return new JwtLocation();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0001\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001Ȼ\u0000\u0002Ȼ\u0000\u0003Ȉ", new Object[]{"in_", "inCase_", "valuePrefix_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0001\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001Ȼ\u0000\u0002Ȼ\u0000\u0003Ȉ", new Object[]{"in_", "inCase_", "valuePrefix_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<JwtLocation> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (JwtLocation.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -413,17 +160,103 @@ public final class JwtLocation extends GeneratedMessageLite<JwtLocation, Builder
         }
     }
 
-    static {
-        JwtLocation jwtLocation = new JwtLocation();
-        DEFAULT_INSTANCE = jwtLocation;
-        GeneratedMessageLite.registerDefaultInstance(JwtLocation.class, jwtLocation);
+    public String getHeader() {
+        if (this.inCase_ == 1) {
+            return (String) this.in_;
+        }
+        return "";
     }
 
-    public static JwtLocation getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public H getHeaderBytes() {
+        String str;
+        if (this.inCase_ == 1) {
+            str = (String) this.in_;
+        } else {
+            str = "";
+        }
+        return H.copyFromUtf8(str);
     }
 
-    public static Parser<JwtLocation> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public EnumC0355e0 getInCase() {
+        int i9 = this.inCase_;
+        if (i9 != 0) {
+            if (i9 != 1) {
+                if (i9 != 2) {
+                    return null;
+                }
+                return EnumC0355e0.f4001c;
+            }
+            return EnumC0355e0.b;
+        }
+        return EnumC0355e0.f4002d;
+    }
+
+    public String getQuery() {
+        if (this.inCase_ == 2) {
+            return (String) this.in_;
+        }
+        return "";
+    }
+
+    public H getQueryBytes() {
+        String str;
+        if (this.inCase_ == 2) {
+            str = (String) this.in_;
+        } else {
+            str = "";
+        }
+        return H.copyFromUtf8(str);
+    }
+
+    public String getValuePrefix() {
+        return this.valuePrefix_;
+    }
+
+    public H getValuePrefixBytes() {
+        return H.copyFromUtf8(this.valuePrefix_);
+    }
+
+    public static C0353d0 newBuilder(JwtLocation jwtLocation) {
+        return (C0353d0) DEFAULT_INSTANCE.createBuilder(jwtLocation);
+    }
+
+    public static JwtLocation parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (JwtLocation) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static JwtLocation parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (JwtLocation) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static JwtLocation parseFrom(H h6) throws C1912g3 {
+        return (JwtLocation) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static JwtLocation parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (JwtLocation) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static JwtLocation parseFrom(byte[] bArr) throws C1912g3 {
+        return (JwtLocation) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static JwtLocation parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (JwtLocation) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static JwtLocation parseFrom(InputStream inputStream) throws IOException {
+        return (JwtLocation) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static JwtLocation parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (JwtLocation) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static JwtLocation parseFrom(S s5) throws IOException {
+        return (JwtLocation) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static JwtLocation parseFrom(S s5, W1 w1) throws IOException {
+        return (JwtLocation) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

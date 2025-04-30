@@ -5,10 +5,8 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zal extends com.google.android.gms.internal.base.zaa implements IInterface {
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zal(IBinder iBinder) {
         super(iBinder, "com.google.android.gms.common.internal.service.ICommonService");
     }

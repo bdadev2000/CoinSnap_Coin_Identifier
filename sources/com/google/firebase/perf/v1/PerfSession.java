@@ -1,51 +1,101 @@
 package com.google.firebase.perf.v1;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.Internal;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import com.google.protobuf.AbstractC1894e;
+import com.google.protobuf.C1877b3;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.InterfaceC1870a3;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.S;
+import com.google.protobuf.S2;
+import com.google.protobuf.W1;
+import com.google.protobuf.Z2;
+import i5.C2354i;
+import i5.E;
+import i5.F;
+import i5.G;
+import i5.H;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.Iterator;
 import java.util.List;
 
-/* loaded from: classes3.dex */
-public final class PerfSession extends GeneratedMessageLite<PerfSession, Builder> implements PerfSessionOrBuilder {
+/* loaded from: classes2.dex */
+public final class PerfSession extends L2 implements G {
     private static final PerfSession DEFAULT_INSTANCE;
-    private static volatile Parser<PerfSession> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int SESSION_ID_FIELD_NUMBER = 1;
     public static final int SESSION_VERBOSITY_FIELD_NUMBER = 2;
-    private static final Internal.ListAdapter.Converter<Integer, SessionVerbosity> sessionVerbosity_converter_ = new Internal.ListAdapter.Converter<Integer, SessionVerbosity>() { // from class: com.google.firebase.perf.v1.PerfSession.1
-        @Override // com.google.protobuf.Internal.ListAdapter.Converter
-        public SessionVerbosity convert(Integer num) {
-            SessionVerbosity forNumber = SessionVerbosity.forNumber(num.intValue());
-            return forNumber == null ? SessionVerbosity.SESSION_VERBOSITY_NONE : forNumber;
-        }
-    };
+    private static final InterfaceC1870a3 sessionVerbosity_converter_ = new Object();
     private int bitField0_;
     private String sessionId_ = "";
-    private Internal.IntList sessionVerbosity_ = emptyIntList();
+    private Z2 sessionVerbosity_ = L2.emptyIntList();
+
+    /* JADX WARN: Type inference failed for: r0v0, types: [java.lang.Object, com.google.protobuf.a3] */
+    static {
+        PerfSession perfSession = new PerfSession();
+        DEFAULT_INSTANCE = perfSession;
+        L2.registerDefaultInstance(PerfSession.class, perfSession);
+    }
 
     private PerfSession() {
     }
 
-    @Override // com.google.firebase.perf.v1.PerfSessionOrBuilder
-    public boolean hasSessionId() {
-        return (this.bitField0_ & 1) != 0;
+    /* JADX INFO: Access modifiers changed from: private */
+    public void addAllSessionVerbosity(Iterable<? extends H> iterable) {
+        ensureSessionVerbosityIsMutable();
+        for (H h6 : iterable) {
+            ((S2) this.sessionVerbosity_).addInt(h6.b);
+        }
     }
 
-    @Override // com.google.firebase.perf.v1.PerfSessionOrBuilder
-    public String getSessionId() {
-        return this.sessionId_;
+    /* JADX INFO: Access modifiers changed from: private */
+    public void addSessionVerbosity(H h6) {
+        h6.getClass();
+        ensureSessionVerbosityIsMutable();
+        ((S2) this.sessionVerbosity_).addInt(h6.b);
     }
 
-    @Override // com.google.firebase.perf.v1.PerfSessionOrBuilder
-    public ByteString getSessionIdBytes() {
-        return ByteString.copyFromUtf8(this.sessionId_);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearSessionId() {
+        this.bitField0_ &= -2;
+        this.sessionId_ = getDefaultInstance().getSessionId();
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearSessionVerbosity() {
+        this.sessionVerbosity_ = L2.emptyIntList();
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    private void ensureSessionVerbosityIsMutable() {
+        Z2 z22 = this.sessionVerbosity_;
+        if (!((AbstractC1894e) z22).isModifiable()) {
+            this.sessionVerbosity_ = L2.mutableCopy(z22);
+        }
+    }
+
+    public static PerfSession getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    public static F newBuilder() {
+        return (F) DEFAULT_INSTANCE.createBuilder();
+    }
+
+    public static PerfSession parseDelimitedFrom(InputStream inputStream) throws IOException {
+        return (PerfSession) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static PerfSession parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (PerfSession) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    }
+
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -56,272 +106,44 @@ public final class PerfSession extends GeneratedMessageLite<PerfSession, Builder
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearSessionId() {
-        this.bitField0_ &= -2;
-        this.sessionId_ = getDefaultInstance().getSessionId();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setSessionIdBytes(ByteString byteString) {
-        this.sessionId_ = byteString.toStringUtf8();
+    public void setSessionIdBytes(com.google.protobuf.H h6) {
+        this.sessionId_ = h6.toStringUtf8();
         this.bitField0_ |= 1;
     }
 
-    static {
-        PerfSession perfSession = new PerfSession();
-        DEFAULT_INSTANCE = perfSession;
-        GeneratedMessageLite.registerDefaultInstance(PerfSession.class, perfSession);
-    }
-
-    @Override // com.google.firebase.perf.v1.PerfSessionOrBuilder
-    public List<SessionVerbosity> getSessionVerbosityList() {
-        return new Internal.ListAdapter(this.sessionVerbosity_, sessionVerbosity_converter_);
-    }
-
-    @Override // com.google.firebase.perf.v1.PerfSessionOrBuilder
-    public int getSessionVerbosityCount() {
-        return this.sessionVerbosity_.size();
-    }
-
-    @Override // com.google.firebase.perf.v1.PerfSessionOrBuilder
-    public SessionVerbosity getSessionVerbosity(int i) {
-        SessionVerbosity forNumber = SessionVerbosity.forNumber(this.sessionVerbosity_.getInt(i));
-        return forNumber == null ? SessionVerbosity.SESSION_VERBOSITY_NONE : forNumber;
-    }
-
-    private void ensureSessionVerbosityIsMutable() {
-        Internal.IntList intList = this.sessionVerbosity_;
-        if (intList.isModifiable()) {
-            return;
-        }
-        this.sessionVerbosity_ = GeneratedMessageLite.mutableCopy(intList);
-    }
-
     /* JADX INFO: Access modifiers changed from: private */
-    public void setSessionVerbosity(int i, SessionVerbosity sessionVerbosity) {
-        sessionVerbosity.getClass();
+    public void setSessionVerbosity(int i9, H h6) {
+        h6.getClass();
         ensureSessionVerbosityIsMutable();
-        this.sessionVerbosity_.setInt(i, sessionVerbosity.getNumber());
+        ((S2) this.sessionVerbosity_).setInt(i9, h6.b);
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void addSessionVerbosity(SessionVerbosity sessionVerbosity) {
-        sessionVerbosity.getClass();
-        ensureSessionVerbosityIsMutable();
-        this.sessionVerbosity_.addInt(sessionVerbosity.getNumber());
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void addAllSessionVerbosity(Iterable<? extends SessionVerbosity> iterable) {
-        ensureSessionVerbosityIsMutable();
-        Iterator<? extends SessionVerbosity> it = iterable.iterator();
-        while (it.hasNext()) {
-            this.sessionVerbosity_.addInt(it.next().getNumber());
-        }
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearSessionVerbosity() {
-        this.sessionVerbosity_ = emptyIntList();
-    }
-
-    public static PerfSession parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (PerfSession) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
-    }
-
-    public static PerfSession parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (PerfSession) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static PerfSession parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (PerfSession) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static PerfSession parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (PerfSession) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static PerfSession parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (PerfSession) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static PerfSession parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (PerfSession) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static PerfSession parseFrom(InputStream inputStream) throws IOException {
-        return (PerfSession) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static PerfSession parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (PerfSession) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static PerfSession parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (PerfSession) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static PerfSession parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (PerfSession) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static PerfSession parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (PerfSession) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
-    }
-
-    public static PerfSession parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (PerfSession) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
-    }
-
-    public static Builder newBuilder(PerfSession perfSession) {
-        return DEFAULT_INSTANCE.createBuilder(perfSession);
-    }
-
-    /* loaded from: classes3.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<PerfSession, Builder> implements PerfSessionOrBuilder {
-        private Builder() {
-            super(PerfSession.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.firebase.perf.v1.PerfSessionOrBuilder
-        public boolean hasSessionId() {
-            return ((PerfSession) this.instance).hasSessionId();
-        }
-
-        @Override // com.google.firebase.perf.v1.PerfSessionOrBuilder
-        public String getSessionId() {
-            return ((PerfSession) this.instance).getSessionId();
-        }
-
-        @Override // com.google.firebase.perf.v1.PerfSessionOrBuilder
-        public ByteString getSessionIdBytes() {
-            return ((PerfSession) this.instance).getSessionIdBytes();
-        }
-
-        public Builder setSessionId(String str) {
-            copyOnWrite();
-            ((PerfSession) this.instance).setSessionId(str);
-            return this;
-        }
-
-        public Builder clearSessionId() {
-            copyOnWrite();
-            ((PerfSession) this.instance).clearSessionId();
-            return this;
-        }
-
-        public Builder setSessionIdBytes(ByteString byteString) {
-            copyOnWrite();
-            ((PerfSession) this.instance).setSessionIdBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.firebase.perf.v1.PerfSessionOrBuilder
-        public List<SessionVerbosity> getSessionVerbosityList() {
-            return ((PerfSession) this.instance).getSessionVerbosityList();
-        }
-
-        @Override // com.google.firebase.perf.v1.PerfSessionOrBuilder
-        public int getSessionVerbosityCount() {
-            return ((PerfSession) this.instance).getSessionVerbosityCount();
-        }
-
-        @Override // com.google.firebase.perf.v1.PerfSessionOrBuilder
-        public SessionVerbosity getSessionVerbosity(int i) {
-            return ((PerfSession) this.instance).getSessionVerbosity(i);
-        }
-
-        public Builder setSessionVerbosity(int i, SessionVerbosity sessionVerbosity) {
-            copyOnWrite();
-            ((PerfSession) this.instance).setSessionVerbosity(i, sessionVerbosity);
-            return this;
-        }
-
-        public Builder addSessionVerbosity(SessionVerbosity sessionVerbosity) {
-            copyOnWrite();
-            ((PerfSession) this.instance).addSessionVerbosity(sessionVerbosity);
-            return this;
-        }
-
-        public Builder addAllSessionVerbosity(Iterable<? extends SessionVerbosity> iterable) {
-            copyOnWrite();
-            ((PerfSession) this.instance).addAllSessionVerbosity(iterable);
-            return this;
-        }
-
-        public Builder clearSessionVerbosity() {
-            copyOnWrite();
-            ((PerfSession) this.instance).clearSessionVerbosity();
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.firebase.perf.v1.PerfSession$2, reason: invalid class name */
-    /* loaded from: classes3.dex */
-    static /* synthetic */ class AnonymousClass2 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        switch (AnonymousClass2.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (E.f20659a[k22.ordinal()]) {
             case 1:
                 return new PerfSession();
             case 2:
-                return new Builder();
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0001\u0000\u0001ဈ\u0000\u0002\u001e", new Object[]{"bitField0_", "sessionId_", "sessionVerbosity_", SessionVerbosity.internalGetVerifier()});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0001\u0000\u0001ဈ\u0000\u0002\u001e", new Object[]{"bitField0_", "sessionId_", "sessionVerbosity_", C2354i.f20678g});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<PerfSession> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (PerfSession.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -331,11 +153,78 @@ public final class PerfSession extends GeneratedMessageLite<PerfSession, Builder
         }
     }
 
-    public static PerfSession getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public String getSessionId() {
+        return this.sessionId_;
     }
 
-    public static Parser<PerfSession> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public com.google.protobuf.H getSessionIdBytes() {
+        return com.google.protobuf.H.copyFromUtf8(this.sessionId_);
+    }
+
+    public H getSessionVerbosity(int i9) {
+        H a6 = H.a(((S2) this.sessionVerbosity_).getInt(i9));
+        if (a6 == null) {
+            return H.SESSION_VERBOSITY_NONE;
+        }
+        return a6;
+    }
+
+    public int getSessionVerbosityCount() {
+        return this.sessionVerbosity_.size();
+    }
+
+    public List<H> getSessionVerbosityList() {
+        return new C1877b3(this.sessionVerbosity_, sessionVerbosity_converter_);
+    }
+
+    public boolean hasSessionId() {
+        if ((this.bitField0_ & 1) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public static F newBuilder(PerfSession perfSession) {
+        return (F) DEFAULT_INSTANCE.createBuilder(perfSession);
+    }
+
+    public static PerfSession parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (PerfSession) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static PerfSession parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (PerfSession) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static PerfSession parseFrom(com.google.protobuf.H h6) throws C1912g3 {
+        return (PerfSession) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static PerfSession parseFrom(com.google.protobuf.H h6, W1 w1) throws C1912g3 {
+        return (PerfSession) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static PerfSession parseFrom(byte[] bArr) throws C1912g3 {
+        return (PerfSession) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static PerfSession parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (PerfSession) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static PerfSession parseFrom(InputStream inputStream) throws IOException {
+        return (PerfSession) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static PerfSession parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (PerfSession) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static PerfSession parseFrom(S s5) throws IOException {
+        return (PerfSession) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static PerfSession parseFrom(S s5, W1 w1) throws IOException {
+        return (PerfSession) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzv extends LifecycleCallback {
     private final List zza;
 
@@ -21,11 +20,15 @@ final class zzv extends LifecycleCallback {
 
     public static zzv zza(Activity activity) {
         zzv zzvVar;
-        LifecycleFragment fragment = getFragment(activity);
+        LifecycleFragment fragment = LifecycleCallback.getFragment(activity);
         synchronized (fragment) {
-            zzvVar = (zzv) fragment.getCallbackOrNull("TaskOnStopCallback", zzv.class);
-            if (zzvVar == null) {
-                zzvVar = new zzv(fragment);
+            try {
+                zzvVar = (zzv) fragment.getCallbackOrNull("TaskOnStopCallback", zzv.class);
+                if (zzvVar == null) {
+                    zzvVar = new zzv(fragment);
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return zzvVar;
@@ -34,14 +37,18 @@ final class zzv extends LifecycleCallback {
     @Override // com.google.android.gms.common.api.internal.LifecycleCallback
     public final void onStop() {
         synchronized (this.zza) {
-            Iterator it = this.zza.iterator();
-            while (it.hasNext()) {
-                zzq zzqVar = (zzq) ((WeakReference) it.next()).get();
-                if (zzqVar != null) {
-                    zzqVar.zzc();
+            try {
+                Iterator it = this.zza.iterator();
+                while (it.hasNext()) {
+                    zzq zzqVar = (zzq) ((WeakReference) it.next()).get();
+                    if (zzqVar != null) {
+                        zzqVar.zzc();
+                    }
                 }
+                this.zza.clear();
+            } catch (Throwable th) {
+                throw th;
             }
-            this.zza.clear();
         }
     }
 

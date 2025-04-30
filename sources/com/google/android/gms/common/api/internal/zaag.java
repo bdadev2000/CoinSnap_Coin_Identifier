@@ -1,5 +1,6 @@
 package com.google.android.gms.common.api.internal;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.Api;
@@ -10,8 +11,7 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.concurrent.TimeUnit;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class zaag extends GoogleApiClient {
     private final String zaa = "Method is not supported by connectionless client. APIs supporting connectionless client must not call this method.";
 
@@ -44,12 +44,13 @@ public class zaag extends GoogleApiClient {
     }
 
     @Override // com.google.android.gms.common.api.GoogleApiClient
-    public final ConnectionResult getConnectionResult(Api<?> api) {
+    @NonNull
+    public final ConnectionResult getConnectionResult(@NonNull Api<?> api) {
         throw new UnsupportedOperationException(this.zaa);
     }
 
     @Override // com.google.android.gms.common.api.GoogleApiClient
-    public final boolean hasConnectedApi(Api<?> api) {
+    public final boolean hasConnectedApi(@NonNull Api<?> api) {
         throw new UnsupportedOperationException(this.zaa);
     }
 
@@ -64,12 +65,12 @@ public class zaag extends GoogleApiClient {
     }
 
     @Override // com.google.android.gms.common.api.GoogleApiClient
-    public final boolean isConnectionCallbacksRegistered(GoogleApiClient.ConnectionCallbacks connectionCallbacks) {
+    public final boolean isConnectionCallbacksRegistered(@NonNull GoogleApiClient.ConnectionCallbacks connectionCallbacks) {
         throw new UnsupportedOperationException(this.zaa);
     }
 
     @Override // com.google.android.gms.common.api.GoogleApiClient
-    public final boolean isConnectionFailedListenerRegistered(GoogleApiClient.OnConnectionFailedListener onConnectionFailedListener) {
+    public final boolean isConnectionFailedListenerRegistered(@NonNull GoogleApiClient.OnConnectionFailedListener onConnectionFailedListener) {
         throw new UnsupportedOperationException(this.zaa);
     }
 
@@ -79,32 +80,32 @@ public class zaag extends GoogleApiClient {
     }
 
     @Override // com.google.android.gms.common.api.GoogleApiClient
-    public final void registerConnectionCallbacks(GoogleApiClient.ConnectionCallbacks connectionCallbacks) {
+    public final void registerConnectionCallbacks(@NonNull GoogleApiClient.ConnectionCallbacks connectionCallbacks) {
         throw new UnsupportedOperationException(this.zaa);
     }
 
     @Override // com.google.android.gms.common.api.GoogleApiClient
-    public final void registerConnectionFailedListener(GoogleApiClient.OnConnectionFailedListener onConnectionFailedListener) {
+    public final void registerConnectionFailedListener(@NonNull GoogleApiClient.OnConnectionFailedListener onConnectionFailedListener) {
         throw new UnsupportedOperationException(this.zaa);
     }
 
     @Override // com.google.android.gms.common.api.GoogleApiClient
-    public final void stopAutoManage(FragmentActivity fragmentActivity) {
+    public final void stopAutoManage(@NonNull FragmentActivity fragmentActivity) {
         throw new UnsupportedOperationException(this.zaa);
     }
 
     @Override // com.google.android.gms.common.api.GoogleApiClient
-    public final void unregisterConnectionCallbacks(GoogleApiClient.ConnectionCallbacks connectionCallbacks) {
+    public final void unregisterConnectionCallbacks(@NonNull GoogleApiClient.ConnectionCallbacks connectionCallbacks) {
         throw new UnsupportedOperationException(this.zaa);
     }
 
     @Override // com.google.android.gms.common.api.GoogleApiClient
-    public final void unregisterConnectionFailedListener(GoogleApiClient.OnConnectionFailedListener onConnectionFailedListener) {
+    public final void unregisterConnectionFailedListener(@NonNull GoogleApiClient.OnConnectionFailedListener onConnectionFailedListener) {
         throw new UnsupportedOperationException(this.zaa);
     }
 
     @Override // com.google.android.gms.common.api.GoogleApiClient
-    public final ConnectionResult blockingConnect(long j, TimeUnit timeUnit) {
+    public final ConnectionResult blockingConnect(long j7, @NonNull TimeUnit timeUnit) {
         throw new UnsupportedOperationException(this.zaa);
     }
 }

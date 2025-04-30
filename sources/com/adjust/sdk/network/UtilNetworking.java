@@ -2,25 +2,28 @@ package com.adjust.sdk.network;
 
 import com.adjust.sdk.AdjustFactory;
 import com.adjust.sdk.ILogger;
+import com.google.firebase.perf.network.FirebasePerfUrlConnection;
+import com.mbridge.msdk.foundation.download.Command;
 import java.net.URL;
+import java.net.URLConnection;
 import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONObject;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class UtilNetworking {
     private static String userAgent;
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public interface IConnectionOptions {
         void applyConnectionOptions(HttpsURLConnection httpsURLConnection, String str);
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public interface IHttpsURLConnectionProvider {
         HttpsURLConnection generateHttpsURLConnection(URL url);
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class a implements IConnectionOptions {
         @Override // com.adjust.sdk.network.UtilNetworking.IConnectionOptions
         public final void applyConnectionOptions(HttpsURLConnection httpsURLConnection, String str) {
@@ -28,16 +31,16 @@ public class UtilNetworking {
             httpsURLConnection.setConnectTimeout(60000);
             httpsURLConnection.setReadTimeout(60000);
             if (UtilNetworking.userAgent != null) {
-                httpsURLConnection.setRequestProperty("User-Agent", UtilNetworking.userAgent);
+                httpsURLConnection.setRequestProperty(Command.HTTP_HEADER_USER_AGENT, UtilNetworking.userAgent);
             }
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class b implements IHttpsURLConnectionProvider {
         @Override // com.adjust.sdk.network.UtilNetworking.IHttpsURLConnectionProvider
         public final HttpsURLConnection generateHttpsURLConnection(URL url) {
-            return (HttpsURLConnection) url.openConnection();
+            return (HttpsURLConnection) ((URLConnection) FirebasePerfUrlConnection.instrument(url.openConnection()));
         }
     }
 

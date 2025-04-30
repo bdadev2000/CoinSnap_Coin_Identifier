@@ -1,451 +1,232 @@
 package androidx.appcompat.widget;
 
+import L.j;
+import R.d;
+import R.e;
+import Z.m;
+import Z.p;
+import android.R;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.media.session.a;
 import android.text.InputFilter;
+import android.text.TextDirectionHeuristic;
+import android.text.TextDirectionHeuristics;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.ActionMode;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
-import android.view.inspector.InspectionCompanion;
-import android.view.inspector.PropertyMapper;
-import android.view.inspector.PropertyReader;
 import android.view.textclassifier.TextClassifier;
 import android.widget.TextView;
-import androidx.appcompat.R;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.graphics.TypefaceCompat;
-import androidx.core.text.PrecomputedTextCompat;
-import androidx.core.view.TintableBackgroundView;
-import androidx.core.widget.AutoSizeableTextView;
-import androidx.core.widget.TextViewCompat;
-import androidx.core.widget.TintableCompoundDrawablesView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import com.facebook.appevents.g;
+import com.facebook.appevents.n;
+import com.facebook.internal.C1838g;
+import com.mbridge.msdk.foundation.entity.o;
+import e1.f;
+import g4.AbstractC2292b;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-import java.util.function.IntFunction;
+import q.C2596e0;
+import q.C2617p;
+import q.C2628v;
+import q.O0;
+import q.P;
+import q.P0;
+import q.Q;
+import q.W;
+import q.X;
+import q.Y;
+import q.Z;
+import q.g1;
 
 /* loaded from: classes.dex */
-public class AppCompatTextView extends TextView implements TintableBackgroundView, TintableCompoundDrawablesView, AutoSizeableTextView, EmojiCompatConfigurationView {
-    private final AppCompatBackgroundHelper mBackgroundTintHelper;
-    private AppCompatEmojiTextHelper mEmojiTextViewHelper;
+public class AppCompatTextView extends TextView {
+    private final C2617p mBackgroundTintHelper;
+
+    @NonNull
+    private C2628v mEmojiTextViewHelper;
     private boolean mIsSetTypefaceProcessing;
-    private Future<PrecomputedTextCompat> mPrecomputedTextFuture;
-    private SuperCaller mSuperCaller;
-    private final AppCompatTextClassifierHelper mTextClassifierHelper;
-    private final AppCompatTextHelper mTextHelper;
 
-    /* JADX INFO: Access modifiers changed from: private */
-    /* loaded from: classes.dex */
-    public interface SuperCaller {
-        int getAutoSizeMaxTextSize();
+    @Nullable
+    private Future<e> mPrecomputedTextFuture;
 
-        int getAutoSizeMinTextSize();
+    @Nullable
+    private X mSuperCaller;
+    private final Q mTextClassifierHelper;
+    private final W mTextHelper;
 
-        int getAutoSizeStepGranularity();
-
-        int[] getAutoSizeTextAvailableSizes();
-
-        int getAutoSizeTextType();
-
-        TextClassifier getTextClassifier();
-
-        void setAutoSizeTextTypeUniformWithConfiguration(int i, int i2, int i3, int i4);
-
-        void setAutoSizeTextTypeUniformWithPresetSizes(int[] iArr, int i);
-
-        void setAutoSizeTextTypeWithDefaults(int i);
-
-        void setFirstBaselineToTopHeight(int i);
-
-        void setLastBaselineToBottomHeight(int i);
-
-        void setLineHeight(int i, float f);
-
-        void setTextClassifier(TextClassifier textClassifier);
-    }
-
-    /* loaded from: classes.dex */
-    public final class InspectionCompanion implements android.view.inspector.InspectionCompanion<AppCompatTextView> {
-        private int mAutoSizeMaxTextSizeId;
-        private int mAutoSizeMinTextSizeId;
-        private int mAutoSizeStepGranularityId;
-        private int mAutoSizeTextTypeId;
-        private int mBackgroundTintId;
-        private int mBackgroundTintModeId;
-        private int mDrawableTintId;
-        private int mDrawableTintModeId;
-        private boolean mPropertiesMapped = false;
-
-        @Override // android.view.inspector.InspectionCompanion
-        public void mapProperties(PropertyMapper propertyMapper) {
-            this.mAutoSizeMaxTextSizeId = propertyMapper.mapInt("autoSizeMaxTextSize", R.attr.autoSizeMaxTextSize);
-            this.mAutoSizeMinTextSizeId = propertyMapper.mapInt("autoSizeMinTextSize", R.attr.autoSizeMinTextSize);
-            this.mAutoSizeStepGranularityId = propertyMapper.mapInt("autoSizeStepGranularity", R.attr.autoSizeStepGranularity);
-            this.mAutoSizeTextTypeId = propertyMapper.mapIntEnum("autoSizeTextType", R.attr.autoSizeTextType, new IntFunction<String>() { // from class: androidx.appcompat.widget.AppCompatTextView.InspectionCompanion.1
-                @Override // java.util.function.IntFunction
-                public String apply(int i) {
-                    if (i == 0) {
-                        return "none";
-                    }
-                    if (i == 1) {
-                        return "uniform";
-                    }
-                    return String.valueOf(i);
-                }
-            });
-            this.mBackgroundTintId = propertyMapper.mapObject("backgroundTint", R.attr.backgroundTint);
-            this.mBackgroundTintModeId = propertyMapper.mapObject("backgroundTintMode", R.attr.backgroundTintMode);
-            this.mDrawableTintId = propertyMapper.mapObject("drawableTint", R.attr.drawableTint);
-            this.mDrawableTintModeId = propertyMapper.mapObject("drawableTintMode", R.attr.drawableTintMode);
-            this.mPropertiesMapped = true;
-        }
-
-        @Override // android.view.inspector.InspectionCompanion
-        public void readProperties(AppCompatTextView appCompatTextView, PropertyReader propertyReader) {
-            if (!this.mPropertiesMapped) {
-                throw new InspectionCompanion.UninitializedPropertyMapException();
-            }
-            propertyReader.readInt(this.mAutoSizeMaxTextSizeId, appCompatTextView.getAutoSizeMaxTextSize());
-            propertyReader.readInt(this.mAutoSizeMinTextSizeId, appCompatTextView.getAutoSizeMinTextSize());
-            propertyReader.readInt(this.mAutoSizeStepGranularityId, appCompatTextView.getAutoSizeStepGranularity());
-            propertyReader.readIntEnum(this.mAutoSizeTextTypeId, appCompatTextView.getAutoSizeTextType());
-            propertyReader.readObject(this.mBackgroundTintId, appCompatTextView.getBackgroundTintList());
-            propertyReader.readObject(this.mBackgroundTintModeId, appCompatTextView.getBackgroundTintMode());
-            propertyReader.readObject(this.mDrawableTintId, appCompatTextView.getCompoundDrawableTintList());
-            propertyReader.readObject(this.mDrawableTintModeId, appCompatTextView.getCompoundDrawableTintMode());
-        }
-    }
-
-    public AppCompatTextView(Context context) {
+    public AppCompatTextView(@NonNull Context context) {
         this(context, null);
     }
 
-    public AppCompatTextView(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, android.R.attr.textViewStyle);
+    private void consumeTextFutureAndSetBlocking() {
+        Future<e> future = this.mPrecomputedTextFuture;
+        if (future != null) {
+            try {
+                this.mPrecomputedTextFuture = null;
+                o.v(future.get());
+                if (Build.VERSION.SDK_INT >= 29) {
+                    throw null;
+                }
+                AbstractC2292b.e(this);
+                throw null;
+            } catch (InterruptedException | ExecutionException unused) {
+            }
+        }
     }
 
-    public AppCompatTextView(Context context, AttributeSet attributeSet, int i) {
-        super(TintContextWrapper.wrap(context), attributeSet, i);
-        this.mIsSetTypefaceProcessing = false;
-        this.mSuperCaller = null;
-        ThemeUtils.checkAppCompatTheme(this, getContext());
-        AppCompatBackgroundHelper appCompatBackgroundHelper = new AppCompatBackgroundHelper(this);
-        this.mBackgroundTintHelper = appCompatBackgroundHelper;
-        appCompatBackgroundHelper.loadFromAttributes(attributeSet, i);
-        AppCompatTextHelper appCompatTextHelper = new AppCompatTextHelper(this);
-        this.mTextHelper = appCompatTextHelper;
-        appCompatTextHelper.loadFromAttributes(attributeSet, i);
-        appCompatTextHelper.applyCompoundDrawablesTints();
-        this.mTextClassifierHelper = new AppCompatTextClassifierHelper(this);
-        getEmojiTextViewHelper().loadFromAttributes(attributeSet, i);
-    }
-
-    private AppCompatEmojiTextHelper getEmojiTextViewHelper() {
+    @NonNull
+    private C2628v getEmojiTextViewHelper() {
         if (this.mEmojiTextViewHelper == null) {
-            this.mEmojiTextViewHelper = new AppCompatEmojiTextHelper(this);
+            this.mEmojiTextViewHelper = new C2628v(this);
         }
         return this.mEmojiTextViewHelper;
     }
 
-    @Override // android.view.View
-    public void setBackgroundResource(int i) {
-        super.setBackgroundResource(i);
-        AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
-        if (appCompatBackgroundHelper != null) {
-            appCompatBackgroundHelper.onSetBackgroundResource(i);
-        }
-    }
-
-    @Override // android.view.View
-    public void setBackgroundDrawable(Drawable drawable) {
-        super.setBackgroundDrawable(drawable);
-        AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
-        if (appCompatBackgroundHelper != null) {
-            appCompatBackgroundHelper.onSetBackgroundDrawable(drawable);
-        }
-    }
-
-    @Override // androidx.core.view.TintableBackgroundView
-    public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
-        if (appCompatBackgroundHelper != null) {
-            appCompatBackgroundHelper.setSupportBackgroundTintList(colorStateList);
-        }
-    }
-
-    @Override // androidx.core.view.TintableBackgroundView
-    public ColorStateList getSupportBackgroundTintList() {
-        AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
-        if (appCompatBackgroundHelper != null) {
-            return appCompatBackgroundHelper.getSupportBackgroundTintList();
-        }
-        return null;
-    }
-
-    @Override // androidx.core.view.TintableBackgroundView
-    public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
-        if (appCompatBackgroundHelper != null) {
-            appCompatBackgroundHelper.setSupportBackgroundTintMode(mode);
-        }
-    }
-
-    @Override // androidx.core.view.TintableBackgroundView
-    public PorterDuff.Mode getSupportBackgroundTintMode() {
-        AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
-        if (appCompatBackgroundHelper != null) {
-            return appCompatBackgroundHelper.getSupportBackgroundTintMode();
-        }
-        return null;
-    }
-
-    @Override // android.widget.TextView
-    public void setTextAppearance(Context context, int i) {
-        super.setTextAppearance(context, i);
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            appCompatTextHelper.onSetTextAppearance(context, i);
-        }
-    }
-
-    @Override // android.widget.TextView
-    public void setFilters(InputFilter[] inputFilterArr) {
-        super.setFilters(getEmojiTextViewHelper().getFilters(inputFilterArr));
-    }
-
-    @Override // android.widget.TextView
-    public void setAllCaps(boolean z) {
-        super.setAllCaps(z);
-        getEmojiTextViewHelper().setAllCaps(z);
-    }
-
-    @Override // androidx.appcompat.widget.EmojiCompatConfigurationView
-    public void setEmojiCompatEnabled(boolean z) {
-        getEmojiTextViewHelper().setEnabled(z);
-    }
-
-    @Override // androidx.appcompat.widget.EmojiCompatConfigurationView
-    public boolean isEmojiCompatEnabled() {
-        return getEmojiTextViewHelper().isEnabled();
-    }
-
     @Override // android.widget.TextView, android.view.View
-    protected void drawableStateChanged() {
+    public void drawableStateChanged() {
         super.drawableStateChanged();
-        AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
-        if (appCompatBackgroundHelper != null) {
-            appCompatBackgroundHelper.applySupportBackgroundTint();
+        C2617p c2617p = this.mBackgroundTintHelper;
+        if (c2617p != null) {
+            c2617p.a();
         }
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            appCompatTextHelper.applyCompoundDrawablesTints();
-        }
-    }
-
-    /* JADX INFO: Access modifiers changed from: protected */
-    @Override // android.widget.TextView, android.view.View
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            appCompatTextHelper.onLayout(z, i, i2, i3, i4);
+        W w2 = this.mTextHelper;
+        if (w2 != null) {
+            w2.b();
         }
     }
 
     @Override // android.widget.TextView
-    public void setTextSize(int i, float f) {
-        if (ViewUtils.SDK_LEVEL_SUPPORTS_AUTOSIZE) {
-            super.setTextSize(i, f);
-            return;
-        }
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            appCompatTextHelper.setTextSize(i, f);
-        }
-    }
-
-    @Override // android.widget.TextView
-    protected void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        super.onTextChanged(charSequence, i, i2, i3);
-        if (this.mTextHelper == null || ViewUtils.SDK_LEVEL_SUPPORTS_AUTOSIZE || !this.mTextHelper.isAutoSizeEnabled()) {
-            return;
-        }
-        this.mTextHelper.autoSizeText();
-    }
-
-    @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
-    public void setAutoSizeTextTypeWithDefaults(int i) {
-        if (ViewUtils.SDK_LEVEL_SUPPORTS_AUTOSIZE) {
-            getSuperCaller().setAutoSizeTextTypeWithDefaults(i);
-            return;
-        }
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            appCompatTextHelper.setAutoSizeTextTypeWithDefaults(i);
-        }
-    }
-
-    @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
-    public void setAutoSizeTextTypeUniformWithConfiguration(int i, int i2, int i3, int i4) throws IllegalArgumentException {
-        if (ViewUtils.SDK_LEVEL_SUPPORTS_AUTOSIZE) {
-            getSuperCaller().setAutoSizeTextTypeUniformWithConfiguration(i, i2, i3, i4);
-            return;
-        }
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            appCompatTextHelper.setAutoSizeTextTypeUniformWithConfiguration(i, i2, i3, i4);
-        }
-    }
-
-    @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
-    public void setAutoSizeTextTypeUniformWithPresetSizes(int[] iArr, int i) throws IllegalArgumentException {
-        if (ViewUtils.SDK_LEVEL_SUPPORTS_AUTOSIZE) {
-            getSuperCaller().setAutoSizeTextTypeUniformWithPresetSizes(iArr, i);
-            return;
-        }
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            appCompatTextHelper.setAutoSizeTextTypeUniformWithPresetSizes(iArr, i);
-        }
-    }
-
-    @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
-    public int getAutoSizeTextType() {
-        if (ViewUtils.SDK_LEVEL_SUPPORTS_AUTOSIZE) {
-            return getSuperCaller().getAutoSizeTextType() == 1 ? 1 : 0;
-        }
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            return appCompatTextHelper.getAutoSizeTextType();
-        }
-        return 0;
-    }
-
-    @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
-    public int getAutoSizeStepGranularity() {
-        if (ViewUtils.SDK_LEVEL_SUPPORTS_AUTOSIZE) {
-            return getSuperCaller().getAutoSizeStepGranularity();
-        }
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            return appCompatTextHelper.getAutoSizeStepGranularity();
-        }
-        return -1;
-    }
-
-    @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
-    public int getAutoSizeMinTextSize() {
-        if (ViewUtils.SDK_LEVEL_SUPPORTS_AUTOSIZE) {
-            return getSuperCaller().getAutoSizeMinTextSize();
-        }
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            return appCompatTextHelper.getAutoSizeMinTextSize();
-        }
-        return -1;
-    }
-
-    @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
     public int getAutoSizeMaxTextSize() {
-        if (ViewUtils.SDK_LEVEL_SUPPORTS_AUTOSIZE) {
-            return getSuperCaller().getAutoSizeMaxTextSize();
+        if (g1.f22658c) {
+            return super.getAutoSizeMaxTextSize();
         }
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            return appCompatTextHelper.getAutoSizeMaxTextSize();
+        W w2 = this.mTextHelper;
+        if (w2 != null) {
+            return Math.round(w2.f22604i.f22646e);
         }
         return -1;
     }
 
-    @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
-    public int[] getAutoSizeTextAvailableSizes() {
-        if (ViewUtils.SDK_LEVEL_SUPPORTS_AUTOSIZE) {
-            return getSuperCaller().getAutoSizeTextAvailableSizes();
+    @Override // android.widget.TextView
+    public int getAutoSizeMinTextSize() {
+        if (g1.f22658c) {
+            return super.getAutoSizeMinTextSize();
         }
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            return appCompatTextHelper.getAutoSizeTextAvailableSizes();
+        W w2 = this.mTextHelper;
+        if (w2 != null) {
+            return Math.round(w2.f22604i.f22645d);
+        }
+        return -1;
+    }
+
+    @Override // android.widget.TextView
+    public int getAutoSizeStepGranularity() {
+        if (g1.f22658c) {
+            return super.getAutoSizeStepGranularity();
+        }
+        W w2 = this.mTextHelper;
+        if (w2 != null) {
+            return Math.round(w2.f22604i.f22644c);
+        }
+        return -1;
+    }
+
+    @Override // android.widget.TextView
+    public int[] getAutoSizeTextAvailableSizes() {
+        if (g1.f22658c) {
+            return super.getAutoSizeTextAvailableSizes();
+        }
+        W w2 = this.mTextHelper;
+        if (w2 != null) {
+            return w2.f22604i.f22647f;
         }
         return new int[0];
     }
 
-    @Override // android.widget.TextView, android.view.View
-    public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-        this.mTextHelper.populateSurroundingTextIfNeeded(this, onCreateInputConnection, editorInfo);
-        return AppCompatHintHelper.onCreateInputConnection(onCreateInputConnection, editorInfo, this);
+    @Override // android.widget.TextView
+    @SuppressLint({"WrongConstant"})
+    public int getAutoSizeTextType() {
+        if (g1.f22658c) {
+            if (super.getAutoSizeTextType() != 1) {
+                return 0;
+            }
+            return 1;
+        }
+        W w2 = this.mTextHelper;
+        if (w2 == null) {
+            return 0;
+        }
+        return w2.f22604i.f22643a;
     }
 
     @Override // android.widget.TextView
-    public void setFirstBaselineToTopHeight(int i) {
-        getSuperCaller().setFirstBaselineToTopHeight(i);
-    }
-
-    @Override // android.widget.TextView
-    public void setLastBaselineToBottomHeight(int i) {
-        getSuperCaller().setLastBaselineToBottomHeight(i);
+    @Nullable
+    public ActionMode.Callback getCustomSelectionActionModeCallback() {
+        return AbstractC2292b.q(super.getCustomSelectionActionModeCallback());
     }
 
     @Override // android.widget.TextView
     public int getFirstBaselineToTopHeight() {
-        return TextViewCompat.getFirstBaselineToTopHeight(this);
+        return getPaddingTop() - getPaint().getFontMetricsInt().top;
     }
 
     @Override // android.widget.TextView
     public int getLastBaselineToBottomHeight() {
-        return TextViewCompat.getLastBaselineToBottomHeight(this);
+        return getPaddingBottom() + getPaint().getFontMetricsInt().bottom;
     }
 
-    @Override // android.widget.TextView
-    public void setLineHeight(int i) {
-        TextViewCompat.setLineHeight(this, i);
-    }
-
-    @Override // android.widget.TextView
-    public void setLineHeight(int i, float f) {
-        if (Build.VERSION.SDK_INT >= 34) {
-            getSuperCaller().setLineHeight(i, f);
-        } else {
-            TextViewCompat.setLineHeight(this, i, f);
-        }
-    }
-
-    @Override // android.widget.TextView
-    public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-        super.setCustomSelectionActionModeCallback(TextViewCompat.wrapCustomSelectionActionModeCallback(this, callback));
-    }
-
-    @Override // android.widget.TextView
-    public ActionMode.Callback getCustomSelectionActionModeCallback() {
-        return TextViewCompat.unwrapCustomSelectionActionModeCallback(super.getCustomSelectionActionModeCallback());
-    }
-
-    public PrecomputedTextCompat.Params getTextMetricsParamsCompat() {
-        return TextViewCompat.getTextMetricsParams(this);
-    }
-
-    public void setTextMetricsParamsCompat(PrecomputedTextCompat.Params params) {
-        TextViewCompat.setTextMetricsParams(this, params);
-    }
-
-    public void setPrecomputedText(PrecomputedTextCompat precomputedTextCompat) {
-        TextViewCompat.setPrecomputedText(this, precomputedTextCompat);
-    }
-
-    private void consumeTextFutureAndSetBlocking() {
-        Future<PrecomputedTextCompat> future = this.mPrecomputedTextFuture;
-        if (future != null) {
-            try {
-                this.mPrecomputedTextFuture = null;
-                TextViewCompat.setPrecomputedText(this, future.get());
-            } catch (InterruptedException | ExecutionException unused) {
+    @RequiresApi(api = 26)
+    public X getSuperCaller() {
+        if (this.mSuperCaller == null) {
+            int i9 = Build.VERSION.SDK_INT;
+            if (i9 >= 34) {
+                this.mSuperCaller = new Z(this);
+            } else if (i9 >= 28) {
+                this.mSuperCaller = new Y(this);
+            } else if (i9 >= 26) {
+                this.mSuperCaller = new C1838g(this);
             }
         }
+        return this.mSuperCaller;
+    }
+
+    @Nullable
+    public ColorStateList getSupportBackgroundTintList() {
+        C2617p c2617p = this.mBackgroundTintHelper;
+        if (c2617p != null) {
+            return c2617p.b();
+        }
+        return null;
+    }
+
+    @Nullable
+    public PorterDuff.Mode getSupportBackgroundTintMode() {
+        C2617p c2617p = this.mBackgroundTintHelper;
+        if (c2617p != null) {
+            return c2617p.c();
+        }
+        return null;
+    }
+
+    @Nullable
+    public ColorStateList getSupportCompoundDrawablesTintList() {
+        return this.mTextHelper.d();
+    }
+
+    @Nullable
+    public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
+        return this.mTextHelper.e();
     }
 
     @Override // android.widget.TextView
@@ -455,240 +236,387 @@ public class AppCompatTextView extends TextView implements TintableBackgroundVie
     }
 
     @Override // android.widget.TextView
-    public void setTextClassifier(TextClassifier textClassifier) {
-        getSuperCaller().setTextClassifier(textClassifier);
+    @NonNull
+    @RequiresApi(api = 26)
+    public TextClassifier getTextClassifier() {
+        Q q9;
+        if (Build.VERSION.SDK_INT >= 28 || (q9 = this.mTextClassifierHelper) == null) {
+            return super.getTextClassifier();
+        }
+        TextClassifier textClassifier = q9.b;
+        if (textClassifier == null) {
+            return P.a(q9.f22588a);
+        }
+        return textClassifier;
+    }
+
+    @NonNull
+    public d getTextMetricsParamsCompat() {
+        return AbstractC2292b.e(this);
+    }
+
+    public boolean isEmojiCompatEnabled() {
+        return ((f) getEmojiTextViewHelper().b.b).n();
+    }
+
+    @Override // android.widget.TextView, android.view.View
+    public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+        this.mTextHelper.getClass();
+        W.h(this, onCreateInputConnection, editorInfo);
+        g.u(onCreateInputConnection, editorInfo, this);
+        return onCreateInputConnection;
+    }
+
+    @Override // android.view.View
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        int i9 = Build.VERSION.SDK_INT;
+        if (i9 >= 30 && i9 < 33 && onCheckIsTextEditor()) {
+            ((InputMethodManager) getContext().getSystemService("input_method")).isActive(this);
+        }
+    }
+
+    @Override // android.widget.TextView, android.view.View
+    public void onLayout(boolean z8, int i9, int i10, int i11, int i12) {
+        super.onLayout(z8, i9, i10, i11, i12);
+        W w2 = this.mTextHelper;
+        if (w2 != null && !g1.f22658c) {
+            w2.f22604i.a();
+        }
+    }
+
+    @Override // android.widget.TextView, android.view.View
+    public void onMeasure(int i9, int i10) {
+        consumeTextFutureAndSetBlocking();
+        super.onMeasure(i9, i10);
     }
 
     @Override // android.widget.TextView
-    public TextClassifier getTextClassifier() {
-        return getSuperCaller().getTextClassifier();
+    public void onTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
+        super.onTextChanged(charSequence, i9, i10, i11);
+        W w2 = this.mTextHelper;
+        if (w2 != null && !g1.f22658c && w2.f22604i.f()) {
+            this.mTextHelper.f22604i.a();
+        }
     }
 
-    public void setTextFuture(Future<PrecomputedTextCompat> future) {
+    @Override // android.widget.TextView
+    public void setAllCaps(boolean z8) {
+        super.setAllCaps(z8);
+        getEmojiTextViewHelper().c(z8);
+    }
+
+    @Override // android.widget.TextView
+    public void setAutoSizeTextTypeUniformWithConfiguration(int i9, int i10, int i11, int i12) throws IllegalArgumentException {
+        if (g1.f22658c) {
+            super.setAutoSizeTextTypeUniformWithConfiguration(i9, i10, i11, i12);
+            return;
+        }
+        W w2 = this.mTextHelper;
+        if (w2 != null) {
+            w2.i(i9, i10, i11, i12);
+        }
+    }
+
+    @Override // android.widget.TextView
+    public void setAutoSizeTextTypeUniformWithPresetSizes(@NonNull int[] iArr, int i9) throws IllegalArgumentException {
+        if (g1.f22658c) {
+            super.setAutoSizeTextTypeUniformWithPresetSizes(iArr, i9);
+            return;
+        }
+        W w2 = this.mTextHelper;
+        if (w2 != null) {
+            w2.j(iArr, i9);
+        }
+    }
+
+    @Override // android.widget.TextView
+    public void setAutoSizeTextTypeWithDefaults(int i9) {
+        if (g1.f22658c) {
+            super.setAutoSizeTextTypeWithDefaults(i9);
+            return;
+        }
+        W w2 = this.mTextHelper;
+        if (w2 != null) {
+            w2.k(i9);
+        }
+    }
+
+    @Override // android.view.View
+    public void setBackgroundDrawable(@Nullable Drawable drawable) {
+        super.setBackgroundDrawable(drawable);
+        C2617p c2617p = this.mBackgroundTintHelper;
+        if (c2617p != null) {
+            c2617p.e();
+        }
+    }
+
+    @Override // android.view.View
+    public void setBackgroundResource(int i9) {
+        super.setBackgroundResource(i9);
+        C2617p c2617p = this.mBackgroundTintHelper;
+        if (c2617p != null) {
+            c2617p.f(i9);
+        }
+    }
+
+    @Override // android.widget.TextView
+    public void setCompoundDrawables(@Nullable Drawable drawable, @Nullable Drawable drawable2, @Nullable Drawable drawable3, @Nullable Drawable drawable4) {
+        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
+        W w2 = this.mTextHelper;
+        if (w2 != null) {
+            w2.b();
+        }
+    }
+
+    @Override // android.widget.TextView
+    public void setCompoundDrawablesRelative(@Nullable Drawable drawable, @Nullable Drawable drawable2, @Nullable Drawable drawable3, @Nullable Drawable drawable4) {
+        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
+        W w2 = this.mTextHelper;
+        if (w2 != null) {
+            w2.b();
+        }
+    }
+
+    @Override // android.widget.TextView
+    public void setCompoundDrawablesRelativeWithIntrinsicBounds(@Nullable Drawable drawable, @Nullable Drawable drawable2, @Nullable Drawable drawable3, @Nullable Drawable drawable4) {
+        super.setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, drawable2, drawable3, drawable4);
+        W w2 = this.mTextHelper;
+        if (w2 != null) {
+            w2.b();
+        }
+    }
+
+    @Override // android.widget.TextView
+    public void setCompoundDrawablesWithIntrinsicBounds(@Nullable Drawable drawable, @Nullable Drawable drawable2, @Nullable Drawable drawable3, @Nullable Drawable drawable4) {
+        super.setCompoundDrawablesWithIntrinsicBounds(drawable, drawable2, drawable3, drawable4);
+        W w2 = this.mTextHelper;
+        if (w2 != null) {
+            w2.b();
+        }
+    }
+
+    @Override // android.widget.TextView
+    public void setCustomSelectionActionModeCallback(@Nullable ActionMode.Callback callback) {
+        super.setCustomSelectionActionModeCallback(AbstractC2292b.r(callback, this));
+    }
+
+    public void setEmojiCompatEnabled(boolean z8) {
+        getEmojiTextViewHelper().d(z8);
+    }
+
+    @Override // android.widget.TextView
+    public void setFilters(@NonNull InputFilter[] inputFilterArr) {
+        super.setFilters(getEmojiTextViewHelper().a(inputFilterArr));
+    }
+
+    @Override // android.widget.TextView
+    public void setFirstBaselineToTopHeight(int i9) {
+        if (Build.VERSION.SDK_INT >= 28) {
+            getSuperCaller().c(i9);
+        } else {
+            AbstractC2292b.k(this, i9);
+        }
+    }
+
+    @Override // android.widget.TextView
+    public void setLastBaselineToBottomHeight(int i9) {
+        if (Build.VERSION.SDK_INT >= 28) {
+            getSuperCaller().b(i9);
+        } else {
+            AbstractC2292b.m(this, i9);
+        }
+    }
+
+    @Override // android.widget.TextView
+    public void setLineHeight(int i9) {
+        AbstractC2292b.n(this, i9);
+    }
+
+    public void setPrecomputedText(@NonNull e eVar) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            throw null;
+        }
+        AbstractC2292b.e(this);
+        throw null;
+    }
+
+    public void setSupportBackgroundTintList(@Nullable ColorStateList colorStateList) {
+        C2617p c2617p = this.mBackgroundTintHelper;
+        if (c2617p != null) {
+            c2617p.h(colorStateList);
+        }
+    }
+
+    public void setSupportBackgroundTintMode(@Nullable PorterDuff.Mode mode) {
+        C2617p c2617p = this.mBackgroundTintHelper;
+        if (c2617p != null) {
+            c2617p.i(mode);
+        }
+    }
+
+    public void setSupportCompoundDrawablesTintList(@Nullable ColorStateList colorStateList) {
+        this.mTextHelper.l(colorStateList);
+        this.mTextHelper.b();
+    }
+
+    public void setSupportCompoundDrawablesTintMode(@Nullable PorterDuff.Mode mode) {
+        this.mTextHelper.m(mode);
+        this.mTextHelper.b();
+    }
+
+    @Override // android.widget.TextView
+    public void setTextAppearance(Context context, int i9) {
+        super.setTextAppearance(context, i9);
+        W w2 = this.mTextHelper;
+        if (w2 != null) {
+            w2.g(context, i9);
+        }
+    }
+
+    @Override // android.widget.TextView
+    @RequiresApi(api = 26)
+    public void setTextClassifier(@Nullable TextClassifier textClassifier) {
+        Q q9;
+        if (Build.VERSION.SDK_INT >= 28 || (q9 = this.mTextClassifierHelper) == null) {
+            super.setTextClassifier(textClassifier);
+        } else {
+            q9.b = textClassifier;
+        }
+    }
+
+    public void setTextFuture(@Nullable Future<e> future) {
         this.mPrecomputedTextFuture = future;
         if (future != null) {
             requestLayout();
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    @Override // android.widget.TextView, android.view.View
-    public void onMeasure(int i, int i2) {
-        consumeTextFutureAndSetBlocking();
-        super.onMeasure(i, i2);
+    public void setTextMetricsParamsCompat(@NonNull d dVar) {
+        TextDirectionHeuristic textDirectionHeuristic;
+        TextDirectionHeuristic textDirectionHeuristic2 = dVar.b;
+        TextDirectionHeuristic textDirectionHeuristic3 = TextDirectionHeuristics.FIRSTSTRONG_RTL;
+        int i9 = 1;
+        if (textDirectionHeuristic2 != textDirectionHeuristic3 && textDirectionHeuristic2 != (textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_LTR)) {
+            if (textDirectionHeuristic2 == TextDirectionHeuristics.ANYRTL_LTR) {
+                i9 = 2;
+            } else if (textDirectionHeuristic2 == TextDirectionHeuristics.LTR) {
+                i9 = 3;
+            } else if (textDirectionHeuristic2 == TextDirectionHeuristics.RTL) {
+                i9 = 4;
+            } else if (textDirectionHeuristic2 == TextDirectionHeuristics.LOCALE) {
+                i9 = 5;
+            } else if (textDirectionHeuristic2 == textDirectionHeuristic) {
+                i9 = 6;
+            } else if (textDirectionHeuristic2 == textDirectionHeuristic3) {
+                i9 = 7;
+            }
+        }
+        setTextDirection(i9);
+        getPaint().set(dVar.f2608a);
+        m.e(this, dVar.f2609c);
+        m.h(this, dVar.f2610d);
     }
 
     @Override // android.widget.TextView
-    public void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
-        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            appCompatTextHelper.onSetCompoundDrawables();
+    public void setTextSize(int i9, float f9) {
+        boolean z8 = g1.f22658c;
+        if (z8) {
+            super.setTextSize(i9, f9);
+            return;
+        }
+        W w2 = this.mTextHelper;
+        if (w2 != null && !z8) {
+            C2596e0 c2596e0 = w2.f22604i;
+            if (!c2596e0.f()) {
+                c2596e0.g(i9, f9);
+            }
         }
     }
 
     @Override // android.widget.TextView
-    public void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
-        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            appCompatTextHelper.onSetCompoundDrawables();
-        }
-    }
-
-    @Override // android.widget.TextView
-    public void setCompoundDrawablesWithIntrinsicBounds(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
-        super.setCompoundDrawablesWithIntrinsicBounds(drawable, drawable2, drawable3, drawable4);
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            appCompatTextHelper.onSetCompoundDrawables();
-        }
-    }
-
-    @Override // android.widget.TextView
-    public void setCompoundDrawablesWithIntrinsicBounds(int i, int i2, int i3, int i4) {
-        Context context = getContext();
-        setCompoundDrawablesWithIntrinsicBounds(i != 0 ? AppCompatResources.getDrawable(context, i) : null, i2 != 0 ? AppCompatResources.getDrawable(context, i2) : null, i3 != 0 ? AppCompatResources.getDrawable(context, i3) : null, i4 != 0 ? AppCompatResources.getDrawable(context, i4) : null);
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            appCompatTextHelper.onSetCompoundDrawables();
-        }
-    }
-
-    @Override // android.widget.TextView
-    public void setCompoundDrawablesRelativeWithIntrinsicBounds(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
-        super.setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, drawable2, drawable3, drawable4);
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            appCompatTextHelper.onSetCompoundDrawables();
-        }
-    }
-
-    @Override // android.widget.TextView
-    public void setCompoundDrawablesRelativeWithIntrinsicBounds(int i, int i2, int i3, int i4) {
-        Context context = getContext();
-        setCompoundDrawablesRelativeWithIntrinsicBounds(i != 0 ? AppCompatResources.getDrawable(context, i) : null, i2 != 0 ? AppCompatResources.getDrawable(context, i2) : null, i3 != 0 ? AppCompatResources.getDrawable(context, i3) : null, i4 != 0 ? AppCompatResources.getDrawable(context, i4) : null);
-        AppCompatTextHelper appCompatTextHelper = this.mTextHelper;
-        if (appCompatTextHelper != null) {
-            appCompatTextHelper.onSetCompoundDrawables();
-        }
-    }
-
-    @Override // androidx.core.widget.TintableCompoundDrawablesView
-    public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.mTextHelper.getCompoundDrawableTintList();
-    }
-
-    @Override // androidx.core.widget.TintableCompoundDrawablesView
-    public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        this.mTextHelper.setCompoundDrawableTintList(colorStateList);
-        this.mTextHelper.applyCompoundDrawablesTints();
-    }
-
-    @Override // androidx.core.widget.TintableCompoundDrawablesView
-    public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.mTextHelper.getCompoundDrawableTintMode();
-    }
-
-    @Override // androidx.core.widget.TintableCompoundDrawablesView
-    public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        this.mTextHelper.setCompoundDrawableTintMode(mode);
-        this.mTextHelper.applyCompoundDrawablesTints();
-    }
-
-    @Override // android.widget.TextView
-    public void setTypeface(Typeface typeface, int i) {
+    public void setTypeface(@Nullable Typeface typeface, int i9) {
+        Typeface typeface2;
         if (this.mIsSetTypefaceProcessing) {
             return;
         }
-        Typeface create = (typeface == null || i <= 0) ? null : TypefaceCompat.create(getContext(), typeface, i);
+        if (typeface != null && i9 > 0) {
+            Context context = getContext();
+            a aVar = j.f1674a;
+            if (context != null) {
+                typeface2 = Typeface.create(typeface, i9);
+            } else {
+                throw new IllegalArgumentException("Context cannot be null");
+            }
+        } else {
+            typeface2 = null;
+        }
         this.mIsSetTypefaceProcessing = true;
-        if (create != null) {
-            typeface = create;
+        if (typeface2 != null) {
+            typeface = typeface2;
         }
         try {
-            super.setTypeface(typeface, i);
+            super.setTypeface(typeface, i9);
         } finally {
             this.mIsSetTypefaceProcessing = false;
         }
     }
 
-    @Override // android.view.View
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        if (Build.VERSION.SDK_INT < 30 || Build.VERSION.SDK_INT >= 33 || !onCheckIsTextEditor()) {
-            return;
-        }
-        ((InputMethodManager) getContext().getSystemService("input_method")).isActive(this);
+    public AppCompatTextView(@NonNull Context context, @Nullable AttributeSet attributeSet) {
+        this(context, attributeSet, R.attr.textViewStyle);
     }
 
-    SuperCaller getSuperCaller() {
-        if (this.mSuperCaller == null) {
-            if (Build.VERSION.SDK_INT >= 34) {
-                this.mSuperCaller = new SuperCallerApi34();
-            } else {
-                this.mSuperCaller = new SuperCallerApi28();
-            }
-        }
-        return this.mSuperCaller;
-    }
-
-    /* loaded from: classes.dex */
-    class SuperCallerApi26 implements SuperCaller {
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public void setFirstBaselineToTopHeight(int i) {
-        }
-
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public void setLastBaselineToBottomHeight(int i) {
-        }
-
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public void setLineHeight(int i, float f) {
-        }
-
-        SuperCallerApi26() {
-        }
-
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public int getAutoSizeMaxTextSize() {
-            return AppCompatTextView.super.getAutoSizeMaxTextSize();
-        }
-
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public int getAutoSizeMinTextSize() {
-            return AppCompatTextView.super.getAutoSizeMinTextSize();
-        }
-
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public int getAutoSizeStepGranularity() {
-            return AppCompatTextView.super.getAutoSizeStepGranularity();
-        }
-
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public int[] getAutoSizeTextAvailableSizes() {
-            return AppCompatTextView.super.getAutoSizeTextAvailableSizes();
-        }
-
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public int getAutoSizeTextType() {
-            return AppCompatTextView.super.getAutoSizeTextType();
-        }
-
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public TextClassifier getTextClassifier() {
-            return AppCompatTextView.super.getTextClassifier();
-        }
-
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public void setAutoSizeTextTypeUniformWithConfiguration(int i, int i2, int i3, int i4) {
-            AppCompatTextView.super.setAutoSizeTextTypeUniformWithConfiguration(i, i2, i3, i4);
-        }
-
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public void setAutoSizeTextTypeUniformWithPresetSizes(int[] iArr, int i) {
-            AppCompatTextView.super.setAutoSizeTextTypeUniformWithPresetSizes(iArr, i);
-        }
-
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public void setAutoSizeTextTypeWithDefaults(int i) {
-            AppCompatTextView.super.setAutoSizeTextTypeWithDefaults(i);
-        }
-
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public void setTextClassifier(TextClassifier textClassifier) {
-            AppCompatTextView.super.setTextClassifier(textClassifier);
+    @Override // android.widget.TextView
+    public void setLineHeight(int i9, float f9) {
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 34) {
+            getSuperCaller().d(i9, f9);
+        } else if (i10 >= 34) {
+            p.a(this, i9, f9);
+        } else {
+            AbstractC2292b.n(this, Math.round(TypedValue.applyDimension(i9, f9, getResources().getDisplayMetrics())));
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* loaded from: classes.dex */
-    public class SuperCallerApi28 extends SuperCallerApi26 {
-        SuperCallerApi28() {
-            super();
-        }
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    /* JADX WARN: Type inference failed for: r1v6, types: [q.Q, java.lang.Object] */
+    public AppCompatTextView(@NonNull Context context, @Nullable AttributeSet attributeSet, int i9) {
+        super(context, attributeSet, i9);
+        P0.a(context);
+        this.mIsSetTypefaceProcessing = false;
+        this.mSuperCaller = null;
+        O0.a(this, getContext());
+        C2617p c2617p = new C2617p(this);
+        this.mBackgroundTintHelper = c2617p;
+        c2617p.d(attributeSet, i9);
+        W w2 = new W(this);
+        this.mTextHelper = w2;
+        w2.f(attributeSet, i9);
+        w2.b();
+        ?? obj = new Object();
+        obj.f22588a = this;
+        this.mTextClassifierHelper = obj;
+        getEmojiTextViewHelper().b(attributeSet, i9);
+    }
 
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCallerApi26, androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public void setFirstBaselineToTopHeight(int i) {
-            AppCompatTextView.super.setFirstBaselineToTopHeight(i);
-        }
-
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCallerApi26, androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public void setLastBaselineToBottomHeight(int i) {
-            AppCompatTextView.super.setLastBaselineToBottomHeight(i);
+    @Override // android.widget.TextView
+    public void setCompoundDrawablesRelativeWithIntrinsicBounds(int i9, int i10, int i11, int i12) {
+        Context context = getContext();
+        setCompoundDrawablesRelativeWithIntrinsicBounds(i9 != 0 ? n.g(context, i9) : null, i10 != 0 ? n.g(context, i10) : null, i11 != 0 ? n.g(context, i11) : null, i12 != 0 ? n.g(context, i12) : null);
+        W w2 = this.mTextHelper;
+        if (w2 != null) {
+            w2.b();
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* loaded from: classes.dex */
-    public class SuperCallerApi34 extends SuperCallerApi28 {
-        SuperCallerApi34() {
-            super();
-        }
-
-        @Override // androidx.appcompat.widget.AppCompatTextView.SuperCallerApi26, androidx.appcompat.widget.AppCompatTextView.SuperCaller
-        public void setLineHeight(int i, float f) {
-            AppCompatTextView.super.setLineHeight(i, f);
+    @Override // android.widget.TextView
+    public void setCompoundDrawablesWithIntrinsicBounds(int i9, int i10, int i11, int i12) {
+        Context context = getContext();
+        setCompoundDrawablesWithIntrinsicBounds(i9 != 0 ? n.g(context, i9) : null, i10 != 0 ? n.g(context, i10) : null, i11 != 0 ? n.g(context, i11) : null, i12 != 0 ? n.g(context, i12) : null);
+        W w2 = this.mTextHelper;
+        if (w2 != null) {
+            w2.b();
         }
     }
 }

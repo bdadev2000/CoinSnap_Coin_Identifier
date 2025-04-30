@@ -4,47 +4,57 @@ import android.database.AbstractWindowedCursor;
 import android.database.CrossProcessCursor;
 import android.database.Cursor;
 import android.database.CursorWindow;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.errorprone.annotations.ResultIgnorabilityUnspecified;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class CursorWrapper extends android.database.CursorWrapper implements CrossProcessCursor {
     private AbstractWindowedCursor zza;
 
-    public CursorWrapper(Cursor cursor) {
+    @KeepForSdk
+    public CursorWrapper(@NonNull Cursor cursor) {
         super(cursor);
-        for (int i = 0; i < 10 && (cursor instanceof android.database.CursorWrapper); i++) {
+        for (int i9 = 0; i9 < 10 && (cursor instanceof android.database.CursorWrapper); i9++) {
             cursor = ((android.database.CursorWrapper) cursor).getWrappedCursor();
         }
-        if (!(cursor instanceof AbstractWindowedCursor)) {
-            throw new IllegalArgumentException("Unknown type: ".concat(String.valueOf(cursor.getClass().getName())));
+        if (cursor instanceof AbstractWindowedCursor) {
+            this.zza = (AbstractWindowedCursor) cursor;
+            return;
         }
-        this.zza = (AbstractWindowedCursor) cursor;
+        throw new IllegalArgumentException("Unknown type: ".concat(cursor.getClass().getName()));
     }
 
     @Override // android.database.CrossProcessCursor
-    public void fillWindow(int i, CursorWindow cursorWindow) {
-        this.zza.fillWindow(i, cursorWindow);
+    @KeepForSdk
+    public void fillWindow(int i9, @NonNull CursorWindow cursorWindow) {
+        this.zza.fillWindow(i9, cursorWindow);
     }
 
     @Override // android.database.CrossProcessCursor
+    @Nullable
     @ResultIgnorabilityUnspecified
+    @KeepForSdk
     public CursorWindow getWindow() {
         return this.zza.getWindow();
     }
 
     @Override // android.database.CursorWrapper
+    @NonNull
     public final /* synthetic */ Cursor getWrappedCursor() {
         return this.zza;
     }
 
     @Override // android.database.CrossProcessCursor
     @ResultIgnorabilityUnspecified
-    public final boolean onMove(int i, int i2) {
-        return this.zza.onMove(i, i2);
+    public final boolean onMove(int i9, int i10) {
+        return this.zza.onMove(i9, i10);
     }
 
-    public void setWindow(CursorWindow cursorWindow) {
+    @KeepForSdk
+    public void setWindow(@Nullable CursorWindow cursorWindow) {
         this.zza.setWindow(cursorWindow);
     }
 }

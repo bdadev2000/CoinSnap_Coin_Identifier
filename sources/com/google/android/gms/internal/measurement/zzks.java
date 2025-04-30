@@ -1,16 +1,12 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-final /* synthetic */ class zzks {
-    static final /* synthetic */ int[] zza;
+/* loaded from: classes2.dex */
+public interface zzks extends zzkv, Cloneable {
+    zzks zza(byte[] bArr) throws zzjs;
 
-    static {
-        int[] iArr = new int[zzln.values().length];
-        zza = iArr;
-        try {
-            iArr[zzln.PROTO3.ordinal()] = 1;
-        } catch (NoSuchFieldError unused) {
-        }
-    }
+    zzks zza(byte[] bArr, zzix zzixVar) throws zzjs;
+
+    zzkt zzai();
+
+    zzkt zzaj();
 }

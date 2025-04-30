@@ -1,41 +1,43 @@
 package com.google.longrunning;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.O3;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import v5.n;
+import v5.o;
 
-/* loaded from: classes5.dex */
-public final class OperationInfo extends GeneratedMessageLite<OperationInfo, Builder> implements OperationInfoOrBuilder {
+/* loaded from: classes2.dex */
+public final class OperationInfo extends L2 implements O3 {
     private static final OperationInfo DEFAULT_INSTANCE;
     public static final int METADATA_TYPE_FIELD_NUMBER = 2;
-    private static volatile Parser<OperationInfo> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int RESPONSE_TYPE_FIELD_NUMBER = 1;
     private String responseType_ = "";
     private String metadataType_ = "";
 
+    static {
+        OperationInfo operationInfo = new OperationInfo();
+        DEFAULT_INSTANCE = operationInfo;
+        L2.registerDefaultInstance(OperationInfo.class, operationInfo);
+    }
+
     private OperationInfo() {
     }
 
-    @Override // com.google.longrunning.OperationInfoOrBuilder
-    public String getResponseType() {
-        return this.responseType_;
-    }
-
-    @Override // com.google.longrunning.OperationInfoOrBuilder
-    public ByteString getResponseTypeBytes() {
-        return ByteString.copyFromUtf8(this.responseType_);
-    }
-
     /* JADX INFO: Access modifiers changed from: private */
-    public void setResponseType(String str) {
-        str.getClass();
-        this.responseType_ = str;
+    public void clearMetadataType() {
+        this.metadataType_ = getDefaultInstance().getMetadataType();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -43,20 +45,24 @@ public final class OperationInfo extends GeneratedMessageLite<OperationInfo, Bui
         this.responseType_ = getDefaultInstance().getResponseType();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setResponseTypeBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.responseType_ = byteString.toStringUtf8();
+    public static OperationInfo getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    @Override // com.google.longrunning.OperationInfoOrBuilder
-    public String getMetadataType() {
-        return this.metadataType_;
+    public static o newBuilder() {
+        return (o) DEFAULT_INSTANCE.createBuilder();
     }
 
-    @Override // com.google.longrunning.OperationInfoOrBuilder
-    public ByteString getMetadataTypeBytes() {
-        return ByteString.copyFromUtf8(this.metadataType_);
+    public static OperationInfo parseDelimitedFrom(InputStream inputStream) throws IOException {
+        return (OperationInfo) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static OperationInfo parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (OperationInfo) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    }
+
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -66,202 +72,49 @@ public final class OperationInfo extends GeneratedMessageLite<OperationInfo, Bui
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearMetadataType() {
-        this.metadataType_ = getDefaultInstance().getMetadataType();
+    public void setMetadataTypeBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.metadataType_ = h6.toStringUtf8();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setMetadataTypeBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.metadataType_ = byteString.toStringUtf8();
+    public void setResponseType(String str) {
+        str.getClass();
+        this.responseType_ = str;
     }
 
-    public static OperationInfo parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (OperationInfo) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setResponseTypeBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.responseType_ = h6.toStringUtf8();
     }
 
-    public static OperationInfo parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (OperationInfo) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static OperationInfo parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (OperationInfo) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static OperationInfo parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (OperationInfo) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static OperationInfo parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (OperationInfo) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static OperationInfo parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (OperationInfo) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static OperationInfo parseFrom(InputStream inputStream) throws IOException {
-        return (OperationInfo) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static OperationInfo parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (OperationInfo) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static OperationInfo parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (OperationInfo) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static OperationInfo parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (OperationInfo) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static OperationInfo parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (OperationInfo) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
-    }
-
-    public static OperationInfo parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (OperationInfo) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
-    }
-
-    public static Builder newBuilder(OperationInfo operationInfo) {
-        return DEFAULT_INSTANCE.createBuilder(operationInfo);
-    }
-
-    /* loaded from: classes5.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<OperationInfo, Builder> implements OperationInfoOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(OperationInfo.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.longrunning.OperationInfoOrBuilder
-        public String getResponseType() {
-            return ((OperationInfo) this.instance).getResponseType();
-        }
-
-        @Override // com.google.longrunning.OperationInfoOrBuilder
-        public ByteString getResponseTypeBytes() {
-            return ((OperationInfo) this.instance).getResponseTypeBytes();
-        }
-
-        public Builder setResponseType(String str) {
-            copyOnWrite();
-            ((OperationInfo) this.instance).setResponseType(str);
-            return this;
-        }
-
-        public Builder clearResponseType() {
-            copyOnWrite();
-            ((OperationInfo) this.instance).clearResponseType();
-            return this;
-        }
-
-        public Builder setResponseTypeBytes(ByteString byteString) {
-            copyOnWrite();
-            ((OperationInfo) this.instance).setResponseTypeBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.longrunning.OperationInfoOrBuilder
-        public String getMetadataType() {
-            return ((OperationInfo) this.instance).getMetadataType();
-        }
-
-        @Override // com.google.longrunning.OperationInfoOrBuilder
-        public ByteString getMetadataTypeBytes() {
-            return ((OperationInfo) this.instance).getMetadataTypeBytes();
-        }
-
-        public Builder setMetadataType(String str) {
-            copyOnWrite();
-            ((OperationInfo) this.instance).setMetadataType(str);
-            return this;
-        }
-
-        public Builder clearMetadataType() {
-            copyOnWrite();
-            ((OperationInfo) this.instance).clearMetadataType();
-            return this;
-        }
-
-        public Builder setMetadataTypeBytes(ByteString byteString) {
-            copyOnWrite();
-            ((OperationInfo) this.instance).setMetadataTypeBytes(byteString);
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.longrunning.OperationInfo$1, reason: invalid class name */
-    /* loaded from: classes5.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (n.f23640a[k22.ordinal()]) {
             case 1:
                 return new OperationInfo();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001Ȉ\u0002Ȉ", new Object[]{"responseType_", "metadataType_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001Ȉ\u0002Ȉ", new Object[]{"responseType_", "metadataType_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<OperationInfo> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (OperationInfo.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -271,17 +124,63 @@ public final class OperationInfo extends GeneratedMessageLite<OperationInfo, Bui
         }
     }
 
-    static {
-        OperationInfo operationInfo = new OperationInfo();
-        DEFAULT_INSTANCE = operationInfo;
-        GeneratedMessageLite.registerDefaultInstance(OperationInfo.class, operationInfo);
+    public String getMetadataType() {
+        return this.metadataType_;
     }
 
-    public static OperationInfo getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public H getMetadataTypeBytes() {
+        return H.copyFromUtf8(this.metadataType_);
     }
 
-    public static Parser<OperationInfo> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public String getResponseType() {
+        return this.responseType_;
+    }
+
+    public H getResponseTypeBytes() {
+        return H.copyFromUtf8(this.responseType_);
+    }
+
+    public static o newBuilder(OperationInfo operationInfo) {
+        return (o) DEFAULT_INSTANCE.createBuilder(operationInfo);
+    }
+
+    public static OperationInfo parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (OperationInfo) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static OperationInfo parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (OperationInfo) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static OperationInfo parseFrom(H h6) throws C1912g3 {
+        return (OperationInfo) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static OperationInfo parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (OperationInfo) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static OperationInfo parseFrom(byte[] bArr) throws C1912g3 {
+        return (OperationInfo) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static OperationInfo parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (OperationInfo) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static OperationInfo parseFrom(InputStream inputStream) throws IOException {
+        return (OperationInfo) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static OperationInfo parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (OperationInfo) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static OperationInfo parseFrom(S s5) throws IOException {
+        return (OperationInfo) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static OperationInfo parseFrom(S s5, W1 w1) throws IOException {
+        return (OperationInfo) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

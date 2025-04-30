@@ -3,24 +3,22 @@ package com.google.android.gms.internal.common;
 import org.jspecify.nullness.NullMarked;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
 @NullMarked
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzai extends zzag {
     static final zzag zza = new zzai(new Object[0], 0);
     final transient Object[] zzb;
     private final transient int zzc;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzai(Object[] objArr, int i) {
+    public zzai(Object[] objArr, int i9) {
         this.zzb = objArr;
-        this.zzc = i;
+        this.zzc = i9;
     }
 
     @Override // java.util.List
-    public final Object get(int i) {
-        zzs.zza(i, this.zzc, "index");
-        Object obj = this.zzb[i];
+    public final Object get(int i9) {
+        zzs.zza(i9, this.zzc, "index");
+        Object obj = this.zzb[i9];
         obj.getClass();
         return obj;
     }
@@ -31,29 +29,26 @@ public final class zzai extends zzag {
     }
 
     @Override // com.google.android.gms.internal.common.zzag, com.google.android.gms.internal.common.zzac
-    final int zza(Object[] objArr, int i) {
+    public final int zza(Object[] objArr, int i9) {
         System.arraycopy(this.zzb, 0, objArr, 0, this.zzc);
         return this.zzc;
     }
 
     @Override // com.google.android.gms.internal.common.zzac
-    final int zzb() {
+    public final int zzb() {
         return this.zzc;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.google.android.gms.internal.common.zzac
     public final int zzc() {
         return 0;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.google.android.gms.internal.common.zzac
     public final boolean zzf() {
         return false;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.google.android.gms.internal.common.zzac
     public final Object[] zzg() {
         return this.zzb;

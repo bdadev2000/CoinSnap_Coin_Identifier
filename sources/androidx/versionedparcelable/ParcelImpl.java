@@ -1,44 +1,28 @@
 package androidx.versionedparcelable;
 
+import E3.b;
+import O0.c;
+import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/* loaded from: classes7.dex */
+@SuppressLint({"BanParcelableUsage"})
+/* loaded from: classes.dex */
 public class ParcelImpl implements Parcelable {
-    public static final Parcelable.Creator<ParcelImpl> CREATOR = new Parcelable.Creator<ParcelImpl>() { // from class: androidx.versionedparcelable.ParcelImpl.1
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public ParcelImpl createFromParcel(Parcel parcel) {
-            return new ParcelImpl(parcel);
-        }
+    public static final Parcelable.Creator<ParcelImpl> CREATOR = new b(2);
+    public final c b;
 
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public ParcelImpl[] newArray(int i) {
-            return new ParcelImpl[i];
-        }
-    };
-    private final VersionedParcelable mParcel;
+    public ParcelImpl(Parcel parcel) {
+        this.b = new O0.b(parcel).h();
+    }
 
     @Override // android.os.Parcelable
-    public int describeContents() {
+    public final int describeContents() {
         return 0;
     }
 
-    public ParcelImpl(VersionedParcelable versionedParcelable) {
-        this.mParcel = versionedParcelable;
-    }
-
-    protected ParcelImpl(Parcel parcel) {
-        this.mParcel = new VersionedParcelParcel(parcel).readVersionedParcelable();
-    }
-
-    public <T extends VersionedParcelable> T getVersionedParcel() {
-        return (T) this.mParcel;
-    }
-
     @Override // android.os.Parcelable
-    public void writeToParcel(Parcel parcel, int i) {
-        new VersionedParcelParcel(parcel).writeVersionedParcelable(this.mParcel);
+    public final void writeToParcel(Parcel parcel, int i9) {
+        new O0.b(parcel).k(this.b);
     }
 }

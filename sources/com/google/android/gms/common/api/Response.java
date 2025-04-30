@@ -1,26 +1,25 @@
 package com.google.android.gms.common.api;
 
+import androidx.annotation.NonNull;
 import com.google.android.gms.common.api.Result;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class Response<T extends Result> {
     private Result zza;
 
     public Response() {
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public Response(T t) {
-        this.zza = t;
-    }
-
-    /* JADX INFO: Access modifiers changed from: protected */
+    @NonNull
     public T getResult() {
         return (T) this.zza;
     }
 
-    public void setResult(T t) {
-        this.zza = t;
+    public void setResult(@NonNull T t9) {
+        this.zza = t9;
+    }
+
+    public Response(@NonNull T t9) {
+        this.zza = t9;
     }
 }

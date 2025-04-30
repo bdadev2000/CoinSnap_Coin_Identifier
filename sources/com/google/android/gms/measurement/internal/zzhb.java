@@ -1,36 +1,25 @@
 package com.google.android.gms.measurement.internal;
 
-import android.content.SharedPreferences;
-import com.google.android.gms.common.internal.Preconditions;
+import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzhb {
-    private final String zza;
-    private final long zzb;
-    private boolean zzc;
-    private long zzd;
-    private final /* synthetic */ zzha zze;
+/* loaded from: classes2.dex */
+final class zzhb implements com.google.android.gms.internal.measurement.zzo {
+    private final /* synthetic */ String zza;
+    private final /* synthetic */ zzgt zzb;
 
-    public final long zza() {
-        if (!this.zzc) {
-            this.zzc = true;
-            this.zzd = this.zze.zzg().getLong(this.zza, this.zzb);
-        }
-        return this.zzd;
-    }
-
-    public zzhb(zzha zzhaVar, String str, long j) {
-        this.zze = zzhaVar;
-        Preconditions.checkNotEmpty(str);
+    public zzhb(zzgt zzgtVar, String str) {
         this.zza = str;
-        this.zzb = j;
+        this.zzb = zzgtVar;
     }
 
-    public final void zza(long j) {
-        SharedPreferences.Editor edit = this.zze.zzg().edit();
-        edit.putLong(this.zza, j);
-        edit.apply();
-        this.zzd = j;
+    @Override // com.google.android.gms.internal.measurement.zzo
+    public final String zza(String str) {
+        Map map;
+        map = this.zzb.zzc;
+        Map map2 = (Map) map.get(this.zza);
+        if (map2 != null && map2.containsKey(str)) {
+            return (String) map2.get(str);
+        }
+        return null;
     }
 }

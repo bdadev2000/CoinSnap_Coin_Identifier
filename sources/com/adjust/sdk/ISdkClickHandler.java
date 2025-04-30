@@ -2,9 +2,9 @@ package com.adjust.sdk;
 
 import com.adjust.sdk.network.IActivityPackageSender;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public interface ISdkClickHandler {
-    void init(IActivityHandler iActivityHandler, boolean z, IActivityPackageSender iActivityPackageSender);
+    void init(IActivityHandler iActivityHandler, boolean z8, IActivityPackageSender iActivityPackageSender);
 
     void pauseSending();
 

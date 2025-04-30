@@ -1,47 +1,27 @@
 package com.google.android.gms.measurement.internal;
 
-import android.os.RemoteException;
-import com.google.android.gms.common.internal.Preconditions;
-import java.util.concurrent.atomic.AtomicReference;
+/* loaded from: classes2.dex */
+final class zzlv implements Runnable {
+    private final /* synthetic */ zzfl zza;
+    private final /* synthetic */ zzlw zzb;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzlv implements Runnable {
-    private final /* synthetic */ AtomicReference zza;
-    private final /* synthetic */ zzo zzb;
-    private final /* synthetic */ boolean zzc;
-    private final /* synthetic */ zzls zzd;
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzlv(zzls zzlsVar, AtomicReference atomicReference, zzo zzoVar, boolean z) {
-        this.zza = atomicReference;
-        this.zzb = zzoVar;
-        this.zzc = z;
-        this.zzd = zzlsVar;
+    public zzlv(zzlw zzlwVar, zzfl zzflVar) {
+        this.zza = zzflVar;
+        this.zzb = zzlwVar;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        zzgb zzgbVar;
-        synchronized (this.zza) {
+        synchronized (this.zzb) {
             try {
-                try {
-                    zzgbVar = this.zzd.zzb;
-                } finally {
-                    this.zza.notify();
+                this.zzb.zzb = false;
+                if (!this.zzb.zza.zzak()) {
+                    this.zzb.zza.zzj().zzp().zza("Connected to service");
+                    this.zzb.zza.zza(this.zza);
                 }
-            } catch (RemoteException e) {
-                this.zzd.zzj().zzg().zza("Failed to get all user properties; remote exception", e);
+            } catch (Throwable th) {
+                throw th;
             }
-            if (zzgbVar == null) {
-                this.zzd.zzj().zzg().zza("Failed to get all user properties; not connected to service");
-                return;
-            }
-            Preconditions.checkNotNull(this.zzb);
-            this.zza.set(zzgbVar.zza(this.zzb, this.zzc));
-            this.zzd.zzar();
-            this.zza.notify();
         }
     }
 }

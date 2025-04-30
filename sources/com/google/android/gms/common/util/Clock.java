@@ -1,20 +1,27 @@
 package com.google.android.gms.common.util;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+import com.google.android.gms.common.annotation.KeepForSdk;
+import com.google.android.gms.common.internal.ShowFirstParty;
+
+@ShowFirstParty
+@KeepForSdk
+/* loaded from: classes2.dex */
 public interface Clock {
 
-    /* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
     /* renamed from: com.google.android.gms.common.util.Clock$-CC, reason: invalid class name */
-    /* loaded from: classes12.dex */
+    /* loaded from: classes2.dex */
     public final /* synthetic */ class CC {
     }
 
+    @KeepForSdk
     long currentThreadTimeMillis();
 
+    @KeepForSdk
     long currentTimeMillis();
 
+    @KeepForSdk
     long elapsedRealtime();
 
+    @KeepForSdk
     long nanoTime();
 }

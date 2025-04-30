@@ -1,153 +1,83 @@
 package androidx.work.impl.workers;
 
+import V0.k;
+import Z0.b;
 import android.content.Context;
-import android.text.TextUtils;
+import androidx.annotation.NonNull;
 import androidx.work.ListenableWorker;
-import androidx.work.Logger;
 import androidx.work.WorkerParameters;
-import androidx.work.impl.WorkDatabase;
-import androidx.work.impl.WorkManagerImpl;
-import androidx.work.impl.constraints.WorkConstraintsCallback;
-import androidx.work.impl.constraints.WorkConstraintsTracker;
-import androidx.work.impl.model.WorkSpec;
-import androidx.work.impl.utils.futures.SettableFuture;
-import androidx.work.impl.utils.taskexecutor.TaskExecutor;
-import com.google.common.util.concurrent.ListenableFuture;
-import java.util.Collections;
+import androidx.work.o;
+import f1.C2262k;
+import f4.c;
+import g1.InterfaceC2286a;
 import java.util.List;
 
-/* loaded from: classes7.dex */
-public class ConstraintTrackingWorker extends ListenableWorker implements WorkConstraintsCallback {
-    public static final String ARGUMENT_CLASS_NAME = "androidx.work.impl.workers.ConstraintTrackingWorker.ARGUMENT_CLASS_NAME";
-    private static final String TAG = Logger.tagWithPrefix("ConstraintTrkngWrkr");
-    volatile boolean mAreConstraintsUnmet;
-    private ListenableWorker mDelegate;
-    SettableFuture<ListenableWorker.Result> mFuture;
-    final Object mLock;
-    private WorkerParameters mWorkerParameters;
+/* loaded from: classes.dex */
+public class ConstraintTrackingWorker extends ListenableWorker implements b {
 
-    @Override // androidx.work.impl.constraints.WorkConstraintsCallback
-    public void onAllConstraintsMet(List<String> workSpecIds) {
+    /* renamed from: h, reason: collision with root package name */
+    public static final String f5239h = o.g("ConstraintTrkngWrkr");
+    public final WorkerParameters b;
+
+    /* renamed from: c, reason: collision with root package name */
+    public final Object f5240c;
+
+    /* renamed from: d, reason: collision with root package name */
+    public volatile boolean f5241d;
+
+    /* renamed from: f, reason: collision with root package name */
+    public final C2262k f5242f;
+
+    /* renamed from: g, reason: collision with root package name */
+    public ListenableWorker f5243g;
+
+    /* JADX WARN: Type inference failed for: r1v3, types: [f1.k, java.lang.Object] */
+    public ConstraintTrackingWorker(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+        super(context, workerParameters);
+        this.b = workerParameters;
+        this.f5240c = new Object();
+        this.f5241d = false;
+        this.f5242f = new Object();
     }
 
-    public ConstraintTrackingWorker(Context appContext, WorkerParameters workerParams) {
-        super(appContext, workerParams);
-        this.mWorkerParameters = workerParams;
-        this.mLock = new Object();
-        this.mAreConstraintsUnmet = false;
-        this.mFuture = SettableFuture.create();
+    @Override // Z0.b
+    public final void a(List list) {
+        o.e().b(f5239h, String.format("Constraints changed for %s", list), new Throwable[0]);
+        synchronized (this.f5240c) {
+            this.f5241d = true;
+        }
+    }
+
+    @Override // Z0.b
+    public final void f(List list) {
     }
 
     @Override // androidx.work.ListenableWorker
-    public ListenableFuture<ListenableWorker.Result> startWork() {
-        getBackgroundExecutor().execute(new Runnable() { // from class: androidx.work.impl.workers.ConstraintTrackingWorker.1
-            @Override // java.lang.Runnable
-            public void run() {
-                ConstraintTrackingWorker.this.setupAndRunConstraintTrackingWork();
-            }
-        });
-        return this.mFuture;
-    }
-
-    void setupAndRunConstraintTrackingWork() {
-        String string = getInputData().getString(ARGUMENT_CLASS_NAME);
-        if (TextUtils.isEmpty(string)) {
-            Logger.get().error(TAG, "No worker to delegate to.", new Throwable[0]);
-            setFutureFailed();
-            return;
-        }
-        ListenableWorker createWorkerWithDefaultFallback = getWorkerFactory().createWorkerWithDefaultFallback(getApplicationContext(), string, this.mWorkerParameters);
-        this.mDelegate = createWorkerWithDefaultFallback;
-        if (createWorkerWithDefaultFallback == null) {
-            Logger.get().debug(TAG, "No worker to delegate to.", new Throwable[0]);
-            setFutureFailed();
-            return;
-        }
-        WorkSpec workSpec = getWorkDatabase().workSpecDao().getWorkSpec(getId().toString());
-        if (workSpec == null) {
-            setFutureFailed();
-            return;
-        }
-        WorkConstraintsTracker workConstraintsTracker = new WorkConstraintsTracker(getApplicationContext(), getTaskExecutor(), this);
-        workConstraintsTracker.replace(Collections.singletonList(workSpec));
-        if (workConstraintsTracker.areAllConstraintsMet(getId().toString())) {
-            Logger.get().debug(TAG, String.format("Constraints met for delegate %s", string), new Throwable[0]);
-            try {
-                final ListenableFuture<ListenableWorker.Result> startWork = this.mDelegate.startWork();
-                startWork.addListener(new Runnable() { // from class: androidx.work.impl.workers.ConstraintTrackingWorker.2
-                    @Override // java.lang.Runnable
-                    public void run() {
-                        synchronized (ConstraintTrackingWorker.this.mLock) {
-                            if (ConstraintTrackingWorker.this.mAreConstraintsUnmet) {
-                                ConstraintTrackingWorker.this.setFutureRetry();
-                            } else {
-                                ConstraintTrackingWorker.this.mFuture.setFuture(startWork);
-                            }
-                        }
-                    }
-                }, getBackgroundExecutor());
-                return;
-            } catch (Throwable th) {
-                Logger logger = Logger.get();
-                String str = TAG;
-                logger.debug(str, String.format("Delegated worker %s threw exception in startWork.", string), th);
-                synchronized (this.mLock) {
-                    if (this.mAreConstraintsUnmet) {
-                        Logger.get().debug(str, "Constraints were unmet, Retrying.", new Throwable[0]);
-                        setFutureRetry();
-                    } else {
-                        setFutureFailed();
-                    }
-                    return;
-                }
-            }
-        }
-        Logger.get().debug(TAG, String.format("Constraints not met for delegate %s. Requesting retry.", string), new Throwable[0]);
-        setFutureRetry();
-    }
-
-    void setFutureFailed() {
-        this.mFuture.set(ListenableWorker.Result.failure());
-    }
-
-    void setFutureRetry() {
-        this.mFuture.set(ListenableWorker.Result.retry());
+    public final InterfaceC2286a getTaskExecutor() {
+        return k.v(getApplicationContext()).f3419d;
     }
 
     @Override // androidx.work.ListenableWorker
-    public void onStopped() {
+    public final boolean isRunInForeground() {
+        ListenableWorker listenableWorker = this.f5243g;
+        if (listenableWorker != null && listenableWorker.isRunInForeground()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override // androidx.work.ListenableWorker
+    public final void onStopped() {
         super.onStopped();
-        ListenableWorker listenableWorker = this.mDelegate;
-        if (listenableWorker == null || listenableWorker.isStopped()) {
-            return;
+        ListenableWorker listenableWorker = this.f5243g;
+        if (listenableWorker != null && !listenableWorker.isStopped()) {
+            this.f5243g.stop();
         }
-        this.mDelegate.stop();
     }
 
     @Override // androidx.work.ListenableWorker
-    public boolean isRunInForeground() {
-        ListenableWorker listenableWorker = this.mDelegate;
-        return listenableWorker != null && listenableWorker.isRunInForeground();
-    }
-
-    public WorkDatabase getWorkDatabase() {
-        return WorkManagerImpl.getInstance(getApplicationContext()).getWorkDatabase();
-    }
-
-    @Override // androidx.work.ListenableWorker
-    public TaskExecutor getTaskExecutor() {
-        return WorkManagerImpl.getInstance(getApplicationContext()).getWorkTaskExecutor();
-    }
-
-    public ListenableWorker getDelegate() {
-        return this.mDelegate;
-    }
-
-    @Override // androidx.work.impl.constraints.WorkConstraintsCallback
-    public void onAllConstraintsNotMet(List<String> workSpecIds) {
-        Logger.get().debug(TAG, String.format("Constraints changed for %s", workSpecIds), new Throwable[0]);
-        synchronized (this.mLock) {
-            this.mAreConstraintsUnmet = true;
-        }
+    public final c startWork() {
+        getBackgroundExecutor().execute(new B3.k(this, 16));
+        return this.f5242f;
     }
 }

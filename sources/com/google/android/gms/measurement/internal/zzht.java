@@ -1,61 +1,33 @@
 package com.google.android.gms.measurement.internal;
 
-import com.google.android.gms.internal.measurement.zzfr;
+/* loaded from: classes2.dex */
+final class zzht implements Runnable {
+    private final /* synthetic */ String zza;
+    private final /* synthetic */ String zzb;
+    private final /* synthetic */ String zzc;
+    private final /* synthetic */ long zzd;
+    private final /* synthetic */ zzhn zze;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-public final /* synthetic */ class zzht {
-    static final /* synthetic */ int[] zza;
-    static final /* synthetic */ int[] zzb;
-    static final /* synthetic */ int[] zzc;
+    public zzht(zzhn zzhnVar, String str, String str2, String str3, long j7) {
+        this.zza = str;
+        this.zzb = str2;
+        this.zzc = str3;
+        this.zzd = j7;
+        this.zze = zzhnVar;
+    }
 
-    static {
-        int[] iArr = new int[zzfr.zza.zzd.values().length];
-        zzc = iArr;
-        try {
-            iArr[zzfr.zza.zzd.DENIED.ordinal()] = 1;
-        } catch (NoSuchFieldError unused) {
-        }
-        try {
-            zzc[zzfr.zza.zzd.GRANTED.ordinal()] = 2;
-        } catch (NoSuchFieldError unused2) {
-        }
-        int[] iArr2 = new int[zzfr.zza.zze.values().length];
-        zzb = iArr2;
-        try {
-            iArr2[zzfr.zza.zze.AD_STORAGE.ordinal()] = 1;
-        } catch (NoSuchFieldError unused3) {
-        }
-        try {
-            zzb[zzfr.zza.zze.ANALYTICS_STORAGE.ordinal()] = 2;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            zzb[zzfr.zza.zze.AD_USER_DATA.ordinal()] = 3;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            zzb[zzfr.zza.zze.AD_PERSONALIZATION.ordinal()] = 4;
-        } catch (NoSuchFieldError unused6) {
-        }
-        int[] iArr3 = new int[com.google.android.gms.internal.measurement.zzs.values().length];
-        zza = iArr3;
-        try {
-            iArr3[com.google.android.gms.internal.measurement.zzs.DEBUG.ordinal()] = 1;
-        } catch (NoSuchFieldError unused7) {
-        }
-        try {
-            zza[com.google.android.gms.internal.measurement.zzs.ERROR.ordinal()] = 2;
-        } catch (NoSuchFieldError unused8) {
-        }
-        try {
-            zza[com.google.android.gms.internal.measurement.zzs.WARN.ordinal()] = 3;
-        } catch (NoSuchFieldError unused9) {
-        }
-        try {
-            zza[com.google.android.gms.internal.measurement.zzs.VERBOSE.ordinal()] = 4;
-        } catch (NoSuchFieldError unused10) {
+    @Override // java.lang.Runnable
+    public final void run() {
+        zznc zzncVar;
+        zznc zzncVar2;
+        String str = this.zza;
+        if (str == null) {
+            zzncVar2 = this.zze.zza;
+            zzncVar2.zza(this.zzb, (zzkp) null);
+        } else {
+            zzkp zzkpVar = new zzkp(this.zzc, str, this.zzd);
+            zzncVar = this.zze.zza;
+            zzncVar.zza(this.zzb, zzkpVar);
         }
     }
 }

@@ -1,25 +1,25 @@
 package androidx.work;
 
 import android.content.Context;
-import androidx.startup.Initializer;
-import androidx.work.Configuration;
 import java.util.Collections;
 import java.util.List;
+import q4.C2645d;
 
-/* loaded from: classes7.dex */
-public final class WorkManagerInitializer implements Initializer<WorkManager> {
-    private static final String TAG = Logger.tagWithPrefix("WrkMgrInitializer");
+/* loaded from: classes.dex */
+public final class WorkManagerInitializer implements J0.b {
 
-    /* JADX WARN: Can't rename method to resolve collision */
-    @Override // androidx.startup.Initializer
-    public WorkManager create(Context context) {
-        Logger.get().debug(TAG, "Initializing WorkManager with default configuration.", new Throwable[0]);
-        WorkManager.initialize(context, new Configuration.Builder().build());
-        return WorkManager.getInstance(context);
+    /* renamed from: a, reason: collision with root package name */
+    public static final String f5184a = o.g("WrkMgrInitializer");
+
+    @Override // J0.b
+    public final List a() {
+        return Collections.emptyList();
     }
 
-    @Override // androidx.startup.Initializer
-    public List<Class<? extends Initializer<?>>> dependencies() {
-        return Collections.emptyList();
+    @Override // J0.b
+    public final Object create(Context context) {
+        o.e().b(f5184a, "Initializing WorkManager with default configuration.", new Throwable[0]);
+        V0.k.w(context, new b(new C2645d()));
+        return V0.k.v(context);
     }
 }

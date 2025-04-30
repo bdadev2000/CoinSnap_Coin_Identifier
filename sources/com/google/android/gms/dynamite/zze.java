@@ -3,8 +3,7 @@ package com.google.android.gms.dynamite;
 import android.content.Context;
 import com.google.android.gms.dynamite.DynamiteModule;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zze implements DynamiteModule.VersionPolicy.IVersions {
     @Override // com.google.android.gms.dynamite.DynamiteModule.VersionPolicy.IVersions
     public final int zza(Context context, String str) {
@@ -12,7 +11,7 @@ final class zze implements DynamiteModule.VersionPolicy.IVersions {
     }
 
     @Override // com.google.android.gms.dynamite.DynamiteModule.VersionPolicy.IVersions
-    public final int zzb(Context context, String str, boolean z) throws DynamiteModule.LoadingException {
-        return DynamiteModule.zza(context, str, z);
+    public final int zzb(Context context, String str, boolean z8) throws DynamiteModule.LoadingException {
+        return DynamiteModule.zza(context, str, z8);
     }
 }

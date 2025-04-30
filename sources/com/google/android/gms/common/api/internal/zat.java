@@ -1,21 +1,24 @@
 package com.google.android.gms.common.api.internal;
 
 import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.internal.Preconditions;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zat implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     public final Api zaa;
     private final boolean zab;
+
+    @Nullable
     private zau zac;
 
-    public zat(Api api, boolean z) {
+    public zat(Api api, boolean z8) {
         this.zaa = api;
-        this.zab = z;
+        this.zab = z8;
     }
 
     private final zau zab() {
@@ -24,18 +27,18 @@ public final class zat implements GoogleApiClient.ConnectionCallbacks, GoogleApi
     }
 
     @Override // com.google.android.gms.common.api.internal.ConnectionCallbacks
-    public final void onConnected(Bundle bundle) {
+    public final void onConnected(@Nullable Bundle bundle) {
         zab().onConnected(bundle);
     }
 
     @Override // com.google.android.gms.common.api.internal.OnConnectionFailedListener
-    public final void onConnectionFailed(ConnectionResult connectionResult) {
+    public final void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         zab().zaa(connectionResult, this.zaa, this.zab);
     }
 
     @Override // com.google.android.gms.common.api.internal.ConnectionCallbacks
-    public final void onConnectionSuspended(int i) {
-        zab().onConnectionSuspended(i);
+    public final void onConnectionSuspended(int i9) {
+        zab().onConnectionSuspended(i9);
     }
 
     public final void zaa(zau zauVar) {

@@ -1,10 +1,16 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzkt<K, V> {
-    public final zzms zza;
-    public final K zzb;
-    public final zzms zzc;
-    public final V zzd;
+import java.io.IOException;
+
+/* loaded from: classes2.dex */
+public interface zzkt extends zzkv {
+    void zza(zzit zzitVar) throws IOException;
+
+    zzia zzby();
+
+    int zzca();
+
+    zzks zzch();
+
+    zzks zzci();
 }

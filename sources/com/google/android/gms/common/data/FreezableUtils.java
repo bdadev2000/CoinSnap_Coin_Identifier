@@ -1,35 +1,40 @@
 package com.google.android.gms.common.data;
 
-import androidx.databinding.ObservableArrayList;
+import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class FreezableUtils {
-    public static <T, E extends Freezable<T>> ArrayList<T> freeze(ArrayList<E> arrayList) {
-        ObservableArrayList observableArrayList = (ArrayList<T>) new ArrayList(arrayList.size());
+    /* JADX WARN: Multi-variable type inference failed */
+    @NonNull
+    public static <T, E extends Freezable<T>> ArrayList<T> freeze(@NonNull ArrayList<E> arrayList) {
+        ArrayList<T> arrayList2 = (ArrayList<T>) new ArrayList(arrayList.size());
         int size = arrayList.size();
-        for (int i = 0; i < size; i++) {
-            observableArrayList.add(arrayList.get(i).freeze());
+        for (int i9 = 0; i9 < size; i9++) {
+            arrayList2.add(arrayList.get(i9).freeze());
         }
-        return observableArrayList;
+        return arrayList2;
     }
 
-    public static <T, E extends Freezable<T>> ArrayList<T> freezeIterable(Iterable<E> iterable) {
-        ObservableArrayList observableArrayList = (ArrayList<T>) new ArrayList();
+    /* JADX WARN: Multi-variable type inference failed */
+    @NonNull
+    public static <T, E extends Freezable<T>> ArrayList<T> freezeIterable(@NonNull Iterable<E> iterable) {
+        ArrayList<T> arrayList = (ArrayList<T>) new ArrayList();
         Iterator<E> it = iterable.iterator();
         while (it.hasNext()) {
-            observableArrayList.add(it.next().freeze());
+            arrayList.add(it.next().freeze());
         }
-        return observableArrayList;
+        return arrayList;
     }
 
-    public static <T, E extends Freezable<T>> ArrayList<T> freeze(E[] eArr) {
-        ObservableArrayList observableArrayList = (ArrayList<T>) new ArrayList(eArr.length);
-        for (E e : eArr) {
-            observableArrayList.add(e.freeze());
+    /* JADX WARN: Multi-variable type inference failed */
+    @NonNull
+    public static <T, E extends Freezable<T>> ArrayList<T> freeze(@NonNull E[] eArr) {
+        ArrayList<T> arrayList = (ArrayList<T>) new ArrayList(eArr.length);
+        for (E e4 : eArr) {
+            arrayList.add(e4.freeze());
         }
-        return observableArrayList;
+        return arrayList;
     }
 }

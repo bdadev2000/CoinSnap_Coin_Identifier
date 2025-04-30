@@ -1,77 +1,164 @@
 package com.google.android.gms.internal.play_billing;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public final class zzdw implements Map.Entry, Comparable {
-    final /* synthetic */ zzec zza;
-    private final Comparable zzb;
-    private Object zzc;
+/* loaded from: classes2.dex */
+public final class zzdw extends LinkedHashMap {
+    private static final zzdw zza;
+    private boolean zzb;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzdw(zzec zzecVar, Comparable comparable, Object obj) {
-        this.zza = zzecVar;
-        this.zzb = comparable;
-        this.zzc = obj;
+    static {
+        zzdw zzdwVar = new zzdw();
+        zza = zzdwVar;
+        zzdwVar.zzb = false;
     }
 
-    private static final boolean zzb(Object obj, Object obj2) {
-        if (obj == null) {
-            return obj2 == null;
+    private zzdw() {
+        this.zzb = true;
+    }
+
+    public static zzdw zza() {
+        return zza;
+    }
+
+    private static int zzf(Object obj) {
+        if (obj instanceof byte[]) {
+            byte[] bArr = (byte[]) obj;
+            byte[] bArr2 = zzda.zzd;
+            int length = bArr.length;
+            int zzb = zzda.zzb(length, bArr, 0, length);
+            if (zzb == 0) {
+                return 1;
+            }
+            return zzb;
         }
-        return obj.equals(obj2);
+        if (!(obj instanceof zzcu)) {
+            return obj.hashCode();
+        }
+        throw new UnsupportedOperationException();
     }
 
-    @Override // java.lang.Comparable
-    public final /* bridge */ /* synthetic */ int compareTo(Object obj) {
-        return this.zzb.compareTo(((zzdw) obj).zzb);
+    private final void zzg() {
+        if (this.zzb) {
+        } else {
+            throw new UnsupportedOperationException();
+        }
     }
 
-    @Override // java.util.Map.Entry
+    @Override // java.util.LinkedHashMap, java.util.HashMap, java.util.AbstractMap, java.util.Map
+    public final void clear() {
+        zzg();
+        super.clear();
+    }
+
+    @Override // java.util.LinkedHashMap, java.util.HashMap, java.util.AbstractMap, java.util.Map
+    public final Set entrySet() {
+        if (isEmpty()) {
+            return Collections.emptySet();
+        }
+        return super.entrySet();
+    }
+
+    @Override // java.util.AbstractMap, java.util.Map
     public final boolean equals(Object obj) {
-        if (obj == this) {
+        boolean equals;
+        if (obj instanceof Map) {
+            Map map = (Map) obj;
+            if (this != map) {
+                if (size() == map.size()) {
+                    Iterator it = entrySet().iterator();
+                    while (it.hasNext()) {
+                        Map.Entry entry = (Map.Entry) it.next();
+                        if (map.containsKey(entry.getKey())) {
+                            Object value = entry.getValue();
+                            Object obj2 = map.get(entry.getKey());
+                            if ((value instanceof byte[]) && (obj2 instanceof byte[])) {
+                                equals = Arrays.equals((byte[]) value, (byte[]) obj2);
+                            } else {
+                                equals = value.equals(obj2);
+                            }
+                            if (!equals) {
+                                return false;
+                            }
+                        } else {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+                return false;
+            }
             return true;
         }
-        if (!(obj instanceof Map.Entry)) {
-            return false;
-        }
-        Map.Entry entry = (Map.Entry) obj;
-        return zzb(this.zzb, entry.getKey()) && zzb(this.zzc, entry.getValue());
+        return false;
     }
 
-    @Override // java.util.Map.Entry
-    public final /* synthetic */ Object getKey() {
-        return this.zzb;
-    }
-
-    @Override // java.util.Map.Entry
-    public final Object getValue() {
-        return this.zzc;
-    }
-
-    @Override // java.util.Map.Entry
+    @Override // java.util.AbstractMap, java.util.Map
     public final int hashCode() {
-        Comparable comparable = this.zzb;
-        int hashCode = comparable == null ? 0 : comparable.hashCode();
-        Object obj = this.zzc;
-        return hashCode ^ (obj != null ? obj.hashCode() : 0);
+        Iterator it = entrySet().iterator();
+        int i9 = 0;
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            i9 += zzf(entry.getValue()) ^ zzf(entry.getKey());
+        }
+        return i9;
     }
 
-    @Override // java.util.Map.Entry
-    public final Object setValue(Object obj) {
-        this.zza.zzn();
-        Object obj2 = this.zzc;
-        this.zzc = obj;
-        return obj2;
+    @Override // java.util.HashMap, java.util.AbstractMap, java.util.Map
+    public final Object put(Object obj, Object obj2) {
+        zzg();
+        byte[] bArr = zzda.zzd;
+        obj.getClass();
+        obj2.getClass();
+        return super.put(obj, obj2);
     }
 
-    public final String toString() {
-        return String.valueOf(this.zzb) + "=" + String.valueOf(this.zzc);
+    @Override // java.util.HashMap, java.util.AbstractMap, java.util.Map
+    public final void putAll(Map map) {
+        zzg();
+        for (Object obj : map.keySet()) {
+            byte[] bArr = zzda.zzd;
+            obj.getClass();
+            map.get(obj).getClass();
+        }
+        super.putAll(map);
     }
 
-    public final Comparable zza() {
+    @Override // java.util.HashMap, java.util.AbstractMap, java.util.Map
+    public final Object remove(Object obj) {
+        zzg();
+        return super.remove(obj);
+    }
+
+    public final zzdw zzb() {
+        if (isEmpty()) {
+            return new zzdw();
+        }
+        return new zzdw(this);
+    }
+
+    public final void zzc() {
+        this.zzb = false;
+    }
+
+    public final void zzd(zzdw zzdwVar) {
+        zzg();
+        if (!zzdwVar.isEmpty()) {
+            putAll(zzdwVar);
+        }
+    }
+
+    public final boolean zze() {
         return this.zzb;
+    }
+
+    private zzdw(Map map) {
+        super(map);
+        this.zzb = true;
     }
 }

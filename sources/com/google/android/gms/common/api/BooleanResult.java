@@ -1,19 +1,24 @@
 package com.google.android.gms.common.api;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.Preconditions;
+import com.google.android.gms.common.internal.ShowFirstParty;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class BooleanResult implements Result {
     private final Status zaa;
     private final boolean zab;
 
-    public BooleanResult(Status status, boolean z) {
+    @ShowFirstParty
+    @KeepForSdk
+    public BooleanResult(@NonNull Status status, boolean z8) {
         this.zaa = (Status) Preconditions.checkNotNull(status, "Status must not be null");
-        this.zab = z;
+        this.zab = z8;
     }
 
-    public final boolean equals(Object obj) {
+    public final boolean equals(@Nullable Object obj) {
         if (obj == null) {
             return false;
         }
@@ -24,10 +29,14 @@ public class BooleanResult implements Result {
             return false;
         }
         BooleanResult booleanResult = (BooleanResult) obj;
-        return this.zaa.equals(booleanResult.zaa) && this.zab == booleanResult.zab;
+        if (!this.zaa.equals(booleanResult.zaa) || this.zab != booleanResult.zab) {
+            return false;
+        }
+        return true;
     }
 
     @Override // com.google.android.gms.common.api.Result
+    @NonNull
     public Status getStatus() {
         return this.zaa;
     }

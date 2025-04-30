@@ -1,20 +1,26 @@
 package com.google.android.gms.common.api.internal;
 
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.internal.BaseImplementation;
 import com.google.android.gms.common.api.internal.IStatusCallback;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class StatusCallback extends IStatusCallback.Stub {
+
+    @KeepForSdk
     private final BaseImplementation.ResultHolder<Status> resultHolder;
 
-    public StatusCallback(BaseImplementation.ResultHolder<Status> resultHolder) {
+    @KeepForSdk
+    public StatusCallback(@NonNull BaseImplementation.ResultHolder<Status> resultHolder) {
         this.resultHolder = resultHolder;
     }
 
     @Override // com.google.android.gms.common.api.internal.IStatusCallback
-    public void onResult(Status status) {
+    @KeepForSdk
+    public void onResult(@NonNull Status status) {
         this.resultHolder.setResult(status);
     }
 }

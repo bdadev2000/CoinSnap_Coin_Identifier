@@ -1,25 +1,36 @@
 package com.google.android.gms.measurement.internal;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzlk {
-    public final String zza;
-    public final String zzb;
-    public final long zzc;
-    boolean zzd;
-    public final boolean zze;
-    public final long zzf;
+import android.os.RemoteException;
+import com.google.android.gms.common.internal.Preconditions;
+import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 
-    public zzlk(String str, String str2, long j) {
-        this(str, str2, j, false, 0L);
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzlk implements Runnable {
+    private final /* synthetic */ zzo zza;
+    private final /* synthetic */ zzkx zzb;
+
+    public zzlk(zzkx zzkxVar, zzo zzoVar) {
+        this.zza = zzoVar;
+        this.zzb = zzkxVar;
     }
 
-    public zzlk(String str, String str2, long j, boolean z, long j2) {
-        this.zza = str;
-        this.zzb = str2;
-        this.zzc = j;
-        this.zzd = false;
-        this.zze = z;
-        this.zzf = j2;
+    @Override // java.lang.Runnable
+    public final void run() {
+        zzfl zzflVar;
+        zzflVar = this.zzb.zzb;
+        if (zzflVar == null) {
+            this.zzb.zzj().zzg().zza("Discarding data. Failed to send app launch");
+            return;
+        }
+        try {
+            Preconditions.checkNotNull(this.zza);
+            zzflVar.zzc(this.zza);
+            this.zzb.zzh().zzac();
+            this.zzb.zza(zzflVar, (AbstractSafeParcelable) null, this.zza);
+            this.zzb.zzaq();
+        } catch (RemoteException e4) {
+            this.zzb.zzj().zzg().zza("Failed to send app launch to the service", e4);
+        }
     }
 }

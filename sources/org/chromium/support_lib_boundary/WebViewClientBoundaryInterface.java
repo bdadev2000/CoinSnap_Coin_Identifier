@@ -6,7 +6,7 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import java.lang.reflect.InvocationHandler;
 
-/* loaded from: classes9.dex */
+/* loaded from: classes3.dex */
 public interface WebViewClientBoundaryInterface extends FeatureFlagHolderBoundaryInterface {
     void onPageCommitVisible(WebView webView, String str);
 
@@ -14,7 +14,7 @@ public interface WebViewClientBoundaryInterface extends FeatureFlagHolderBoundar
 
     void onReceivedHttpError(WebView webView, WebResourceRequest webResourceRequest, WebResourceResponse webResourceResponse);
 
-    void onSafeBrowsingHit(WebView webView, WebResourceRequest webResourceRequest, int i, InvocationHandler invocationHandler);
+    void onSafeBrowsingHit(WebView webView, WebResourceRequest webResourceRequest, int i9, InvocationHandler invocationHandler);
 
     boolean onWebAuthnIntent(WebView webView, PendingIntent pendingIntent, InvocationHandler invocationHandler);
 

@@ -2,12 +2,10 @@ package com.google.android.gms.common.api.internal;
 
 import java.util.concurrent.locks.Lock;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zav implements Runnable {
     final /* synthetic */ zaaa zaa;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zav(zaaa zaaaVar) {
         this.zaa = zaaaVar;
     }

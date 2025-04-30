@@ -1,15 +1,15 @@
 package android.support.v4.app;
 
+import O0.a;
 import androidx.core.app.RemoteActionCompat;
-import androidx.versionedparcelable.VersionedParcel;
 
 /* loaded from: classes.dex */
 public final class RemoteActionCompatParcelizer extends androidx.core.app.RemoteActionCompatParcelizer {
-    public static RemoteActionCompat read(VersionedParcel versionedParcel) {
-        return androidx.core.app.RemoteActionCompatParcelizer.read(versionedParcel);
+    public static RemoteActionCompat read(a aVar) {
+        return androidx.core.app.RemoteActionCompatParcelizer.read(aVar);
     }
 
-    public static void write(RemoteActionCompat remoteActionCompat, VersionedParcel versionedParcel) {
-        androidx.core.app.RemoteActionCompatParcelizer.write(remoteActionCompat, versionedParcel);
+    public static void write(RemoteActionCompat remoteActionCompat, a aVar) {
+        androidx.core.app.RemoteActionCompatParcelizer.write(remoteActionCompat, aVar);
     }
 }

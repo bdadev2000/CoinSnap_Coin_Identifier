@@ -1,14 +1,14 @@
 package com.adjust.sdk;
 
 import android.text.TextUtils;
-import com.glority.android.core.utils.device.CorePersistKey;
-import com.google.firebase.analytics.FirebaseAnalytics;
+import com.applovin.sdk.AppLovinEventParameters;
+import com.mbridge.msdk.foundation.entity.CampaignEx;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class PackageBuilder {
     private static ILogger logger = AdjustFactory.getLogger();
     private a activityStateCopy;
@@ -33,44 +33,56 @@ public class PackageBuilder {
     public long clickTimeServerInSeconds = -1;
     public long installBeginTimeServerInSeconds = -1;
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class a {
 
         /* renamed from: a, reason: collision with root package name */
-        public int f242a;
+        public int f5532a;
         public int b;
-        public int c;
-        public long d;
-        public long e;
-        public long f;
-        public String g;
-        public String h;
+
+        /* renamed from: c, reason: collision with root package name */
+        public int f5533c;
+
+        /* renamed from: d, reason: collision with root package name */
+        public long f5534d;
+
+        /* renamed from: e, reason: collision with root package name */
+        public long f5535e;
+
+        /* renamed from: f, reason: collision with root package name */
+        public long f5536f;
+
+        /* renamed from: g, reason: collision with root package name */
+        public String f5537g;
+
+        /* renamed from: h, reason: collision with root package name */
+        public String f5538h;
 
         public a(ActivityState activityState) {
-            this.f242a = -1;
+            this.f5532a = -1;
             this.b = -1;
-            this.c = -1;
-            this.d = -1L;
-            this.e = -1L;
-            this.f = -1L;
-            this.g = null;
-            this.h = null;
+            this.f5533c = -1;
+            this.f5534d = -1L;
+            this.f5535e = -1L;
+            this.f5536f = -1L;
+            this.f5537g = null;
+            this.f5538h = null;
             if (activityState == null) {
                 return;
             }
-            this.f242a = activityState.eventCount;
+            this.f5532a = activityState.eventCount;
             this.b = activityState.sessionCount;
-            this.c = activityState.subsessionCount;
-            this.d = activityState.timeSpent;
-            this.e = activityState.lastInterval;
-            this.f = activityState.sessionLength;
-            this.g = activityState.uuid;
-            this.h = activityState.pushToken;
+            this.f5533c = activityState.subsessionCount;
+            this.f5534d = activityState.timeSpent;
+            this.f5535e = activityState.lastInterval;
+            this.f5536f = activityState.sessionLength;
+            this.f5537g = activityState.uuid;
+            this.f5538h = activityState.pushToken;
         }
     }
 
-    public PackageBuilder(AdjustConfig adjustConfig, com.adjust.sdk.a aVar, ActivityState activityState, SessionParameters sessionParameters, long j) {
-        this.createdAt = j;
+    public PackageBuilder(AdjustConfig adjustConfig, com.adjust.sdk.a aVar, ActivityState activityState, SessionParameters sessionParameters, long j7) {
+        this.createdAt = j7;
         this.deviceInfo = aVar;
         this.adjustConfig = adjustConfig;
         this.activityStateCopy = new a(activityState);
@@ -91,39 +103,39 @@ public class PackageBuilder {
         addString(map, str, Util.dateFormatter.format(date));
     }
 
-    private static void addDateInMilliseconds(Map<String, String> map, String str, long j) {
-        if (j <= 0) {
+    private static void addDateInMilliseconds(Map<String, String> map, String str, long j7) {
+        if (j7 <= 0) {
             return;
         }
-        addDate(map, str, new Date(j));
+        addDate(map, str, new Date(j7));
     }
 
-    private static void addDateInSeconds(Map<String, String> map, String str, long j) {
-        if (j <= 0) {
+    private static void addDateInSeconds(Map<String, String> map, String str, long j7) {
+        if (j7 <= 0) {
             return;
         }
-        addDate(map, str, new Date(j * 1000));
+        addDate(map, str, new Date(j7 * 1000));
     }
 
-    private static void addDouble(Map<String, String> map, String str, Double d) {
-        if (d == null) {
+    private static void addDouble(Map<String, String> map, String str, Double d2) {
+        if (d2 == null) {
             return;
         }
-        addString(map, str, Util.formatString("%.5f", d));
+        addString(map, str, Util.formatString("%.5f", d2));
     }
 
-    private static void addDoubleWithoutRounding(Map<String, String> map, String str, Double d) {
-        if (d == null) {
+    private static void addDoubleWithoutRounding(Map<String, String> map, String str, Double d2) {
+        if (d2 == null) {
             return;
         }
-        addString(map, str, Double.toString(d.doubleValue()));
+        addString(map, str, Double.toString(d2.doubleValue()));
     }
 
-    private static void addDuration(Map<String, String> map, String str, long j) {
-        if (j < 0) {
+    private static void addDuration(Map<String, String> map, String str, long j7) {
+        if (j7 < 0) {
             return;
         }
-        addLong(map, str, (j + 500) / 1000);
+        addLong(map, str, (j7 + 500) / 1000);
     }
 
     private static void addInteger(Map<String, String> map, String str, Integer num) {
@@ -140,11 +152,11 @@ public class PackageBuilder {
         addString(map, str, jSONObject.toString());
     }
 
-    public static void addLong(Map<String, String> map, String str, long j) {
-        if (j < 0) {
+    public static void addLong(Map<String, String> map, String str, long j7) {
+        if (j7 < 0) {
             return;
         }
-        addString(map, str, Long.toString(j));
+        addString(map, str, Long.toString(j7));
     }
 
     public static void addMapJson(Map<String, String> map, String str, Map map2) {
@@ -162,7 +174,7 @@ public class PackageBuilder {
     }
 
     private void checkDeviceIds(Map<String, String> map) {
-        if (map == null || map.containsKey("android_id") || map.containsKey("gps_adid") || map.containsKey("fire_adid") || map.containsKey("oaid") || map.containsKey("imei") || map.containsKey("meid") || map.containsKey(CorePersistKey.DEVICE_ID) || map.containsKey("imeis") || map.containsKey("meids") || map.containsKey("device_ids")) {
+        if (map == null || map.containsKey("android_id") || map.containsKey("gps_adid") || map.containsKey("fire_adid") || map.containsKey("oaid") || map.containsKey("imei") || map.containsKey("meid") || map.containsKey("device_id") || map.containsKey("imeis") || map.containsKey("meids") || map.containsKey("device_ids")) {
             return;
         }
         if (this.adjustConfig.coppaCompliantEnabled) {
@@ -186,7 +198,7 @@ public class PackageBuilder {
         return map.containsKey("gps_adid");
     }
 
-    private Map<String, String> getAdRevenueParameters(AdjustAdRevenue adjustAdRevenue, boolean z) {
+    private Map<String, String> getAdRevenueParameters(AdjustAdRevenue adjustAdRevenue, boolean z8) {
         HashMap hashMap = new HashMap();
         Map<String, String> imeiParameters = Util.getImeiParameters(this.adjustConfig, logger);
         if (imeiParameters != null) {
@@ -196,148 +208,74 @@ public class PackageBuilder {
         if (oaidParameters != null) {
             hashMap.putAll(oaidParameters);
         }
-        if (!z) {
+        if (!z8) {
             addMapJson(hashMap, Constants.CALLBACK_PARAMETERS, Util.mergeParameters(this.sessionParameters.callbackParameters, adjustAdRevenue.callbackParameters, "Callback"));
             addMapJson(hashMap, Constants.PARTNER_PARAMETERS, Util.mergeParameters(this.sessionParameters.partnerParameters, adjustAdRevenue.partnerParameters, "Partner"));
         }
         this.deviceInfo.b(this.adjustConfig);
-        addString(hashMap, "android_uuid", this.activityStateCopy.g);
-        addString(hashMap, "gps_adid", this.deviceInfo.f260a);
-        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.c);
+        addString(hashMap, "android_uuid", this.activityStateCopy.f5537g);
+        addString(hashMap, "gps_adid", this.deviceInfo.f5560a);
+        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.f5561c);
         addString(hashMap, "gps_adid_src", this.deviceInfo.b);
-        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.d);
+        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.f5562d);
         addString(hashMap, "fire_adid", Util.getFireAdvertisingId(this.adjustConfig));
         addBoolean(hashMap, "fire_tracking_enabled", Util.getFireTrackingEnabled(this.adjustConfig));
         if (!containsPlayIds(hashMap) && !containsFireIds(hashMap)) {
             logger.warn("Google Advertising ID or Fire Advertising ID not detected, fallback to non Google Play and Fire identifiers will take place", new Object[0]);
             this.deviceInfo.a(this.adjustConfig);
-            addString(hashMap, "android_id", this.deviceInfo.f);
+            addString(hashMap, "android_id", this.deviceInfo.f5564f);
         }
-        addString(hashMap, "api_level", this.deviceInfo.p);
+        addString(hashMap, "api_level", this.deviceInfo.f5572p);
         addString(hashMap, "app_secret", this.adjustConfig.appSecret);
         addString(hashMap, "app_token", this.adjustConfig.appToken);
-        addString(hashMap, "app_version", this.deviceInfo.j);
+        addString(hashMap, "app_version", this.deviceInfo.f5568j);
         Boolean bool = Boolean.TRUE;
         addBoolean(hashMap, "attribution_deeplink", bool);
         addLong(hashMap, "connectivity_type", Util.getConnectivityType(this.adjustConfig.context));
-        addString(hashMap, "country", this.deviceInfo.r);
-        addString(hashMap, "cpu_type", this.deviceInfo.y);
+        addString(hashMap, "country", this.deviceInfo.f5574r);
+        addString(hashMap, "cpu_type", this.deviceInfo.f5581y);
         addDateInMilliseconds(hashMap, "created_at", this.createdAt);
         addString(hashMap, "default_tracker", this.adjustConfig.defaultTracker);
         addBoolean(hashMap, "device_known", this.adjustConfig.deviceKnown);
         addBoolean(hashMap, "needs_cost", this.adjustConfig.needsCost);
         addString(hashMap, "device_manufacturer", this.deviceInfo.m);
         addString(hashMap, "device_name", this.deviceInfo.l);
-        addString(hashMap, "device_type", this.deviceInfo.k);
-        addLong(hashMap, "ui_mode", this.deviceInfo.C);
-        addString(hashMap, "display_height", this.deviceInfo.w);
-        addString(hashMap, "display_width", this.deviceInfo.v);
+        addString(hashMap, "device_type", this.deviceInfo.f5569k);
+        addLong(hashMap, "ui_mode", this.deviceInfo.f5559C);
+        addString(hashMap, "display_height", this.deviceInfo.f5579w);
+        addString(hashMap, "display_width", this.deviceInfo.f5578v);
         addString(hashMap, "environment", this.adjustConfig.environment);
         addBoolean(hashMap, "event_buffering_enabled", Boolean.valueOf(this.adjustConfig.eventBufferingEnabled));
         addString(hashMap, "external_device_id", this.adjustConfig.externalDeviceId);
-        addString(hashMap, "fb_id", this.deviceInfo.g);
-        addString(hashMap, "hardware_name", this.deviceInfo.x);
-        addString(hashMap, "installed_at", this.deviceInfo.A);
-        addString(hashMap, "language", this.deviceInfo.q);
-        addDuration(hashMap, "last_interval", this.activityStateCopy.e);
+        addString(hashMap, "fb_id", this.deviceInfo.f5565g);
+        addString(hashMap, "hardware_name", this.deviceInfo.f5580x);
+        addString(hashMap, "installed_at", this.deviceInfo.f5557A);
+        addString(hashMap, "language", this.deviceInfo.f5573q);
+        addDuration(hashMap, "last_interval", this.activityStateCopy.f5535e);
         addString(hashMap, "mcc", Util.getMcc(this.adjustConfig.context));
         addString(hashMap, "mnc", Util.getMnc(this.adjustConfig.context));
         addBoolean(hashMap, "needs_response_details", bool);
-        addString(hashMap, "os_build", this.deviceInfo.z);
-        addString(hashMap, "os_name", this.deviceInfo.n);
-        addString(hashMap, "os_version", this.deviceInfo.o);
-        addString(hashMap, "package_name", this.deviceInfo.i);
-        addString(hashMap, "push_token", this.activityStateCopy.h);
-        addString(hashMap, "screen_density", this.deviceInfo.u);
-        addString(hashMap, "screen_format", this.deviceInfo.t);
-        addString(hashMap, "screen_size", this.deviceInfo.s);
+        addString(hashMap, "os_build", this.deviceInfo.f5582z);
+        addString(hashMap, "os_name", this.deviceInfo.f5570n);
+        addString(hashMap, "os_version", this.deviceInfo.f5571o);
+        addString(hashMap, CampaignEx.JSON_KEY_PACKAGE_NAME, this.deviceInfo.f5567i);
+        addString(hashMap, "push_token", this.activityStateCopy.f5538h);
+        addString(hashMap, "screen_density", this.deviceInfo.f5577u);
+        addString(hashMap, "screen_format", this.deviceInfo.f5576t);
+        addString(hashMap, "screen_size", this.deviceInfo.f5575s);
         addString(hashMap, "secret_id", this.adjustConfig.secretId);
         addString(hashMap, "source", adjustAdRevenue.source);
         addDoubleWithoutRounding(hashMap, "revenue", adjustAdRevenue.revenue);
-        addString(hashMap, FirebaseAnalytics.Param.CURRENCY, adjustAdRevenue.currency);
+        addString(hashMap, AppLovinEventParameters.REVENUE_CURRENCY, adjustAdRevenue.currency);
         addInteger(hashMap, "ad_impressions_count", adjustAdRevenue.adImpressionsCount);
         addString(hashMap, "ad_revenue_network", adjustAdRevenue.adRevenueNetwork);
         addString(hashMap, "ad_revenue_unit", adjustAdRevenue.adRevenueUnit);
         addString(hashMap, "ad_revenue_placement", adjustAdRevenue.adRevenuePlacement);
         addLong(hashMap, "session_count", this.activityStateCopy.b);
-        addDuration(hashMap, "session_length", this.activityStateCopy.f);
-        addLong(hashMap, "subsession_count", this.activityStateCopy.c);
-        addDuration(hashMap, "time_spent", this.activityStateCopy.d);
-        addString(hashMap, "updated_at", this.deviceInfo.B);
-        injectFeatureFlagsWithParameters(hashMap);
-        checkDeviceIds(hashMap);
-        return hashMap;
-    }
-
-    private Map<String, String> getAdRevenueParameters(String str, JSONObject jSONObject) {
-        HashMap hashMap = new HashMap();
-        Map<String, String> imeiParameters = Util.getImeiParameters(this.adjustConfig, logger);
-        if (imeiParameters != null) {
-            hashMap.putAll(imeiParameters);
-        }
-        Map<String, String> oaidParameters = Util.getOaidParameters(this.adjustConfig, logger);
-        if (oaidParameters != null) {
-            hashMap.putAll(oaidParameters);
-        }
-        this.deviceInfo.b(this.adjustConfig);
-        addString(hashMap, "android_uuid", this.activityStateCopy.g);
-        addString(hashMap, "gps_adid", this.deviceInfo.f260a);
-        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.c);
-        addString(hashMap, "gps_adid_src", this.deviceInfo.b);
-        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.d);
-        addString(hashMap, "fire_adid", Util.getFireAdvertisingId(this.adjustConfig));
-        addBoolean(hashMap, "fire_tracking_enabled", Util.getFireTrackingEnabled(this.adjustConfig));
-        if (!containsPlayIds(hashMap) && !containsFireIds(hashMap)) {
-            logger.warn("Google Advertising ID or Fire Advertising ID not detected, fallback to non Google Play and Fire identifiers will take place", new Object[0]);
-            this.deviceInfo.a(this.adjustConfig);
-            addString(hashMap, "android_id", this.deviceInfo.f);
-        }
-        addString(hashMap, "api_level", this.deviceInfo.p);
-        addString(hashMap, "app_secret", this.adjustConfig.appSecret);
-        addString(hashMap, "app_token", this.adjustConfig.appToken);
-        addString(hashMap, "app_version", this.deviceInfo.j);
-        Boolean bool = Boolean.TRUE;
-        addBoolean(hashMap, "attribution_deeplink", bool);
-        addLong(hashMap, "connectivity_type", Util.getConnectivityType(this.adjustConfig.context));
-        addString(hashMap, "country", this.deviceInfo.r);
-        addString(hashMap, "cpu_type", this.deviceInfo.y);
-        addDateInMilliseconds(hashMap, "created_at", this.createdAt);
-        addString(hashMap, "default_tracker", this.adjustConfig.defaultTracker);
-        addBoolean(hashMap, "device_known", this.adjustConfig.deviceKnown);
-        addBoolean(hashMap, "needs_cost", this.adjustConfig.needsCost);
-        addString(hashMap, "device_manufacturer", this.deviceInfo.m);
-        addString(hashMap, "device_name", this.deviceInfo.l);
-        addString(hashMap, "device_type", this.deviceInfo.k);
-        addLong(hashMap, "ui_mode", this.deviceInfo.C);
-        addString(hashMap, "display_height", this.deviceInfo.w);
-        addString(hashMap, "display_width", this.deviceInfo.v);
-        addString(hashMap, "environment", this.adjustConfig.environment);
-        addBoolean(hashMap, "event_buffering_enabled", Boolean.valueOf(this.adjustConfig.eventBufferingEnabled));
-        addString(hashMap, "external_device_id", this.adjustConfig.externalDeviceId);
-        addString(hashMap, "fb_id", this.deviceInfo.g);
-        addString(hashMap, "hardware_name", this.deviceInfo.x);
-        addString(hashMap, "installed_at", this.deviceInfo.A);
-        addString(hashMap, "language", this.deviceInfo.q);
-        addDuration(hashMap, "last_interval", this.activityStateCopy.e);
-        addString(hashMap, "mcc", Util.getMcc(this.adjustConfig.context));
-        addString(hashMap, "mnc", Util.getMnc(this.adjustConfig.context));
-        addBoolean(hashMap, "needs_response_details", bool);
-        addString(hashMap, "os_build", this.deviceInfo.z);
-        addString(hashMap, "os_name", this.deviceInfo.n);
-        addString(hashMap, "os_version", this.deviceInfo.o);
-        addString(hashMap, "package_name", this.deviceInfo.i);
-        addString(hashMap, "push_token", this.activityStateCopy.h);
-        addString(hashMap, "screen_density", this.deviceInfo.u);
-        addString(hashMap, "screen_format", this.deviceInfo.t);
-        addString(hashMap, "screen_size", this.deviceInfo.s);
-        addString(hashMap, "secret_id", this.adjustConfig.secretId);
-        addString(hashMap, "source", str);
-        addJsonObject(hashMap, "payload", jSONObject);
-        addLong(hashMap, "session_count", this.activityStateCopy.b);
-        addDuration(hashMap, "session_length", this.activityStateCopy.f);
-        addLong(hashMap, "subsession_count", this.activityStateCopy.c);
-        addDuration(hashMap, "time_spent", this.activityStateCopy.d);
-        addString(hashMap, "updated_at", this.deviceInfo.B);
+        addDuration(hashMap, "session_length", this.activityStateCopy.f5536f);
+        addLong(hashMap, "subsession_count", this.activityStateCopy.f5533c);
+        addDuration(hashMap, "time_spent", this.activityStateCopy.f5534d);
+        addString(hashMap, "updated_at", this.deviceInfo.f5558B);
         injectFeatureFlagsWithParameters(hashMap);
         checkDeviceIds(hashMap);
         return hashMap;
@@ -354,39 +292,39 @@ public class PackageBuilder {
             hashMap.putAll(oaidParameters);
         }
         this.deviceInfo.b(this.adjustConfig);
-        addString(hashMap, "android_uuid", this.activityStateCopy.g);
-        addString(hashMap, "gps_adid", this.deviceInfo.f260a);
-        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.c);
+        addString(hashMap, "android_uuid", this.activityStateCopy.f5537g);
+        addString(hashMap, "gps_adid", this.deviceInfo.f5560a);
+        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.f5561c);
         addString(hashMap, "gps_adid_src", this.deviceInfo.b);
-        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.d);
+        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.f5562d);
         addString(hashMap, "fire_adid", Util.getFireAdvertisingId(this.adjustConfig));
         addBoolean(hashMap, "fire_tracking_enabled", Util.getFireTrackingEnabled(this.adjustConfig));
         if (!containsPlayIds(hashMap) && !containsFireIds(hashMap)) {
             logger.warn("Google Advertising ID or Fire Advertising ID not detected, fallback to non Google Play and Fire identifiers will take place", new Object[0]);
             this.deviceInfo.a(this.adjustConfig);
-            addString(hashMap, "android_id", this.deviceInfo.f);
+            addString(hashMap, "android_id", this.deviceInfo.f5564f);
         }
-        addString(hashMap, "api_level", this.deviceInfo.p);
+        addString(hashMap, "api_level", this.deviceInfo.f5572p);
         addString(hashMap, "app_secret", this.adjustConfig.appSecret);
         addString(hashMap, "app_token", this.adjustConfig.appToken);
-        addString(hashMap, "app_version", this.deviceInfo.j);
+        addString(hashMap, "app_version", this.deviceInfo.f5568j);
         Boolean bool = Boolean.TRUE;
         addBoolean(hashMap, "attribution_deeplink", bool);
         addDateInMilliseconds(hashMap, "created_at", this.createdAt);
         addBoolean(hashMap, "device_known", this.adjustConfig.deviceKnown);
         addBoolean(hashMap, "needs_cost", this.adjustConfig.needsCost);
         addString(hashMap, "device_name", this.deviceInfo.l);
-        addString(hashMap, "device_type", this.deviceInfo.k);
-        addLong(hashMap, "ui_mode", this.deviceInfo.C);
+        addString(hashMap, "device_type", this.deviceInfo.f5569k);
+        addLong(hashMap, "ui_mode", this.deviceInfo.f5559C);
         addString(hashMap, "environment", this.adjustConfig.environment);
         addBoolean(hashMap, "event_buffering_enabled", Boolean.valueOf(this.adjustConfig.eventBufferingEnabled));
         addString(hashMap, "external_device_id", this.adjustConfig.externalDeviceId);
         addString(hashMap, "initiated_by", str);
         addBoolean(hashMap, "needs_response_details", bool);
-        addString(hashMap, "os_name", this.deviceInfo.n);
-        addString(hashMap, "os_version", this.deviceInfo.o);
-        addString(hashMap, "package_name", this.deviceInfo.i);
-        addString(hashMap, "push_token", this.activityStateCopy.h);
+        addString(hashMap, "os_name", this.deviceInfo.f5570n);
+        addString(hashMap, "os_version", this.deviceInfo.f5571o);
+        addString(hashMap, CampaignEx.JSON_KEY_PACKAGE_NAME, this.deviceInfo.f5567i);
+        addString(hashMap, "push_token", this.activityStateCopy.f5538h);
         addString(hashMap, "secret_id", this.adjustConfig.secretId);
         injectFeatureFlagsWithParameters(hashMap);
         checkDeviceIds(hashMap);
@@ -404,17 +342,17 @@ public class PackageBuilder {
             hashMap.putAll(oaidParameters);
         }
         this.deviceInfo.b(this.adjustConfig);
-        addString(hashMap, "android_uuid", this.activityStateCopy.g);
-        addString(hashMap, "gps_adid", this.deviceInfo.f260a);
-        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.c);
+        addString(hashMap, "android_uuid", this.activityStateCopy.f5537g);
+        addString(hashMap, "gps_adid", this.deviceInfo.f5560a);
+        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.f5561c);
         addString(hashMap, "gps_adid_src", this.deviceInfo.b);
-        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.d);
+        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.f5562d);
         addString(hashMap, "fire_adid", Util.getFireAdvertisingId(this.adjustConfig));
         addBoolean(hashMap, "fire_tracking_enabled", Util.getFireTrackingEnabled(this.adjustConfig));
         if (!containsPlayIds(hashMap) && !containsFireIds(hashMap)) {
             logger.warn("Google Advertising ID or Fire Advertising ID not detected, fallback to non Google Play and Fire identifiers will take place", new Object[0]);
             this.deviceInfo.a(this.adjustConfig);
-            addString(hashMap, "android_id", this.deviceInfo.f);
+            addString(hashMap, "android_id", this.deviceInfo.f5564f);
         }
         AdjustAttribution adjustAttribution = this.attribution;
         if (adjustAttribution != null) {
@@ -423,10 +361,10 @@ public class PackageBuilder {
             addString(hashMap, "adgroup", this.attribution.adgroup);
             addString(hashMap, "creative", this.attribution.creative);
         }
-        addString(hashMap, "api_level", this.deviceInfo.p);
+        addString(hashMap, "api_level", this.deviceInfo.f5572p);
         addString(hashMap, "app_secret", this.adjustConfig.appSecret);
         addString(hashMap, "app_token", this.adjustConfig.appToken);
-        addString(hashMap, "app_version", this.deviceInfo.j);
+        addString(hashMap, "app_version", this.deviceInfo.f5568j);
         Boolean bool = Boolean.TRUE;
         addBoolean(hashMap, "attribution_deeplink", bool);
         addMapJson(hashMap, Constants.CALLBACK_PARAMETERS, this.sessionParameters.callbackParameters);
@@ -434,54 +372,54 @@ public class PackageBuilder {
         addDateInSeconds(hashMap, "click_time", this.clickTimeInSeconds);
         addDateInSeconds(hashMap, "click_time_server", this.clickTimeServerInSeconds);
         addLong(hashMap, "connectivity_type", Util.getConnectivityType(this.adjustConfig.context));
-        addString(hashMap, "country", this.deviceInfo.r);
-        addString(hashMap, "cpu_type", this.deviceInfo.y);
+        addString(hashMap, "country", this.deviceInfo.f5574r);
+        addString(hashMap, "cpu_type", this.deviceInfo.f5581y);
         addDateInMilliseconds(hashMap, "created_at", this.createdAt);
         addString(hashMap, Constants.DEEPLINK, this.deeplink);
         addBoolean(hashMap, "device_known", this.adjustConfig.deviceKnown);
         addBoolean(hashMap, "needs_cost", this.adjustConfig.needsCost);
         addString(hashMap, "device_manufacturer", this.deviceInfo.m);
         addString(hashMap, "device_name", this.deviceInfo.l);
-        addString(hashMap, "device_type", this.deviceInfo.k);
-        addLong(hashMap, "ui_mode", this.deviceInfo.C);
-        addString(hashMap, "display_height", this.deviceInfo.w);
-        addString(hashMap, "display_width", this.deviceInfo.v);
+        addString(hashMap, "device_type", this.deviceInfo.f5569k);
+        addLong(hashMap, "ui_mode", this.deviceInfo.f5559C);
+        addString(hashMap, "display_height", this.deviceInfo.f5579w);
+        addString(hashMap, "display_width", this.deviceInfo.f5578v);
         addString(hashMap, "environment", this.adjustConfig.environment);
         addBoolean(hashMap, "event_buffering_enabled", Boolean.valueOf(this.adjustConfig.eventBufferingEnabled));
         addString(hashMap, "external_device_id", this.adjustConfig.externalDeviceId);
-        addString(hashMap, "fb_id", this.deviceInfo.g);
+        addString(hashMap, "fb_id", this.deviceInfo.f5565g);
         addBoolean(hashMap, "google_play_instant", this.googlePlayInstant);
-        addString(hashMap, "hardware_name", this.deviceInfo.x);
+        addString(hashMap, "hardware_name", this.deviceInfo.f5580x);
         addDateInSeconds(hashMap, "install_begin_time", this.installBeginTimeInSeconds);
         addDateInSeconds(hashMap, "install_begin_time_server", this.installBeginTimeServerInSeconds);
         addString(hashMap, "install_version", this.installVersion);
-        addString(hashMap, "installed_at", this.deviceInfo.A);
-        addString(hashMap, "language", this.deviceInfo.q);
-        addDuration(hashMap, "last_interval", this.activityStateCopy.e);
+        addString(hashMap, "installed_at", this.deviceInfo.f5557A);
+        addString(hashMap, "language", this.deviceInfo.f5573q);
+        addDuration(hashMap, "last_interval", this.activityStateCopy.f5535e);
         addString(hashMap, "mcc", Util.getMcc(this.adjustConfig.context));
         addString(hashMap, "mnc", Util.getMnc(this.adjustConfig.context));
         addBoolean(hashMap, "needs_response_details", bool);
-        addString(hashMap, "os_build", this.deviceInfo.z);
-        addString(hashMap, "os_name", this.deviceInfo.n);
-        addString(hashMap, "os_version", this.deviceInfo.o);
-        addString(hashMap, "package_name", this.deviceInfo.i);
+        addString(hashMap, "os_build", this.deviceInfo.f5582z);
+        addString(hashMap, "os_name", this.deviceInfo.f5570n);
+        addString(hashMap, "os_version", this.deviceInfo.f5571o);
+        addString(hashMap, CampaignEx.JSON_KEY_PACKAGE_NAME, this.deviceInfo.f5567i);
         addMapJson(hashMap, "params", this.extraParameters);
         addMapJson(hashMap, Constants.PARTNER_PARAMETERS, this.sessionParameters.partnerParameters);
-        addString(hashMap, "push_token", this.activityStateCopy.h);
+        addString(hashMap, "push_token", this.activityStateCopy.f5538h);
         addString(hashMap, "raw_referrer", this.rawReferrer);
         addString(hashMap, Constants.REFERRER, this.referrer);
         addString(hashMap, "referrer_api", this.referrerApi);
         addString(hashMap, Constants.REFTAG, this.reftag);
-        addString(hashMap, "screen_density", this.deviceInfo.u);
-        addString(hashMap, "screen_format", this.deviceInfo.t);
-        addString(hashMap, "screen_size", this.deviceInfo.s);
+        addString(hashMap, "screen_density", this.deviceInfo.f5577u);
+        addString(hashMap, "screen_format", this.deviceInfo.f5576t);
+        addString(hashMap, "screen_size", this.deviceInfo.f5575s);
         addString(hashMap, "secret_id", this.adjustConfig.secretId);
         addLong(hashMap, "session_count", this.activityStateCopy.b);
-        addDuration(hashMap, "session_length", this.activityStateCopy.f);
+        addDuration(hashMap, "session_length", this.activityStateCopy.f5536f);
         addString(hashMap, "source", str);
-        addLong(hashMap, "subsession_count", this.activityStateCopy.c);
-        addDuration(hashMap, "time_spent", this.activityStateCopy.d);
-        addString(hashMap, "updated_at", this.deviceInfo.B);
+        addLong(hashMap, "subsession_count", this.activityStateCopy.f5533c);
+        addDuration(hashMap, "time_spent", this.activityStateCopy.f5534d);
+        addString(hashMap, "updated_at", this.deviceInfo.f5558B);
         addString(hashMap, "payload", this.preinstallPayload);
         addString(hashMap, "found_location", this.preinstallLocation);
         injectFeatureFlagsWithParameters(hashMap);
@@ -491,7 +429,7 @@ public class PackageBuilder {
 
     private ActivityPackage getDefaultActivityPackage(ActivityKind activityKind) {
         ActivityPackage activityPackage = new ActivityPackage(activityKind);
-        activityPackage.setClientSdk(this.deviceInfo.h);
+        activityPackage.setClientSdk(this.deviceInfo.f5566h);
         return activityPackage;
     }
 
@@ -506,38 +444,38 @@ public class PackageBuilder {
             hashMap.putAll(oaidParameters);
         }
         this.deviceInfo.b(this.adjustConfig);
-        addString(hashMap, "android_uuid", this.activityStateCopy.g);
-        addString(hashMap, "gps_adid", this.deviceInfo.f260a);
-        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.c);
+        addString(hashMap, "android_uuid", this.activityStateCopy.f5537g);
+        addString(hashMap, "gps_adid", this.deviceInfo.f5560a);
+        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.f5561c);
         addString(hashMap, "gps_adid_src", this.deviceInfo.b);
-        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.d);
+        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.f5562d);
         addString(hashMap, "fire_adid", Util.getFireAdvertisingId(this.adjustConfig));
         addBoolean(hashMap, "fire_tracking_enabled", Util.getFireTrackingEnabled(this.adjustConfig));
         if (!containsPlayIds(hashMap) && !containsFireIds(hashMap)) {
             logger.warn("Google Advertising ID or Fire Advertising ID not detected, fallback to non Google Play and Fire identifiers will take place", new Object[0]);
             this.deviceInfo.a(this.adjustConfig);
-            addString(hashMap, "android_id", this.deviceInfo.f);
+            addString(hashMap, "android_id", this.deviceInfo.f5564f);
         }
-        addString(hashMap, "api_level", this.deviceInfo.p);
+        addString(hashMap, "api_level", this.deviceInfo.f5572p);
         addString(hashMap, "app_secret", this.adjustConfig.appSecret);
         addString(hashMap, "app_token", this.adjustConfig.appToken);
-        addString(hashMap, "app_version", this.deviceInfo.j);
+        addString(hashMap, "app_version", this.deviceInfo.f5568j);
         Boolean bool = Boolean.TRUE;
         addBoolean(hashMap, "attribution_deeplink", bool);
         addDateInMilliseconds(hashMap, "created_at", this.createdAt);
         addBoolean(hashMap, "device_known", this.adjustConfig.deviceKnown);
         addBoolean(hashMap, "needs_cost", this.adjustConfig.needsCost);
         addString(hashMap, "device_name", this.deviceInfo.l);
-        addString(hashMap, "device_type", this.deviceInfo.k);
-        addLong(hashMap, "ui_mode", this.deviceInfo.C);
+        addString(hashMap, "device_type", this.deviceInfo.f5569k);
+        addLong(hashMap, "ui_mode", this.deviceInfo.f5559C);
         addString(hashMap, "environment", this.adjustConfig.environment);
         addBoolean(hashMap, "event_buffering_enabled", Boolean.valueOf(this.adjustConfig.eventBufferingEnabled));
         addString(hashMap, "external_device_id", this.adjustConfig.externalDeviceId);
         addBoolean(hashMap, "needs_response_details", bool);
-        addString(hashMap, "os_name", this.deviceInfo.n);
-        addString(hashMap, "os_version", this.deviceInfo.o);
-        addString(hashMap, "package_name", this.deviceInfo.i);
-        addString(hashMap, "push_token", this.activityStateCopy.h);
+        addString(hashMap, "os_name", this.deviceInfo.f5570n);
+        addString(hashMap, "os_version", this.deviceInfo.f5571o);
+        addString(hashMap, CampaignEx.JSON_KEY_PACKAGE_NAME, this.deviceInfo.f5567i);
+        addString(hashMap, "push_token", this.activityStateCopy.f5538h);
         addString(hashMap, "secret_id", this.adjustConfig.secretId);
         injectFeatureFlagsWithParameters(hashMap);
         checkDeviceIds(hashMap);
@@ -545,8 +483,8 @@ public class PackageBuilder {
     }
 
     private String getEventSuffix(AdjustEvent adjustEvent) {
-        Double d = adjustEvent.revenue;
-        return d == null ? Util.formatString("'%s'", adjustEvent.eventToken) : Util.formatString("(%.5f %s, '%s')", d, adjustEvent.currency, adjustEvent.eventToken);
+        Double d2 = adjustEvent.revenue;
+        return d2 == null ? Util.formatString("'%s'", adjustEvent.eventToken) : Util.formatString("(%.5f %s, '%s')", d2, adjustEvent.currency, adjustEvent.eventToken);
     }
 
     private Map<String, String> getGdprParameters() {
@@ -560,38 +498,38 @@ public class PackageBuilder {
             hashMap.putAll(oaidParameters);
         }
         this.deviceInfo.b(this.adjustConfig);
-        addString(hashMap, "android_uuid", this.activityStateCopy.g);
-        addString(hashMap, "gps_adid", this.deviceInfo.f260a);
-        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.c);
+        addString(hashMap, "android_uuid", this.activityStateCopy.f5537g);
+        addString(hashMap, "gps_adid", this.deviceInfo.f5560a);
+        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.f5561c);
         addString(hashMap, "gps_adid_src", this.deviceInfo.b);
-        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.d);
+        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.f5562d);
         addString(hashMap, "fire_adid", Util.getFireAdvertisingId(this.adjustConfig));
         addBoolean(hashMap, "fire_tracking_enabled", Util.getFireTrackingEnabled(this.adjustConfig));
         if (!containsPlayIds(hashMap) && !containsFireIds(hashMap)) {
             logger.warn("Google Advertising ID or Fire Advertising ID not detected, fallback to non Google Play and Fire identifiers will take place", new Object[0]);
             this.deviceInfo.a(this.adjustConfig);
-            addString(hashMap, "android_id", this.deviceInfo.f);
+            addString(hashMap, "android_id", this.deviceInfo.f5564f);
         }
-        addString(hashMap, "api_level", this.deviceInfo.p);
+        addString(hashMap, "api_level", this.deviceInfo.f5572p);
         addString(hashMap, "app_secret", this.adjustConfig.appSecret);
         addString(hashMap, "app_token", this.adjustConfig.appToken);
-        addString(hashMap, "app_version", this.deviceInfo.j);
+        addString(hashMap, "app_version", this.deviceInfo.f5568j);
         Boolean bool = Boolean.TRUE;
         addBoolean(hashMap, "attribution_deeplink", bool);
         addDateInMilliseconds(hashMap, "created_at", this.createdAt);
         addBoolean(hashMap, "device_known", this.adjustConfig.deviceKnown);
         addBoolean(hashMap, "needs_cost", this.adjustConfig.needsCost);
         addString(hashMap, "device_name", this.deviceInfo.l);
-        addString(hashMap, "device_type", this.deviceInfo.k);
-        addLong(hashMap, "ui_mode", this.deviceInfo.C);
+        addString(hashMap, "device_type", this.deviceInfo.f5569k);
+        addLong(hashMap, "ui_mode", this.deviceInfo.f5559C);
         addString(hashMap, "environment", this.adjustConfig.environment);
         addBoolean(hashMap, "event_buffering_enabled", Boolean.valueOf(this.adjustConfig.eventBufferingEnabled));
         addString(hashMap, "external_device_id", this.adjustConfig.externalDeviceId);
         addBoolean(hashMap, "needs_response_details", bool);
-        addString(hashMap, "os_name", this.deviceInfo.n);
-        addString(hashMap, "os_version", this.deviceInfo.o);
-        addString(hashMap, "package_name", this.deviceInfo.i);
-        addString(hashMap, "push_token", this.activityStateCopy.h);
+        addString(hashMap, "os_name", this.deviceInfo.f5570n);
+        addString(hashMap, "os_version", this.deviceInfo.f5571o);
+        addString(hashMap, CampaignEx.JSON_KEY_PACKAGE_NAME, this.deviceInfo.f5567i);
+        addString(hashMap, "push_token", this.activityStateCopy.f5538h);
         addString(hashMap, "secret_id", this.adjustConfig.secretId);
         injectFeatureFlagsWithParameters(hashMap);
         checkDeviceIds(hashMap);
@@ -609,17 +547,17 @@ public class PackageBuilder {
             hashMap.putAll(oaidParameters);
         }
         this.deviceInfo.b(this.adjustConfig);
-        addString(hashMap, "android_uuid", this.activityStateCopy.g);
-        addString(hashMap, "gps_adid", this.deviceInfo.f260a);
-        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.c);
+        addString(hashMap, "android_uuid", this.activityStateCopy.f5537g);
+        addString(hashMap, "gps_adid", this.deviceInfo.f5560a);
+        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.f5561c);
         addString(hashMap, "gps_adid_src", this.deviceInfo.b);
-        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.d);
+        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.f5562d);
         addString(hashMap, "fire_adid", Util.getFireAdvertisingId(this.adjustConfig));
         addBoolean(hashMap, "fire_tracking_enabled", Util.getFireTrackingEnabled(this.adjustConfig));
         if (!containsPlayIds(hashMap) && !containsFireIds(hashMap)) {
             logger.warn("Google Advertising ID or Fire Advertising ID not detected, fallback to non Google Play and Fire identifiers will take place", new Object[0]);
             this.deviceInfo.a(this.adjustConfig);
-            addString(hashMap, "android_id", this.deviceInfo.f);
+            addString(hashMap, "android_id", this.deviceInfo.f5564f);
         }
         addString(hashMap, "app_secret", this.adjustConfig.appSecret);
         addString(hashMap, "app_token", this.adjustConfig.appToken);
@@ -632,7 +570,7 @@ public class PackageBuilder {
         addBoolean(hashMap, "event_buffering_enabled", Boolean.valueOf(this.adjustConfig.eventBufferingEnabled));
         addString(hashMap, "external_device_id", this.adjustConfig.externalDeviceId);
         addBoolean(hashMap, "needs_response_details", bool);
-        addString(hashMap, "push_token", this.activityStateCopy.h);
+        addString(hashMap, "push_token", this.activityStateCopy.f5538h);
         addString(hashMap, "secret_id", this.adjustConfig.secretId);
         addString(hashMap, "source", str);
         injectFeatureFlagsWithParameters(hashMap);
@@ -640,7 +578,7 @@ public class PackageBuilder {
         return hashMap;
     }
 
-    private Map<String, String> getMeasurementConsentParameters(boolean z) {
+    private Map<String, String> getMeasurementConsentParameters(boolean z8) {
         HashMap hashMap = new HashMap();
         Map<String, String> imeiParameters = Util.getImeiParameters(this.adjustConfig, logger);
         if (imeiParameters != null) {
@@ -650,46 +588,46 @@ public class PackageBuilder {
         if (oaidParameters != null) {
             hashMap.putAll(oaidParameters);
         }
-        addString(hashMap, "measurement", z ? "enable" : "disable");
+        addString(hashMap, "measurement", z8 ? "enable" : "disable");
         this.deviceInfo.b(this.adjustConfig);
-        addString(hashMap, "android_uuid", this.activityStateCopy.g);
-        addString(hashMap, "gps_adid", this.deviceInfo.f260a);
-        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.c);
+        addString(hashMap, "android_uuid", this.activityStateCopy.f5537g);
+        addString(hashMap, "gps_adid", this.deviceInfo.f5560a);
+        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.f5561c);
         addString(hashMap, "gps_adid_src", this.deviceInfo.b);
-        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.d);
+        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.f5562d);
         addString(hashMap, "fire_adid", Util.getFireAdvertisingId(this.adjustConfig));
         addBoolean(hashMap, "fire_tracking_enabled", Util.getFireTrackingEnabled(this.adjustConfig));
         if (!containsPlayIds(hashMap) && !containsFireIds(hashMap)) {
             logger.warn("Google Advertising ID or Fire Advertising ID not detected, fallback to non Google Play and Fire identifiers will take place", new Object[0]);
             this.deviceInfo.a(this.adjustConfig);
-            addString(hashMap, "android_id", this.deviceInfo.f);
+            addString(hashMap, "android_id", this.deviceInfo.f5564f);
         }
-        addString(hashMap, "api_level", this.deviceInfo.p);
+        addString(hashMap, "api_level", this.deviceInfo.f5572p);
         addString(hashMap, "app_secret", this.adjustConfig.appSecret);
         addString(hashMap, "app_token", this.adjustConfig.appToken);
-        addString(hashMap, "app_version", this.deviceInfo.j);
+        addString(hashMap, "app_version", this.deviceInfo.f5568j);
         Boolean bool = Boolean.TRUE;
         addBoolean(hashMap, "attribution_deeplink", bool);
         addDateInMilliseconds(hashMap, "created_at", this.createdAt);
         addBoolean(hashMap, "device_known", this.adjustConfig.deviceKnown);
         addString(hashMap, "device_name", this.deviceInfo.l);
-        addString(hashMap, "device_type", this.deviceInfo.k);
-        addLong(hashMap, "ui_mode", this.deviceInfo.C);
+        addString(hashMap, "device_type", this.deviceInfo.f5569k);
+        addLong(hashMap, "ui_mode", this.deviceInfo.f5559C);
         addString(hashMap, "environment", this.adjustConfig.environment);
         addBoolean(hashMap, "event_buffering_enabled", Boolean.valueOf(this.adjustConfig.eventBufferingEnabled));
         addString(hashMap, "external_device_id", this.adjustConfig.externalDeviceId);
         addBoolean(hashMap, "needs_response_details", bool);
-        addString(hashMap, "os_name", this.deviceInfo.n);
-        addString(hashMap, "os_version", this.deviceInfo.o);
-        addString(hashMap, "package_name", this.deviceInfo.i);
-        addString(hashMap, "push_token", this.activityStateCopy.h);
+        addString(hashMap, "os_name", this.deviceInfo.f5570n);
+        addString(hashMap, "os_version", this.deviceInfo.f5571o);
+        addString(hashMap, CampaignEx.JSON_KEY_PACKAGE_NAME, this.deviceInfo.f5567i);
+        addString(hashMap, "push_token", this.activityStateCopy.f5538h);
         addString(hashMap, "secret_id", this.adjustConfig.secretId);
         injectFeatureFlagsWithParameters(hashMap);
         checkDeviceIds(hashMap);
         return hashMap;
     }
 
-    private Map<String, String> getSessionParameters(boolean z) {
+    private Map<String, String> getSessionParameters(boolean z8) {
         HashMap hashMap = new HashMap();
         Map<String, String> imeiParameters = Util.getImeiParameters(this.adjustConfig, logger);
         if (imeiParameters != null) {
@@ -699,73 +637,73 @@ public class PackageBuilder {
         if (oaidParameters != null) {
             hashMap.putAll(oaidParameters);
         }
-        if (!z) {
+        if (!z8) {
             addMapJson(hashMap, Constants.CALLBACK_PARAMETERS, this.sessionParameters.callbackParameters);
             addMapJson(hashMap, Constants.PARTNER_PARAMETERS, this.sessionParameters.partnerParameters);
         }
         this.deviceInfo.b(this.adjustConfig);
-        addString(hashMap, "android_uuid", this.activityStateCopy.g);
-        addString(hashMap, "gps_adid", this.deviceInfo.f260a);
-        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.c);
+        addString(hashMap, "android_uuid", this.activityStateCopy.f5537g);
+        addString(hashMap, "gps_adid", this.deviceInfo.f5560a);
+        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.f5561c);
         addString(hashMap, "gps_adid_src", this.deviceInfo.b);
-        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.d);
+        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.f5562d);
         addString(hashMap, "fire_adid", Util.getFireAdvertisingId(this.adjustConfig));
         addBoolean(hashMap, "fire_tracking_enabled", Util.getFireTrackingEnabled(this.adjustConfig));
         if (!containsPlayIds(hashMap) && !containsFireIds(hashMap)) {
             logger.warn("Google Advertising ID or Fire Advertising ID not detected, fallback to non Google Play and Fire identifiers will take place", new Object[0]);
             this.deviceInfo.a(this.adjustConfig);
-            addString(hashMap, "android_id", this.deviceInfo.f);
+            addString(hashMap, "android_id", this.deviceInfo.f5564f);
         }
-        addString(hashMap, "api_level", this.deviceInfo.p);
+        addString(hashMap, "api_level", this.deviceInfo.f5572p);
         addString(hashMap, "app_secret", this.adjustConfig.appSecret);
         addString(hashMap, "app_token", this.adjustConfig.appToken);
-        addString(hashMap, "app_version", this.deviceInfo.j);
+        addString(hashMap, "app_version", this.deviceInfo.f5568j);
         Boolean bool = Boolean.TRUE;
         addBoolean(hashMap, "attribution_deeplink", bool);
         addLong(hashMap, "connectivity_type", Util.getConnectivityType(this.adjustConfig.context));
-        addString(hashMap, "country", this.deviceInfo.r);
-        addString(hashMap, "cpu_type", this.deviceInfo.y);
+        addString(hashMap, "country", this.deviceInfo.f5574r);
+        addString(hashMap, "cpu_type", this.deviceInfo.f5581y);
         addDateInMilliseconds(hashMap, "created_at", this.createdAt);
         addString(hashMap, "default_tracker", this.adjustConfig.defaultTracker);
         addBoolean(hashMap, "device_known", this.adjustConfig.deviceKnown);
         addBoolean(hashMap, "needs_cost", this.adjustConfig.needsCost);
         addString(hashMap, "device_manufacturer", this.deviceInfo.m);
         addString(hashMap, "device_name", this.deviceInfo.l);
-        addString(hashMap, "device_type", this.deviceInfo.k);
-        addLong(hashMap, "ui_mode", this.deviceInfo.C);
-        addString(hashMap, "display_height", this.deviceInfo.w);
-        addString(hashMap, "display_width", this.deviceInfo.v);
+        addString(hashMap, "device_type", this.deviceInfo.f5569k);
+        addLong(hashMap, "ui_mode", this.deviceInfo.f5559C);
+        addString(hashMap, "display_height", this.deviceInfo.f5579w);
+        addString(hashMap, "display_width", this.deviceInfo.f5578v);
         addString(hashMap, "environment", this.adjustConfig.environment);
         addBoolean(hashMap, "event_buffering_enabled", Boolean.valueOf(this.adjustConfig.eventBufferingEnabled));
         addString(hashMap, "external_device_id", this.adjustConfig.externalDeviceId);
-        addString(hashMap, "fb_id", this.deviceInfo.g);
-        addString(hashMap, "hardware_name", this.deviceInfo.x);
-        addString(hashMap, "installed_at", this.deviceInfo.A);
-        addString(hashMap, "language", this.deviceInfo.q);
-        addDuration(hashMap, "last_interval", this.activityStateCopy.e);
+        addString(hashMap, "fb_id", this.deviceInfo.f5565g);
+        addString(hashMap, "hardware_name", this.deviceInfo.f5580x);
+        addString(hashMap, "installed_at", this.deviceInfo.f5557A);
+        addString(hashMap, "language", this.deviceInfo.f5573q);
+        addDuration(hashMap, "last_interval", this.activityStateCopy.f5535e);
         addString(hashMap, "mcc", Util.getMcc(this.adjustConfig.context));
         addString(hashMap, "mnc", Util.getMnc(this.adjustConfig.context));
         addBoolean(hashMap, "needs_response_details", bool);
-        addString(hashMap, "os_build", this.deviceInfo.z);
-        addString(hashMap, "os_name", this.deviceInfo.n);
-        addString(hashMap, "os_version", this.deviceInfo.o);
-        addString(hashMap, "package_name", this.deviceInfo.i);
-        addString(hashMap, "push_token", this.activityStateCopy.h);
-        addString(hashMap, "screen_density", this.deviceInfo.u);
-        addString(hashMap, "screen_format", this.deviceInfo.t);
-        addString(hashMap, "screen_size", this.deviceInfo.s);
+        addString(hashMap, "os_build", this.deviceInfo.f5582z);
+        addString(hashMap, "os_name", this.deviceInfo.f5570n);
+        addString(hashMap, "os_version", this.deviceInfo.f5571o);
+        addString(hashMap, CampaignEx.JSON_KEY_PACKAGE_NAME, this.deviceInfo.f5567i);
+        addString(hashMap, "push_token", this.activityStateCopy.f5538h);
+        addString(hashMap, "screen_density", this.deviceInfo.f5577u);
+        addString(hashMap, "screen_format", this.deviceInfo.f5576t);
+        addString(hashMap, "screen_size", this.deviceInfo.f5575s);
         addString(hashMap, "secret_id", this.adjustConfig.secretId);
         addLong(hashMap, "session_count", this.activityStateCopy.b);
-        addDuration(hashMap, "session_length", this.activityStateCopy.f);
-        addLong(hashMap, "subsession_count", this.activityStateCopy.c);
-        addDuration(hashMap, "time_spent", this.activityStateCopy.d);
-        addString(hashMap, "updated_at", this.deviceInfo.B);
+        addDuration(hashMap, "session_length", this.activityStateCopy.f5536f);
+        addLong(hashMap, "subsession_count", this.activityStateCopy.f5533c);
+        addDuration(hashMap, "time_spent", this.activityStateCopy.f5534d);
+        addString(hashMap, "updated_at", this.deviceInfo.f5558B);
         injectFeatureFlagsWithParameters(hashMap);
         checkDeviceIds(hashMap);
         return hashMap;
     }
 
-    private Map<String, String> getSubscriptionParameters(AdjustPlayStoreSubscription adjustPlayStoreSubscription, boolean z) {
+    private Map<String, String> getSubscriptionParameters(AdjustPlayStoreSubscription adjustPlayStoreSubscription, boolean z8) {
         HashMap hashMap = new HashMap();
         Map<String, String> imeiParameters = Util.getImeiParameters(this.adjustConfig, logger);
         if (imeiParameters != null) {
@@ -776,74 +714,74 @@ public class PackageBuilder {
             hashMap.putAll(oaidParameters);
         }
         this.deviceInfo.b(this.adjustConfig);
-        addString(hashMap, "android_uuid", this.activityStateCopy.g);
-        addString(hashMap, "gps_adid", this.deviceInfo.f260a);
-        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.c);
+        addString(hashMap, "android_uuid", this.activityStateCopy.f5537g);
+        addString(hashMap, "gps_adid", this.deviceInfo.f5560a);
+        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.f5561c);
         addString(hashMap, "gps_adid_src", this.deviceInfo.b);
-        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.d);
+        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.f5562d);
         addString(hashMap, "fire_adid", Util.getFireAdvertisingId(this.adjustConfig));
         addBoolean(hashMap, "fire_tracking_enabled", Util.getFireTrackingEnabled(this.adjustConfig));
         if (!containsPlayIds(hashMap) && !containsFireIds(hashMap)) {
             logger.warn("Google Advertising ID or Fire Advertising ID not detected, fallback to non Google Play and Fire identifiers will take place", new Object[0]);
             this.deviceInfo.a(this.adjustConfig);
-            addString(hashMap, "android_id", this.deviceInfo.f);
+            addString(hashMap, "android_id", this.deviceInfo.f5564f);
         }
-        if (!z) {
+        if (!z8) {
             addMapJson(hashMap, Constants.CALLBACK_PARAMETERS, Util.mergeParameters(this.sessionParameters.callbackParameters, adjustPlayStoreSubscription.getCallbackParameters(), "Callback"));
             addMapJson(hashMap, Constants.PARTNER_PARAMETERS, Util.mergeParameters(this.sessionParameters.partnerParameters, adjustPlayStoreSubscription.getPartnerParameters(), "Partner"));
         }
-        addString(hashMap, "api_level", this.deviceInfo.p);
+        addString(hashMap, "api_level", this.deviceInfo.f5572p);
         addString(hashMap, "app_secret", this.adjustConfig.appSecret);
         addString(hashMap, "app_token", this.adjustConfig.appToken);
-        addString(hashMap, "app_version", this.deviceInfo.j);
+        addString(hashMap, "app_version", this.deviceInfo.f5568j);
         Boolean bool = Boolean.TRUE;
         addBoolean(hashMap, "attribution_deeplink", bool);
         addLong(hashMap, "connectivity_type", Util.getConnectivityType(this.adjustConfig.context));
-        addString(hashMap, "country", this.deviceInfo.r);
-        addString(hashMap, "cpu_type", this.deviceInfo.y);
+        addString(hashMap, "country", this.deviceInfo.f5574r);
+        addString(hashMap, "cpu_type", this.deviceInfo.f5581y);
         addDateInMilliseconds(hashMap, "created_at", this.createdAt);
         addString(hashMap, "default_tracker", this.adjustConfig.defaultTracker);
         addBoolean(hashMap, "device_known", this.adjustConfig.deviceKnown);
         addBoolean(hashMap, "needs_cost", this.adjustConfig.needsCost);
         addString(hashMap, "device_manufacturer", this.deviceInfo.m);
         addString(hashMap, "device_name", this.deviceInfo.l);
-        addString(hashMap, "device_type", this.deviceInfo.k);
-        addLong(hashMap, "ui_mode", this.deviceInfo.C);
-        addString(hashMap, "display_height", this.deviceInfo.w);
-        addString(hashMap, "display_width", this.deviceInfo.v);
+        addString(hashMap, "device_type", this.deviceInfo.f5569k);
+        addLong(hashMap, "ui_mode", this.deviceInfo.f5559C);
+        addString(hashMap, "display_height", this.deviceInfo.f5579w);
+        addString(hashMap, "display_width", this.deviceInfo.f5578v);
         addString(hashMap, "environment", this.adjustConfig.environment);
         addBoolean(hashMap, "event_buffering_enabled", Boolean.valueOf(this.adjustConfig.eventBufferingEnabled));
         addString(hashMap, "external_device_id", this.adjustConfig.externalDeviceId);
-        addString(hashMap, "fb_id", this.deviceInfo.g);
-        addString(hashMap, "hardware_name", this.deviceInfo.x);
-        addString(hashMap, "installed_at", this.deviceInfo.A);
-        addString(hashMap, "language", this.deviceInfo.q);
-        addDuration(hashMap, "last_interval", this.activityStateCopy.e);
+        addString(hashMap, "fb_id", this.deviceInfo.f5565g);
+        addString(hashMap, "hardware_name", this.deviceInfo.f5580x);
+        addString(hashMap, "installed_at", this.deviceInfo.f5557A);
+        addString(hashMap, "language", this.deviceInfo.f5573q);
+        addDuration(hashMap, "last_interval", this.activityStateCopy.f5535e);
         addString(hashMap, "mcc", Util.getMcc(this.adjustConfig.context));
         addString(hashMap, "mnc", Util.getMnc(this.adjustConfig.context));
         addBoolean(hashMap, "needs_response_details", bool);
-        addString(hashMap, "os_build", this.deviceInfo.z);
-        addString(hashMap, "os_name", this.deviceInfo.n);
-        addString(hashMap, "os_version", this.deviceInfo.o);
-        addString(hashMap, "package_name", this.deviceInfo.i);
-        addString(hashMap, "push_token", this.activityStateCopy.h);
-        addString(hashMap, "screen_density", this.deviceInfo.u);
-        addString(hashMap, "screen_format", this.deviceInfo.t);
-        addString(hashMap, "screen_size", this.deviceInfo.s);
+        addString(hashMap, "os_build", this.deviceInfo.f5582z);
+        addString(hashMap, "os_name", this.deviceInfo.f5570n);
+        addString(hashMap, "os_version", this.deviceInfo.f5571o);
+        addString(hashMap, CampaignEx.JSON_KEY_PACKAGE_NAME, this.deviceInfo.f5567i);
+        addString(hashMap, "push_token", this.activityStateCopy.f5538h);
+        addString(hashMap, "screen_density", this.deviceInfo.f5577u);
+        addString(hashMap, "screen_format", this.deviceInfo.f5576t);
+        addString(hashMap, "screen_size", this.deviceInfo.f5575s);
         addString(hashMap, "secret_id", this.adjustConfig.secretId);
         addLong(hashMap, "session_count", this.activityStateCopy.b);
-        addDuration(hashMap, "session_length", this.activityStateCopy.f);
-        addLong(hashMap, "subsession_count", this.activityStateCopy.c);
-        addDuration(hashMap, "time_spent", this.activityStateCopy.d);
-        addString(hashMap, "updated_at", this.deviceInfo.B);
+        addDuration(hashMap, "session_length", this.activityStateCopy.f5536f);
+        addLong(hashMap, "subsession_count", this.activityStateCopy.f5533c);
+        addDuration(hashMap, "time_spent", this.activityStateCopy.f5534d);
+        addString(hashMap, "updated_at", this.deviceInfo.f5558B);
         addString(hashMap, "billing_store", adjustPlayStoreSubscription.getBillingStore());
-        addString(hashMap, FirebaseAnalytics.Param.CURRENCY, adjustPlayStoreSubscription.getCurrency());
+        addString(hashMap, AppLovinEventParameters.REVENUE_CURRENCY, adjustPlayStoreSubscription.getCurrency());
         addString(hashMap, "product_id", adjustPlayStoreSubscription.getSku());
         addString(hashMap, "purchase_token", adjustPlayStoreSubscription.getPurchaseToken());
         addString(hashMap, "receipt", adjustPlayStoreSubscription.getSignature());
         addLong(hashMap, "revenue", adjustPlayStoreSubscription.getPrice());
         addDateInMilliseconds(hashMap, "transaction_date", adjustPlayStoreSubscription.getPurchaseTime());
-        addString(hashMap, FirebaseAnalytics.Param.TRANSACTION_ID, adjustPlayStoreSubscription.getOrderId());
+        addString(hashMap, AppLovinEventParameters.CHECKOUT_TRANSACTION_IDENTIFIER, adjustPlayStoreSubscription.getOrderId());
         injectFeatureFlagsWithParameters(hashMap);
         checkDeviceIds(hashMap);
         return hashMap;
@@ -866,37 +804,37 @@ public class PackageBuilder {
         addMapJson(hashMap, "granular_third_party_sharing_options", adjustThirdPartySharing.granularOptions);
         addMapJson(hashMap, "partner_sharing_settings", adjustThirdPartySharing.partnerSharingSettings);
         this.deviceInfo.b(this.adjustConfig);
-        addString(hashMap, "android_uuid", this.activityStateCopy.g);
-        addString(hashMap, "gps_adid", this.deviceInfo.f260a);
-        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.c);
+        addString(hashMap, "android_uuid", this.activityStateCopy.f5537g);
+        addString(hashMap, "gps_adid", this.deviceInfo.f5560a);
+        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.f5561c);
         addString(hashMap, "gps_adid_src", this.deviceInfo.b);
-        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.d);
+        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.f5562d);
         addString(hashMap, "fire_adid", Util.getFireAdvertisingId(this.adjustConfig));
         addBoolean(hashMap, "fire_tracking_enabled", Util.getFireTrackingEnabled(this.adjustConfig));
         if (!containsPlayIds(hashMap) && !containsFireIds(hashMap)) {
             logger.warn("Google Advertising ID or Fire Advertising ID not detected, fallback to non Google Play and Fire identifiers will take place", new Object[0]);
             this.deviceInfo.a(this.adjustConfig);
-            addString(hashMap, "android_id", this.deviceInfo.f);
+            addString(hashMap, "android_id", this.deviceInfo.f5564f);
         }
-        addString(hashMap, "api_level", this.deviceInfo.p);
+        addString(hashMap, "api_level", this.deviceInfo.f5572p);
         addString(hashMap, "app_secret", this.adjustConfig.appSecret);
         addString(hashMap, "app_token", this.adjustConfig.appToken);
-        addString(hashMap, "app_version", this.deviceInfo.j);
+        addString(hashMap, "app_version", this.deviceInfo.f5568j);
         Boolean bool2 = Boolean.TRUE;
         addBoolean(hashMap, "attribution_deeplink", bool2);
         addDateInMilliseconds(hashMap, "created_at", this.createdAt);
         addBoolean(hashMap, "device_known", this.adjustConfig.deviceKnown);
         addString(hashMap, "device_name", this.deviceInfo.l);
-        addString(hashMap, "device_type", this.deviceInfo.k);
-        addLong(hashMap, "ui_mode", this.deviceInfo.C);
+        addString(hashMap, "device_type", this.deviceInfo.f5569k);
+        addLong(hashMap, "ui_mode", this.deviceInfo.f5559C);
         addString(hashMap, "environment", this.adjustConfig.environment);
         addBoolean(hashMap, "event_buffering_enabled", Boolean.valueOf(this.adjustConfig.eventBufferingEnabled));
         addString(hashMap, "external_device_id", this.adjustConfig.externalDeviceId);
         addBoolean(hashMap, "needs_response_details", bool2);
-        addString(hashMap, "os_name", this.deviceInfo.n);
-        addString(hashMap, "os_version", this.deviceInfo.o);
-        addString(hashMap, "package_name", this.deviceInfo.i);
-        addString(hashMap, "push_token", this.activityStateCopy.h);
+        addString(hashMap, "os_name", this.deviceInfo.f5570n);
+        addString(hashMap, "os_version", this.deviceInfo.f5571o);
+        addString(hashMap, CampaignEx.JSON_KEY_PACKAGE_NAME, this.deviceInfo.f5567i);
+        addString(hashMap, "push_token", this.activityStateCopy.f5538h);
         addString(hashMap, "secret_id", this.adjustConfig.secretId);
         injectFeatureFlagsWithParameters(hashMap);
         checkDeviceIds(hashMap);
@@ -912,8 +850,8 @@ public class PackageBuilder {
         }
     }
 
-    public ActivityPackage buildAdRevenuePackage(AdjustAdRevenue adjustAdRevenue, boolean z) {
-        Map<String, String> adRevenueParameters = getAdRevenueParameters(adjustAdRevenue, z);
+    public ActivityPackage buildAdRevenuePackage(AdjustAdRevenue adjustAdRevenue, boolean z8) {
+        Map<String, String> adRevenueParameters = getAdRevenueParameters(adjustAdRevenue, z8);
         ActivityKind activityKind = ActivityKind.AD_REVENUE;
         ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
         defaultActivityPackage.setPath("/ad_revenue");
@@ -923,24 +861,10 @@ public class PackageBuilder {
         AdjustConfig adjustConfig = this.adjustConfig;
         AdjustSigner.sign(adRevenueParameters, activityKind2, clientSdk, adjustConfig.context, adjustConfig.logger);
         defaultActivityPackage.setParameters(adRevenueParameters);
-        if (z) {
+        if (z8) {
             defaultActivityPackage.setCallbackParameters(adjustAdRevenue.callbackParameters);
             defaultActivityPackage.setPartnerParameters(adjustAdRevenue.partnerParameters);
         }
-        return defaultActivityPackage;
-    }
-
-    public ActivityPackage buildAdRevenuePackage(String str, JSONObject jSONObject) {
-        Map<String, String> adRevenueParameters = getAdRevenueParameters(str, jSONObject);
-        ActivityKind activityKind = ActivityKind.AD_REVENUE;
-        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
-        defaultActivityPackage.setPath("/ad_revenue");
-        defaultActivityPackage.setSuffix("");
-        String activityKind2 = activityKind.toString();
-        String clientSdk = defaultActivityPackage.getClientSdk();
-        AdjustConfig adjustConfig = this.adjustConfig;
-        AdjustSigner.sign(adRevenueParameters, activityKind2, clientSdk, adjustConfig.context, adjustConfig.logger);
-        defaultActivityPackage.setParameters(adRevenueParameters);
         return defaultActivityPackage;
     }
 
@@ -993,8 +917,8 @@ public class PackageBuilder {
         return defaultActivityPackage;
     }
 
-    public ActivityPackage buildEventPackage(AdjustEvent adjustEvent, boolean z) {
-        Map<String, String> eventParameters = getEventParameters(adjustEvent, z);
+    public ActivityPackage buildEventPackage(AdjustEvent adjustEvent, boolean z8) {
+        Map<String, String> eventParameters = getEventParameters(adjustEvent, z8);
         ActivityKind activityKind = ActivityKind.EVENT;
         ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
         defaultActivityPackage.setPath("/event");
@@ -1004,7 +928,7 @@ public class PackageBuilder {
         AdjustConfig adjustConfig = this.adjustConfig;
         AdjustSigner.sign(eventParameters, activityKind2, clientSdk, adjustConfig.context, adjustConfig.logger);
         defaultActivityPackage.setParameters(eventParameters);
-        if (z) {
+        if (z8) {
             defaultActivityPackage.setCallbackParameters(adjustEvent.callbackParameters);
             defaultActivityPackage.setPartnerParameters(adjustEvent.partnerParameters);
         }
@@ -1039,8 +963,8 @@ public class PackageBuilder {
         return defaultActivityPackage;
     }
 
-    public ActivityPackage buildMeasurementConsentPackage(boolean z) {
-        Map<String, String> measurementConsentParameters = getMeasurementConsentParameters(z);
+    public ActivityPackage buildMeasurementConsentPackage(boolean z8) {
+        Map<String, String> measurementConsentParameters = getMeasurementConsentParameters(z8);
         ActivityKind activityKind = ActivityKind.MEASUREMENT_CONSENT;
         ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
         defaultActivityPackage.setPath("/measurement_consent");
@@ -1053,8 +977,8 @@ public class PackageBuilder {
         return defaultActivityPackage;
     }
 
-    public ActivityPackage buildSessionPackage(boolean z) {
-        Map<String, String> sessionParameters = getSessionParameters(z);
+    public ActivityPackage buildSessionPackage(boolean z8) {
+        Map<String, String> sessionParameters = getSessionParameters(z8);
         ActivityKind activityKind = ActivityKind.SESSION;
         ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
         defaultActivityPackage.setPath("/session");
@@ -1067,8 +991,8 @@ public class PackageBuilder {
         return defaultActivityPackage;
     }
 
-    public ActivityPackage buildSubscriptionPackage(AdjustPlayStoreSubscription adjustPlayStoreSubscription, boolean z) {
-        Map<String, String> subscriptionParameters = getSubscriptionParameters(adjustPlayStoreSubscription, z);
+    public ActivityPackage buildSubscriptionPackage(AdjustPlayStoreSubscription adjustPlayStoreSubscription, boolean z8) {
+        Map<String, String> subscriptionParameters = getSubscriptionParameters(adjustPlayStoreSubscription, z8);
         ActivityKind activityKind = ActivityKind.SUBSCRIPTION;
         ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
         defaultActivityPackage.setPath("/v2/purchase");
@@ -1095,7 +1019,7 @@ public class PackageBuilder {
         return defaultActivityPackage;
     }
 
-    public Map<String, String> getEventParameters(AdjustEvent adjustEvent, boolean z) {
+    public Map<String, String> getEventParameters(AdjustEvent adjustEvent, boolean z8) {
         HashMap hashMap = new HashMap();
         Map<String, String> imeiParameters = Util.getImeiParameters(this.adjustConfig, logger);
         if (imeiParameters != null) {
@@ -1105,71 +1029,159 @@ public class PackageBuilder {
         if (oaidParameters != null) {
             hashMap.putAll(oaidParameters);
         }
-        if (!z) {
+        if (!z8) {
             addMapJson(hashMap, Constants.CALLBACK_PARAMETERS, Util.mergeParameters(this.sessionParameters.callbackParameters, adjustEvent.callbackParameters, "Callback"));
             addMapJson(hashMap, Constants.PARTNER_PARAMETERS, Util.mergeParameters(this.sessionParameters.partnerParameters, adjustEvent.partnerParameters, "Partner"));
         }
         this.deviceInfo.b(this.adjustConfig);
-        addString(hashMap, "android_uuid", this.activityStateCopy.g);
-        addString(hashMap, "gps_adid", this.deviceInfo.f260a);
-        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.c);
+        addString(hashMap, "android_uuid", this.activityStateCopy.f5537g);
+        addString(hashMap, "gps_adid", this.deviceInfo.f5560a);
+        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.f5561c);
         addString(hashMap, "gps_adid_src", this.deviceInfo.b);
-        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.d);
+        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.f5562d);
         addString(hashMap, "fire_adid", Util.getFireAdvertisingId(this.adjustConfig));
         addBoolean(hashMap, "fire_tracking_enabled", Util.getFireTrackingEnabled(this.adjustConfig));
         if (!containsPlayIds(hashMap) && !containsFireIds(hashMap)) {
             logger.warn("Google Advertising ID or Fire Advertising ID not detected, fallback to non Google Play and Fire identifiers will take place", new Object[0]);
             this.deviceInfo.a(this.adjustConfig);
-            addString(hashMap, "android_id", this.deviceInfo.f);
+            addString(hashMap, "android_id", this.deviceInfo.f5564f);
         }
-        addString(hashMap, "api_level", this.deviceInfo.p);
+        addString(hashMap, "api_level", this.deviceInfo.f5572p);
         addString(hashMap, "app_secret", this.adjustConfig.appSecret);
         addString(hashMap, "app_token", this.adjustConfig.appToken);
-        addString(hashMap, "app_version", this.deviceInfo.j);
+        addString(hashMap, "app_version", this.deviceInfo.f5568j);
         Boolean bool = Boolean.TRUE;
         addBoolean(hashMap, "attribution_deeplink", bool);
         addLong(hashMap, "connectivity_type", Util.getConnectivityType(this.adjustConfig.context));
-        addString(hashMap, "country", this.deviceInfo.r);
-        addString(hashMap, "cpu_type", this.deviceInfo.y);
+        addString(hashMap, "country", this.deviceInfo.f5574r);
+        addString(hashMap, "cpu_type", this.deviceInfo.f5581y);
         addDateInMilliseconds(hashMap, "created_at", this.createdAt);
-        addString(hashMap, FirebaseAnalytics.Param.CURRENCY, adjustEvent.currency);
+        addString(hashMap, AppLovinEventParameters.REVENUE_CURRENCY, adjustEvent.currency);
         addBoolean(hashMap, "device_known", this.adjustConfig.deviceKnown);
         addBoolean(hashMap, "needs_cost", this.adjustConfig.needsCost);
         addString(hashMap, "device_manufacturer", this.deviceInfo.m);
         addString(hashMap, "device_name", this.deviceInfo.l);
-        addString(hashMap, "device_type", this.deviceInfo.k);
-        addLong(hashMap, "ui_mode", this.deviceInfo.C);
-        addString(hashMap, "display_height", this.deviceInfo.w);
-        addString(hashMap, "display_width", this.deviceInfo.v);
+        addString(hashMap, "device_type", this.deviceInfo.f5569k);
+        addLong(hashMap, "ui_mode", this.deviceInfo.f5559C);
+        addString(hashMap, "display_height", this.deviceInfo.f5579w);
+        addString(hashMap, "display_width", this.deviceInfo.f5578v);
         addString(hashMap, "environment", this.adjustConfig.environment);
         addString(hashMap, "event_callback_id", adjustEvent.callbackId);
-        addLong(hashMap, "event_count", this.activityStateCopy.f242a);
+        addLong(hashMap, "event_count", this.activityStateCopy.f5532a);
         addBoolean(hashMap, "event_buffering_enabled", Boolean.valueOf(this.adjustConfig.eventBufferingEnabled));
         addString(hashMap, "event_token", adjustEvent.eventToken);
         addString(hashMap, "external_device_id", this.adjustConfig.externalDeviceId);
-        addString(hashMap, "fb_id", this.deviceInfo.g);
-        addString(hashMap, "hardware_name", this.deviceInfo.x);
-        addString(hashMap, "language", this.deviceInfo.q);
+        addString(hashMap, "fb_id", this.deviceInfo.f5565g);
+        addString(hashMap, "hardware_name", this.deviceInfo.f5580x);
+        addString(hashMap, "language", this.deviceInfo.f5573q);
         addString(hashMap, "mcc", Util.getMcc(this.adjustConfig.context));
         addString(hashMap, "mnc", Util.getMnc(this.adjustConfig.context));
         addBoolean(hashMap, "needs_response_details", bool);
-        addString(hashMap, "os_build", this.deviceInfo.z);
-        addString(hashMap, "os_name", this.deviceInfo.n);
-        addString(hashMap, "os_version", this.deviceInfo.o);
-        addString(hashMap, "package_name", this.deviceInfo.i);
-        addString(hashMap, "push_token", this.activityStateCopy.h);
+        addString(hashMap, "os_build", this.deviceInfo.f5582z);
+        addString(hashMap, "os_name", this.deviceInfo.f5570n);
+        addString(hashMap, "os_version", this.deviceInfo.f5571o);
+        addString(hashMap, CampaignEx.JSON_KEY_PACKAGE_NAME, this.deviceInfo.f5567i);
+        addString(hashMap, "push_token", this.activityStateCopy.f5538h);
         addDouble(hashMap, "revenue", adjustEvent.revenue);
         addString(hashMap, "deduplication_id", adjustEvent.orderId);
-        addString(hashMap, "screen_density", this.deviceInfo.u);
-        addString(hashMap, "screen_format", this.deviceInfo.t);
-        addString(hashMap, "screen_size", this.deviceInfo.s);
+        addString(hashMap, "screen_density", this.deviceInfo.f5577u);
+        addString(hashMap, "screen_format", this.deviceInfo.f5576t);
+        addString(hashMap, "screen_size", this.deviceInfo.f5575s);
         addString(hashMap, "secret_id", this.adjustConfig.secretId);
         addLong(hashMap, "session_count", this.activityStateCopy.b);
-        addDuration(hashMap, "session_length", this.activityStateCopy.f);
-        addLong(hashMap, "subsession_count", this.activityStateCopy.c);
-        addDuration(hashMap, "time_spent", this.activityStateCopy.d);
+        addDuration(hashMap, "session_length", this.activityStateCopy.f5536f);
+        addLong(hashMap, "subsession_count", this.activityStateCopy.f5533c);
+        addDuration(hashMap, "time_spent", this.activityStateCopy.f5534d);
         injectFeatureFlagsWithParameters(hashMap);
         checkDeviceIds(hashMap);
         return hashMap;
+    }
+
+    private Map<String, String> getAdRevenueParameters(String str, JSONObject jSONObject) {
+        HashMap hashMap = new HashMap();
+        Map<String, String> imeiParameters = Util.getImeiParameters(this.adjustConfig, logger);
+        if (imeiParameters != null) {
+            hashMap.putAll(imeiParameters);
+        }
+        Map<String, String> oaidParameters = Util.getOaidParameters(this.adjustConfig, logger);
+        if (oaidParameters != null) {
+            hashMap.putAll(oaidParameters);
+        }
+        this.deviceInfo.b(this.adjustConfig);
+        addString(hashMap, "android_uuid", this.activityStateCopy.f5537g);
+        addString(hashMap, "gps_adid", this.deviceInfo.f5560a);
+        addLong(hashMap, "gps_adid_attempt", this.deviceInfo.f5561c);
+        addString(hashMap, "gps_adid_src", this.deviceInfo.b);
+        addBoolean(hashMap, "tracking_enabled", this.deviceInfo.f5562d);
+        addString(hashMap, "fire_adid", Util.getFireAdvertisingId(this.adjustConfig));
+        addBoolean(hashMap, "fire_tracking_enabled", Util.getFireTrackingEnabled(this.adjustConfig));
+        if (!containsPlayIds(hashMap) && !containsFireIds(hashMap)) {
+            logger.warn("Google Advertising ID or Fire Advertising ID not detected, fallback to non Google Play and Fire identifiers will take place", new Object[0]);
+            this.deviceInfo.a(this.adjustConfig);
+            addString(hashMap, "android_id", this.deviceInfo.f5564f);
+        }
+        addString(hashMap, "api_level", this.deviceInfo.f5572p);
+        addString(hashMap, "app_secret", this.adjustConfig.appSecret);
+        addString(hashMap, "app_token", this.adjustConfig.appToken);
+        addString(hashMap, "app_version", this.deviceInfo.f5568j);
+        Boolean bool = Boolean.TRUE;
+        addBoolean(hashMap, "attribution_deeplink", bool);
+        addLong(hashMap, "connectivity_type", Util.getConnectivityType(this.adjustConfig.context));
+        addString(hashMap, "country", this.deviceInfo.f5574r);
+        addString(hashMap, "cpu_type", this.deviceInfo.f5581y);
+        addDateInMilliseconds(hashMap, "created_at", this.createdAt);
+        addString(hashMap, "default_tracker", this.adjustConfig.defaultTracker);
+        addBoolean(hashMap, "device_known", this.adjustConfig.deviceKnown);
+        addBoolean(hashMap, "needs_cost", this.adjustConfig.needsCost);
+        addString(hashMap, "device_manufacturer", this.deviceInfo.m);
+        addString(hashMap, "device_name", this.deviceInfo.l);
+        addString(hashMap, "device_type", this.deviceInfo.f5569k);
+        addLong(hashMap, "ui_mode", this.deviceInfo.f5559C);
+        addString(hashMap, "display_height", this.deviceInfo.f5579w);
+        addString(hashMap, "display_width", this.deviceInfo.f5578v);
+        addString(hashMap, "environment", this.adjustConfig.environment);
+        addBoolean(hashMap, "event_buffering_enabled", Boolean.valueOf(this.adjustConfig.eventBufferingEnabled));
+        addString(hashMap, "external_device_id", this.adjustConfig.externalDeviceId);
+        addString(hashMap, "fb_id", this.deviceInfo.f5565g);
+        addString(hashMap, "hardware_name", this.deviceInfo.f5580x);
+        addString(hashMap, "installed_at", this.deviceInfo.f5557A);
+        addString(hashMap, "language", this.deviceInfo.f5573q);
+        addDuration(hashMap, "last_interval", this.activityStateCopy.f5535e);
+        addString(hashMap, "mcc", Util.getMcc(this.adjustConfig.context));
+        addString(hashMap, "mnc", Util.getMnc(this.adjustConfig.context));
+        addBoolean(hashMap, "needs_response_details", bool);
+        addString(hashMap, "os_build", this.deviceInfo.f5582z);
+        addString(hashMap, "os_name", this.deviceInfo.f5570n);
+        addString(hashMap, "os_version", this.deviceInfo.f5571o);
+        addString(hashMap, CampaignEx.JSON_KEY_PACKAGE_NAME, this.deviceInfo.f5567i);
+        addString(hashMap, "push_token", this.activityStateCopy.f5538h);
+        addString(hashMap, "screen_density", this.deviceInfo.f5577u);
+        addString(hashMap, "screen_format", this.deviceInfo.f5576t);
+        addString(hashMap, "screen_size", this.deviceInfo.f5575s);
+        addString(hashMap, "secret_id", this.adjustConfig.secretId);
+        addString(hashMap, "source", str);
+        addJsonObject(hashMap, "payload", jSONObject);
+        addLong(hashMap, "session_count", this.activityStateCopy.b);
+        addDuration(hashMap, "session_length", this.activityStateCopy.f5536f);
+        addLong(hashMap, "subsession_count", this.activityStateCopy.f5533c);
+        addDuration(hashMap, "time_spent", this.activityStateCopy.f5534d);
+        addString(hashMap, "updated_at", this.deviceInfo.f5558B);
+        injectFeatureFlagsWithParameters(hashMap);
+        checkDeviceIds(hashMap);
+        return hashMap;
+    }
+
+    public ActivityPackage buildAdRevenuePackage(String str, JSONObject jSONObject) {
+        Map<String, String> adRevenueParameters = getAdRevenueParameters(str, jSONObject);
+        ActivityKind activityKind = ActivityKind.AD_REVENUE;
+        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
+        defaultActivityPackage.setPath("/ad_revenue");
+        defaultActivityPackage.setSuffix("");
+        String activityKind2 = activityKind.toString();
+        String clientSdk = defaultActivityPackage.getClientSdk();
+        AdjustConfig adjustConfig = this.adjustConfig;
+        AdjustSigner.sign(adRevenueParameters, activityKind2, clientSdk, adjustConfig.context, adjustConfig.logger);
+        defaultActivityPackage.setParameters(adRevenueParameters);
+        return defaultActivityPackage;
     }
 }

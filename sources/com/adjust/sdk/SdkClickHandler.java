@@ -11,7 +11,7 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class SdkClickHandler implements ISdkClickHandler {
     private static final double MILLISECONDS_TO_SECONDS_DIVISOR = 1000.0d;
     private static final String SCHEDULED_EXECUTOR_SOURCE = "SdkClickHandler";
@@ -25,26 +25,26 @@ public class SdkClickHandler implements ISdkClickHandler {
     private boolean paused;
     private ThreadScheduler scheduler;
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class a implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ ActivityPackage f251a;
+        public final /* synthetic */ ActivityPackage f5547a;
 
         public a(ActivityPackage activityPackage) {
-            this.f251a = activityPackage;
+            this.f5547a = activityPackage;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            SdkClickHandler.this.packageQueue.add(this.f251a);
+            SdkClickHandler.this.packageQueue.add(this.f5547a);
             SdkClickHandler.this.logger.debug("Added sdk_click %d", Integer.valueOf(SdkClickHandler.this.packageQueue.size()));
-            SdkClickHandler.this.logger.verbose("%s", this.f251a.getExtendedString());
+            SdkClickHandler.this.logger.verbose("%s", this.f5547a.getExtendedString());
             SdkClickHandler.this.sendNextSdkClick();
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class b implements Runnable {
         public b() {
         }
@@ -55,35 +55,35 @@ public class SdkClickHandler implements ISdkClickHandler {
             SharedPreferencesManager defaultInstance = SharedPreferencesManager.getDefaultInstance(iActivityHandler.getContext());
             try {
                 JSONArray rawReferrerArray = defaultInstance.getRawReferrerArray();
-                boolean z = false;
-                for (int i = 0; i < rawReferrerArray.length(); i++) {
-                    JSONArray jSONArray = rawReferrerArray.getJSONArray(i);
+                boolean z8 = false;
+                for (int i9 = 0; i9 < rawReferrerArray.length(); i9++) {
+                    JSONArray jSONArray = rawReferrerArray.getJSONArray(i9);
                     if (jSONArray.optInt(2, -1) == 0) {
                         String optString = jSONArray.optString(0, null);
-                        z = true;
+                        z8 = true;
                         long optLong = jSONArray.optLong(1, -1L);
                         jSONArray.put(2, 1);
                         SdkClickHandler.this.sendSdkClick(PackageFactory.buildReftagSdkClickPackage(optString, optLong, iActivityHandler.getActivityState(), iActivityHandler.getAdjustConfig(), iActivityHandler.getDeviceInfo(), iActivityHandler.getSessionParameters()));
                     }
                 }
-                if (z) {
+                if (z8) {
                     defaultInstance.saveRawReferrerArray(rawReferrerArray);
                 }
-            } catch (JSONException e) {
-                SdkClickHandler.this.logger.error("Send saved raw referrers error (%s)", e.getMessage());
+            } catch (JSONException e4) {
+                SdkClickHandler.this.logger.error("Send saved raw referrers error (%s)", e4.getMessage());
             }
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class c implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ String f253a;
+        public final /* synthetic */ String f5549a;
         public final /* synthetic */ String b;
 
         public c(String str, String str2) {
-            this.f253a = str;
+            this.f5549a = str;
             this.b = str2;
         }
 
@@ -93,11 +93,11 @@ public class SdkClickHandler implements ISdkClickHandler {
             if (iActivityHandler == null) {
                 return;
             }
-            SdkClickHandler.this.sendSdkClick(PackageFactory.buildPreinstallSdkClickPackage(this.f253a, this.b, iActivityHandler.getActivityState(), iActivityHandler.getAdjustConfig(), iActivityHandler.getDeviceInfo(), iActivityHandler.getSessionParameters()));
+            SdkClickHandler.this.sendSdkClick(PackageFactory.buildPreinstallSdkClickPackage(this.f5549a, this.b, iActivityHandler.getActivityState(), iActivityHandler.getAdjustConfig(), iActivityHandler.getDeviceInfo(), iActivityHandler.getSessionParameters()));
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class d implements Runnable {
         public d() {
         }
@@ -108,25 +108,25 @@ public class SdkClickHandler implements ISdkClickHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class e implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ ActivityPackage f255a;
+        public final /* synthetic */ ActivityPackage f5552a;
 
         public e(ActivityPackage activityPackage) {
-            this.f255a = activityPackage;
+            this.f5552a = activityPackage;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            SdkClickHandler.this.sendSdkClickI(this.f255a);
+            SdkClickHandler.this.sendSdkClickI(this.f5552a);
             SdkClickHandler.this.sendNextSdkClick();
         }
     }
 
-    public SdkClickHandler(IActivityHandler iActivityHandler, boolean z, IActivityPackageSender iActivityPackageSender) {
-        init(iActivityHandler, z, iActivityPackageSender);
+    public SdkClickHandler(IActivityHandler iActivityHandler, boolean z8, IActivityPackageSender iActivityPackageSender) {
+        init(iActivityHandler, z8, iActivityPackageSender);
         this.logger = AdjustFactory.getLogger();
         this.backoffStrategy = AdjustFactory.getSdkClickBackoffStrategy();
         this.scheduler = new SingleThreadCachedScheduler(SCHEDULED_EXECUTOR_SOURCE);
@@ -170,53 +170,53 @@ public class SdkClickHandler implements ISdkClickHandler {
             return;
         }
         long waitingTime = Util.getWaitingTime(retries, this.backoffStrategy);
-        this.logger.verbose("Waiting for %s seconds before retrying sdk_click for the %d time", Util.SecondsDisplayFormat.format(waitingTime / 1000.0d), Integer.valueOf(retries));
+        this.logger.verbose("Waiting for %s seconds before retrying sdk_click for the %d time", Util.SecondsDisplayFormat.format(waitingTime / MILLISECONDS_TO_SECONDS_DIVISOR), Integer.valueOf(retries));
         this.scheduler.schedule(eVar, waitingTime);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void sendSdkClickI(ActivityPackage activityPackage) {
         String str;
-        long j;
-        long j2;
-        long j3;
-        long j4;
+        long j7;
+        long j9;
+        long j10;
+        long j11;
         String str2;
         String str3;
         Boolean bool;
-        long j5;
+        long j12;
         String str4;
         IActivityHandler iActivityHandler = this.activityHandlerWeakRef.get();
         String str5 = activityPackage.getParameters().get("source");
-        boolean z = str5 != null && str5.equals("reftag");
+        boolean z8 = str5 != null && str5.equals("reftag");
         String str6 = activityPackage.getParameters().get("raw_referrer");
-        if (z && SharedPreferencesManager.getDefaultInstance(iActivityHandler.getContext()).getRawReferrer(str6, activityPackage.getClickTimeInMilliseconds()) == null) {
+        if (z8 && SharedPreferencesManager.getDefaultInstance(iActivityHandler.getContext()).getRawReferrer(str6, activityPackage.getClickTimeInMilliseconds()) == null) {
             return;
         }
-        boolean z2 = str5 != null && str5.equals("install_referrer");
-        if (z2) {
-            j = activityPackage.getClickTimeInSeconds();
-            j3 = activityPackage.getInstallBeginTimeInSeconds();
+        boolean z9 = str5 != null && str5.equals("install_referrer");
+        if (z9) {
+            j7 = activityPackage.getClickTimeInSeconds();
+            j10 = activityPackage.getInstallBeginTimeInSeconds();
             str = activityPackage.getParameters().get(Constants.REFERRER);
-            j4 = activityPackage.getClickTimeServerInSeconds();
+            j11 = activityPackage.getClickTimeServerInSeconds();
             long installBeginTimeServerInSeconds = activityPackage.getInstallBeginTimeServerInSeconds();
             String installVersion = activityPackage.getInstallVersion();
             bool = activityPackage.getGooglePlayInstant();
             str3 = activityPackage.getParameters().get("referrer_api");
-            j2 = installBeginTimeServerInSeconds;
+            j9 = installBeginTimeServerInSeconds;
             str2 = installVersion;
         } else {
             str = null;
-            j = -1;
-            j2 = -1;
-            j3 = -1;
-            j4 = -1;
+            j7 = -1;
+            j9 = -1;
+            j10 = -1;
+            j11 = -1;
             str2 = null;
             str3 = null;
             bool = null;
         }
         String str7 = str2;
-        boolean z3 = str5 != null && str5.equals(Constants.PREINSTALL);
+        boolean z10 = str5 != null && str5.equals(Constants.PREINSTALL);
         ResponseData sendActivityPackageSync = this.activityPackageSender.sendActivityPackageSync(activityPackage, generateSendingParametersI());
         if (sendActivityPackageSync instanceof SdkClickResponseData) {
             SdkClickResponseData sdkClickResponseData = (SdkClickResponseData) sendActivityPackageSync;
@@ -231,24 +231,24 @@ public class SdkClickHandler implements ISdkClickHandler {
                 iActivityHandler.gotOptOutResponse();
                 return;
             }
-            if (z) {
-                j5 = j2;
+            if (z8) {
+                j12 = j9;
                 SharedPreferencesManager.getDefaultInstance(iActivityHandler.getContext()).removeRawReferrer(str6, activityPackage.getClickTimeInMilliseconds());
             } else {
-                j5 = j2;
+                j12 = j9;
             }
-            if (z2) {
-                sdkClickResponseData.clickTime = j;
-                sdkClickResponseData.installBegin = j3;
+            if (z9) {
+                sdkClickResponseData.clickTime = j7;
+                sdkClickResponseData.installBegin = j10;
                 sdkClickResponseData.installReferrer = str;
-                sdkClickResponseData.clickTimeServer = j4;
-                sdkClickResponseData.installBeginServer = j5;
+                sdkClickResponseData.clickTimeServer = j11;
+                sdkClickResponseData.installBeginServer = j12;
                 sdkClickResponseData.installVersion = str7;
                 sdkClickResponseData.googlePlayInstant = bool;
                 sdkClickResponseData.referrerApi = str3;
                 sdkClickResponseData.isInstallReferrer = true;
             }
-            if (z3 && (str4 = activityPackage.getParameters().get("found_location")) != null && !str4.isEmpty()) {
+            if (z10 && (str4 = activityPackage.getParameters().get("found_location")) != null && !str4.isEmpty()) {
                 SharedPreferencesManager defaultInstance = SharedPreferencesManager.getDefaultInstance(iActivityHandler.getContext());
                 if (Constants.SYSTEM_INSTALLER_REFERRER.equalsIgnoreCase(str4)) {
                     defaultInstance.removePreinstallReferrer();
@@ -261,8 +261,8 @@ public class SdkClickHandler implements ISdkClickHandler {
     }
 
     @Override // com.adjust.sdk.ISdkClickHandler
-    public void init(IActivityHandler iActivityHandler, boolean z, IActivityPackageSender iActivityPackageSender) {
-        this.paused = !z;
+    public void init(IActivityHandler iActivityHandler, boolean z8, IActivityPackageSender iActivityPackageSender) {
+        this.paused = !z8;
         this.packageQueue = new ArrayList();
         this.activityHandlerWeakRef = new WeakReference<>(iActivityHandler);
         this.activityPackageSender = iActivityPackageSender;

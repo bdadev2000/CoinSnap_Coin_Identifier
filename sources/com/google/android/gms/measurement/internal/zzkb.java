@@ -1,20 +1,30 @@
 package com.google.android.gms.measurement.internal;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzkb extends zzav {
-    private final /* synthetic */ zzjq zza;
+import java.util.concurrent.atomic.AtomicReference;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public zzkb(zzjq zzjqVar, zzjc zzjcVar) {
-        super(zzjcVar);
-        this.zza = zzjqVar;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzkb implements Runnable {
+    private final /* synthetic */ AtomicReference zza;
+    private final /* synthetic */ zziv zzb;
+
+    public zzkb(zziv zzivVar, AtomicReference atomicReference) {
+        this.zza = atomicReference;
+        this.zzb = zzivVar;
     }
 
-    @Override // com.google.android.gms.measurement.internal.zzav
-    public final void zzb() {
-        this.zza.zzas();
+    @Override // java.lang.Runnable
+    public final void run() {
+        synchronized (this.zza) {
+            try {
+                try {
+                    this.zza.set(Double.valueOf(this.zzb.zze().zza(this.zzb.zzg().zzad(), zzbf.zzao)));
+                } finally {
+                    this.zza.notify();
+                }
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
     }
 }

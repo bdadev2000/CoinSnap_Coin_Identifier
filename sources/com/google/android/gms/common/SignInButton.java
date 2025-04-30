@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.common.internal.zaaa;
 import com.google.android.gms.common.internal.zaz;
@@ -13,8 +15,7 @@ import com.google.android.gms.dynamic.RemoteCreator;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class SignInButton extends FrameLayout implements View.OnClickListener {
     public static final int COLOR_AUTO = 2;
     public static final int COLOR_DARK = 0;
@@ -25,21 +26,21 @@ public final class SignInButton extends FrameLayout implements View.OnClickListe
     private int zaa;
     private int zab;
     private View zac;
+
+    @Nullable
     private View.OnClickListener zad;
 
-    /* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
     @Retention(RetentionPolicy.SOURCE)
-    /* loaded from: classes12.dex */
+    /* loaded from: classes2.dex */
     public @interface ButtonSize {
     }
 
-    /* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
     @Retention(RetentionPolicy.SOURCE)
-    /* loaded from: classes12.dex */
+    /* loaded from: classes2.dex */
     public @interface ColorScheme {
     }
 
-    public SignInButton(Context context) {
+    public SignInButton(@NonNull Context context) {
         this(context, null);
     }
 
@@ -52,10 +53,10 @@ public final class SignInButton extends FrameLayout implements View.OnClickListe
             this.zac = zaz.zaa(context, this.zaa, this.zab);
         } catch (RemoteCreator.RemoteCreatorException unused) {
             Log.w("SignInButton", "Sign in button not found, using placeholder instead");
-            int i = this.zaa;
-            int i2 = this.zab;
+            int i9 = this.zaa;
+            int i10 = this.zab;
             zaaa zaaaVar = new zaaa(context, null);
-            zaaaVar.zaa(context.getResources(), i, i2);
+            zaaaVar.zaa(context.getResources(), i9, i10);
             this.zac = zaaaVar;
         }
         addView(this.zac);
@@ -64,26 +65,25 @@ public final class SignInButton extends FrameLayout implements View.OnClickListe
     }
 
     @Override // android.view.View.OnClickListener
-    public void onClick(View view) {
+    public void onClick(@NonNull View view) {
         View.OnClickListener onClickListener = this.zad;
-        if (onClickListener == null || view != this.zac) {
-            return;
+        if (onClickListener != null && view == this.zac) {
+            onClickListener.onClick(this);
         }
-        onClickListener.onClick(this);
     }
 
-    public void setColorScheme(int i) {
-        setStyle(this.zaa, i);
-    }
-
-    @Override // android.view.View
-    public void setEnabled(boolean z) {
-        super.setEnabled(z);
-        this.zac.setEnabled(z);
+    public void setColorScheme(int i9) {
+        setStyle(this.zaa, i9);
     }
 
     @Override // android.view.View
-    public void setOnClickListener(View.OnClickListener onClickListener) {
+    public void setEnabled(boolean z8) {
+        super.setEnabled(z8);
+        this.zac.setEnabled(z8);
+    }
+
+    @Override // android.view.View
+    public void setOnClickListener(@Nullable View.OnClickListener onClickListener) {
         this.zad = onClickListener;
         View view = this.zac;
         if (view != null) {
@@ -92,31 +92,31 @@ public final class SignInButton extends FrameLayout implements View.OnClickListe
     }
 
     @Deprecated
-    public void setScopes(Scope[] scopeArr) {
+    public void setScopes(@NonNull Scope[] scopeArr) {
         setStyle(this.zaa, this.zab);
     }
 
-    public void setSize(int i) {
-        setStyle(i, this.zab);
+    public void setSize(int i9) {
+        setStyle(i9, this.zab);
     }
 
-    public void setStyle(int i, int i2) {
-        this.zaa = i;
-        this.zab = i2;
+    public void setStyle(int i9, int i10) {
+        this.zaa = i9;
+        this.zab = i10;
         zaa(getContext());
     }
 
-    public SignInButton(Context context, AttributeSet attributeSet) {
+    public SignInButton(@NonNull Context context, @Nullable AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
     @Deprecated
-    public void setStyle(int i, int i2, Scope[] scopeArr) {
-        setStyle(i, i2);
+    public void setStyle(int i9, int i10, @NonNull Scope[] scopeArr) {
+        setStyle(i9, i10);
     }
 
-    public SignInButton(Context context, AttributeSet attributeSet, int i) {
-        super(context, attributeSet, i);
+    public SignInButton(@NonNull Context context, @Nullable AttributeSet attributeSet, int i9) {
+        super(context, attributeSet, i9);
         this.zad = null;
         TypedArray obtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, com.google.android.gms.base.R.styleable.SignInButton, 0, 0);
         try {

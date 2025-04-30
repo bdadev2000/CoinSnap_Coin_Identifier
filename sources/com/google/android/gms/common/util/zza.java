@@ -1,12 +1,11 @@
 package com.google.android.gms.common.util;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zza {
-    public static int zza(int i) {
-        if (i == -1) {
+    public static int zza(int i9) {
+        if (i9 == -1) {
             return -1;
         }
-        return i / 1000;
+        return i9 / 1000;
     }
 }

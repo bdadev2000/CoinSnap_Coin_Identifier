@@ -1,278 +1,383 @@
 package okhttp3.internal.publicsuffix;
 
-import androidx.webkit.ProxyConfig;
-import java.io.IOException;
+import G7.j;
+import O7.g;
+import Q7.n0;
+import android.support.v4.media.session.a;
 import java.io.InputStream;
-import java.io.InterruptedIOException;
-import java.net.IDN;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
-import okhttp3.internal.Util;
-import okhttp3.internal.platform.Platform;
-import okio.BufferedSource;
-import okio.GzipSource;
-import okio.Okio;
+import r8.k;
+import u7.AbstractC2816g;
+import u7.AbstractC2817h;
+import u7.C2824o;
+import w8.n;
+import w8.t;
 
-/* loaded from: classes9.dex */
+/* loaded from: classes3.dex */
 public final class PublicSuffixDatabase {
-    private static final byte EXCEPTION_MARKER = 33;
-    public static final String PUBLIC_SUFFIX_RESOURCE = "publicsuffixes.gz";
-    private byte[] publicSuffixExceptionListBytes;
-    private byte[] publicSuffixListBytes;
-    private static final byte[] WILDCARD_LABEL = {42};
-    private static final String[] EMPTY_RULE = new String[0];
-    private static final String[] PREVAILING_RULE = {ProxyConfig.MATCH_ALL_SCHEMES};
-    private static final PublicSuffixDatabase instance = new PublicSuffixDatabase();
-    private final AtomicBoolean listRead = new AtomicBoolean(false);
-    private final CountDownLatch readCompleteLatch = new CountDownLatch(1);
 
-    public static PublicSuffixDatabase get() {
-        return instance;
-    }
+    /* renamed from: e, reason: collision with root package name */
+    public static final byte[] f22023e = {42};
 
-    public String getEffectiveTldPlusOne(String str) {
-        int length;
-        int length2;
-        if (str == null) {
-            throw new NullPointerException("domain == null");
-        }
-        String[] split = IDN.toUnicode(str).split("\\.");
-        String[] findMatchingRule = findMatchingRule(split);
-        if (split.length == findMatchingRule.length && findMatchingRule[0].charAt(0) != '!') {
-            return null;
-        }
-        if (findMatchingRule[0].charAt(0) == '!') {
-            length = split.length;
-            length2 = findMatchingRule.length;
-        } else {
-            length = split.length;
-            length2 = findMatchingRule.length + 1;
-        }
-        StringBuilder sb = new StringBuilder();
-        String[] split2 = str.split("\\.");
-        for (int i = length - length2; i < split2.length; i++) {
-            sb.append(split2[i]).append('.');
-        }
-        sb.deleteCharAt(sb.length() - 1);
-        return sb.toString();
-    }
+    /* renamed from: f, reason: collision with root package name */
+    public static final List f22024f = a.w("*");
 
-    private String[] findMatchingRule(String[] strArr) {
-        String str;
-        String str2;
-        String str3;
-        String[] strArr2;
-        String[] strArr3;
-        int i = 0;
-        if (!this.listRead.get() && this.listRead.compareAndSet(false, true)) {
-            readTheListUninterruptibly();
-        } else {
-            try {
-                this.readCompleteLatch.await();
-            } catch (InterruptedException unused) {
-                Thread.currentThread().interrupt();
-            }
-        }
-        synchronized (this) {
-            if (this.publicSuffixListBytes == null) {
-                throw new IllegalStateException("Unable to load publicsuffixes.gz resource from the classpath.");
-            }
-        }
-        int length = strArr.length;
-        byte[][] bArr = new byte[length];
-        for (int i2 = 0; i2 < strArr.length; i2++) {
-            bArr[i2] = strArr[i2].getBytes(Util.UTF_8);
-        }
-        int i3 = 0;
-        while (true) {
-            str = null;
-            if (i3 >= length) {
-                str2 = null;
-                break;
-            }
-            str2 = binarySearchBytes(this.publicSuffixListBytes, bArr, i3);
-            if (str2 != null) {
-                break;
-            }
-            i3++;
-        }
-        if (length > 1) {
-            byte[][] bArr2 = (byte[][]) bArr.clone();
-            for (int i4 = 0; i4 < bArr2.length - 1; i4++) {
-                bArr2[i4] = WILDCARD_LABEL;
-                str3 = binarySearchBytes(this.publicSuffixListBytes, bArr2, i4);
-                if (str3 != null) {
-                    break;
-                }
-            }
-        }
-        str3 = null;
-        if (str3 != null) {
-            while (true) {
-                if (i >= length - 1) {
-                    break;
-                }
-                String binarySearchBytes = binarySearchBytes(this.publicSuffixExceptionListBytes, bArr, i);
-                if (binarySearchBytes != null) {
-                    str = binarySearchBytes;
-                    break;
-                }
-                i++;
-            }
-        }
-        if (str != null) {
-            return ("!" + str).split("\\.");
-        }
-        if (str2 == null && str3 == null) {
-            return PREVAILING_RULE;
-        }
-        if (str2 != null) {
-            strArr2 = str2.split("\\.");
-        } else {
-            strArr2 = EMPTY_RULE;
-        }
-        if (str3 != null) {
-            strArr3 = str3.split("\\.");
-        } else {
-            strArr3 = EMPTY_RULE;
-        }
-        return strArr2.length > strArr3.length ? strArr2 : strArr3;
-    }
+    /* renamed from: g, reason: collision with root package name */
+    public static final PublicSuffixDatabase f22025g = new PublicSuffixDatabase();
 
-    private static String binarySearchBytes(byte[] bArr, byte[][] bArr2, int i) {
-        int i2;
-        boolean z;
-        int i3;
-        int i4;
-        int length = bArr.length;
-        int i5 = 0;
-        while (i5 < length) {
-            int i6 = (i5 + length) / 2;
-            while (i6 > -1 && bArr[i6] != 10) {
-                i6--;
+    /* renamed from: a, reason: collision with root package name */
+    public final AtomicBoolean f22026a = new AtomicBoolean(false);
+    public final CountDownLatch b = new CountDownLatch(1);
+
+    /* renamed from: c, reason: collision with root package name */
+    public byte[] f22027c;
+
+    /* renamed from: d, reason: collision with root package name */
+    public byte[] f22028d;
+
+    public static List c(String str) {
+        Object next;
+        int i9 = 0;
+        List U8 = g.U(str, new char[]{'.'});
+        if (j.a(AbstractC2816g.P(U8), "")) {
+            List list = U8;
+            int size = U8.size() - 1;
+            if (size < 0) {
+                size = 0;
             }
-            int i7 = i6 + 1;
-            int i8 = 1;
-            while (true) {
-                i2 = i7 + i8;
-                if (bArr[i2] == 10) {
-                    break;
+            if (size >= 0) {
+                if (size == 0) {
+                    return C2824o.b;
                 }
-                i8++;
-            }
-            int i9 = i2 - i7;
-            int i10 = i;
-            boolean z2 = false;
-            int i11 = 0;
-            int i12 = 0;
-            while (true) {
-                if (z2) {
-                    i3 = 46;
-                    z = false;
-                } else {
-                    z = z2;
-                    i3 = bArr2[i10][i11] & 255;
+                if (list instanceof Collection) {
+                    if (size >= list.size()) {
+                        return AbstractC2816g.T(list);
+                    }
+                    if (size == 1) {
+                        if (list instanceof List) {
+                            next = AbstractC2816g.K(list);
+                        } else {
+                            Iterator it = list.iterator();
+                            if (it.hasNext()) {
+                                next = it.next();
+                            } else {
+                                throw new NoSuchElementException("Collection is empty.");
+                            }
+                        }
+                        return a.w(next);
+                    }
                 }
-                i4 = i3 - (bArr[i7 + i12] & 255);
-                if (i4 == 0) {
-                    i12++;
-                    i11++;
-                    if (i12 == i9) {
+                ArrayList arrayList = new ArrayList(size);
+                Iterator it2 = list.iterator();
+                while (it2.hasNext()) {
+                    arrayList.add(it2.next());
+                    i9++;
+                    if (i9 == size) {
                         break;
                     }
-                    if (bArr2[i10].length != i11) {
-                        z2 = z;
-                    } else {
-                        if (i10 == bArr2.length - 1) {
-                            break;
-                        }
-                        i10++;
-                        i11 = -1;
-                        z2 = true;
-                    }
-                } else {
-                    break;
                 }
+                return AbstractC2817h.C(arrayList);
             }
-            if (i4 >= 0) {
-                if (i4 <= 0) {
-                    int i13 = i9 - i12;
-                    int length2 = bArr2[i10].length - i11;
-                    while (true) {
-                        i10++;
-                        if (i10 >= bArr2.length) {
-                            break;
-                        }
-                        length2 += bArr2[i10].length;
-                    }
-                    if (length2 >= i13) {
-                        if (length2 <= i13) {
-                            return new String(bArr, i7, i9, Util.UTF_8);
-                        }
-                    }
-                }
-                i5 = i2 + 1;
-            }
-            length = i6;
+            throw new IllegalArgumentException(n0.f(size, "Requested element count ", " is less than zero.").toString());
         }
+        return U8;
+    }
+
+    /* JADX WARN: Code restructure failed: missing block: B:101:0x00bd, code lost:
+    
+        G7.j.k("publicSuffixListBytes");
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:102:0x00c0, code lost:
+    
+        throw null;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:104:0x00c1, code lost:
+    
+        r10 = null;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:27:0x009d, code lost:
+    
+        if (r3 <= 1) goto L52;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:28:0x009f, code lost:
+    
+        r8 = (byte[][]) r4.clone();
+        r9 = r8.length - 1;
+        r10 = 0;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:29:0x00a8, code lost:
+    
+        if (r10 >= r9) goto L126;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:30:0x00aa, code lost:
+    
+        r11 = r10 + 1;
+        r8[r10] = okhttp3.internal.publicsuffix.PublicSuffixDatabase.f22023e;
+        r12 = r13.f22027c;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:31:0x00b2, code lost:
+    
+        if (r12 == null) goto L125;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:32:0x00b4, code lost:
+    
+        r10 = q.C2609l.h(r12, r8, r10);
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:33:0x00b8, code lost:
+    
+        if (r10 == null) goto L49;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:34:0x00bb, code lost:
+    
+        r10 = r11;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:36:0x00c2, code lost:
+    
+        if (r10 == null) goto L64;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:37:0x00c4, code lost:
+    
+        r3 = r3 - 1;
+        r7 = 0;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:38:0x00c6, code lost:
+    
+        if (r7 >= r3) goto L129;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:39:0x00c8, code lost:
+    
+        r8 = r7 + 1;
+        r9 = r13.f22028d;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:40:0x00cc, code lost:
+    
+        if (r9 == null) goto L130;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:41:0x00ce, code lost:
+    
+        r7 = q.C2609l.h(r9, r4, r7);
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:42:0x00d2, code lost:
+    
+        if (r7 == null) goto L61;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:43:0x00d5, code lost:
+    
+        r7 = r8;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:46:0x00e0, code lost:
+    
+        if (r7 == null) goto L68;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:47:0x00e2, code lost:
+    
+        r3 = O7.g.U(G7.j.j(r7, "!"), new char[]{'.'});
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:49:0x0130, code lost:
+    
+        if (r2.size() != r3.size()) goto L92;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:51:0x013c, code lost:
+    
+        if (((java.lang.String) r3.get(0)).charAt(0) == '!') goto L92;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:52:0x013e, code lost:
+    
         return null;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:55:0x0149, code lost:
+    
+        if (((java.lang.String) r3.get(0)).charAt(0) != '!') goto L96;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:56:0x014b, code lost:
+    
+        r2 = r2.size();
+        r3 = r3.size();
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:57:0x0153, code lost:
+    
+        r2 = r2 - r3;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:58:0x015f, code lost:
+    
+        r3 = new N7.j(c(r14), 1);
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:59:0x016a, code lost:
+    
+        if (r2 < 0) goto L111;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:60:0x016c, code lost:
+    
+        if (r2 != 0) goto L101;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:61:0x016f, code lost:
+    
+        r3 = new N7.c(r3, r2);
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:62:0x0175, code lost:
+    
+        r14 = new java.lang.StringBuilder();
+        r14.append((java.lang.CharSequence) "");
+        r3 = r3.iterator();
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:64:0x0187, code lost:
+    
+        if (r3.hasNext() == false) goto L131;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:65:0x0189, code lost:
+    
+        r4 = r3.next();
+        r0 = r0 + 1;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:66:0x018e, code lost:
+    
+        if (r0 <= 1) goto L133;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:67:0x0190, code lost:
+    
+        r14.append((java.lang.CharSequence) ".");
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:69:0x0195, code lost:
+    
+        com.facebook.appevents.i.a(r14, r4, null);
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:72:0x0199, code lost:
+    
+        r14.append((java.lang.CharSequence) "");
+        r14 = r14.toString();
+        G7.j.d(r14, "toString(...)");
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:73:0x01a5, code lost:
+    
+        return r14;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:75:0x01b7, code lost:
+    
+        throw new java.lang.IllegalArgumentException(Q7.n0.f(r2, "Requested element count ", " is less than zero.").toString());
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:76:0x0155, code lost:
+    
+        r2 = r2.size();
+        r3 = r3.size() + 1;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:77:0x00f1, code lost:
+    
+        if (r5 != null) goto L71;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:78:0x00f3, code lost:
+    
+        if (r10 != null) goto L71;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:79:0x00f5, code lost:
+    
+        r3 = okhttp3.internal.publicsuffix.PublicSuffixDatabase.f22024f;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:80:0x00f8, code lost:
+    
+        if (r5 != null) goto L73;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:81:0x00fa, code lost:
+    
+        r4 = null;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:82:0x0104, code lost:
+    
+        r5 = u7.C2824o.b;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:83:0x0106, code lost:
+    
+        if (r4 != null) goto L77;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:84:0x0108, code lost:
+    
+        r4 = r5;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:85:0x0109, code lost:
+    
+        if (r10 != null) goto L79;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:86:0x010b, code lost:
+    
+        r3 = null;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:87:0x0115, code lost:
+    
+        if (r3 != null) goto L82;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:88:0x0118, code lost:
+    
+        r5 = r3;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:90:0x0121, code lost:
+    
+        if (r4.size() <= r5.size()) goto L86;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:91:0x0123, code lost:
+    
+        r3 = r4;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:92:0x0125, code lost:
+    
+        r3 = r5;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:93:0x010d, code lost:
+    
+        r3 = O7.g.U(r10, new char[]{'.'});
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:94:0x00fc, code lost:
+    
+        r4 = O7.g.U(r5, new char[]{'.'});
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:96:0x00d7, code lost:
+    
+        G7.j.k("publicSuffixExceptionListBytes");
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:97:0x00dc, code lost:
+    
+        throw null;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:99:0x00dd, code lost:
+    
+        r7 = null;
+     */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    public final java.lang.String a(java.lang.String r14) {
+        /*
+            Method dump skipped, instructions count: 452
+            To view this dump change 'Code comments level' option to 'DEBUG'
+        */
+        throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.publicsuffix.PublicSuffixDatabase.a(java.lang.String):java.lang.String");
     }
 
-    private void readTheListUninterruptibly() {
-        boolean z = false;
-        while (true) {
-            try {
-                try {
-                    readTheList();
-                    break;
-                } catch (InterruptedIOException unused) {
-                    Thread.interrupted();
-                    z = true;
-                } catch (IOException e) {
-                    Platform.get().log(5, "Failed to read public suffix list", e);
-                    if (z) {
-                        Thread.currentThread().interrupt();
-                        return;
-                    }
-                    return;
-                }
-            } catch (Throwable th) {
-                if (z) {
-                    Thread.currentThread().interrupt();
-                }
-                throw th;
-            }
-        }
-        if (z) {
-            Thread.currentThread().interrupt();
-        }
-    }
-
-    private void readTheList() throws IOException {
-        InputStream resourceAsStream = PublicSuffixDatabase.class.getResourceAsStream(PUBLIC_SUFFIX_RESOURCE);
+    public final void b() {
+        InputStream resourceAsStream = PublicSuffixDatabase.class.getResourceAsStream(com.mbridge.msdk.thrid.okhttp.internal.publicsuffix.PublicSuffixDatabase.PUBLIC_SUFFIX_RESOURCE);
         if (resourceAsStream == null) {
             return;
         }
-        BufferedSource buffer = Okio.buffer(new GzipSource(Okio.source(resourceAsStream)));
+        t f9 = k.f(new n(k.y(resourceAsStream)));
         try {
-            byte[] bArr = new byte[buffer.readInt()];
-            buffer.readFully(bArr);
-            byte[] bArr2 = new byte[buffer.readInt()];
-            buffer.readFully(bArr2);
+            long readInt = f9.readInt();
+            f9.require(readInt);
+            byte[] readByteArray = f9.f24039c.readByteArray(readInt);
+            long readInt2 = f9.readInt();
+            f9.require(readInt2);
+            byte[] readByteArray2 = f9.f24039c.readByteArray(readInt2);
+            a.f(f9, null);
             synchronized (this) {
-                this.publicSuffixListBytes = bArr;
-                this.publicSuffixExceptionListBytes = bArr2;
+                this.f22027c = readByteArray;
+                this.f22028d = readByteArray2;
             }
-            this.readCompleteLatch.countDown();
+            this.b.countDown();
         } finally {
-            Util.closeQuietly(buffer);
         }
-    }
-
-    void setListBytes(byte[] bArr, byte[] bArr2) {
-        this.publicSuffixListBytes = bArr;
-        this.publicSuffixExceptionListBytes = bArr2;
-        this.listRead.set(true);
-        this.readCompleteLatch.countDown();
     }
 }

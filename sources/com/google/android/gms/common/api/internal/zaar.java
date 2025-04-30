@@ -2,12 +2,10 @@ package com.google.android.gms.common.api.internal;
 
 import java.lang.ref.WeakReference;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zaar extends com.google.android.gms.signin.internal.zac {
     private final WeakReference zaa;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zaar(zaaw zaawVar) {
         this.zaa = new WeakReference(zaawVar);
     }

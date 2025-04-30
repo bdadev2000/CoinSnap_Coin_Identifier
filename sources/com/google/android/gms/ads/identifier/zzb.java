@@ -1,20 +1,21 @@
 package com.google.android.gms.ads.identifier;
 
+import com.google.android.gms.common.util.VisibleForTesting;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-/* compiled from: com.google.android.gms:play-services-ads-identifier@@17.1.0 */
-/* loaded from: classes12.dex */
+@VisibleForTesting
+/* loaded from: classes2.dex */
 final class zzb extends Thread {
     final CountDownLatch zza = new CountDownLatch(1);
     boolean zzb = false;
     private final WeakReference<AdvertisingIdClient> zzc;
     private final long zzd;
 
-    public zzb(AdvertisingIdClient advertisingIdClient, long j) {
+    public zzb(AdvertisingIdClient advertisingIdClient, long j7) {
         this.zzc = new WeakReference<>(advertisingIdClient);
-        this.zzd = j;
+        this.zzd = j7;
         start();
     }
 
@@ -29,10 +30,9 @@ final class zzb extends Thread {
     @Override // java.lang.Thread, java.lang.Runnable
     public final void run() {
         try {
-            if (this.zza.await(this.zzd, TimeUnit.MILLISECONDS)) {
-                return;
+            if (!this.zza.await(this.zzd, TimeUnit.MILLISECONDS)) {
+                zza();
             }
-            zza();
         } catch (InterruptedException unused) {
             zza();
         }

@@ -1,28 +1,23 @@
 package com.google.android.gms.measurement.internal;
 
-import java.util.concurrent.atomic.AtomicReference;
+import android.os.Bundle;
+import android.text.TextUtils;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzka implements Runnable {
-    private final /* synthetic */ AtomicReference zza;
-    private final /* synthetic */ zzjq zzb;
+/* loaded from: classes2.dex */
+public final class zzka implements zznr {
+    private final /* synthetic */ zziv zza;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzka(zzjq zzjqVar, AtomicReference atomicReference) {
-        this.zza = atomicReference;
-        this.zzb = zzjqVar;
+    public zzka(zziv zzivVar) {
+        this.zza = zzivVar;
     }
 
-    @Override // java.lang.Runnable
-    public final void run() {
-        synchronized (this.zza) {
-            try {
-                this.zza.set(Boolean.valueOf(this.zzb.zze().zzi(this.zzb.zzg().zzad())));
-            } finally {
-                this.zza.notify();
-            }
+    @Override // com.google.android.gms.measurement.internal.zznr
+    public final void zza(String str, String str2, Bundle bundle) {
+        if (!TextUtils.isEmpty(str)) {
+            this.zza.zza("auto", str2, bundle, str);
+        } else {
+            this.zza.zzb("auto", str2, bundle);
         }
     }
 }

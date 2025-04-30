@@ -1,12 +1,12 @@
 package com.google.android.gms.common.api.internal;
 
 import android.os.Bundle;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.api.internal.BaseImplementation;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public interface zabf {
     BaseImplementation.ApiMethodImpl zaa(BaseImplementation.ApiMethodImpl apiMethodImpl);
 
@@ -16,11 +16,11 @@ public interface zabf {
 
     void zae();
 
-    void zag(Bundle bundle);
+    void zag(@Nullable Bundle bundle);
 
-    void zah(ConnectionResult connectionResult, Api api, boolean z);
+    void zah(ConnectionResult connectionResult, Api api, boolean z8);
 
-    void zai(int i);
+    void zai(int i9);
 
     boolean zaj();
 }

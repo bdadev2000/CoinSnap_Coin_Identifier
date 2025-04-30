@@ -1,138 +1,54 @@
 package com.google.api;
 
-import com.google.api.AuthProvider;
-import com.google.api.AuthenticationRule;
-import com.google.protobuf.AbstractMessageLite;
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.Internal;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import a4.AbstractC0364j;
+import a4.C0366k;
+import a4.InterfaceC0356f;
+import a4.InterfaceC0372n;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1891d3;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.O3;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.Collections;
 import java.util.List;
 
-/* loaded from: classes12.dex */
-public final class Authentication extends GeneratedMessageLite<Authentication, Builder> implements AuthenticationOrBuilder {
+/* loaded from: classes2.dex */
+public final class Authentication extends L2 implements O3 {
     private static final Authentication DEFAULT_INSTANCE;
-    private static volatile Parser<Authentication> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int PROVIDERS_FIELD_NUMBER = 4;
     public static final int RULES_FIELD_NUMBER = 3;
-    private Internal.ProtobufList<AuthenticationRule> rules_ = emptyProtobufList();
-    private Internal.ProtobufList<AuthProvider> providers_ = emptyProtobufList();
+    private InterfaceC1891d3 rules_ = L2.emptyProtobufList();
+    private InterfaceC1891d3 providers_ = L2.emptyProtobufList();
+
+    static {
+        Authentication authentication = new Authentication();
+        DEFAULT_INSTANCE = authentication;
+        L2.registerDefaultInstance(Authentication.class, authentication);
+    }
 
     private Authentication() {
     }
 
-    @Override // com.google.api.AuthenticationOrBuilder
-    public List<AuthenticationRule> getRulesList() {
-        return this.rules_;
-    }
-
-    public List<? extends AuthenticationRuleOrBuilder> getRulesOrBuilderList() {
-        return this.rules_;
-    }
-
-    @Override // com.google.api.AuthenticationOrBuilder
-    public int getRulesCount() {
-        return this.rules_.size();
-    }
-
-    @Override // com.google.api.AuthenticationOrBuilder
-    public AuthenticationRule getRules(int i) {
-        return this.rules_.get(i);
-    }
-
-    public AuthenticationRuleOrBuilder getRulesOrBuilder(int i) {
-        return this.rules_.get(i);
-    }
-
-    private void ensureRulesIsMutable() {
-        Internal.ProtobufList<AuthenticationRule> protobufList = this.rules_;
-        if (protobufList.isModifiable()) {
-            return;
-        }
-        this.rules_ = GeneratedMessageLite.mutableCopy(protobufList);
-    }
-
     /* JADX INFO: Access modifiers changed from: private */
-    public void setRules(int i, AuthenticationRule authenticationRule) {
-        authenticationRule.getClass();
-        ensureRulesIsMutable();
-        this.rules_.set(i, authenticationRule);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void addRules(AuthenticationRule authenticationRule) {
-        authenticationRule.getClass();
-        ensureRulesIsMutable();
-        this.rules_.add(authenticationRule);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void addRules(int i, AuthenticationRule authenticationRule) {
-        authenticationRule.getClass();
-        ensureRulesIsMutable();
-        this.rules_.add(i, authenticationRule);
+    public void addAllProviders(Iterable<? extends AuthProvider> iterable) {
+        ensureProvidersIsMutable();
+        AbstractC1880c.addAll((Iterable) iterable, (List) this.providers_);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void addAllRules(Iterable<? extends AuthenticationRule> iterable) {
         ensureRulesIsMutable();
-        AbstractMessageLite.addAll((Iterable) iterable, (List) this.rules_);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearRules() {
-        this.rules_ = emptyProtobufList();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void removeRules(int i) {
-        ensureRulesIsMutable();
-        this.rules_.remove(i);
-    }
-
-    @Override // com.google.api.AuthenticationOrBuilder
-    public List<AuthProvider> getProvidersList() {
-        return this.providers_;
-    }
-
-    public List<? extends AuthProviderOrBuilder> getProvidersOrBuilderList() {
-        return this.providers_;
-    }
-
-    @Override // com.google.api.AuthenticationOrBuilder
-    public int getProvidersCount() {
-        return this.providers_.size();
-    }
-
-    @Override // com.google.api.AuthenticationOrBuilder
-    public AuthProvider getProviders(int i) {
-        return this.providers_.get(i);
-    }
-
-    public AuthProviderOrBuilder getProvidersOrBuilder(int i) {
-        return this.providers_.get(i);
-    }
-
-    private void ensureProvidersIsMutable() {
-        Internal.ProtobufList<AuthProvider> protobufList = this.providers_;
-        if (protobufList.isModifiable()) {
-            return;
-        }
-        this.providers_ = GeneratedMessageLite.mutableCopy(protobufList);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setProviders(int i, AuthProvider authProvider) {
-        authProvider.getClass();
-        ensureProvidersIsMutable();
-        this.providers_.set(i, authProvider);
+        AbstractC1880c.addAll((Iterable) iterable, (List) this.rules_);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -143,297 +59,108 @@ public final class Authentication extends GeneratedMessageLite<Authentication, B
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void addProviders(int i, AuthProvider authProvider) {
-        authProvider.getClass();
-        ensureProvidersIsMutable();
-        this.providers_.add(i, authProvider);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void addAllProviders(Iterable<? extends AuthProvider> iterable) {
-        ensureProvidersIsMutable();
-        AbstractMessageLite.addAll((Iterable) iterable, (List) this.providers_);
+    public void addRules(AuthenticationRule authenticationRule) {
+        authenticationRule.getClass();
+        ensureRulesIsMutable();
+        this.rules_.add(authenticationRule);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void clearProviders() {
-        this.providers_ = emptyProtobufList();
+        this.providers_ = L2.emptyProtobufList();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void removeProviders(int i) {
-        ensureProvidersIsMutable();
-        this.providers_.remove(i);
+    public void clearRules() {
+        this.rules_ = L2.emptyProtobufList();
     }
 
-    public static Authentication parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (Authentication) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    private void ensureProvidersIsMutable() {
+        InterfaceC1891d3 interfaceC1891d3 = this.providers_;
+        if (!interfaceC1891d3.isModifiable()) {
+            this.providers_ = L2.mutableCopy(interfaceC1891d3);
+        }
     }
 
-    public static Authentication parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Authentication) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
+    private void ensureRulesIsMutable() {
+        InterfaceC1891d3 interfaceC1891d3 = this.rules_;
+        if (!interfaceC1891d3.isModifiable()) {
+            this.rules_ = L2.mutableCopy(interfaceC1891d3);
+        }
     }
 
-    public static Authentication parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (Authentication) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
+    public static Authentication getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    public static Authentication parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Authentication) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static Authentication parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (Authentication) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static Authentication parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Authentication) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static Authentication parseFrom(InputStream inputStream) throws IOException {
-        return (Authentication) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static Authentication parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Authentication) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static C0366k newBuilder() {
+        return (C0366k) DEFAULT_INSTANCE.createBuilder();
     }
 
     public static Authentication parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (Authentication) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+        return (Authentication) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
     }
 
-    public static Authentication parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Authentication) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static Authentication parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (Authentication) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
     }
 
-    public static Authentication parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (Authentication) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
-    public static Authentication parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Authentication) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void removeProviders(int i9) {
+        ensureProvidersIsMutable();
+        this.providers_.remove(i9);
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
+    /* JADX INFO: Access modifiers changed from: private */
+    public void removeRules(int i9) {
+        ensureRulesIsMutable();
+        this.rules_.remove(i9);
     }
 
-    public static Builder newBuilder(Authentication authentication) {
-        return DEFAULT_INSTANCE.createBuilder(authentication);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setProviders(int i9, AuthProvider authProvider) {
+        authProvider.getClass();
+        ensureProvidersIsMutable();
+        this.providers_.set(i9, authProvider);
     }
 
-    /* loaded from: classes12.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<Authentication, Builder> implements AuthenticationOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(Authentication.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.api.AuthenticationOrBuilder
-        public List<AuthenticationRule> getRulesList() {
-            return Collections.unmodifiableList(((Authentication) this.instance).getRulesList());
-        }
-
-        @Override // com.google.api.AuthenticationOrBuilder
-        public int getRulesCount() {
-            return ((Authentication) this.instance).getRulesCount();
-        }
-
-        @Override // com.google.api.AuthenticationOrBuilder
-        public AuthenticationRule getRules(int i) {
-            return ((Authentication) this.instance).getRules(i);
-        }
-
-        public Builder setRules(int i, AuthenticationRule authenticationRule) {
-            copyOnWrite();
-            ((Authentication) this.instance).setRules(i, authenticationRule);
-            return this;
-        }
-
-        public Builder setRules(int i, AuthenticationRule.Builder builder) {
-            copyOnWrite();
-            ((Authentication) this.instance).setRules(i, builder.build());
-            return this;
-        }
-
-        public Builder addRules(AuthenticationRule authenticationRule) {
-            copyOnWrite();
-            ((Authentication) this.instance).addRules(authenticationRule);
-            return this;
-        }
-
-        public Builder addRules(int i, AuthenticationRule authenticationRule) {
-            copyOnWrite();
-            ((Authentication) this.instance).addRules(i, authenticationRule);
-            return this;
-        }
-
-        public Builder addRules(AuthenticationRule.Builder builder) {
-            copyOnWrite();
-            ((Authentication) this.instance).addRules(builder.build());
-            return this;
-        }
-
-        public Builder addRules(int i, AuthenticationRule.Builder builder) {
-            copyOnWrite();
-            ((Authentication) this.instance).addRules(i, builder.build());
-            return this;
-        }
-
-        public Builder addAllRules(Iterable<? extends AuthenticationRule> iterable) {
-            copyOnWrite();
-            ((Authentication) this.instance).addAllRules(iterable);
-            return this;
-        }
-
-        public Builder clearRules() {
-            copyOnWrite();
-            ((Authentication) this.instance).clearRules();
-            return this;
-        }
-
-        public Builder removeRules(int i) {
-            copyOnWrite();
-            ((Authentication) this.instance).removeRules(i);
-            return this;
-        }
-
-        @Override // com.google.api.AuthenticationOrBuilder
-        public List<AuthProvider> getProvidersList() {
-            return Collections.unmodifiableList(((Authentication) this.instance).getProvidersList());
-        }
-
-        @Override // com.google.api.AuthenticationOrBuilder
-        public int getProvidersCount() {
-            return ((Authentication) this.instance).getProvidersCount();
-        }
-
-        @Override // com.google.api.AuthenticationOrBuilder
-        public AuthProvider getProviders(int i) {
-            return ((Authentication) this.instance).getProviders(i);
-        }
-
-        public Builder setProviders(int i, AuthProvider authProvider) {
-            copyOnWrite();
-            ((Authentication) this.instance).setProviders(i, authProvider);
-            return this;
-        }
-
-        public Builder setProviders(int i, AuthProvider.Builder builder) {
-            copyOnWrite();
-            ((Authentication) this.instance).setProviders(i, builder.build());
-            return this;
-        }
-
-        public Builder addProviders(AuthProvider authProvider) {
-            copyOnWrite();
-            ((Authentication) this.instance).addProviders(authProvider);
-            return this;
-        }
-
-        public Builder addProviders(int i, AuthProvider authProvider) {
-            copyOnWrite();
-            ((Authentication) this.instance).addProviders(i, authProvider);
-            return this;
-        }
-
-        public Builder addProviders(AuthProvider.Builder builder) {
-            copyOnWrite();
-            ((Authentication) this.instance).addProviders(builder.build());
-            return this;
-        }
-
-        public Builder addProviders(int i, AuthProvider.Builder builder) {
-            copyOnWrite();
-            ((Authentication) this.instance).addProviders(i, builder.build());
-            return this;
-        }
-
-        public Builder addAllProviders(Iterable<? extends AuthProvider> iterable) {
-            copyOnWrite();
-            ((Authentication) this.instance).addAllProviders(iterable);
-            return this;
-        }
-
-        public Builder clearProviders() {
-            copyOnWrite();
-            ((Authentication) this.instance).clearProviders();
-            return this;
-        }
-
-        public Builder removeProviders(int i) {
-            copyOnWrite();
-            ((Authentication) this.instance).removeProviders(i);
-            return this;
-        }
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setRules(int i9, AuthenticationRule authenticationRule) {
+        authenticationRule.getClass();
+        ensureRulesIsMutable();
+        this.rules_.set(i9, authenticationRule);
     }
 
-    /* renamed from: com.google.api.Authentication$1, reason: invalid class name */
-    /* loaded from: classes12.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (AbstractC0364j.f4018a[k22.ordinal()]) {
             case 1:
                 return new Authentication();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0003\u0004\u0002\u0000\u0002\u0000\u0003\u001b\u0004\u001b", new Object[]{"rules_", AuthenticationRule.class, "providers_", AuthProvider.class});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0003\u0004\u0002\u0000\u0002\u0000\u0003\u001b\u0004\u001b", new Object[]{"rules_", AuthenticationRule.class, "providers_", AuthProvider.class});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<Authentication> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (Authentication.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -443,17 +170,101 @@ public final class Authentication extends GeneratedMessageLite<Authentication, B
         }
     }
 
-    static {
-        Authentication authentication = new Authentication();
-        DEFAULT_INSTANCE = authentication;
-        GeneratedMessageLite.registerDefaultInstance(Authentication.class, authentication);
+    public AuthProvider getProviders(int i9) {
+        return (AuthProvider) this.providers_.get(i9);
     }
 
-    public static Authentication getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public int getProvidersCount() {
+        return this.providers_.size();
     }
 
-    public static Parser<Authentication> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public List<AuthProvider> getProvidersList() {
+        return this.providers_;
+    }
+
+    public InterfaceC0356f getProvidersOrBuilder(int i9) {
+        return (InterfaceC0356f) this.providers_.get(i9);
+    }
+
+    public List<? extends InterfaceC0356f> getProvidersOrBuilderList() {
+        return this.providers_;
+    }
+
+    public AuthenticationRule getRules(int i9) {
+        return (AuthenticationRule) this.rules_.get(i9);
+    }
+
+    public int getRulesCount() {
+        return this.rules_.size();
+    }
+
+    public List<AuthenticationRule> getRulesList() {
+        return this.rules_;
+    }
+
+    public InterfaceC0372n getRulesOrBuilder(int i9) {
+        return (InterfaceC0372n) this.rules_.get(i9);
+    }
+
+    public List<? extends InterfaceC0372n> getRulesOrBuilderList() {
+        return this.rules_;
+    }
+
+    public static C0366k newBuilder(Authentication authentication) {
+        return (C0366k) DEFAULT_INSTANCE.createBuilder(authentication);
+    }
+
+    public static Authentication parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Authentication) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Authentication parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (Authentication) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static Authentication parseFrom(H h6) throws C1912g3 {
+        return (Authentication) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void addProviders(int i9, AuthProvider authProvider) {
+        authProvider.getClass();
+        ensureProvidersIsMutable();
+        this.providers_.add(i9, authProvider);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void addRules(int i9, AuthenticationRule authenticationRule) {
+        authenticationRule.getClass();
+        ensureRulesIsMutable();
+        this.rules_.add(i9, authenticationRule);
+    }
+
+    public static Authentication parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (Authentication) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static Authentication parseFrom(byte[] bArr) throws C1912g3 {
+        return (Authentication) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static Authentication parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (Authentication) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static Authentication parseFrom(InputStream inputStream) throws IOException {
+        return (Authentication) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static Authentication parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Authentication) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Authentication parseFrom(S s5) throws IOException {
+        return (Authentication) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static Authentication parseFrom(S s5, W1 w1) throws IOException {
+        return (Authentication) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

@@ -1,16 +1,16 @@
 package com.google.android.gms.internal.stats;
 
+import androidx.annotation.Nullable;
 import java.io.Closeable;
 
-/* compiled from: com.google.android.gms:play-services-stats@@17.0.1 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzb implements Closeable {
     private static final zzb zza = new zzb(false, null);
 
-    private zzb(boolean z, zzd zzdVar) {
+    private zzb(boolean z8, @Nullable zzd zzdVar) {
     }
 
-    public static zzb zza(boolean z, zzc zzcVar) {
+    public static zzb zza(boolean z8, @Nullable zzc zzcVar) {
         return zza;
     }
 

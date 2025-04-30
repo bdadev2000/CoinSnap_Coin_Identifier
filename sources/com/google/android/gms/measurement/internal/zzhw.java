@@ -1,80 +1,29 @@
 package com.google.android.gms.measurement.internal;
 
-import com.google.android.gms.common.internal.Preconditions;
-import java.lang.Thread;
+import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.atomic.AtomicLong;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzhw<V> extends FutureTask<V> implements Comparable<zzhw<V>> {
-    final boolean zza;
-    private final long zzb;
-    private final String zzc;
-    private final /* synthetic */ zzhv zzd;
+/* loaded from: classes2.dex */
+final class zzhw implements Callable<List<zzae>> {
+    private final /* synthetic */ String zza;
+    private final /* synthetic */ String zzb;
+    private final /* synthetic */ String zzc;
+    private final /* synthetic */ zzhn zzd;
 
-    @Override // java.lang.Comparable
-    public final /* synthetic */ int compareTo(Object obj) {
-        zzhw zzhwVar = (zzhw) obj;
-        boolean z = this.zza;
-        if (z != zzhwVar.zza) {
-            return z ? -1 : 1;
-        }
-        long j = this.zzb;
-        long j2 = zzhwVar.zzb;
-        if (j < j2) {
-            return -1;
-        }
-        if (j > j2) {
-            return 1;
-        }
-        this.zzd.zzj().zzn().zza("Two tasks share the same index. index", Long.valueOf(this.zzb));
-        return 0;
+    public zzhw(zzhn zzhnVar, String str, String str2, String str3) {
+        this.zza = str;
+        this.zzb = str2;
+        this.zzc = str3;
+        this.zzd = zzhnVar;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public zzhw(zzhv zzhvVar, Runnable runnable, boolean z, String str) {
-        super(com.google.android.gms.internal.measurement.zzdg.zza().zza(runnable), null);
-        AtomicLong atomicLong;
-        this.zzd = zzhvVar;
-        Preconditions.checkNotNull(str);
-        atomicLong = zzhv.zza;
-        long andIncrement = atomicLong.getAndIncrement();
-        this.zzb = andIncrement;
-        this.zzc = str;
-        this.zza = z;
-        if (andIncrement == Long.MAX_VALUE) {
-            zzhvVar.zzj().zzg().zza("Tasks index overflow");
-        }
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public zzhw(zzhv zzhvVar, Callable<V> callable, boolean z, String str) {
-        super(com.google.android.gms.internal.measurement.zzdg.zza().zza(callable));
-        AtomicLong atomicLong;
-        this.zzd = zzhvVar;
-        Preconditions.checkNotNull(str);
-        atomicLong = zzhv.zza;
-        long andIncrement = atomicLong.getAndIncrement();
-        this.zzb = andIncrement;
-        this.zzc = str;
-        this.zza = z;
-        if (andIncrement == Long.MAX_VALUE) {
-            zzhvVar.zzj().zzg().zza("Tasks index overflow");
-        }
-    }
-
-    @Override // java.util.concurrent.FutureTask
-    protected final void setException(Throwable th) {
-        Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler;
-        this.zzd.zzj().zzg().zza(this.zzc, th);
-        if ((th instanceof zzhu) && (defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()) != null) {
-            defaultUncaughtExceptionHandler.uncaughtException(Thread.currentThread(), th);
-        }
-        super.setException(th);
+    @Override // java.util.concurrent.Callable
+    public final /* synthetic */ List<zzae> call() throws Exception {
+        zznc zzncVar;
+        zznc zzncVar2;
+        zzncVar = this.zzd.zza;
+        zzncVar.zzr();
+        zzncVar2 = this.zzd.zza;
+        return zzncVar2.zzf().zza(this.zza, this.zzb, this.zzc);
     }
 }

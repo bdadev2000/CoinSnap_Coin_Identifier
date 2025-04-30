@@ -1,29 +1,31 @@
 package com.google.android.gms.common.api;
 
 import android.util.Log;
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.api.Result;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class ResultCallbacks<R extends Result> implements ResultCallback<R> {
-    public abstract void onFailure(Status status);
+    public abstract void onFailure(@NonNull Status status);
 
     @Override // com.google.android.gms.common.api.ResultCallback
-    public final void onResult(R r) {
-        Status status = r.getStatus();
+    @KeepForSdk
+    public final void onResult(@NonNull R r9) {
+        Status status = r9.getStatus();
         if (status.isSuccess()) {
-            onSuccess(r);
+            onSuccess(r9);
             return;
         }
         onFailure(status);
-        if (r instanceof Releasable) {
+        if (r9 instanceof Releasable) {
             try {
-                ((Releasable) r).release();
-            } catch (RuntimeException e) {
-                Log.w("ResultCallbacks", "Unable to release ".concat(String.valueOf(String.valueOf(r))), e);
+                ((Releasable) r9).release();
+            } catch (RuntimeException e4) {
+                Log.w("ResultCallbacks", "Unable to release ".concat(String.valueOf(r9)), e4);
             }
         }
     }
 
-    public abstract void onSuccess(R r);
+    public abstract void onSuccess(@NonNull R r9);
 }

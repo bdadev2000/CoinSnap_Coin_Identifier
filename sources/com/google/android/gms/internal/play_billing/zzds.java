@@ -1,33 +1,14 @@
 package com.google.android.gms.internal.play_billing;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public final class zzds extends zzec {
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzds(int i) {
-        super(i, null);
+/* loaded from: classes2.dex */
+final class zzds implements zzea {
+    @Override // com.google.android.gms.internal.play_billing.zzea
+    public final zzdz zzb(Class cls) {
+        throw new IllegalStateException("This should never be called.");
     }
 
-    @Override // com.google.android.gms.internal.play_billing.zzec
-    public final void zza() {
-        if (!zzj()) {
-            for (int i = 0; i < zzb(); i++) {
-                Map.Entry zzg = zzg(i);
-                if (((zzbr) zzg.getKey()).zzc()) {
-                    zzg.setValue(Collections.unmodifiableList((List) zzg.getValue()));
-                }
-            }
-            for (Map.Entry entry : zzc()) {
-                if (((zzbr) entry.getKey()).zzc()) {
-                    entry.setValue(Collections.unmodifiableList((List) entry.getValue()));
-                }
-            }
-        }
-        super.zza();
+    @Override // com.google.android.gms.internal.play_billing.zzea
+    public final boolean zzc(Class cls) {
+        return false;
     }
 }

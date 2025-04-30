@@ -1,24 +1,24 @@
 package com.google.android.gms.common.api.internal;
 
 import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.internal.ClientSettings;
 import com.google.android.gms.common.internal.Preconditions;
 import java.util.concurrent.locks.Lock;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zaat implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     final /* synthetic */ zaaw zaa;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public /* synthetic */ zaat(zaaw zaawVar, zaas zaasVar) {
         this.zaa = zaawVar;
     }
 
     @Override // com.google.android.gms.common.api.internal.ConnectionCallbacks
-    public final void onConnected(Bundle bundle) {
+    public final void onConnected(@Nullable Bundle bundle) {
         ClientSettings clientSettings;
         com.google.android.gms.signin.zae zaeVar;
         clientSettings = this.zaa.zar;
@@ -27,10 +27,11 @@ final class zaat implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient
     }
 
     @Override // com.google.android.gms.common.api.internal.OnConnectionFailedListener
-    public final void onConnectionFailed(ConnectionResult connectionResult) {
+    public final void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Lock lock;
         Lock lock2;
         boolean zaI;
+        Lock lock3;
         lock = this.zaa.zab;
         lock.lock();
         try {
@@ -41,13 +42,16 @@ final class zaat implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient
             } else {
                 this.zaa.zaD(connectionResult);
             }
-        } finally {
+            lock3 = this.zaa.zab;
+            lock3.unlock();
+        } catch (Throwable th) {
             lock2 = this.zaa.zab;
             lock2.unlock();
+            throw th;
         }
     }
 
     @Override // com.google.android.gms.common.api.internal.ConnectionCallbacks
-    public final void onConnectionSuspended(int i) {
+    public final void onConnectionSuspended(int i9) {
     }
 }

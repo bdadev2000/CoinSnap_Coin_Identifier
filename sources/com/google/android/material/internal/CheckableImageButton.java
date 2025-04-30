@@ -1,166 +1,100 @@
 package com.google.android.material.internal;
 
+import B3.n;
+import L3.a;
 import android.R;
 import android.content.Context;
-import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.accessibility.AccessibilityEvent;
 import android.widget.Checkable;
-import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
-import androidx.customview.view.AbsSavedState;
+import b0.AbstractC0547b;
+import q.C2630w;
 
-/* loaded from: classes12.dex */
-public class CheckableImageButton extends AppCompatImageButton implements Checkable {
-    private static final int[] DRAWABLE_STATE_CHECKED = {R.attr.state_checked};
-    private boolean checkable;
-    private boolean checked;
-    private boolean pressable;
+/* loaded from: classes2.dex */
+public class CheckableImageButton extends C2630w implements Checkable {
 
-    public CheckableImageButton(Context context) {
-        this(context, null);
-    }
+    /* renamed from: i, reason: collision with root package name */
+    public static final int[] f14090i = {R.attr.state_checked};
+
+    /* renamed from: f, reason: collision with root package name */
+    public boolean f14091f;
+
+    /* renamed from: g, reason: collision with root package name */
+    public boolean f14092g;
+
+    /* renamed from: h, reason: collision with root package name */
+    public boolean f14093h;
 
     public CheckableImageButton(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, androidx.appcompat.R.attr.imageButtonStyle);
-    }
-
-    public CheckableImageButton(Context context, AttributeSet attributeSet, int i) {
-        super(context, attributeSet, i);
-        this.checkable = true;
-        this.pressable = true;
-        ViewCompat.setAccessibilityDelegate(this, new AccessibilityDelegateCompat() { // from class: com.google.android.material.internal.CheckableImageButton.1
-            @Override // androidx.core.view.AccessibilityDelegateCompat
-            public void onInitializeAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
-                super.onInitializeAccessibilityEvent(view, accessibilityEvent);
-                accessibilityEvent.setChecked(CheckableImageButton.this.isChecked());
-            }
-
-            @Override // androidx.core.view.AccessibilityDelegateCompat
-            public void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
-                super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
-                accessibilityNodeInfoCompat.setCheckable(CheckableImageButton.this.isCheckable());
-                accessibilityNodeInfoCompat.setChecked(CheckableImageButton.this.isChecked());
-            }
-        });
+        super(context, attributeSet, com.tools.arruler.photomeasure.camera.ruler.R.attr.imageButtonStyle);
+        this.f14092g = true;
+        this.f14093h = true;
+        ViewCompat.setAccessibilityDelegate(this, new n(this, 2));
     }
 
     @Override // android.widget.Checkable
-    public void setChecked(boolean z) {
-        if (!this.checkable || this.checked == z) {
-            return;
-        }
-        this.checked = z;
-        refreshDrawableState();
-        sendAccessibilityEvent(2048);
-    }
-
-    @Override // android.widget.Checkable
-    public boolean isChecked() {
-        return this.checked;
-    }
-
-    @Override // android.widget.Checkable
-    public void toggle() {
-        setChecked(!this.checked);
-    }
-
-    @Override // android.view.View
-    public void setPressed(boolean z) {
-        if (this.pressable) {
-            super.setPressed(z);
-        }
+    public final boolean isChecked() {
+        return this.f14091f;
     }
 
     @Override // android.widget.ImageView, android.view.View
-    public int[] onCreateDrawableState(int i) {
-        if (this.checked) {
-            int[] iArr = DRAWABLE_STATE_CHECKED;
-            return mergeDrawableStates(super.onCreateDrawableState(i + iArr.length), iArr);
+    public final int[] onCreateDrawableState(int i9) {
+        if (this.f14091f) {
+            return View.mergeDrawableStates(super.onCreateDrawableState(i9 + 1), f14090i);
         }
-        return super.onCreateDrawableState(i);
+        return super.onCreateDrawableState(i9);
     }
 
     @Override // android.view.View
-    protected Parcelable onSaveInstanceState() {
-        SavedState savedState = new SavedState(super.onSaveInstanceState());
-        savedState.checked = this.checked;
-        return savedState;
-    }
-
-    @Override // android.view.View
-    protected void onRestoreInstanceState(Parcelable parcelable) {
-        if (!(parcelable instanceof SavedState)) {
+    public final void onRestoreInstanceState(Parcelable parcelable) {
+        if (!(parcelable instanceof a)) {
             super.onRestoreInstanceState(parcelable);
             return;
         }
-        SavedState savedState = (SavedState) parcelable;
-        super.onRestoreInstanceState(savedState.getSuperState());
-        setChecked(savedState.checked);
+        a aVar = (a) parcelable;
+        super.onRestoreInstanceState(aVar.b);
+        setChecked(aVar.f1724d);
     }
 
-    public void setCheckable(boolean z) {
-        if (this.checkable != z) {
-            this.checkable = z;
+    /* JADX WARN: Type inference failed for: r1v0, types: [android.os.Parcelable, L3.a, b0.b] */
+    @Override // android.view.View
+    public final Parcelable onSaveInstanceState() {
+        ?? abstractC0547b = new AbstractC0547b(super.onSaveInstanceState());
+        abstractC0547b.f1724d = this.f14091f;
+        return abstractC0547b;
+    }
+
+    public void setCheckable(boolean z8) {
+        if (this.f14092g != z8) {
+            this.f14092g = z8;
             sendAccessibilityEvent(0);
         }
     }
 
-    public boolean isCheckable() {
-        return this.checkable;
+    @Override // android.widget.Checkable
+    public void setChecked(boolean z8) {
+        if (this.f14092g && this.f14091f != z8) {
+            this.f14091f = z8;
+            refreshDrawableState();
+            sendAccessibilityEvent(2048);
+        }
     }
 
-    public void setPressable(boolean z) {
-        this.pressable = z;
+    public void setPressable(boolean z8) {
+        this.f14093h = z8;
     }
 
-    public boolean isPressable() {
-        return this.pressable;
+    @Override // android.view.View
+    public void setPressed(boolean z8) {
+        if (this.f14093h) {
+            super.setPressed(z8);
+        }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* loaded from: classes12.dex */
-    public static class SavedState extends AbsSavedState {
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.ClassLoaderCreator<SavedState>() { // from class: com.google.android.material.internal.CheckableImageButton.SavedState.1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.ClassLoaderCreator
-            public SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
-                return new SavedState(parcel, classLoader);
-            }
-
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel, null);
-            }
-
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        };
-        boolean checked;
-
-        public SavedState(Parcelable parcelable) {
-            super(parcelable);
-        }
-
-        public SavedState(Parcel parcel, ClassLoader classLoader) {
-            super(parcel, classLoader);
-            readFromParcel(parcel);
-        }
-
-        @Override // androidx.customview.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeInt(this.checked ? 1 : 0);
-        }
-
-        private void readFromParcel(Parcel parcel) {
-            this.checked = parcel.readInt() == 1;
-        }
+    @Override // android.widget.Checkable
+    public final void toggle() {
+        setChecked(!this.f14091f);
     }
 }

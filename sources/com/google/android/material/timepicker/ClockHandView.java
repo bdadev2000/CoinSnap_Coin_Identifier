@@ -1,8 +1,5 @@
 package com.google.android.material.timepicker;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,308 +7,196 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Pair;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
-import com.google.android.material.R;
-import com.google.android.material.animation.AnimationUtils;
-import com.google.android.material.internal.ViewUtils;
-import com.google.android.material.math.MathUtils;
-import com.google.android.material.motion.MotionUtils;
+import com.tools.arruler.photomeasure.camera.ruler.R;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
+import w3.AbstractC2861a;
+import x3.AbstractC2920a;
+import y2.AbstractC2947c;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class ClockHandView extends View {
-    private static final int DEFAULT_ANIMATION_DURATION = 200;
-    private boolean animatingOnTouchUp;
-    private final int animationDuration;
-    private final TimeInterpolator animationInterpolator;
-    private final float centerDotRadius;
-    private boolean changedDuringTouch;
-    private int circleRadius;
-    private int currentLevel;
-    private double degRad;
-    private float downX;
-    private float downY;
-    private boolean isInTapRegion;
-    private boolean isMultiLevel;
-    private final List<OnRotateListener> listeners;
-    private OnActionUpListener onActionUpListener;
-    private float originalDeg;
-    private final Paint paint;
-    private final ValueAnimator rotationAnimator;
-    private final int scaledTouchSlop;
-    private final RectF selectorBox;
-    private final int selectorRadius;
-    private final int selectorStrokeWidth;
+    public final ValueAnimator b;
 
-    /* loaded from: classes12.dex */
-    public interface OnActionUpListener {
-        void onActionUp(float f, boolean z);
-    }
+    /* renamed from: c, reason: collision with root package name */
+    public boolean f14220c;
 
-    /* loaded from: classes12.dex */
-    public interface OnRotateListener {
-        void onRotate(float f, boolean z);
-    }
+    /* renamed from: d, reason: collision with root package name */
+    public final ArrayList f14221d;
 
-    public ClockHandView(Context context) {
-        this(context, null);
-    }
+    /* renamed from: f, reason: collision with root package name */
+    public final int f14222f;
 
-    public ClockHandView(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, R.attr.materialClockStyle);
-    }
+    /* renamed from: g, reason: collision with root package name */
+    public final float f14223g;
 
-    public ClockHandView(Context context, AttributeSet attributeSet, int i) {
-        super(context, attributeSet, i);
-        this.rotationAnimator = new ValueAnimator();
-        this.listeners = new ArrayList();
+    /* renamed from: h, reason: collision with root package name */
+    public final Paint f14224h;
+
+    /* renamed from: i, reason: collision with root package name */
+    public final RectF f14225i;
+
+    /* renamed from: j, reason: collision with root package name */
+    public final int f14226j;
+
+    /* renamed from: k, reason: collision with root package name */
+    public float f14227k;
+    public boolean l;
+    public double m;
+
+    /* renamed from: n, reason: collision with root package name */
+    public int f14228n;
+
+    /* renamed from: o, reason: collision with root package name */
+    public int f14229o;
+
+    public ClockHandView(Context context, @Nullable AttributeSet attributeSet) {
+        super(context, attributeSet, R.attr.materialClockStyle);
+        this.b = new ValueAnimator();
+        this.f14221d = new ArrayList();
         Paint paint = new Paint();
-        this.paint = paint;
-        this.selectorBox = new RectF();
-        this.currentLevel = 1;
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.ClockHandView, i, R.style.Widget_MaterialComponents_TimePicker_Clock);
-        this.animationDuration = MotionUtils.resolveThemeDuration(context, R.attr.motionDurationLong2, 200);
-        this.animationInterpolator = MotionUtils.resolveThemeInterpolator(context, R.attr.motionEasingEmphasizedInterpolator, AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
-        this.circleRadius = obtainStyledAttributes.getDimensionPixelSize(R.styleable.ClockHandView_materialCircleRadius, 0);
-        this.selectorRadius = obtainStyledAttributes.getDimensionPixelSize(R.styleable.ClockHandView_selectorSize, 0);
-        this.selectorStrokeWidth = getResources().getDimensionPixelSize(R.dimen.material_clock_hand_stroke_width);
-        this.centerDotRadius = r7.getDimensionPixelSize(R.dimen.material_clock_hand_center_dot_radius);
-        int color = obtainStyledAttributes.getColor(R.styleable.ClockHandView_clockHandColor, 0);
+        this.f14224h = paint;
+        this.f14225i = new RectF();
+        this.f14229o = 1;
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, AbstractC2861a.f23665e, R.attr.materialClockStyle, R.style.Widget_MaterialComponents_TimePicker_Clock);
+        AbstractC2947c.u(context, R.attr.motionDurationLong2, 200);
+        AbstractC2947c.v(context, R.attr.motionEasingEmphasizedInterpolator, AbstractC2920a.b);
+        this.f14228n = obtainStyledAttributes.getDimensionPixelSize(1, 0);
+        this.f14222f = obtainStyledAttributes.getDimensionPixelSize(2, 0);
+        this.f14226j = getResources().getDimensionPixelSize(R.dimen.material_clock_hand_stroke_width);
+        this.f14223g = r4.getDimensionPixelSize(R.dimen.material_clock_hand_center_dot_radius);
+        int color = obtainStyledAttributes.getColor(0, 0);
         paint.setAntiAlias(true);
         paint.setColor(color);
-        setHandRotation(0.0f);
-        this.scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+        b(0.0f);
+        ViewConfiguration.get(context).getScaledTouchSlop();
         ViewCompat.setImportantForAccessibility(this, 2);
         obtainStyledAttributes.recycle();
     }
 
-    @Override // android.view.View
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        if (this.rotationAnimator.isRunning()) {
-            return;
+    public final int a(int i9) {
+        if (i9 == 2) {
+            return Math.round(this.f14228n * 0.66f);
         }
-        setHandRotation(getHandRotation());
+        return this.f14228n;
     }
 
-    public void setHandRotation(float f) {
-        setHandRotation(f, false);
-    }
-
-    public void setHandRotation(float f, boolean z) {
-        ValueAnimator valueAnimator = this.rotationAnimator;
+    public final void b(float f9) {
+        ValueAnimator valueAnimator = this.b;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        if (!z) {
-            setHandRotationInternal(f, false);
-            return;
-        }
-        Pair<Float, Float> valuesForAnimation = getValuesForAnimation(f);
-        this.rotationAnimator.setFloatValues(((Float) valuesForAnimation.first).floatValue(), ((Float) valuesForAnimation.second).floatValue());
-        this.rotationAnimator.setDuration(this.animationDuration);
-        this.rotationAnimator.setInterpolator(this.animationInterpolator);
-        this.rotationAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() { // from class: com.google.android.material.timepicker.ClockHandView$$ExternalSyntheticLambda0
-            @Override // android.animation.ValueAnimator.AnimatorUpdateListener
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ClockHandView.this.m8149xb17f7076(valueAnimator2);
-            }
-        });
-        this.rotationAnimator.addListener(new AnimatorListenerAdapter() { // from class: com.google.android.material.timepicker.ClockHandView.1
-            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-            public void onAnimationCancel(Animator animator) {
-                animator.end();
-            }
-        });
-        this.rotationAnimator.start();
+        c(f9);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* renamed from: lambda$setHandRotation$0$com-google-android-material-timepicker-ClockHandView, reason: not valid java name */
-    public /* synthetic */ void m8149xb17f7076(ValueAnimator valueAnimator) {
-        setHandRotationInternal(((Float) valueAnimator.getAnimatedValue()).floatValue(), true);
-    }
-
-    private Pair<Float, Float> getValuesForAnimation(float f) {
-        float handRotation = getHandRotation();
-        if (Math.abs(handRotation - f) > 180.0f) {
-            if (handRotation > 180.0f && f < 180.0f) {
-                f += 360.0f;
-            }
-            if (handRotation < 180.0f && f > 180.0f) {
-                handRotation += 360.0f;
-            }
-        }
-        return new Pair<>(Float.valueOf(handRotation), Float.valueOf(f));
-    }
-
-    private void setHandRotationInternal(float f, boolean z) {
-        float f2 = f % 360.0f;
-        this.originalDeg = f2;
-        this.degRad = Math.toRadians(f2 - 90.0f);
+    public final void c(float f9) {
+        float f10 = f9 % 360.0f;
+        this.f14227k = f10;
+        this.m = Math.toRadians(f10 - 90.0f);
         int height = getHeight() / 2;
         int width = getWidth() / 2;
-        float leveledCircleRadius = getLeveledCircleRadius(this.currentLevel);
-        float cos = width + (((float) Math.cos(this.degRad)) * leveledCircleRadius);
-        float sin = height + (leveledCircleRadius * ((float) Math.sin(this.degRad)));
-        RectF rectF = this.selectorBox;
-        int i = this.selectorRadius;
-        rectF.set(cos - i, sin - i, cos + i, sin + i);
-        Iterator<OnRotateListener> it = this.listeners.iterator();
+        float a6 = a(this.f14229o);
+        float cos = (((float) Math.cos(this.m)) * a6) + width;
+        float sin = (a6 * ((float) Math.sin(this.m))) + height;
+        float f11 = this.f14222f;
+        this.f14225i.set(cos - f11, sin - f11, cos + f11, sin + f11);
+        Iterator it = this.f14221d.iterator();
         while (it.hasNext()) {
-            it.next().onRotate(f2, z);
+            ClockFaceView clockFaceView = (ClockFaceView) ((d) it.next());
+            if (Math.abs(clockFaceView.f14215K - f10) > 0.001f) {
+                clockFaceView.f14215K = f10;
+                clockFaceView.n();
+            }
         }
         invalidate();
     }
 
-    public void setAnimateOnTouchUp(boolean z) {
-        this.animatingOnTouchUp = z;
-    }
-
-    public void addOnRotateListener(OnRotateListener onRotateListener) {
-        this.listeners.add(onRotateListener);
-    }
-
-    public void setOnActionUpListener(OnActionUpListener onActionUpListener) {
-        this.onActionUpListener = onActionUpListener;
-    }
-
-    public float getHandRotation() {
-        return this.originalDeg;
-    }
-
     @Override // android.view.View
-    protected void onDraw(Canvas canvas) {
+    public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        drawSelector(canvas);
-    }
-
-    private void drawSelector(Canvas canvas) {
         int height = getHeight() / 2;
         int width = getWidth() / 2;
-        float f = width;
-        float leveledCircleRadius = getLeveledCircleRadius(this.currentLevel);
-        float cos = (((float) Math.cos(this.degRad)) * leveledCircleRadius) + f;
-        float f2 = height;
-        float sin = (leveledCircleRadius * ((float) Math.sin(this.degRad))) + f2;
-        this.paint.setStrokeWidth(0.0f);
-        canvas.drawCircle(cos, sin, this.selectorRadius, this.paint);
-        double sin2 = Math.sin(this.degRad);
-        double cos2 = Math.cos(this.degRad);
-        this.paint.setStrokeWidth(this.selectorStrokeWidth);
-        canvas.drawLine(f, f2, width + ((int) (cos2 * r7)), height + ((int) (r7 * sin2)), this.paint);
-        canvas.drawCircle(f, f2, this.centerDotRadius, this.paint);
-    }
-
-    public RectF getCurrentSelectorBox() {
-        return this.selectorBox;
-    }
-
-    public int getSelectorRadius() {
-        return this.selectorRadius;
-    }
-
-    public void setCircleRadius(int i) {
-        this.circleRadius = i;
-        invalidate();
+        float f9 = width;
+        float a6 = a(this.f14229o);
+        float cos = (((float) Math.cos(this.m)) * a6) + f9;
+        float f10 = height;
+        float sin = (a6 * ((float) Math.sin(this.m))) + f10;
+        Paint paint = this.f14224h;
+        paint.setStrokeWidth(0.0f);
+        canvas.drawCircle(cos, sin, this.f14222f, paint);
+        double sin2 = Math.sin(this.m);
+        paint.setStrokeWidth(this.f14226j);
+        canvas.drawLine(f9, f10, width + ((int) (Math.cos(this.m) * r12)), height + ((int) (r12 * sin2)), paint);
+        canvas.drawCircle(f9, f10, this.f14223g, paint);
     }
 
     @Override // android.view.View
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z;
-        boolean z2;
-        boolean z3;
-        OnActionUpListener onActionUpListener;
+    public final void onLayout(boolean z8, int i9, int i10, int i11, int i12) {
+        super.onLayout(z8, i9, i10, i11, i12);
+        if (!this.b.isRunning()) {
+            b(this.f14227k);
+        }
+    }
+
+    @Override // android.view.View
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z8;
+        boolean z9;
+        boolean z10;
+        int i9;
         int actionMasked = motionEvent.getActionMasked();
-        float x = motionEvent.getX();
-        float y = motionEvent.getY();
-        if (actionMasked == 0) {
-            this.downX = x;
-            this.downY = y;
-            this.isInTapRegion = true;
-            this.changedDuringTouch = false;
-            z = false;
-            z2 = false;
-            z3 = true;
-        } else if (actionMasked == 1 || actionMasked == 2) {
-            int i = (int) (x - this.downX);
-            int i2 = (int) (y - this.downY);
-            this.isInTapRegion = (i * i) + (i2 * i2) > this.scaledTouchSlop;
-            boolean z4 = this.changedDuringTouch;
-            z = actionMasked == 1;
-            if (this.isMultiLevel) {
-                adjustLevel(x, y);
+        float x9 = motionEvent.getX();
+        float y4 = motionEvent.getY();
+        boolean z11 = false;
+        if (actionMasked != 0) {
+            if (actionMasked != 1 && actionMasked != 2) {
+                z9 = false;
+                z8 = false;
+            } else {
+                z9 = this.l;
+                if (this.f14220c) {
+                    if (((float) Math.hypot(x9 - (getWidth() / 2), y4 - (getHeight() / 2))) <= a(2) + TypedValue.applyDimension(1, 12, getContext().getResources().getDisplayMetrics())) {
+                        i9 = 2;
+                    } else {
+                        i9 = 1;
+                    }
+                    this.f14229o = i9;
+                }
+                z8 = false;
             }
-            z3 = false;
-            z2 = z4;
         } else {
-            z = false;
-            z2 = false;
-            z3 = false;
+            this.l = false;
+            z8 = true;
+            z9 = false;
         }
-        boolean handleTouchInput = handleTouchInput(x, y, z2, z3, z) | this.changedDuringTouch;
-        this.changedDuringTouch = handleTouchInput;
-        if (handleTouchInput && z && (onActionUpListener = this.onActionUpListener) != null) {
-            onActionUpListener.onActionUp(getDegreesFromXY(x, y), this.isInTapRegion);
+        boolean z12 = this.l;
+        int degrees = (int) Math.toDegrees(Math.atan2(y4 - (getHeight() / 2), x9 - (getWidth() / 2)));
+        int i10 = degrees + 90;
+        if (i10 < 0) {
+            i10 = degrees + 450;
         }
-        return true;
-    }
-
-    private void adjustLevel(float f, float f2) {
-        this.currentLevel = MathUtils.dist((float) (getWidth() / 2), (float) (getHeight() / 2), f, f2) > ((float) getLeveledCircleRadius(2)) + ViewUtils.dpToPx(getContext(), 12) ? 1 : 2;
-    }
-
-    private boolean handleTouchInput(float f, float f2, boolean z, boolean z2, boolean z3) {
-        float degreesFromXY = getDegreesFromXY(f, f2);
-        boolean z4 = false;
-        boolean z5 = getHandRotation() != degreesFromXY;
-        if (z2 && z5) {
+        float f9 = i10;
+        if (this.f14227k != f9) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (!z8 || !z10) {
+            if (z10 || z9) {
+                b(f9);
+            }
+            this.l = z12 | z11;
             return true;
         }
-        if (!z5 && !z) {
-            return false;
-        }
-        if (z3 && this.animatingOnTouchUp) {
-            z4 = true;
-        }
-        setHandRotation(degreesFromXY, z4);
+        z11 = true;
+        this.l = z12 | z11;
         return true;
-    }
-
-    private int getDegreesFromXY(float f, float f2) {
-        int degrees = (int) Math.toDegrees(Math.atan2(f2 - (getHeight() / 2), f - (getWidth() / 2)));
-        int i = degrees + 90;
-        return i < 0 ? degrees + 450 : i;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public int getCurrentLevel() {
-        return this.currentLevel;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public void setCurrentLevel(int i) {
-        this.currentLevel = i;
-        invalidate();
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public void setMultiLevel(boolean z) {
-        if (this.isMultiLevel && !z) {
-            this.currentLevel = 1;
-        }
-        this.isMultiLevel = z;
-        invalidate();
-    }
-
-    private int getLeveledCircleRadius(int i) {
-        return i == 2 ? Math.round(this.circleRadius * 0.66f) : this.circleRadius;
     }
 }

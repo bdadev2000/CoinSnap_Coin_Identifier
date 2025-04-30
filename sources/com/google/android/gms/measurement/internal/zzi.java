@@ -1,14 +1,12 @@
 package com.google.android.gms.measurement.internal;
 
-/* compiled from: com.google.android.gms:play-services-measurement-sdk@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzi implements Runnable {
-    private final /* synthetic */ com.google.android.gms.internal.measurement.zzdo zza;
+    private final /* synthetic */ com.google.android.gms.internal.measurement.zzdg zza;
     private final /* synthetic */ AppMeasurementDynamiteService zzb;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzi(AppMeasurementDynamiteService appMeasurementDynamiteService, com.google.android.gms.internal.measurement.zzdo zzdoVar) {
-        this.zza = zzdoVar;
+    public zzi(AppMeasurementDynamiteService appMeasurementDynamiteService, com.google.android.gms.internal.measurement.zzdg zzdgVar) {
+        this.zza = zzdgVar;
         this.zzb = appMeasurementDynamiteService;
     }
 

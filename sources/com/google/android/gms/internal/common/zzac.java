@@ -1,19 +1,15 @@
 package com.google.android.gms.internal.common;
 
-import com.google.errorprone.annotations.DoNotMock;
 import java.io.Serializable;
 import java.util.AbstractCollection;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Spliterator;
 import java.util.Spliterators;
-import javax.annotation.CheckForNull;
 import org.jspecify.nullness.NullMarked;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-@DoNotMock("Use ImmutableList.of or another implementation")
 @NullMarked
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class zzac extends AbstractCollection implements Serializable {
     private static final Object[] zza = new Object[0];
 
@@ -37,7 +33,7 @@ public abstract class zzac extends AbstractCollection implements Serializable {
 
     @Override // java.util.AbstractCollection, java.util.Collection
     @Deprecated
-    public final boolean remove(@CheckForNull Object obj) {
+    public final boolean remove(Object obj) {
         throw new UnsupportedOperationException();
     }
 
@@ -63,15 +59,14 @@ public abstract class zzac extends AbstractCollection implements Serializable {
         return toArray(zza);
     }
 
-    int zza(Object[] objArr, int i) {
+    public int zza(Object[] objArr, int i9) {
         throw null;
     }
 
-    int zzb() {
+    public int zzb() {
         throw null;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public int zzc() {
         throw null;
     }
@@ -84,11 +79,8 @@ public abstract class zzac extends AbstractCollection implements Serializable {
     /* renamed from: zze, reason: merged with bridge method [inline-methods] */
     public abstract zzaj iterator();
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public abstract boolean zzf();
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    @CheckForNull
     public Object[] zzg() {
         throw null;
     }

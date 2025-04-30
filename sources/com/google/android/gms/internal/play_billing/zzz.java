@@ -1,15 +1,14 @@
 package com.google.android.gms.internal.play_billing;
 
-import java.util.Iterator;
-
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public final class zzz {
-    public static Object zza(Iterable iterable, Object obj) {
-        Iterator it = iterable.iterator();
-        if (it.hasNext()) {
-            return it.next();
+/* loaded from: classes2.dex */
+public final class zzz extends zzy {
+    public static boolean zza(Object obj, Object obj2) {
+        if (obj == obj2) {
+            return true;
         }
-        return null;
+        if (obj != null && obj.equals(obj2)) {
+            return true;
+        }
+        return false;
     }
 }

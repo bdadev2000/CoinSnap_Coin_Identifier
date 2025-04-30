@@ -1,18 +1,16 @@
 package com.google.android.gms.tasks;
 
+import androidx.annotation.NonNull;
 import java.util.concurrent.Executor;
-import javax.annotation.Nullable;
 
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
-final class zzh implements zzq {
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzh implements zzq {
     private final Executor zza;
     private final Object zzb = new Object();
-
-    @Nullable
     private OnCanceledListener zzc;
 
-    public zzh(Executor executor, OnCanceledListener onCanceledListener) {
+    public zzh(@NonNull Executor executor, @NonNull OnCanceledListener onCanceledListener) {
         this.zza = executor;
         this.zzc = onCanceledListener;
     }
@@ -25,13 +23,17 @@ final class zzh implements zzq {
     }
 
     @Override // com.google.android.gms.tasks.zzq
-    public final void zzd(Task task) {
+    public final void zzd(@NonNull Task task) {
         if (task.isCanceled()) {
             synchronized (this.zzb) {
-                if (this.zzc == null) {
-                    return;
+                try {
+                    if (this.zzc == null) {
+                        return;
+                    }
+                    this.zza.execute(new zzg(this));
+                } catch (Throwable th) {
+                    throw th;
                 }
-                this.zza.execute(new zzg(this));
             }
         }
     }

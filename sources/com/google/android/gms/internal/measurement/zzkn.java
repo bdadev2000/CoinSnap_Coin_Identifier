@@ -1,248 +1,179 @@
 package com.google.android.gms.internal.measurement;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.RandomAccess;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzkn extends zzie<Long> implements zzjz, zzlo, RandomAccess {
-    private static final long[] zza;
-    private static final zzkn zzb;
-    private long[] zzc;
-    private int zzd;
-
-    private static int zze(int i) {
-        return Math.max(((i * 3) / 2) + 1, 10);
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzie, java.util.AbstractList, java.util.Collection, java.util.List
-    public final int hashCode() {
-        int i = 1;
-        for (int i2 = 0; i2 < this.zzd; i2++) {
-            i = (i * 31) + zzjv.zza(this.zzc[i2]);
-        }
-        return i;
-    }
-
-    @Override // java.util.AbstractList, java.util.List
-    public final int indexOf(Object obj) {
-        if (!(obj instanceof Long)) {
-            return -1;
-        }
-        long longValue = ((Long) obj).longValue();
-        int size = size();
-        for (int i = 0; i < size; i++) {
-            if (this.zzc[i] == longValue) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
-    public final int size() {
-        return this.zzd;
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzjz
-    public final long zzb(int i) {
-        zzg(i);
-        return this.zzc[i];
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzkc
-    /* renamed from: zzc, reason: merged with bridge method [inline-methods] */
-    public final zzjz zza(int i) {
-        if (i < this.zzd) {
-            throw new IllegalArgumentException();
-        }
-        return new zzkn(i == 0 ? zza : Arrays.copyOf(this.zzc, i), this.zzd, true);
-    }
-
-    public static zzkn zzd() {
-        return zzb;
-    }
-
-    @Override // java.util.AbstractList, java.util.List
-    public final /* synthetic */ Object get(int i) {
-        return Long.valueOf(zzb(i));
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzie, java.util.AbstractList, java.util.List
-    public final /* synthetic */ Object remove(int i) {
-        zza();
-        zzg(i);
-        long[] jArr = this.zzc;
-        long j = jArr[i];
-        if (i < this.zzd - 1) {
-            System.arraycopy(jArr, i + 1, jArr, i, (r3 - i) - 1);
-        }
-        this.zzd--;
-        this.modCount++;
-        return Long.valueOf(j);
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzie, java.util.AbstractList, java.util.List
-    public final /* synthetic */ Object set(int i, Object obj) {
-        long longValue = ((Long) obj).longValue();
-        zza();
-        zzg(i);
-        long[] jArr = this.zzc;
-        long j = jArr[i];
-        jArr[i] = longValue;
-        return Long.valueOf(j);
-    }
-
-    private final String zzf(int i) {
-        return "Index:" + i + ", Size:" + this.zzd;
-    }
+/* loaded from: classes2.dex */
+public final class zzkn<K, V> extends LinkedHashMap<K, V> {
+    private static final zzkn<?, ?> zza;
+    private boolean zzb;
 
     static {
-        long[] jArr = new long[0];
-        zza = jArr;
-        zzb = new zzkn(jArr, 0, false);
+        zzkn<?, ?> zzknVar = new zzkn<>();
+        zza = zzknVar;
+        ((zzkn) zzknVar).zzb = false;
     }
 
-    zzkn() {
-        this(zza, 0, true);
+    private zzkn() {
+        this.zzb = true;
     }
 
-    private zzkn(long[] jArr, int i, boolean z) {
-        super(z);
-        this.zzc = jArr;
-        this.zzd = i;
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzie, java.util.AbstractList, java.util.List
-    public final /* synthetic */ void add(int i, Object obj) {
-        int i2;
-        long longValue = ((Long) obj).longValue();
-        zza();
-        if (i < 0 || i > (i2 = this.zzd)) {
-            throw new IndexOutOfBoundsException(zzf(i));
+    private static int zza(Object obj) {
+        if (obj instanceof byte[]) {
+            return zzjm.zza((byte[]) obj);
         }
-        long[] jArr = this.zzc;
-        if (i2 < jArr.length) {
-            System.arraycopy(jArr, i, jArr, i + 1, i2 - i);
+        if (!(obj instanceof zzjp)) {
+            return obj.hashCode();
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    private final void zze() {
+        if (this.zzb) {
         } else {
-            long[] jArr2 = new long[zze(jArr.length)];
-            System.arraycopy(this.zzc, 0, jArr2, 0, i);
-            System.arraycopy(this.zzc, i, jArr2, i + 1, this.zzd - i);
-            this.zzc = jArr2;
+            throw new UnsupportedOperationException();
         }
-        this.zzc[i] = longValue;
-        this.zzd++;
-        this.modCount++;
     }
 
-    public final void zza(long j) {
-        zza();
-        int i = this.zzd;
-        long[] jArr = this.zzc;
-        if (i == jArr.length) {
-            long[] jArr2 = new long[zze(jArr.length)];
-            System.arraycopy(this.zzc, 0, jArr2, 0, this.zzd);
-            this.zzc = jArr2;
-        }
-        long[] jArr3 = this.zzc;
-        int i2 = this.zzd;
-        this.zzd = i2 + 1;
-        jArr3[i2] = j;
+    @Override // java.util.LinkedHashMap, java.util.HashMap, java.util.AbstractMap, java.util.Map
+    public final void clear() {
+        zze();
+        super.clear();
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public final void zzd(int i) {
-        long[] jArr = this.zzc;
-        if (i <= jArr.length) {
+    @Override // java.util.LinkedHashMap, java.util.HashMap, java.util.AbstractMap, java.util.Map
+    public final Set<Map.Entry<K, V>> entrySet() {
+        if (isEmpty()) {
+            return Collections.emptySet();
+        }
+        return super.entrySet();
+    }
+
+    /* JADX WARN: Removed duplicated region for block: B:9:0x005c A[RETURN] */
+    @Override // java.util.AbstractMap, java.util.Map
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    public final boolean equals(java.lang.Object r7) {
+        /*
+            r6 = this;
+            boolean r0 = r7 instanceof java.util.Map
+            r1 = 0
+            if (r0 == 0) goto L5d
+            java.util.Map r7 = (java.util.Map) r7
+            r0 = 1
+            if (r6 == r7) goto L59
+            int r2 = r6.size()
+            int r3 = r7.size()
+            if (r2 == r3) goto L16
+        L14:
+            r7 = r1
+            goto L5a
+        L16:
+            java.util.Set r2 = r6.entrySet()
+            java.util.Iterator r2 = r2.iterator()
+        L1e:
+            boolean r3 = r2.hasNext()
+            if (r3 == 0) goto L59
+            java.lang.Object r3 = r2.next()
+            java.util.Map$Entry r3 = (java.util.Map.Entry) r3
+            java.lang.Object r4 = r3.getKey()
+            boolean r4 = r7.containsKey(r4)
+            if (r4 != 0) goto L35
+            goto L14
+        L35:
+            java.lang.Object r4 = r3.getValue()
+            java.lang.Object r3 = r3.getKey()
+            java.lang.Object r3 = r7.get(r3)
+            boolean r5 = r4 instanceof byte[]
+            if (r5 == 0) goto L52
+            boolean r5 = r3 instanceof byte[]
+            if (r5 == 0) goto L52
+            byte[] r4 = (byte[]) r4
+            byte[] r3 = (byte[]) r3
+            boolean r3 = java.util.Arrays.equals(r4, r3)
+            goto L56
+        L52:
+            boolean r3 = r4.equals(r3)
+        L56:
+            if (r3 != 0) goto L1e
+            goto L14
+        L59:
+            r7 = r0
+        L5a:
+            if (r7 == 0) goto L5d
+            return r0
+        L5d:
+            return r1
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.internal.measurement.zzkn.equals(java.lang.Object):boolean");
+    }
+
+    @Override // java.util.AbstractMap, java.util.Map
+    public final int hashCode() {
+        int i9 = 0;
+        for (Map.Entry<K, V> entry : entrySet()) {
+            i9 += zza(entry.getValue()) ^ zza(entry.getKey());
+        }
+        return i9;
+    }
+
+    @Override // java.util.HashMap, java.util.AbstractMap, java.util.Map
+    public final V put(K k6, V v6) {
+        zze();
+        zzjm.zza(k6);
+        zzjm.zza(v6);
+        return (V) super.put(k6, v6);
+    }
+
+    @Override // java.util.HashMap, java.util.AbstractMap, java.util.Map
+    public final void putAll(Map<? extends K, ? extends V> map) {
+        zze();
+        for (K k6 : map.keySet()) {
+            zzjm.zza(k6);
+            zzjm.zza(map.get(k6));
+        }
+        super.putAll(map);
+    }
+
+    @Override // java.util.HashMap, java.util.AbstractMap, java.util.Map
+    public final V remove(Object obj) {
+        zze();
+        return (V) super.remove(obj);
+    }
+
+    public final zzkn<K, V> zzb() {
+        if (isEmpty()) {
+            return new zzkn<>();
+        }
+        return new zzkn<>(this);
+    }
+
+    public final void zzc() {
+        this.zzb = false;
+    }
+
+    public final boolean zzd() {
+        return this.zzb;
+    }
+
+    private zzkn(Map<K, V> map) {
+        super(map);
+        this.zzb = true;
+    }
+
+    public static <K, V> zzkn<K, V> zza() {
+        return (zzkn<K, V>) zza;
+    }
+
+    public final void zza(zzkn<K, V> zzknVar) {
+        zze();
+        if (zzknVar.isEmpty()) {
             return;
         }
-        if (jArr.length == 0) {
-            this.zzc = new long[Math.max(i, 10)];
-            return;
-        }
-        int length = jArr.length;
-        while (length < i) {
-            length = zze(length);
-        }
-        this.zzc = Arrays.copyOf(this.zzc, length);
-    }
-
-    private final void zzg(int i) {
-        if (i < 0 || i >= this.zzd) {
-            throw new IndexOutOfBoundsException(zzf(i));
-        }
-    }
-
-    @Override // java.util.AbstractList
-    protected final void removeRange(int i, int i2) {
-        zza();
-        if (i2 < i) {
-            throw new IndexOutOfBoundsException("toIndex < fromIndex");
-        }
-        long[] jArr = this.zzc;
-        System.arraycopy(jArr, i2, jArr, i, this.zzd - i2);
-        this.zzd -= i2 - i;
-        this.modCount++;
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzie, java.util.AbstractList, java.util.AbstractCollection, java.util.Collection, java.util.List
-    public final /* synthetic */ boolean add(Object obj) {
-        zza(((Long) obj).longValue());
-        return true;
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzie, java.util.AbstractCollection, java.util.Collection, java.util.List
-    public final boolean addAll(Collection<? extends Long> collection) {
-        zza();
-        zzjv.zza(collection);
-        if (!(collection instanceof zzkn)) {
-            return super.addAll(collection);
-        }
-        zzkn zzknVar = (zzkn) collection;
-        int i = zzknVar.zzd;
-        if (i == 0) {
-            return false;
-        }
-        int i2 = this.zzd;
-        if (Integer.MAX_VALUE - i2 < i) {
-            throw new OutOfMemoryError();
-        }
-        int i3 = i2 + i;
-        long[] jArr = this.zzc;
-        if (i3 > jArr.length) {
-            this.zzc = Arrays.copyOf(jArr, i3);
-        }
-        System.arraycopy(zzknVar.zzc, 0, this.zzc, this.zzd, zzknVar.zzd);
-        this.zzd = i3;
-        this.modCount++;
-        return true;
-    }
-
-    @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
-    public final boolean contains(Object obj) {
-        return indexOf(obj) != -1;
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzie, java.util.AbstractList, java.util.Collection, java.util.List
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof zzkn)) {
-            return super.equals(obj);
-        }
-        zzkn zzknVar = (zzkn) obj;
-        if (this.zzd != zzknVar.zzd) {
-            return false;
-        }
-        long[] jArr = zzknVar.zzc;
-        for (int i = 0; i < this.zzd; i++) {
-            if (this.zzc[i] != jArr[i]) {
-                return false;
-            }
-        }
-        return true;
+        putAll(zzknVar);
     }
 }

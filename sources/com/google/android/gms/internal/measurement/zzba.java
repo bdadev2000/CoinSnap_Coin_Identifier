@@ -1,8 +1,52 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzba extends zzay {
+    public zzba() {
+        this.zza.add(zzbv.EQUALS);
+        this.zza.add(zzbv.GREATER_THAN);
+        this.zza.add(zzbv.GREATER_THAN_EQUALS);
+        this.zza.add(zzbv.IDENTITY_EQUALS);
+        this.zza.add(zzbv.IDENTITY_NOT_EQUALS);
+        this.zza.add(zzbv.LESS_THAN);
+        this.zza.add(zzbv.LESS_THAN_EQUALS);
+        this.zza.add(zzbv.NOT_EQUALS);
+    }
+
+    private static boolean zzb(zzaq zzaqVar, zzaq zzaqVar2) {
+        if (zzaqVar instanceof zzak) {
+            zzaqVar = new zzas(zzaqVar.zzf());
+        }
+        if (zzaqVar2 instanceof zzak) {
+            zzaqVar2 = new zzas(zzaqVar2.zzf());
+        }
+        if ((zzaqVar instanceof zzas) && (zzaqVar2 instanceof zzas)) {
+            if (zzaqVar.zzf().compareTo(zzaqVar2.zzf()) < 0) {
+                return true;
+            }
+            return false;
+        }
+        double doubleValue = zzaqVar.zze().doubleValue();
+        double doubleValue2 = zzaqVar2.zze().doubleValue();
+        if (!Double.isNaN(doubleValue) && !Double.isNaN(doubleValue2) && ((doubleValue != 0.0d || doubleValue2 != -0.0d) && ((doubleValue != -0.0d || doubleValue2 != 0.0d) && Double.compare(doubleValue, doubleValue2) < 0))) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean zzc(zzaq zzaqVar, zzaq zzaqVar2) {
+        if (zzaqVar instanceof zzak) {
+            zzaqVar = new zzas(zzaqVar.zzf());
+        }
+        if (zzaqVar2 instanceof zzak) {
+            zzaqVar2 = new zzas(zzaqVar2.zzf());
+        }
+        if (((!(zzaqVar instanceof zzas) || !(zzaqVar2 instanceof zzas)) && (Double.isNaN(zzaqVar.zze().doubleValue()) || Double.isNaN(zzaqVar2.zze().doubleValue()))) || zzb(zzaqVar2, zzaqVar)) {
+            return false;
+        }
+        return true;
+    }
+
     /* JADX WARN: Failed to find 'out' block for switch in B:2:0x002a. Please report as an issue. */
     /* JADX WARN: Removed duplicated region for block: B:11:0x005f  */
     /* JADX WARN: Removed duplicated region for block: B:9:0x005c  */
@@ -34,29 +78,29 @@ public final class zzba extends zzay {
                 case 2: goto L51;
                 case 3: goto L4c;
                 case 4: goto L47;
-                case 5: goto L41;
-                case 6: goto L3c;
-                case 7: goto L37;
+                case 5: goto L42;
+                case 6: goto L3d;
+                case 7: goto L38;
                 case 8: goto L32;
                 default: goto L2d;
             }
         L2d:
-            com.google.android.gms.internal.measurement.zzaq r4 = super.zza(r4)
+            com.google.android.gms.internal.measurement.zzaq r4 = r3.zza(r4)
             return r4
         L32:
             boolean r4 = zza(r0, r5)
-            goto L45
-        L37:
-            boolean r4 = zzc(r0, r5)
-            goto L5a
-        L3c:
-            boolean r4 = zzb(r0, r5)
-            goto L5a
-        L41:
-            boolean r4 = com.google.android.gms.internal.measurement.zzg.zza(r0, r5)
-        L45:
+        L36:
             r4 = r4 ^ r1
             goto L5a
+        L38:
+            boolean r4 = zzc(r0, r5)
+            goto L5a
+        L3d:
+            boolean r4 = zzb(r0, r5)
+            goto L5a
+        L42:
+            boolean r4 = com.google.android.gms.internal.measurement.zzg.zza(r0, r5)
+            goto L36
         L47:
             boolean r4 = com.google.android.gms.internal.measurement.zzg.zza(r0, r5)
             goto L5a
@@ -79,17 +123,6 @@ public final class zzba extends zzay {
         throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.internal.measurement.zzba.zza(java.lang.String, com.google.android.gms.internal.measurement.zzh, java.util.List):com.google.android.gms.internal.measurement.zzaq");
     }
 
-    public zzba() {
-        this.zza.add(zzbv.EQUALS);
-        this.zza.add(zzbv.GREATER_THAN);
-        this.zza.add(zzbv.GREATER_THAN_EQUALS);
-        this.zza.add(zzbv.IDENTITY_EQUALS);
-        this.zza.add(zzbv.IDENTITY_NOT_EQUALS);
-        this.zza.add(zzbv.LESS_THAN);
-        this.zza.add(zzbv.LESS_THAN_EQUALS);
-        this.zza.add(zzbv.NOT_EQUALS);
-    }
-
     private static boolean zza(zzaq zzaqVar, zzaq zzaqVar2) {
         zzaq zzaiVar;
         zzaq zzaiVar2;
@@ -97,18 +130,18 @@ public final class zzba extends zzay {
             if (((zzaqVar instanceof zzax) || (zzaqVar instanceof zzao)) && ((zzaqVar2 instanceof zzax) || (zzaqVar2 instanceof zzao))) {
                 return true;
             }
-            boolean z = zzaqVar instanceof zzai;
-            if (z && (zzaqVar2 instanceof zzas)) {
+            boolean z8 = zzaqVar instanceof zzai;
+            if (z8 && (zzaqVar2 instanceof zzas)) {
                 zzaiVar2 = new zzai(zzaqVar2.zze());
             } else {
-                boolean z2 = zzaqVar instanceof zzas;
-                if (z2 && (zzaqVar2 instanceof zzai)) {
+                boolean z9 = zzaqVar instanceof zzas;
+                if (z9 && (zzaqVar2 instanceof zzai)) {
                     zzaiVar = new zzai(zzaqVar.zze());
                 } else if (zzaqVar instanceof zzag) {
                     zzaiVar = new zzai(zzaqVar.zze());
                 } else if (zzaqVar2 instanceof zzag) {
                     zzaiVar2 = new zzai(zzaqVar2.zze());
-                } else if ((z2 || z) && (zzaqVar2 instanceof zzak)) {
+                } else if ((z9 || z8) && (zzaqVar2 instanceof zzak)) {
                     zzaiVar2 = new zzas(zzaqVar2.zzf());
                 } else {
                     if (!(zzaqVar instanceof zzak) || (!(zzaqVar2 instanceof zzas) && !(zzaqVar2 instanceof zzai))) {
@@ -133,30 +166,5 @@ public final class zzba extends zzay {
             return zzaqVar.zzd().equals(zzaqVar2.zzd());
         }
         return zzaqVar == zzaqVar2;
-    }
-
-    private static boolean zzb(zzaq zzaqVar, zzaq zzaqVar2) {
-        if (zzaqVar instanceof zzak) {
-            zzaqVar = new zzas(zzaqVar.zzf());
-        }
-        if (zzaqVar2 instanceof zzak) {
-            zzaqVar2 = new zzas(zzaqVar2.zzf());
-        }
-        if ((zzaqVar instanceof zzas) && (zzaqVar2 instanceof zzas)) {
-            return zzaqVar.zzf().compareTo(zzaqVar2.zzf()) < 0;
-        }
-        double doubleValue = zzaqVar.zze().doubleValue();
-        double doubleValue2 = zzaqVar2.zze().doubleValue();
-        return (Double.isNaN(doubleValue) || Double.isNaN(doubleValue2) || (doubleValue == 0.0d && doubleValue2 == -0.0d) || ((doubleValue == -0.0d && doubleValue2 == 0.0d) || Double.compare(doubleValue, doubleValue2) >= 0)) ? false : true;
-    }
-
-    private static boolean zzc(zzaq zzaqVar, zzaq zzaqVar2) {
-        if (zzaqVar instanceof zzak) {
-            zzaqVar = new zzas(zzaqVar.zzf());
-        }
-        if (zzaqVar2 instanceof zzak) {
-            zzaqVar2 = new zzas(zzaqVar2.zzf());
-        }
-        return (((zzaqVar instanceof zzas) && (zzaqVar2 instanceof zzas)) || !(Double.isNaN(zzaqVar.zze().doubleValue()) || Double.isNaN(zzaqVar2.zze().doubleValue()))) && !zzb(zzaqVar2, zzaqVar);
     }
 }

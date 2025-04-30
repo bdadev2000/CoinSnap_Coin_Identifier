@@ -1,14 +1,13 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public final class zzfr extends zzbx implements zzdg {
-    private zzfr() {
-        super(zzfs.zzv());
-    }
+/* loaded from: classes2.dex */
+abstract class zzfr {
+    public abstract int zza(int i9, byte[] bArr, int i10, int i11);
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public /* synthetic */ zzfr(zzfq zzfqVar) {
-        super(zzfs.zzv());
+    public final boolean zzb(byte[] bArr, int i9, int i10) {
+        if (zza(0, bArr, i9, i10) != 0) {
+            return false;
+        }
+        return true;
     }
 }

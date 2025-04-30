@@ -1,15 +1,15 @@
 package com.google.android.gms.tasks;
 
+import androidx.annotation.NonNull;
 import java.util.concurrent.Executor;
 
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzp<TResult, TContinuationResult> implements OnSuccessListener<TContinuationResult>, OnFailureListener, OnCanceledListener, zzq {
     private final Executor zza;
     private final SuccessContinuation zzb;
     private final zzw zzc;
 
-    public zzp(Executor executor, SuccessContinuation successContinuation, zzw zzwVar) {
+    public zzp(@NonNull Executor executor, @NonNull SuccessContinuation successContinuation, @NonNull zzw zzwVar) {
         this.zza = executor;
         this.zzb = successContinuation;
         this.zzc = zzwVar;
@@ -21,7 +21,7 @@ final class zzp<TResult, TContinuationResult> implements OnSuccessListener<TCont
     }
 
     @Override // com.google.android.gms.tasks.OnFailureListener
-    public final void onFailure(Exception exc) {
+    public final void onFailure(@NonNull Exception exc) {
         this.zzc.zza(exc);
     }
 
@@ -36,7 +36,7 @@ final class zzp<TResult, TContinuationResult> implements OnSuccessListener<TCont
     }
 
     @Override // com.google.android.gms.tasks.zzq
-    public final void zzd(Task task) {
+    public final void zzd(@NonNull Task task) {
         this.zza.execute(new zzo(this, task));
     }
 }

@@ -1,10 +1,9 @@
 package com.google.android.gms.internal.base;
 
-import androidx.collection.LruCache;
+import x.g;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
-public final class zam extends LruCache {
+/* loaded from: classes2.dex */
+public final class zam extends g {
     public zam() {
         super(10);
     }

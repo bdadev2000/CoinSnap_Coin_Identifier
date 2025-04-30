@@ -5,9 +5,12 @@ import android.os.IBinder;
 import android.os.Parcel;
 import android.os.RemoteException;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzca extends zzbu implements zzbz {
+    public zzca(IBinder iBinder) {
+        super(iBinder, "com.google.android.finsky.externalreferrer.IGetInstallReferrerService");
+    }
+
     @Override // com.google.android.gms.internal.measurement.zzbz
     public final Bundle zza(Bundle bundle) throws RemoteException {
         Parcel a_ = a_();
@@ -16,10 +19,5 @@ public final class zzca extends zzbu implements zzbz {
         Bundle bundle2 = (Bundle) zzbw.zza(zza, Bundle.CREATOR);
         zza.recycle();
         return bundle2;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzca(IBinder iBinder) {
-        super(iBinder, "com.google.android.finsky.externalreferrer.IGetInstallReferrerService");
     }
 }

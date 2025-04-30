@@ -1,40 +1,18 @@
 package com.google.android.gms.measurement.internal;
 
-import android.content.Context;
-import com.google.android.gms.common.internal.Preconditions;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzjo extends zzat {
+    private final /* synthetic */ zziv zza;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzjo {
-    final Context zza;
-    String zzb;
-    String zzc;
-    String zzd;
-    Boolean zze;
-    long zzf;
-    com.google.android.gms.internal.measurement.zzdw zzg;
-    boolean zzh;
-    Long zzi;
-    String zzj;
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public zzjo(zziv zzivVar, zzil zzilVar) {
+        super(zzilVar);
+        this.zza = zzivVar;
+    }
 
-    public zzjo(Context context, com.google.android.gms.internal.measurement.zzdw zzdwVar, Long l) {
-        this.zzh = true;
-        Preconditions.checkNotNull(context);
-        Context applicationContext = context.getApplicationContext();
-        Preconditions.checkNotNull(applicationContext);
-        this.zza = applicationContext;
-        this.zzi = l;
-        if (zzdwVar != null) {
-            this.zzg = zzdwVar;
-            this.zzb = zzdwVar.zzf;
-            this.zzc = zzdwVar.zze;
-            this.zzd = zzdwVar.zzd;
-            this.zzh = zzdwVar.zzc;
-            this.zzf = zzdwVar.zzb;
-            this.zzj = zzdwVar.zzh;
-            if (zzdwVar.zzg != null) {
-                this.zze = Boolean.valueOf(zzdwVar.zzg.getBoolean("dataCollectionDefaultEnabled", true));
-            }
-        }
+    @Override // com.google.android.gms.measurement.internal.zzat
+    public final void zzb() {
+        this.zza.zzaq();
     }
 }

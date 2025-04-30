@@ -4,7 +4,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import java.lang.reflect.InvocationHandler;
 
-/* loaded from: classes9.dex */
+/* loaded from: classes3.dex */
 public interface WebkitToCompatConverterBoundaryInterface {
     InvocationHandler convertCookieManager(Object obj);
 

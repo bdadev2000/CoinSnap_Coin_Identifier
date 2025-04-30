@@ -1,30 +1,38 @@
 package com.google.android.gms.common.api.internal;
 
 import android.os.Looper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.Preconditions;
 import com.google.android.gms.common.util.concurrent.HandlerExecutor;
 import java.util.concurrent.Executor;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public final class ListenerHolder<L> {
     private final Executor zaa;
+
+    @Nullable
     private volatile Object zab;
+
+    @Nullable
     private volatile ListenerKey zac;
 
-    /* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-    /* loaded from: classes12.dex */
+    @KeepForSdk
+    /* loaded from: classes2.dex */
     public static final class ListenerKey<L> {
         private final Object zaa;
         private final String zab;
 
-        /* JADX INFO: Access modifiers changed from: package-private */
+        @KeepForSdk
         public ListenerKey(L l, String str) {
             this.zaa = l;
             this.zab = str;
         }
 
-        public boolean equals(Object obj) {
+        @KeepForSdk
+        public boolean equals(@Nullable Object obj) {
             if (this == obj) {
                 return true;
             }
@@ -32,47 +40,60 @@ public final class ListenerHolder<L> {
                 return false;
             }
             ListenerKey listenerKey = (ListenerKey) obj;
-            return this.zaa == listenerKey.zaa && this.zab.equals(listenerKey.zab);
+            if (this.zaa == listenerKey.zaa && this.zab.equals(listenerKey.zab)) {
+                return true;
+            }
+            return false;
         }
 
+        @KeepForSdk
         public int hashCode() {
-            return (System.identityHashCode(this.zaa) * 31) + this.zab.hashCode();
+            return this.zab.hashCode() + (System.identityHashCode(this.zaa) * 31);
         }
 
+        @NonNull
+        @KeepForSdk
         public String toIdString() {
             return this.zab + "@" + System.identityHashCode(this.zaa);
         }
     }
 
-    /* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-    /* loaded from: classes12.dex */
+    @KeepForSdk
+    /* loaded from: classes2.dex */
     public interface Notifier<L> {
-        void notifyListener(L l);
+        @KeepForSdk
+        void notifyListener(@NonNull L l);
 
+        @KeepForSdk
         void onNotifyListenerFailed();
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public ListenerHolder(Looper looper, L l, String str) {
+    @KeepForSdk
+    public ListenerHolder(@NonNull Looper looper, @NonNull L l, @NonNull String str) {
         this.zaa = new HandlerExecutor(looper);
         this.zab = Preconditions.checkNotNull(l, "Listener must not be null");
         this.zac = new ListenerKey(l, Preconditions.checkNotEmpty(str));
     }
 
+    @KeepForSdk
     public void clear() {
         this.zab = null;
         this.zac = null;
     }
 
+    @Nullable
+    @KeepForSdk
     public ListenerKey<L> getListenerKey() {
         return this.zac;
     }
 
+    @KeepForSdk
     public boolean hasListener() {
         return this.zab != null;
     }
 
-    public void notifyListener(final Notifier<? super L> notifier) {
+    @KeepForSdk
+    public void notifyListener(@NonNull final Notifier<? super L> notifier) {
         Preconditions.checkNotNull(notifier, "Notifier must not be null");
         this.zaa.execute(new Runnable() { // from class: com.google.android.gms.common.api.internal.zacb
             @Override // java.lang.Runnable
@@ -82,7 +103,6 @@ public final class ListenerHolder<L> {
         });
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     /* JADX WARN: Multi-variable type inference failed */
     public final void zaa(Notifier notifier) {
         Object obj = this.zab;
@@ -92,14 +112,14 @@ public final class ListenerHolder<L> {
         }
         try {
             notifier.notifyListener(obj);
-        } catch (RuntimeException e) {
+        } catch (RuntimeException e4) {
             notifier.onNotifyListenerFailed();
-            throw e;
+            throw e4;
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public ListenerHolder(Executor executor, L l, String str) {
+    @KeepForSdk
+    public ListenerHolder(@NonNull Executor executor, @NonNull L l, @NonNull String str) {
         this.zaa = (Executor) Preconditions.checkNotNull(executor, "Executor must not be null");
         this.zab = Preconditions.checkNotNull(l, "Listener must not be null");
         this.zac = new ListenerKey(l, Preconditions.checkNotEmpty(str));

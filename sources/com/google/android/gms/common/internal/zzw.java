@@ -5,10 +5,8 @@ import android.os.IBinder;
 import android.os.Parcel;
 import android.os.RemoteException;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzw extends com.google.android.gms.internal.common.zza implements IAccountAccessor {
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zzw(IBinder iBinder) {
         super(iBinder, "com.google.android.gms.common.internal.IAccountAccessor");
     }

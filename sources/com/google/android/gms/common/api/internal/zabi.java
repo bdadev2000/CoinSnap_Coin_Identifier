@@ -3,6 +3,8 @@ package com.google.android.gms.common.api.internal;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Looper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailabilityLight;
 import com.google.android.gms.common.api.Api;
@@ -17,14 +19,16 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
-import org.checkerframework.checker.initialization.qual.NotOnlyInitialized;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zabi implements zaca, zau {
     final Map zaa;
+
+    @Nullable
     final ClientSettings zac;
     final Map zad;
+
+    @Nullable
     final Api.AbstractClientBuilder zae;
     int zaf;
     final zabe zag;
@@ -34,13 +38,13 @@ public final class zabi implements zaca, zau {
     private final Context zak;
     private final GoogleApiAvailabilityLight zal;
     private final zabh zam;
-
-    @NotOnlyInitialized
     private volatile zabf zan;
     final Map zab = new HashMap();
+
+    @Nullable
     private ConnectionResult zao = null;
 
-    public zabi(Context context, zabe zabeVar, Lock lock, Looper looper, GoogleApiAvailabilityLight googleApiAvailabilityLight, Map map, ClientSettings clientSettings, Map map2, Api.AbstractClientBuilder abstractClientBuilder, ArrayList arrayList, zabz zabzVar) {
+    public zabi(Context context, zabe zabeVar, Lock lock, Looper looper, GoogleApiAvailabilityLight googleApiAvailabilityLight, Map map, @Nullable ClientSettings clientSettings, Map map2, @Nullable Api.AbstractClientBuilder abstractClientBuilder, ArrayList arrayList, zabz zabzVar) {
         this.zak = context;
         this.zai = lock;
         this.zal = googleApiAvailabilityLight;
@@ -51,8 +55,8 @@ public final class zabi implements zaca, zau {
         this.zag = zabeVar;
         this.zah = zabzVar;
         int size = arrayList.size();
-        for (int i = 0; i < size; i++) {
-            ((zat) arrayList.get(i)).zaa(this);
+        for (int i9 = 0; i9 < size; i9++) {
+            ((zat) arrayList.get(i9)).zaa(this);
         }
         this.zam = new zabh(this, looper);
         this.zaj = lock.newCondition();
@@ -60,7 +64,7 @@ public final class zabi implements zaca, zau {
     }
 
     @Override // com.google.android.gms.common.api.internal.ConnectionCallbacks
-    public final void onConnected(Bundle bundle) {
+    public final void onConnected(@Nullable Bundle bundle) {
         this.zai.lock();
         try {
             this.zan.zag(bundle);
@@ -70,20 +74,20 @@ public final class zabi implements zaca, zau {
     }
 
     @Override // com.google.android.gms.common.api.internal.ConnectionCallbacks
-    public final void onConnectionSuspended(int i) {
+    public final void onConnectionSuspended(int i9) {
         this.zai.lock();
         try {
-            this.zan.zai(i);
+            this.zan.zai(i9);
         } finally {
             this.zai.unlock();
         }
     }
 
     @Override // com.google.android.gms.common.api.internal.zau
-    public final void zaa(ConnectionResult connectionResult, Api api, boolean z) {
+    public final void zaa(@NonNull ConnectionResult connectionResult, @NonNull Api api, boolean z8) {
         this.zai.lock();
         try {
-            this.zan.zah(connectionResult, api, z);
+            this.zan.zah(connectionResult, api, z8);
         } finally {
             this.zai.unlock();
         }
@@ -104,24 +108,26 @@ public final class zabi implements zaca, zau {
             return ConnectionResult.RESULT_SUCCESS;
         }
         ConnectionResult connectionResult = this.zao;
-        return connectionResult != null ? connectionResult : new ConnectionResult(13, null);
+        if (connectionResult != null) {
+            return connectionResult;
+        }
+        return new ConnectionResult(13, null);
     }
 
     @Override // com.google.android.gms.common.api.internal.zaca
-    public final ConnectionResult zac(long j, TimeUnit timeUnit) {
+    public final ConnectionResult zac(long j7, TimeUnit timeUnit) {
         zaq();
-        long nanos = timeUnit.toNanos(j);
+        long nanos = timeUnit.toNanos(j7);
         while (this.zan instanceof zaaw) {
-            if (nanos > 0) {
-                try {
-                    nanos = this.zaj.awaitNanos(nanos);
-                } catch (InterruptedException unused) {
-                    Thread.currentThread().interrupt();
-                    return new ConnectionResult(15, null);
-                }
-            } else {
+            if (nanos <= 0) {
                 zar();
                 return new ConnectionResult(14, null);
+            }
+            try {
+                nanos = this.zaj.awaitNanos(nanos);
+            } catch (InterruptedException unused) {
+                Thread.currentThread().interrupt();
+                return new ConnectionResult(15, null);
             }
             Thread.currentThread().interrupt();
             return new ConnectionResult(15, null);
@@ -130,39 +136,42 @@ public final class zabi implements zaca, zau {
             return ConnectionResult.RESULT_SUCCESS;
         }
         ConnectionResult connectionResult = this.zao;
-        return connectionResult != null ? connectionResult : new ConnectionResult(13, null);
+        if (connectionResult != null) {
+            return connectionResult;
+        }
+        return new ConnectionResult(13, null);
     }
 
     @Override // com.google.android.gms.common.api.internal.zaca
-    public final ConnectionResult zad(Api api) {
+    @Nullable
+    public final ConnectionResult zad(@NonNull Api api) {
         Map map = this.zaa;
         Api.AnyClientKey zab = api.zab();
-        if (!map.containsKey(zab)) {
+        if (map.containsKey(zab)) {
+            if (((Api.Client) this.zaa.get(zab)).isConnected()) {
+                return ConnectionResult.RESULT_SUCCESS;
+            }
+            if (this.zab.containsKey(zab)) {
+                return (ConnectionResult) this.zab.get(zab);
+            }
             return null;
-        }
-        if (((Api.Client) this.zaa.get(zab)).isConnected()) {
-            return ConnectionResult.RESULT_SUCCESS;
-        }
-        if (this.zab.containsKey(zab)) {
-            return (ConnectionResult) this.zab.get(zab);
         }
         return null;
     }
 
     @Override // com.google.android.gms.common.api.internal.zaca
-    public final BaseImplementation.ApiMethodImpl zae(BaseImplementation.ApiMethodImpl apiMethodImpl) {
+    public final BaseImplementation.ApiMethodImpl zae(@NonNull BaseImplementation.ApiMethodImpl apiMethodImpl) {
         apiMethodImpl.zak();
         this.zan.zaa(apiMethodImpl);
         return apiMethodImpl;
     }
 
     @Override // com.google.android.gms.common.api.internal.zaca
-    public final BaseImplementation.ApiMethodImpl zaf(BaseImplementation.ApiMethodImpl apiMethodImpl) {
+    public final BaseImplementation.ApiMethodImpl zaf(@NonNull BaseImplementation.ApiMethodImpl apiMethodImpl) {
         apiMethodImpl.zak();
         return this.zan.zab(apiMethodImpl);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public final void zai() {
         this.zai.lock();
         try {
@@ -175,7 +184,6 @@ public final class zabi implements zaca, zau {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public final void zaj() {
         this.zai.lock();
         try {
@@ -187,8 +195,7 @@ public final class zabi implements zaca, zau {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public final void zak(ConnectionResult connectionResult) {
+    public final void zak(@Nullable ConnectionResult connectionResult) {
         this.zai.lock();
         try {
             this.zao = connectionResult;
@@ -200,13 +207,11 @@ public final class zabi implements zaca, zau {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public final void zal(zabg zabgVar) {
         zabh zabhVar = this.zam;
         zabhVar.sendMessage(zabhVar.obtainMessage(1, zabgVar));
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public final void zam(RuntimeException runtimeException) {
         zabh zabhVar = this.zam;
         zabhVar.sendMessage(zabhVar.obtainMessage(2, runtimeException));
@@ -225,7 +230,7 @@ public final class zabi implements zaca, zau {
     }
 
     @Override // com.google.android.gms.common.api.internal.zaca
-    public final void zas(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
+    public final void zas(String str, @Nullable FileDescriptor fileDescriptor, PrintWriter printWriter, @Nullable String[] strArr) {
         printWriter.append((CharSequence) str).append("mState=").println(this.zan);
         for (Api api : this.zad.keySet()) {
             String valueOf = String.valueOf(str);

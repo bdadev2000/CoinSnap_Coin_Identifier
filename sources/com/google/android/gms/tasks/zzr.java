@@ -1,36 +1,43 @@
 package com.google.android.gms.tasks;
 
+import androidx.annotation.NonNull;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzr {
     private final Object zza = new Object();
     private Queue zzb;
     private boolean zzc;
 
-    public final void zza(zzq zzqVar) {
+    public final void zza(@NonNull zzq zzqVar) {
         synchronized (this.zza) {
-            if (this.zzb == null) {
-                this.zzb = new ArrayDeque();
+            try {
+                if (this.zzb == null) {
+                    this.zzb = new ArrayDeque();
+                }
+                this.zzb.add(zzqVar);
+            } catch (Throwable th) {
+                throw th;
             }
-            this.zzb.add(zzqVar);
         }
     }
 
-    public final void zzb(Task task) {
+    public final void zzb(@NonNull Task task) {
         zzq zzqVar;
         synchronized (this.zza) {
             if (this.zzb != null && !this.zzc) {
                 this.zzc = true;
                 while (true) {
                     synchronized (this.zza) {
-                        zzqVar = (zzq) this.zzb.poll();
-                        if (zzqVar == null) {
-                            this.zzc = false;
-                            return;
+                        try {
+                            zzqVar = (zzq) this.zzb.poll();
+                            if (zzqVar == null) {
+                                this.zzc = false;
+                                return;
+                            }
+                        } finally {
                         }
                     }
                     zzqVar.zzd(task);

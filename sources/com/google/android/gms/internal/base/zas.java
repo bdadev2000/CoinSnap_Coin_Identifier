@@ -7,30 +7,28 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zas implements zaq {
     private zas() {
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public /* synthetic */ zas(zar zarVar) {
-    }
-
     @Override // com.google.android.gms.internal.base.zaq
-    public final ExecutorService zaa(ThreadFactory threadFactory, int i) {
+    public final ExecutorService zaa(ThreadFactory threadFactory, int i9) {
         return zac(1, threadFactory, 1);
     }
 
     @Override // com.google.android.gms.internal.base.zaq
-    public final ExecutorService zab(int i, int i2) {
+    public final ExecutorService zab(int i9, int i10) {
         return zac(4, Executors.defaultThreadFactory(), 2);
     }
 
     @Override // com.google.android.gms.internal.base.zaq
-    public final ExecutorService zac(int i, ThreadFactory threadFactory, int i2) {
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(i, i, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue(), threadFactory);
+    public final ExecutorService zac(int i9, ThreadFactory threadFactory, int i10) {
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(i9, i9, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue(), threadFactory);
         threadPoolExecutor.allowCoreThreadTimeOut(true);
         return Executors.unconfigurableExecutorService(threadPoolExecutor);
+    }
+
+    public /* synthetic */ zas(zar zarVar) {
     }
 }

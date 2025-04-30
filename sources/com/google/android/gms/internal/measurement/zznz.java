@@ -1,38 +1,32 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zznz implements zznw {
-    private static final zzhj<Boolean> zza;
-    private static final zzhj<Boolean> zzb;
-    private static final zzhj<Boolean> zzc;
+/* loaded from: classes2.dex */
+public final class zznz implements zzoa {
+    private static final zzgz<Boolean> zza;
+    private static final zzgz<Boolean> zzb;
+    private static final zzgz<Boolean> zzc;
 
     static {
-        zzhr zza2 = new zzhr(zzhk.zza("com.google.android.gms.measurement")).zzb().zza();
-        zza2.zza("measurement.dma_consent.client", true);
-        zza2.zza("measurement.dma_consent.client_bow_check2", true);
-        zza2.zza("measurement.dma_consent.separate_service_calls_fix", true);
-        zza2.zza("measurement.dma_consent.service", true);
-        zza = zza2.zza("measurement.dma_consent.service_database_update_fix", true);
-        zza2.zza("measurement.dma_consent.service_dcu_event", true);
-        zzb = zza2.zza("measurement.dma_consent.service_dcu_event2", true);
-        zza2.zza("measurement.dma_consent.service_npa_remote_default", true);
-        zza2.zza("measurement.dma_consent.service_split_batch_on_consent", true);
-        zza2.zza("measurement.dma_consent.set_consent_inline_on_worker", true);
-        zzc = zza2.zza("measurement.dma_consent.setting_npa_inline_fix", true);
+        zzhh zza2 = new zzhh(zzgw.zza("com.google.android.gms.measurement")).zzb().zza();
+        zza2.zza("measurement.client.ad_id_consent_fix", true);
+        zza2.zza("measurement.service.consent.aiid_reset_fix", false);
+        zza2.zza("measurement.service.consent.aiid_reset_fix2", true);
+        zza = zza2.zza("measurement.service.consent.app_start_fix", true);
+        zzb = zza2.zza("measurement.service.consent.params_on_fx", true);
+        zzc = zza2.zza("measurement.service.consent.pfo_on_fx", true);
     }
 
-    @Override // com.google.android.gms.internal.measurement.zznw
+    @Override // com.google.android.gms.internal.measurement.zzoa
     public final boolean zza() {
         return zza.zza().booleanValue();
     }
 
-    @Override // com.google.android.gms.internal.measurement.zznw
+    @Override // com.google.android.gms.internal.measurement.zzoa
     public final boolean zzb() {
         return zzb.zza().booleanValue();
     }
 
-    @Override // com.google.android.gms.internal.measurement.zznw
+    @Override // com.google.android.gms.internal.measurement.zzoa
     public final boolean zzc() {
         return zzc.zza().booleanValue();
     }

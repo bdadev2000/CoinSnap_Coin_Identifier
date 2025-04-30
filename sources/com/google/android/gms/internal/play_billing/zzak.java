@@ -1,44 +1,49 @@
 package com.google.android.gms.internal.play_billing;
 
-import com.google.android.gms.internal.play_billing.zzaj;
-import com.google.android.gms.internal.play_billing.zzak;
-import java.io.IOException;
+import java.util.Arrays;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public abstract class zzak<MessageType extends zzak<MessageType, BuilderType>, BuilderType extends zzaj<MessageType, BuilderType>> implements zzdf {
-    protected int zza = 0;
+/* loaded from: classes2.dex */
+public final class zzak {
+    Object[] zza = new Object[8];
+    int zzb = 0;
+    zzaj zzc;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public int zza(zzdp zzdpVar) {
-        throw null;
+    public final zzak zza(Object obj, Object obj2) {
+        int i9 = this.zzb + 1;
+        Object[] objArr = this.zza;
+        int length = objArr.length;
+        int i10 = i9 + i9;
+        if (i10 > length) {
+            int i11 = length + (length >> 1) + 1;
+            if (i11 < i10) {
+                int highestOneBit = Integer.highestOneBit(i10 - 1);
+                i11 = highestOneBit + highestOneBit;
+            }
+            if (i11 < 0) {
+                i11 = Integer.MAX_VALUE;
+            }
+            this.zza = Arrays.copyOf(objArr, i11);
+        }
+        zzad.zza(obj, obj2);
+        Object[] objArr2 = this.zza;
+        int i12 = this.zzb;
+        int i13 = i12 + i12;
+        objArr2[i13] = obj;
+        objArr2[i13 + 1] = obj2;
+        this.zzb = i12 + 1;
+        return this;
     }
 
-    @Override // com.google.android.gms.internal.play_billing.zzdf
-    public final zzba zzb() {
-        try {
-            int zze = zze();
-            zzba zzbaVar = zzba.zzb;
-            byte[] bArr = new byte[zze];
-            zzbi zzz = zzbi.zzz(bArr, 0, zze);
-            zzr(zzz);
-            zzz.zzA();
-            return new zzax(bArr);
-        } catch (IOException e) {
-            throw new RuntimeException("Serializing " + getClass().getName() + " to a ByteString threw an IOException (should never happen).", e);
+    public final zzal zzb() {
+        zzaj zzajVar = this.zzc;
+        if (zzajVar == null) {
+            zzat zzg = zzat.zzg(this.zzb, this.zza, this);
+            zzaj zzajVar2 = this.zzc;
+            if (zzajVar2 == null) {
+                return zzg;
+            }
+            throw zzajVar2.zza();
         }
-    }
-
-    public final byte[] zzc() {
-        try {
-            int zze = zze();
-            byte[] bArr = new byte[zze];
-            zzbi zzz = zzbi.zzz(bArr, 0, zze);
-            zzr(zzz);
-            zzz.zzA();
-            return bArr;
-        } catch (IOException e) {
-            throw new RuntimeException("Serializing " + getClass().getName() + " to a byte array threw an IOException (should never happen).", e);
-        }
+        throw zzajVar.zza();
     }
 }

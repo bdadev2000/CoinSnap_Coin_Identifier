@@ -1,41 +1,64 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final /* synthetic */ class zzez {
-    static final /* synthetic */ int[] zza;
+import java.util.AbstractSet;
+import java.util.Iterator;
+import java.util.Map;
 
-    static {
-        zzca.zza();
-        int[] iArr = new int[7];
-        zza = iArr;
-        try {
-            iArr[3] = 1;
-        } catch (NoSuchFieldError unused) {
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzez extends AbstractSet {
+    final /* synthetic */ zzfb zza;
+
+    public /* synthetic */ zzez(zzfb zzfbVar, zzey zzeyVar) {
+        this.zza = zzfbVar;
+    }
+
+    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
+    public final /* bridge */ /* synthetic */ boolean add(Object obj) {
+        Map.Entry entry = (Map.Entry) obj;
+        if (!contains(entry)) {
+            this.zza.put((Comparable) entry.getKey(), entry.getValue());
+            return true;
         }
-        try {
-            zza[4] = 2;
-        } catch (NoSuchFieldError unused2) {
+        return false;
+    }
+
+    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
+    public final void clear() {
+        this.zza.clear();
+    }
+
+    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
+    public final boolean contains(Object obj) {
+        Map.Entry entry = (Map.Entry) obj;
+        Object obj2 = this.zza.get(entry.getKey());
+        Object value = entry.getValue();
+        if (obj2 == value) {
+            return true;
         }
-        try {
-            zza[2] = 3;
-        } catch (NoSuchFieldError unused3) {
+        if (obj2 != null && obj2.equals(value)) {
+            return true;
         }
-        try {
-            zza[5] = 4;
-        } catch (NoSuchFieldError unused4) {
+        return false;
+    }
+
+    @Override // java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
+    public final Iterator iterator() {
+        return new zzex(this.zza, null);
+    }
+
+    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
+    public final boolean remove(Object obj) {
+        Map.Entry entry = (Map.Entry) obj;
+        if (contains(entry)) {
+            this.zza.remove(entry.getKey());
+            return true;
         }
-        try {
-            zza[6] = 5;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            zza[0] = 6;
-        } catch (NoSuchFieldError unused6) {
-        }
-        try {
-            zza[1] = 7;
-        } catch (NoSuchFieldError unused7) {
-        }
+        return false;
+    }
+
+    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
+    public final int size() {
+        return this.zza.size();
     }
 }

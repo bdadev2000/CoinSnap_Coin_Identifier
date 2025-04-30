@@ -1,271 +1,295 @@
 package androidx.constraintlayout.helper.widget;
 
+import B.d;
+import B.g;
+import B.i;
+import E.r;
+import E.t;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.SparseArray;
 import android.view.View;
-import androidx.constraintlayout.core.widgets.ConstraintWidget;
-import androidx.constraintlayout.core.widgets.HelperWidget;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.constraintlayout.widget.R;
-import androidx.constraintlayout.widget.VirtualLayout;
+import java.util.ArrayList;
 
-/* loaded from: classes8.dex */
-public class Flow extends VirtualLayout {
-    public static final int CHAIN_PACKED = 2;
-    public static final int CHAIN_SPREAD = 0;
-    public static final int CHAIN_SPREAD_INSIDE = 1;
-    public static final int HORIZONTAL = 0;
-    public static final int HORIZONTAL_ALIGN_CENTER = 2;
-    public static final int HORIZONTAL_ALIGN_END = 1;
-    public static final int HORIZONTAL_ALIGN_START = 0;
-    private static final String TAG = "Flow";
-    public static final int VERTICAL = 1;
-    public static final int VERTICAL_ALIGN_BASELINE = 3;
-    public static final int VERTICAL_ALIGN_BOTTOM = 1;
-    public static final int VERTICAL_ALIGN_CENTER = 2;
-    public static final int VERTICAL_ALIGN_TOP = 0;
-    public static final int WRAP_ALIGNED = 2;
-    public static final int WRAP_CHAIN = 1;
-    public static final int WRAP_NONE = 0;
-    private androidx.constraintlayout.core.widgets.Flow mFlow;
-
-    public Flow(Context context) {
-        super(context);
-    }
+/* loaded from: classes.dex */
+public class Flow extends t {
+    public g l;
 
     public Flow(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
     }
 
-    public Flow(Context context, AttributeSet attributeSet, int i) {
-        super(context, attributeSet, i);
+    /* JADX WARN: Type inference failed for: r0v0, types: [B.g, B.i] */
+    /* JADX WARN: Type inference failed for: r2v0, types: [C.b, java.lang.Object] */
+    @Override // E.t, E.c
+    public final void h(AttributeSet attributeSet) {
+        super.h(attributeSet);
+        ?? iVar = new i();
+        iVar.f236s0 = 0;
+        iVar.f237t0 = 0;
+        iVar.f238u0 = 0;
+        iVar.f239v0 = 0;
+        iVar.f240w0 = 0;
+        iVar.f241x0 = 0;
+        iVar.f242y0 = false;
+        iVar.f243z0 = 0;
+        iVar.f210A0 = 0;
+        iVar.f211B0 = new Object();
+        iVar.f212C0 = null;
+        iVar.f213D0 = -1;
+        iVar.f214E0 = -1;
+        iVar.f215F0 = -1;
+        iVar.f216G0 = -1;
+        iVar.f217H0 = -1;
+        iVar.f218I0 = -1;
+        iVar.f219J0 = 0.5f;
+        iVar.K0 = 0.5f;
+        iVar.f220L0 = 0.5f;
+        iVar.f221M0 = 0.5f;
+        iVar.f222N0 = 0.5f;
+        iVar.f223O0 = 0.5f;
+        iVar.P0 = 0;
+        iVar.f224Q0 = 0;
+        iVar.f225R0 = 2;
+        iVar.f226S0 = 2;
+        iVar.f227T0 = 0;
+        iVar.f228U0 = -1;
+        iVar.f229V0 = 0;
+        iVar.f230W0 = new ArrayList();
+        iVar.f231X0 = null;
+        iVar.f232Y0 = null;
+        iVar.f233Z0 = null;
+        iVar.f235b1 = 0;
+        this.l = iVar;
+        if (attributeSet != null) {
+            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, r.b);
+            int indexCount = obtainStyledAttributes.getIndexCount();
+            for (int i9 = 0; i9 < indexCount; i9++) {
+                int index = obtainStyledAttributes.getIndex(i9);
+                if (index == 0) {
+                    this.l.f229V0 = obtainStyledAttributes.getInt(index, 0);
+                } else if (index == 1) {
+                    g gVar = this.l;
+                    int dimensionPixelSize = obtainStyledAttributes.getDimensionPixelSize(index, 0);
+                    gVar.f236s0 = dimensionPixelSize;
+                    gVar.f237t0 = dimensionPixelSize;
+                    gVar.f238u0 = dimensionPixelSize;
+                    gVar.f239v0 = dimensionPixelSize;
+                } else if (index == 18) {
+                    g gVar2 = this.l;
+                    int dimensionPixelSize2 = obtainStyledAttributes.getDimensionPixelSize(index, 0);
+                    gVar2.f238u0 = dimensionPixelSize2;
+                    gVar2.f240w0 = dimensionPixelSize2;
+                    gVar2.f241x0 = dimensionPixelSize2;
+                } else if (index == 19) {
+                    this.l.f239v0 = obtainStyledAttributes.getDimensionPixelSize(index, 0);
+                } else if (index == 2) {
+                    this.l.f240w0 = obtainStyledAttributes.getDimensionPixelSize(index, 0);
+                } else if (index == 3) {
+                    this.l.f236s0 = obtainStyledAttributes.getDimensionPixelSize(index, 0);
+                } else if (index == 4) {
+                    this.l.f241x0 = obtainStyledAttributes.getDimensionPixelSize(index, 0);
+                } else if (index == 5) {
+                    this.l.f237t0 = obtainStyledAttributes.getDimensionPixelSize(index, 0);
+                } else if (index == 54) {
+                    this.l.f227T0 = obtainStyledAttributes.getInt(index, 0);
+                } else if (index == 44) {
+                    this.l.f213D0 = obtainStyledAttributes.getInt(index, 0);
+                } else if (index == 53) {
+                    this.l.f214E0 = obtainStyledAttributes.getInt(index, 0);
+                } else if (index == 38) {
+                    this.l.f215F0 = obtainStyledAttributes.getInt(index, 0);
+                } else if (index == 46) {
+                    this.l.f217H0 = obtainStyledAttributes.getInt(index, 0);
+                } else if (index == 40) {
+                    this.l.f216G0 = obtainStyledAttributes.getInt(index, 0);
+                } else if (index == 48) {
+                    this.l.f218I0 = obtainStyledAttributes.getInt(index, 0);
+                } else if (index == 42) {
+                    this.l.f219J0 = obtainStyledAttributes.getFloat(index, 0.5f);
+                } else if (index == 37) {
+                    this.l.f220L0 = obtainStyledAttributes.getFloat(index, 0.5f);
+                } else if (index == 45) {
+                    this.l.f222N0 = obtainStyledAttributes.getFloat(index, 0.5f);
+                } else if (index == 39) {
+                    this.l.f221M0 = obtainStyledAttributes.getFloat(index, 0.5f);
+                } else if (index == 47) {
+                    this.l.f223O0 = obtainStyledAttributes.getFloat(index, 0.5f);
+                } else if (index == 51) {
+                    this.l.K0 = obtainStyledAttributes.getFloat(index, 0.5f);
+                } else if (index == 41) {
+                    this.l.f225R0 = obtainStyledAttributes.getInt(index, 2);
+                } else if (index == 50) {
+                    this.l.f226S0 = obtainStyledAttributes.getInt(index, 2);
+                } else if (index == 43) {
+                    this.l.P0 = obtainStyledAttributes.getDimensionPixelSize(index, 0);
+                } else if (index == 52) {
+                    this.l.f224Q0 = obtainStyledAttributes.getDimensionPixelSize(index, 0);
+                } else if (index == 49) {
+                    this.l.f228U0 = obtainStyledAttributes.getInt(index, -1);
+                }
+            }
+            obtainStyledAttributes.recycle();
+        }
+        this.f768f = this.l;
+        k();
     }
 
-    @Override // androidx.constraintlayout.widget.ConstraintHelper
-    public void resolveRtl(ConstraintWidget constraintWidget, boolean z) {
-        this.mFlow.applyRtl(z);
+    @Override // E.c
+    public final void i(d dVar, boolean z8) {
+        g gVar = this.l;
+        int i9 = gVar.f238u0;
+        if (i9 > 0 || gVar.f239v0 > 0) {
+            if (z8) {
+                gVar.f240w0 = gVar.f239v0;
+                gVar.f241x0 = i9;
+            } else {
+                gVar.f240w0 = i9;
+                gVar.f241x0 = gVar.f239v0;
+            }
+        }
     }
 
-    @Override // androidx.constraintlayout.widget.ConstraintHelper, android.view.View
-    protected void onMeasure(int i, int i2) {
-        onMeasure(this.mFlow, i, i2);
-    }
-
-    @Override // androidx.constraintlayout.widget.VirtualLayout
-    public void onMeasure(androidx.constraintlayout.core.widgets.VirtualLayout virtualLayout, int i, int i2) {
-        int mode = View.MeasureSpec.getMode(i);
-        int size = View.MeasureSpec.getSize(i);
-        int mode2 = View.MeasureSpec.getMode(i2);
-        int size2 = View.MeasureSpec.getSize(i2);
-        if (virtualLayout != null) {
-            virtualLayout.measure(mode, size, mode2, size2);
-            setMeasuredDimension(virtualLayout.getMeasuredWidth(), virtualLayout.getMeasuredHeight());
+    @Override // E.t
+    public final void l(g gVar, int i9, int i10) {
+        int mode = View.MeasureSpec.getMode(i9);
+        int size = View.MeasureSpec.getSize(i9);
+        int mode2 = View.MeasureSpec.getMode(i10);
+        int size2 = View.MeasureSpec.getSize(i10);
+        if (gVar != null) {
+            gVar.V(mode, size, mode2, size2);
+            setMeasuredDimension(gVar.f243z0, gVar.f210A0);
         } else {
             setMeasuredDimension(0, 0);
         }
     }
 
-    @Override // androidx.constraintlayout.widget.ConstraintHelper
-    public void loadParameters(ConstraintSet.Constraint constraint, HelperWidget helperWidget, ConstraintLayout.LayoutParams layoutParams, SparseArray<ConstraintWidget> sparseArray) {
-        super.loadParameters(constraint, helperWidget, layoutParams, sparseArray);
-        if (helperWidget instanceof androidx.constraintlayout.core.widgets.Flow) {
-            androidx.constraintlayout.core.widgets.Flow flow = (androidx.constraintlayout.core.widgets.Flow) helperWidget;
-            if (layoutParams.orientation != -1) {
-                flow.setOrientation(layoutParams.orientation);
-            }
-        }
+    @Override // E.c, android.view.View
+    public final void onMeasure(int i9, int i10) {
+        l(this.l, i9, i10);
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    @Override // androidx.constraintlayout.widget.VirtualLayout, androidx.constraintlayout.widget.ConstraintHelper
-    public void init(AttributeSet attributeSet) {
-        super.init(attributeSet);
-        this.mFlow = new androidx.constraintlayout.core.widgets.Flow();
-        if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.ConstraintLayout_Layout);
-            int indexCount = obtainStyledAttributes.getIndexCount();
-            for (int i = 0; i < indexCount; i++) {
-                int index = obtainStyledAttributes.getIndex(i);
-                if (index == R.styleable.ConstraintLayout_Layout_android_orientation) {
-                    this.mFlow.setOrientation(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_android_padding) {
-                    this.mFlow.setPadding(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_android_paddingStart) {
-                    this.mFlow.setPaddingStart(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_android_paddingEnd) {
-                    this.mFlow.setPaddingEnd(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_android_paddingLeft) {
-                    this.mFlow.setPaddingLeft(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_android_paddingTop) {
-                    this.mFlow.setPaddingTop(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_android_paddingRight) {
-                    this.mFlow.setPaddingRight(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_android_paddingBottom) {
-                    this.mFlow.setPaddingBottom(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_wrapMode) {
-                    this.mFlow.setWrapMode(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_horizontalStyle) {
-                    this.mFlow.setHorizontalStyle(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_verticalStyle) {
-                    this.mFlow.setVerticalStyle(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_firstHorizontalStyle) {
-                    this.mFlow.setFirstHorizontalStyle(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_lastHorizontalStyle) {
-                    this.mFlow.setLastHorizontalStyle(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_firstVerticalStyle) {
-                    this.mFlow.setFirstVerticalStyle(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_lastVerticalStyle) {
-                    this.mFlow.setLastVerticalStyle(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_horizontalBias) {
-                    this.mFlow.setHorizontalBias(obtainStyledAttributes.getFloat(index, 0.5f));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_firstHorizontalBias) {
-                    this.mFlow.setFirstHorizontalBias(obtainStyledAttributes.getFloat(index, 0.5f));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_lastHorizontalBias) {
-                    this.mFlow.setLastHorizontalBias(obtainStyledAttributes.getFloat(index, 0.5f));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_firstVerticalBias) {
-                    this.mFlow.setFirstVerticalBias(obtainStyledAttributes.getFloat(index, 0.5f));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_lastVerticalBias) {
-                    this.mFlow.setLastVerticalBias(obtainStyledAttributes.getFloat(index, 0.5f));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_verticalBias) {
-                    this.mFlow.setVerticalBias(obtainStyledAttributes.getFloat(index, 0.5f));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_horizontalAlign) {
-                    this.mFlow.setHorizontalAlign(obtainStyledAttributes.getInt(index, 2));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_verticalAlign) {
-                    this.mFlow.setVerticalAlign(obtainStyledAttributes.getInt(index, 2));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_horizontalGap) {
-                    this.mFlow.setHorizontalGap(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_verticalGap) {
-                    this.mFlow.setVerticalGap(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_maxElementsWrap) {
-                    this.mFlow.setMaxElementsWrap(obtainStyledAttributes.getInt(index, -1));
-                }
-            }
-            obtainStyledAttributes.recycle();
-        }
-        this.mHelperWidget = this.mFlow;
-        validateParams();
-    }
-
-    public void setOrientation(int i) {
-        this.mFlow.setOrientation(i);
+    public void setFirstHorizontalBias(float f9) {
+        this.l.f220L0 = f9;
         requestLayout();
     }
 
-    public void setPadding(int i) {
-        this.mFlow.setPadding(i);
+    public void setFirstHorizontalStyle(int i9) {
+        this.l.f215F0 = i9;
         requestLayout();
     }
 
-    public void setPaddingLeft(int i) {
-        this.mFlow.setPaddingLeft(i);
+    public void setFirstVerticalBias(float f9) {
+        this.l.f221M0 = f9;
         requestLayout();
     }
 
-    public void setPaddingTop(int i) {
-        this.mFlow.setPaddingTop(i);
+    public void setFirstVerticalStyle(int i9) {
+        this.l.f216G0 = i9;
         requestLayout();
     }
 
-    public void setPaddingRight(int i) {
-        this.mFlow.setPaddingRight(i);
+    public void setHorizontalAlign(int i9) {
+        this.l.f225R0 = i9;
         requestLayout();
     }
 
-    public void setPaddingBottom(int i) {
-        this.mFlow.setPaddingBottom(i);
+    public void setHorizontalBias(float f9) {
+        this.l.f219J0 = f9;
         requestLayout();
     }
 
-    public void setLastHorizontalStyle(int i) {
-        this.mFlow.setLastHorizontalStyle(i);
+    public void setHorizontalGap(int i9) {
+        this.l.P0 = i9;
         requestLayout();
     }
 
-    public void setLastVerticalStyle(int i) {
-        this.mFlow.setLastVerticalStyle(i);
+    public void setHorizontalStyle(int i9) {
+        this.l.f213D0 = i9;
         requestLayout();
     }
 
-    public void setLastHorizontalBias(float f) {
-        this.mFlow.setLastHorizontalBias(f);
+    public void setLastHorizontalBias(float f9) {
+        this.l.f222N0 = f9;
         requestLayout();
     }
 
-    public void setLastVerticalBias(float f) {
-        this.mFlow.setLastVerticalBias(f);
+    public void setLastHorizontalStyle(int i9) {
+        this.l.f217H0 = i9;
         requestLayout();
     }
 
-    public void setWrapMode(int i) {
-        this.mFlow.setWrapMode(i);
+    public void setLastVerticalBias(float f9) {
+        this.l.f223O0 = f9;
         requestLayout();
     }
 
-    public void setHorizontalStyle(int i) {
-        this.mFlow.setHorizontalStyle(i);
+    public void setLastVerticalStyle(int i9) {
+        this.l.f218I0 = i9;
         requestLayout();
     }
 
-    public void setVerticalStyle(int i) {
-        this.mFlow.setVerticalStyle(i);
+    public void setMaxElementsWrap(int i9) {
+        this.l.f228U0 = i9;
         requestLayout();
     }
 
-    public void setHorizontalBias(float f) {
-        this.mFlow.setHorizontalBias(f);
+    public void setOrientation(int i9) {
+        this.l.f229V0 = i9;
         requestLayout();
     }
 
-    public void setVerticalBias(float f) {
-        this.mFlow.setVerticalBias(f);
+    public void setPadding(int i9) {
+        g gVar = this.l;
+        gVar.f236s0 = i9;
+        gVar.f237t0 = i9;
+        gVar.f238u0 = i9;
+        gVar.f239v0 = i9;
         requestLayout();
     }
 
-    public void setFirstHorizontalStyle(int i) {
-        this.mFlow.setFirstHorizontalStyle(i);
+    public void setPaddingBottom(int i9) {
+        this.l.f237t0 = i9;
         requestLayout();
     }
 
-    public void setFirstVerticalStyle(int i) {
-        this.mFlow.setFirstVerticalStyle(i);
+    public void setPaddingLeft(int i9) {
+        this.l.f240w0 = i9;
         requestLayout();
     }
 
-    public void setFirstHorizontalBias(float f) {
-        this.mFlow.setFirstHorizontalBias(f);
+    public void setPaddingRight(int i9) {
+        this.l.f241x0 = i9;
         requestLayout();
     }
 
-    public void setFirstVerticalBias(float f) {
-        this.mFlow.setFirstVerticalBias(f);
+    public void setPaddingTop(int i9) {
+        this.l.f236s0 = i9;
         requestLayout();
     }
 
-    public void setHorizontalAlign(int i) {
-        this.mFlow.setHorizontalAlign(i);
+    public void setVerticalAlign(int i9) {
+        this.l.f226S0 = i9;
         requestLayout();
     }
 
-    public void setVerticalAlign(int i) {
-        this.mFlow.setVerticalAlign(i);
+    public void setVerticalBias(float f9) {
+        this.l.K0 = f9;
         requestLayout();
     }
 
-    public void setHorizontalGap(int i) {
-        this.mFlow.setHorizontalGap(i);
+    public void setVerticalGap(int i9) {
+        this.l.f224Q0 = i9;
         requestLayout();
     }
 
-    public void setVerticalGap(int i) {
-        this.mFlow.setVerticalGap(i);
+    public void setVerticalStyle(int i9) {
+        this.l.f214E0 = i9;
         requestLayout();
     }
 
-    public void setMaxElementsWrap(int i) {
-        this.mFlow.setMaxElementsWrap(i);
+    public void setWrapMode(int i9) {
+        this.l.f227T0 = i9;
         requestLayout();
     }
 }

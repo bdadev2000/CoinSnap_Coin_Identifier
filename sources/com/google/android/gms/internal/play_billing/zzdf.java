@@ -1,15 +1,33 @@
 package com.google.android.gms.internal.play_billing;
 
-import java.io.IOException;
+import java.util.Map;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public interface zzdf extends zzdg {
-    zzba zzb();
+/* loaded from: classes2.dex */
+final class zzdf implements Map.Entry {
+    private final Map.Entry zza;
 
-    int zze();
+    @Override // java.util.Map.Entry
+    public final Object getKey() {
+        return this.zza.getKey();
+    }
 
-    zzde zzk();
+    @Override // java.util.Map.Entry
+    public final Object getValue() {
+        if (((zzdh) this.zza.getValue()) == null) {
+            return null;
+        }
+        throw null;
+    }
 
-    void zzr(zzbi zzbiVar) throws IOException;
+    @Override // java.util.Map.Entry
+    public final Object setValue(Object obj) {
+        if (obj instanceof zzec) {
+            return ((zzdh) this.zza.getValue()).zzc((zzec) obj);
+        }
+        throw new IllegalArgumentException("LazyField now only used for MessageSet, and the value of MessageSet must be an instance of MessageLite");
+    }
+
+    public final zzdh zza() {
+        return (zzdh) this.zza.getValue();
+    }
 }

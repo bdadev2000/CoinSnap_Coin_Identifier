@@ -1,70 +1,91 @@
 package com.google.android.gms.internal.measurement;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzls implements zzla {
-    private final zzlc zza;
-    private final String zzb;
-    private final Object[] zzc;
-    private final int zzd;
+import com.mbridge.msdk.foundation.entity.o;
+import java.util.Map;
 
-    @Override // com.google.android.gms.internal.measurement.zzla
-    public final zzlc zza() {
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzls implements Comparable, Map.Entry {
+    private final Comparable zza;
+    private Object zzb;
+    private final /* synthetic */ zzlm zzc;
+
+    public zzls(zzlm zzlmVar, Map.Entry entry) {
+        this(zzlmVar, (Comparable) entry.getKey(), entry.getValue());
+    }
+
+    private static boolean zza(Object obj, Object obj2) {
+        if (obj == null) {
+            if (obj2 == null) {
+                return true;
+            }
+            return false;
+        }
+        return obj.equals(obj2);
+    }
+
+    @Override // java.lang.Comparable
+    public final /* synthetic */ int compareTo(Object obj) {
+        return ((Comparable) getKey()).compareTo((Comparable) ((zzls) obj).getKey());
+    }
+
+    @Override // java.util.Map.Entry
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Map.Entry)) {
+            return false;
+        }
+        Map.Entry entry = (Map.Entry) obj;
+        if (zza(this.zza, entry.getKey()) && zza(this.zzb, entry.getValue())) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override // java.util.Map.Entry
+    public final /* synthetic */ Object getKey() {
         return this.zza;
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzla
-    public final zzln zzb() {
-        int i = this.zzd;
-        if ((i & 1) != 0) {
-            return zzln.PROTO2;
-        }
-        if ((i & 4) == 4) {
-            return zzln.EDITIONS;
-        }
-        return zzln.PROTO3;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public final String zzd() {
+    @Override // java.util.Map.Entry
+    public final Object getValue() {
         return this.zzb;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzls(zzlc zzlcVar, String str, Object[] objArr) {
-        this.zza = zzlcVar;
-        this.zzb = str;
-        this.zzc = objArr;
-        char charAt = str.charAt(0);
-        if (charAt < 55296) {
-            this.zzd = charAt;
-            return;
+    @Override // java.util.Map.Entry
+    public final int hashCode() {
+        int hashCode;
+        Comparable comparable = this.zza;
+        int i9 = 0;
+        if (comparable == null) {
+            hashCode = 0;
+        } else {
+            hashCode = comparable.hashCode();
         }
-        int i = charAt & 8191;
-        int i2 = 13;
-        int i3 = 1;
-        while (true) {
-            int i4 = i3 + 1;
-            char charAt2 = str.charAt(i3);
-            if (charAt2 < 55296) {
-                this.zzd = i | (charAt2 << i2);
-                return;
-            } else {
-                i |= (charAt2 & 8191) << i2;
-                i2 += 13;
-                i3 = i4;
-            }
+        Object obj = this.zzb;
+        if (obj != null) {
+            i9 = obj.hashCode();
         }
+        return hashCode ^ i9;
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzla
-    public final boolean zzc() {
-        return (this.zzd & 2) == 2;
+    @Override // java.util.Map.Entry
+    public final Object setValue(Object obj) {
+        this.zzc.zzg();
+        Object obj2 = this.zzb;
+        this.zzb = obj;
+        return obj2;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public final Object[] zze() {
-        return this.zzc;
+    public final String toString() {
+        return o.k(String.valueOf(this.zza), "=", String.valueOf(this.zzb));
+    }
+
+    public zzls(zzlm zzlmVar, Comparable comparable, Object obj) {
+        this.zzc = zzlmVar;
+        this.zza = comparable;
+        this.zzb = obj;
     }
 }

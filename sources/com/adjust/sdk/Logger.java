@@ -4,7 +4,7 @@ import android.util.Log;
 import java.util.Arrays;
 import java.util.Locale;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class Logger implements ILogger {
     private static String formatErrorMessage = "Error formating log message: %s, with params: %s";
     private LogLevel logLevel;
@@ -19,9 +19,9 @@ public class Logger implements ILogger {
     public void Assert(String str, Object... objArr) {
         if (!this.isProductionEnvironment && this.logLevel.androidLogLevel <= 7) {
             try {
-                Log.println(7, Constants.LOGTAG, Util.formatString(str, objArr));
+                Log.println(7, "Adjust", Util.formatString(str, objArr));
             } catch (Exception unused) {
-                Log.e(Constants.LOGTAG, Util.formatString(formatErrorMessage, str, Arrays.toString(objArr)));
+                Log.e("Adjust", Util.formatString(formatErrorMessage, str, Arrays.toString(objArr)));
             }
         }
     }
@@ -30,9 +30,9 @@ public class Logger implements ILogger {
     public void debug(String str, Object... objArr) {
         if (!this.isProductionEnvironment && this.logLevel.androidLogLevel <= 3) {
             try {
-                Log.d(Constants.LOGTAG, Util.formatString(str, objArr));
+                Log.d("Adjust", Util.formatString(str, objArr));
             } catch (Exception unused) {
-                Log.e(Constants.LOGTAG, Util.formatString(formatErrorMessage, str, Arrays.toString(objArr)));
+                Log.e("Adjust", Util.formatString(formatErrorMessage, str, Arrays.toString(objArr)));
             }
         }
     }
@@ -41,9 +41,9 @@ public class Logger implements ILogger {
     public void error(String str, Object... objArr) {
         if (!this.isProductionEnvironment && this.logLevel.androidLogLevel <= 6) {
             try {
-                Log.e(Constants.LOGTAG, Util.formatString(str, objArr));
+                Log.e("Adjust", Util.formatString(str, objArr));
             } catch (Exception unused) {
-                Log.e(Constants.LOGTAG, Util.formatString(formatErrorMessage, str, Arrays.toString(objArr)));
+                Log.e("Adjust", Util.formatString(formatErrorMessage, str, Arrays.toString(objArr)));
             }
         }
     }
@@ -52,9 +52,9 @@ public class Logger implements ILogger {
     public void info(String str, Object... objArr) {
         if (!this.isProductionEnvironment && this.logLevel.androidLogLevel <= 4) {
             try {
-                Log.i(Constants.LOGTAG, Util.formatString(str, objArr));
+                Log.i("Adjust", Util.formatString(str, objArr));
             } catch (Exception unused) {
-                Log.e(Constants.LOGTAG, Util.formatString(formatErrorMessage, str, Arrays.toString(objArr)));
+                Log.e("Adjust", Util.formatString(formatErrorMessage, str, Arrays.toString(objArr)));
             }
         }
     }
@@ -65,19 +65,19 @@ public class Logger implements ILogger {
     }
 
     @Override // com.adjust.sdk.ILogger
-    public void setLogLevel(LogLevel logLevel, boolean z) {
+    public void setLogLevel(LogLevel logLevel, boolean z8) {
         if (this.logLevelLocked) {
             return;
         }
         this.logLevel = logLevel;
-        this.isProductionEnvironment = z;
+        this.isProductionEnvironment = z8;
     }
 
     @Override // com.adjust.sdk.ILogger
-    public void setLogLevelString(String str, boolean z) {
+    public void setLogLevelString(String str, boolean z8) {
         if (str != null) {
             try {
-                setLogLevel(LogLevel.valueOf(str.toUpperCase(Locale.US)), z);
+                setLogLevel(LogLevel.valueOf(str.toUpperCase(Locale.US)), z8);
             } catch (IllegalArgumentException unused) {
                 error("Malformed logLevel '%s', falling back to 'info'", str);
             }
@@ -88,9 +88,9 @@ public class Logger implements ILogger {
     public void verbose(String str, Object... objArr) {
         if (!this.isProductionEnvironment && this.logLevel.androidLogLevel <= 2) {
             try {
-                Log.v(Constants.LOGTAG, Util.formatString(str, objArr));
+                Log.v("Adjust", Util.formatString(str, objArr));
             } catch (Exception unused) {
-                Log.e(Constants.LOGTAG, Util.formatString(formatErrorMessage, str, Arrays.toString(objArr)));
+                Log.e("Adjust", Util.formatString(formatErrorMessage, str, Arrays.toString(objArr)));
             }
         }
     }
@@ -99,9 +99,9 @@ public class Logger implements ILogger {
     public void warn(String str, Object... objArr) {
         if (!this.isProductionEnvironment && this.logLevel.androidLogLevel <= 5) {
             try {
-                Log.w(Constants.LOGTAG, Util.formatString(str, objArr));
+                Log.w("Adjust", Util.formatString(str, objArr));
             } catch (Exception unused) {
-                Log.e(Constants.LOGTAG, Util.formatString(formatErrorMessage, str, Arrays.toString(objArr)));
+                Log.e("Adjust", Util.formatString(formatErrorMessage, str, Arrays.toString(objArr)));
             }
         }
     }
@@ -110,9 +110,9 @@ public class Logger implements ILogger {
     public void warnInProduction(String str, Object... objArr) {
         if (this.logLevel.androidLogLevel <= 5) {
             try {
-                Log.w(Constants.LOGTAG, Util.formatString(str, objArr));
+                Log.w("Adjust", Util.formatString(str, objArr));
             } catch (Exception unused) {
-                Log.e(Constants.LOGTAG, Util.formatString(formatErrorMessage, str, Arrays.toString(objArr)));
+                Log.e("Adjust", Util.formatString(formatErrorMessage, str, Arrays.toString(objArr)));
             }
         }
     }

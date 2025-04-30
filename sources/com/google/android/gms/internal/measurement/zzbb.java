@@ -5,11 +5,20 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzbb {
     private Map<String, zzay> zza = new HashMap();
     private zzbq zzb = new zzbq();
+
+    public zzbb() {
+        zza(new zzaw());
+        zza(new zzba());
+        zza(new zzbc());
+        zza(new zzbg());
+        zza(new zzbi());
+        zza(new zzbo());
+        zza(new zzbt());
+    }
 
     public final zzaq zza(zzh zzhVar, zzaq zzaqVar) {
         zzay zzayVar;
@@ -26,16 +35,6 @@ public final class zzbb {
             zzayVar = this.zzb;
         }
         return zzayVar.zza(zza, zzhVar, zzb);
-    }
-
-    public zzbb() {
-        zza(new zzaw());
-        zza(new zzba());
-        zza(new zzbc());
-        zza(new zzbg());
-        zza(new zzbi());
-        zza(new zzbo());
-        zza(new zzbt());
     }
 
     private final void zza(zzay zzayVar) {

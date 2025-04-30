@@ -1,5 +1,6 @@
 package com.google.firebase.iid;
 
+import U4.C0315k;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,33 +8,26 @@ import android.util.Log;
 import com.google.android.gms.cloudmessaging.CloudMessage;
 import com.google.android.gms.cloudmessaging.CloudMessagingReceiver;
 import com.google.android.gms.tasks.Tasks;
-import com.google.firebase.messaging.FcmBroadcastProcessor;
-import com.google.firebase.messaging.MessagingAnalytics;
 import java.util.concurrent.ExecutionException;
+import w4.v0;
 
-/* loaded from: classes11.dex */
+/* loaded from: classes2.dex */
 public final class FirebaseInstanceIdReceiver extends CloudMessagingReceiver {
-    private static final String TAG = "FirebaseMessaging";
-
-    private static Intent createServiceIntent(Context context, String str, Bundle bundle) {
-        return new Intent(str).putExtras(bundle);
-    }
-
     @Override // com.google.android.gms.cloudmessaging.CloudMessagingReceiver
-    protected int onMessageReceive(Context context, CloudMessage cloudMessage) {
+    public final int onMessageReceive(Context context, CloudMessage cloudMessage) {
         try {
-            return ((Integer) Tasks.await(new FcmBroadcastProcessor(context).process(cloudMessage.getIntent()))).intValue();
-        } catch (InterruptedException | ExecutionException e) {
-            Log.e("FirebaseMessaging", "Failed to send message to service.", e);
+            return ((Integer) Tasks.await(new C0315k(context).b(cloudMessage.getIntent()))).intValue();
+        } catch (InterruptedException | ExecutionException e4) {
+            Log.e("FirebaseMessaging", "Failed to send message to service.", e4);
             return 500;
         }
     }
 
     @Override // com.google.android.gms.cloudmessaging.CloudMessagingReceiver
-    protected void onNotificationDismissed(Context context, Bundle bundle) {
-        Intent createServiceIntent = createServiceIntent(context, CloudMessagingReceiver.IntentActionKeys.NOTIFICATION_DISMISS, bundle);
-        if (MessagingAnalytics.shouldUploadScionMetrics(createServiceIntent)) {
-            MessagingAnalytics.logNotificationDismiss(createServiceIntent);
+    public final void onNotificationDismissed(Context context, Bundle bundle) {
+        Intent putExtras = new Intent(CloudMessagingReceiver.IntentActionKeys.NOTIFICATION_DISMISS).putExtras(bundle);
+        if (v0.C(putExtras)) {
+            v0.x(putExtras.getExtras(), "_nd");
         }
     }
 }

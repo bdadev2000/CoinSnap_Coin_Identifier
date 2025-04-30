@@ -1,6 +1,6 @@
 package com.adjust.sdk.scheduler;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public interface ThreadScheduler extends ThreadExecutor {
-    void schedule(Runnable runnable, long j);
+    void schedule(Runnable runnable, long j7);
 }

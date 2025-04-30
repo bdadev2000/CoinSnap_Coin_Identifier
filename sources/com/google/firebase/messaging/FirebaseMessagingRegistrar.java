@@ -1,40 +1,57 @@
 package com.google.firebase.messaging;
 
-import com.google.android.datatransport.TransportFactory;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.components.Component;
-import com.google.firebase.components.ComponentContainer;
-import com.google.firebase.components.ComponentFactory;
+import E4.b;
+import K4.c;
+import L4.h;
+import M4.a;
+import O4.e;
+import U4.p;
+import androidx.annotation.Keep;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.firebase.components.ComponentRegistrar;
-import com.google.firebase.components.Dependency;
-import com.google.firebase.components.Qualified;
-import com.google.firebase.datatransport.TransportBackend;
-import com.google.firebase.events.Subscriber;
-import com.google.firebase.heartbeatinfo.HeartBeatInfo;
-import com.google.firebase.iid.internal.FirebaseInstanceIdInternal;
-import com.google.firebase.installations.FirebaseInstallationsApi;
-import com.google.firebase.platforminfo.LibraryVersionComponent;
-import com.google.firebase.platforminfo.UserAgentPublisher;
+import com.mbridge.msdk.foundation.entity.o;
+import g4.C2296f;
+import h3.f;
+import j5.C2399b;
 import java.util.Arrays;
 import java.util.List;
+import o4.C2495a;
+import o4.C2496b;
+import o4.C2502h;
+import o4.InterfaceC2497c;
+import o4.q;
 
-/* loaded from: classes3.dex */
+@Keep
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class FirebaseMessagingRegistrar implements ComponentRegistrar {
     private static final String LIBRARY_NAME = "fire-fcm";
 
-    @Override // com.google.firebase.components.ComponentRegistrar
-    public List<Component<?>> getComponents() {
-        final Qualified qualified = Qualified.qualified(TransportBackend.class, TransportFactory.class);
-        return Arrays.asList(Component.builder(FirebaseMessaging.class).name(LIBRARY_NAME).add(Dependency.required((Class<?>) FirebaseApp.class)).add(Dependency.optional(FirebaseInstanceIdInternal.class)).add(Dependency.optionalProvider((Class<?>) UserAgentPublisher.class)).add(Dependency.optionalProvider((Class<?>) HeartBeatInfo.class)).add(Dependency.required((Class<?>) FirebaseInstallationsApi.class)).add(Dependency.optionalProvider((Qualified<?>) qualified)).add(Dependency.required((Class<?>) Subscriber.class)).factory(new ComponentFactory() { // from class: com.google.firebase.messaging.FirebaseMessagingRegistrar$$ExternalSyntheticLambda0
-            @Override // com.google.firebase.components.ComponentFactory
-            public final Object create(ComponentContainer componentContainer) {
-                return FirebaseMessagingRegistrar.lambda$getComponents$0(Qualified.this, componentContainer);
-            }
-        }).alwaysEager().build(), LibraryVersionComponent.create(LIBRARY_NAME, BuildConfig.VERSION_NAME));
+    public static /* synthetic */ FirebaseMessaging a(q qVar, p pVar) {
+        return lambda$getComponents$0(qVar, pVar);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ FirebaseMessaging lambda$getComponents$0(Qualified qualified, ComponentContainer componentContainer) {
-        return new FirebaseMessaging((FirebaseApp) componentContainer.get(FirebaseApp.class), (FirebaseInstanceIdInternal) componentContainer.get(FirebaseInstanceIdInternal.class), componentContainer.getProvider(UserAgentPublisher.class), componentContainer.getProvider(HeartBeatInfo.class), (FirebaseInstallationsApi) componentContainer.get(FirebaseInstallationsApi.class), componentContainer.getProvider(qualified), (Subscriber) componentContainer.get(Subscriber.class));
+    public static /* synthetic */ FirebaseMessaging lambda$getComponents$0(q qVar, InterfaceC2497c interfaceC2497c) {
+        C2296f c2296f = (C2296f) interfaceC2497c.b(C2296f.class);
+        o.v(interfaceC2497c.b(a.class));
+        return new FirebaseMessaging(c2296f, interfaceC2497c.c(C2399b.class), interfaceC2497c.c(h.class), (e) interfaceC2497c.b(e.class), interfaceC2497c.g(qVar), (c) interfaceC2497c.b(c.class));
+    }
+
+    @Override // com.google.firebase.components.ComponentRegistrar
+    @Keep
+    public List<C2496b> getComponents() {
+        q qVar = new q(b.class, f.class);
+        C2495a a6 = C2496b.a(FirebaseMessaging.class);
+        a6.f21938a = LIBRARY_NAME;
+        a6.a(C2502h.b(C2296f.class));
+        a6.a(new C2502h(a.class, 0, 0));
+        a6.a(C2502h.a(C2399b.class));
+        a6.a(C2502h.a(h.class));
+        a6.a(C2502h.b(e.class));
+        a6.a(new C2502h(qVar, 0, 1));
+        a6.a(C2502h.b(c.class));
+        a6.f21942f = new L4.b(qVar, 1);
+        a6.c(1);
+        return Arrays.asList(a6.b(), R2.b.k(LIBRARY_NAME, "24.0.0"));
     }
 }

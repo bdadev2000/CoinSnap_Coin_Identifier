@@ -5,35 +5,53 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
-import javax.annotation.CheckForNull;
 import org.jspecify.nullness.NullMarked;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
 @NullMarked
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class zzag extends zzac implements List, RandomAccess {
     private static final zzak zza = new zzae(zzai.zza, 0);
 
-    static zzag zzi(Object[] objArr, int i) {
-        if (i == 0) {
+    public static zzag zzi(Object[] objArr, int i9) {
+        if (i9 == 0) {
             return zzai.zza;
         }
-        return new zzai(objArr, i);
+        return new zzai(objArr, i9);
+    }
+
+    public static zzag zzj(Iterable iterable) {
+        iterable.getClass();
+        if (iterable instanceof Collection) {
+            return zzk((Collection) iterable);
+        }
+        Iterator it = iterable.iterator();
+        if (!it.hasNext()) {
+            return zzai.zza;
+        }
+        Object next = it.next();
+        if (!it.hasNext()) {
+            return zzm(next);
+        }
+        zzad zzadVar = new zzad(4);
+        zzadVar.zzb(next);
+        zzadVar.zzc(it);
+        zzadVar.zzc = true;
+        return zzi(zzadVar.zza, zzadVar.zzb);
     }
 
     public static zzag zzk(Collection collection) {
-        if (!(collection instanceof zzac)) {
-            Object[] array = collection.toArray();
-            int length = array.length;
-            zzah.zza(array, length);
-            return zzi(array, length);
-        }
-        zzag zzd = ((zzac) collection).zzd();
-        if (!zzd.zzf()) {
+        if (collection instanceof zzac) {
+            zzag zzd = ((zzac) collection).zzd();
+            if (zzd.zzf()) {
+                Object[] array = zzd.toArray();
+                return zzi(array, array.length);
+            }
             return zzd;
         }
-        Object[] array2 = zzd.toArray();
-        return zzi(array2, array2.length);
+        Object[] array2 = collection.toArray();
+        int length = array2.length;
+        zzah.zza(array2, length);
+        return zzi(array2, length);
     }
 
     public static zzag zzl() {
@@ -54,23 +72,26 @@ public abstract class zzag extends zzac implements List, RandomAccess {
 
     @Override // java.util.List
     @Deprecated
-    public final void add(int i, Object obj) {
+    public final void add(int i9, Object obj) {
         throw new UnsupportedOperationException();
     }
 
     @Override // java.util.List
     @Deprecated
-    public final boolean addAll(int i, Collection collection) {
+    public final boolean addAll(int i9, Collection collection) {
         throw new UnsupportedOperationException();
     }
 
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
-    public final boolean contains(@CheckForNull Object obj) {
-        return indexOf(obj) >= 0;
+    public final boolean contains(Object obj) {
+        if (indexOf(obj) >= 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override // java.util.Collection, java.util.List
-    public final boolean equals(@CheckForNull Object obj) {
+    public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }
@@ -79,8 +100,8 @@ public abstract class zzag extends zzac implements List, RandomAccess {
             int size = size();
             if (size == list.size()) {
                 if (list instanceof RandomAccess) {
-                    for (int i = 0; i < size; i++) {
-                        if (zzr.zza(get(i), list.get(i))) {
+                    for (int i9 = 0; i9 < size; i9++) {
+                        if (zzr.zza(get(i9), list.get(i9))) {
                         }
                     }
                     return true;
@@ -104,22 +125,22 @@ public abstract class zzag extends zzac implements List, RandomAccess {
     @Override // java.util.Collection, java.util.List
     public final int hashCode() {
         int size = size();
-        int i = 1;
-        for (int i2 = 0; i2 < size; i2++) {
-            i = (i * 31) + get(i2).hashCode();
+        int i9 = 1;
+        for (int i10 = 0; i10 < size; i10++) {
+            i9 = (i9 * 31) + get(i10).hashCode();
         }
-        return i;
+        return i9;
     }
 
     @Override // java.util.List
-    public final int indexOf(@CheckForNull Object obj) {
+    public final int indexOf(Object obj) {
         if (obj == null) {
             return -1;
         }
         int size = size();
-        for (int i = 0; i < size; i++) {
-            if (obj.equals(get(i))) {
-                return i;
+        for (int i9 = 0; i9 < size; i9++) {
+            if (obj.equals(get(i9))) {
+                return i9;
             }
         }
         return -1;
@@ -131,7 +152,7 @@ public abstract class zzag extends zzac implements List, RandomAccess {
     }
 
     @Override // java.util.List
-    public final int lastIndexOf(@CheckForNull Object obj) {
+    public final int lastIndexOf(Object obj) {
         if (obj == null) {
             return -1;
         }
@@ -150,21 +171,21 @@ public abstract class zzag extends zzac implements List, RandomAccess {
 
     @Override // java.util.List
     @Deprecated
-    public final Object remove(int i) {
+    public final Object remove(int i9) {
         throw new UnsupportedOperationException();
     }
 
     @Override // java.util.List
     @Deprecated
-    public final Object set(int i, Object obj) {
+    public final Object set(int i9, Object obj) {
         throw new UnsupportedOperationException();
     }
 
     @Override // com.google.android.gms.internal.common.zzac
-    int zza(Object[] objArr, int i) {
+    public int zza(Object[] objArr, int i9) {
         int size = size();
-        for (int i2 = 0; i2 < size; i2++) {
-            objArr[i2] = get(i2);
+        for (int i10 = 0; i10 < size; i10++) {
+            objArr[i10] = get(i10);
         }
         return size;
     }
@@ -182,43 +203,26 @@ public abstract class zzag extends zzac implements List, RandomAccess {
     }
 
     @Override // java.util.List
-    /* renamed from: zzh, reason: merged with bridge method [inline-methods] */
-    public zzag subList(int i, int i2) {
-        zzs.zzc(i, i2, size());
-        int i3 = i2 - i;
-        if (i3 == size()) {
+    /* renamed from: zzh */
+    public zzag subList(int i9, int i10) {
+        zzs.zzc(i9, i10, size());
+        int i11 = i10 - i9;
+        if (i11 == size()) {
             return this;
         }
-        if (i3 != 0) {
-            return new zzaf(this, i, i3);
+        if (i11 == 0) {
+            return zzai.zza;
         }
-        return zzai.zza;
+        return new zzaf(this, i9, i11);
     }
 
     @Override // java.util.List
     /* renamed from: zzo, reason: merged with bridge method [inline-methods] */
-    public final zzak listIterator(int i) {
-        zzs.zzb(i, size(), "index");
-        return isEmpty() ? zza : new zzae(this, i);
-    }
-
-    public static zzag zzj(Iterable iterable) {
-        iterable.getClass();
-        if (iterable instanceof Collection) {
-            return zzk((Collection) iterable);
+    public final zzak listIterator(int i9) {
+        zzs.zzb(i9, size(), "index");
+        if (isEmpty()) {
+            return zza;
         }
-        Iterator it = iterable.iterator();
-        if (!it.hasNext()) {
-            return zzai.zza;
-        }
-        Object next = it.next();
-        if (!it.hasNext()) {
-            return zzm(next);
-        }
-        zzad zzadVar = new zzad(4);
-        zzadVar.zzb(next);
-        zzadVar.zzc(it);
-        zzadVar.zzc = true;
-        return zzi(zzadVar.zza, zzadVar.zzb);
+        return new zzae(this, i9);
     }
 }

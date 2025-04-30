@@ -1,7 +1,8 @@
 package com.google.android.gms.tasks;
 
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
+import androidx.annotation.NonNull;
+
+/* loaded from: classes2.dex */
 public interface OnCompleteListener<TResult> {
-    void onComplete(Task<TResult> task);
+    void onComplete(@NonNull Task<TResult> task);
 }

@@ -1,7 +1,6 @@
 package com.google.android.gms.measurement.internal;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 enum zzak {
     UNSET('0'),
     REMOTE_DEFAULT('1'),
@@ -16,16 +15,16 @@ enum zzak {
 
     private final char zzl;
 
-    public static zzak zza(char c) {
+    zzak(char c9) {
+        this.zzl = c9;
+    }
+
+    public static zzak zza(char c9) {
         for (zzak zzakVar : values()) {
-            if (zzakVar.zzl == c) {
+            if (zzakVar.zzl == c9) {
                 return zzakVar;
             }
         }
         return UNSET;
-    }
-
-    zzak(char c) {
-        this.zzl = c;
     }
 }

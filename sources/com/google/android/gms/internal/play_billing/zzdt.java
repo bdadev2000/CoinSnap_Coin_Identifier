@@ -1,23 +1,31 @@
 package com.google.android.gms.internal.play_billing;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+/* loaded from: classes2.dex */
+final class zzdt implements zzea {
+    private final zzea[] zza;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final class zzdt implements Iterator {
-    @Override // java.util.Iterator
-    public final boolean hasNext() {
+    public zzdt(zzea... zzeaVarArr) {
+        this.zza = zzeaVarArr;
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzea
+    public final zzdz zzb(Class cls) {
+        for (int i9 = 0; i9 < 2; i9++) {
+            zzea zzeaVar = this.zza[i9];
+            if (zzeaVar.zzc(cls)) {
+                return zzeaVar.zzb(cls);
+            }
+        }
+        throw new UnsupportedOperationException("No factory is available for message type: ".concat(cls.getName()));
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzea
+    public final boolean zzc(Class cls) {
+        for (int i9 = 0; i9 < 2; i9++) {
+            if (this.zza[i9].zzc(cls)) {
+                return true;
+            }
+        }
         return false;
-    }
-
-    @Override // java.util.Iterator
-    public final Object next() {
-        throw new NoSuchElementException();
-    }
-
-    @Override // java.util.Iterator
-    public final void remove() {
-        throw new UnsupportedOperationException();
     }
 }

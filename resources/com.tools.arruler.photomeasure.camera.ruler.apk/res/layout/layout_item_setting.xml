@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:id="@+id/llRoot"
+    android:tag="layout/layout_item_setting_0"
+    android:background="@drawable/bg_item_setting"
+    android:paddingLeft="@dimen/_12sdp"
+    android:paddingTop="@dimen/_10sdp"
+    android:paddingRight="@dimen/_12sdp"
+    android:paddingBottom="@dimen/_10sdp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/_12sdp"
+    android:paddingVertical="@dimen/_10sdp">
+    <ImageView
+        android:id="@+id/imgSettingComponentIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_image_library"/>
+    <TextView
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/color_343944"
+        android:id="@+id/txtSettingComponentName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_weight="1"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_marginHorizontal="@dimen/_10sdp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_setting_next"/>
+</LinearLayout>

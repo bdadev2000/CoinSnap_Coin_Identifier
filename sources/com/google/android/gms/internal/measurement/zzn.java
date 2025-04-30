@@ -3,54 +3,57 @@ package com.google.android.gms.internal.measurement;
 import java.util.List;
 import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzn extends zzap {
     private final zzac zza;
 
+    public zzn(zzac zzacVar) {
+        this.zza = zzacVar;
+    }
+
     @Override // com.google.android.gms.internal.measurement.zzap, com.google.android.gms.internal.measurement.zzaq
     public final zzaq zza(String str, zzh zzhVar, List<zzaq> list) {
-        str.hashCode();
-        char c = 65535;
+        str.getClass();
+        char c9 = 65535;
         switch (str.hashCode()) {
             case 21624207:
                 if (str.equals("getEventName")) {
-                    c = 0;
+                    c9 = 0;
                     break;
                 }
                 break;
             case 45521504:
                 if (str.equals("getTimestamp")) {
-                    c = 1;
+                    c9 = 1;
                     break;
                 }
                 break;
             case 146575578:
                 if (str.equals("getParamValue")) {
-                    c = 2;
+                    c9 = 2;
                     break;
                 }
                 break;
             case 700587132:
                 if (str.equals("getParams")) {
-                    c = 3;
+                    c9 = 3;
                     break;
                 }
                 break;
             case 920706790:
                 if (str.equals("setParamValue")) {
-                    c = 4;
+                    c9 = 4;
                     break;
                 }
                 break;
             case 1570616835:
                 if (str.equals("setEventName")) {
-                    c = 5;
+                    c9 = 5;
                     break;
                 }
                 break;
         }
-        switch (c) {
+        switch (c9) {
             case 0:
                 zzg.zza("getEventName", 0, list);
                 return new zzas(this.zza.zzb().zzb());
@@ -77,17 +80,13 @@ public final class zzn extends zzap {
             case 5:
                 zzg.zza("setEventName", 1, list);
                 zzaq zza2 = zzhVar.zza(list.get(0));
-                if (zzc.equals(zza2) || zzd.equals(zza2)) {
-                    throw new IllegalArgumentException("Illegal event name");
+                if (!zzaq.zzc.equals(zza2) && !zzaq.zzd.equals(zza2)) {
+                    this.zza.zzb().zzb(zza2.zzf());
+                    return new zzas(zza2.zzf());
                 }
-                this.zza.zzb().zzb(zza2.zzf());
-                return new zzas(zza2.zzf());
+                throw new IllegalArgumentException("Illegal event name");
             default:
                 return super.zza(str, zzhVar, list);
         }
-    }
-
-    public zzn(zzac zzacVar) {
-        this.zza = zzacVar;
     }
 }

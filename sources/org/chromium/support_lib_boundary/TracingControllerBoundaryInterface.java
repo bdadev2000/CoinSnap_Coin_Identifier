@@ -4,11 +4,11 @@ import java.io.OutputStream;
 import java.util.Collection;
 import java.util.concurrent.Executor;
 
-/* loaded from: classes9.dex */
+/* loaded from: classes3.dex */
 public interface TracingControllerBoundaryInterface {
     boolean isTracing();
 
-    void start(int i, Collection<String> collection, int i2) throws IllegalStateException, IllegalArgumentException;
+    void start(int i9, Collection<String> collection, int i10) throws IllegalStateException, IllegalArgumentException;
 
     boolean stop(OutputStream outputStream, Executor executor);
 }

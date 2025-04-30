@@ -1,22 +1,103 @@
 package com.google.android.gms.internal.measurement;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.IInterface;
+import android.os.RemoteException;
+import com.google.android.gms.dynamic.IObjectWrapper;
+import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-measurement-sdk-api@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzdb implements zzcz {
-    @Override // com.google.android.gms.internal.measurement.zzcz
-    public final ExecutorService zza(ThreadFactory threadFactory, int i) {
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue(), threadFactory);
-        threadPoolExecutor.allowCoreThreadTimeOut(true);
-        return Executors.unconfigurableExecutorService(threadPoolExecutor);
-    }
+/* loaded from: classes2.dex */
+public interface zzdb extends IInterface {
+    void beginAdUnitExposure(String str, long j7) throws RemoteException;
 
-    private zzdb() {
-    }
+    void clearConditionalUserProperty(String str, String str2, Bundle bundle) throws RemoteException;
+
+    void clearMeasurementEnabled(long j7) throws RemoteException;
+
+    void endAdUnitExposure(String str, long j7) throws RemoteException;
+
+    void generateEventId(zzdg zzdgVar) throws RemoteException;
+
+    void getAppInstanceId(zzdg zzdgVar) throws RemoteException;
+
+    void getCachedAppInstanceId(zzdg zzdgVar) throws RemoteException;
+
+    void getConditionalUserProperties(String str, String str2, zzdg zzdgVar) throws RemoteException;
+
+    void getCurrentScreenClass(zzdg zzdgVar) throws RemoteException;
+
+    void getCurrentScreenName(zzdg zzdgVar) throws RemoteException;
+
+    void getGmpAppId(zzdg zzdgVar) throws RemoteException;
+
+    void getMaxUserProperties(String str, zzdg zzdgVar) throws RemoteException;
+
+    void getSessionId(zzdg zzdgVar) throws RemoteException;
+
+    void getTestFlag(zzdg zzdgVar, int i9) throws RemoteException;
+
+    void getUserProperties(String str, String str2, boolean z8, zzdg zzdgVar) throws RemoteException;
+
+    void initForTests(Map map) throws RemoteException;
+
+    void initialize(IObjectWrapper iObjectWrapper, zzdo zzdoVar, long j7) throws RemoteException;
+
+    void isDataCollectionEnabled(zzdg zzdgVar) throws RemoteException;
+
+    void logEvent(String str, String str2, Bundle bundle, boolean z8, boolean z9, long j7) throws RemoteException;
+
+    void logEventAndBundle(String str, String str2, Bundle bundle, zzdg zzdgVar, long j7) throws RemoteException;
+
+    void logHealthData(int i9, String str, IObjectWrapper iObjectWrapper, IObjectWrapper iObjectWrapper2, IObjectWrapper iObjectWrapper3) throws RemoteException;
+
+    void onActivityCreated(IObjectWrapper iObjectWrapper, Bundle bundle, long j7) throws RemoteException;
+
+    void onActivityDestroyed(IObjectWrapper iObjectWrapper, long j7) throws RemoteException;
+
+    void onActivityPaused(IObjectWrapper iObjectWrapper, long j7) throws RemoteException;
+
+    void onActivityResumed(IObjectWrapper iObjectWrapper, long j7) throws RemoteException;
+
+    void onActivitySaveInstanceState(IObjectWrapper iObjectWrapper, zzdg zzdgVar, long j7) throws RemoteException;
+
+    void onActivityStarted(IObjectWrapper iObjectWrapper, long j7) throws RemoteException;
+
+    void onActivityStopped(IObjectWrapper iObjectWrapper, long j7) throws RemoteException;
+
+    void performAction(Bundle bundle, zzdg zzdgVar, long j7) throws RemoteException;
+
+    void registerOnMeasurementEventListener(zzdh zzdhVar) throws RemoteException;
+
+    void resetAnalyticsData(long j7) throws RemoteException;
+
+    void setConditionalUserProperty(Bundle bundle, long j7) throws RemoteException;
+
+    void setConsent(Bundle bundle, long j7) throws RemoteException;
+
+    void setConsentThirdParty(Bundle bundle, long j7) throws RemoteException;
+
+    void setCurrentScreen(IObjectWrapper iObjectWrapper, String str, String str2, long j7) throws RemoteException;
+
+    void setDataCollectionEnabled(boolean z8) throws RemoteException;
+
+    void setDefaultEventParameters(Bundle bundle) throws RemoteException;
+
+    void setEventInterceptor(zzdh zzdhVar) throws RemoteException;
+
+    void setInstanceIdProvider(zzdm zzdmVar) throws RemoteException;
+
+    void setMeasurementEnabled(boolean z8, long j7) throws RemoteException;
+
+    void setMinimumSessionDuration(long j7) throws RemoteException;
+
+    void setSessionTimeoutDuration(long j7) throws RemoteException;
+
+    void setSgtmDebugInfo(Intent intent) throws RemoteException;
+
+    void setUserId(String str, long j7) throws RemoteException;
+
+    void setUserProperty(String str, String str2, IObjectWrapper iObjectWrapper, boolean z8, long j7) throws RemoteException;
+
+    void unregisterOnMeasurementEventListener(zzdh zzdhVar) throws RemoteException;
 }

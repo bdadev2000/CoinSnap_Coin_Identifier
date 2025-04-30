@@ -1,47 +1,41 @@
 package com.google.android.gms.common;
 
-import com.google.errorprone.annotations.CheckReturnValue;
-import javax.annotation.Nullable;
+import androidx.annotation.NonNull;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-@CheckReturnValue
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class PackageVerificationResult {
     private final String zza;
     private final boolean zzb;
-
-    @Nullable
     private final String zzc;
-
-    @Nullable
     private final Throwable zzd;
 
-    private PackageVerificationResult(String str, int i, boolean z, @Nullable String str2, @Nullable Throwable th) {
+    private PackageVerificationResult(String str, int i9, boolean z8, String str2, Throwable th) {
         this.zza = str;
-        this.zzb = z;
+        this.zzb = z8;
         this.zzc = str2;
         this.zzd = th;
     }
 
-    public static PackageVerificationResult zza(String str, String str2, @Nullable Throwable th) {
+    @NonNull
+    public static PackageVerificationResult zza(@NonNull String str, @NonNull String str2, Throwable th) {
         return new PackageVerificationResult(str, 1, false, str2, th);
     }
 
-    public static PackageVerificationResult zzd(String str, int i) {
-        return new PackageVerificationResult(str, i, true, null, null);
+    @NonNull
+    public static PackageVerificationResult zzd(@NonNull String str, int i9) {
+        return new PackageVerificationResult(str, i9, true, null, null);
     }
 
     public final void zzb() {
-        if (this.zzb) {
-            return;
-        }
-        String str = this.zzc;
-        Throwable th = this.zzd;
-        String concat = "PackageVerificationRslt: ".concat(String.valueOf(str));
-        if (th == null) {
+        if (!this.zzb) {
+            String str = this.zzc;
+            Throwable th = this.zzd;
+            String concat = "PackageVerificationRslt: ".concat(String.valueOf(str));
+            if (th != null) {
+                throw new SecurityException(concat, th);
+            }
             throw new SecurityException(concat);
         }
-        throw new SecurityException(concat, th);
     }
 
     public final boolean zzc() {

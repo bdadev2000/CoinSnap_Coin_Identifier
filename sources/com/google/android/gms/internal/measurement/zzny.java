@@ -1,32 +1,29 @@
 package com.google.android.gms.internal.measurement;
 
-import com.google.common.base.Supplier;
-import com.google.common.base.Suppliers;
-import org.checkerframework.dataflow.qual.SideEffectFree;
+/* loaded from: classes2.dex */
+public final class zzny implements zznv {
+    private static final zzgz<Boolean> zza;
+    private static final zzgz<Boolean> zzb;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzny implements Supplier<zzob> {
-    private static zzny zza = new zzny();
-    private final Supplier<zzob> zzb = Suppliers.ofInstance(new zzoa());
-
-    @Override // com.google.common.base.Supplier
-    public final /* synthetic */ zzob get() {
-        return this.zzb.get();
+    static {
+        zzhh zza2 = new zzhh(zzgw.zza("com.google.android.gms.measurement")).zzb().zza();
+        zza2.zza("measurement.collection.event_safelist", true);
+        zza = zza2.zza("measurement.service.store_null_safelist", true);
+        zzb = zza2.zza("measurement.service.store_safelist", true);
     }
 
-    @SideEffectFree
-    public static boolean zza() {
-        return ((zzob) zza.get()).zza();
+    @Override // com.google.android.gms.internal.measurement.zznv
+    public final boolean zza() {
+        return true;
     }
 
-    @SideEffectFree
-    public static boolean zzb() {
-        return ((zzob) zza.get()).zzb();
+    @Override // com.google.android.gms.internal.measurement.zznv
+    public final boolean zzb() {
+        return zza.zza().booleanValue();
     }
 
-    @SideEffectFree
-    public static boolean zzc() {
-        return ((zzob) zza.get()).zzc();
+    @Override // com.google.android.gms.internal.measurement.zznv
+    public final boolean zzc() {
+        return zzb.zza().booleanValue();
     }
 }

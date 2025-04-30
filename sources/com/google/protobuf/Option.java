@@ -1,31 +1,66 @@
 package com.google.protobuf;
 
-import com.google.protobuf.Any;
-import com.google.protobuf.GeneratedMessageLite;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-/* loaded from: classes5.dex */
-public final class Option extends GeneratedMessageLite<Option, Builder> implements OptionOrBuilder {
+/* loaded from: classes3.dex */
+public final class Option extends L2 implements InterfaceC1941k4 {
     private static final Option DEFAULT_INSTANCE;
     public static final int NAME_FIELD_NUMBER = 1;
-    private static volatile Parser<Option> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int VALUE_FIELD_NUMBER = 2;
     private String name_ = "";
     private Any value_;
 
+    static {
+        Option option = new Option();
+        DEFAULT_INSTANCE = option;
+        L2.registerDefaultInstance(Option.class, option);
+    }
+
     private Option() {
     }
 
-    @Override // com.google.protobuf.OptionOrBuilder
-    public String getName() {
-        return this.name_;
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearName() {
+        this.name_ = getDefaultInstance().getName();
     }
 
-    @Override // com.google.protobuf.OptionOrBuilder
-    public ByteString getNameBytes() {
-        return ByteString.copyFromUtf8(this.name_);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearValue() {
+        this.value_ = null;
+    }
+
+    public static Option getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void mergeValue(Any any) {
+        any.getClass();
+        Any any2 = this.value_;
+        if (any2 != null && any2 != Any.getDefaultInstance()) {
+            this.value_ = (Any) ((C1915h) Any.newBuilder(this.value_).mergeFrom((L2) any)).buildPartial();
+        } else {
+            this.value_ = any;
+        }
+    }
+
+    public static C1934j4 newBuilder() {
+        return (C1934j4) DEFAULT_INSTANCE.createBuilder();
+    }
+
+    public static Option parseDelimitedFrom(InputStream inputStream) throws IOException {
+        return (Option) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static Option parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (Option) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    }
+
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -35,25 +70,9 @@ public final class Option extends GeneratedMessageLite<Option, Builder> implemen
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearName() {
-        this.name_ = getDefaultInstance().getName();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setNameBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.name_ = byteString.toStringUtf8();
-    }
-
-    @Override // com.google.protobuf.OptionOrBuilder
-    public boolean hasValue() {
-        return this.value_ != null;
-    }
-
-    @Override // com.google.protobuf.OptionOrBuilder
-    public Any getValue() {
-        Any any = this.value_;
-        return any == null ? Any.getDefaultInstance() : any;
+    public void setNameBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.name_ = h6.toStringUtf8();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -62,214 +81,33 @@ public final class Option extends GeneratedMessageLite<Option, Builder> implemen
         this.value_ = any;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void mergeValue(Any any) {
-        any.getClass();
-        Any any2 = this.value_;
-        if (any2 != null && any2 != Any.getDefaultInstance()) {
-            this.value_ = Any.newBuilder(this.value_).mergeFrom((Any.Builder) any).buildPartial();
-        } else {
-            this.value_ = any;
-        }
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearValue() {
-        this.value_ = null;
-    }
-
-    public static Option parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (Option) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
-    }
-
-    public static Option parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Option) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static Option parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (Option) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static Option parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Option) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static Option parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (Option) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static Option parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Option) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static Option parseFrom(InputStream inputStream) throws IOException {
-        return (Option) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static Option parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Option) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static Option parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (Option) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static Option parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Option) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static Option parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (Option) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
-    }
-
-    public static Option parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Option) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
-    }
-
-    public static Builder newBuilder(Option option) {
-        return DEFAULT_INSTANCE.createBuilder(option);
-    }
-
-    /* loaded from: classes5.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<Option, Builder> implements OptionOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(Option.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.protobuf.OptionOrBuilder
-        public String getName() {
-            return ((Option) this.instance).getName();
-        }
-
-        @Override // com.google.protobuf.OptionOrBuilder
-        public ByteString getNameBytes() {
-            return ((Option) this.instance).getNameBytes();
-        }
-
-        public Builder setName(String str) {
-            copyOnWrite();
-            ((Option) this.instance).setName(str);
-            return this;
-        }
-
-        public Builder clearName() {
-            copyOnWrite();
-            ((Option) this.instance).clearName();
-            return this;
-        }
-
-        public Builder setNameBytes(ByteString byteString) {
-            copyOnWrite();
-            ((Option) this.instance).setNameBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.protobuf.OptionOrBuilder
-        public boolean hasValue() {
-            return ((Option) this.instance).hasValue();
-        }
-
-        @Override // com.google.protobuf.OptionOrBuilder
-        public Any getValue() {
-            return ((Option) this.instance).getValue();
-        }
-
-        public Builder setValue(Any any) {
-            copyOnWrite();
-            ((Option) this.instance).setValue(any);
-            return this;
-        }
-
-        public Builder setValue(Any.Builder builder) {
-            copyOnWrite();
-            ((Option) this.instance).setValue(builder.build());
-            return this;
-        }
-
-        public Builder mergeValue(Any any) {
-            copyOnWrite();
-            ((Option) this.instance).mergeValue(any);
-            return this;
-        }
-
-        public Builder clearValue() {
-            copyOnWrite();
-            ((Option) this.instance).clearValue();
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.protobuf.Option$1, reason: invalid class name */
-    /* loaded from: classes5.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        AbstractC1927i4 abstractC1927i4 = null;
+        switch (AbstractC1927i4.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[k22.ordinal()]) {
             case 1:
                 return new Option();
             case 2:
-                return new Builder(anonymousClass1);
+                return new C1934j4(abstractC1927i4);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001Ȉ\u0002\t", new Object[]{"name_", "value_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001Ȉ\u0002\t", new Object[]{"name_", "value_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<Option> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (Option.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -279,17 +117,74 @@ public final class Option extends GeneratedMessageLite<Option, Builder> implemen
         }
     }
 
-    static {
-        Option option = new Option();
-        DEFAULT_INSTANCE = option;
-        GeneratedMessageLite.registerDefaultInstance(Option.class, option);
+    @Override // com.google.protobuf.InterfaceC1941k4
+    public String getName() {
+        return this.name_;
     }
 
-    public static Option getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    @Override // com.google.protobuf.InterfaceC1941k4
+    public H getNameBytes() {
+        return H.copyFromUtf8(this.name_);
     }
 
-    public static Parser<Option> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    @Override // com.google.protobuf.InterfaceC1941k4
+    public Any getValue() {
+        Any any = this.value_;
+        if (any == null) {
+            return Any.getDefaultInstance();
+        }
+        return any;
+    }
+
+    @Override // com.google.protobuf.InterfaceC1941k4
+    public boolean hasValue() {
+        if (this.value_ != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public static C1934j4 newBuilder(Option option) {
+        return (C1934j4) DEFAULT_INSTANCE.createBuilder(option);
+    }
+
+    public static Option parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Option) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Option parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (Option) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static Option parseFrom(H h6) throws C1912g3 {
+        return (Option) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static Option parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (Option) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static Option parseFrom(byte[] bArr) throws C1912g3 {
+        return (Option) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static Option parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (Option) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static Option parseFrom(InputStream inputStream) throws IOException {
+        return (Option) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static Option parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Option) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Option parseFrom(S s5) throws IOException {
+        return (Option) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static Option parseFrom(S s5, W1 w1) throws IOException {
+        return (Option) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

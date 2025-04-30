@@ -2,7 +2,7 @@ package com.adjust.sdk;
 
 import org.json.JSONObject;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class AdjustSessionFailure {
     public String adid;
     public JSONObject jsonResponse;

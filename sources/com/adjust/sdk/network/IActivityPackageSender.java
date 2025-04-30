@@ -4,10 +4,10 @@ import com.adjust.sdk.ActivityPackage;
 import com.adjust.sdk.ResponseData;
 import java.util.Map;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public interface IActivityPackageSender {
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public interface ResponseDataCallbackSubscriber {
         void onResponseDataCallback(ResponseData responseData);
     }

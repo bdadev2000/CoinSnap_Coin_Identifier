@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.util.Iterator;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzv implements Iterable {
     final /* synthetic */ CharSequence zza;
     final /* synthetic */ zzx zzb;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zzv(zzx zzxVar, CharSequence charSequence) {
         this.zzb = zzxVar;
         this.zza = charSequence;
@@ -37,8 +35,8 @@ public final class zzv implements Iterable {
             }
             sb.append(']');
             return sb.toString();
-        } catch (IOException e) {
-            throw new AssertionError(e);
+        } catch (IOException e4) {
+            throw new AssertionError(e4);
         }
     }
 }

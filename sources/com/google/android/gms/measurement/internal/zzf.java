@@ -1,35 +1,55 @@
 package com.google.android.gms.measurement.internal;
 
-import android.text.TextUtils;
+import com.google.android.gms.common.internal.Preconditions;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzf {
-    private final zzjh zza;
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzf zza(String str) {
-        zzjh zzjhVar;
-        if (TextUtils.isEmpty(str) || str.length() > 1) {
-            zzjhVar = zzjh.UNINITIALIZED;
-        } else {
-            zzjhVar = zzje.zza(str.charAt(0));
-        }
-        return new zzf(zzjhVar);
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public class zzf extends zzij implements zzil {
+    public zzf(zzhj zzhjVar) {
+        super(zzhjVar);
+        Preconditions.checkNotNull(zzhjVar);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public final zzjh zza() {
-        return this.zza;
+    public zzb zzc() {
+        return this.zzu.zze();
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public final String zzb() {
-        return String.valueOf(zzje.zza(this.zza));
+    public zzfq zzg() {
+        return this.zzu.zzh();
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzf(zzjh zzjhVar) {
-        this.zza = zzjhVar;
+    public zzfp zzh() {
+        return this.zzu.zzi();
+    }
+
+    public zziv zzm() {
+        return this.zzu.zzp();
+    }
+
+    public zzks zzn() {
+        return this.zzu.zzq();
+    }
+
+    public zzkx zzo() {
+        return this.zzu.zzr();
+    }
+
+    public zzmh zzp() {
+        return this.zzu.zzs();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public void zzr() {
+        this.zzu.zzl().zzr();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public void zzs() {
+        this.zzu.zzy();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public void zzt() {
+        this.zzu.zzl().zzt();
     }
 }

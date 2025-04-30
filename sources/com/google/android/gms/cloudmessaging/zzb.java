@@ -3,8 +3,7 @@ package com.google.android.gms.cloudmessaging;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/* compiled from: com.google.android.gms:play-services-cloud-messaging@@17.2.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzb implements Parcelable.Creator {
     @Override // android.os.Parcelable.Creator
     public final /* bridge */ /* synthetic */ Object createFromParcel(Parcel parcel) {
@@ -12,7 +11,7 @@ final class zzb implements Parcelable.Creator {
     }
 
     @Override // android.os.Parcelable.Creator
-    public final /* synthetic */ Object[] newArray(int i) {
-        return new zzd[i];
+    public final /* synthetic */ Object[] newArray(int i9) {
+        return new zzd[i9];
     }
 }

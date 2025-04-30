@@ -4,31 +4,21 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
-import androidx.appcompat.widget.FitWindowsViewGroup;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import q.InterfaceC2623s0;
 
 /* loaded from: classes.dex */
-public class FitWindowsLinearLayout extends LinearLayout implements FitWindowsViewGroup {
-    private FitWindowsViewGroup.OnFitSystemWindowsListener mListener;
-
-    public FitWindowsLinearLayout(Context context) {
-        super(context);
-    }
-
-    public FitWindowsLinearLayout(Context context, AttributeSet attributeSet) {
+public class FitWindowsLinearLayout extends LinearLayout {
+    public FitWindowsLinearLayout(@NonNull Context context, @Nullable AttributeSet attributeSet) {
         super(context, attributeSet);
     }
 
-    @Override // androidx.appcompat.widget.FitWindowsViewGroup
-    public void setOnFitSystemWindowsListener(FitWindowsViewGroup.OnFitSystemWindowsListener onFitSystemWindowsListener) {
-        this.mListener = onFitSystemWindowsListener;
+    @Override // android.view.View
+    public final boolean fitSystemWindows(Rect rect) {
+        return super.fitSystemWindows(rect);
     }
 
-    @Override // android.view.View
-    protected boolean fitSystemWindows(Rect rect) {
-        FitWindowsViewGroup.OnFitSystemWindowsListener onFitSystemWindowsListener = this.mListener;
-        if (onFitSystemWindowsListener != null) {
-            onFitSystemWindowsListener.onFitSystemWindows(rect);
-        }
-        return super.fitSystemWindows(rect);
+    public void setOnFitSystemWindowsListener(InterfaceC2623s0 interfaceC2623s0) {
     }
 }

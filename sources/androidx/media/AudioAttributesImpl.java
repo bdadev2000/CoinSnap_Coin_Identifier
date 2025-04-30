@@ -1,34 +1,7 @@
 package androidx.media;
 
-import androidx.versionedparcelable.VersionedParcelable;
+import O0.c;
 
-/* loaded from: classes7.dex */
-public interface AudioAttributesImpl extends VersionedParcelable {
-
-    /* loaded from: classes7.dex */
-    public interface Builder {
-        AudioAttributesImpl build();
-
-        Builder setContentType(int i);
-
-        Builder setFlags(int i);
-
-        Builder setLegacyStreamType(int i);
-
-        Builder setUsage(int i);
-    }
-
-    Object getAudioAttributes();
-
-    int getContentType();
-
-    int getFlags();
-
-    int getLegacyStreamType();
-
-    int getRawLegacyStreamType();
-
-    int getUsage();
-
-    int getVolumeControlStream();
+/* loaded from: classes.dex */
+interface AudioAttributesImpl extends c {
 }

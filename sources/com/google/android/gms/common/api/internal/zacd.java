@@ -1,6 +1,8 @@
 package com.google.android.gms.common.api.internal;
 
 import android.os.SystemClock;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
@@ -14,8 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zacd implements OnCompleteListener {
     private final GoogleApiManager zaa;
     private final int zab;
@@ -23,95 +24,120 @@ public final class zacd implements OnCompleteListener {
     private final long zad;
     private final long zae;
 
-    zacd(GoogleApiManager googleApiManager, int i, ApiKey apiKey, long j, long j2, String str, String str2) {
+    public zacd(GoogleApiManager googleApiManager, int i9, ApiKey apiKey, long j7, long j9, @Nullable String str, @Nullable String str2) {
         this.zaa = googleApiManager;
-        this.zab = i;
+        this.zab = i9;
         this.zac = apiKey;
-        this.zad = j;
-        this.zae = j2;
+        this.zad = j7;
+        this.zae = j9;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zacd zaa(GoogleApiManager googleApiManager, int i, ApiKey apiKey) {
-        boolean z;
-        if (!googleApiManager.zaD()) {
-            return null;
-        }
-        RootTelemetryConfiguration config = RootTelemetryConfigManager.getInstance().getConfig();
-        if (config == null) {
-            z = true;
-        } else {
-            if (!config.getMethodInvocationTelemetryEnabled()) {
-                return null;
-            }
-            z = config.getMethodTimingTelemetryEnabled();
-            zabq zai = googleApiManager.zai(apiKey);
-            if (zai != null) {
-                if (!(zai.zaf() instanceof BaseGmsClient)) {
+    @Nullable
+    public static zacd zaa(GoogleApiManager googleApiManager, int i9, ApiKey apiKey) {
+        boolean z8;
+        long j7;
+        long j9;
+        if (googleApiManager.zaD()) {
+            RootTelemetryConfiguration config = RootTelemetryConfigManager.getInstance().getConfig();
+            if (config != null) {
+                if (config.getMethodInvocationTelemetryEnabled()) {
+                    z8 = config.getMethodTimingTelemetryEnabled();
+                    zabq zai = googleApiManager.zai(apiKey);
+                    if (zai != null) {
+                        if (zai.zaf() instanceof BaseGmsClient) {
+                            BaseGmsClient baseGmsClient = (BaseGmsClient) zai.zaf();
+                            if (baseGmsClient.hasConnectionInfo() && !baseGmsClient.isConnecting()) {
+                                ConnectionTelemetryConfiguration zab = zab(zai, baseGmsClient, i9);
+                                if (zab != null) {
+                                    zai.zaq();
+                                    z8 = zab.getMethodTimingTelemetryEnabled();
+                                } else {
+                                    return null;
+                                }
+                            }
+                        } else {
+                            return null;
+                        }
+                    }
+                } else {
                     return null;
                 }
-                BaseGmsClient baseGmsClient = (BaseGmsClient) zai.zaf();
-                if (baseGmsClient.hasConnectionInfo() && !baseGmsClient.isConnecting()) {
-                    ConnectionTelemetryConfiguration zab = zab(zai, baseGmsClient, i);
-                    if (zab == null) {
-                        return null;
-                    }
-                    zai.zaq();
-                    z = zab.getMethodTimingTelemetryEnabled();
-                }
+            } else {
+                z8 = true;
             }
+            if (z8) {
+                j7 = System.currentTimeMillis();
+            } else {
+                j7 = 0;
+            }
+            if (z8) {
+                j9 = SystemClock.elapsedRealtime();
+            } else {
+                j9 = 0;
+            }
+            return new zacd(googleApiManager, i9, apiKey, j7, j9, null, null);
         }
-        return new zacd(googleApiManager, i, apiKey, z ? System.currentTimeMillis() : 0L, z ? SystemClock.elapsedRealtime() : 0L, null, null);
+        return null;
     }
 
-    private static ConnectionTelemetryConfiguration zab(zabq zabqVar, BaseGmsClient baseGmsClient, int i) {
+    @Nullable
+    private static ConnectionTelemetryConfiguration zab(zabq zabqVar, BaseGmsClient baseGmsClient, int i9) {
         int[] methodInvocationMethodKeyAllowlist;
         int[] methodInvocationMethodKeyDisallowlist;
         ConnectionTelemetryConfiguration telemetryConfiguration = baseGmsClient.getTelemetryConfiguration();
-        if (telemetryConfiguration == null || !telemetryConfiguration.getMethodInvocationTelemetryEnabled() || ((methodInvocationMethodKeyAllowlist = telemetryConfiguration.getMethodInvocationMethodKeyAllowlist()) != null ? !ArrayUtils.contains(methodInvocationMethodKeyAllowlist, i) : !((methodInvocationMethodKeyDisallowlist = telemetryConfiguration.getMethodInvocationMethodKeyDisallowlist()) == null || !ArrayUtils.contains(methodInvocationMethodKeyDisallowlist, i))) || zabqVar.zac() >= telemetryConfiguration.getMaxMethodInvocationsLogged()) {
+        if (telemetryConfiguration == null || !telemetryConfiguration.getMethodInvocationTelemetryEnabled() || ((methodInvocationMethodKeyAllowlist = telemetryConfiguration.getMethodInvocationMethodKeyAllowlist()) != null ? !ArrayUtils.contains(methodInvocationMethodKeyAllowlist, i9) : !((methodInvocationMethodKeyDisallowlist = telemetryConfiguration.getMethodInvocationMethodKeyDisallowlist()) == null || !ArrayUtils.contains(methodInvocationMethodKeyDisallowlist, i9))) || zabqVar.zac() >= telemetryConfiguration.getMaxMethodInvocationsLogged()) {
             return null;
         }
         return telemetryConfiguration;
     }
 
     @Override // com.google.android.gms.tasks.OnCompleteListener
-    public final void onComplete(Task task) {
+    public final void onComplete(@NonNull Task task) {
         zabq zai;
-        int i;
-        int i2;
-        int i3;
+        boolean z8;
+        int i9;
+        int i10;
+        int i11;
         int errorCode;
-        long j;
-        long j2;
-        int i4;
+        long j7;
+        long j9;
+        int i12;
         if (this.zaa.zaD()) {
             RootTelemetryConfiguration config = RootTelemetryConfigManager.getInstance().getConfig();
             if ((config == null || config.getMethodInvocationTelemetryEnabled()) && (zai = this.zaa.zai(this.zac)) != null && (zai.zaf() instanceof BaseGmsClient)) {
                 BaseGmsClient baseGmsClient = (BaseGmsClient) zai.zaf();
-                int i5 = 0;
-                boolean z = this.zad > 0;
+                boolean z9 = true;
+                int i13 = 0;
+                if (this.zad > 0) {
+                    z8 = true;
+                } else {
+                    z8 = false;
+                }
                 int gCoreServiceId = baseGmsClient.getGCoreServiceId();
-                int i6 = 100;
+                int i14 = 100;
                 if (config != null) {
-                    z &= config.getMethodTimingTelemetryEnabled();
+                    z8 &= config.getMethodTimingTelemetryEnabled();
                     int batchPeriodMillis = config.getBatchPeriodMillis();
                     int maxMethodInvocationsInBatch = config.getMaxMethodInvocationsInBatch();
-                    i = config.getVersion();
+                    i9 = config.getVersion();
                     if (baseGmsClient.hasConnectionInfo() && !baseGmsClient.isConnecting()) {
                         ConnectionTelemetryConfiguration zab = zab(zai, baseGmsClient, this.zab);
-                        if (zab == null) {
+                        if (zab != null) {
+                            if (!zab.getMethodTimingTelemetryEnabled() || this.zad <= 0) {
+                                z9 = false;
+                            }
+                            maxMethodInvocationsInBatch = zab.getMaxMethodInvocationsLogged();
+                            z8 = z9;
+                        } else {
                             return;
                         }
-                        boolean z2 = zab.getMethodTimingTelemetryEnabled() && this.zad > 0;
-                        maxMethodInvocationsInBatch = zab.getMaxMethodInvocationsLogged();
-                        z = z2;
                     }
-                    i3 = batchPeriodMillis;
-                    i2 = maxMethodInvocationsInBatch;
+                    i11 = batchPeriodMillis;
+                    i10 = maxMethodInvocationsInBatch;
                 } else {
-                    i = 0;
-                    i2 = 100;
-                    i3 = 5000;
+                    i9 = 0;
+                    i10 = 100;
+                    i11 = 5000;
                 }
                 GoogleApiManager googleApiManager = this.zaa;
                 if (task.isSuccessful()) {
@@ -121,33 +147,33 @@ public final class zacd implements OnCompleteListener {
                         Exception exception = task.getException();
                         if (exception instanceof ApiException) {
                             Status status = ((ApiException) exception).getStatus();
-                            i6 = status.getStatusCode();
+                            i14 = status.getStatusCode();
                             ConnectionResult connectionResult = status.getConnectionResult();
                             if (connectionResult != null) {
                                 errorCode = connectionResult.getErrorCode();
-                                i5 = i6;
+                                i13 = i14;
                             }
                         } else {
-                            i5 = 101;
+                            i13 = 101;
                             errorCode = -1;
                         }
                     }
-                    i5 = i6;
+                    i13 = i14;
                     errorCode = -1;
                 }
-                if (z) {
-                    long j3 = this.zad;
-                    long j4 = this.zae;
+                if (z8) {
+                    long j10 = this.zad;
+                    long j11 = this.zae;
                     long currentTimeMillis = System.currentTimeMillis();
-                    i4 = (int) (SystemClock.elapsedRealtime() - j4);
-                    j2 = currentTimeMillis;
-                    j = j3;
+                    i12 = (int) (SystemClock.elapsedRealtime() - j11);
+                    j9 = currentTimeMillis;
+                    j7 = j10;
                 } else {
-                    j = 0;
-                    j2 = 0;
-                    i4 = -1;
+                    j7 = 0;
+                    j9 = 0;
+                    i12 = -1;
                 }
-                googleApiManager.zaw(new MethodInvocation(this.zab, i5, errorCode, j, j2, null, null, gCoreServiceId, i4), i, i3, i2);
+                googleApiManager.zaw(new MethodInvocation(this.zab, i13, errorCode, j7, j9, null, null, gCoreServiceId, i12), i9, i11, i10);
             }
         }
     }

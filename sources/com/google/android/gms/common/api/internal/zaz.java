@@ -1,22 +1,22 @@
 package com.google.android.gms.common.api.internal;
 
 import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.ConnectionResult;
 import java.util.concurrent.locks.Lock;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zaz implements zabz {
     final /* synthetic */ zaaa zaa;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public /* synthetic */ zaz(zaaa zaaaVar, zay zayVar) {
         this.zaa = zaaaVar;
     }
 
     @Override // com.google.android.gms.common.api.internal.zabz
-    public final void zaa(ConnectionResult connectionResult) {
+    public final void zaa(@NonNull ConnectionResult connectionResult) {
         Lock lock;
         Lock lock2;
         lock = this.zaa.zam;
@@ -31,7 +31,7 @@ public final class zaz implements zabz {
     }
 
     @Override // com.google.android.gms.common.api.internal.zabz
-    public final void zab(Bundle bundle) {
+    public final void zab(@Nullable Bundle bundle) {
         Lock lock;
         Lock lock2;
         lock = this.zaa.zam;
@@ -46,27 +46,31 @@ public final class zaz implements zabz {
     }
 
     @Override // com.google.android.gms.common.api.internal.zabz
-    public final void zac(int i, boolean z) {
+    public final void zac(int i9, boolean z8) {
         Lock lock;
         Lock lock2;
-        boolean z2;
+        boolean z9;
         zabi zabiVar;
+        Lock lock3;
         lock = this.zaa.zam;
         lock.lock();
         try {
             zaaa zaaaVar = this.zaa;
-            z2 = zaaaVar.zal;
-            if (!z2) {
+            z9 = zaaaVar.zal;
+            if (z9) {
+                zaaaVar.zal = false;
+                zaaa.zan(this.zaa, i9, z8);
+            } else {
                 zaaaVar.zal = true;
                 zabiVar = this.zaa.zad;
-                zabiVar.onConnectionSuspended(i);
-            } else {
-                zaaaVar.zal = false;
-                zaaa.zan(this.zaa, i, z);
+                zabiVar.onConnectionSuspended(i9);
             }
-        } finally {
+            lock3 = this.zaa.zam;
+            lock3.unlock();
+        } catch (Throwable th) {
             lock2 = this.zaa.zam;
             lock2.unlock();
+            throw th;
         }
     }
 }

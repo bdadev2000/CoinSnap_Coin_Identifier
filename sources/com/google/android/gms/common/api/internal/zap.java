@@ -6,20 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import androidx.camera.view.PreviewView$1$$ExternalSyntheticBackportWithForwarding0;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import java.util.concurrent.atomic.AtomicReference;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class zap extends LifecycleCallback implements DialogInterface.OnCancelListener {
     protected volatile boolean zaa;
     protected final AtomicReference zab;
     protected final GoogleApiAvailability zac;
     private final Handler zad;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zap(LifecycleFragment lifecycleFragment, GoogleApiAvailability googleApiAvailability) {
         super(lifecycleFragment);
         this.zab = new AtomicReference(null);
@@ -28,9 +26,9 @@ public abstract class zap extends LifecycleCallback implements DialogInterface.O
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public final void zaa(ConnectionResult connectionResult, int i) {
+    public final void zaa(ConnectionResult connectionResult, int i9) {
         this.zab.set(null);
-        zab(connectionResult, i);
+        zab(connectionResult, i9);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -39,7 +37,7 @@ public abstract class zap extends LifecycleCallback implements DialogInterface.O
         zac();
     }
 
-    private static final int zae(zam zamVar) {
+    private static final int zae(@Nullable zam zamVar) {
         if (zamVar == null) {
             return -1;
         }
@@ -47,32 +45,38 @@ public abstract class zap extends LifecycleCallback implements DialogInterface.O
     }
 
     @Override // com.google.android.gms.common.api.internal.LifecycleCallback
-    public final void onActivityResult(int i, int i2, Intent intent) {
+    public final void onActivityResult(int i9, int i10, Intent intent) {
         zam zamVar = (zam) this.zab.get();
-        if (i != 1) {
-            if (i == 2) {
+        if (i9 != 1) {
+            if (i9 == 2) {
                 int isGooglePlayServicesAvailable = this.zac.isGooglePlayServicesAvailable(getActivity());
                 if (isGooglePlayServicesAvailable == 0) {
                     zad();
                     return;
-                } else {
-                    if (zamVar == null) {
-                        return;
-                    }
+                } else if (zamVar != null) {
                     if (zamVar.zab().getErrorCode() == 18 && isGooglePlayServicesAvailable == 18) {
                         return;
                     }
+                } else {
+                    return;
                 }
             }
-        } else if (i2 == -1) {
-            zad();
-            return;
-        } else if (i2 == 0) {
-            if (zamVar != null) {
-                zaa(new ConnectionResult(intent != null ? intent.getIntExtra("<<ResolutionFailureErrorDetail>>", 13) : 13, null, zamVar.zab().toString()), zae(zamVar));
+        } else {
+            if (i10 == -1) {
+                zad();
                 return;
             }
-            return;
+            if (i10 == 0) {
+                if (zamVar != null) {
+                    int i11 = 13;
+                    if (intent != null) {
+                        i11 = intent.getIntExtra("<<ResolutionFailureErrorDetail>>", 13);
+                    }
+                    zaa(new ConnectionResult(i11, null, zamVar.zab().toString()), zae(zamVar));
+                    return;
+                }
+                return;
+            }
         }
         if (zamVar != null) {
             zaa(zamVar.zab(), zamVar.zaa());
@@ -85,10 +89,17 @@ public abstract class zap extends LifecycleCallback implements DialogInterface.O
     }
 
     @Override // com.google.android.gms.common.api.internal.LifecycleCallback
-    public final void onCreate(Bundle bundle) {
+    public final void onCreate(@Nullable Bundle bundle) {
+        zam zamVar;
         super.onCreate(bundle);
         if (bundle != null) {
-            this.zab.set(bundle.getBoolean("resolving_error", false) ? new zam(new ConnectionResult(bundle.getInt("failed_status"), (PendingIntent) bundle.getParcelable("failed_resolution")), bundle.getInt("failed_client_id", -1)) : null);
+            AtomicReference atomicReference = this.zab;
+            if (bundle.getBoolean("resolving_error", false)) {
+                zamVar = new zam(new ConnectionResult(bundle.getInt("failed_status"), (PendingIntent) bundle.getParcelable("failed_resolution")), bundle.getInt("failed_client_id", -1));
+            } else {
+                zamVar = null;
+            }
+            atomicReference.set(zamVar);
         }
     }
 
@@ -117,19 +128,21 @@ public abstract class zap extends LifecycleCallback implements DialogInterface.O
         this.zaa = false;
     }
 
-    protected abstract void zab(ConnectionResult connectionResult, int i);
+    public abstract void zab(ConnectionResult connectionResult, int i9);
 
-    protected abstract void zac();
+    public abstract void zac();
 
-    public final void zah(ConnectionResult connectionResult, int i) {
+    public final void zah(ConnectionResult connectionResult, int i9) {
         AtomicReference atomicReference;
-        zam zamVar = new zam(connectionResult, i);
+        zam zamVar = new zam(connectionResult, i9);
         do {
             atomicReference = this.zab;
-            if (PreviewView$1$$ExternalSyntheticBackportWithForwarding0.m(atomicReference, null, zamVar)) {
-                this.zad.post(new zao(this, zamVar));
-                return;
+            while (!atomicReference.compareAndSet(null, zamVar)) {
+                if (atomicReference.get() != null) {
+                }
             }
+            this.zad.post(new zao(this, zamVar));
+            return;
         } while (atomicReference.get() == null);
     }
 }

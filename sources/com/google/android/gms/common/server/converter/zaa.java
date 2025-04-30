@@ -4,27 +4,39 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import com.google.android.gms.common.server.response.FastJsonResponse;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@SafeParcelable.Class(creator = "ConverterWrapperCreator")
+/* loaded from: classes2.dex */
 public final class zaa extends AbstractSafeParcelable {
     public static final Parcelable.Creator<zaa> CREATOR = new zab();
+
+    @SafeParcelable.VersionField(id = 1)
     final int zaa;
+
+    @SafeParcelable.Field(getter = "getStringToIntConverter", id = 2)
     private final StringToIntConverter zab;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zaa(int i, StringToIntConverter stringToIntConverter) {
-        this.zaa = i;
+    @SafeParcelable.Constructor
+    public zaa(@SafeParcelable.Param(id = 1) int i9, @SafeParcelable.Param(id = 2) StringToIntConverter stringToIntConverter) {
+        this.zaa = i9;
         this.zab = stringToIntConverter;
     }
 
+    public static zaa zaa(FastJsonResponse.FieldConverter fieldConverter) {
+        if (fieldConverter instanceof StringToIntConverter) {
+            return new zaa((StringToIntConverter) fieldConverter);
+        }
+        throw new IllegalArgumentException("Unsupported safe parcelable field converter class.");
+    }
+
     @Override // android.os.Parcelable
-    public final void writeToParcel(Parcel parcel, int i) {
-        int i2 = this.zaa;
+    public final void writeToParcel(Parcel parcel, int i9) {
+        int i10 = this.zaa;
         int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
-        SafeParcelWriter.writeInt(parcel, 1, i2);
-        SafeParcelWriter.writeParcelable(parcel, 2, this.zab, i, false);
+        SafeParcelWriter.writeInt(parcel, 1, i10);
+        SafeParcelWriter.writeParcelable(parcel, 2, this.zab, i9, false);
         SafeParcelWriter.finishObjectHeader(parcel, beginObjectHeader);
     }
 
@@ -39,12 +51,5 @@ public final class zaa extends AbstractSafeParcelable {
     private zaa(StringToIntConverter stringToIntConverter) {
         this.zaa = 1;
         this.zab = stringToIntConverter;
-    }
-
-    public static zaa zaa(FastJsonResponse.FieldConverter fieldConverter) {
-        if (fieldConverter instanceof StringToIntConverter) {
-            return new zaa((StringToIntConverter) fieldConverter);
-        }
-        throw new IllegalArgumentException("Unsupported safe parcelable field converter class.");
     }
 }

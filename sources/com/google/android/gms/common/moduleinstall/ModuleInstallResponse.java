@@ -2,18 +2,28 @@ package com.google.android.gms.common.moduleinstall;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@SafeParcelable.Class(creator = "ModuleInstallResponseCreator")
+/* loaded from: classes2.dex */
 public class ModuleInstallResponse extends AbstractSafeParcelable {
+
+    @NonNull
     public static final Parcelable.Creator<ModuleInstallResponse> CREATOR = new zad();
+
+    @SafeParcelable.Field(getter = "getSessionId", id = 1)
     private final int zaa;
+
+    @SafeParcelable.Field(defaultValue = "false", getter = "getShouldUnregisterListener", id = 2)
     private final boolean zab;
 
-    public ModuleInstallResponse(int i) {
-        this(i, false);
+    @KeepForSdk
+    public ModuleInstallResponse(int i9) {
+        this(i9, false);
     }
 
     public boolean areModulesAlreadyInstalled() {
@@ -25,7 +35,7 @@ public class ModuleInstallResponse extends AbstractSafeParcelable {
     }
 
     @Override // android.os.Parcelable
-    public void writeToParcel(Parcel parcel, int i) {
+    public void writeToParcel(@NonNull Parcel parcel, int i9) {
         int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
         SafeParcelWriter.writeInt(parcel, 1, getSessionId());
         SafeParcelWriter.writeBoolean(parcel, 2, this.zab);
@@ -36,8 +46,9 @@ public class ModuleInstallResponse extends AbstractSafeParcelable {
         return this.zab;
     }
 
-    public ModuleInstallResponse(int i, boolean z) {
-        this.zaa = i;
-        this.zab = z;
+    @SafeParcelable.Constructor
+    public ModuleInstallResponse(@SafeParcelable.Param(id = 1) int i9, @SafeParcelable.Param(id = 2) boolean z8) {
+        this.zaa = i9;
+        this.zab = z8;
     }
 }

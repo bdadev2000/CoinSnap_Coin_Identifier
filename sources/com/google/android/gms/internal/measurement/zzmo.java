@@ -1,43 +1,11 @@
 package com.google.android.gms.internal.measurement;
 
-import com.google.android.exoplayer2.analytics.AnalyticsListener;
-import com.google.common.base.Ascii;
+import Q7.n0;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzmo {
-    private static boolean zza(byte b) {
-        return b > -65;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ void zza(byte b, byte b2, byte b3, byte b4, char[] cArr, int i) {
-        if (zza(b2) || (((b << Ascii.FS) + (b2 + 112)) >> 30) != 0 || zza(b3) || zza(b4)) {
-            throw zzkb.zzd();
-        }
-        int i2 = ((b & 7) << 18) | ((b2 & 63) << 12) | ((b3 & 63) << 6) | (b4 & 63);
-        cArr[i] = (char) ((i2 >>> 10) + 55232);
-        cArr[i + 1] = (char) ((i2 & AnalyticsListener.EVENT_DROPPED_VIDEO_FRAMES) + 56320);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ void zza(byte b, char[] cArr, int i) {
-        cArr[i] = (char) b;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ void zza(byte b, byte b2, byte b3, char[] cArr, int i) {
-        if (zza(b2) || ((b == -32 && b2 < -96) || ((b == -19 && b2 >= -96) || zza(b3)))) {
-            throw zzkb.zzd();
-        }
-        cArr[i] = (char) (((b & Ascii.SI) << 12) | ((b2 & 63) << 6) | (b3 & 63));
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ void zza(byte b, byte b2, char[] cArr, int i) {
-        if (b < -62 || zza(b2)) {
-            throw zzkb.zzd();
-        }
-        cArr[i] = (char) (((b & Ascii.US) << 6) | (b2 & 63));
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzmo extends IllegalArgumentException {
+    public zzmo(int i9, int i10) {
+        super(n0.e(i9, i10, "Unpaired surrogate at index ", " of "));
     }
 }

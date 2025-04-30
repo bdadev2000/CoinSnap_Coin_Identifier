@@ -1,40 +1,64 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public final class zzfs extends zzcb implements zzdg {
-    private static final zzfs zzb;
-    private int zzd;
-    private int zze;
-    private String zzf = "";
+import com.applovin.exoplayer2.common.base.Ascii;
 
-    static {
-        zzfs zzfsVar = new zzfs();
-        zzb = zzfsVar;
-        zzcb.zzp(zzfs.class, zzfsVar);
-    }
-
-    private zzfs() {
-    }
-
-    @Override // com.google.android.gms.internal.play_billing.zzcb
-    public final Object zzu(int i, Object obj, Object obj2) {
-        int i2 = i - 1;
-        if (i2 == 0) {
-            return (byte) 1;
+/* loaded from: classes2.dex */
+final class zzfs extends zzfr {
+    @Override // com.google.android.gms.internal.play_billing.zzfr
+    public final int zza(int i9, byte[] bArr, int i10, int i11) {
+        while (i10 < i11 && bArr[i10] >= 0) {
+            i10++;
         }
-        if (i2 == 2) {
-            return zzm(zzb, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001᠌\u0000\u0002ဈ\u0001", new Object[]{"zzd", "zze", zzfo.zza, "zzf"});
+        if (i10 >= i11) {
+            return 0;
         }
-        if (i2 == 3) {
-            return new zzfs();
+        while (i10 < i11) {
+            int i12 = i10 + 1;
+            byte b = bArr[i10];
+            if (b < 0) {
+                if (b < -32) {
+                    if (i12 >= i11) {
+                        return b;
+                    }
+                    if (b >= -62) {
+                        i10 += 2;
+                        if (bArr[i12] > -65) {
+                        }
+                    }
+                    return -1;
+                }
+                if (b < -16) {
+                    if (i12 >= i11 - 1) {
+                        return zzfu.zza(bArr, i12, i11);
+                    }
+                    int i13 = i10 + 2;
+                    byte b8 = bArr[i12];
+                    if (b8 <= -65 && ((b != -32 || b8 >= -96) && (b != -19 || b8 < -96))) {
+                        i10 += 3;
+                        if (bArr[i13] > -65) {
+                        }
+                    }
+                    return -1;
+                }
+                if (i12 >= i11 - 2) {
+                    return zzfu.zza(bArr, i12, i11);
+                }
+                int i14 = i10 + 2;
+                byte b9 = bArr[i12];
+                if (b9 <= -65) {
+                    if ((((b9 + 112) + (b << Ascii.FS)) >> 30) == 0) {
+                        int i15 = i10 + 3;
+                        if (bArr[i14] <= -65) {
+                            i10 += 4;
+                            if (bArr[i15] > -65) {
+                            }
+                        }
+                    }
+                }
+                return -1;
+            }
+            i10 = i12;
         }
-        if (i2 == 4) {
-            return new zzfr(null);
-        }
-        if (i2 != 5) {
-            return null;
-        }
-        return zzb;
+        return 0;
     }
 }

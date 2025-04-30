@@ -1,18 +1,21 @@
 package com.google.android.gms.common.logging;
 
 import android.util.Log;
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.GmsLogger;
 import java.util.Locale;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class Logger {
     private final String zza;
     private final String zzb;
     private final GmsLogger zzc;
     private final int zzd;
 
-    public Logger(String str, String... strArr) {
+    @KeepForSdk
+    public Logger(@NonNull String str, @NonNull String... strArr) {
         String sb;
         if (strArr.length == 0) {
             sb = "";
@@ -31,65 +34,79 @@ public class Logger {
         this.zzb = sb;
         this.zza = str;
         this.zzc = new GmsLogger(str);
-        int i = 2;
-        while (i <= 7 && !Log.isLoggable(this.zza, i)) {
-            i++;
+        int i9 = 2;
+        while (i9 <= 7 && !Log.isLoggable(this.zza, i9)) {
+            i9++;
         }
-        this.zzd = i;
+        this.zzd = i9;
     }
 
-    public void d(String str, Object... objArr) {
+    @KeepForSdk
+    public void d(@NonNull String str, @NonNull Object... objArr) {
         if (isLoggable(3)) {
             Log.d(this.zza, format(str, objArr));
         }
     }
 
-    public void e(String str, Throwable th, Object... objArr) {
+    @KeepForSdk
+    public void e(@NonNull String str, @NonNull Throwable th, @NonNull Object... objArr) {
         Log.e(this.zza, format(str, objArr), th);
     }
 
-    protected String format(String str, Object... objArr) {
+    @NonNull
+    @KeepForSdk
+    public String format(@NonNull String str, @NonNull Object... objArr) {
         if (objArr != null && objArr.length > 0) {
             str = String.format(Locale.US, str, objArr);
         }
         return this.zzb.concat(str);
     }
 
+    @NonNull
+    @KeepForSdk
     public String getTag() {
         return this.zza;
     }
 
-    public void i(String str, Object... objArr) {
+    @KeepForSdk
+    public void i(@NonNull String str, @NonNull Object... objArr) {
         Log.i(this.zza, format(str, objArr));
     }
 
-    public boolean isLoggable(int i) {
-        return this.zzd <= i;
+    @KeepForSdk
+    public boolean isLoggable(int i9) {
+        return this.zzd <= i9;
     }
 
-    public void v(String str, Throwable th, Object... objArr) {
+    @KeepForSdk
+    public void v(@NonNull String str, @NonNull Throwable th, @NonNull Object... objArr) {
         if (isLoggable(2)) {
             Log.v(this.zza, format(str, objArr), th);
         }
     }
 
-    public void w(String str, Object... objArr) {
+    @KeepForSdk
+    public void w(@NonNull String str, @NonNull Object... objArr) {
         Log.w(this.zza, format(str, objArr));
     }
 
-    public void wtf(String str, Throwable th, Object... objArr) {
+    @KeepForSdk
+    public void wtf(@NonNull String str, @NonNull Throwable th, @NonNull Object... objArr) {
         Log.wtf(this.zza, format(str, objArr), th);
     }
 
-    public void e(String str, Object... objArr) {
+    @KeepForSdk
+    public void e(@NonNull String str, @NonNull Object... objArr) {
         Log.e(this.zza, format(str, objArr));
     }
 
-    public void wtf(Throwable th) {
+    @KeepForSdk
+    public void wtf(@NonNull Throwable th) {
         Log.wtf(this.zza, th);
     }
 
-    public void v(String str, Object... objArr) {
+    @KeepForSdk
+    public void v(@NonNull String str, @NonNull Object... objArr) {
         if (isLoggable(2)) {
             Log.v(this.zza, format(str, objArr));
         }

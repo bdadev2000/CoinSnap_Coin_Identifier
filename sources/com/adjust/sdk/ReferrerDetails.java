@@ -1,6 +1,6 @@
 package com.adjust.sdk;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class ReferrerDetails {
     public Boolean googlePlayInstant;
     public long installBeginTimestampSeconds;
@@ -10,16 +10,16 @@ public class ReferrerDetails {
     public long referrerClickTimestampSeconds;
     public long referrerClickTimestampServerSeconds;
 
-    public ReferrerDetails(String str, long j, long j2) {
-        this(str, j, j2, -1L, -1L, null, null);
+    public ReferrerDetails(String str, long j7, long j9) {
+        this(str, j7, j9, -1L, -1L, null, null);
     }
 
-    public ReferrerDetails(String str, long j, long j2, long j3, long j4, String str2, Boolean bool) {
+    public ReferrerDetails(String str, long j7, long j9, long j10, long j11, String str2, Boolean bool) {
         this.installReferrer = str;
-        this.referrerClickTimestampSeconds = j;
-        this.installBeginTimestampSeconds = j2;
-        this.referrerClickTimestampServerSeconds = j3;
-        this.installBeginTimestampServerSeconds = j4;
+        this.referrerClickTimestampSeconds = j7;
+        this.installBeginTimestampSeconds = j9;
+        this.referrerClickTimestampServerSeconds = j10;
+        this.installBeginTimestampServerSeconds = j11;
         this.installVersion = str2;
         this.googlePlayInstant = bool;
     }

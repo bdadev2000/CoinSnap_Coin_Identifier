@@ -2,50 +2,58 @@ package com.google.android.gms.dynamic;
 
 import android.content.Context;
 import android.os.IBinder;
+import androidx.annotation.NonNull;
 import com.google.android.gms.common.GooglePlayServicesUtilLight;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.Preconditions;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public abstract class RemoteCreator<T> {
     private final String zza;
     private Object zzb;
 
-    /* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-    /* loaded from: classes12.dex */
+    @KeepForSdk
+    /* loaded from: classes2.dex */
     public static class RemoteCreatorException extends Exception {
-        public RemoteCreatorException(String str) {
+        @KeepForSdk
+        public RemoteCreatorException(@NonNull String str) {
             super(str);
         }
 
-        public RemoteCreatorException(String str, Throwable th) {
+        @KeepForSdk
+        public RemoteCreatorException(@NonNull String str, @NonNull Throwable th) {
             super(str, th);
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public RemoteCreator(String str) {
+    @KeepForSdk
+    public RemoteCreator(@NonNull String str) {
         this.zza = str;
     }
 
-    protected abstract T getRemoteCreator(IBinder iBinder);
+    @NonNull
+    @KeepForSdk
+    public abstract T getRemoteCreator(@NonNull IBinder iBinder);
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public final T getRemoteCreatorInstance(Context context) throws RemoteCreatorException {
+    @NonNull
+    @KeepForSdk
+    public final T getRemoteCreatorInstance(@NonNull Context context) throws RemoteCreatorException {
         if (this.zzb == null) {
             Preconditions.checkNotNull(context);
             Context remoteContext = GooglePlayServicesUtilLight.getRemoteContext(context);
-            if (remoteContext == null) {
+            if (remoteContext != null) {
+                try {
+                    this.zzb = getRemoteCreator((IBinder) remoteContext.getClassLoader().loadClass(this.zza).newInstance());
+                } catch (ClassNotFoundException e4) {
+                    throw new RemoteCreatorException("Could not load creator class.", e4);
+                } catch (IllegalAccessException e9) {
+                    throw new RemoteCreatorException("Could not access creator.", e9);
+                } catch (InstantiationException e10) {
+                    throw new RemoteCreatorException("Could not instantiate creator.", e10);
+                }
+            } else {
                 throw new RemoteCreatorException("Could not get remote context.");
-            }
-            try {
-                this.zzb = getRemoteCreator((IBinder) remoteContext.getClassLoader().loadClass(this.zza).newInstance());
-            } catch (ClassNotFoundException e) {
-                throw new RemoteCreatorException("Could not load creator class.", e);
-            } catch (IllegalAccessException e2) {
-                throw new RemoteCreatorException("Could not access creator.", e2);
-            } catch (InstantiationException e3) {
-                throw new RemoteCreatorException("Could not instantiate creator.", e3);
             }
         }
         return (T) this.zzb;

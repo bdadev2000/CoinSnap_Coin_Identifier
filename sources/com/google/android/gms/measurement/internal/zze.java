@@ -1,57 +1,53 @@
 package com.google.android.gms.measurement.internal;
 
-import com.google.android.gms.common.internal.Preconditions;
-
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public class zze extends zzja implements zzjc {
-    public zzb zzc() {
-        return this.zzu.zze();
+/* loaded from: classes2.dex */
+public abstract class zze extends zzf {
+    private boolean zza;
+
+    public zze(zzhj zzhjVar) {
+        super(zzhjVar);
+        this.zzu.zzaa();
     }
 
-    public zzgg zzg() {
-        return this.zzu.zzh();
+    public final void zzu() {
+        if (zzy()) {
+        } else {
+            throw new IllegalStateException("Not initialized");
+        }
     }
 
-    public zzgf zzh() {
-        return this.zzu.zzi();
+    public final void zzv() {
+        if (!this.zza) {
+            if (!zzz()) {
+                this.zzu.zzz();
+                this.zza = true;
+                return;
+            }
+            return;
+        }
+        throw new IllegalStateException("Can't initialize twice");
     }
 
-    public zzjq zzm() {
-        return this.zzu.zzp();
+    public final void zzw() {
+        if (!this.zza) {
+            zzx();
+            this.zzu.zzz();
+            this.zza = true;
+            return;
+        }
+        throw new IllegalStateException("Can't initialize twice");
     }
 
-    public zzlj zzn() {
-        return this.zzu.zzq();
+    public void zzx() {
     }
 
-    public zzls zzo() {
-        return this.zzu.zzr();
+    public final boolean zzy() {
+        if (this.zza) {
+            return true;
+        }
+        return false;
     }
 
-    public zznb zzp() {
-        return this.zzu.zzs();
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zze(zzhy zzhyVar) {
-        super(zzhyVar);
-        Preconditions.checkNotNull(zzhyVar);
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    public void zzr() {
-        this.zzu.zzl().zzr();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    public void zzs() {
-        this.zzu.zzy();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    public void zzt() {
-        this.zzu.zzl().zzt();
-    }
+    public abstract boolean zzz();
 }

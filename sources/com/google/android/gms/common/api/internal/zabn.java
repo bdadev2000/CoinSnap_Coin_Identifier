@@ -1,16 +1,14 @@
 package com.google.android.gms.common.api.internal;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zabn implements Runnable {
     final /* synthetic */ int zaa;
     final /* synthetic */ zabq zab;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zabn(zabq zabqVar, int i) {
+    public zabn(zabq zabqVar, int i9) {
         this.zab = zabqVar;
-        this.zaa = i;
+        this.zaa = i9;
     }
 
     @Override // java.lang.Runnable

@@ -1,6 +1,6 @@
 package com.adjust.sdk;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public interface ILogger {
     void Assert(String str, Object... objArr);
 
@@ -12,9 +12,9 @@ public interface ILogger {
 
     void lockLogLevel();
 
-    void setLogLevel(LogLevel logLevel, boolean z);
+    void setLogLevel(LogLevel logLevel, boolean z8);
 
-    void setLogLevelString(String str, boolean z);
+    void setLogLevelString(String str, boolean z8);
 
     void verbose(String str, Object... objArr);
 

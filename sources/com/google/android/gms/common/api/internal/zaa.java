@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zaa extends LifecycleCallback {
     private List zaa;
 
@@ -16,14 +15,17 @@ final class zaa extends LifecycleCallback {
         this.mLifecycleFragment.addCallback("LifecycleObserverOnStop", this);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public static /* bridge */ /* synthetic */ zaa zaa(Activity activity) {
         zaa zaaVar;
         synchronized (activity) {
-            LifecycleFragment fragment = getFragment(activity);
-            zaaVar = (zaa) fragment.getCallbackOrNull("LifecycleObserverOnStop", zaa.class);
-            if (zaaVar == null) {
-                zaaVar = new zaa(fragment);
+            try {
+                LifecycleFragment fragment = LifecycleCallback.getFragment(activity);
+                zaaVar = (zaa) fragment.getCallbackOrNull("LifecycleObserverOnStop", zaa.class);
+                if (zaaVar == null) {
+                    zaaVar = new zaa(fragment);
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return zaaVar;

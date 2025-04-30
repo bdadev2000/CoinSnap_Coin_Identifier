@@ -1,56 +1,88 @@
 package com.google.android.gms.internal.measurement;
 
-import java.io.IOException;
+/* loaded from: classes2.dex */
+public class zzkb {
+    private volatile zzkt zza;
+    private volatile zzia zzb;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public class zzkb extends IOException {
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzke zza() {
-        return new zzke("Protocol message tag had invalid wire type.");
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof zzkb)) {
+            return false;
+        }
+        zzkb zzkbVar = (zzkb) obj;
+        zzkt zzktVar = this.zza;
+        zzkt zzktVar2 = zzkbVar.zza;
+        if (zzktVar == null && zzktVar2 == null) {
+            return zzb().equals(zzkbVar.zzb());
+        }
+        if (zzktVar != null && zzktVar2 != null) {
+            return zzktVar.equals(zzktVar2);
+        }
+        if (zzktVar != null) {
+            return zzktVar.equals(zzkbVar.zzb(zzktVar.zzcj()));
+        }
+        return zzb(zzktVar2.zzcj()).equals(zzktVar2);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzkb zzb() {
-        return new zzkb("Protocol message end-group tag did not match expected tag.");
+    public int hashCode() {
+        return 1;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzkb zzc() {
-        return new zzkb("Protocol message contained an invalid tag (zero).");
+    public final int zza() {
+        if (this.zzb != null) {
+            return this.zzb.zzb();
+        }
+        if (this.zza != null) {
+            return this.zza.zzca();
+        }
+        return 0;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzkb zzd() {
-        return new zzkb("Protocol message had invalid UTF-8.");
+    public final zzia zzb() {
+        if (this.zzb != null) {
+            return this.zzb;
+        }
+        synchronized (this) {
+            try {
+                if (this.zzb != null) {
+                    return this.zzb;
+                }
+                if (this.zza == null) {
+                    this.zzb = zzia.zza;
+                } else {
+                    this.zzb = this.zza.zzby();
+                }
+                return this.zzb;
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzkb zze() {
-        return new zzkb("CodedInputStream encountered a malformed varint.");
+    public final zzkt zza(zzkt zzktVar) {
+        zzkt zzktVar2 = this.zza;
+        this.zzb = null;
+        this.zza = zzktVar;
+        return zzktVar2;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzkb zzf() {
-        return new zzkb("CodedInputStream encountered an embedded string or message which claimed to have negative size.");
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzkb zzg() {
-        return new zzkb("Failed to parse the message.");
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzkb zzh() {
-        return new zzkb("Protocol message had too many levels of nesting.  May be malicious.  Use setRecursionLimit() to increase the recursion depth limit.");
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzkb zzi() {
-        return new zzkb("While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.");
-    }
-
-    public zzkb(String str) {
-        super(str);
+    private final zzkt zzb(zzkt zzktVar) {
+        if (this.zza == null) {
+            synchronized (this) {
+                if (this.zza == null) {
+                    try {
+                        this.zza = zzktVar;
+                        this.zzb = zzia.zza;
+                    } catch (zzjs unused) {
+                        this.zza = zzktVar;
+                        this.zzb = zzia.zza;
+                    }
+                }
+            }
+        }
+        return this.zza;
     }
 }

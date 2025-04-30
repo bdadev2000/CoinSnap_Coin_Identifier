@@ -1,14 +1,13 @@
 package com.adjust.sdk;
 
 import android.content.Context;
-import androidx.work.WorkRequest;
 import com.adjust.sdk.network.IActivityPackageSender;
 import com.adjust.sdk.network.UtilNetworking;
-import com.glority.android.cmsui.entity.LikeItem;
+import com.mbridge.msdk.playercommon.exoplayer2.source.chunk.ChunkedTrackBlacklistUtil;
 import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class AdjustFactory {
     private static IActivityHandler activityHandler = null;
     private static IAttributionHandler attributionHandler = null;
@@ -30,7 +29,7 @@ public class AdjustFactory {
     private static long timerStart = -1;
     private static boolean tryInstallReferrer = true;
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public static class URLGetConnection {
         public HttpsURLConnection httpsURLConnection;
         public URL url;
@@ -47,7 +46,7 @@ public class AdjustFactory {
             String hexString = Integer.toHexString(b);
             int length = hexString.length();
             if (length == 1) {
-                hexString = LikeItem.DISLIKE + hexString;
+                hexString = "0".concat(hexString);
             }
             if (length > 2) {
                 hexString = hexString.substring(length - 2, length);
@@ -74,12 +73,12 @@ public class AdjustFactory {
         return activityHandler;
     }
 
-    public static IAttributionHandler getAttributionHandler(IActivityHandler iActivityHandler, boolean z, IActivityPackageSender iActivityPackageSender) {
+    public static IAttributionHandler getAttributionHandler(IActivityHandler iActivityHandler, boolean z8, IActivityPackageSender iActivityPackageSender) {
         IAttributionHandler iAttributionHandler = attributionHandler;
         if (iAttributionHandler == null) {
-            return new AttributionHandler(iActivityHandler, z, iActivityPackageSender);
+            return new AttributionHandler(iActivityHandler, z8, iActivityPackageSender);
         }
-        iAttributionHandler.init(iActivityHandler, z, iActivityPackageSender);
+        iAttributionHandler.init(iActivityHandler, z8, iActivityPackageSender);
         return attributionHandler;
     }
 
@@ -114,16 +113,19 @@ public class AdjustFactory {
     }
 
     public static long getMaxDelayStart() {
-        long j = maxDelayStart;
-        return j == -1 ? WorkRequest.MIN_BACKOFF_MILLIS : j;
+        long j7 = maxDelayStart;
+        if (j7 == -1) {
+            return 10000L;
+        }
+        return j7;
     }
 
-    public static IPackageHandler getPackageHandler(IActivityHandler iActivityHandler, Context context, boolean z, IActivityPackageSender iActivityPackageSender) {
+    public static IPackageHandler getPackageHandler(IActivityHandler iActivityHandler, Context context, boolean z8, IActivityPackageSender iActivityPackageSender) {
         IPackageHandler iPackageHandler = packageHandler;
         if (iPackageHandler == null) {
-            return new PackageHandler(iActivityHandler, context, z, iActivityPackageSender);
+            return new PackageHandler(iActivityHandler, context, z8, iActivityPackageSender);
         }
-        iPackageHandler.init(iActivityHandler, context, z, iActivityPackageSender);
+        iPackageHandler.init(iActivityHandler, context, z8, iActivityPackageSender);
         return packageHandler;
     }
 
@@ -137,21 +139,21 @@ public class AdjustFactory {
         return backoffStrategy == null ? BackoffStrategy.SHORT_WAIT : backoffStrategy;
     }
 
-    public static ISdkClickHandler getSdkClickHandler(IActivityHandler iActivityHandler, boolean z, IActivityPackageSender iActivityPackageSender) {
+    public static ISdkClickHandler getSdkClickHandler(IActivityHandler iActivityHandler, boolean z8, IActivityPackageSender iActivityPackageSender) {
         ISdkClickHandler iSdkClickHandler = sdkClickHandler;
         if (iSdkClickHandler == null) {
-            return new SdkClickHandler(iActivityHandler, z, iActivityPackageSender);
+            return new SdkClickHandler(iActivityHandler, z8, iActivityPackageSender);
         }
-        iSdkClickHandler.init(iActivityHandler, z, iActivityPackageSender);
+        iSdkClickHandler.init(iActivityHandler, z8, iActivityPackageSender);
         return sdkClickHandler;
     }
 
     public static long getSessionInterval() {
-        long j = sessionInterval;
-        if (j == -1) {
+        long j7 = sessionInterval;
+        if (j7 == -1) {
             return 1800000L;
         }
-        return j;
+        return j7;
     }
 
     public static String getSubscriptionUrl() {
@@ -159,27 +161,21 @@ public class AdjustFactory {
     }
 
     public static long getSubsessionInterval() {
-        long j = subsessionInterval;
-        if (j == -1) {
+        long j7 = subsessionInterval;
+        if (j7 == -1) {
             return 1000L;
         }
-        return j;
+        return j7;
     }
 
     public static long getTimerInterval() {
-        long j = timerInterval;
-        if (j == -1) {
-            return 60000L;
-        }
-        return j;
+        long j7 = timerInterval;
+        return j7 == -1 ? ChunkedTrackBlacklistUtil.DEFAULT_TRACK_BLACKLIST_MS : j7;
     }
 
     public static long getTimerStart() {
-        long j = timerStart;
-        if (j == -1) {
-            return 60000L;
-        }
-        return j;
+        long j7 = timerStart;
+        return j7 == -1 ? ChunkedTrackBlacklistUtil.DEFAULT_TRACK_BLACKLIST_MS : j7;
     }
 
     public static boolean getTryInstallReferrer() {
@@ -230,28 +226,28 @@ public class AdjustFactory {
         sdkClickHandler = iSdkClickHandler;
     }
 
-    public static void setSessionInterval(long j) {
-        sessionInterval = j;
+    public static void setSessionInterval(long j7) {
+        sessionInterval = j7;
     }
 
     public static void setSubscriptionUrl(String str) {
         subscriptionUrl = str;
     }
 
-    public static void setSubsessionInterval(long j) {
-        subsessionInterval = j;
+    public static void setSubsessionInterval(long j7) {
+        subsessionInterval = j7;
     }
 
-    public static void setTimerInterval(long j) {
-        timerInterval = j;
+    public static void setTimerInterval(long j7) {
+        timerInterval = j7;
     }
 
-    public static void setTimerStart(long j) {
-        timerStart = j;
+    public static void setTimerStart(long j7) {
+        timerStart = j7;
     }
 
-    public static void setTryInstallReferrer(boolean z) {
-        tryInstallReferrer = z;
+    public static void setTryInstallReferrer(boolean z8) {
+        tryInstallReferrer = z8;
     }
 
     public static void teardown(Context context) {

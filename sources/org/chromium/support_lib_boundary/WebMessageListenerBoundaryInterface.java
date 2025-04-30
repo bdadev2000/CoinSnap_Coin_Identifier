@@ -4,7 +4,7 @@ import android.net.Uri;
 import android.webkit.WebView;
 import java.lang.reflect.InvocationHandler;
 
-/* loaded from: classes9.dex */
+/* loaded from: classes3.dex */
 public interface WebMessageListenerBoundaryInterface extends FeatureFlagHolderBoundaryInterface {
-    void onPostMessage(WebView webView, InvocationHandler invocationHandler, Uri uri, boolean z, InvocationHandler invocationHandler2);
+    void onPostMessage(WebView webView, InvocationHandler invocationHandler, Uri uri, boolean z8, InvocationHandler invocationHandler2);
 }

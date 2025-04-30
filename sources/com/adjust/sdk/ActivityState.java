@@ -1,5 +1,6 @@
 package com.adjust.sdk;
 
+import g4.AbstractC2292b;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectStreamField;
@@ -7,7 +8,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.LinkedList;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class ActivityState implements Serializable, Cloneable {
     private static final int ORDER_ID_MAXCOUNT = 10;
     private static final ObjectStreamField[] serialPersistentFields;
@@ -46,6 +47,14 @@ public class ActivityState implements Serializable, Cloneable {
     public String installReferrerXiaomi = null;
     public long clickTimeServerXiaomi = 0;
     public long installBeginServerXiaomi = 0;
+    public String installVersionXiaomi = null;
+    public long clickTimeSamsung = 0;
+    public long installBeginSamsung = 0;
+    public String installReferrerSamsung = null;
+    public long clickTimeVivo = 0;
+    public long installBeginVivo = 0;
+    public String installReferrerVivo = null;
+    public String installVersionVivo = null;
 
     static {
         ObjectStreamField objectStreamField = new ObjectStreamField("uuid", String.class);
@@ -59,7 +68,7 @@ public class ActivityState implements Serializable, Cloneable {
         ObjectStreamField objectStreamField7 = new ObjectStreamField("sessionCount", cls2);
         ObjectStreamField objectStreamField8 = new ObjectStreamField("subsessionCount", cls2);
         Class cls3 = Long.TYPE;
-        serialPersistentFields = new ObjectStreamField[]{objectStreamField, objectStreamField2, objectStreamField3, objectStreamField4, objectStreamField5, objectStreamField6, objectStreamField7, objectStreamField8, new ObjectStreamField("sessionLength", cls3), new ObjectStreamField("timeSpent", cls3), new ObjectStreamField("lastActivity", cls3), new ObjectStreamField("lastInterval", cls3), new ObjectStreamField("updatePackages", cls), new ObjectStreamField("orderIds", LinkedList.class), new ObjectStreamField("pushToken", String.class), new ObjectStreamField("adid", String.class), new ObjectStreamField("clickTime", cls3), new ObjectStreamField("installBegin", cls3), new ObjectStreamField("installReferrer", String.class), new ObjectStreamField("googlePlayInstant", Boolean.class), new ObjectStreamField("clickTimeServer", cls3), new ObjectStreamField("installBeginServer", cls3), new ObjectStreamField("installVersion", String.class), new ObjectStreamField("clickTimeHuawei", cls3), new ObjectStreamField("installBeginHuawei", cls3), new ObjectStreamField("installReferrerHuawei", String.class), new ObjectStreamField("installReferrerHuaweiAppGallery", String.class), new ObjectStreamField("isThirdPartySharingDisabledForCoppa", cls), new ObjectStreamField("clickTimeXiaomi", cls3), new ObjectStreamField("installBeginXiaomi", cls3), new ObjectStreamField("installReferrerXiaomi", String.class), new ObjectStreamField("clickTimeServerXiaomi", cls3), new ObjectStreamField("installBeginServerXiaomi", cls3)};
+        serialPersistentFields = new ObjectStreamField[]{objectStreamField, objectStreamField2, objectStreamField3, objectStreamField4, objectStreamField5, objectStreamField6, objectStreamField7, objectStreamField8, new ObjectStreamField("sessionLength", cls3), new ObjectStreamField("timeSpent", cls3), new ObjectStreamField("lastActivity", cls3), new ObjectStreamField("lastInterval", cls3), new ObjectStreamField("updatePackages", cls), new ObjectStreamField("orderIds", LinkedList.class), new ObjectStreamField("pushToken", String.class), new ObjectStreamField("adid", String.class), new ObjectStreamField("clickTime", cls3), new ObjectStreamField("installBegin", cls3), new ObjectStreamField("installReferrer", String.class), new ObjectStreamField("googlePlayInstant", Boolean.class), new ObjectStreamField("clickTimeServer", cls3), new ObjectStreamField("installBeginServer", cls3), new ObjectStreamField("installVersion", String.class), new ObjectStreamField("clickTimeHuawei", cls3), new ObjectStreamField("installBeginHuawei", cls3), new ObjectStreamField("installReferrerHuawei", String.class), new ObjectStreamField("installReferrerHuaweiAppGallery", String.class), new ObjectStreamField("isThirdPartySharingDisabledForCoppa", cls), new ObjectStreamField("clickTimeXiaomi", cls3), new ObjectStreamField("installBeginXiaomi", cls3), new ObjectStreamField("installReferrerXiaomi", String.class), new ObjectStreamField("clickTimeServerXiaomi", cls3), new ObjectStreamField("installBeginServerXiaomi", cls3), new ObjectStreamField("installVersionXiaomi", String.class), new ObjectStreamField("clickTimeSamsung", cls3), new ObjectStreamField("installBeginSamsung", cls3), new ObjectStreamField("installReferrerSamsung", String.class), new ObjectStreamField("clickTimeVivo", cls3), new ObjectStreamField("installBeginVivo", cls3), new ObjectStreamField("installReferrerVivo", String.class), new ObjectStreamField("installVersionVivo", String.class)};
     }
 
     private void readObject(ObjectInputStream objectInputStream) {
@@ -97,13 +106,21 @@ public class ActivityState implements Serializable, Cloneable {
         this.installReferrerXiaomi = Util.readStringField(readFields, "installReferrerXiaomi", null);
         this.clickTimeServerXiaomi = Util.readLongField(readFields, "clickTimeServerXiaomi", -1L);
         this.installBeginServerXiaomi = Util.readLongField(readFields, "installBeginServerXiaomi", -1L);
+        this.installVersionXiaomi = Util.readStringField(readFields, "installVersionXiaomi", null);
+        this.clickTimeSamsung = Util.readLongField(readFields, "clickTimeSamsung", -1L);
+        this.installBeginSamsung = Util.readLongField(readFields, "installBeginSamsung", -1L);
+        this.installReferrerSamsung = Util.readStringField(readFields, "installReferrerSamsung", null);
+        this.clickTimeVivo = Util.readLongField(readFields, "clickTimeVivo", -1L);
+        this.installBeginVivo = Util.readLongField(readFields, "installBeginVivo", -1L);
+        this.installReferrerVivo = Util.readStringField(readFields, "installReferrerVivo", null);
+        this.installVersionVivo = Util.readStringField(readFields, "installVersionVivo", null);
         if (this.uuid == null) {
             this.uuid = Util.createUuid();
         }
     }
 
-    private static String stamp(long j) {
-        Calendar.getInstance().setTimeInMillis(j);
+    private static String stamp(long j7) {
+        Calendar.getInstance().setTimeInMillis(j7);
         return Util.formatString("%02d:%02d:%02d", 11, 12, 13);
     }
 
@@ -129,7 +146,7 @@ public class ActivityState implements Serializable, Cloneable {
             return false;
         }
         ActivityState activityState = (ActivityState) obj;
-        return Util.equalString(this.uuid, activityState.uuid) && Util.equalBoolean(Boolean.valueOf(this.enabled), Boolean.valueOf(activityState.enabled)) && Util.equalBoolean(Boolean.valueOf(this.isGdprForgotten), Boolean.valueOf(activityState.isGdprForgotten)) && Util.equalBoolean(Boolean.valueOf(this.isThirdPartySharingDisabled), Boolean.valueOf(activityState.isThirdPartySharingDisabled)) && Util.equalBoolean(Boolean.valueOf(this.isThirdPartySharingDisabledForCoppa), Boolean.valueOf(activityState.isThirdPartySharingDisabledForCoppa)) && Util.equalBoolean(Boolean.valueOf(this.askingAttribution), Boolean.valueOf(activityState.askingAttribution)) && Util.equalInt(Integer.valueOf(this.eventCount), Integer.valueOf(activityState.eventCount)) && Util.equalInt(Integer.valueOf(this.sessionCount), Integer.valueOf(activityState.sessionCount)) && Util.equalInt(Integer.valueOf(this.subsessionCount), Integer.valueOf(activityState.subsessionCount)) && Util.equalLong(Long.valueOf(this.sessionLength), Long.valueOf(activityState.sessionLength)) && Util.equalLong(Long.valueOf(this.timeSpent), Long.valueOf(activityState.timeSpent)) && Util.equalLong(Long.valueOf(this.lastInterval), Long.valueOf(activityState.lastInterval)) && Util.equalBoolean(Boolean.valueOf(this.updatePackages), Boolean.valueOf(activityState.updatePackages)) && Util.equalObject(this.orderIds, activityState.orderIds) && Util.equalString(this.pushToken, activityState.pushToken) && Util.equalString(this.adid, activityState.adid) && Util.equalLong(Long.valueOf(this.clickTime), Long.valueOf(activityState.clickTime)) && Util.equalLong(Long.valueOf(this.installBegin), Long.valueOf(activityState.installBegin)) && Util.equalString(this.installReferrer, activityState.installReferrer) && Util.equalBoolean(this.googlePlayInstant, activityState.googlePlayInstant) && Util.equalLong(Long.valueOf(this.clickTimeServer), Long.valueOf(activityState.clickTimeServer)) && Util.equalLong(Long.valueOf(this.installBeginServer), Long.valueOf(activityState.installBeginServer)) && Util.equalString(this.installVersion, activityState.installVersion) && Util.equalLong(Long.valueOf(this.clickTimeHuawei), Long.valueOf(activityState.clickTimeHuawei)) && Util.equalLong(Long.valueOf(this.installBeginHuawei), Long.valueOf(activityState.installBeginHuawei)) && Util.equalString(this.installReferrerHuawei, activityState.installReferrerHuawei) && Util.equalString(this.installReferrerHuaweiAppGallery, activityState.installReferrerHuaweiAppGallery) && Util.equalLong(Long.valueOf(this.clickTimeXiaomi), Long.valueOf(activityState.clickTimeXiaomi)) && Util.equalLong(Long.valueOf(this.installBeginXiaomi), Long.valueOf(activityState.installBeginXiaomi)) && Util.equalString(this.installReferrerXiaomi, activityState.installReferrerXiaomi) && Util.equalLong(Long.valueOf(this.clickTimeServerXiaomi), Long.valueOf(activityState.clickTimeServerXiaomi)) && Util.equalLong(Long.valueOf(this.installBeginServerXiaomi), Long.valueOf(activityState.installBeginServerXiaomi));
+        return Util.equalString(this.uuid, activityState.uuid) && Util.equalBoolean(Boolean.valueOf(this.enabled), Boolean.valueOf(activityState.enabled)) && Util.equalBoolean(Boolean.valueOf(this.isGdprForgotten), Boolean.valueOf(activityState.isGdprForgotten)) && Util.equalBoolean(Boolean.valueOf(this.isThirdPartySharingDisabled), Boolean.valueOf(activityState.isThirdPartySharingDisabled)) && Util.equalBoolean(Boolean.valueOf(this.isThirdPartySharingDisabledForCoppa), Boolean.valueOf(activityState.isThirdPartySharingDisabledForCoppa)) && Util.equalBoolean(Boolean.valueOf(this.askingAttribution), Boolean.valueOf(activityState.askingAttribution)) && Util.equalInt(Integer.valueOf(this.eventCount), Integer.valueOf(activityState.eventCount)) && Util.equalInt(Integer.valueOf(this.sessionCount), Integer.valueOf(activityState.sessionCount)) && Util.equalInt(Integer.valueOf(this.subsessionCount), Integer.valueOf(activityState.subsessionCount)) && Util.equalLong(Long.valueOf(this.sessionLength), Long.valueOf(activityState.sessionLength)) && Util.equalLong(Long.valueOf(this.timeSpent), Long.valueOf(activityState.timeSpent)) && Util.equalLong(Long.valueOf(this.lastInterval), Long.valueOf(activityState.lastInterval)) && Util.equalBoolean(Boolean.valueOf(this.updatePackages), Boolean.valueOf(activityState.updatePackages)) && Util.equalObject(this.orderIds, activityState.orderIds) && Util.equalString(this.pushToken, activityState.pushToken) && Util.equalString(this.adid, activityState.adid) && Util.equalLong(Long.valueOf(this.clickTime), Long.valueOf(activityState.clickTime)) && Util.equalLong(Long.valueOf(this.installBegin), Long.valueOf(activityState.installBegin)) && Util.equalString(this.installReferrer, activityState.installReferrer) && Util.equalBoolean(this.googlePlayInstant, activityState.googlePlayInstant) && Util.equalLong(Long.valueOf(this.clickTimeServer), Long.valueOf(activityState.clickTimeServer)) && Util.equalLong(Long.valueOf(this.installBeginServer), Long.valueOf(activityState.installBeginServer)) && Util.equalString(this.installVersion, activityState.installVersion) && Util.equalLong(Long.valueOf(this.clickTimeHuawei), Long.valueOf(activityState.clickTimeHuawei)) && Util.equalLong(Long.valueOf(this.installBeginHuawei), Long.valueOf(activityState.installBeginHuawei)) && Util.equalString(this.installReferrerHuawei, activityState.installReferrerHuawei) && Util.equalString(this.installReferrerHuaweiAppGallery, activityState.installReferrerHuaweiAppGallery) && Util.equalLong(Long.valueOf(this.clickTimeXiaomi), Long.valueOf(activityState.clickTimeXiaomi)) && Util.equalLong(Long.valueOf(this.installBeginXiaomi), Long.valueOf(activityState.installBeginXiaomi)) && Util.equalString(this.installReferrerXiaomi, activityState.installReferrerXiaomi) && Util.equalLong(Long.valueOf(this.clickTimeServerXiaomi), Long.valueOf(activityState.clickTimeServerXiaomi)) && Util.equalLong(Long.valueOf(this.installBeginServerXiaomi), Long.valueOf(activityState.installBeginServerXiaomi)) && Util.equalString(this.installVersionXiaomi, activityState.installVersionXiaomi) && Util.equalLong(Long.valueOf(this.clickTimeSamsung), Long.valueOf(activityState.clickTimeSamsung)) && Util.equalLong(Long.valueOf(this.installBeginSamsung), Long.valueOf(activityState.installBeginSamsung)) && Util.equalString(this.installReferrerSamsung, activityState.installReferrerSamsung) && Util.equalLong(Long.valueOf(this.clickTimeVivo), Long.valueOf(activityState.clickTimeVivo)) && Util.equalLong(Long.valueOf(this.installBeginVivo), Long.valueOf(activityState.installBeginVivo)) && Util.equalString(this.installReferrerVivo, activityState.installReferrerVivo) && Util.equalString(this.installVersionVivo, activityState.installVersionVivo);
     }
 
     public boolean findOrderId(String str) {
@@ -141,14 +158,14 @@ public class ActivityState implements Serializable, Cloneable {
     }
 
     public int hashCode() {
-        return Util.hashLong(Long.valueOf(this.installBeginServerXiaomi)) + ((Util.hashLong(Long.valueOf(this.clickTimeServerXiaomi)) + ((Util.hashString(this.installReferrerXiaomi) + ((Util.hashLong(Long.valueOf(this.installBeginXiaomi)) + ((Util.hashLong(Long.valueOf(this.clickTimeXiaomi)) + ((Util.hashString(this.installReferrerHuaweiAppGallery) + ((Util.hashString(this.installReferrerHuawei) + ((Util.hashLong(Long.valueOf(this.installBeginHuawei)) + ((Util.hashLong(Long.valueOf(this.clickTimeHuawei)) + ((Util.hashString(this.installVersion) + ((Util.hashLong(Long.valueOf(this.installBeginServer)) + ((Util.hashLong(Long.valueOf(this.clickTimeServer)) + ((Util.hashBoolean(this.googlePlayInstant) + ((Util.hashString(this.installReferrer) + ((Util.hashLong(Long.valueOf(this.installBegin)) + ((Util.hashLong(Long.valueOf(this.clickTime)) + ((Util.hashString(this.adid) + ((Util.hashString(this.pushToken) + ((Util.hashObject(this.orderIds) + ((Util.hashBoolean(Boolean.valueOf(this.updatePackages)) + ((Util.hashLong(Long.valueOf(this.lastInterval)) + ((Util.hashLong(Long.valueOf(this.timeSpent)) + ((Util.hashLong(Long.valueOf(this.sessionLength)) + ((((((((Util.hashBoolean(Boolean.valueOf(this.askingAttribution)) + ((Util.hashBoolean(Boolean.valueOf(this.isThirdPartySharingDisabledForCoppa)) + ((Util.hashBoolean(Boolean.valueOf(this.isThirdPartySharingDisabled)) + ((Util.hashBoolean(Boolean.valueOf(this.isGdprForgotten)) + ((Util.hashBoolean(Boolean.valueOf(this.enabled)) + ((Util.hashString(this.uuid) + 629) * 37)) * 37)) * 37)) * 37)) * 37)) * 37) + this.eventCount) * 37) + this.sessionCount) * 37) + this.subsessionCount) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37);
+        return Util.hashString(this.installVersionVivo) + AbstractC2292b.a(this.installReferrerVivo, (Util.hashLong(Long.valueOf(this.installBeginVivo)) + ((Util.hashLong(Long.valueOf(this.clickTimeVivo)) + AbstractC2292b.a(this.installReferrerSamsung, (Util.hashLong(Long.valueOf(this.installBeginSamsung)) + ((Util.hashLong(Long.valueOf(this.clickTimeSamsung)) + AbstractC2292b.a(this.installVersionXiaomi, (Util.hashLong(Long.valueOf(this.installBeginServerXiaomi)) + ((Util.hashLong(Long.valueOf(this.clickTimeServerXiaomi)) + AbstractC2292b.a(this.installReferrerXiaomi, (Util.hashLong(Long.valueOf(this.installBeginXiaomi)) + ((Util.hashLong(Long.valueOf(this.clickTimeXiaomi)) + AbstractC2292b.a(this.installReferrerHuaweiAppGallery, AbstractC2292b.a(this.installReferrerHuawei, (Util.hashLong(Long.valueOf(this.installBeginHuawei)) + ((Util.hashLong(Long.valueOf(this.clickTimeHuawei)) + AbstractC2292b.a(this.installVersion, (Util.hashLong(Long.valueOf(this.installBeginServer)) + ((Util.hashLong(Long.valueOf(this.clickTimeServer)) + ((Util.hashBoolean(this.googlePlayInstant) + AbstractC2292b.a(this.installReferrer, (Util.hashLong(Long.valueOf(this.installBegin)) + ((Util.hashLong(Long.valueOf(this.clickTime)) + AbstractC2292b.a(this.adid, AbstractC2292b.a(this.pushToken, (Util.hashObject(this.orderIds) + ((Util.hashBoolean(Boolean.valueOf(this.updatePackages)) + ((Util.hashLong(Long.valueOf(this.lastInterval)) + ((Util.hashLong(Long.valueOf(this.timeSpent)) + ((Util.hashLong(Long.valueOf(this.sessionLength)) + ((((((((Util.hashBoolean(Boolean.valueOf(this.askingAttribution)) + ((Util.hashBoolean(Boolean.valueOf(this.isThirdPartySharingDisabledForCoppa)) + ((Util.hashBoolean(Boolean.valueOf(this.isThirdPartySharingDisabled)) + ((Util.hashBoolean(Boolean.valueOf(this.isGdprForgotten)) + ((Util.hashBoolean(Boolean.valueOf(this.enabled)) + AbstractC2292b.a(this.uuid, 629)) * 37)) * 37)) * 37)) * 37)) * 37) + this.eventCount) * 37) + this.sessionCount) * 37) + this.subsessionCount) * 37)) * 37)) * 37)) * 37)) * 37)) * 37))) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37))) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37);
     }
 
-    public void resetSessionAttributes(long j) {
+    public void resetSessionAttributes(long j7) {
         this.subsessionCount = 1;
         this.sessionLength = 0L;
         this.timeSpent = 0L;
-        this.lastActivity = j;
+        this.lastActivity = j7;
         this.lastInterval = -1L;
     }
 

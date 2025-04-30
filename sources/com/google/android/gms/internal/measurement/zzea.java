@@ -1,35 +1,26 @@
 package com.google.android.gms.internal.measurement;
 
+import android.os.Bundle;
 import android.os.RemoteException;
 import com.google.android.gms.common.internal.Preconditions;
-import com.google.android.gms.dynamic.ObjectWrapper;
-import com.google.android.gms.internal.measurement.zzdy;
+import com.google.android.gms.internal.measurement.zzdq;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-sdk-api@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzea extends zzdy.zza {
-    private final /* synthetic */ String zzc;
-    private final /* synthetic */ String zzd;
-    private final /* synthetic */ Object zze;
-    private final /* synthetic */ boolean zzf;
-    private final /* synthetic */ zzdy zzg;
+/* loaded from: classes2.dex */
+final class zzea extends zzdq.zza {
+    private final /* synthetic */ Bundle zzc;
+    private final /* synthetic */ zzdq zzd;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public zzea(zzdy zzdyVar, String str, String str2, Object obj, boolean z) {
-        super(zzdyVar);
-        this.zzc = str;
-        this.zzd = str2;
-        this.zze = obj;
-        this.zzf = z;
-        this.zzg = zzdyVar;
+    public zzea(zzdq zzdqVar, Bundle bundle) {
+        super(zzdqVar);
+        this.zzc = bundle;
+        this.zzd = zzdqVar;
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzdy.zza
-    final void zza() throws RemoteException {
-        zzdj zzdjVar;
-        zzdjVar = this.zzg.zzj;
-        ((zzdj) Preconditions.checkNotNull(zzdjVar)).setUserProperty(this.zzc, this.zzd, ObjectWrapper.wrap(this.zze), this.zzf, this.zza);
+    @Override // com.google.android.gms.internal.measurement.zzdq.zza
+    public final void zza() throws RemoteException {
+        zzdb zzdbVar;
+        zzdbVar = this.zzd.zzj;
+        ((zzdb) Preconditions.checkNotNull(zzdbVar)).setConsentThirdParty(this.zzc, this.zza);
     }
 }

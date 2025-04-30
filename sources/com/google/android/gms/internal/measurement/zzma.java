@@ -1,21 +1,21 @@
 package com.google.android.gms.internal.measurement;
 
-import java.util.Iterator;
-import java.util.Map;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzma implements zzmd {
+    private final /* synthetic */ zzia zza;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzma extends zzmb {
-    private final /* synthetic */ zzlv zza;
-
-    @Override // com.google.android.gms.internal.measurement.zzmb, java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
-    public final Iterator<Map.Entry<K, V>> iterator() {
-        return new zzlx(this.zza);
+    public zzma(zzia zziaVar) {
+        this.zza = zziaVar;
     }
 
-    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    private zzma(zzlv zzlvVar) {
-        super(zzlvVar);
-        this.zza = zzlvVar;
+    @Override // com.google.android.gms.internal.measurement.zzmd
+    public final byte zza(int i9) {
+        return this.zza.zza(i9);
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzmd
+    public final int zza() {
+        return this.zza.zzb();
     }
 }

@@ -1,17 +1,12 @@
 package com.google.android.gms.internal.measurement;
 
-import android.os.Handler;
-import android.os.Looper;
+import android.os.Bundle;
+import android.os.IInterface;
+import android.os.RemoteException;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzdh extends Handler {
-    public zzdh() {
-        Looper.getMainLooper();
-    }
+/* loaded from: classes2.dex */
+public interface zzdh extends IInterface {
+    int zza() throws RemoteException;
 
-    public zzdh(Looper looper) {
-        super(looper);
-        Looper.getMainLooper();
-    }
+    void zza(String str, String str2, Bundle bundle, long j7) throws RemoteException;
 }

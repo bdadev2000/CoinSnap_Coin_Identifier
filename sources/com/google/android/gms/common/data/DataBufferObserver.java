@@ -1,24 +1,24 @@
 package com.google.android.gms.common.data;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+import androidx.annotation.NonNull;
+
+/* loaded from: classes2.dex */
 public interface DataBufferObserver {
 
-    /* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-    /* loaded from: classes12.dex */
+    /* loaded from: classes2.dex */
     public interface Observable {
-        void addObserver(DataBufferObserver dataBufferObserver);
+        void addObserver(@NonNull DataBufferObserver dataBufferObserver);
 
-        void removeObserver(DataBufferObserver dataBufferObserver);
+        void removeObserver(@NonNull DataBufferObserver dataBufferObserver);
     }
 
     void onDataChanged();
 
-    void onDataRangeChanged(int i, int i2);
+    void onDataRangeChanged(int i9, int i10);
 
-    void onDataRangeInserted(int i, int i2);
+    void onDataRangeInserted(int i9, int i10);
 
-    void onDataRangeMoved(int i, int i2, int i3);
+    void onDataRangeMoved(int i9, int i10, int i11);
 
-    void onDataRangeRemoved(int i, int i2);
+    void onDataRangeRemoved(int i9, int i10);
 }

@@ -1,13 +1,16 @@
 package com.google.android.gms.common;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepName;
+
+@KeepName
+/* loaded from: classes2.dex */
 public class GooglePlayServicesManifestException extends IllegalStateException {
     private final int zza;
 
-    public GooglePlayServicesManifestException(int i, String str) {
+    public GooglePlayServicesManifestException(int i9, @NonNull String str) {
         super(str);
-        this.zza = i;
+        this.zza = i9;
     }
 
     public int getActualVersion() {

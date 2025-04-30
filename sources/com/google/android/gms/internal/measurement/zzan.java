@@ -1,11 +1,12 @@
 package com.google.android.gms.internal.measurement;
 
+import com.mbridge.msdk.foundation.entity.o;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import x0.AbstractC2914a;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final /* synthetic */ class zzan {
     public static zzaq zza(zzak zzakVar, zzaq zzaqVar, zzh zzhVar, List<zzaq> list) {
         if (zzakVar.zzc(zzaqVar.zzf())) {
@@ -13,7 +14,7 @@ public final /* synthetic */ class zzan {
             if (zza instanceof zzal) {
                 return ((zzal) zza).zza(zzhVar, list);
             }
-            throw new IllegalArgumentException(String.format("%s is not a function", zzaqVar.zzf()));
+            throw new IllegalArgumentException(o.j(zzaqVar.zzf(), " is not a function"));
         }
         if ("hasOwnProperty".equals(zzaqVar.zzf())) {
             zzg.zza("hasOwnProperty", 1, list);
@@ -22,7 +23,7 @@ public final /* synthetic */ class zzan {
             }
             return zzaq.zzi;
         }
-        throw new IllegalArgumentException(String.format("Object has no function %s", zzaqVar.zzf()));
+        throw new IllegalArgumentException(AbstractC2914a.d("Object has no function ", zzaqVar.zzf()));
     }
 
     public static Iterator<zzaq> zza(Map<String, zzaq> map) {

@@ -1,21 +1,37 @@
 package com.google.android.gms.measurement.internal;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzmz implements Runnable {
-    private final /* synthetic */ zznv zza;
-    private final /* synthetic */ Runnable zzb;
+import androidx.annotation.NonNull;
+import java.util.Map;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzmz(zzmy zzmyVar, zznv zznvVar, Runnable runnable) {
-        this.zza = zznvVar;
-        this.zzb = runnable;
+/* loaded from: classes2.dex */
+final class zzmz {
+    private String zza;
+    private Map<String, String> zzb;
+
+    @NonNull
+    private int zzc;
+
+    public zzmz(String str, int i9) {
+        this.zza = str;
+        this.zzc = i9;
     }
 
-    @Override // java.lang.Runnable
-    public final void run() {
-        this.zza.zzr();
-        this.zza.zza(this.zzb);
-        this.zza.zzw();
+    public final int zza() {
+        return this.zzc;
+    }
+
+    public final String zzb() {
+        return this.zza;
+    }
+
+    public final Map<String, String> zzc() {
+        return this.zzb;
+    }
+
+    /* JADX WARN: Incorrect types in method signature: (Ljava/lang/String;Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;Ljava/lang/Integer;)V */
+    public zzmz(String str, Map map, int i9) {
+        this.zza = str;
+        this.zzb = map;
+        this.zzc = i9;
     }
 }

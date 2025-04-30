@@ -1,5 +1,6 @@
 package com.adjust.sdk;
 
+import com.mbridge.msdk.MBridgeConstans;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectStreamField;
@@ -9,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class ActivityPackage implements Serializable {
-    private static final ObjectStreamField[] serialPersistentFields = {new ObjectStreamField("path", String.class), new ObjectStreamField("clientSdk", String.class), new ObjectStreamField("parameters", Map.class), new ObjectStreamField("activityKind", ActivityKind.class), new ObjectStreamField("suffix", String.class), new ObjectStreamField("callbackParameters", Map.class), new ObjectStreamField("partnerParameters", Map.class)};
+    private static final ObjectStreamField[] serialPersistentFields = {new ObjectStreamField(MBridgeConstans.DYNAMIC_VIEW_WX_PATH, String.class), new ObjectStreamField("clientSdk", String.class), new ObjectStreamField("parameters", Map.class), new ObjectStreamField("activityKind", ActivityKind.class), new ObjectStreamField("suffix", String.class), new ObjectStreamField("callbackParameters", Map.class), new ObjectStreamField("partnerParameters", Map.class)};
     private static final long serialVersionUID = -35935556512024097L;
     private ActivityKind activityKind;
     private Map<String, String> callbackParameters;
@@ -37,7 +38,7 @@ public class ActivityPackage implements Serializable {
 
     private void readObject(ObjectInputStream objectInputStream) {
         ObjectInputStream.GetField readFields = objectInputStream.readFields();
-        this.path = Util.readStringField(readFields, "path", null);
+        this.path = Util.readStringField(readFields, MBridgeConstans.DYNAMIC_VIEW_WX_PATH, null);
         this.clientSdk = Util.readStringField(readFields, "clientSdk", null);
         this.parameters = (Map) Util.readObjectField(readFields, "parameters", null);
         this.activityKind = (ActivityKind) Util.readObjectField(readFields, "activityKind", ActivityKind.UNKNOWN);
@@ -164,25 +165,25 @@ public class ActivityPackage implements Serializable {
     }
 
     public int increaseRetries() {
-        int i = this.retries + 1;
-        this.retries = i;
-        return i;
+        int i9 = this.retries + 1;
+        this.retries = i9;
+        return i9;
     }
 
     public void setCallbackParameters(Map<String, String> map) {
         this.callbackParameters = map;
     }
 
-    public void setClickTimeInMilliseconds(long j) {
-        this.clickTimeInMilliseconds = j;
+    public void setClickTimeInMilliseconds(long j7) {
+        this.clickTimeInMilliseconds = j7;
     }
 
-    public void setClickTimeInSeconds(long j) {
-        this.clickTimeInSeconds = j;
+    public void setClickTimeInSeconds(long j7) {
+        this.clickTimeInSeconds = j7;
     }
 
-    public void setClickTimeServerInSeconds(long j) {
-        this.clickTimeServerInSeconds = j;
+    public void setClickTimeServerInSeconds(long j7) {
+        this.clickTimeServerInSeconds = j7;
     }
 
     public void setClientSdk(String str) {
@@ -193,12 +194,12 @@ public class ActivityPackage implements Serializable {
         this.googlePlayInstant = bool;
     }
 
-    public void setInstallBeginTimeInSeconds(long j) {
-        this.installBeginTimeInSeconds = j;
+    public void setInstallBeginTimeInSeconds(long j7) {
+        this.installBeginTimeInSeconds = j7;
     }
 
-    public void setInstallBeginTimeServerInSeconds(long j) {
-        this.installBeginTimeServerInSeconds = j;
+    public void setInstallBeginTimeServerInSeconds(long j7) {
+        this.installBeginTimeServerInSeconds = j7;
     }
 
     public void setInstallVersion(String str) {

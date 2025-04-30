@@ -1,11 +1,13 @@
 package com.google.android.gms.common.internal;
 
 import android.util.Log;
+import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class zzc {
+
+    @Nullable
     private Object zza;
     private boolean zzb = false;
     final /* synthetic */ BaseGmsClient zzd;
@@ -15,17 +17,20 @@ public abstract class zzc {
         this.zza = obj;
     }
 
-    protected abstract void zza(Object obj);
+    public abstract void zza(Object obj);
 
-    /* JADX INFO: Access modifiers changed from: protected */
     public abstract void zzc();
 
     public final void zze() {
         Object obj;
         synchronized (this) {
-            obj = this.zza;
-            if (this.zzb) {
-                Log.w("GmsClient", "Callback proxy " + toString() + " being reused. This is not safe.");
+            try {
+                obj = this.zza;
+                if (this.zzb) {
+                    Log.w("GmsClient", "Callback proxy " + toString() + " being reused. This is not safe.");
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         if (obj != null) {

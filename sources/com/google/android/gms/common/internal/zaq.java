@@ -4,12 +4,10 @@ import com.google.android.gms.common.api.Response;
 import com.google.android.gms.common.api.Result;
 import com.google.android.gms.common.internal.PendingResultUtil;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zaq implements PendingResultUtil.ResultConverter {
     final /* synthetic */ Response zaa;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zaq(Response response) {
         this.zaa = response;
     }

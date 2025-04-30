@@ -1,17 +1,12 @@
 package com.google.android.gms.internal.measurement;
 
-import com.google.android.gms.internal.measurement.zzfr;
+import android.content.ContentResolver;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzfv implements zzjx {
-    static final zzjx zza = new zzfv();
+/* loaded from: classes2.dex */
+public final class zzfv {
+    private static final zzga zza = zzfx.zza();
 
-    private zzfv() {
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzjx
-    public final boolean zza(int i) {
-        return zzfr.zza.zze.zza(i) != null;
+    public static String zza(ContentResolver contentResolver, String str, String str2) {
+        return zza.zza(contentResolver, str, null);
     }
 }

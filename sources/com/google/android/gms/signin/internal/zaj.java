@@ -5,31 +5,32 @@ import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelReader;
 import com.google.android.gms.common.internal.zat;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zaj implements Parcelable.Creator {
     @Override // android.os.Parcelable.Creator
     public final /* bridge */ /* synthetic */ Object createFromParcel(Parcel parcel) {
         int validateObjectHeader = SafeParcelReader.validateObjectHeader(parcel);
         zat zatVar = null;
-        int i = 0;
+        int i9 = 0;
         while (parcel.dataPosition() < validateObjectHeader) {
             int readHeader = SafeParcelReader.readHeader(parcel);
             int fieldId = SafeParcelReader.getFieldId(readHeader);
-            if (fieldId == 1) {
-                i = SafeParcelReader.readInt(parcel, readHeader);
-            } else if (fieldId == 2) {
-                zatVar = (zat) SafeParcelReader.createParcelable(parcel, readHeader, zat.CREATOR);
+            if (fieldId != 1) {
+                if (fieldId != 2) {
+                    SafeParcelReader.skipUnknownField(parcel, readHeader);
+                } else {
+                    zatVar = (zat) SafeParcelReader.createParcelable(parcel, readHeader, zat.CREATOR);
+                }
             } else {
-                SafeParcelReader.skipUnknownField(parcel, readHeader);
+                i9 = SafeParcelReader.readInt(parcel, readHeader);
             }
         }
         SafeParcelReader.ensureAtEnd(parcel, validateObjectHeader);
-        return new zai(i, zatVar);
+        return new zai(i9, zatVar);
     }
 
     @Override // android.os.Parcelable.Creator
-    public final /* synthetic */ Object[] newArray(int i) {
-        return new zai[i];
+    public final /* synthetic */ Object[] newArray(int i9) {
+        return new zai[i9];
     }
 }

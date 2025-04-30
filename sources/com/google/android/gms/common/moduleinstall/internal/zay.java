@@ -28,8 +28,7 @@ import java.util.Arrays;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicReference;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zay extends GoogleApi implements ModuleInstallClient {
     public static final /* synthetic */ int zab = 0;
     private static final Api.ClientKey zac;
@@ -48,13 +47,19 @@ public final class zay extends GoogleApi implements ModuleInstallClient {
         super(activity, (Api<Api.ApiOptions.NoOptions>) zae, Api.ApiOptions.NO_OPTIONS, GoogleApi.Settings.DEFAULT_SETTINGS);
     }
 
-    static final ApiFeatureRequest zad(boolean z, OptionalModuleApi... optionalModuleApiArr) {
+    public static final ApiFeatureRequest zad(boolean z8, OptionalModuleApi... optionalModuleApiArr) {
+        boolean z9;
         Preconditions.checkNotNull(optionalModuleApiArr, "Requested APIs must not be null.");
-        Preconditions.checkArgument(optionalModuleApiArr.length > 0, "Please provide at least one OptionalModuleApi.");
+        if (optionalModuleApiArr.length > 0) {
+            z9 = true;
+        } else {
+            z9 = false;
+        }
+        Preconditions.checkArgument(z9, "Please provide at least one OptionalModuleApi.");
         for (OptionalModuleApi optionalModuleApi : optionalModuleApiArr) {
             Preconditions.checkNotNull(optionalModuleApi, "Requested API must not be null.");
         }
-        return ApiFeatureRequest.zaa(Arrays.asList(optionalModuleApiArr), z);
+        return ApiFeatureRequest.zaa(Arrays.asList(optionalModuleApiArr), z8);
     }
 
     @Override // com.google.android.gms.common.moduleinstall.ModuleInstallClient
@@ -171,7 +176,7 @@ public final class zay extends GoogleApi implements ModuleInstallClient {
         return doRegisterEventListener(builder2.build()).onSuccessTask(new SuccessContinuation() { // from class: com.google.android.gms.common.moduleinstall.internal.zak
             @Override // com.google.android.gms.tasks.SuccessContinuation
             public final Task then(Object obj) {
-                int i = zay.zab;
+                int i9 = zay.zab;
                 AtomicReference atomicReference2 = atomicReference;
                 if (atomicReference2.get() != null) {
                     return Tasks.forResult((ModuleInstallResponse) atomicReference2.get());

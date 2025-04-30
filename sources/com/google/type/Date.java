@@ -1,67 +1,39 @@
 package com.google.type;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.O3;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import y5.c;
+import y5.d;
 
-/* loaded from: classes5.dex */
-public final class Date extends GeneratedMessageLite<Date, Builder> implements DateOrBuilder {
+/* loaded from: classes3.dex */
+public final class Date extends L2 implements O3 {
     public static final int DAY_FIELD_NUMBER = 3;
     private static final Date DEFAULT_INSTANCE;
     public static final int MONTH_FIELD_NUMBER = 2;
-    private static volatile Parser<Date> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int YEAR_FIELD_NUMBER = 1;
     private int day_;
     private int month_;
     private int year_;
 
+    static {
+        Date date = new Date();
+        DEFAULT_INSTANCE = date;
+        L2.registerDefaultInstance(Date.class, date);
+    }
+
     private Date() {
-    }
-
-    @Override // com.google.type.DateOrBuilder
-    public int getYear() {
-        return this.year_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setYear(int i) {
-        this.year_ = i;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearYear() {
-        this.year_ = 0;
-    }
-
-    @Override // com.google.type.DateOrBuilder
-    public int getMonth() {
-        return this.month_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setMonth(int i) {
-        this.month_ = i;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearMonth() {
-        this.month_ = 0;
-    }
-
-    @Override // com.google.type.DateOrBuilder
-    public int getDay() {
-        return this.day_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setDay(int i) {
-        this.day_ = i;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -69,187 +41,77 @@ public final class Date extends GeneratedMessageLite<Date, Builder> implements D
         this.day_ = 0;
     }
 
-    public static Date parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (Date) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearMonth() {
+        this.month_ = 0;
     }
 
-    public static Date parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Date) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearYear() {
+        this.year_ = 0;
     }
 
-    public static Date parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (Date) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
+    public static Date getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    public static Date parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Date) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static Date parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (Date) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static Date parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Date) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static Date parseFrom(InputStream inputStream) throws IOException {
-        return (Date) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static Date parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Date) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static d newBuilder() {
+        return (d) DEFAULT_INSTANCE.createBuilder();
     }
 
     public static Date parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (Date) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+        return (Date) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
     }
 
-    public static Date parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Date) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static Date parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (Date) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
     }
 
-    public static Date parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (Date) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
-    public static Date parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Date) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setDay(int i9) {
+        this.day_ = i9;
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setMonth(int i9) {
+        this.month_ = i9;
     }
 
-    public static Builder newBuilder(Date date) {
-        return DEFAULT_INSTANCE.createBuilder(date);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setYear(int i9) {
+        this.year_ = i9;
     }
 
-    /* loaded from: classes5.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<Date, Builder> implements DateOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(Date.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.type.DateOrBuilder
-        public int getYear() {
-            return ((Date) this.instance).getYear();
-        }
-
-        public Builder setYear(int i) {
-            copyOnWrite();
-            ((Date) this.instance).setYear(i);
-            return this;
-        }
-
-        public Builder clearYear() {
-            copyOnWrite();
-            ((Date) this.instance).clearYear();
-            return this;
-        }
-
-        @Override // com.google.type.DateOrBuilder
-        public int getMonth() {
-            return ((Date) this.instance).getMonth();
-        }
-
-        public Builder setMonth(int i) {
-            copyOnWrite();
-            ((Date) this.instance).setMonth(i);
-            return this;
-        }
-
-        public Builder clearMonth() {
-            copyOnWrite();
-            ((Date) this.instance).clearMonth();
-            return this;
-        }
-
-        @Override // com.google.type.DateOrBuilder
-        public int getDay() {
-            return ((Date) this.instance).getDay();
-        }
-
-        public Builder setDay(int i) {
-            copyOnWrite();
-            ((Date) this.instance).setDay(i);
-            return this;
-        }
-
-        public Builder clearDay() {
-            copyOnWrite();
-            ((Date) this.instance).clearDay();
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.type.Date$1, reason: invalid class name */
-    /* loaded from: classes5.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (c.f24433a[k22.ordinal()]) {
             case 1:
                 return new Date();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001\u0004\u0002\u0004\u0003\u0004", new Object[]{"year_", "month_", "day_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001\u0004\u0002\u0004\u0003\u0004", new Object[]{"year_", "month_", "day_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<Date> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (Date.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -259,17 +121,59 @@ public final class Date extends GeneratedMessageLite<Date, Builder> implements D
         }
     }
 
-    static {
-        Date date = new Date();
-        DEFAULT_INSTANCE = date;
-        GeneratedMessageLite.registerDefaultInstance(Date.class, date);
+    public int getDay() {
+        return this.day_;
     }
 
-    public static Date getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public int getMonth() {
+        return this.month_;
     }
 
-    public static Parser<Date> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public int getYear() {
+        return this.year_;
+    }
+
+    public static d newBuilder(Date date) {
+        return (d) DEFAULT_INSTANCE.createBuilder(date);
+    }
+
+    public static Date parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Date) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Date parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (Date) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static Date parseFrom(H h6) throws C1912g3 {
+        return (Date) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static Date parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (Date) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static Date parseFrom(byte[] bArr) throws C1912g3 {
+        return (Date) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static Date parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (Date) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static Date parseFrom(InputStream inputStream) throws IOException {
+        return (Date) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static Date parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Date) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Date parseFrom(S s5) throws IOException {
+        return (Date) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static Date parseFrom(S s5, W1 w1) throws IOException {
+        return (Date) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

@@ -1,34 +1,32 @@
 package com.google.android.gms.measurement.internal;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzik implements Runnable {
-    private final /* synthetic */ String zza;
-    private final /* synthetic */ String zzb;
-    private final /* synthetic */ String zzc;
-    private final /* synthetic */ long zzd;
-    private final /* synthetic */ zzic zze;
+import android.os.Bundle;
+import androidx.annotation.NonNull;
+import com.google.android.gms.measurement.api.AppMeasurementSdk;
+import com.mbridge.msdk.foundation.entity.o;
+import x0.AbstractC2914a;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzik(zzic zzicVar, String str, String str2, String str3, long j) {
-        this.zza = str;
-        this.zzb = str2;
-        this.zzc = str3;
-        this.zzd = j;
-        this.zze = zzicVar;
+/* loaded from: classes2.dex */
+public final class zzik {
+    public static <T> T zza(@NonNull Bundle bundle, String str, Class<T> cls, T t9) {
+        T t10 = (T) bundle.get(str);
+        if (t10 == null) {
+            return t9;
+        }
+        if (cls.isAssignableFrom(t10.getClass())) {
+            return t10;
+        }
+        String canonicalName = cls.getCanonicalName();
+        throw new IllegalStateException(AbstractC2914a.h(o.o("Invalid conditional user property field type. '", str, "' expected [", canonicalName, "] but was ["), t10.getClass().getCanonicalName(), "]"));
     }
 
-    @Override // java.lang.Runnable
-    public final void run() {
-        zznv zznvVar;
-        zznv zznvVar2;
-        if (this.zza == null) {
-            zznvVar2 = this.zze.zza;
-            zznvVar2.zza(this.zzb, (zzlk) null);
+    public static void zza(@NonNull Bundle bundle, @NonNull Object obj) {
+        if (obj instanceof Double) {
+            bundle.putDouble(AppMeasurementSdk.ConditionalUserProperty.VALUE, ((Double) obj).doubleValue());
+        } else if (obj instanceof Long) {
+            bundle.putLong(AppMeasurementSdk.ConditionalUserProperty.VALUE, ((Long) obj).longValue());
         } else {
-            zzlk zzlkVar = new zzlk(this.zzc, this.zza, this.zzd);
-            zznvVar = this.zze.zza;
-            zznvVar.zza(this.zzb, zzlkVar);
+            bundle.putString(AppMeasurementSdk.ConditionalUserProperty.VALUE, obj.toString());
         }
     }
 }

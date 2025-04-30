@@ -13,8 +13,7 @@ import com.adjust.sdk.network.IActivityPackageSender;
 import com.adjust.sdk.network.UtilNetworking;
 import com.adjust.sdk.scheduler.SingleThreadCachedScheduler;
 import com.adjust.sdk.scheduler.ThreadExecutor;
-import com.glority.android.core.data.LogEventArguments;
-import com.google.firebase.perf.FirebasePerformance;
+import com.mbridge.msdk.foundation.entity.CampaignEx;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -29,8 +28,10 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLHandshakeException;
 import org.json.JSONException;
 import org.json.JSONObject;
+import x0.AbstractC2914a;
+import z.AbstractC2965e;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class ActivityPackageSender implements IActivityPackageSender {
     private String basePath;
     private String clientSdk;
@@ -42,23 +43,25 @@ public class ActivityPackageSender implements IActivityPackageSender {
     private UtilNetworking.IHttpsURLConnectionProvider httpsURLConnectionProvider = AdjustFactory.getHttpsURLConnectionProvider();
     private UtilNetworking.IConnectionOptions connectionOptions = AdjustFactory.getConnectionOptions();
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class a implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ IActivityPackageSender.ResponseDataCallbackSubscriber f261a;
+        public final /* synthetic */ IActivityPackageSender.ResponseDataCallbackSubscriber f5583a;
         public final /* synthetic */ ActivityPackage b;
-        public final /* synthetic */ Map c;
+
+        /* renamed from: c, reason: collision with root package name */
+        public final /* synthetic */ Map f5584c;
 
         public a(IActivityPackageSender.ResponseDataCallbackSubscriber responseDataCallbackSubscriber, ActivityPackage activityPackage, Map map) {
-            this.f261a = responseDataCallbackSubscriber;
+            this.f5583a = responseDataCallbackSubscriber;
             this.b = activityPackage;
-            this.c = map;
+            this.f5584c = map;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            this.f261a.onResponseDataCallback(ActivityPackageSender.this.sendActivityPackageSync(this.b, this.c));
+            this.f5583a.onResponseDataCallback(ActivityPackageSender.this.sendActivityPackageSync(this.b, this.f5584c));
         }
     }
 
@@ -94,29 +97,25 @@ public class ActivityPackageSender implements IActivityPackageSender {
         String formatString = Util.formatString("signature=\"%s\"", str);
         String formatString2 = Util.formatString("secret_id=\"%s\"", str2);
         String formatString3 = Util.formatString("headers_id=\"%s\"", str3);
-        Object[] objArr = new Object[1];
         if (str4 == null) {
             str4 = "adj1";
         }
-        objArr[0] = str4;
-        String formatString4 = Util.formatString("algorithm=\"%s\"", objArr);
-        Object[] objArr2 = new Object[1];
+        String formatString4 = Util.formatString("algorithm=\"%s\"", str4);
         if (str5 == null) {
             str5 = "";
         }
-        objArr2[0] = str5;
-        String formatString5 = Util.formatString("Signature %s,%s,%s,%s,%s", formatString, formatString2, formatString4, formatString3, Util.formatString("native_version=\"%s\"", objArr2));
+        String formatString5 = Util.formatString("Signature %s,%s,%s,%s,%s", formatString, formatString2, formatString4, formatString3, Util.formatString("native_version=\"%s\"", str5));
         this.logger.verbose("authorizationHeader: %s", formatString5);
         return formatString5;
     }
 
     private DataOutputStream configConnectionForGET(HttpsURLConnection httpsURLConnection) {
-        httpsURLConnection.setRequestMethod(FirebasePerformance.HttpMethod.GET);
+        httpsURLConnection.setRequestMethod("GET");
         return null;
     }
 
     private DataOutputStream configConnectionForPOST(HttpsURLConnection httpsURLConnection, Map<String, String> map, Map<String, String> map2) {
-        httpsURLConnection.setRequestMethod(FirebasePerformance.HttpMethod.POST);
+        httpsURLConnection.setRequestMethod("POST");
         httpsURLConnection.setUseCaches(false);
         httpsURLConnection.setDoInput(true);
         httpsURLConnection.setDoOutput(true);
@@ -220,8 +219,10 @@ public class ActivityPackageSender implements IActivityPackageSender {
         String str8 = "";
         for (Map.Entry entry : hashMap.entrySet()) {
             if (entry.getValue() != null) {
-                str7 = str7 + ((String) entry.getKey()) + " ";
-                str8 = str8 + ((String) entry.getValue());
+                str7 = AbstractC2914a.h(AbstractC2965e.b(str7), (String) entry.getKey(), " ");
+                StringBuilder b = AbstractC2965e.b(str8);
+                b.append((String) entry.getValue());
+                str8 = b.toString();
             }
         }
         String substring = str7.substring(0, str7.length() - 1);
@@ -248,17 +249,18 @@ public class ActivityPackageSender implements IActivityPackageSender {
     }
 
     private void injectParametersToPOSTStringBuilder(Map<String, String> map, StringBuilder sb) {
-        if (map == null || map.isEmpty()) {
-            return;
-        }
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-            String encode = URLEncoder.encode(entry.getKey(), "UTF-8");
-            String value = entry.getValue();
-            String encode2 = value != null ? URLEncoder.encode(value, "UTF-8") : "";
-            sb.append(encode);
-            sb.append("=");
-            sb.append(encode2);
-            sb.append("&");
+        String str;
+        if (map != null && !map.isEmpty()) {
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                String encode = URLEncoder.encode(entry.getKey(), "UTF-8");
+                String value = entry.getValue();
+                if (value != null) {
+                    str = URLEncoder.encode(value, "UTF-8");
+                } else {
+                    str = "";
+                }
+                AbstractC2914a.j(sb, encode, "=", str, "&");
+            }
         }
     }
 
@@ -277,17 +279,17 @@ public class ActivityPackageSender implements IActivityPackageSender {
         }
         try {
             jSONObject = new JSONObject(str);
-        } catch (JSONException e) {
-            this.logger.error(errorMessage(e, "Failed to parse JSON response", responseData.activityPackage), new Object[0]);
+        } catch (JSONException e4) {
+            this.logger.error(errorMessage(e4, "Failed to parse JSON response", responseData.activityPackage), new Object[0]);
             jSONObject = null;
         }
         if (jSONObject == null) {
             return;
         }
         responseData.jsonResponse = jSONObject;
-        responseData.message = UtilNetworking.extractJsonString(jSONObject, LogEventArguments.ARG_MESSAGE);
+        responseData.message = UtilNetworking.extractJsonString(jSONObject, "message");
         responseData.adid = UtilNetworking.extractJsonString(jSONObject, "adid");
-        responseData.timestamp = UtilNetworking.extractJsonString(jSONObject, "timestamp");
+        responseData.timestamp = UtilNetworking.extractJsonString(jSONObject, CampaignEx.JSON_KEY_TIMESTAMP);
         String extractJsonString = UtilNetworking.extractJsonString(jSONObject, "tracking_state");
         if (extractJsonString != null && extractJsonString.equals("opted_out")) {
             responseData.trackingState = TrackingState.OPTED_OUT;
@@ -299,9 +301,9 @@ public class ActivityPackageSender implements IActivityPackageSender {
     }
 
     private void remoteError(Throwable th, String str, ResponseData responseData) {
-        String str2 = errorMessage(th, str, responseData.activityPackage) + " Will retry later";
-        this.logger.error(str2, new Object[0]);
-        responseData.message = str2;
+        String h6 = AbstractC2914a.h(new StringBuilder(), errorMessage(th, str, responseData.activityPackage), " Will retry later");
+        this.logger.error(h6, new Object[0]);
+        responseData.message = h6;
         responseData.willRetry = true;
     }
 
@@ -333,9 +335,9 @@ public class ActivityPackageSender implements IActivityPackageSender {
                                     HashMap hashMap = new HashMap(activityPackage.getParameters());
                                     Map<String, String> map = responseData.sendingParameters;
                                     String buildAndExtractAuthorizationHeader = buildAndExtractAuthorizationHeader(hashMap, activityPackage.getActivityKind());
-                                    boolean z = true;
-                                    boolean z2 = responseData.activityPackage.getActivityKind() == ActivityKind.ATTRIBUTION;
-                                    if (z2) {
+                                    boolean z8 = true;
+                                    boolean z9 = responseData.activityPackage.getActivityKind() == ActivityKind.ATTRIBUTION;
+                                    if (z9) {
                                         extractEventCallbackId(hashMap);
                                         generateUrlStringForPOST = generateUrlStringForGET(activityPackage.getActivityKind(), activityPackage.getPath(), hashMap, map);
                                     } else {
@@ -346,7 +348,7 @@ public class ActivityPackageSender implements IActivityPackageSender {
                                     if (buildAndExtractAuthorizationHeader != null) {
                                         generateHttpsURLConnection.setRequestProperty("Authorization", buildAndExtractAuthorizationHeader);
                                     }
-                                    if (z2) {
+                                    if (z9) {
                                         dataOutputStream = configConnectionForGET(generateHttpsURLConnection);
                                     } else {
                                         extractEventCallbackId(hashMap);
@@ -355,57 +357,57 @@ public class ActivityPackageSender implements IActivityPackageSender {
                                     Integer readConnectionResponse = readConnectionResponse(generateHttpsURLConnection, responseData);
                                     responseData.success = responseData.jsonResponse != null && responseData.retryIn == null && readConnectionResponse != null && readConnectionResponse.intValue() == 200;
                                     if (responseData.jsonResponse != null && responseData.retryIn == null) {
-                                        z = false;
+                                        z8 = false;
                                     }
-                                    responseData.willRetry = z;
+                                    responseData.willRetry = z8;
                                     if (dataOutputStream != null) {
                                         try {
                                             dataOutputStream.flush();
                                             dataOutputStream.close();
-                                        } catch (IOException e) {
-                                            this.logger.error(errorMessage(e, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
+                                        } catch (IOException e4) {
+                                            this.logger.error(errorMessage(e4, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
                                         }
                                     }
-                                } catch (MalformedURLException e2) {
-                                    localError(e2, "Malformed URL", responseData);
+                                } catch (MalformedURLException e9) {
+                                    localError(e9, "Malformed URL", responseData);
                                     if (dataOutputStream != null) {
                                         try {
                                             dataOutputStream.flush();
                                             dataOutputStream.close();
-                                        } catch (IOException e3) {
-                                            this.logger.error(errorMessage(e3, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
+                                        } catch (IOException e10) {
+                                            this.logger.error(errorMessage(e10, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
                                         }
                                     }
-                                } catch (IOException e4) {
-                                    remoteError(e4, "Request failed", responseData);
+                                } catch (SocketTimeoutException e11) {
+                                    remoteError(e11, "Request timed out", responseData);
                                     if (dataOutputStream != null) {
                                         try {
                                             dataOutputStream.flush();
                                             dataOutputStream.close();
-                                        } catch (IOException e5) {
-                                            this.logger.error(errorMessage(e5, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
+                                        } catch (IOException e12) {
+                                            this.logger.error(errorMessage(e12, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
                                         }
                                     }
                                 }
-                            } catch (ProtocolException e6) {
-                                localError(e6, "Protocol Error", responseData);
+                            } catch (IOException e13) {
+                                remoteError(e13, "Request failed", responseData);
                                 if (dataOutputStream != null) {
                                     try {
                                         dataOutputStream.flush();
                                         dataOutputStream.close();
-                                    } catch (IOException e7) {
-                                        this.logger.error(errorMessage(e7, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
+                                    } catch (IOException e14) {
+                                        this.logger.error(errorMessage(e14, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
                                     }
                                 }
                             }
-                        } catch (SocketTimeoutException e8) {
-                            remoteError(e8, "Request timed out", responseData);
+                        } catch (SSLHandshakeException e15) {
+                            remoteError(e15, "Certificate failed", responseData);
                             if (dataOutputStream != null) {
                                 try {
                                     dataOutputStream.flush();
                                     dataOutputStream.close();
-                                } catch (IOException e9) {
-                                    this.logger.error(errorMessage(e9, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
+                                } catch (IOException e16) {
+                                    this.logger.error(errorMessage(e16, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
                                 }
                             }
                         }
@@ -415,30 +417,30 @@ public class ActivityPackageSender implements IActivityPackageSender {
                             try {
                                 dataOutputStream.flush();
                                 dataOutputStream.close();
-                            } catch (IOException e10) {
-                                this.logger.error(errorMessage(e10, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
+                            } catch (IOException e17) {
+                                this.logger.error(errorMessage(e17, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
                             }
                         }
                     }
-                } catch (SSLHandshakeException e11) {
-                    remoteError(e11, "Certificate failed", responseData);
+                } catch (UnsupportedEncodingException e18) {
+                    localError(e18, "Failed to encode parameters", responseData);
                     if (dataOutputStream != null) {
                         try {
                             dataOutputStream.flush();
                             dataOutputStream.close();
-                        } catch (IOException e12) {
-                            this.logger.error(errorMessage(e12, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
+                        } catch (IOException e19) {
+                            this.logger.error(errorMessage(e19, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
                         }
                     }
                 }
-            } catch (UnsupportedEncodingException e13) {
-                localError(e13, "Failed to encode parameters", responseData);
+            } catch (ProtocolException e20) {
+                localError(e20, "Protocol Error", responseData);
                 if (dataOutputStream != null) {
                     try {
                         dataOutputStream.flush();
                         dataOutputStream.close();
-                    } catch (IOException e14) {
-                        this.logger.error(errorMessage(e14, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
+                    } catch (IOException e21) {
+                        this.logger.error(errorMessage(e21, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
                     }
                 }
             }
@@ -447,8 +449,8 @@ public class ActivityPackageSender implements IActivityPackageSender {
                 try {
                     dataOutputStream.flush();
                     dataOutputStream.close();
-                } catch (IOException e15) {
-                    this.logger.error(errorMessage(e15, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
+                } catch (IOException e22) {
+                    this.logger.error(errorMessage(e22, "Flushing and closing connection output stream", responseData.activityPackage), new Object[0]);
                 }
             }
             throw th2;
@@ -456,12 +458,33 @@ public class ActivityPackageSender implements IActivityPackageSender {
     }
 
     private String urlWithExtraPathByActivityKind(ActivityKind activityKind, String str) {
-        return activityKind == ActivityKind.GDPR ? this.gdprPath != null ? str + this.gdprPath : str : activityKind == ActivityKind.SUBSCRIPTION ? this.subscriptionPath != null ? str + this.subscriptionPath : str : this.basePath != null ? str + this.basePath : str;
+        if (activityKind == ActivityKind.GDPR) {
+            if (this.gdprPath != null) {
+                StringBuilder b = AbstractC2965e.b(str);
+                b.append(this.gdprPath);
+                return b.toString();
+            }
+            return str;
+        }
+        if (activityKind == ActivityKind.SUBSCRIPTION) {
+            if (this.subscriptionPath != null) {
+                StringBuilder b8 = AbstractC2965e.b(str);
+                b8.append(this.subscriptionPath);
+                return b8.toString();
+            }
+            return str;
+        }
+        if (this.basePath != null) {
+            StringBuilder b9 = AbstractC2965e.b(str);
+            b9.append(this.basePath);
+            return b9.toString();
+        }
+        return str;
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:33:0x0049, code lost:
+    /* JADX WARN: Code restructure failed: missing block: B:39:0x0047, code lost:
     
-        if (r7 == null) goto L18;
+        if (r7 == null) goto L19;
      */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
@@ -474,58 +497,59 @@ public class ActivityPackageSender implements IActivityPackageSender {
             r0.<init>()
             r1 = 0
             r2 = 0
-            r7.connect()     // Catch: java.lang.Throwable -> L37 java.io.IOException -> L39
-            int r3 = r7.getResponseCode()     // Catch: java.lang.Throwable -> L37 java.io.IOException -> L39
-            java.lang.Integer r2 = java.lang.Integer.valueOf(r3)     // Catch: java.lang.Throwable -> L37 java.io.IOException -> L39
-            int r3 = r2.intValue()     // Catch: java.lang.Throwable -> L37 java.io.IOException -> L39
+            r7.connect()     // Catch: java.lang.Throwable -> L1b java.io.IOException -> L1e
+            int r3 = r7.getResponseCode()     // Catch: java.lang.Throwable -> L1b java.io.IOException -> L1e
+            java.lang.Integer r2 = java.lang.Integer.valueOf(r3)     // Catch: java.lang.Throwable -> L1b java.io.IOException -> L1e
             r4 = 400(0x190, float:5.6E-43)
-            if (r3 < r4) goto L1f
-            java.io.InputStream r3 = r7.getErrorStream()     // Catch: java.lang.Throwable -> L37 java.io.IOException -> L39
-            goto L23
-        L1f:
-            java.io.InputStream r3 = r7.getInputStream()     // Catch: java.lang.Throwable -> L37 java.io.IOException -> L39
-        L23:
-            java.io.InputStreamReader r4 = new java.io.InputStreamReader     // Catch: java.lang.Throwable -> L37 java.io.IOException -> L39
-            r4.<init>(r3)     // Catch: java.lang.Throwable -> L37 java.io.IOException -> L39
-            java.io.BufferedReader r3 = new java.io.BufferedReader     // Catch: java.lang.Throwable -> L37 java.io.IOException -> L39
-            r3.<init>(r4)     // Catch: java.lang.Throwable -> L37 java.io.IOException -> L39
-        L2d:
-            java.lang.String r4 = r3.readLine()     // Catch: java.lang.Throwable -> L37 java.io.IOException -> L39
-            if (r4 == 0) goto L4b
-            r0.append(r4)     // Catch: java.lang.Throwable -> L37 java.io.IOException -> L39
-            goto L2d
-        L37:
+            if (r3 < r4) goto L20
+            java.io.InputStream r3 = r7.getErrorStream()     // Catch: java.lang.Throwable -> L1b java.io.IOException -> L1e
+            goto L24
+        L1b:
             r8 = move-exception
-            goto La5
-        L39:
+            goto La3
+        L1e:
             r3 = move-exception
+            goto L38
+        L20:
+            java.io.InputStream r3 = r7.getInputStream()     // Catch: java.lang.Throwable -> L1b java.io.IOException -> L1e
+        L24:
+            java.io.InputStreamReader r4 = new java.io.InputStreamReader     // Catch: java.lang.Throwable -> L1b java.io.IOException -> L1e
+            r4.<init>(r3)     // Catch: java.lang.Throwable -> L1b java.io.IOException -> L1e
+            java.io.BufferedReader r3 = new java.io.BufferedReader     // Catch: java.lang.Throwable -> L1b java.io.IOException -> L1e
+            r3.<init>(r4)     // Catch: java.lang.Throwable -> L1b java.io.IOException -> L1e
+        L2e:
+            java.lang.String r4 = r3.readLine()     // Catch: java.lang.Throwable -> L1b java.io.IOException -> L1e
+            if (r4 == 0) goto L49
+            r0.append(r4)     // Catch: java.lang.Throwable -> L1b java.io.IOException -> L1e
+            goto L2e
+        L38:
             java.lang.String r4 = "Connecting and reading response"
-            com.adjust.sdk.ActivityPackage r5 = r8.activityPackage     // Catch: java.lang.Throwable -> L37
-            java.lang.String r3 = r6.errorMessage(r3, r4, r5)     // Catch: java.lang.Throwable -> L37
-            com.adjust.sdk.ILogger r4 = r6.logger     // Catch: java.lang.Throwable -> L37
-            java.lang.Object[] r5 = new java.lang.Object[r1]     // Catch: java.lang.Throwable -> L37
-            r4.error(r3, r5)     // Catch: java.lang.Throwable -> L37
-            if (r7 == 0) goto L4e
-        L4b:
+            com.adjust.sdk.ActivityPackage r5 = r8.activityPackage     // Catch: java.lang.Throwable -> L1b
+            java.lang.String r3 = r6.errorMessage(r3, r4, r5)     // Catch: java.lang.Throwable -> L1b
+            com.adjust.sdk.ILogger r4 = r6.logger     // Catch: java.lang.Throwable -> L1b
+            java.lang.Object[] r5 = new java.lang.Object[r1]     // Catch: java.lang.Throwable -> L1b
+            r4.error(r3, r5)     // Catch: java.lang.Throwable -> L1b
+            if (r7 == 0) goto L4c
+        L49:
             r7.disconnect()
-        L4e:
+        L4c:
             int r7 = r0.length()
-            if (r7 != 0) goto L5e
+            if (r7 != 0) goto L5c
             com.adjust.sdk.ILogger r7 = r6.logger
             java.lang.Object[] r8 = new java.lang.Object[r1]
             java.lang.String r0 = "Empty response string buffer"
             r7.error(r0, r8)
             return r2
-        L5e:
+        L5c:
             int r7 = r2.intValue()
             r3 = 429(0x1ad, float:6.01E-43)
-            if (r7 != r3) goto L70
+            if (r7 != r3) goto L6e
             com.adjust.sdk.ILogger r7 = r6.logger
             java.lang.Object[] r8 = new java.lang.Object[r1]
             java.lang.String r0 = "Too frequent requests to the endpoint (429)"
             r7.error(r0, r8)
             return r2
-        L70:
+        L6e:
             java.lang.String r7 = r0.toString()
             com.adjust.sdk.ILogger r0 = r6.logger
             java.lang.Object[] r1 = new java.lang.Object[]{r7}
@@ -533,27 +557,27 @@ public class ActivityPackageSender implements IActivityPackageSender {
             r0.debug(r3, r1)
             r6.parseResponse(r8, r7)
             java.lang.String r7 = r8.message
-            if (r7 != 0) goto L87
+            if (r7 != 0) goto L85
             return r2
-        L87:
+        L85:
             int r8 = r2.intValue()
             r0 = 200(0xc8, float:2.8E-43)
             java.lang.String r1 = "Response message: %s"
-            if (r8 != r0) goto L9b
+            if (r8 != r0) goto L99
             com.adjust.sdk.ILogger r8 = r6.logger
             java.lang.Object[] r7 = new java.lang.Object[]{r7}
             r8.info(r1, r7)
-            goto La4
-        L9b:
+            goto La2
+        L99:
             com.adjust.sdk.ILogger r8 = r6.logger
             java.lang.Object[] r7 = new java.lang.Object[]{r7}
             r8.error(r1, r7)
-        La4:
+        La2:
             return r2
-        La5:
-            if (r7 == 0) goto Laa
+        La3:
+            if (r7 == 0) goto La8
             r7.disconnect()
-        Laa:
+        La8:
             throw r8
         */
         throw new UnsupportedOperationException("Method not decompiled: com.adjust.sdk.network.ActivityPackageSender.readConnectionResponse(javax.net.ssl.HttpsURLConnection, com.adjust.sdk.ResponseData):java.lang.Integer");

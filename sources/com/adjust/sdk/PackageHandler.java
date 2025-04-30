@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class PackageHandler implements IPackageHandler, IActivityPackageSender.ResponseDataCallbackSubscriber {
     private static final String PACKAGE_QUEUE_FILENAME = "AdjustIoPackageQueue";
     private static final String PACKAGE_QUEUE_NAME = "Package queue";
@@ -26,7 +26,7 @@ public class PackageHandler implements IPackageHandler, IActivityPackageSender.R
     private BackoffStrategy backoffStrategy = AdjustFactory.getPackageHandlerBackoffStrategy();
     private BackoffStrategy backoffStrategyForInstallSession = AdjustFactory.getInstallSessionBackoffStrategy();
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class a implements Runnable {
         public a() {
         }
@@ -37,23 +37,23 @@ public class PackageHandler implements IPackageHandler, IActivityPackageSender.R
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class b implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ ActivityPackage f244a;
+        public final /* synthetic */ ActivityPackage f5540a;
 
         public b(ActivityPackage activityPackage) {
-            this.f244a = activityPackage;
+            this.f5540a = activityPackage;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            PackageHandler.this.addI(this.f244a);
+            PackageHandler.this.addI(this.f5540a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class c implements Runnable {
         public c() {
         }
@@ -64,7 +64,7 @@ public class PackageHandler implements IPackageHandler, IActivityPackageSender.R
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class d implements Runnable {
         public d() {
         }
@@ -75,7 +75,7 @@ public class PackageHandler implements IPackageHandler, IActivityPackageSender.R
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class e implements Runnable {
         public e() {
         }
@@ -88,23 +88,23 @@ public class PackageHandler implements IPackageHandler, IActivityPackageSender.R
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class f implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ SessionParameters f248a;
+        public final /* synthetic */ SessionParameters f5544a;
 
         public f(SessionParameters sessionParameters) {
-            this.f248a = sessionParameters;
+            this.f5544a = sessionParameters;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            PackageHandler.this.updatePackagesI(this.f248a);
+            PackageHandler.this.updatePackagesI(this.f5544a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class g implements Runnable {
         public g() {
         }
@@ -115,8 +115,8 @@ public class PackageHandler implements IPackageHandler, IActivityPackageSender.R
         }
     }
 
-    public PackageHandler(IActivityHandler iActivityHandler, Context context, boolean z, IActivityPackageSender iActivityPackageSender) {
-        init(iActivityHandler, context, z, iActivityPackageSender);
+    public PackageHandler(IActivityHandler iActivityHandler, Context context, boolean z8, IActivityPackageSender iActivityPackageSender) {
+        init(iActivityHandler, context, z8, iActivityPackageSender);
         this.scheduler.submit(new a());
     }
 
@@ -161,8 +161,8 @@ public class PackageHandler implements IPackageHandler, IActivityPackageSender.R
     private void readPackageQueueI() {
         try {
             this.packageQueue = (List) Util.readObject(this.context, PACKAGE_QUEUE_FILENAME, PACKAGE_QUEUE_NAME, List.class);
-        } catch (Exception e2) {
-            this.logger.error("Failed to read %s file (%s)", PACKAGE_QUEUE_NAME, e2.getMessage());
+        } catch (Exception e4) {
+            this.logger.error("Failed to read %s file (%s)", PACKAGE_QUEUE_NAME, e4.getMessage());
             this.packageQueue = null;
         }
         List<ActivityPackage> list = this.packageQueue;
@@ -218,10 +218,10 @@ public class PackageHandler implements IPackageHandler, IActivityPackageSender.R
     }
 
     @Override // com.adjust.sdk.IPackageHandler
-    public void init(IActivityHandler iActivityHandler, Context context, boolean z, IActivityPackageSender iActivityPackageSender) {
+    public void init(IActivityHandler iActivityHandler, Context context, boolean z8, IActivityPackageSender iActivityPackageSender) {
         this.activityHandlerWeakRef = new WeakReference<>(iActivityHandler);
         this.context = context;
-        this.paused = !z;
+        this.paused = !z8;
         this.activityPackageSender = iActivityPackageSender;
     }
 

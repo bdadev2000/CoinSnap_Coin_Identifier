@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class TimerCycle {
     private Runnable command;
     private long cycleDelay;
@@ -18,7 +18,7 @@ public class TimerCycle {
     private FutureScheduler scheduler;
     private ScheduledFuture waitingTask;
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class a implements Runnable {
         public a() {
         }
@@ -30,20 +30,20 @@ public class TimerCycle {
         }
     }
 
-    public TimerCycle(Runnable runnable, long j, long j2, String str) {
+    public TimerCycle(Runnable runnable, long j7, long j9, String str) {
         this.scheduler = new SingleThreadFutureScheduler(str, true);
         this.name = str;
         this.command = runnable;
-        this.initialDelay = j;
-        this.cycleDelay = j2;
+        this.initialDelay = j7;
+        this.cycleDelay = j9;
         DecimalFormat decimalFormat = Util.SecondsDisplayFormat;
-        this.logger.verbose("%s configured to fire after %s seconds of starting and cycles every %s seconds", str, decimalFormat.format(j / 1000.0d), decimalFormat.format(j2 / 1000.0d));
+        this.logger.verbose("%s configured to fire after %s seconds of starting and cycles every %s seconds", str, decimalFormat.format(j7 / 1000.0d), decimalFormat.format(j9 / 1000.0d));
     }
 
-    private void cancel(boolean z) {
+    private void cancel(boolean z8) {
         ScheduledFuture scheduledFuture = this.waitingTask;
         if (scheduledFuture != null) {
-            scheduledFuture.cancel(z);
+            scheduledFuture.cancel(z8);
         }
         this.waitingTask = null;
     }

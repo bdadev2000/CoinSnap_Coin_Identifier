@@ -1,11 +1,21 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public abstract class zzic implements zzlh {
-    @Override // com.google.android.gms.internal.measurement.zzlh
-    /* renamed from: zza, reason: merged with bridge method [inline-methods] */
-    public final zzlh clone() {
-        throw new UnsupportedOperationException("clone() should be implemented by subclasses.");
+import java.util.Comparator;
+
+/* loaded from: classes2.dex */
+final class zzic implements Comparator<zzia> {
+    @Override // java.util.Comparator
+    public final /* synthetic */ int compare(zzia zziaVar, zzia zziaVar2) {
+        zzia zziaVar3 = zziaVar;
+        zzia zziaVar4 = zziaVar2;
+        zzig zzigVar = (zzig) zziaVar3.iterator();
+        zzig zzigVar2 = (zzig) zziaVar4.iterator();
+        while (zzigVar.hasNext() && zzigVar2.hasNext()) {
+            int compareTo = Integer.valueOf(zzia.zza(zzigVar.zza())).compareTo(Integer.valueOf(zzia.zza(zzigVar2.zza())));
+            if (compareTo != 0) {
+                return compareTo;
+            }
+        }
+        return Integer.valueOf(zziaVar3.zzb()).compareTo(Integer.valueOf(zziaVar4.zzb()));
     }
 }

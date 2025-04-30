@@ -6,11 +6,11 @@ import java.lang.Thread;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class ThreadFactoryWrapper implements ThreadFactory {
     private String source;
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class a implements Thread.UncaughtExceptionHandler {
         @Override // java.lang.Thread.UncaughtExceptionHandler
         public final void uncaughtException(Thread thread, Throwable th) {

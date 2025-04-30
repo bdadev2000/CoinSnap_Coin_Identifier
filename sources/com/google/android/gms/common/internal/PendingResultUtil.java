@@ -1,34 +1,45 @@
 package com.google.android.gms.common.internal;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Response;
 import com.google.android.gms.common.api.Result;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class PendingResultUtil {
     private static final zas zaa = new zao();
 
-    /* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-    /* loaded from: classes12.dex */
+    @KeepForSdk
+    /* loaded from: classes2.dex */
     public interface ResultConverter<R extends Result, T> {
-        T convert(R r);
+        @Nullable
+        @KeepForSdk
+        T convert(@NonNull R r9);
     }
 
-    public static <R extends Result, T extends Response<R>> Task<T> toResponseTask(PendingResult<R> pendingResult, T t) {
-        return toTask(pendingResult, new zaq(t));
+    @NonNull
+    @KeepForSdk
+    public static <R extends Result, T extends Response<R>> Task<T> toResponseTask(@NonNull PendingResult<R> pendingResult, @NonNull T t9) {
+        return toTask(pendingResult, new zaq(t9));
     }
 
-    public static <R extends Result, T> Task<T> toTask(PendingResult<R> pendingResult, ResultConverter<R, T> resultConverter) {
+    @NonNull
+    @KeepForSdk
+    public static <R extends Result, T> Task<T> toTask(@NonNull PendingResult<R> pendingResult, @NonNull ResultConverter<R, T> resultConverter) {
         zas zasVar = zaa;
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
         pendingResult.addStatusListener(new zap(pendingResult, taskCompletionSource, resultConverter, zasVar));
         return taskCompletionSource.getTask();
     }
 
-    public static <R extends Result> Task<Void> toVoidTask(PendingResult<R> pendingResult) {
+    @NonNull
+    @KeepForSdk
+    public static <R extends Result> Task<Void> toVoidTask(@NonNull PendingResult<R> pendingResult) {
         return toTask(pendingResult, new zar());
     }
 }

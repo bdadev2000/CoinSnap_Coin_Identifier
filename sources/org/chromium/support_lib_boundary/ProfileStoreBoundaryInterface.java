@@ -3,7 +3,7 @@ package org.chromium.support_lib_boundary;
 import java.lang.reflect.InvocationHandler;
 import java.util.List;
 
-/* loaded from: classes9.dex */
+/* loaded from: classes3.dex */
 public interface ProfileStoreBoundaryInterface {
     boolean deleteProfile(String str);
 

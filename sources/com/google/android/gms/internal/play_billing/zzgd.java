@@ -1,44 +1,24 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public final class zzgd extends zzcb implements zzdg {
-    private static final zzgd zzb;
-    private int zzd;
-    private int zze;
-
-    static {
-        zzgd zzgdVar = new zzgd();
-        zzb = zzgdVar;
-        zzcb.zzp(zzgd.class, zzgdVar);
-    }
-
+/* loaded from: classes2.dex */
+public final class zzgd extends zzcn implements zzed {
     private zzgd() {
+        throw null;
     }
 
-    public static zzgd zzw() {
-        return zzb;
+    public final zzgd zzl(zzhb zzhbVar) {
+        zzi();
+        zzge.zzA((zzge) this.zza, zzhbVar);
+        return this;
     }
 
-    @Override // com.google.android.gms.internal.play_billing.zzcb
-    protected final Object zzu(int i, Object obj, Object obj2) {
-        int i2 = i - 1;
-        if (i2 == 0) {
-            return (byte) 1;
-        }
-        if (i2 == 2) {
-            return zzm(zzb, "\u0001\u0001\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0001᠌\u0000", new Object[]{"zzd", "zze", zzgc.zza});
-        }
-        if (i2 == 3) {
-            return new zzgd();
-        }
-        zzga zzgaVar = null;
-        if (i2 == 4) {
-            return new zzgb(zzgaVar);
-        }
-        if (i2 != 5) {
-            return null;
-        }
-        return zzb;
+    public final zzgd zzm(int i9) {
+        zzi();
+        zzge.zzB((zzge) this.zza, i9);
+        return this;
+    }
+
+    public /* synthetic */ zzgd(zzgc zzgcVar) {
+        super(zzge.zzz());
     }
 }

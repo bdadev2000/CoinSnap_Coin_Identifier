@@ -1,20 +1,23 @@
 package androidx.media;
 
+import O0.a;
+import O0.b;
 import android.media.AudioAttributes;
-import androidx.versionedparcelable.VersionedParcel;
 
-/* loaded from: classes7.dex */
-public class AudioAttributesImplApi21Parcelizer {
-    public static AudioAttributesImplApi21 read(VersionedParcel versionedParcel) {
+/* loaded from: classes.dex */
+public final class AudioAttributesImplApi21Parcelizer {
+    public static AudioAttributesImplApi21 read(a aVar) {
         AudioAttributesImplApi21 audioAttributesImplApi21 = new AudioAttributesImplApi21();
-        audioAttributesImplApi21.mAudioAttributes = (AudioAttributes) versionedParcel.readParcelable(audioAttributesImplApi21.mAudioAttributes, 1);
-        audioAttributesImplApi21.mLegacyStreamType = versionedParcel.readInt(audioAttributesImplApi21.mLegacyStreamType, 2);
+        audioAttributesImplApi21.f4913a = (AudioAttributes) aVar.g(audioAttributesImplApi21.f4913a, 1);
+        audioAttributesImplApi21.b = aVar.f(audioAttributesImplApi21.b, 2);
         return audioAttributesImplApi21;
     }
 
-    public static void write(AudioAttributesImplApi21 audioAttributesImplApi21, VersionedParcel versionedParcel) {
-        versionedParcel.setSerializationFlags(false, false);
-        versionedParcel.writeParcelable(audioAttributesImplApi21.mAudioAttributes, 1);
-        versionedParcel.writeInt(audioAttributesImplApi21.mLegacyStreamType, 2);
+    public static void write(AudioAttributesImplApi21 audioAttributesImplApi21, a aVar) {
+        aVar.getClass();
+        AudioAttributes audioAttributes = audioAttributesImplApi21.f4913a;
+        aVar.i(1);
+        ((b) aVar).f2140e.writeParcelable(audioAttributes, 0);
+        aVar.j(audioAttributesImplApi21.b, 2);
     }
 }

@@ -1,8 +1,18 @@
 package com.google.android.gms.dynamite.descriptors.com.google.android.gms.measurement.dynamite;
 
-/* compiled from: com.google.android.gms:play-services-measurement-sdk@@22.1.2 */
-/* loaded from: classes12.dex */
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.util.DynamiteApi;
+import com.google.android.gms.common.util.RetainForClient;
+
+@RetainForClient
+@DynamiteApi
+/* loaded from: classes2.dex */
 public class ModuleDescriptor {
+
+    @NonNull
+    @RetainForClient
     public static final String MODULE_ID = "com.google.android.gms.measurement.dynamite";
-    public static final int MODULE_VERSION = 127;
+
+    @RetainForClient
+    public static final int MODULE_VERSION = 117;
 }

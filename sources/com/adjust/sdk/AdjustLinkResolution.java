@@ -6,32 +6,32 @@ import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public final class AdjustLinkResolution {
     private static volatile ExecutorService executor = null;
     private static final String[] expectedUrlHostSuffixArray = {"adjust.com", "adj.st", "go.link"};
     private static final int maxRecursions = 10;
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public interface AdjustLinkResolutionCallback {
         void resolvedLinkCallback(Uri uri);
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class a implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ URL f231a;
+        public final /* synthetic */ URL f5518a;
         public final /* synthetic */ AdjustLinkResolutionCallback b;
 
         public a(URL url, AdjustLinkResolutionCallback adjustLinkResolutionCallback) {
-            this.f231a = url;
+            this.f5518a = url;
             this.b = adjustLinkResolutionCallback;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            AdjustLinkResolution.requestAndResolve(this.f231a, 0, this.b);
+            AdjustLinkResolution.requestAndResolve(this.f5518a, 0, this.b);
         }
     }
 
@@ -62,9 +62,9 @@ public final class AdjustLinkResolution {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* JADX WARN: Code restructure failed: missing block: B:16:0x0025, code lost:
+    /* JADX WARN: Code restructure failed: missing block: B:16:0x0030, code lost:
     
-        if (r1 == null) goto L13;
+        if (r1 == null) goto L10;
      */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
@@ -74,28 +74,31 @@ public final class AdjustLinkResolution {
         /*
             java.net.URL r4 = convertToHttps(r4)
             r0 = 0
-            java.net.URLConnection r1 = r4.openConnection()     // Catch: java.lang.Throwable -> L24
-            java.net.HttpURLConnection r1 = (java.net.HttpURLConnection) r1     // Catch: java.lang.Throwable -> L24
+            java.net.URLConnection r1 = r4.openConnection()     // Catch: java.lang.Throwable -> L2f
+            java.lang.Object r1 = com.google.firebase.perf.network.FirebasePerfUrlConnection.instrument(r1)     // Catch: java.lang.Throwable -> L2f
+            java.net.URLConnection r1 = (java.net.URLConnection) r1     // Catch: java.lang.Throwable -> L2f
+            java.net.HttpURLConnection r1 = (java.net.HttpURLConnection) r1     // Catch: java.lang.Throwable -> L2f
             r2 = 0
-            r1.setInstanceFollowRedirects(r2)     // Catch: java.lang.Throwable -> L25
-            r1.connect()     // Catch: java.lang.Throwable -> L25
+            r1.setInstanceFollowRedirects(r2)     // Catch: java.lang.Throwable -> L30
+            r1.connect()     // Catch: java.lang.Throwable -> L30
             java.lang.String r2 = "Location"
-            java.lang.String r2 = r1.getHeaderField(r2)     // Catch: java.lang.Throwable -> L25
-            if (r2 == 0) goto L20
-            java.net.URL r3 = new java.net.URL     // Catch: java.lang.Throwable -> L25
-            r3.<init>(r2)     // Catch: java.lang.Throwable -> L25
+            java.lang.String r2 = r1.getHeaderField(r2)     // Catch: java.lang.Throwable -> L30
+            if (r2 == 0) goto L26
+            java.net.URL r3 = new java.net.URL     // Catch: java.lang.Throwable -> L30
+            r3.<init>(r2)     // Catch: java.lang.Throwable -> L30
             r0 = r3
-        L20:
+        L26:
             r1.disconnect()
-            goto L28
-        L24:
-            r1 = r0
-        L25:
-            if (r1 == 0) goto L28
-            goto L20
-        L28:
+        L29:
             int r5 = r5 + 1
             resolveLink(r0, r4, r5, r6)
+            goto L33
+        L2f:
+            r1 = r0
+        L30:
+            if (r1 == 0) goto L29
+            goto L26
+        L33:
             return
         */
         throw new UnsupportedOperationException("Method not decompiled: com.adjust.sdk.AdjustLinkResolution.requestAndResolve(java.net.URL, int, com.adjust.sdk.AdjustLinkResolution$AdjustLinkResolutionCallback):void");
@@ -125,26 +128,15 @@ public final class AdjustLinkResolution {
         }
         if (executor == null) {
             synchronized (expectedUrlHostSuffixArray) {
-                if (executor == null) {
-                    executor = Executors.newSingleThreadExecutor();
+                try {
+                    if (executor == null) {
+                        executor = Executors.newSingleThreadExecutor();
+                    }
+                } finally {
                 }
             }
         }
         executor.execute(new a(url, adjustLinkResolutionCallback));
-    }
-
-    private static void resolveLink(URL url, URL url2, int i, AdjustLinkResolutionCallback adjustLinkResolutionCallback) {
-        Uri convertToUri;
-        if (url == null) {
-            convertToUri = convertToUri(url2);
-        } else {
-            if (!isTerminalUrl(url.getHost()) && i <= 10) {
-                requestAndResolve(url, i, adjustLinkResolutionCallback);
-                return;
-            }
-            convertToUri = convertToUri(url);
-        }
-        adjustLinkResolutionCallback.resolvedLinkCallback(convertToUri);
     }
 
     private static boolean urlMatchesSuffix(String str, String[] strArr) {
@@ -157,5 +149,19 @@ public final class AdjustLinkResolution {
             }
         }
         return false;
+    }
+
+    private static void resolveLink(URL url, URL url2, int i9, AdjustLinkResolutionCallback adjustLinkResolutionCallback) {
+        Uri convertToUri;
+        if (url == null) {
+            convertToUri = convertToUri(url2);
+        } else {
+            if (!isTerminalUrl(url.getHost()) && i9 <= 10) {
+                requestAndResolve(url, i9, adjustLinkResolutionCallback);
+                return;
+            }
+            convertToUri = convertToUri(url);
+        }
+        adjustLinkResolutionCallback.resolvedLinkCallback(convertToUri);
     }
 }

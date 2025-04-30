@@ -1,5 +1,7 @@
 package com.google.android.gms.common.api.internal;
 
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Result;
@@ -8,21 +10,22 @@ import com.google.android.gms.common.api.ResultTransform;
 import com.google.android.gms.common.api.TransformedResult;
 import java.util.concurrent.TimeUnit;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public final class OptionalPendingResultImpl<R extends Result> extends OptionalPendingResult<R> {
     private final BasePendingResult zaa;
 
-    public OptionalPendingResultImpl(PendingResult pendingResult) {
+    public OptionalPendingResultImpl(@NonNull PendingResult pendingResult) {
         this.zaa = (BasePendingResult) pendingResult;
     }
 
     @Override // com.google.android.gms.common.api.PendingResult
-    public final void addStatusListener(PendingResult.StatusListener statusListener) {
+    public final void addStatusListener(@NonNull PendingResult.StatusListener statusListener) {
         this.zaa.addStatusListener(statusListener);
     }
 
     @Override // com.google.android.gms.common.api.PendingResult
+    @NonNull
     public final R await() {
         return (R) this.zaa.await();
     }
@@ -33,6 +36,7 @@ public final class OptionalPendingResultImpl<R extends Result> extends OptionalP
     }
 
     @Override // com.google.android.gms.common.api.OptionalPendingResult
+    @NonNull
     public final R get() {
         if (this.zaa.isReady()) {
             return (R) this.zaa.await(0L, TimeUnit.MILLISECONDS);
@@ -51,22 +55,24 @@ public final class OptionalPendingResultImpl<R extends Result> extends OptionalP
     }
 
     @Override // com.google.android.gms.common.api.PendingResult
-    public final void setResultCallback(ResultCallback<? super R> resultCallback) {
+    public final void setResultCallback(@NonNull ResultCallback<? super R> resultCallback) {
         this.zaa.setResultCallback(resultCallback);
     }
 
     @Override // com.google.android.gms.common.api.PendingResult
-    public final <S extends Result> TransformedResult<S> then(ResultTransform<? super R, ? extends S> resultTransform) {
+    @NonNull
+    public final <S extends Result> TransformedResult<S> then(@NonNull ResultTransform<? super R, ? extends S> resultTransform) {
         return this.zaa.then(resultTransform);
     }
 
     @Override // com.google.android.gms.common.api.PendingResult
-    public final R await(long j, TimeUnit timeUnit) {
-        return (R) this.zaa.await(j, timeUnit);
+    @NonNull
+    public final R await(long j7, @NonNull TimeUnit timeUnit) {
+        return (R) this.zaa.await(j7, timeUnit);
     }
 
     @Override // com.google.android.gms.common.api.PendingResult
-    public final void setResultCallback(ResultCallback<? super R> resultCallback, long j, TimeUnit timeUnit) {
-        this.zaa.setResultCallback(resultCallback, j, timeUnit);
+    public final void setResultCallback(@NonNull ResultCallback<? super R> resultCallback, long j7, @NonNull TimeUnit timeUnit) {
+        this.zaa.setResultCallback(resultCallback, j7, timeUnit);
     }
 }

@@ -1,48 +1,62 @@
 package com.google.android.gms.common.util;
 
 import android.util.Base64;
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.errorprone.annotations.ResultIgnorabilityUnspecified;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public final class Base64Utils {
-    public static byte[] decode(String str) {
+    @NonNull
+    @KeepForSdk
+    public static byte[] decode(@NonNull String str) {
         if (str == null) {
             return null;
         }
         return Base64.decode(str, 0);
     }
 
-    public static byte[] decodeUrlSafe(String str) {
+    @NonNull
+    @KeepForSdk
+    public static byte[] decodeUrlSafe(@NonNull String str) {
         if (str == null) {
             return null;
         }
         return Base64.decode(str, 10);
     }
 
+    @NonNull
     @ResultIgnorabilityUnspecified
-    public static byte[] decodeUrlSafeNoPadding(String str) {
+    @KeepForSdk
+    public static byte[] decodeUrlSafeNoPadding(@NonNull String str) {
         if (str == null) {
             return null;
         }
         return Base64.decode(str, 11);
     }
 
-    public static String encode(byte[] bArr) {
+    @NonNull
+    @KeepForSdk
+    public static String encode(@NonNull byte[] bArr) {
         if (bArr == null) {
             return null;
         }
         return Base64.encodeToString(bArr, 0);
     }
 
-    public static String encodeUrlSafe(byte[] bArr) {
+    @NonNull
+    @KeepForSdk
+    public static String encodeUrlSafe(@NonNull byte[] bArr) {
         if (bArr == null) {
             return null;
         }
         return Base64.encodeToString(bArr, 10);
     }
 
-    public static String encodeUrlSafeNoPadding(byte[] bArr) {
+    @NonNull
+    @KeepForSdk
+    public static String encodeUrlSafeNoPadding(@NonNull byte[] bArr) {
         if (bArr == null) {
             return null;
         }

@@ -1,24 +1,33 @@
 package com.google.android.gms.measurement.internal;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzlq implements Runnable {
-    private final /* synthetic */ zzlk zza;
-    private final /* synthetic */ long zzb;
-    private final /* synthetic */ zzlj zzc;
+import android.os.RemoteException;
+import com.google.android.gms.common.internal.Preconditions;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzlq(zzlj zzljVar, zzlk zzlkVar, long j) {
-        this.zza = zzlkVar;
-        this.zzb = j;
-        this.zzc = zzljVar;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzlq implements Runnable {
+    private final /* synthetic */ zzo zza;
+    private final /* synthetic */ zzkx zzb;
+
+    public zzlq(zzkx zzkxVar, zzo zzoVar) {
+        this.zza = zzoVar;
+        this.zzb = zzkxVar;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        this.zzc.zza(this.zza, false, this.zzb);
-        this.zzc.zza = null;
-        this.zzc.zzo().zza((zzlk) null);
+        zzfl zzflVar;
+        zzflVar = this.zzb.zzb;
+        if (zzflVar == null) {
+            this.zzb.zzj().zzg().zza("Failed to send consent settings to service");
+            return;
+        }
+        try {
+            Preconditions.checkNotNull(this.zza);
+            zzflVar.zze(this.zza);
+            this.zzb.zzaq();
+        } catch (RemoteException e4) {
+            this.zzb.zzj().zzg().zza("Failed to send consent settings to the service", e4);
+        }
     }
 }

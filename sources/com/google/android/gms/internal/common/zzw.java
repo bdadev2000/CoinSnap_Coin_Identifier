@@ -1,8 +1,7 @@
 package com.google.android.gms.internal.common;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class zzw extends zzj {
     final CharSequence zzb;
     final zzo zzc;
@@ -10,14 +9,13 @@ public abstract class zzw extends zzj {
     int zze = 0;
     int zzf;
 
-    /* JADX INFO: Access modifiers changed from: protected */
     public zzw(zzx zzxVar, CharSequence charSequence) {
         zzo zzoVar;
-        boolean z;
+        boolean z8;
         zzoVar = zzxVar.zza;
         this.zzc = zzoVar;
-        z = zzxVar.zzb;
-        this.zzd = z;
+        z8 = zzxVar.zzb;
+        this.zzd = z8;
         this.zzf = Integer.MAX_VALUE;
         this.zzb = charSequence;
     }
@@ -52,12 +50,11 @@ public abstract class zzw extends zzj {
         r5.zzf = r3 - 1;
      */
     @Override // com.google.android.gms.internal.common.zzj
-    @javax.annotation.CheckForNull
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    protected final /* bridge */ /* synthetic */ java.lang.Object zza() {
+    public final /* bridge */ /* synthetic */ java.lang.Object zza() {
         /*
             r5 = this;
             int r0 = r5.zze
@@ -128,7 +125,7 @@ public abstract class zzw extends zzj {
         throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.internal.common.zzw.zza():java.lang.Object");
     }
 
-    abstract int zzc(int i);
+    public abstract int zzc(int i9);
 
-    abstract int zzd(int i);
+    public abstract int zzd(int i9);
 }

@@ -1,21 +1,20 @@
 package com.google.android.gms.tasks;
 
+import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzaa implements Continuation {
     final /* synthetic */ Collection zza;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zzaa(Collection collection) {
         this.zza = collection;
     }
 
     @Override // com.google.android.gms.tasks.Continuation
-    public final /* bridge */ /* synthetic */ Object then(Task task) throws Exception {
+    public final /* bridge */ /* synthetic */ Object then(@NonNull Task task) throws Exception {
         ArrayList arrayList = new ArrayList();
         Iterator it = this.zza.iterator();
         while (it.hasNext()) {

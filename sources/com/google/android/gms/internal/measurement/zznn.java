@@ -1,20 +1,16 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zznn implements zznk {
-    private static final zzhj<Long> zza;
+/* loaded from: classes2.dex */
+public final class zznn implements zzno {
+    private static final zzgz<Boolean> zza = new zzhh(zzgw.zza("com.google.android.gms.measurement")).zzb().zza().zza("measurement.service.deferred_first_open", true);
 
-    @Override // com.google.android.gms.internal.measurement.zznk
-    public final long zza() {
-        return zza.zza().longValue();
+    @Override // com.google.android.gms.internal.measurement.zzno
+    public final boolean zza() {
+        return true;
     }
 
-    static {
-        zzhr zza2 = new zzhr(zzhk.zza("com.google.android.gms.measurement")).zzb().zza();
-        zza2.zza("measurement.client.consent_state_v1", true);
-        zza2.zza("measurement.client.3p_consent_state_v1", true);
-        zza2.zza("measurement.service.consent_state_v1_W36", true);
-        zza = zza2.zza("measurement.service.storage_consent_support_version", 203600L);
+    @Override // com.google.android.gms.internal.measurement.zzno
+    public final boolean zzb() {
+        return zza.zza().booleanValue();
     }
 }

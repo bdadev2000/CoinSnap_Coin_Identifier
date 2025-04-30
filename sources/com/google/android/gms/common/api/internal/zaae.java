@@ -1,26 +1,25 @@
 package com.google.android.gms.common.api.internal;
 
 import android.app.Activity;
-import androidx.collection.ArraySet;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.internal.Preconditions;
+import x.c;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zaae extends zap {
-    private final ArraySet zad;
+    private final c zad;
     private final GoogleApiManager zae;
 
-    zaae(LifecycleFragment lifecycleFragment, GoogleApiManager googleApiManager, GoogleApiAvailability googleApiAvailability) {
+    public zaae(LifecycleFragment lifecycleFragment, GoogleApiManager googleApiManager, GoogleApiAvailability googleApiAvailability) {
         super(lifecycleFragment, googleApiAvailability);
-        this.zad = new ArraySet();
+        this.zad = new c(0);
         this.zae = googleApiManager;
         this.mLifecycleFragment.addCallback("ConnectionlessLifecycleHelper", this);
     }
 
     public static void zad(Activity activity, GoogleApiManager googleApiManager, ApiKey apiKey) {
-        LifecycleFragment fragment = getFragment(activity);
+        LifecycleFragment fragment = LifecycleCallback.getFragment(activity);
         zaae zaaeVar = (zaae) fragment.getCallbackOrNull("ConnectionlessLifecycleHelper", zaae.class);
         if (zaaeVar == null) {
             zaaeVar = new zaae(fragment, googleApiManager, GoogleApiAvailability.getInstance());
@@ -31,10 +30,9 @@ public final class zaae extends zap {
     }
 
     private final void zae() {
-        if (this.zad.isEmpty()) {
-            return;
+        if (!this.zad.isEmpty()) {
+            this.zae.zaA(this);
         }
-        this.zae.zaA(this);
     }
 
     @Override // com.google.android.gms.common.api.internal.LifecycleCallback
@@ -55,18 +53,17 @@ public final class zaae extends zap {
         this.zae.zaB(this);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public final ArraySet zaa() {
+    public final c zaa() {
         return this.zad;
     }
 
     @Override // com.google.android.gms.common.api.internal.zap
-    protected final void zab(ConnectionResult connectionResult, int i) {
-        this.zae.zax(connectionResult, i);
+    public final void zab(ConnectionResult connectionResult, int i9) {
+        this.zae.zax(connectionResult, i9);
     }
 
     @Override // com.google.android.gms.common.api.internal.zap
-    protected final void zac() {
+    public final void zac() {
         this.zae.zay();
     }
 }

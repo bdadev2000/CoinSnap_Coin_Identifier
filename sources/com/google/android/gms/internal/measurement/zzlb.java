@@ -1,13 +1,6 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public interface zzlb extends zzle, Cloneable {
-    zzlb zza(byte[] bArr) throws zzkb;
-
-    zzlb zza(byte[] bArr, zzjg zzjgVar) throws zzkb;
-
-    zzlc zzai();
-
-    zzlc zzaj();
+/* loaded from: classes2.dex */
+interface zzlb {
+    Object zza(Object obj);
 }

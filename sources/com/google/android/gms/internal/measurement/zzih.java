@@ -1,14 +1,10 @@
 package com.google.android.gms.internal.measurement;
 
-import libcore.io.Memory;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public abstract class zzih extends zzia {
+    public abstract boolean zza(zzia zziaVar, int i9, int i10);
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzih {
-    private static final Class<?> zza = Memory.class;
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static Class<?> zza() {
-        return zza;
+    private zzih() {
     }
 }

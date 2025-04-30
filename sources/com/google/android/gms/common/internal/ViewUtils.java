@@ -5,16 +5,26 @@ import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class ViewUtils {
     private ViewUtils() {
     }
 
-    public static String getXmlAttributeString(String str, String str2, Context context, AttributeSet attributeSet, boolean z, boolean z2, String str3) {
-        String attributeValue = attributeSet == null ? null : attributeSet.getAttributeValue(str, str2);
-        if (attributeValue != null && attributeValue.startsWith("@string/") && z) {
+    @Nullable
+    @KeepForSdk
+    public static String getXmlAttributeString(@NonNull String str, @NonNull String str2, @NonNull Context context, @NonNull AttributeSet attributeSet, boolean z8, boolean z9, @NonNull String str3) {
+        String attributeValue;
+        if (attributeSet == null) {
+            attributeValue = null;
+        } else {
+            attributeValue = attributeSet.getAttributeValue(str, str2);
+        }
+        if (attributeValue != null && attributeValue.startsWith("@string/") && z8) {
             String substring = attributeValue.substring(8);
             String packageName = context.getPackageName();
             TypedValue typedValue = new TypedValue();
@@ -23,13 +33,14 @@ public class ViewUtils {
             } catch (Resources.NotFoundException unused) {
                 Log.w(str3, "Could not find resource for " + str2 + ": " + attributeValue);
             }
-            if (typedValue.string != null) {
-                attributeValue = typedValue.string.toString();
+            CharSequence charSequence = typedValue.string;
+            if (charSequence != null) {
+                attributeValue = charSequence.toString();
             } else {
                 Log.w(str3, "Resource " + str2 + " was not a string: " + typedValue.toString());
             }
         }
-        if (z2 && attributeValue == null) {
+        if (z9 && attributeValue == null) {
             Log.w(str3, "Required XML attribute \"" + str2 + "\" missing");
         }
         return attributeValue;

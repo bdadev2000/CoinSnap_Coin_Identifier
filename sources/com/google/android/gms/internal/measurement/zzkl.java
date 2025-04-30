@@ -1,46 +1,15 @@
 package com.google.android.gms.internal.measurement;
 
-import java.util.List;
+import java.io.IOException;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzkl implements zzkm {
-    private static <E> zzkc<E> zzc(Object obj, long j) {
-        return (zzkc) zzml.zze(obj, j);
+/* loaded from: classes2.dex */
+public final class zzkl<K, V> {
+    public static <K, V> int zza(zzkk<K, V> zzkkVar, K k6, V v6) {
+        return zzjd.zza(zzkkVar.zza, 1, k6) + zzjd.zza(zzkkVar.zzc, 2, v6);
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzkm
-    public final <L> List<L> zza(Object obj, long j) {
-        zzkc zzc = zzc(obj, j);
-        if (zzc.zzc()) {
-            return zzc;
-        }
-        int size = zzc.size();
-        zzkc zza = zzc.zza(size == 0 ? 10 : size << 1);
-        zzml.zza(obj, j, zza);
-        return zza;
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzkm
-    public final void zzb(Object obj, long j) {
-        zzc(obj, j).zzb();
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzkm
-    public final <E> void zza(Object obj, Object obj2, long j) {
-        zzkc zzc = zzc(obj, j);
-        zzkc zzc2 = zzc(obj2, j);
-        int size = zzc.size();
-        int size2 = zzc2.size();
-        if (size > 0 && size2 > 0) {
-            if (!zzc.zzc()) {
-                zzc = zzc.zza(size2 + size);
-            }
-            zzc.addAll(zzc2);
-        }
-        if (size > 0) {
-            zzc2 = zzc;
-        }
-        zzml.zza(obj, j, zzc2);
+    public static <K, V> void zza(zzit zzitVar, zzkk<K, V> zzkkVar, K k6, V v6) throws IOException {
+        zzjd.zza(zzitVar, zzkkVar.zza, 1, k6);
+        zzjd.zza(zzitVar, zzkkVar.zzc, 2, v6);
     }
 }

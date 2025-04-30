@@ -1,24 +1,53 @@
 package com.google.android.gms.measurement.internal;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzii implements Runnable {
-    private final /* synthetic */ zzo zza;
-    private final /* synthetic */ zzic zzb;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public abstract class zzii extends zzij {
+    private boolean zza;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzii(zzic zzicVar, zzo zzoVar) {
-        this.zza = zzoVar;
-        this.zzb = zzicVar;
+    public zzii(zzhj zzhjVar) {
+        super(zzhjVar);
+        this.zzu.zzaa();
     }
 
-    @Override // java.lang.Runnable
-    public final void run() {
-        zznv zznvVar;
-        zznv zznvVar2;
-        zznvVar = this.zzb.zza;
-        zznvVar.zzr();
-        zznvVar2 = this.zzb.zza;
-        zznvVar2.zzd(this.zza);
+    public void zzaa() {
     }
+
+    public final void zzac() {
+        if (zzaf()) {
+        } else {
+            throw new IllegalStateException("Not initialized");
+        }
+    }
+
+    public final void zzad() {
+        if (!this.zza) {
+            if (!zzo()) {
+                this.zzu.zzz();
+                this.zza = true;
+                return;
+            }
+            return;
+        }
+        throw new IllegalStateException("Can't initialize twice");
+    }
+
+    public final void zzae() {
+        if (!this.zza) {
+            zzaa();
+            this.zzu.zzz();
+            this.zza = true;
+            return;
+        }
+        throw new IllegalStateException("Can't initialize twice");
+    }
+
+    public final boolean zzaf() {
+        if (this.zza) {
+            return true;
+        }
+        return false;
+    }
+
+    public abstract boolean zzo();
 }

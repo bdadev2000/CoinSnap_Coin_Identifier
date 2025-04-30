@@ -2,15 +2,13 @@ package com.google.android.gms.dynamite;
 
 import android.database.Cursor;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzn {
     public Cursor zza;
 
     private zzn() {
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public /* synthetic */ zzn(zzm zzmVar) {
     }
 }

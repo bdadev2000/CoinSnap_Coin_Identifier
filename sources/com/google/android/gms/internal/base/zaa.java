@@ -5,13 +5,11 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class zaa implements IInterface {
     private final IBinder zaa;
     private final String zab;
 
-    /* JADX INFO: Access modifiers changed from: protected */
     public zaa(IBinder iBinder, String str) {
         this.zaa = iBinder;
         this.zab = str;
@@ -22,35 +20,32 @@ public class zaa implements IInterface {
         return this.zaa;
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     public final Parcel zaa() {
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken(this.zab);
         return obtain;
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public final Parcel zab(int i, Parcel parcel) throws RemoteException {
+    public final Parcel zab(int i9, Parcel parcel) throws RemoteException {
         Parcel obtain = Parcel.obtain();
         try {
             try {
                 this.zaa.transact(2, parcel, obtain, 0);
                 obtain.readException();
                 return obtain;
-            } catch (RuntimeException e) {
+            } catch (RuntimeException e4) {
                 obtain.recycle();
-                throw e;
+                throw e4;
             }
         } finally {
             parcel.recycle();
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public final void zac(int i, Parcel parcel) throws RemoteException {
+    public final void zac(int i9, Parcel parcel) throws RemoteException {
         Parcel obtain = Parcel.obtain();
         try {
-            this.zaa.transact(i, parcel, obtain, 0);
+            this.zaa.transact(i9, parcel, obtain, 0);
             obtain.readException();
         } finally {
             parcel.recycle();
@@ -58,8 +53,7 @@ public class zaa implements IInterface {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public final void zad(int i, Parcel parcel) throws RemoteException {
+    public final void zad(int i9, Parcel parcel) throws RemoteException {
         try {
             this.zaa.transact(1, parcel, null, 1);
         } finally {

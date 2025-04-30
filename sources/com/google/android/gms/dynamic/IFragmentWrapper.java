@@ -6,31 +6,35 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.dynamic.IObjectWrapper;
 import com.google.android.gms.internal.common.zzc;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public interface IFragmentWrapper extends IInterface {
 
-    /* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-    /* loaded from: classes12.dex */
+    /* loaded from: classes2.dex */
     public static abstract class Stub extends com.google.android.gms.internal.common.zzb implements IFragmentWrapper {
         public Stub() {
             super("com.google.android.gms.dynamic.IFragmentWrapper");
         }
 
-        public static IFragmentWrapper asInterface(IBinder iBinder) {
+        @NonNull
+        public static IFragmentWrapper asInterface(@NonNull IBinder iBinder) {
             if (iBinder == null) {
                 return null;
             }
             IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.dynamic.IFragmentWrapper");
-            return queryLocalInterface instanceof IFragmentWrapper ? (IFragmentWrapper) queryLocalInterface : new zza(iBinder);
+            if (queryLocalInterface instanceof IFragmentWrapper) {
+                return (IFragmentWrapper) queryLocalInterface;
+            }
+            return new zza(iBinder);
         }
 
         @Override // com.google.android.gms.internal.common.zzb
-        protected final boolean zza(int i, Parcel parcel, Parcel parcel2, int i2) throws RemoteException {
-            switch (i) {
+        public final boolean zza(int i9, @NonNull Parcel parcel, @NonNull Parcel parcel2, int i10) throws RemoteException {
+            switch (i9) {
                 case 2:
                     IObjectWrapper zzg = zzg();
                     parcel2.writeNoException();
@@ -59,7 +63,7 @@ public interface IFragmentWrapper extends IInterface {
                 case 7:
                     boolean zzs = zzs();
                     parcel2.writeNoException();
-                    int i3 = zzc.zza;
+                    int i11 = zzc.zza;
                     parcel2.writeInt(zzs ? 1 : 0);
                     return true;
                 case 8:
@@ -80,7 +84,7 @@ public interface IFragmentWrapper extends IInterface {
                 case 11:
                     boolean zzt = zzt();
                     parcel2.writeNoException();
-                    int i4 = zzc.zza;
+                    int i12 = zzc.zza;
                     parcel2.writeInt(zzt ? 1 : 0);
                     return true;
                 case 12:
@@ -91,43 +95,43 @@ public interface IFragmentWrapper extends IInterface {
                 case 13:
                     boolean zzu = zzu();
                     parcel2.writeNoException();
-                    int i5 = zzc.zza;
+                    int i13 = zzc.zza;
                     parcel2.writeInt(zzu ? 1 : 0);
                     return true;
                 case 14:
                     boolean zzv = zzv();
                     parcel2.writeNoException();
-                    int i6 = zzc.zza;
+                    int i14 = zzc.zza;
                     parcel2.writeInt(zzv ? 1 : 0);
                     return true;
                 case 15:
                     boolean zzw = zzw();
                     parcel2.writeNoException();
-                    int i7 = zzc.zza;
+                    int i15 = zzc.zza;
                     parcel2.writeInt(zzw ? 1 : 0);
                     return true;
                 case 16:
                     boolean zzx = zzx();
                     parcel2.writeNoException();
-                    int i8 = zzc.zza;
+                    int i16 = zzc.zza;
                     parcel2.writeInt(zzx ? 1 : 0);
                     return true;
                 case 17:
                     boolean zzy = zzy();
                     parcel2.writeNoException();
-                    int i9 = zzc.zza;
+                    int i17 = zzc.zza;
                     parcel2.writeInt(zzy ? 1 : 0);
                     return true;
                 case 18:
                     boolean zzz = zzz();
                     parcel2.writeNoException();
-                    int i10 = zzc.zza;
+                    int i18 = zzc.zza;
                     parcel2.writeInt(zzz ? 1 : 0);
                     return true;
                 case 19:
                     boolean zzA = zzA();
                     parcel2.writeNoException();
-                    int i11 = zzc.zza;
+                    int i19 = zzc.zza;
                     parcel2.writeInt(zzA ? 1 : 0);
                     return true;
                 case 20:
@@ -191,35 +195,42 @@ public interface IFragmentWrapper extends IInterface {
 
     int zzc() throws RemoteException;
 
+    @Nullable
     Bundle zzd() throws RemoteException;
 
+    @Nullable
     IFragmentWrapper zze() throws RemoteException;
 
+    @Nullable
     IFragmentWrapper zzf() throws RemoteException;
 
+    @NonNull
     IObjectWrapper zzg() throws RemoteException;
 
+    @NonNull
     IObjectWrapper zzh() throws RemoteException;
 
+    @NonNull
     IObjectWrapper zzi() throws RemoteException;
 
+    @Nullable
     String zzj() throws RemoteException;
 
-    void zzk(IObjectWrapper iObjectWrapper) throws RemoteException;
+    void zzk(@NonNull IObjectWrapper iObjectWrapper) throws RemoteException;
 
-    void zzl(boolean z) throws RemoteException;
+    void zzl(boolean z8) throws RemoteException;
 
-    void zzm(boolean z) throws RemoteException;
+    void zzm(boolean z8) throws RemoteException;
 
-    void zzn(boolean z) throws RemoteException;
+    void zzn(boolean z8) throws RemoteException;
 
-    void zzo(boolean z) throws RemoteException;
+    void zzo(boolean z8) throws RemoteException;
 
-    void zzp(Intent intent) throws RemoteException;
+    void zzp(@NonNull Intent intent) throws RemoteException;
 
-    void zzq(Intent intent, int i) throws RemoteException;
+    void zzq(@NonNull Intent intent, int i9) throws RemoteException;
 
-    void zzr(IObjectWrapper iObjectWrapper) throws RemoteException;
+    void zzr(@NonNull IObjectWrapper iObjectWrapper) throws RemoteException;
 
     boolean zzs() throws RemoteException;
 

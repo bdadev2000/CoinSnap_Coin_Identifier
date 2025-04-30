@@ -1,60 +1,55 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzcd extends zzcl {
+/* loaded from: classes2.dex */
+final class zzcd extends zzcm {
     private String zza;
-    private zzco zzb;
-    private zzcn zzc;
-    private byte zzd;
+    private zzcl zzb;
+    private byte zzc;
 
-    @Override // com.google.android.gms.internal.measurement.zzcl
-    final zzcl zza(zzco zzcoVar) {
-        if (zzcoVar == null) {
-            throw new NullPointerException("Null fileChecks");
-        }
-        this.zzb = zzcoVar;
-        return this;
-    }
-
-    public final zzcl zza(String str) {
+    public final zzcm zza(String str) {
         this.zza = str;
         return this;
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzcl
-    public final zzcl zza(zzcn zzcnVar) {
-        if (zzcnVar == null) {
-            throw new NullPointerException("Null filePurpose");
-        }
-        this.zzc = zzcnVar;
+    @Override // com.google.android.gms.internal.measurement.zzcm
+    public final zzcm zzb(boolean z8) {
+        this.zzc = (byte) (this.zzc | 2);
         return this;
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzcl
-    public final zzcl zza(boolean z) {
-        this.zzd = (byte) (this.zzd | 1);
+    @Override // com.google.android.gms.internal.measurement.zzcm
+    public final zzcm zza(zzcl zzclVar) {
+        if (zzclVar != null) {
+            this.zzb = zzclVar;
+            return this;
+        }
+        throw new NullPointerException("Null filePurpose");
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzcm
+    public final zzcm zza(boolean z8) {
+        this.zzc = (byte) (this.zzc | 1);
         return this;
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzcl
-    public final zzcm zza() {
-        if (this.zzd != 1 || this.zza == null || this.zzb == null || this.zzc == null) {
-            StringBuilder sb = new StringBuilder();
-            if (this.zza == null) {
-                sb.append(" fileOwner");
-            }
-            if ((1 & this.zzd) == 0) {
-                sb.append(" hasDifferentDmaOwner");
-            }
-            if (this.zzb == null) {
-                sb.append(" fileChecks");
-            }
-            if (this.zzc == null) {
-                sb.append(" filePurpose");
-            }
-            throw new IllegalStateException("Missing required properties:" + String.valueOf(sb));
+    @Override // com.google.android.gms.internal.measurement.zzcm
+    public final zzcj zza() {
+        if (this.zzc == 3 && this.zza != null && this.zzb != null) {
+            return new zzce(this.zza, this.zzb);
         }
-        return new zzce(this.zza, this.zzb, this.zzc);
+        StringBuilder sb = new StringBuilder();
+        if (this.zza == null) {
+            sb.append(" fileOwner");
+        }
+        if ((this.zzc & 1) == 0) {
+            sb.append(" hasDifferentDmaOwner");
+        }
+        if ((this.zzc & 2) == 0) {
+            sb.append(" skipChecks");
+        }
+        if (this.zzb == null) {
+            sb.append(" filePurpose");
+        }
+        throw new IllegalStateException("Missing required properties:".concat(String.valueOf(sb)));
     }
 }

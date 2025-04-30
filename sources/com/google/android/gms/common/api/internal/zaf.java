@@ -1,12 +1,13 @@
 package com.google.android.gms.common.api.internal;
 
 import android.os.RemoteException;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.Feature;
 import com.google.android.gms.common.api.internal.ListenerHolder;
 import com.google.android.gms.tasks.TaskCompletionSource;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zaf extends zad {
     public final zaci zab;
 
@@ -21,6 +22,7 @@ public final class zaf extends zad {
     }
 
     @Override // com.google.android.gms.common.api.internal.zac
+    @Nullable
     public final Feature[] zab(zabq zabqVar) {
         return this.zab.zaa.getRequiredFeatures();
     }
@@ -35,6 +37,6 @@ public final class zaf extends zad {
     }
 
     @Override // com.google.android.gms.common.api.internal.zad, com.google.android.gms.common.api.internal.zai
-    public final /* bridge */ /* synthetic */ void zag(zaad zaadVar, boolean z) {
+    public final /* bridge */ /* synthetic */ void zag(@NonNull zaad zaadVar, boolean z8) {
     }
 }

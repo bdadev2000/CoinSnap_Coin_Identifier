@@ -1,7 +1,6 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public enum zzs {
     DEBUG(3),
     ERROR(6),
@@ -9,22 +8,22 @@ public enum zzs {
     VERBOSE(2),
     WARN(5);
 
-    public static zzs zza(int i) {
-        if (i == 2) {
-            return VERBOSE;
-        }
-        if (i == 3) {
-            return DEBUG;
-        }
-        if (i == 5) {
-            return WARN;
-        }
-        if (i == 6) {
-            return ERROR;
-        }
-        return INFO;
+    zzs(int i9) {
     }
 
-    zzs(int i) {
+    public static zzs zza(int i9) {
+        if (i9 != 2) {
+            if (i9 != 3) {
+                if (i9 != 5) {
+                    if (i9 != 6) {
+                        return INFO;
+                    }
+                    return ERROR;
+                }
+                return WARN;
+            }
+            return DEBUG;
+        }
+        return VERBOSE;
     }
 }

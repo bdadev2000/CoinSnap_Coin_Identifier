@@ -1,68 +1,47 @@
 package com.google.api;
 
-import com.google.api.HttpRule;
-import com.google.protobuf.AbstractMessageLite;
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.Internal;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import a4.InterfaceC0349b0;
+import a4.U;
+import a4.V;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1891d3;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.O3;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.Collections;
 import java.util.List;
 
-/* loaded from: classes12.dex */
-public final class Http extends GeneratedMessageLite<Http, Builder> implements HttpOrBuilder {
+/* loaded from: classes2.dex */
+public final class Http extends L2 implements O3 {
     private static final Http DEFAULT_INSTANCE;
     public static final int FULLY_DECODE_RESERVED_EXPANSION_FIELD_NUMBER = 2;
-    private static volatile Parser<Http> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int RULES_FIELD_NUMBER = 1;
     private boolean fullyDecodeReservedExpansion_;
-    private Internal.ProtobufList<HttpRule> rules_ = emptyProtobufList();
+    private InterfaceC1891d3 rules_ = L2.emptyProtobufList();
+
+    static {
+        Http http = new Http();
+        DEFAULT_INSTANCE = http;
+        L2.registerDefaultInstance(Http.class, http);
+    }
 
     private Http() {
     }
 
-    @Override // com.google.api.HttpOrBuilder
-    public List<HttpRule> getRulesList() {
-        return this.rules_;
-    }
-
-    public List<? extends HttpRuleOrBuilder> getRulesOrBuilderList() {
-        return this.rules_;
-    }
-
-    @Override // com.google.api.HttpOrBuilder
-    public int getRulesCount() {
-        return this.rules_.size();
-    }
-
-    @Override // com.google.api.HttpOrBuilder
-    public HttpRule getRules(int i) {
-        return this.rules_.get(i);
-    }
-
-    public HttpRuleOrBuilder getRulesOrBuilder(int i) {
-        return this.rules_.get(i);
-    }
-
-    private void ensureRulesIsMutable() {
-        Internal.ProtobufList<HttpRule> protobufList = this.rules_;
-        if (protobufList.isModifiable()) {
-            return;
-        }
-        this.rules_ = GeneratedMessageLite.mutableCopy(protobufList);
-    }
-
     /* JADX INFO: Access modifiers changed from: private */
-    public void setRules(int i, HttpRule httpRule) {
-        httpRule.getClass();
+    public void addAllRules(Iterable<? extends HttpRule> iterable) {
         ensureRulesIsMutable();
-        this.rules_.set(i, httpRule);
+        AbstractC1880c.addAll((Iterable) iterable, (List) this.rules_);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -73,260 +52,86 @@ public final class Http extends GeneratedMessageLite<Http, Builder> implements H
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void addRules(int i, HttpRule httpRule) {
-        httpRule.getClass();
-        ensureRulesIsMutable();
-        this.rules_.add(i, httpRule);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void addAllRules(Iterable<? extends HttpRule> iterable) {
-        ensureRulesIsMutable();
-        AbstractMessageLite.addAll((Iterable) iterable, (List) this.rules_);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearRules() {
-        this.rules_ = emptyProtobufList();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void removeRules(int i) {
-        ensureRulesIsMutable();
-        this.rules_.remove(i);
-    }
-
-    @Override // com.google.api.HttpOrBuilder
-    public boolean getFullyDecodeReservedExpansion() {
-        return this.fullyDecodeReservedExpansion_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setFullyDecodeReservedExpansion(boolean z) {
-        this.fullyDecodeReservedExpansion_ = z;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
     public void clearFullyDecodeReservedExpansion() {
         this.fullyDecodeReservedExpansion_ = false;
     }
 
-    public static Http parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (Http) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearRules() {
+        this.rules_ = L2.emptyProtobufList();
     }
 
-    public static Http parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Http) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
+    private void ensureRulesIsMutable() {
+        InterfaceC1891d3 interfaceC1891d3 = this.rules_;
+        if (!interfaceC1891d3.isModifiable()) {
+            this.rules_ = L2.mutableCopy(interfaceC1891d3);
+        }
     }
 
-    public static Http parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (Http) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
+    public static Http getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    public static Http parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Http) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static Http parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (Http) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static Http parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Http) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static Http parseFrom(InputStream inputStream) throws IOException {
-        return (Http) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static Http parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Http) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static V newBuilder() {
+        return (V) DEFAULT_INSTANCE.createBuilder();
     }
 
     public static Http parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (Http) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+        return (Http) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
     }
 
-    public static Http parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Http) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static Http parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (Http) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
     }
 
-    public static Http parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (Http) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
-    public static Http parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Http) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void removeRules(int i9) {
+        ensureRulesIsMutable();
+        this.rules_.remove(i9);
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setFullyDecodeReservedExpansion(boolean z8) {
+        this.fullyDecodeReservedExpansion_ = z8;
     }
 
-    public static Builder newBuilder(Http http) {
-        return DEFAULT_INSTANCE.createBuilder(http);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setRules(int i9, HttpRule httpRule) {
+        httpRule.getClass();
+        ensureRulesIsMutable();
+        this.rules_.set(i9, httpRule);
     }
 
-    /* loaded from: classes12.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<Http, Builder> implements HttpOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(Http.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.api.HttpOrBuilder
-        public List<HttpRule> getRulesList() {
-            return Collections.unmodifiableList(((Http) this.instance).getRulesList());
-        }
-
-        @Override // com.google.api.HttpOrBuilder
-        public int getRulesCount() {
-            return ((Http) this.instance).getRulesCount();
-        }
-
-        @Override // com.google.api.HttpOrBuilder
-        public HttpRule getRules(int i) {
-            return ((Http) this.instance).getRules(i);
-        }
-
-        public Builder setRules(int i, HttpRule httpRule) {
-            copyOnWrite();
-            ((Http) this.instance).setRules(i, httpRule);
-            return this;
-        }
-
-        public Builder setRules(int i, HttpRule.Builder builder) {
-            copyOnWrite();
-            ((Http) this.instance).setRules(i, builder.build());
-            return this;
-        }
-
-        public Builder addRules(HttpRule httpRule) {
-            copyOnWrite();
-            ((Http) this.instance).addRules(httpRule);
-            return this;
-        }
-
-        public Builder addRules(int i, HttpRule httpRule) {
-            copyOnWrite();
-            ((Http) this.instance).addRules(i, httpRule);
-            return this;
-        }
-
-        public Builder addRules(HttpRule.Builder builder) {
-            copyOnWrite();
-            ((Http) this.instance).addRules(builder.build());
-            return this;
-        }
-
-        public Builder addRules(int i, HttpRule.Builder builder) {
-            copyOnWrite();
-            ((Http) this.instance).addRules(i, builder.build());
-            return this;
-        }
-
-        public Builder addAllRules(Iterable<? extends HttpRule> iterable) {
-            copyOnWrite();
-            ((Http) this.instance).addAllRules(iterable);
-            return this;
-        }
-
-        public Builder clearRules() {
-            copyOnWrite();
-            ((Http) this.instance).clearRules();
-            return this;
-        }
-
-        public Builder removeRules(int i) {
-            copyOnWrite();
-            ((Http) this.instance).removeRules(i);
-            return this;
-        }
-
-        @Override // com.google.api.HttpOrBuilder
-        public boolean getFullyDecodeReservedExpansion() {
-            return ((Http) this.instance).getFullyDecodeReservedExpansion();
-        }
-
-        public Builder setFullyDecodeReservedExpansion(boolean z) {
-            copyOnWrite();
-            ((Http) this.instance).setFullyDecodeReservedExpansion(z);
-            return this;
-        }
-
-        public Builder clearFullyDecodeReservedExpansion() {
-            copyOnWrite();
-            ((Http) this.instance).clearFullyDecodeReservedExpansion();
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.api.Http$1, reason: invalid class name */
-    /* loaded from: classes12.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (U.f3977a[k22.ordinal()]) {
             case 1:
                 return new Http();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0001\u0000\u0001\u001b\u0002\u0007", new Object[]{"rules_", HttpRule.class, "fullyDecodeReservedExpansion_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0001\u0000\u0001\u001b\u0002\u0007", new Object[]{"rules_", HttpRule.class, "fullyDecodeReservedExpansion_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<Http> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (Http.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -336,17 +141,78 @@ public final class Http extends GeneratedMessageLite<Http, Builder> implements H
         }
     }
 
-    static {
-        Http http = new Http();
-        DEFAULT_INSTANCE = http;
-        GeneratedMessageLite.registerDefaultInstance(Http.class, http);
+    public boolean getFullyDecodeReservedExpansion() {
+        return this.fullyDecodeReservedExpansion_;
     }
 
-    public static Http getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public HttpRule getRules(int i9) {
+        return (HttpRule) this.rules_.get(i9);
     }
 
-    public static Parser<Http> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public int getRulesCount() {
+        return this.rules_.size();
+    }
+
+    public List<HttpRule> getRulesList() {
+        return this.rules_;
+    }
+
+    public InterfaceC0349b0 getRulesOrBuilder(int i9) {
+        return (InterfaceC0349b0) this.rules_.get(i9);
+    }
+
+    public List<? extends InterfaceC0349b0> getRulesOrBuilderList() {
+        return this.rules_;
+    }
+
+    public static V newBuilder(Http http) {
+        return (V) DEFAULT_INSTANCE.createBuilder(http);
+    }
+
+    public static Http parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Http) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Http parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (Http) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static Http parseFrom(H h6) throws C1912g3 {
+        return (Http) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void addRules(int i9, HttpRule httpRule) {
+        httpRule.getClass();
+        ensureRulesIsMutable();
+        this.rules_.add(i9, httpRule);
+    }
+
+    public static Http parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (Http) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static Http parseFrom(byte[] bArr) throws C1912g3 {
+        return (Http) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static Http parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (Http) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static Http parseFrom(InputStream inputStream) throws IOException {
+        return (Http) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static Http parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Http) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Http parseFrom(S s5) throws IOException {
+        return (Http) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static Http parseFrom(S s5, W1 w1) throws IOException {
+        return (Http) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

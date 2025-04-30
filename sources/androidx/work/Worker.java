@@ -1,33 +1,29 @@
 package androidx.work;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import androidx.work.ListenableWorker;
-import androidx.work.impl.utils.futures.SettableFuture;
-import com.google.common.util.concurrent.ListenableFuture;
+import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
+import f1.C2262k;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public abstract class Worker extends ListenableWorker {
-    SettableFuture<ListenableWorker.Result> mFuture;
+    C2262k mFuture;
 
-    public abstract ListenableWorker.Result doWork();
-
-    public Worker(Context context, WorkerParameters workerParams) {
-        super(context, workerParams);
+    @Keep
+    @SuppressLint({"BanKeepAnnotation"})
+    public Worker(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+        super(context, workerParameters);
     }
 
+    public abstract n doWork();
+
+    /* JADX WARN: Type inference failed for: r0v0, types: [f1.k, java.lang.Object] */
     @Override // androidx.work.ListenableWorker
-    public final ListenableFuture<ListenableWorker.Result> startWork() {
-        this.mFuture = SettableFuture.create();
-        getBackgroundExecutor().execute(new Runnable() { // from class: androidx.work.Worker.1
-            @Override // java.lang.Runnable
-            public void run() {
-                try {
-                    Worker.this.mFuture.set(Worker.this.doWork());
-                } catch (Throwable th) {
-                    Worker.this.mFuture.setException(th);
-                }
-            }
-        });
+    @NonNull
+    public final f4.c startWork() {
+        this.mFuture = new Object();
+        getBackgroundExecutor().execute(new v(this));
         return this.mFuture;
     }
 }

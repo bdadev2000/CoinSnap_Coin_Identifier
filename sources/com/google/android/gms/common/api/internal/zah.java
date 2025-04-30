@@ -1,12 +1,13 @@
 package com.google.android.gms.common.api.internal;
 
 import android.os.RemoteException;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.Feature;
 import com.google.android.gms.common.api.internal.ListenerHolder;
 import com.google.android.gms.tasks.TaskCompletionSource;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zah extends zad {
     public final ListenerHolder.ListenerKey zab;
 
@@ -18,10 +19,14 @@ public final class zah extends zad {
     @Override // com.google.android.gms.common.api.internal.zac
     public final boolean zaa(zabq zabqVar) {
         zaci zaciVar = (zaci) zabqVar.zah().get(this.zab);
-        return zaciVar != null && zaciVar.zaa.zab();
+        if (zaciVar != null && zaciVar.zaa.zab()) {
+            return true;
+        }
+        return false;
     }
 
     @Override // com.google.android.gms.common.api.internal.zac
+    @Nullable
     public final Feature[] zab(zabq zabqVar) {
         zaci zaciVar = (zaci) zabqVar.zah().get(this.zab);
         if (zaciVar == null) {
@@ -38,10 +43,10 @@ public final class zah extends zad {
             zaciVar.zaa.clearListener();
             return;
         }
-        this.zaa.trySetResult(false);
+        this.zaa.trySetResult(Boolean.FALSE);
     }
 
     @Override // com.google.android.gms.common.api.internal.zad, com.google.android.gms.common.api.internal.zai
-    public final /* bridge */ /* synthetic */ void zag(zaad zaadVar, boolean z) {
+    public final /* bridge */ /* synthetic */ void zag(@NonNull zaad zaadVar, boolean z8) {
     }
 }

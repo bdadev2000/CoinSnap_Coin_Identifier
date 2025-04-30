@@ -1,13 +1,23 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public interface zznq {
-    boolean zza();
+import c4.e;
+import c4.h;
 
-    boolean zzb();
+/* loaded from: classes2.dex */
+public final class zznq implements e {
+    private static zznq zza = new zznq();
+    private final e zzb = new h(new zzns());
 
-    boolean zzc();
+    public static boolean zza() {
+        return ((zznp) zza.get()).zza();
+    }
 
-    boolean zzd();
+    public static boolean zzb() {
+        return ((zznp) zza.get()).zzb();
+    }
+
+    @Override // c4.e
+    public final /* synthetic */ Object get() {
+        return (zznp) this.zzb.get();
+    }
 }

@@ -1,32 +1,41 @@
 package com.google.android.gms.common.internal;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public abstract class DowngradeableSafeParcel extends AbstractSafeParcelable implements ReflectedParcelable {
     private static final Object zza = new Object();
     private boolean zzb = false;
 
-    protected static boolean canUnparcelSafely(String str) {
+    @KeepForSdk
+    public static boolean canUnparcelSafely(@NonNull String str) {
         synchronized (zza) {
         }
         return true;
     }
 
-    protected static Integer getUnparcelClientVersion() {
+    @Nullable
+    @KeepForSdk
+    public static Integer getUnparcelClientVersion() {
         synchronized (zza) {
         }
         return null;
     }
 
-    protected abstract boolean prepareForClientVersion(int i);
+    @KeepForSdk
+    public abstract boolean prepareForClientVersion(int i9);
 
-    public void setShouldDowngrade(boolean z) {
-        this.zzb = z;
+    @KeepForSdk
+    public void setShouldDowngrade(boolean z8) {
+        this.zzb = z8;
     }
 
-    protected boolean shouldDowngrade() {
+    @KeepForSdk
+    public boolean shouldDowngrade() {
         return this.zzb;
     }
 }

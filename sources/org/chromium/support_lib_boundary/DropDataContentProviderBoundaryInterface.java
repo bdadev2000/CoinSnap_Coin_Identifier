@@ -5,25 +5,27 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import java.io.FileNotFoundException;
 
-/* loaded from: classes9.dex */
+/* loaded from: classes3.dex */
 public interface DropDataContentProviderBoundaryInterface {
     Uri cache(byte[] bArr, String str, String str2);
 
-    Bundle call(String str, String str2, Bundle bundle);
+    Bundle call(@NonNull String str, @Nullable String str2, @Nullable Bundle bundle);
 
-    String[] getStreamTypes(Uri uri, String str);
+    String[] getStreamTypes(@NonNull Uri uri, @NonNull String str);
 
-    String getType(Uri uri);
+    String getType(@NonNull Uri uri);
 
     boolean onCreate();
 
-    void onDragEnd(boolean z);
+    void onDragEnd(boolean z8);
 
-    ParcelFileDescriptor openFile(ContentProvider contentProvider, Uri uri) throws FileNotFoundException;
+    ParcelFileDescriptor openFile(@NonNull ContentProvider contentProvider, @NonNull Uri uri) throws FileNotFoundException;
 
-    Cursor query(Uri uri, String[] strArr, String str, String[] strArr2, String str2);
+    Cursor query(@NonNull Uri uri, @Nullable String[] strArr, @Nullable String str, @Nullable String[] strArr2, @Nullable String str2);
 
-    void setClearCachedDataIntervalMs(int i);
+    void setClearCachedDataIntervalMs(int i9);
 }

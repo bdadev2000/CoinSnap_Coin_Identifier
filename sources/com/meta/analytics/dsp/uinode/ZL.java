@@ -1,0 +1,17 @@
+package com.meta.analytics.dsp.uinode;
+
+/* loaded from: assets/audience_network.dex */
+public class ZL implements C1B {
+    public final /* synthetic */ ZH A00;
+    public final /* synthetic */ V2 A01;
+
+    public ZL(ZH zh, V2 v22) {
+        this.A00 = zh;
+        this.A01 = v22;
+    }
+
+    @Override // com.meta.analytics.dsp.uinode.C1B
+    public final void AB3() {
+        this.A01.A1c(true, true);
+    }
+}

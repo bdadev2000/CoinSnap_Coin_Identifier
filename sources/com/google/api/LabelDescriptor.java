@@ -1,115 +1,46 @@
 package com.google.api;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.Internal;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import a4.AbstractC0359g0;
+import a4.C0361h0;
+import a4.EnumC0363i0;
+import a4.InterfaceC0365j0;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-/* loaded from: classes12.dex */
-public final class LabelDescriptor extends GeneratedMessageLite<LabelDescriptor, Builder> implements LabelDescriptorOrBuilder {
+/* loaded from: classes2.dex */
+public final class LabelDescriptor extends L2 implements InterfaceC0365j0 {
     private static final LabelDescriptor DEFAULT_INSTANCE;
     public static final int DESCRIPTION_FIELD_NUMBER = 3;
     public static final int KEY_FIELD_NUMBER = 1;
-    private static volatile Parser<LabelDescriptor> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int VALUE_TYPE_FIELD_NUMBER = 2;
     private int valueType_;
     private String key_ = "";
     private String description_ = "";
 
+    static {
+        LabelDescriptor labelDescriptor = new LabelDescriptor();
+        DEFAULT_INSTANCE = labelDescriptor;
+        L2.registerDefaultInstance(LabelDescriptor.class, labelDescriptor);
+    }
+
     private LabelDescriptor() {
     }
 
-    /* loaded from: classes12.dex */
-    public enum ValueType implements Internal.EnumLite {
-        STRING(0),
-        BOOL(1),
-        INT64(2),
-        UNRECOGNIZED(-1);
-
-        public static final int BOOL_VALUE = 1;
-        public static final int INT64_VALUE = 2;
-        public static final int STRING_VALUE = 0;
-        private static final Internal.EnumLiteMap<ValueType> internalValueMap = new Internal.EnumLiteMap<ValueType>() { // from class: com.google.api.LabelDescriptor.ValueType.1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // com.google.protobuf.Internal.EnumLiteMap
-            public ValueType findValueByNumber(int i) {
-                return ValueType.forNumber(i);
-            }
-        };
-        private final int value;
-
-        @Override // com.google.protobuf.Internal.EnumLite
-        public final int getNumber() {
-            if (this == UNRECOGNIZED) {
-                throw new IllegalArgumentException("Can't get the number of an unknown enum value.");
-            }
-            return this.value;
-        }
-
-        @Deprecated
-        public static ValueType valueOf(int i) {
-            return forNumber(i);
-        }
-
-        public static ValueType forNumber(int i) {
-            if (i == 0) {
-                return STRING;
-            }
-            if (i == 1) {
-                return BOOL;
-            }
-            if (i != 2) {
-                return null;
-            }
-            return INT64;
-        }
-
-        public static Internal.EnumLiteMap<ValueType> internalGetValueMap() {
-            return internalValueMap;
-        }
-
-        public static Internal.EnumVerifier internalGetVerifier() {
-            return ValueTypeVerifier.INSTANCE;
-        }
-
-        /* loaded from: classes12.dex */
-        private static final class ValueTypeVerifier implements Internal.EnumVerifier {
-            static final Internal.EnumVerifier INSTANCE = new ValueTypeVerifier();
-
-            private ValueTypeVerifier() {
-            }
-
-            @Override // com.google.protobuf.Internal.EnumVerifier
-            public boolean isInRange(int i) {
-                return ValueType.forNumber(i) != null;
-            }
-        }
-
-        ValueType(int i) {
-            this.value = i;
-        }
-    }
-
-    @Override // com.google.api.LabelDescriptorOrBuilder
-    public String getKey() {
-        return this.key_;
-    }
-
-    @Override // com.google.api.LabelDescriptorOrBuilder
-    public ByteString getKeyBytes() {
-        return ByteString.copyFromUtf8(this.key_);
-    }
-
     /* JADX INFO: Access modifiers changed from: private */
-    public void setKey(String str) {
-        str.getClass();
-        this.key_ = str;
+    public void clearDescription() {
+        this.description_ = getDefaultInstance().getDescription();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -118,45 +49,28 @@ public final class LabelDescriptor extends GeneratedMessageLite<LabelDescriptor,
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setKeyBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.key_ = byteString.toStringUtf8();
-    }
-
-    @Override // com.google.api.LabelDescriptorOrBuilder
-    public int getValueTypeValue() {
-        return this.valueType_;
-    }
-
-    @Override // com.google.api.LabelDescriptorOrBuilder
-    public ValueType getValueType() {
-        ValueType forNumber = ValueType.forNumber(this.valueType_);
-        return forNumber == null ? ValueType.UNRECOGNIZED : forNumber;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setValueTypeValue(int i) {
-        this.valueType_ = i;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setValueType(ValueType valueType) {
-        this.valueType_ = valueType.getNumber();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
     public void clearValueType() {
         this.valueType_ = 0;
     }
 
-    @Override // com.google.api.LabelDescriptorOrBuilder
-    public String getDescription() {
-        return this.description_;
+    public static LabelDescriptor getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    @Override // com.google.api.LabelDescriptorOrBuilder
-    public ByteString getDescriptionBytes() {
-        return ByteString.copyFromUtf8(this.description_);
+    public static C0361h0 newBuilder() {
+        return (C0361h0) DEFAULT_INSTANCE.createBuilder();
+    }
+
+    public static LabelDescriptor parseDelimitedFrom(InputStream inputStream) throws IOException {
+        return (LabelDescriptor) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static LabelDescriptor parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (LabelDescriptor) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    }
+
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -166,230 +80,59 @@ public final class LabelDescriptor extends GeneratedMessageLite<LabelDescriptor,
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearDescription() {
-        this.description_ = getDefaultInstance().getDescription();
+    public void setDescriptionBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.description_ = h6.toStringUtf8();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setDescriptionBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.description_ = byteString.toStringUtf8();
+    public void setKey(String str) {
+        str.getClass();
+        this.key_ = str;
     }
 
-    public static LabelDescriptor parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (LabelDescriptor) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setKeyBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.key_ = h6.toStringUtf8();
     }
 
-    public static LabelDescriptor parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (LabelDescriptor) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setValueType(EnumC0363i0 enumC0363i0) {
+        this.valueType_ = enumC0363i0.getNumber();
     }
 
-    public static LabelDescriptor parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (LabelDescriptor) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setValueTypeValue(int i9) {
+        this.valueType_ = i9;
     }
 
-    public static LabelDescriptor parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (LabelDescriptor) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static LabelDescriptor parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (LabelDescriptor) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static LabelDescriptor parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (LabelDescriptor) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static LabelDescriptor parseFrom(InputStream inputStream) throws IOException {
-        return (LabelDescriptor) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static LabelDescriptor parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (LabelDescriptor) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static LabelDescriptor parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (LabelDescriptor) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static LabelDescriptor parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (LabelDescriptor) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static LabelDescriptor parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (LabelDescriptor) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
-    }
-
-    public static LabelDescriptor parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (LabelDescriptor) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
-    }
-
-    public static Builder newBuilder(LabelDescriptor labelDescriptor) {
-        return DEFAULT_INSTANCE.createBuilder(labelDescriptor);
-    }
-
-    /* loaded from: classes12.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<LabelDescriptor, Builder> implements LabelDescriptorOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(LabelDescriptor.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.api.LabelDescriptorOrBuilder
-        public String getKey() {
-            return ((LabelDescriptor) this.instance).getKey();
-        }
-
-        @Override // com.google.api.LabelDescriptorOrBuilder
-        public ByteString getKeyBytes() {
-            return ((LabelDescriptor) this.instance).getKeyBytes();
-        }
-
-        public Builder setKey(String str) {
-            copyOnWrite();
-            ((LabelDescriptor) this.instance).setKey(str);
-            return this;
-        }
-
-        public Builder clearKey() {
-            copyOnWrite();
-            ((LabelDescriptor) this.instance).clearKey();
-            return this;
-        }
-
-        public Builder setKeyBytes(ByteString byteString) {
-            copyOnWrite();
-            ((LabelDescriptor) this.instance).setKeyBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.api.LabelDescriptorOrBuilder
-        public int getValueTypeValue() {
-            return ((LabelDescriptor) this.instance).getValueTypeValue();
-        }
-
-        public Builder setValueTypeValue(int i) {
-            copyOnWrite();
-            ((LabelDescriptor) this.instance).setValueTypeValue(i);
-            return this;
-        }
-
-        @Override // com.google.api.LabelDescriptorOrBuilder
-        public ValueType getValueType() {
-            return ((LabelDescriptor) this.instance).getValueType();
-        }
-
-        public Builder setValueType(ValueType valueType) {
-            copyOnWrite();
-            ((LabelDescriptor) this.instance).setValueType(valueType);
-            return this;
-        }
-
-        public Builder clearValueType() {
-            copyOnWrite();
-            ((LabelDescriptor) this.instance).clearValueType();
-            return this;
-        }
-
-        @Override // com.google.api.LabelDescriptorOrBuilder
-        public String getDescription() {
-            return ((LabelDescriptor) this.instance).getDescription();
-        }
-
-        @Override // com.google.api.LabelDescriptorOrBuilder
-        public ByteString getDescriptionBytes() {
-            return ((LabelDescriptor) this.instance).getDescriptionBytes();
-        }
-
-        public Builder setDescription(String str) {
-            copyOnWrite();
-            ((LabelDescriptor) this.instance).setDescription(str);
-            return this;
-        }
-
-        public Builder clearDescription() {
-            copyOnWrite();
-            ((LabelDescriptor) this.instance).clearDescription();
-            return this;
-        }
-
-        public Builder setDescriptionBytes(ByteString byteString) {
-            copyOnWrite();
-            ((LabelDescriptor) this.instance).setDescriptionBytes(byteString);
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.api.LabelDescriptor$1, reason: invalid class name */
-    /* loaded from: classes12.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (AbstractC0359g0.f4011a[k22.ordinal()]) {
             case 1:
                 return new LabelDescriptor();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001Ȉ\u0002\f\u0003Ȉ", new Object[]{"key_", "valueType_", "description_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001Ȉ\u0002\f\u0003Ȉ", new Object[]{"key_", "valueType_", "description_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<LabelDescriptor> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (LabelDescriptor.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -399,17 +142,89 @@ public final class LabelDescriptor extends GeneratedMessageLite<LabelDescriptor,
         }
     }
 
-    static {
-        LabelDescriptor labelDescriptor = new LabelDescriptor();
-        DEFAULT_INSTANCE = labelDescriptor;
-        GeneratedMessageLite.registerDefaultInstance(LabelDescriptor.class, labelDescriptor);
+    public String getDescription() {
+        return this.description_;
     }
 
-    public static LabelDescriptor getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public H getDescriptionBytes() {
+        return H.copyFromUtf8(this.description_);
     }
 
-    public static Parser<LabelDescriptor> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public String getKey() {
+        return this.key_;
+    }
+
+    public H getKeyBytes() {
+        return H.copyFromUtf8(this.key_);
+    }
+
+    public EnumC0363i0 getValueType() {
+        EnumC0363i0 enumC0363i0;
+        int i9 = this.valueType_;
+        if (i9 != 0) {
+            if (i9 != 1) {
+                if (i9 != 2) {
+                    enumC0363i0 = null;
+                } else {
+                    enumC0363i0 = EnumC0363i0.INT64;
+                }
+            } else {
+                enumC0363i0 = EnumC0363i0.BOOL;
+            }
+        } else {
+            enumC0363i0 = EnumC0363i0.STRING;
+        }
+        if (enumC0363i0 == null) {
+            return EnumC0363i0.UNRECOGNIZED;
+        }
+        return enumC0363i0;
+    }
+
+    public int getValueTypeValue() {
+        return this.valueType_;
+    }
+
+    public static C0361h0 newBuilder(LabelDescriptor labelDescriptor) {
+        return (C0361h0) DEFAULT_INSTANCE.createBuilder(labelDescriptor);
+    }
+
+    public static LabelDescriptor parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (LabelDescriptor) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static LabelDescriptor parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (LabelDescriptor) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static LabelDescriptor parseFrom(H h6) throws C1912g3 {
+        return (LabelDescriptor) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static LabelDescriptor parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (LabelDescriptor) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static LabelDescriptor parseFrom(byte[] bArr) throws C1912g3 {
+        return (LabelDescriptor) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static LabelDescriptor parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (LabelDescriptor) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static LabelDescriptor parseFrom(InputStream inputStream) throws IOException {
+        return (LabelDescriptor) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static LabelDescriptor parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (LabelDescriptor) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static LabelDescriptor parseFrom(S s5) throws IOException {
+        return (LabelDescriptor) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static LabelDescriptor parseFrom(S s5, W1 w1) throws IOException {
+        return (LabelDescriptor) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

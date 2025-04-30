@@ -3,18 +3,16 @@ package com.google.android.gms.common.internal;
 import android.content.Intent;
 import androidx.fragment.app.Fragment;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zae extends zag {
     final /* synthetic */ Intent zaa;
     final /* synthetic */ Fragment zab;
     final /* synthetic */ int zac;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zae(Intent intent, Fragment fragment, int i) {
+    public zae(Intent intent, Fragment fragment, int i9) {
         this.zaa = intent;
         this.zab = fragment;
-        this.zac = i;
+        this.zac = i9;
     }
 
     @Override // com.google.android.gms.common.internal.zag

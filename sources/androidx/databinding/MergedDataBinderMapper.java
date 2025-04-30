@@ -2,111 +2,82 @@ package androidx.databinding;
 
 import android.util.Log;
 import android.view.View;
+import d0.AbstractC2154a;
+import d0.AbstractC2158e;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /* loaded from: classes.dex */
-public class MergedDataBinderMapper extends DataBinderMapper {
-    private static final String TAG = "MergedDataBinderMapper";
-    private Set<Class<? extends DataBinderMapper>> mExistingMappers = new HashSet();
-    private List<DataBinderMapper> mMappers = new CopyOnWriteArrayList();
-    private List<String> mFeatureBindingMappers = new CopyOnWriteArrayList();
+public class MergedDataBinderMapper extends AbstractC2154a {
 
-    /* JADX WARN: Multi-variable type inference failed */
-    public void addMapper(DataBinderMapper dataBinderMapper) {
-        if (this.mExistingMappers.add(dataBinderMapper.getClass())) {
-            this.mMappers.add(dataBinderMapper);
-            Iterator<DataBinderMapper> it = dataBinderMapper.collectDependencies().iterator();
+    /* renamed from: a, reason: collision with root package name */
+    public final HashSet f4491a = new HashSet();
+    public final CopyOnWriteArrayList b = new CopyOnWriteArrayList();
+
+    /* renamed from: c, reason: collision with root package name */
+    public final CopyOnWriteArrayList f4492c = new CopyOnWriteArrayList();
+
+    @Override // d0.AbstractC2154a
+    public final AbstractC2158e b(View view, int i9) {
+        Iterator it = this.b.iterator();
+        while (it.hasNext()) {
+            AbstractC2158e b = ((AbstractC2154a) it.next()).b(view, i9);
+            if (b != null) {
+                return b;
+            }
+        }
+        if (e()) {
+            return b(view, i9);
+        }
+        return null;
+    }
+
+    @Override // d0.AbstractC2154a
+    public final AbstractC2158e c(View[] viewArr, int i9) {
+        Iterator it = this.b.iterator();
+        while (it.hasNext()) {
+            AbstractC2158e c9 = ((AbstractC2154a) it.next()).c(viewArr, i9);
+            if (c9 != null) {
+                return c9;
+            }
+        }
+        if (e()) {
+            return c(viewArr, i9);
+        }
+        return null;
+    }
+
+    public final void d(AbstractC2154a abstractC2154a) {
+        if (this.f4491a.add(abstractC2154a.getClass())) {
+            this.b.add(abstractC2154a);
+            Iterator it = abstractC2154a.a().iterator();
             while (it.hasNext()) {
-                addMapper(it.next());
+                d((AbstractC2154a) it.next());
             }
         }
     }
 
-    protected void addMapper(String str) {
-        this.mFeatureBindingMappers.add(str + ".DataBinderMapperImpl");
-    }
-
-    @Override // androidx.databinding.DataBinderMapper
-    public ViewDataBinding getDataBinder(DataBindingComponent dataBindingComponent, View view, int i) {
-        Iterator<DataBinderMapper> it = this.mMappers.iterator();
+    public final boolean e() {
+        CopyOnWriteArrayList copyOnWriteArrayList = this.f4492c;
+        Iterator it = copyOnWriteArrayList.iterator();
+        boolean z8 = false;
         while (it.hasNext()) {
-            ViewDataBinding dataBinder = it.next().getDataBinder(dataBindingComponent, view, i);
-            if (dataBinder != null) {
-                return dataBinder;
-            }
-        }
-        if (loadFeatures()) {
-            return getDataBinder(dataBindingComponent, view, i);
-        }
-        return null;
-    }
-
-    @Override // androidx.databinding.DataBinderMapper
-    public ViewDataBinding getDataBinder(DataBindingComponent dataBindingComponent, View[] viewArr, int i) {
-        Iterator<DataBinderMapper> it = this.mMappers.iterator();
-        while (it.hasNext()) {
-            ViewDataBinding dataBinder = it.next().getDataBinder(dataBindingComponent, viewArr, i);
-            if (dataBinder != null) {
-                return dataBinder;
-            }
-        }
-        if (loadFeatures()) {
-            return getDataBinder(dataBindingComponent, viewArr, i);
-        }
-        return null;
-    }
-
-    @Override // androidx.databinding.DataBinderMapper
-    public int getLayoutId(String str) {
-        Iterator<DataBinderMapper> it = this.mMappers.iterator();
-        while (it.hasNext()) {
-            int layoutId = it.next().getLayoutId(str);
-            if (layoutId != 0) {
-                return layoutId;
-            }
-        }
-        if (loadFeatures()) {
-            return getLayoutId(str);
-        }
-        return 0;
-    }
-
-    @Override // androidx.databinding.DataBinderMapper
-    public String convertBrIdToString(int i) {
-        Iterator<DataBinderMapper> it = this.mMappers.iterator();
-        while (it.hasNext()) {
-            String convertBrIdToString = it.next().convertBrIdToString(i);
-            if (convertBrIdToString != null) {
-                return convertBrIdToString;
-            }
-        }
-        if (loadFeatures()) {
-            return convertBrIdToString(i);
-        }
-        return null;
-    }
-
-    private boolean loadFeatures() {
-        boolean z = false;
-        for (String str : this.mFeatureBindingMappers) {
+            String str = (String) it.next();
             try {
                 Class<?> cls = Class.forName(str);
-                if (DataBinderMapper.class.isAssignableFrom(cls)) {
-                    addMapper((DataBinderMapper) cls.newInstance());
-                    this.mFeatureBindingMappers.remove(str);
-                    z = true;
+                if (AbstractC2154a.class.isAssignableFrom(cls)) {
+                    d((AbstractC2154a) cls.newInstance());
+                    copyOnWriteArrayList.remove(str);
+                    z8 = true;
                 }
             } catch (ClassNotFoundException unused) {
-            } catch (IllegalAccessException e) {
-                Log.e(TAG, "unable to add feature mapper for " + str, e);
-            } catch (InstantiationException e2) {
-                Log.e(TAG, "unable to add feature mapper for " + str, e2);
+            } catch (IllegalAccessException e4) {
+                Log.e("MergedDataBinderMapper", "unable to add feature mapper for " + str, e4);
+            } catch (InstantiationException e9) {
+                Log.e("MergedDataBinderMapper", "unable to add feature mapper for " + str, e9);
             }
         }
-        return z;
+        return z8;
     }
 }

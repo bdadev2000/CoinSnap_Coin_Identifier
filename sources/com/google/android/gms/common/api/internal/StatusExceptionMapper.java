@@ -1,9 +1,13 @@
 package com.google.android.gms.common.api.internal;
 
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.api.Status;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public interface StatusExceptionMapper {
-    Exception getException(Status status);
+    @NonNull
+    @KeepForSdk
+    Exception getException(@NonNull Status status);
 }

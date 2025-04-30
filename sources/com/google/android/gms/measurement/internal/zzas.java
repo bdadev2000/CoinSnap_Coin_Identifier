@@ -1,12 +1,8 @@
 package com.google.android.gms.measurement.internal;
 
-import com.google.android.gms.internal.measurement.zzfy;
+import android.database.Cursor;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-public interface zzas {
-    void zza(zzfy.zzk zzkVar);
-
-    boolean zza(long j, zzfy.zzf zzfVar);
+/* loaded from: classes2.dex */
+interface zzas<T> {
+    T zza(Cursor cursor);
 }

@@ -1,138 +1,44 @@
 package com.google.android.gms.measurement.internal;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import com.google.android.gms.common.util.Clock;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import org.checkerframework.dataflow.qual.Pure;
+import android.os.RemoteException;
+import com.google.android.gms.common.internal.Preconditions;
+import java.util.concurrent.atomic.AtomicReference;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzle extends zzjd {
-    @Override // com.google.android.gms.measurement.internal.zzja, com.google.android.gms.measurement.internal.zzjc
-    @Pure
-    public final /* bridge */ /* synthetic */ Context zza() {
-        return super.zza();
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzle implements Runnable {
+    private final /* synthetic */ AtomicReference zza;
+    private final /* synthetic */ zzo zzb;
+    private final /* synthetic */ boolean zzc;
+    private final /* synthetic */ zzkx zzd;
+
+    public zzle(zzkx zzkxVar, AtomicReference atomicReference, zzo zzoVar, boolean z8) {
+        this.zza = atomicReference;
+        this.zzb = zzoVar;
+        this.zzc = z8;
+        this.zzd = zzkxVar;
     }
 
-    @Override // com.google.android.gms.measurement.internal.zzjd
-    protected final boolean zzh() {
-        return false;
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja, com.google.android.gms.measurement.internal.zzjc
-    @Pure
-    public final /* bridge */ /* synthetic */ Clock zzb() {
-        return super.zzb();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja, com.google.android.gms.measurement.internal.zzjc
-    @Pure
-    public final /* bridge */ /* synthetic */ zzab zzd() {
-        return super.zzd();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    @Pure
-    public final /* bridge */ /* synthetic */ zzag zze() {
-        return super.zze();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    @Pure
-    public final /* bridge */ /* synthetic */ zzaz zzf() {
-        return super.zzf();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    @Pure
-    public final /* bridge */ /* synthetic */ zzgh zzi() {
-        return super.zzi();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja, com.google.android.gms.measurement.internal.zzjc
-    @Pure
-    public final /* bridge */ /* synthetic */ zzgo zzj() {
-        return super.zzj();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    @Pure
-    public final /* bridge */ /* synthetic */ zzha zzk() {
-        return super.zzk();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja, com.google.android.gms.measurement.internal.zzjc
-    @Pure
-    public final /* bridge */ /* synthetic */ zzhv zzl() {
-        return super.zzl();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    @Pure
-    public final /* bridge */ /* synthetic */ zzos zzq() {
-        return super.zzq();
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzle(zzhy zzhyVar) {
-        super(zzhyVar);
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    public final /* bridge */ /* synthetic */ void zzr() {
-        super.zzr();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    public final /* bridge */ /* synthetic */ void zzs() {
-        super.zzs();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    public final /* bridge */ /* synthetic */ void zzt() {
-        super.zzt();
-    }
-
-    public final boolean zzc() {
-        NetworkInfo activeNetworkInfo;
-        zzac();
-        ConnectivityManager connectivityManager = (ConnectivityManager) zza().getSystemService("connectivity");
-        if (connectivityManager != null) {
+    @Override // java.lang.Runnable
+    public final void run() {
+        zzfl zzflVar;
+        synchronized (this.zza) {
             try {
-                activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-            } catch (SecurityException unused) {
-            }
-            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-        }
-        activeNetworkInfo = null;
-        if (activeNetworkInfo != null) {
-            return false;
-        }
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public static byte[] zza(HttpURLConnection httpURLConnection) throws IOException {
-        InputStream inputStream = null;
-        try {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            inputStream = httpURLConnection.getInputStream();
-            byte[] bArr = new byte[1024];
-            while (true) {
-                int read = inputStream.read(bArr);
-                if (read <= 0) {
-                    break;
+                try {
+                    zzflVar = this.zzd.zzb;
+                } catch (RemoteException e4) {
+                    this.zzd.zzj().zzg().zza("Failed to get all user properties; remote exception", e4);
                 }
-                byteArrayOutputStream.write(bArr, 0, read);
-            }
-            return byteArrayOutputStream.toByteArray();
-        } finally {
-            if (inputStream != null) {
-                inputStream.close();
+                if (zzflVar == null) {
+                    this.zzd.zzj().zzg().zza("Failed to get all user properties; not connected to service");
+                    return;
+                }
+                Preconditions.checkNotNull(this.zzb);
+                this.zza.set(zzflVar.zza(this.zzb, this.zzc));
+                this.zzd.zzaq();
+                this.zza.notify();
+            } finally {
+                this.zza.notify();
             }
         }
     }

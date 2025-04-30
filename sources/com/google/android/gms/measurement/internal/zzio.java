@@ -1,31 +1,19 @@
 package com.google.android.gms.measurement.internal;
 
-import java.util.List;
-import java.util.concurrent.Callable;
+import com.google.android.gms.measurement.internal.zzin;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzio implements Callable<List<zzop>> {
-    private final /* synthetic */ String zza;
-    private final /* synthetic */ String zzb;
-    private final /* synthetic */ String zzc;
-    private final /* synthetic */ zzic zzd;
+/* loaded from: classes2.dex */
+public enum zzio {
+    STORAGE(zzin.zza.zza, zzin.zza.zzb),
+    DMA(zzin.zza.zzc);
 
-    @Override // java.util.concurrent.Callable
-    public final /* synthetic */ List<zzop> call() throws Exception {
-        zznv zznvVar;
-        zznv zznvVar2;
-        zznvVar = this.zzd.zza;
-        zznvVar.zzr();
-        zznvVar2 = this.zzd.zza;
-        return zznvVar2.zzf().zzb(this.zza, this.zzb, this.zzc);
+    private final zzin.zza[] zzd;
+
+    zzio(zzin.zza... zzaVarArr) {
+        this.zzd = zzaVarArr;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzio(zzic zzicVar, String str, String str2, String str3) {
-        this.zza = str;
-        this.zzb = str2;
-        this.zzc = str3;
-        this.zzd = zzicVar;
+    public final zzin.zza[] zza() {
+        return this.zzd;
     }
 }

@@ -2,17 +2,14 @@ package com.google.android.gms.common.api.internal;
 
 import android.content.Context;
 import android.os.Looper;
+import androidx.annotation.NonNull;
 import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.common.api.Result;
 import com.google.android.gms.common.api.internal.BaseImplementation;
-import org.checkerframework.checker.initialization.qual.NotOnlyInitialized;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zabv extends zaag {
-
-    @NotOnlyInitialized
     private final GoogleApi zaa;
 
     public zabv(GoogleApi googleApi) {
@@ -21,13 +18,13 @@ public final class zabv extends zaag {
     }
 
     @Override // com.google.android.gms.common.api.GoogleApiClient
-    public final <A extends Api.AnyClient, R extends Result, T extends BaseImplementation.ApiMethodImpl<R, A>> T enqueue(T t) {
-        return (T) this.zaa.doRead((GoogleApi) t);
+    public final <A extends Api.AnyClient, R extends Result, T extends BaseImplementation.ApiMethodImpl<R, A>> T enqueue(@NonNull T t9) {
+        return (T) this.zaa.doRead((GoogleApi) t9);
     }
 
     @Override // com.google.android.gms.common.api.GoogleApiClient
-    public final <A extends Api.AnyClient, T extends BaseImplementation.ApiMethodImpl<? extends Result, A>> T execute(T t) {
-        return (T) this.zaa.doWrite((GoogleApi) t);
+    public final <A extends Api.AnyClient, T extends BaseImplementation.ApiMethodImpl<? extends Result, A>> T execute(@NonNull T t9) {
+        return (T) this.zaa.doWrite((GoogleApi) t9);
     }
 
     @Override // com.google.android.gms.common.api.GoogleApiClient

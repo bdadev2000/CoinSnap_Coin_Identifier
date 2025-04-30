@@ -3,16 +3,15 @@ package com.google.android.gms.signin.internal;
 import android.os.Parcel;
 import android.os.RemoteException;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class zad extends com.google.android.gms.internal.base.zab implements zae {
     public zad() {
         super("com.google.android.gms.signin.internal.ISignInCallbacks");
     }
 
     @Override // com.google.android.gms.internal.base.zab
-    protected final boolean zaa(int i, Parcel parcel, Parcel parcel2, int i2) throws RemoteException {
-        switch (i) {
+    public final boolean zaa(int i9, Parcel parcel, Parcel parcel2, int i10) throws RemoteException {
+        switch (i9) {
             case 3:
                 com.google.android.gms.internal.base.zac.zab(parcel);
                 break;

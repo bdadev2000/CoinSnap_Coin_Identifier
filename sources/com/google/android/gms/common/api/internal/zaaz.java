@@ -1,18 +1,17 @@
 package com.google.android.gms.common.api.internal;
 
 import android.os.Bundle;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.internal.Preconditions;
 import java.util.concurrent.atomic.AtomicReference;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zaaz implements GoogleApiClient.ConnectionCallbacks {
     final /* synthetic */ AtomicReference zaa;
     final /* synthetic */ StatusPendingResult zab;
     final /* synthetic */ zabe zac;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zaaz(zabe zabeVar, AtomicReference atomicReference, StatusPendingResult statusPendingResult) {
         this.zac = zabeVar;
         this.zaa = atomicReference;
@@ -20,11 +19,11 @@ final class zaaz implements GoogleApiClient.ConnectionCallbacks {
     }
 
     @Override // com.google.android.gms.common.api.internal.ConnectionCallbacks
-    public final void onConnected(Bundle bundle) {
+    public final void onConnected(@Nullable Bundle bundle) {
         this.zac.zam((GoogleApiClient) Preconditions.checkNotNull((GoogleApiClient) this.zaa.get()), this.zab, true);
     }
 
     @Override // com.google.android.gms.common.api.internal.ConnectionCallbacks
-    public final void onConnectionSuspended(int i) {
+    public final void onConnectionSuspended(int i9) {
     }
 }

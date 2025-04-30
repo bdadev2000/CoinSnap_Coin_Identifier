@@ -1,9 +1,9 @@
 package com.google.android.gms.common.api;
 
+import androidx.annotation.NonNull;
 import com.google.android.gms.common.api.Result;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public interface ResultCallback<R extends Result> {
-    void onResult(R r);
+    void onResult(@NonNull R r9);
 }

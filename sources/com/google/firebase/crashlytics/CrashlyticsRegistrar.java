@@ -1,58 +1,52 @@
 package com.google.firebase.crashlytics;
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.analytics.connector.AnalyticsConnector;
-import com.google.firebase.annotations.concurrent.Background;
-import com.google.firebase.annotations.concurrent.Blocking;
-import com.google.firebase.components.Component;
-import com.google.firebase.components.ComponentContainer;
-import com.google.firebase.components.ComponentFactory;
+import O4.e;
+import R2.b;
+import android.util.Log;
 import com.google.firebase.components.ComponentRegistrar;
-import com.google.firebase.components.Dependency;
-import com.google.firebase.components.Qualified;
-import com.google.firebase.crashlytics.internal.CrashlyticsNativeComponent;
-import com.google.firebase.crashlytics.internal.Logger;
-import com.google.firebase.crashlytics.internal.concurrency.CrashlyticsWorkers;
-import com.google.firebase.installations.FirebaseInstallationsApi;
-import com.google.firebase.platforminfo.LibraryVersionComponent;
-import com.google.firebase.remoteconfig.interop.FirebaseRemoteConfigInterop;
-import com.google.firebase.sessions.api.FirebaseSessionsDependencies;
-import com.google.firebase.sessions.api.SessionSubscriber;
+import g4.C2296f;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
+import java.util.Map;
+import k4.InterfaceC2433b;
+import n5.InterfaceC2479a;
+import o4.C2495a;
+import o4.C2496b;
+import o4.C2502h;
+import q4.C2645d;
+import q5.C2646a;
+import q5.c;
+import q5.d;
+import r4.a;
 
-/* loaded from: classes11.dex */
+/* loaded from: classes2.dex */
 public class CrashlyticsRegistrar implements ComponentRegistrar {
-    private static final String LIBRARY_NAME = "fire-cls";
-    private final Qualified<ExecutorService> backgroundExecutorService = Qualified.qualified(Background.class, ExecutorService.class);
-    private final Qualified<ExecutorService> blockingExecutorService = Qualified.qualified(Blocking.class, ExecutorService.class);
+
+    /* renamed from: a, reason: collision with root package name */
+    public static final /* synthetic */ int f14326a = 0;
 
     static {
-        FirebaseSessionsDependencies.addDependency(SessionSubscriber.Name.CRASHLYTICS);
+        d dVar = d.b;
+        Map map = c.b;
+        if (map.containsKey(dVar)) {
+            Log.d("SessionsDependencies", "Dependency " + dVar + " already added.");
+            return;
+        }
+        map.put(dVar, new C2646a(new Y7.d(true)));
+        Log.d("SessionsDependencies", "Dependency to " + dVar + " added.");
     }
 
     @Override // com.google.firebase.components.ComponentRegistrar
-    public List<Component<?>> getComponents() {
-        return Arrays.asList(Component.builder(FirebaseCrashlytics.class).name(LIBRARY_NAME).add(Dependency.required((Class<?>) FirebaseApp.class)).add(Dependency.required((Class<?>) FirebaseInstallationsApi.class)).add(Dependency.required(this.backgroundExecutorService)).add(Dependency.required(this.blockingExecutorService)).add(Dependency.deferred((Class<?>) CrashlyticsNativeComponent.class)).add(Dependency.deferred((Class<?>) AnalyticsConnector.class)).add(Dependency.deferred((Class<?>) FirebaseRemoteConfigInterop.class)).factory(new ComponentFactory() { // from class: com.google.firebase.crashlytics.CrashlyticsRegistrar$$ExternalSyntheticLambda0
-            @Override // com.google.firebase.components.ComponentFactory
-            public final Object create(ComponentContainer componentContainer) {
-                FirebaseCrashlytics buildCrashlytics;
-                buildCrashlytics = CrashlyticsRegistrar.this.buildCrashlytics(componentContainer);
-                return buildCrashlytics;
-            }
-        }).eagerInDefaultApp().build(), LibraryVersionComponent.create(LIBRARY_NAME, BuildConfig.VERSION_NAME));
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public FirebaseCrashlytics buildCrashlytics(ComponentContainer componentContainer) {
-        CrashlyticsWorkers.setEnforcement(false);
-        long currentTimeMillis = System.currentTimeMillis();
-        FirebaseCrashlytics init = FirebaseCrashlytics.init((FirebaseApp) componentContainer.get(FirebaseApp.class), (FirebaseInstallationsApi) componentContainer.get(FirebaseInstallationsApi.class), componentContainer.getDeferred(CrashlyticsNativeComponent.class), componentContainer.getDeferred(AnalyticsConnector.class), componentContainer.getDeferred(FirebaseRemoteConfigInterop.class), (ExecutorService) componentContainer.get(this.backgroundExecutorService), (ExecutorService) componentContainer.get(this.blockingExecutorService));
-        long currentTimeMillis2 = System.currentTimeMillis() - currentTimeMillis;
-        if (currentTimeMillis2 > 16) {
-            Logger.getLogger().d("Initializing Crashlytics blocked main for " + currentTimeMillis2 + " ms");
-        }
-        return init;
+    public final List getComponents() {
+        C2495a a6 = C2496b.a(C2645d.class);
+        a6.f21938a = "fire-cls";
+        a6.a(C2502h.b(C2296f.class));
+        a6.a(C2502h.b(e.class));
+        a6.a(new C2502h(a.class, 0, 2));
+        a6.a(new C2502h(InterfaceC2433b.class, 0, 2));
+        a6.a(new C2502h(InterfaceC2479a.class, 0, 2));
+        a6.f21942f = new F2.d(this, 25);
+        a6.c(2);
+        return Arrays.asList(a6.b(), b.k("fire-cls", "19.0.3"));
     }
 }

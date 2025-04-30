@@ -1,15 +1,16 @@
 package com.google.android.gms.common.api.internal;
 
+import androidx.annotation.NonNull;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.Task;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
-final class zacx implements Continuation {
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zacx implements Continuation {
     @Override // com.google.android.gms.tasks.Continuation
-    public final /* bridge */ /* synthetic */ Object then(Task task) throws Exception {
+    public final /* bridge */ /* synthetic */ Object then(@NonNull Task task) throws Exception {
         if (((Boolean) task.getResult()).booleanValue()) {
             return null;
         }

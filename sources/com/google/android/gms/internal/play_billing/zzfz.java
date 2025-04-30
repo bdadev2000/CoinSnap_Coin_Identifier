@@ -1,74 +1,30 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public final class zzfz extends zzcb implements zzdg {
-    private static final zzfz zzb;
-    private int zzd;
-    private int zze = 0;
-    private Object zzf;
-    private zzfm zzg;
-
-    static {
-        zzfz zzfzVar = new zzfz();
-        zzb = zzfzVar;
-        zzcb.zzp(zzfz.class, zzfzVar);
-    }
-
+/* loaded from: classes2.dex */
+public final class zzfz extends zzcn implements zzed {
     private zzfz() {
+        throw null;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ void zzA(zzfz zzfzVar, zzff zzffVar) {
-        zzffVar.getClass();
-        zzfzVar.zzf = zzffVar;
-        zzfzVar.zze = 3;
+    public final zzfz zzl(zzgg zzggVar) {
+        zzi();
+        zzga.zzB((zzga) this.zza, (zzgk) zzggVar.zzf());
+        return this;
     }
 
-    public static zzfy zzv() {
-        return (zzfy) zzb.zzg();
+    public final zzfz zzm(zzhb zzhbVar) {
+        zzi();
+        zzga.zzC((zzga) this.zza, zzhbVar);
+        return this;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ void zzx(zzfz zzfzVar, zzgd zzgdVar) {
-        zzgdVar.getClass();
-        zzfzVar.zzf = zzgdVar;
-        zzfzVar.zze = 4;
+    public final zzfz zzn(int i9) {
+        zzi();
+        zzga.zzD((zzga) this.zza, i9);
+        return this;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ void zzy(zzfz zzfzVar, zzfm zzfmVar) {
-        zzfzVar.zzg = zzfmVar;
-        zzfzVar.zzd |= 1;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ void zzz(zzfz zzfzVar, zzfb zzfbVar) {
-        zzfbVar.getClass();
-        zzfzVar.zzf = zzfbVar;
-        zzfzVar.zze = 2;
-    }
-
-    /* JADX INFO: Access modifiers changed from: protected */
-    @Override // com.google.android.gms.internal.play_billing.zzcb
-    public final Object zzu(int i, Object obj, Object obj2) {
-        int i2 = i - 1;
-        if (i2 == 0) {
-            return (byte) 1;
-        }
-        if (i2 == 2) {
-            return zzm(zzb, "\u0001\u0004\u0001\u0001\u0001\u0004\u0004\u0000\u0000\u0000\u0001ဉ\u0000\u0002<\u0000\u0003<\u0000\u0004<\u0000", new Object[]{"zzf", "zze", "zzd", "zzg", zzfb.class, zzff.class, zzgd.class});
-        }
-        if (i2 == 3) {
-            return new zzfz();
-        }
-        zzfx zzfxVar = null;
-        if (i2 == 4) {
-            return new zzfy(zzfxVar);
-        }
-        if (i2 != 5) {
-            return null;
-        }
-        return zzb;
+    public /* synthetic */ zzfz(zzfy zzfyVar) {
+        super(zzga.zzz());
     }
 }

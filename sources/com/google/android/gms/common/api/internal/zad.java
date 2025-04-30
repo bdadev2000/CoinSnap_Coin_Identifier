@@ -2,30 +2,30 @@ package com.google.android.gms.common.api.internal;
 
 import android.os.DeadObjectException;
 import android.os.RemoteException;
+import androidx.annotation.NonNull;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class zad extends zac {
     protected final TaskCompletionSource zaa;
 
-    public zad(int i, TaskCompletionSource taskCompletionSource) {
-        super(i);
+    public zad(int i9, TaskCompletionSource taskCompletionSource) {
+        super(i9);
         this.zaa = taskCompletionSource;
     }
 
-    protected abstract void zac(zabq zabqVar) throws RemoteException;
+    public abstract void zac(zabq zabqVar) throws RemoteException;
 
     @Override // com.google.android.gms.common.api.internal.zai
-    public final void zad(Status status) {
+    public final void zad(@NonNull Status status) {
         this.zaa.trySetException(new ApiException(status));
     }
 
     @Override // com.google.android.gms.common.api.internal.zai
-    public final void zae(Exception exc) {
+    public final void zae(@NonNull Exception exc) {
         this.zaa.trySetException(exc);
     }
 
@@ -33,17 +33,17 @@ public abstract class zad extends zac {
     public final void zaf(zabq zabqVar) throws DeadObjectException {
         try {
             zac(zabqVar);
-        } catch (DeadObjectException e) {
-            zad(zai.zah(e));
-            throw e;
-        } catch (RemoteException e2) {
-            zad(zai.zah(e2));
-        } catch (RuntimeException e3) {
-            this.zaa.trySetException(e3);
+        } catch (DeadObjectException e4) {
+            zad(zai.zah(e4));
+            throw e4;
+        } catch (RemoteException e9) {
+            zad(zai.zah(e9));
+        } catch (RuntimeException e10) {
+            this.zaa.trySetException(e10);
         }
     }
 
     @Override // com.google.android.gms.common.api.internal.zai
-    public void zag(zaad zaadVar, boolean z) {
+    public void zag(@NonNull zaad zaadVar, boolean z8) {
     }
 }

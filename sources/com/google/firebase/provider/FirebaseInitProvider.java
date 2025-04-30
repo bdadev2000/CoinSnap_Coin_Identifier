@@ -6,77 +6,70 @@ import android.content.Context;
 import android.content.pm.ProviderInfo;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.SystemClock;
 import android.util.Log;
 import com.google.android.gms.common.internal.Preconditions;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.StartupTime;
+import g4.C2291a;
+import g4.C2296f;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-/* loaded from: classes3.dex */
+/* loaded from: classes2.dex */
 public class FirebaseInitProvider extends ContentProvider {
-    static final String EMPTY_APPLICATION_ID_PROVIDER_AUTHORITY = "com.google.firebase.firebaseinitprovider";
-    private static final String TAG = "FirebaseInitProvider";
-    private static StartupTime startupTime = StartupTime.now();
-    private static AtomicBoolean currentlyInitializing = new AtomicBoolean(false);
+    public static final C2291a b = new C2291a(System.currentTimeMillis(), SystemClock.elapsedRealtime(), SystemClock.uptimeMillis());
+
+    /* renamed from: c, reason: collision with root package name */
+    public static final AtomicBoolean f14372c = new AtomicBoolean(false);
 
     @Override // android.content.ContentProvider
-    public int delete(Uri uri, String str, String[] strArr) {
-        return 0;
-    }
-
-    @Override // android.content.ContentProvider
-    public String getType(Uri uri) {
-        return null;
-    }
-
-    @Override // android.content.ContentProvider
-    public Uri insert(Uri uri, ContentValues contentValues) {
-        return null;
-    }
-
-    @Override // android.content.ContentProvider
-    public Cursor query(Uri uri, String[] strArr, String str, String[] strArr2, String str2) {
-        return null;
-    }
-
-    @Override // android.content.ContentProvider
-    public int update(Uri uri, ContentValues contentValues, String str, String[] strArr) {
-        return 0;
-    }
-
-    public static StartupTime getStartupTime() {
-        return startupTime;
-    }
-
-    public static boolean isCurrentlyInitializing() {
-        return currentlyInitializing.get();
-    }
-
-    @Override // android.content.ContentProvider
-    public void attachInfo(Context context, ProviderInfo providerInfo) {
-        checkContentProviderAuthority(providerInfo);
-        super.attachInfo(context, providerInfo);
-    }
-
-    @Override // android.content.ContentProvider
-    public boolean onCreate() {
-        try {
-            currentlyInitializing.set(true);
-            if (FirebaseApp.initializeApp(getContext()) == null) {
-                Log.i(TAG, "FirebaseApp initialization unsuccessful");
-            } else {
-                Log.i(TAG, "FirebaseApp initialization successful");
-            }
-            return false;
-        } finally {
-            currentlyInitializing.set(false);
-        }
-    }
-
-    private static void checkContentProviderAuthority(ProviderInfo providerInfo) {
+    public final void attachInfo(Context context, ProviderInfo providerInfo) {
         Preconditions.checkNotNull(providerInfo, "FirebaseInitProvider ProviderInfo cannot be null.");
-        if (EMPTY_APPLICATION_ID_PROVIDER_AUTHORITY.equals(providerInfo.authority)) {
-            throw new IllegalStateException("Incorrect provider authority in manifest. Most likely due to a missing applicationId variable in application's build.gradle.");
+        if (!"com.google.firebase.firebaseinitprovider".equals(providerInfo.authority)) {
+            super.attachInfo(context, providerInfo);
+            return;
         }
+        throw new IllegalStateException("Incorrect provider authority in manifest. Most likely due to a missing applicationId variable in application's build.gradle.");
+    }
+
+    @Override // android.content.ContentProvider
+    public final int delete(Uri uri, String str, String[] strArr) {
+        return 0;
+    }
+
+    @Override // android.content.ContentProvider
+    public final String getType(Uri uri) {
+        return null;
+    }
+
+    @Override // android.content.ContentProvider
+    public final Uri insert(Uri uri, ContentValues contentValues) {
+        return null;
+    }
+
+    @Override // android.content.ContentProvider
+    public final boolean onCreate() {
+        AtomicBoolean atomicBoolean = f14372c;
+        try {
+            atomicBoolean.set(true);
+            if (C2296f.f(getContext()) == null) {
+                Log.i("FirebaseInitProvider", "FirebaseApp initialization unsuccessful");
+            } else {
+                Log.i("FirebaseInitProvider", "FirebaseApp initialization successful");
+            }
+            atomicBoolean.set(false);
+            return false;
+        } catch (Throwable th) {
+            atomicBoolean.set(false);
+            throw th;
+        }
+    }
+
+    @Override // android.content.ContentProvider
+    public final Cursor query(Uri uri, String[] strArr, String str, String[] strArr2, String str2) {
+        return null;
+    }
+
+    @Override // android.content.ContentProvider
+    public final int update(Uri uri, ContentValues contentValues, String str, String[] strArr) {
+        return 0;
     }
 }

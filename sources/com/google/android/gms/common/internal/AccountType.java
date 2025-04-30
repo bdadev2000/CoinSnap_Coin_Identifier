@@ -1,10 +1,18 @@
 package com.google.android.gms.common.internal;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
+
+@KeepForSdk
+/* loaded from: classes2.dex */
 public final class AccountType {
+
+    @NonNull
+    @KeepForSdk
     public static final String GOOGLE = "com.google";
-    public static final String[] zza = {"com.google", "com.google.work", "cn.google"};
+
+    @NonNull
+    public static final String[] zza = {GOOGLE, "com.google.work", "cn.google"};
 
     private AccountType() {
     }

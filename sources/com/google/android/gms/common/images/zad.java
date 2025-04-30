@@ -1,10 +1,10 @@
 package com.google.android.gms.common.images;
 
 import android.net.Uri;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.internal.Objects;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zad {
     public final Uri zaa;
 
@@ -12,14 +12,14 @@ final class zad {
         this.zaa = uri;
     }
 
-    public final boolean equals(Object obj) {
+    public final boolean equals(@Nullable Object obj) {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof zad) {
-            return Objects.equal(((zad) obj).zaa, this.zaa);
+        if (!(obj instanceof zad)) {
+            return false;
         }
-        return false;
+        return Objects.equal(((zad) obj).zaa, this.zaa);
     }
 
     public final int hashCode() {

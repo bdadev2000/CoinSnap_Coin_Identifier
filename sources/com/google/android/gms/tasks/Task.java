@@ -1,44 +1,56 @@
 package com.google.android.gms.tasks;
 
 import android.app.Activity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import java.util.concurrent.Executor;
 
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class Task<TResult> {
-    public Task<TResult> addOnCanceledListener(Activity activity, OnCanceledListener onCanceledListener) {
+    @NonNull
+    public Task<TResult> addOnCanceledListener(@NonNull Activity activity, @NonNull OnCanceledListener onCanceledListener) {
         throw new UnsupportedOperationException("addOnCanceledListener is not implemented.");
     }
 
-    public Task<TResult> addOnCompleteListener(Activity activity, OnCompleteListener<TResult> onCompleteListener) {
+    @NonNull
+    public Task<TResult> addOnCompleteListener(@NonNull Activity activity, @NonNull OnCompleteListener<TResult> onCompleteListener) {
         throw new UnsupportedOperationException("addOnCompleteListener is not implemented");
     }
 
-    public abstract Task<TResult> addOnFailureListener(Activity activity, OnFailureListener onFailureListener);
+    @NonNull
+    public abstract Task<TResult> addOnFailureListener(@NonNull Activity activity, @NonNull OnFailureListener onFailureListener);
 
-    public abstract Task<TResult> addOnFailureListener(OnFailureListener onFailureListener);
+    @NonNull
+    public abstract Task<TResult> addOnFailureListener(@NonNull OnFailureListener onFailureListener);
 
-    public abstract Task<TResult> addOnFailureListener(Executor executor, OnFailureListener onFailureListener);
+    @NonNull
+    public abstract Task<TResult> addOnFailureListener(@NonNull Executor executor, @NonNull OnFailureListener onFailureListener);
 
-    public abstract Task<TResult> addOnSuccessListener(Activity activity, OnSuccessListener<? super TResult> onSuccessListener);
+    @NonNull
+    public abstract Task<TResult> addOnSuccessListener(@NonNull Activity activity, @NonNull OnSuccessListener<? super TResult> onSuccessListener);
 
-    public abstract Task<TResult> addOnSuccessListener(OnSuccessListener<? super TResult> onSuccessListener);
+    @NonNull
+    public abstract Task<TResult> addOnSuccessListener(@NonNull OnSuccessListener<? super TResult> onSuccessListener);
 
-    public abstract Task<TResult> addOnSuccessListener(Executor executor, OnSuccessListener<? super TResult> onSuccessListener);
+    @NonNull
+    public abstract Task<TResult> addOnSuccessListener(@NonNull Executor executor, @NonNull OnSuccessListener<? super TResult> onSuccessListener);
 
-    public <TContinuationResult> Task<TContinuationResult> continueWith(Continuation<TResult, TContinuationResult> continuation) {
+    @NonNull
+    public <TContinuationResult> Task<TContinuationResult> continueWith(@NonNull Continuation<TResult, TContinuationResult> continuation) {
         throw new UnsupportedOperationException("continueWith is not implemented");
     }
 
-    public <TContinuationResult> Task<TContinuationResult> continueWithTask(Continuation<TResult, Task<TContinuationResult>> continuation) {
+    @NonNull
+    public <TContinuationResult> Task<TContinuationResult> continueWithTask(@NonNull Continuation<TResult, Task<TContinuationResult>> continuation) {
         throw new UnsupportedOperationException("continueWithTask is not implemented");
     }
 
+    @Nullable
     public abstract Exception getException();
 
     public abstract TResult getResult();
 
-    public abstract <X extends Throwable> TResult getResult(Class<X> cls) throws Throwable;
+    public abstract <X extends Throwable> TResult getResult(@NonNull Class<X> cls) throws Throwable;
 
     public abstract boolean isCanceled();
 
@@ -46,35 +58,43 @@ public abstract class Task<TResult> {
 
     public abstract boolean isSuccessful();
 
-    public <TContinuationResult> Task<TContinuationResult> onSuccessTask(SuccessContinuation<TResult, TContinuationResult> successContinuation) {
+    @NonNull
+    public <TContinuationResult> Task<TContinuationResult> onSuccessTask(@NonNull SuccessContinuation<TResult, TContinuationResult> successContinuation) {
         throw new UnsupportedOperationException("onSuccessTask is not implemented");
     }
 
-    public Task<TResult> addOnCanceledListener(OnCanceledListener onCanceledListener) {
+    @NonNull
+    public Task<TResult> addOnCanceledListener(@NonNull OnCanceledListener onCanceledListener) {
         throw new UnsupportedOperationException("addOnCanceledListener is not implemented.");
     }
 
-    public Task<TResult> addOnCompleteListener(OnCompleteListener<TResult> onCompleteListener) {
+    @NonNull
+    public Task<TResult> addOnCompleteListener(@NonNull OnCompleteListener<TResult> onCompleteListener) {
         throw new UnsupportedOperationException("addOnCompleteListener is not implemented");
     }
 
-    public <TContinuationResult> Task<TContinuationResult> continueWith(Executor executor, Continuation<TResult, TContinuationResult> continuation) {
+    @NonNull
+    public <TContinuationResult> Task<TContinuationResult> continueWith(@NonNull Executor executor, @NonNull Continuation<TResult, TContinuationResult> continuation) {
         throw new UnsupportedOperationException("continueWith is not implemented");
     }
 
-    public <TContinuationResult> Task<TContinuationResult> continueWithTask(Executor executor, Continuation<TResult, Task<TContinuationResult>> continuation) {
+    @NonNull
+    public <TContinuationResult> Task<TContinuationResult> continueWithTask(@NonNull Executor executor, @NonNull Continuation<TResult, Task<TContinuationResult>> continuation) {
         throw new UnsupportedOperationException("continueWithTask is not implemented");
     }
 
-    public <TContinuationResult> Task<TContinuationResult> onSuccessTask(Executor executor, SuccessContinuation<TResult, TContinuationResult> successContinuation) {
+    @NonNull
+    public <TContinuationResult> Task<TContinuationResult> onSuccessTask(@NonNull Executor executor, @NonNull SuccessContinuation<TResult, TContinuationResult> successContinuation) {
         throw new UnsupportedOperationException("onSuccessTask is not implemented");
     }
 
-    public Task<TResult> addOnCanceledListener(Executor executor, OnCanceledListener onCanceledListener) {
+    @NonNull
+    public Task<TResult> addOnCanceledListener(@NonNull Executor executor, @NonNull OnCanceledListener onCanceledListener) {
         throw new UnsupportedOperationException("addOnCanceledListener is not implemented");
     }
 
-    public Task<TResult> addOnCompleteListener(Executor executor, OnCompleteListener<TResult> onCompleteListener) {
+    @NonNull
+    public Task<TResult> addOnCompleteListener(@NonNull Executor executor, @NonNull OnCompleteListener<TResult> onCompleteListener) {
         throw new UnsupportedOperationException("addOnCompleteListener is not implemented");
     }
 }

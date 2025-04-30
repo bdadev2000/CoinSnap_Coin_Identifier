@@ -1,58 +1,30 @@
 package com.google.android.gms.measurement.internal;
 
-import android.os.Bundle;
-import android.os.IInterface;
-import android.os.RemoteException;
+import com.google.android.gms.common.internal.Preconditions;
 import java.util.List;
+import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public interface zzgb extends IInterface {
-    zzaj zza(zzo zzoVar) throws RemoteException;
+/* loaded from: classes2.dex */
+final class zzgb implements Runnable {
+    private final zzgc zza;
+    private final int zzb;
+    private final Throwable zzc;
+    private final byte[] zzd;
+    private final String zze;
+    private final Map<String, List<String>> zzf;
 
-    List<zzno> zza(zzo zzoVar, Bundle bundle) throws RemoteException;
+    @Override // java.lang.Runnable
+    public final void run() {
+        this.zza.zza(this.zze, this.zzb, this.zzc, this.zzd, this.zzf);
+    }
 
-    List<zzon> zza(zzo zzoVar, boolean z) throws RemoteException;
-
-    List<zzae> zza(String str, String str2, zzo zzoVar) throws RemoteException;
-
-    List<zzae> zza(String str, String str2, String str3) throws RemoteException;
-
-    List<zzon> zza(String str, String str2, String str3, boolean z) throws RemoteException;
-
-    List<zzon> zza(String str, String str2, boolean z, zzo zzoVar) throws RemoteException;
-
-    void zza(long j, String str, String str2, String str3) throws RemoteException;
-
-    void zza(Bundle bundle, zzo zzoVar) throws RemoteException;
-
-    void zza(zzae zzaeVar) throws RemoteException;
-
-    void zza(zzae zzaeVar, zzo zzoVar) throws RemoteException;
-
-    void zza(zzbf zzbfVar, zzo zzoVar) throws RemoteException;
-
-    void zza(zzbf zzbfVar, String str, String str2) throws RemoteException;
-
-    void zza(zzon zzonVar, zzo zzoVar) throws RemoteException;
-
-    byte[] zza(zzbf zzbfVar, String str) throws RemoteException;
-
-    String zzb(zzo zzoVar) throws RemoteException;
-
-    void zzb(Bundle bundle, zzo zzoVar) throws RemoteException;
-
-    void zzc(zzo zzoVar) throws RemoteException;
-
-    void zzd(zzo zzoVar) throws RemoteException;
-
-    void zze(zzo zzoVar) throws RemoteException;
-
-    void zzf(zzo zzoVar) throws RemoteException;
-
-    void zzg(zzo zzoVar) throws RemoteException;
-
-    void zzh(zzo zzoVar) throws RemoteException;
-
-    void zzi(zzo zzoVar) throws RemoteException;
+    private zzgb(String str, zzgc zzgcVar, int i9, Throwable th, byte[] bArr, Map<String, List<String>> map) {
+        Preconditions.checkNotNull(zzgcVar);
+        this.zza = zzgcVar;
+        this.zzb = i9;
+        this.zzc = th;
+        this.zzd = bArr;
+        this.zze = str;
+        this.zzf = map;
+    }
 }

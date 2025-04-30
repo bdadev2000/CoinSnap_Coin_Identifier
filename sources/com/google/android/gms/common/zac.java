@@ -1,34 +1,36 @@
 package com.google.android.gms.common;
 
+import G7.j;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.IntentSenderRequest;
+import android.content.IntentSender;
+import h.c;
+import h.k;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zac implements DialogInterface.OnClickListener {
     final /* synthetic */ Activity zaa;
     final /* synthetic */ int zab;
-    final /* synthetic */ ActivityResultLauncher zac;
+    final /* synthetic */ c zac;
     final /* synthetic */ GoogleApiAvailability zad;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zac(GoogleApiAvailability googleApiAvailability, Activity activity, int i, ActivityResultLauncher activityResultLauncher) {
+    public zac(GoogleApiAvailability googleApiAvailability, Activity activity, int i9, c cVar) {
         this.zad = googleApiAvailability;
         this.zaa = activity;
-        this.zab = i;
-        this.zac = activityResultLauncher;
+        this.zab = i9;
+        this.zac = cVar;
     }
 
     @Override // android.content.DialogInterface.OnClickListener
-    public final void onClick(DialogInterface dialogInterface, int i) {
+    public final void onClick(DialogInterface dialogInterface, int i9) {
         dialogInterface.dismiss();
         PendingIntent errorResolutionPendingIntent = this.zad.getErrorResolutionPendingIntent(this.zaa, this.zab, 0);
         if (errorResolutionPendingIntent == null) {
             return;
         }
-        this.zac.launch(new IntentSenderRequest.Builder(errorResolutionPendingIntent.getIntentSender()).build());
+        IntentSender intentSender = errorResolutionPendingIntent.getIntentSender();
+        j.e(intentSender, "intentSender");
+        this.zac.a(new k(intentSender, null, 0, 0));
     }
 }

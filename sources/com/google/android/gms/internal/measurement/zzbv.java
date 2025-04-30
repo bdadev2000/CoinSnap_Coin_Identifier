@@ -3,8 +3,7 @@ package com.google.android.gms.internal.measurement;
 import java.util.HashMap;
 import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public enum zzbv {
     ADD(0),
     AND(1),
@@ -76,25 +75,26 @@ public enum zzbv {
     private static final Map<Integer, zzbv> zzbo = new HashMap();
     private final int zzbq;
 
-    public static zzbv zza(int i) {
-        return zzbo.get(Integer.valueOf(i));
-    }
-
-    @Override // java.lang.Enum
-    public final String toString() {
-        return Integer.valueOf(this.zzbq).toString();
-    }
-
     static {
         for (zzbv zzbvVar : values()) {
             zzbo.put(Integer.valueOf(zzbvVar.zzbq), zzbvVar);
         }
     }
 
-    zzbv(int i) {
-        if (i > 100) {
-            throw new AssertionError("Native functions over 100 are reserved for runtime implementations.");
+    zzbv(int i9) {
+        if (i9 <= 100) {
+            this.zzbq = i9;
+            return;
         }
-        this.zzbq = i;
+        throw new AssertionError("Native functions over 100 are reserved for runtime implementations.");
+    }
+
+    public static zzbv zza(int i9) {
+        return zzbo.get(Integer.valueOf(i9));
+    }
+
+    @Override // java.lang.Enum
+    public final String toString() {
+        return Integer.valueOf(this.zzbq).toString();
     }
 }

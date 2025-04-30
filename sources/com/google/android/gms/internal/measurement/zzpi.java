@@ -1,22 +1,73 @@
 package com.google.android.gms.internal.measurement;
 
-import com.google.common.base.Supplier;
-import com.google.common.base.Suppliers;
-import org.checkerframework.dataflow.qual.SideEffectFree;
+/* loaded from: classes2.dex */
+public final class zzpi implements zzpf {
+    private static final zzgz<Boolean> zza;
+    private static final zzgz<Boolean> zzb;
+    private static final zzgz<Boolean> zzc;
+    private static final zzgz<Boolean> zzd;
+    private static final zzgz<Boolean> zze;
+    private static final zzgz<Boolean> zzf;
+    private static final zzgz<Boolean> zzg;
+    private static final zzgz<Boolean> zzh;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzpi implements Supplier<zzpl> {
-    private static zzpi zza = new zzpi();
-    private final Supplier<zzpl> zzb = Suppliers.ofInstance(new zzpk());
-
-    @Override // com.google.common.base.Supplier
-    public final /* synthetic */ zzpl get() {
-        return this.zzb.get();
+    static {
+        zzhh zza2 = new zzhh(zzgw.zza("com.google.android.gms.measurement")).zzb().zza();
+        zza = zza2.zza("measurement.rb.attribution.ad_campaign_info", false);
+        zzb = zza2.zza("measurement.rb.attribution.client2", true);
+        zza2.zza("measurement.rb.attribution.dma_fix", true);
+        zzc = zza2.zza("measurement.rb.attribution.followup1.service", false);
+        zza2.zza("measurement.rb.attribution.index_out_of_bounds_fix", true);
+        zzd = zza2.zza("measurement.rb.attribution.registration_regardless_consent", false);
+        zze = zza2.zza("measurement.rb.attribution.service", true);
+        zzf = zza2.zza("measurement.rb.attribution.enable_trigger_redaction", true);
+        zzg = zza2.zza("measurement.rb.attribution.uuid_generation", true);
+        zza2.zza("measurement.id.rb.attribution.improved_retry", 0L);
+        zzh = zza2.zza("measurement.rb.attribution.improved_retry", true);
     }
 
-    @SideEffectFree
-    public static boolean zza() {
-        return ((zzpl) zza.get()).zza();
+    @Override // com.google.android.gms.internal.measurement.zzpf
+    public final boolean zza() {
+        return true;
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzpf
+    public final boolean zzb() {
+        return zza.zza().booleanValue();
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzpf
+    public final boolean zzc() {
+        return zzb.zza().booleanValue();
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzpf
+    public final boolean zzd() {
+        return zzc.zza().booleanValue();
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzpf
+    public final boolean zze() {
+        return zzd.zza().booleanValue();
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzpf
+    public final boolean zzf() {
+        return zze.zza().booleanValue();
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzpf
+    public final boolean zzg() {
+        return zzf.zza().booleanValue();
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzpf
+    public final boolean zzh() {
+        return zzg.zza().booleanValue();
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzpf
+    public final boolean zzi() {
+        return zzh.zza().booleanValue();
     }
 }

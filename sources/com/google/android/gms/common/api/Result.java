@@ -1,7 +1,9 @@
 package com.google.android.gms.common.api;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+import androidx.annotation.NonNull;
+
+/* loaded from: classes2.dex */
 public interface Result {
+    @NonNull
     Status getStatus();
 }

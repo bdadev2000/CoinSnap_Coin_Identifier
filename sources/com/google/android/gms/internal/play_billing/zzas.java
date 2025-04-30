@@ -1,22 +1,34 @@
 package com.google.android.gms.internal.play_billing;
 
-import java.util.Comparator;
+import java.util.Objects;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final class zzas implements Comparator {
-    @Override // java.util.Comparator
-    public final /* synthetic */ int compare(Object obj, Object obj2) {
-        zzba zzbaVar = (zzba) obj;
-        zzba zzbaVar2 = (zzba) obj2;
-        zzar zzarVar = new zzar(zzbaVar);
-        zzar zzarVar2 = new zzar(zzbaVar2);
-        while (zzarVar.hasNext() && zzarVar2.hasNext()) {
-            int compareTo = Integer.valueOf(zzarVar.zza() & 255).compareTo(Integer.valueOf(zzarVar2.zza() & 255));
-            if (compareTo != 0) {
-                return compareTo;
-            }
-        }
-        return Integer.valueOf(zzbaVar.zzd()).compareTo(Integer.valueOf(zzbaVar2.zzd()));
+/* loaded from: classes2.dex */
+final class zzas extends zzai {
+    private final transient Object[] zza;
+    private final transient int zzb;
+    private final transient int zzc;
+
+    public zzas(Object[] objArr, int i9, int i10) {
+        this.zza = objArr;
+        this.zzb = i9;
+        this.zzc = i10;
+    }
+
+    @Override // java.util.List
+    public final Object get(int i9) {
+        zzaa.zza(i9, this.zzc, "index");
+        Object obj = this.zza[i9 + i9 + this.zzb];
+        Objects.requireNonNull(obj);
+        return obj;
+    }
+
+    @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
+    public final int size() {
+        return this.zzc;
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzaf
+    public final boolean zzf() {
+        return true;
     }
 }

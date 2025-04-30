@@ -1,12 +1,29 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzol implements zzoi {
-    private static final zzhj<Boolean> zza = new zzhr(zzhk.zza("com.google.android.gms.measurement")).zzb().zza().zza("measurement.fix_engagement_on_reset_analytics_data", true);
+/* loaded from: classes2.dex */
+public final class zzol implements zzom {
+    private static final zzgz<Boolean> zza;
+    private static final zzgz<Boolean> zzb;
 
-    @Override // com.google.android.gms.internal.measurement.zzoi
+    static {
+        zzhh zza2 = new zzhh(zzgw.zza("com.google.android.gms.measurement")).zzb().zza();
+        zza = zza2.zza("measurement.gbraid_campaign.gbraid.client.dev", false);
+        zzb = zza2.zza("measurement.gbraid_campaign.gbraid.service", false);
+        zza2.zza("measurement.id.gbraid_campaign.service", 0L);
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzom
     public final boolean zza() {
+        return true;
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzom
+    public final boolean zzb() {
         return zza.zza().booleanValue();
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzom
+    public final boolean zzc() {
+        return zzb.zza().booleanValue();
     }
 }

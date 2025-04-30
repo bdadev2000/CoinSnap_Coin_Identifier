@@ -6,7 +6,7 @@ import android.net.Uri;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class SharedPreferencesManager {
     private static final int INDEX_CLICK_TIME = 1;
     private static final int INDEX_IS_SENDING = 2;
@@ -31,56 +31,60 @@ public class SharedPreferencesManager {
             SharedPreferences sharedPreferences2 = context.getSharedPreferences(PREFS_NAME, 0);
             sharedPreferences = sharedPreferences2;
             sharedPreferencesEditor = sharedPreferences2.edit();
-        } catch (Exception e) {
-            AdjustFactory.getLogger().error("Cannot access to SharedPreferences", e.getMessage());
+        } catch (Exception e4) {
+            AdjustFactory.getLogger().error("Cannot access to SharedPreferences", e4.getMessage());
             sharedPreferences = null;
             sharedPreferencesEditor = null;
         }
     }
 
-    private synchronized boolean getBoolean(String str, boolean z) {
+    private synchronized boolean getBoolean(String str, boolean z8) {
         SharedPreferences sharedPreferences2 = sharedPreferences;
         if (sharedPreferences2 == null) {
-            return z;
+            return z8;
         }
         try {
-            return sharedPreferences2.getBoolean(str, z);
+            return sharedPreferences2.getBoolean(str, z8);
         } catch (ClassCastException unused) {
-            return z;
+            return z8;
         }
     }
 
     public static synchronized SharedPreferencesManager getDefaultInstance(Context context) {
         SharedPreferencesManager sharedPreferencesManager;
         synchronized (SharedPreferencesManager.class) {
-            if (defaultInstance == null) {
-                defaultInstance = new SharedPreferencesManager(context);
+            try {
+                if (defaultInstance == null) {
+                    defaultInstance = new SharedPreferencesManager(context);
+                }
+                sharedPreferencesManager = defaultInstance;
+            } catch (Throwable th) {
+                throw th;
             }
-            sharedPreferencesManager = defaultInstance;
         }
         return sharedPreferencesManager;
     }
 
-    private synchronized long getLong(String str, long j) {
+    private synchronized long getLong(String str, long j7) {
         SharedPreferences sharedPreferences2 = sharedPreferences;
         if (sharedPreferences2 == null) {
-            return j;
+            return j7;
         }
         try {
-            return sharedPreferences2.getLong(str, j);
+            return sharedPreferences2.getLong(str, j7);
         } catch (ClassCastException unused) {
-            return j;
+            return j7;
         }
     }
 
-    private synchronized int getRawReferrerIndex(String str, long j) {
+    private synchronized int getRawReferrerIndex(String str, long j7) {
         try {
             JSONArray rawReferrerArray = getRawReferrerArray();
-            for (int i = 0; i < rawReferrerArray.length(); i++) {
-                JSONArray jSONArray = rawReferrerArray.getJSONArray(i);
+            for (int i9 = 0; i9 < rawReferrerArray.length(); i9++) {
+                JSONArray jSONArray = rawReferrerArray.getJSONArray(i9);
                 String optString = jSONArray.optString(0, null);
-                if (optString != null && optString.equals(str) && jSONArray.optLong(1, -1L) == j) {
-                    return i;
+                if (optString != null && optString.equals(str) && jSONArray.optLong(1, -1L) == j7) {
+                    return i9;
                 }
             }
         } catch (JSONException unused) {
@@ -112,24 +116,24 @@ public class SharedPreferencesManager {
         }
     }
 
-    private synchronized void saveBoolean(String str, boolean z) {
+    private synchronized void saveBoolean(String str, boolean z8) {
         SharedPreferences.Editor editor = sharedPreferencesEditor;
         if (editor != null) {
-            editor.putBoolean(str, z).apply();
+            editor.putBoolean(str, z8).apply();
         }
     }
 
-    private synchronized void saveInteger(String str, int i) {
+    private synchronized void saveInteger(String str, int i9) {
         SharedPreferences.Editor editor = sharedPreferencesEditor;
         if (editor != null) {
-            editor.putInt(str, i).apply();
+            editor.putInt(str, i9).apply();
         }
     }
 
-    private synchronized void saveLong(String str, long j) {
+    private synchronized void saveLong(String str, long j7) {
         SharedPreferences.Editor editor = sharedPreferencesEditor;
         if (editor != null) {
-            editor.putLong(str, j).apply();
+            editor.putLong(str, j7).apply();
         }
     }
 
@@ -179,8 +183,8 @@ public class SharedPreferencesManager {
         return getString(PREFS_KEY_PUSH_TOKEN);
     }
 
-    public synchronized JSONArray getRawReferrer(String str, long j) {
-        int rawReferrerIndex = getRawReferrerIndex(str, j);
+    public synchronized JSONArray getRawReferrer(String str, long j7) {
+        int rawReferrerIndex = getRawReferrerIndex(str, j7);
         if (rawReferrerIndex >= 0) {
             try {
                 return getRawReferrerArray().getJSONArray(rawReferrerIndex);
@@ -199,8 +203,8 @@ public class SharedPreferencesManager {
                     return new JSONArray(string);
                 }
                 JSONArray jSONArray2 = new JSONArray();
-                for (int i = 0; i < 10; i++) {
-                    jSONArray2.put(jSONArray.get(i));
+                for (int i9 = 0; i9 < 10; i9++) {
+                    jSONArray2.put(jSONArray.get(i9));
                 }
                 saveRawReferrerArray(jSONArray2);
                 return jSONArray2;
@@ -231,19 +235,19 @@ public class SharedPreferencesManager {
         remove(PREFS_KEY_PUSH_TOKEN);
     }
 
-    public synchronized void removeRawReferrer(String str, long j) {
+    public synchronized void removeRawReferrer(String str, long j7) {
         if (str != null) {
             if (str.length() != 0) {
-                int rawReferrerIndex = getRawReferrerIndex(str, j);
+                int rawReferrerIndex = getRawReferrerIndex(str, j7);
                 if (rawReferrerIndex < 0) {
                     return;
                 }
                 JSONArray rawReferrerArray = getRawReferrerArray();
                 JSONArray jSONArray = new JSONArray();
-                for (int i = 0; i < rawReferrerArray.length(); i++) {
-                    if (i != rawReferrerIndex) {
+                for (int i9 = 0; i9 < rawReferrerArray.length(); i9++) {
+                    if (i9 != rawReferrerIndex) {
                         try {
-                            jSONArray.put(rawReferrerArray.getJSONArray(i));
+                            jSONArray.put(rawReferrerArray.getJSONArray(i9));
                         } catch (JSONException unused) {
                         }
                     }
@@ -253,12 +257,12 @@ public class SharedPreferencesManager {
         }
     }
 
-    public synchronized void saveDeeplink(Uri uri, long j) {
+    public synchronized void saveDeeplink(Uri uri, long j7) {
         if (uri == null) {
             return;
         }
         saveString(PREFS_KEY_DEEPLINK_URL, uri.toString());
-        saveLong(PREFS_KEY_DEEPLINK_CLICK_TIME, j);
+        saveLong(PREFS_KEY_DEEPLINK_CLICK_TIME, j7);
     }
 
     public synchronized void savePreinstallReferrer(String str) {
@@ -269,8 +273,8 @@ public class SharedPreferencesManager {
         saveString(PREFS_KEY_PUSH_TOKEN, str);
     }
 
-    public synchronized void saveRawReferrer(String str, long j) {
-        if (getRawReferrer(str, j) != null) {
+    public synchronized void saveRawReferrer(String str, long j7) {
+        if (getRawReferrer(str, j7) != null) {
             return;
         }
         JSONArray rawReferrerArray = getRawReferrerArray();
@@ -279,7 +283,7 @@ public class SharedPreferencesManager {
         }
         JSONArray jSONArray = new JSONArray();
         jSONArray.put(0, str);
-        jSONArray.put(1, j);
+        jSONArray.put(1, j7);
         jSONArray.put(2, 0);
         rawReferrerArray.put(jSONArray);
         saveRawReferrerArray(rawReferrerArray);
@@ -305,25 +309,27 @@ public class SharedPreferencesManager {
         saveBoolean(PREFS_KEY_INSTALL_TRACKED, true);
     }
 
-    public synchronized void setPreinstallPayloadReadStatus(long j) {
-        saveLong(PREFS_KEY_PREINSTALL_PAYLOAD_READ_STATUS, j);
+    public synchronized void setPreinstallPayloadReadStatus(long j7) {
+        saveLong(PREFS_KEY_PREINSTALL_PAYLOAD_READ_STATUS, j7);
     }
 
     public synchronized void setSendingReferrersAsNotSent() {
         try {
             JSONArray rawReferrerArray = getRawReferrerArray();
-            boolean z = false;
-            for (int i = 0; i < rawReferrerArray.length(); i++) {
-                JSONArray jSONArray = rawReferrerArray.getJSONArray(i);
+            boolean z8 = false;
+            for (int i9 = 0; i9 < rawReferrerArray.length(); i9++) {
+                JSONArray jSONArray = rawReferrerArray.getJSONArray(i9);
                 if (jSONArray.optInt(2, -1) == 1) {
                     jSONArray.put(2, 0);
-                    z = true;
+                    z8 = true;
                 }
             }
-            if (z) {
+            if (z8) {
                 saveRawReferrerArray(rawReferrerArray);
             }
         } catch (JSONException unused) {
+        } catch (Throwable th) {
+            throw th;
         }
     }
 }

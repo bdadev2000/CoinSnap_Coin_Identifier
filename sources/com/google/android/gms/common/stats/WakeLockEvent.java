@@ -3,55 +3,87 @@ package com.google.android.gms.common.stats;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import com.glority.android.datareader.TSVReader;
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import java.util.List;
-import javax.annotation.Nullable;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
+@KeepForSdk
+@SafeParcelable.Class(creator = "WakeLockEventCreator")
 @Deprecated
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class WakeLockEvent extends StatsEvent {
+
+    @NonNull
     public static final Parcelable.Creator<WakeLockEvent> CREATOR = new zza();
+
+    @SafeParcelable.VersionField(id = 1)
     final int zza;
+
+    @SafeParcelable.Field(getter = "getTimeMillis", id = 2)
     private final long zzb;
+
+    @SafeParcelable.Field(getter = "getEventType", id = 11)
     private final int zzc;
+
+    @SafeParcelable.Field(getter = "getWakeLockName", id = 4)
     private final String zzd;
+
+    @SafeParcelable.Field(getter = "getSecondaryWakeLockName", id = 10)
     private final String zze;
+
+    @SafeParcelable.Field(getter = "getCodePackage", id = 17)
     private final String zzf;
+
+    @SafeParcelable.Field(getter = "getWakeLockType", id = 5)
     private final int zzg;
 
-    @Nullable
+    @SafeParcelable.Field(getter = "getCallingPackages", id = 6)
     private final List zzh;
+
+    @SafeParcelable.Field(getter = "getEventKey", id = 12)
     private final String zzi;
+
+    @SafeParcelable.Field(getter = "getElapsedRealtime", id = 8)
     private final long zzj;
+
+    @SafeParcelable.Field(getter = "getDeviceState", id = 14)
     private final int zzk;
+
+    @SafeParcelable.Field(getter = "getHostPackage", id = 13)
     private final String zzl;
+
+    @SafeParcelable.Field(getter = "getBeginPowerPercentage", id = 15)
     private final float zzm;
+
+    @SafeParcelable.Field(getter = "getTimeout", id = 16)
     private final long zzn;
+
+    @SafeParcelable.Field(getter = "getAcquiredWithTimeout", id = 18)
     private final boolean zzo;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public WakeLockEvent(int i, long j, int i2, String str, int i3, @Nullable List list, String str2, long j2, int i4, String str3, String str4, float f, long j3, String str5, boolean z) {
-        this.zza = i;
-        this.zzb = j;
-        this.zzc = i2;
+    @SafeParcelable.Constructor
+    public WakeLockEvent(@SafeParcelable.Param(id = 1) int i9, @SafeParcelable.Param(id = 2) long j7, @SafeParcelable.Param(id = 11) int i10, @SafeParcelable.Param(id = 4) String str, @SafeParcelable.Param(id = 5) int i11, @SafeParcelable.Param(id = 6) List list, @SafeParcelable.Param(id = 12) String str2, @SafeParcelable.Param(id = 8) long j9, @SafeParcelable.Param(id = 14) int i12, @SafeParcelable.Param(id = 10) String str3, @SafeParcelable.Param(id = 13) String str4, @SafeParcelable.Param(id = 15) float f9, @SafeParcelable.Param(id = 16) long j10, @SafeParcelable.Param(id = 17) String str5, @SafeParcelable.Param(id = 18) boolean z8) {
+        this.zza = i9;
+        this.zzb = j7;
+        this.zzc = i10;
         this.zzd = str;
         this.zze = str3;
         this.zzf = str5;
-        this.zzg = i3;
+        this.zzg = i11;
         this.zzh = list;
         this.zzi = str2;
-        this.zzj = j2;
-        this.zzk = i4;
+        this.zzj = j9;
+        this.zzk = i12;
         this.zzl = str4;
-        this.zzm = f;
-        this.zzn = j3;
-        this.zzo = z;
+        this.zzm = f9;
+        this.zzn = j10;
+        this.zzo = z8;
     }
 
     @Override // android.os.Parcelable
-    public final void writeToParcel(Parcel parcel, int i) {
+    public final void writeToParcel(@NonNull Parcel parcel, int i9) {
         int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
         SafeParcelWriter.writeInt(parcel, 1, this.zza);
         SafeParcelWriter.writeLong(parcel, 2, this.zzb);
@@ -82,41 +114,51 @@ public final class WakeLockEvent extends StatsEvent {
     }
 
     @Override // com.google.android.gms.common.stats.StatsEvent
+    @NonNull
     public final String zzc() {
+        String join;
         List list = this.zzh;
-        String join = list == null ? "" : TextUtils.join(",", list);
-        int i = this.zzk;
-        String str = this.zze;
-        String str2 = this.zzl;
-        float f = this.zzm;
-        String str3 = this.zzf;
-        int i2 = this.zzg;
-        String str4 = this.zzd;
-        boolean z = this.zzo;
-        StringBuilder sb = new StringBuilder(TSVReader.splitSymbols);
-        sb.append(str4);
-        sb.append(TSVReader.splitSymbols);
-        sb.append(i2);
-        sb.append(TSVReader.splitSymbols);
-        sb.append(join);
-        sb.append(TSVReader.splitSymbols);
-        sb.append(i);
-        sb.append(TSVReader.splitSymbols);
-        if (str == null) {
-            str = "";
+        String str = "";
+        if (list == null) {
+            join = "";
+        } else {
+            join = TextUtils.join(",", list);
         }
-        sb.append(str);
-        sb.append(TSVReader.splitSymbols);
+        int i9 = this.zzk;
+        String str2 = this.zze;
+        String str3 = this.zzl;
+        float f9 = this.zzm;
+        String str4 = this.zzf;
+        int i10 = this.zzg;
+        String str5 = this.zzd;
+        boolean z8 = this.zzo;
+        StringBuilder sb = new StringBuilder("\t");
+        sb.append(str5);
+        sb.append("\t");
+        sb.append(i10);
+        sb.append("\t");
+        sb.append(join);
+        sb.append("\t");
+        sb.append(i9);
+        sb.append("\t");
         if (str2 == null) {
             str2 = "";
         }
         sb.append(str2);
-        sb.append(TSVReader.splitSymbols);
-        sb.append(f);
-        sb.append(TSVReader.splitSymbols);
-        sb.append(str3 != null ? str3 : "");
-        sb.append(TSVReader.splitSymbols);
-        sb.append(z);
+        sb.append("\t");
+        if (str3 == null) {
+            str3 = "";
+        }
+        sb.append(str3);
+        sb.append("\t");
+        sb.append(f9);
+        sb.append("\t");
+        if (str4 != null) {
+            str = str4;
+        }
+        sb.append(str);
+        sb.append("\t");
+        sb.append(z8);
         return sb.toString();
     }
 }

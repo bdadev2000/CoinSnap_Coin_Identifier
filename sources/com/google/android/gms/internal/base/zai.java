@@ -3,9 +3,9 @@ package com.google.android.gms.internal.base;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
+import androidx.annotation.Nullable;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zai extends Drawable {
     private static final zai zaa = new zai();
     private static final zah zab = new zah(null);
@@ -28,10 +28,10 @@ final class zai extends Drawable {
     }
 
     @Override // android.graphics.drawable.Drawable
-    public final void setAlpha(int i) {
+    public final void setAlpha(int i9) {
     }
 
     @Override // android.graphics.drawable.Drawable
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void setColorFilter(@Nullable ColorFilter colorFilter) {
     }
 }

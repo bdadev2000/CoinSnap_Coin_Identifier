@@ -1,0 +1,14 @@
+package com.meta.analytics.dsp.uinode;
+
+/* loaded from: assets/audience_network.dex */
+public final class D9 {
+    public final int A00;
+    public final String A01;
+    public final byte[] A02;
+
+    public D9(String str, int i9, byte[] bArr) {
+        this.A01 = str;
+        this.A00 = i9;
+        this.A02 = bArr;
+    }
+}

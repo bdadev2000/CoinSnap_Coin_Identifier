@@ -1,256 +1,160 @@
 package androidx.media;
 
-import android.util.Log;
-import androidx.media.AudioAttributesImpl;
-import com.glority.android.adapterhelper.BaseQuickAdapter;
-import com.google.android.exoplayer2.analytics.AnalyticsListener;
+import com.mbridge.msdk.foundation.entity.o;
 import java.util.Arrays;
 
-/* loaded from: classes7.dex */
-public class AudioAttributesImplBase implements AudioAttributesImpl {
-    public int mContentType;
-    public int mFlags;
-    public int mLegacyStream;
-    public int mUsage;
+/* loaded from: classes.dex */
+class AudioAttributesImplBase implements AudioAttributesImpl {
 
-    static int usageForStreamType(int i) {
-        switch (i) {
-            case 0:
-                return 2;
-            case 1:
-            case 7:
-                return 13;
-            case 2:
-                return 6;
-            case 3:
-                return 1;
-            case 4:
-                return 4;
-            case 5:
-                return 5;
-            case 6:
-                return 2;
-            case 8:
-                return 3;
-            case 9:
-            default:
-                return 0;
-            case 10:
-                return 11;
-        }
-    }
+    /* renamed from: a, reason: collision with root package name */
+    public int f4914a = 0;
+    public int b = 0;
 
-    @Override // androidx.media.AudioAttributesImpl
-    public Object getAudioAttributes() {
-        return null;
-    }
+    /* renamed from: c, reason: collision with root package name */
+    public int f4915c = 0;
 
-    public AudioAttributesImplBase() {
-        this.mUsage = 0;
-        this.mContentType = 0;
-        this.mFlags = 0;
-        this.mLegacyStream = -1;
-    }
+    /* renamed from: d, reason: collision with root package name */
+    public int f4916d = -1;
 
-    AudioAttributesImplBase(int i, int i2, int i3, int i4) {
-        this.mContentType = i;
-        this.mFlags = i2;
-        this.mUsage = i3;
-        this.mLegacyStream = i4;
-    }
-
-    @Override // androidx.media.AudioAttributesImpl
-    public int getVolumeControlStream() {
-        return AudioAttributesCompat.toVolumeStreamType(true, this.mFlags, this.mUsage);
-    }
-
-    @Override // androidx.media.AudioAttributesImpl
-    public int getLegacyStreamType() {
-        int i = this.mLegacyStream;
-        return i != -1 ? i : AudioAttributesCompat.toVolumeStreamType(false, this.mFlags, this.mUsage);
-    }
-
-    @Override // androidx.media.AudioAttributesImpl
-    public int getRawLegacyStreamType() {
-        return this.mLegacyStream;
-    }
-
-    @Override // androidx.media.AudioAttributesImpl
-    public int getContentType() {
-        return this.mContentType;
-    }
-
-    @Override // androidx.media.AudioAttributesImpl
-    public int getUsage() {
-        return this.mUsage;
-    }
-
-    @Override // androidx.media.AudioAttributesImpl
-    public int getFlags() {
-        int i = this.mFlags;
-        int legacyStreamType = getLegacyStreamType();
-        if (legacyStreamType == 6) {
-            i |= 4;
-        } else if (legacyStreamType == 7) {
-            i |= 1;
-        }
-        return i & BaseQuickAdapter.HEADER_VIEW;
-    }
-
-    public int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.mContentType), Integer.valueOf(this.mFlags), Integer.valueOf(this.mUsage), Integer.valueOf(this.mLegacyStream)});
-    }
-
-    public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
+        int i9;
         if (!(obj instanceof AudioAttributesImplBase)) {
             return false;
         }
         AudioAttributesImplBase audioAttributesImplBase = (AudioAttributesImplBase) obj;
-        return this.mContentType == audioAttributesImplBase.getContentType() && this.mFlags == audioAttributesImplBase.getFlags() && this.mUsage == audioAttributesImplBase.getUsage() && this.mLegacyStream == audioAttributesImplBase.mLegacyStream;
+        if (this.b == audioAttributesImplBase.b) {
+            int i10 = this.f4915c;
+            int i11 = audioAttributesImplBase.f4915c;
+            int i12 = audioAttributesImplBase.f4916d;
+            if (i12 != -1) {
+                i9 = i12;
+            } else {
+                int i13 = audioAttributesImplBase.f4914a;
+                int i14 = AudioAttributesCompat.b;
+                if ((i11 & 1) == 1) {
+                    i9 = 7;
+                } else if ((i11 & 4) == 4) {
+                    i9 = 6;
+                } else {
+                    switch (i13) {
+                        case 2:
+                            i9 = 0;
+                            break;
+                        case 3:
+                            i9 = 8;
+                            break;
+                        case 4:
+                            i9 = 4;
+                            break;
+                        case 5:
+                        case 7:
+                        case 8:
+                        case 9:
+                        case 10:
+                            i9 = 5;
+                            break;
+                        case 6:
+                            i9 = 2;
+                            break;
+                        case 11:
+                            i9 = 10;
+                            break;
+                        case 12:
+                        default:
+                            i9 = 3;
+                            break;
+                        case 13:
+                            i9 = 1;
+                            break;
+                    }
+                }
+            }
+            if (i9 == 6) {
+                i11 |= 4;
+            } else if (i9 == 7) {
+                i11 |= 1;
+            }
+            if (i10 == (i11 & 273) && this.f4914a == audioAttributesImplBase.f4914a && this.f4916d == i12) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public String toString() {
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.b), Integer.valueOf(this.f4915c), Integer.valueOf(this.f4914a), Integer.valueOf(this.f4916d)});
+    }
+
+    public final String toString() {
+        String str;
         StringBuilder sb = new StringBuilder("AudioAttributesCompat:");
-        if (this.mLegacyStream != -1) {
-            sb.append(" stream=").append(this.mLegacyStream);
+        if (this.f4916d != -1) {
+            sb.append(" stream=");
+            sb.append(this.f4916d);
             sb.append(" derived");
         }
-        sb.append(" usage=").append(AudioAttributesCompat.usageToString(this.mUsage)).append(" content=").append(this.mContentType).append(" flags=0x").append(Integer.toHexString(this.mFlags).toUpperCase());
+        sb.append(" usage=");
+        int i9 = this.f4914a;
+        int i10 = AudioAttributesCompat.b;
+        switch (i9) {
+            case 0:
+                str = "USAGE_UNKNOWN";
+                break;
+            case 1:
+                str = "USAGE_MEDIA";
+                break;
+            case 2:
+                str = "USAGE_VOICE_COMMUNICATION";
+                break;
+            case 3:
+                str = "USAGE_VOICE_COMMUNICATION_SIGNALLING";
+                break;
+            case 4:
+                str = "USAGE_ALARM";
+                break;
+            case 5:
+                str = "USAGE_NOTIFICATION";
+                break;
+            case 6:
+                str = "USAGE_NOTIFICATION_RINGTONE";
+                break;
+            case 7:
+                str = "USAGE_NOTIFICATION_COMMUNICATION_REQUEST";
+                break;
+            case 8:
+                str = "USAGE_NOTIFICATION_COMMUNICATION_INSTANT";
+                break;
+            case 9:
+                str = "USAGE_NOTIFICATION_COMMUNICATION_DELAYED";
+                break;
+            case 10:
+                str = "USAGE_NOTIFICATION_EVENT";
+                break;
+            case 11:
+                str = "USAGE_ASSISTANCE_ACCESSIBILITY";
+                break;
+            case 12:
+                str = "USAGE_ASSISTANCE_NAVIGATION_GUIDANCE";
+                break;
+            case 13:
+                str = "USAGE_ASSISTANCE_SONIFICATION";
+                break;
+            case 14:
+                str = "USAGE_GAME";
+                break;
+            case 15:
+            default:
+                str = o.h(i9, "unknown usage ");
+                break;
+            case 16:
+                str = "USAGE_ASSISTANT";
+                break;
+        }
+        sb.append(str);
+        sb.append(" content=");
+        sb.append(this.b);
+        sb.append(" flags=0x");
+        sb.append(Integer.toHexString(this.f4915c).toUpperCase());
         return sb.toString();
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* loaded from: classes7.dex */
-    public static class Builder implements AudioAttributesImpl.Builder {
-        private int mContentType;
-        private int mFlags;
-        private int mLegacyStream;
-        private int mUsage;
-
-        /* JADX INFO: Access modifiers changed from: package-private */
-        public Builder() {
-            this.mUsage = 0;
-            this.mContentType = 0;
-            this.mFlags = 0;
-            this.mLegacyStream = -1;
-        }
-
-        /* JADX INFO: Access modifiers changed from: package-private */
-        public Builder(AudioAttributesCompat audioAttributesCompat) {
-            this.mUsage = 0;
-            this.mContentType = 0;
-            this.mFlags = 0;
-            this.mLegacyStream = -1;
-            this.mUsage = audioAttributesCompat.getUsage();
-            this.mContentType = audioAttributesCompat.getContentType();
-            this.mFlags = audioAttributesCompat.getFlags();
-            this.mLegacyStream = audioAttributesCompat.getRawLegacyStreamType();
-        }
-
-        @Override // androidx.media.AudioAttributesImpl.Builder
-        public AudioAttributesImpl build() {
-            return new AudioAttributesImplBase(this.mContentType, this.mFlags, this.mUsage, this.mLegacyStream);
-        }
-
-        @Override // androidx.media.AudioAttributesImpl.Builder
-        public Builder setUsage(int i) {
-            switch (i) {
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                case 10:
-                case 11:
-                case 12:
-                case 13:
-                case 14:
-                case 15:
-                    this.mUsage = i;
-                    return this;
-                case 16:
-                    this.mUsage = 12;
-                    return this;
-                default:
-                    this.mUsage = 0;
-                    return this;
-            }
-        }
-
-        @Override // androidx.media.AudioAttributesImpl.Builder
-        public Builder setContentType(int i) {
-            if (i == 0 || i == 1 || i == 2 || i == 3 || i == 4) {
-                this.mContentType = i;
-            } else {
-                this.mContentType = 0;
-            }
-            return this;
-        }
-
-        @Override // androidx.media.AudioAttributesImpl.Builder
-        public Builder setFlags(int i) {
-            this.mFlags = (i & AnalyticsListener.EVENT_DROPPED_VIDEO_FRAMES) | this.mFlags;
-            return this;
-        }
-
-        @Override // androidx.media.AudioAttributesImpl.Builder
-        public Builder setLegacyStreamType(int i) {
-            if (i == 10) {
-                throw new IllegalArgumentException("STREAM_ACCESSIBILITY is not a legacy stream type that was used for audio playback");
-            }
-            this.mLegacyStream = i;
-            return setInternalLegacyStreamType(i);
-        }
-
-        /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
-        private Builder setInternalLegacyStreamType(int i) {
-            switch (i) {
-                case 0:
-                    this.mContentType = 1;
-                    break;
-                case 1:
-                    this.mContentType = 4;
-                    break;
-                case 2:
-                    this.mContentType = 4;
-                    break;
-                case 3:
-                    this.mContentType = 2;
-                    break;
-                case 4:
-                    this.mContentType = 4;
-                    break;
-                case 5:
-                    this.mContentType = 4;
-                    break;
-                case 6:
-                    this.mContentType = 1;
-                    this.mFlags |= 4;
-                    break;
-                case 7:
-                    this.mFlags = 1 | this.mFlags;
-                    this.mContentType = 4;
-                    break;
-                case 8:
-                    this.mContentType = 4;
-                    break;
-                case 9:
-                    this.mContentType = 4;
-                    break;
-                case 10:
-                    this.mContentType = 1;
-                    break;
-                default:
-                    Log.e("AudioAttributesCompat", "Invalid stream type " + i + " for AudioAttributesCompat");
-                    break;
-            }
-            this.mUsage = AudioAttributesImplBase.usageForStreamType(i);
-            return this;
-        }
     }
 }

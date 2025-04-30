@@ -3,18 +3,16 @@ package com.google.android.gms.internal.common;
 import java.util.NoSuchElementException;
 import org.jspecify.nullness.NullMarked;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
 @NullMarked
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 abstract class zzz extends zzak {
     private final int zza;
     private int zzb;
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public zzz(int i, int i2) {
-        zzs.zzb(i2, i, "index");
-        this.zza = i;
-        this.zzb = i2;
+    public zzz(int i9, int i10) {
+        zzs.zzb(i10, i9, "index");
+        this.zza = i9;
+        this.zzb = i10;
     }
 
     @Override // java.util.Iterator, java.util.ListIterator
@@ -29,12 +27,12 @@ abstract class zzz extends zzak {
 
     @Override // java.util.Iterator, java.util.ListIterator
     public final Object next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
+        if (hasNext()) {
+            int i9 = this.zzb;
+            this.zzb = i9 + 1;
+            return zza(i9);
         }
-        int i = this.zzb;
-        this.zzb = i + 1;
-        return zza(i);
+        throw new NoSuchElementException();
     }
 
     @Override // java.util.ListIterator
@@ -44,12 +42,12 @@ abstract class zzz extends zzak {
 
     @Override // java.util.ListIterator
     public final Object previous() {
-        if (!hasPrevious()) {
-            throw new NoSuchElementException();
+        if (hasPrevious()) {
+            int i9 = this.zzb - 1;
+            this.zzb = i9;
+            return zza(i9);
         }
-        int i = this.zzb - 1;
-        this.zzb = i;
-        return zza(i);
+        throw new NoSuchElementException();
     }
 
     @Override // java.util.ListIterator
@@ -57,5 +55,5 @@ abstract class zzz extends zzak {
         return this.zzb - 1;
     }
 
-    protected abstract Object zza(int i);
+    public abstract Object zza(int i9);
 }

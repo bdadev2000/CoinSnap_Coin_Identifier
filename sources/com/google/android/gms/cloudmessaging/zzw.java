@@ -10,8 +10,7 @@ import com.google.android.gms.common.util.PlatformVersion;
 import com.google.android.gms.common.wrappers.Wrappers;
 import java.util.List;
 
-/* compiled from: com.google.android.gms:play-services-cloud-messaging@@17.2.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzw {
     private final Context zza;
     private int zzb;
@@ -26,8 +25,8 @@ public final class zzw {
         if (this.zzb == 0) {
             try {
                 packageInfo = Wrappers.packageManager(this.zza).getPackageInfo("com.google.android.gms", 0);
-            } catch (PackageManager.NameNotFoundException e) {
-                Log.w("Metadata", "Failed to find package ".concat(e.toString()));
+            } catch (PackageManager.NameNotFoundException e4) {
+                Log.w("Metadata", "Failed to find package ".concat(e4.toString()));
                 packageInfo = null;
             }
             if (packageInfo != null) {
@@ -38,9 +37,9 @@ public final class zzw {
     }
 
     public final synchronized int zzb() {
-        int i = this.zzc;
-        if (i != 0) {
-            return i;
+        int i9 = this.zzc;
+        if (i9 != 0) {
+            return i9;
         }
         Context context = this.zza;
         PackageManager packageManager = context.getPackageManager();
@@ -48,29 +47,29 @@ public final class zzw {
             Log.e("Metadata", "Google Play services missing or without correct permission.");
             return 0;
         }
-        int i2 = 1;
+        int i10 = 1;
         if (!PlatformVersion.isAtLeastO()) {
             Intent intent = new Intent("com.google.android.c2dm.intent.REGISTER");
             intent.setPackage("com.google.android.gms");
             List<ResolveInfo> queryIntentServices = packageManager.queryIntentServices(intent, 0);
             if (queryIntentServices != null && !queryIntentServices.isEmpty()) {
-                this.zzc = i2;
-                return i2;
+                this.zzc = i10;
+                return i10;
             }
         }
         Intent intent2 = new Intent("com.google.iid.TOKEN_REQUEST");
         intent2.setPackage("com.google.android.gms");
         List<ResolveInfo> queryBroadcastReceivers = packageManager.queryBroadcastReceivers(intent2, 0);
         if (queryBroadcastReceivers != null && !queryBroadcastReceivers.isEmpty()) {
-            i2 = 2;
-            this.zzc = i2;
-            return i2;
+            i10 = 2;
+            this.zzc = i10;
+            return i10;
         }
         Log.w("Metadata", "Failed to resolve IID implementation package, falling back");
         if (true == PlatformVersion.isAtLeastO()) {
-            i2 = 2;
+            i10 = 2;
         }
-        this.zzc = i2;
-        return i2;
+        this.zzc = i10;
+        return i10;
     }
 }

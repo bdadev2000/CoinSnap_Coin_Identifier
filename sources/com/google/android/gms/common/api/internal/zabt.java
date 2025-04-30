@@ -5,13 +5,11 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.Api;
 import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zabt implements Runnable {
     final /* synthetic */ ConnectionResult zaa;
     final /* synthetic */ zabu zab;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zabt(zabu zabuVar, ConnectionResult connectionResult) {
         this.zab = zabuVar;
         this.zaa = connectionResult;
@@ -45,8 +43,8 @@ final class zabt implements Runnable {
                 client4 = zabuVar2.zab;
                 client3.getRemoteService(null, client4.getScopesForConnectionlessNonSignIn());
                 return;
-            } catch (SecurityException e) {
-                Log.e("GoogleApiManager", "Failed to get service from broker. ", e);
+            } catch (SecurityException e4) {
+                Log.e("GoogleApiManager", "Failed to get service from broker. ", e4);
                 client2 = this.zab.zab;
                 client2.disconnect("Failed to get service from broker.");
                 zabqVar.zar(new ConnectionResult(10), null);

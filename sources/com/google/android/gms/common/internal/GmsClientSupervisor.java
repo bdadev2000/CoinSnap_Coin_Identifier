@@ -5,111 +5,153 @@ import android.content.Context;
 import android.content.ServiceConnection;
 import android.os.HandlerThread;
 import android.os.Looper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.errorprone.annotations.ResultIgnorabilityUnspecified;
 import java.util.concurrent.Executor;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public abstract class GmsClientSupervisor {
+
+    @Nullable
     static HandlerThread zza = null;
     private static final Object zzb = new Object();
+
+    @Nullable
     private static zzs zzc = null;
+
+    @Nullable
     private static Executor zzd = null;
     private static boolean zze = false;
 
+    @KeepForSdk
     public static int getDefaultBindFlags() {
         return 4225;
     }
 
-    public static GmsClientSupervisor getInstance(Context context) {
+    @NonNull
+    @KeepForSdk
+    public static GmsClientSupervisor getInstance(@NonNull Context context) {
         Looper mainLooper;
         synchronized (zzb) {
-            if (zzc == null) {
-                Context applicationContext = context.getApplicationContext();
-                if (zze) {
-                    mainLooper = getOrStartHandlerThread().getLooper();
-                } else {
-                    mainLooper = context.getMainLooper();
+            try {
+                if (zzc == null) {
+                    Context applicationContext = context.getApplicationContext();
+                    if (zze) {
+                        mainLooper = getOrStartHandlerThread().getLooper();
+                    } else {
+                        mainLooper = context.getMainLooper();
+                    }
+                    zzc = new zzs(applicationContext, mainLooper, zzd);
                 }
-                zzc = new zzs(applicationContext, mainLooper, zzd);
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return zzc;
     }
 
+    @NonNull
+    @KeepForSdk
     public static HandlerThread getOrStartHandlerThread() {
         synchronized (zzb) {
-            HandlerThread handlerThread = zza;
-            if (handlerThread != null) {
-                return handlerThread;
+            try {
+                HandlerThread handlerThread = zza;
+                if (handlerThread != null) {
+                    return handlerThread;
+                }
+                HandlerThread handlerThread2 = new HandlerThread("GoogleApiHandler", 9);
+                zza = handlerThread2;
+                handlerThread2.start();
+                return zza;
+            } catch (Throwable th) {
+                throw th;
             }
-            HandlerThread handlerThread2 = new HandlerThread("GoogleApiHandler", 9);
-            zza = handlerThread2;
-            handlerThread2.start();
-            return zza;
         }
     }
 
-    public static void setDefaultBindExecutor(Executor executor) {
+    @KeepForSdk
+    public static void setDefaultBindExecutor(@Nullable Executor executor) {
         synchronized (zzb) {
-            zzs zzsVar = zzc;
-            if (zzsVar != null) {
-                zzsVar.zzi(executor);
+            try {
+                zzs zzsVar = zzc;
+                if (zzsVar != null) {
+                    zzsVar.zzi(executor);
+                }
+                zzd = executor;
+            } catch (Throwable th) {
+                throw th;
             }
-            zzd = executor;
         }
     }
 
+    @KeepForSdk
     public static void setUseHandlerThreadForCallbacks() {
         synchronized (zzb) {
-            zzs zzsVar = zzc;
-            if (zzsVar != null && !zze) {
-                zzsVar.zzj(getOrStartHandlerThread().getLooper());
+            try {
+                zzs zzsVar = zzc;
+                if (zzsVar != null && !zze) {
+                    zzsVar.zzj(getOrStartHandlerThread().getLooper());
+                }
+                zze = true;
+            } catch (Throwable th) {
+                throw th;
             }
-            zze = true;
         }
     }
 
-    public boolean bindService(ComponentName componentName, ServiceConnection serviceConnection, String str) {
+    @KeepForSdk
+    public boolean bindService(@NonNull ComponentName componentName, @NonNull ServiceConnection serviceConnection, @NonNull String str) {
         return zzc(new zzo(componentName, 4225), serviceConnection, str, null);
     }
 
-    public void unbindService(ComponentName componentName, ServiceConnection serviceConnection, String str) {
+    @KeepForSdk
+    public void unbindService(@NonNull ComponentName componentName, @NonNull ServiceConnection serviceConnection, @NonNull String str) {
         zza(new zzo(componentName, 4225), serviceConnection, str);
     }
 
-    protected abstract void zza(zzo zzoVar, ServiceConnection serviceConnection, String str);
+    public abstract void zza(zzo zzoVar, ServiceConnection serviceConnection, String str);
 
-    public final void zzb(String str, String str2, int i, ServiceConnection serviceConnection, String str3, boolean z) {
-        zza(new zzo(str, str2, 4225, z), serviceConnection, str3);
+    public final void zzb(@NonNull String str, @NonNull String str2, int i9, @NonNull ServiceConnection serviceConnection, @NonNull String str3, boolean z8) {
+        zza(new zzo(str, str2, 4225, z8), serviceConnection, str3);
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public abstract boolean zzc(zzo zzoVar, ServiceConnection serviceConnection, String str, Executor executor);
+    public abstract boolean zzc(zzo zzoVar, ServiceConnection serviceConnection, String str, @Nullable Executor executor);
 
-    public boolean bindService(ComponentName componentName, ServiceConnection serviceConnection, String str, Executor executor) {
+    @KeepForSdk
+    public boolean bindService(@NonNull ComponentName componentName, @NonNull ServiceConnection serviceConnection, @NonNull String str, @Nullable Executor executor) {
         return zzc(new zzo(componentName, 4225), serviceConnection, str, executor);
     }
 
-    public void unbindService(String str, ServiceConnection serviceConnection, String str2) {
+    @KeepForSdk
+    public void unbindService(@NonNull String str, @NonNull ServiceConnection serviceConnection, @NonNull String str2) {
         zza(new zzo(str, 4225, false), serviceConnection, str2);
     }
 
-    @ResultIgnorabilityUnspecified
-    public boolean bindService(String str, ServiceConnection serviceConnection, String str2) {
-        return zzc(new zzo(str, 4225, false), serviceConnection, str2, null);
+    @NonNull
+    @KeepForSdk
+    public static HandlerThread getOrStartHandlerThread(int i9) {
+        synchronized (zzb) {
+            try {
+                HandlerThread handlerThread = zza;
+                if (handlerThread != null) {
+                    return handlerThread;
+                }
+                HandlerThread handlerThread2 = new HandlerThread("GoogleApiHandler", i9);
+                zza = handlerThread2;
+                handlerThread2.start();
+                return zza;
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
     }
 
-    public static HandlerThread getOrStartHandlerThread(int i) {
-        synchronized (zzb) {
-            HandlerThread handlerThread = zza;
-            if (handlerThread != null) {
-                return handlerThread;
-            }
-            HandlerThread handlerThread2 = new HandlerThread("GoogleApiHandler", i);
-            zza = handlerThread2;
-            handlerThread2.start();
-            return zza;
-        }
+    @ResultIgnorabilityUnspecified
+    @KeepForSdk
+    public boolean bindService(@NonNull String str, @NonNull ServiceConnection serviceConnection, @NonNull String str2) {
+        return zzc(new zzo(str, 4225, false), serviceConnection, str2, null);
     }
 }

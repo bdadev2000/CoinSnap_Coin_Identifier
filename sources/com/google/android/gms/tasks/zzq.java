@@ -1,9 +1,11 @@
 package com.google.android.gms.tasks;
 
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
-interface zzq<TResult> {
+import androidx.annotation.NonNull;
+
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public interface zzq<TResult> {
     void zzc();
 
-    void zzd(Task task);
+    void zzd(@NonNull Task task);
 }

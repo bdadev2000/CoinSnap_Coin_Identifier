@@ -1,17 +1,24 @@
 package androidx.media;
 
-import androidx.versionedparcelable.VersionedParcel;
+import O0.a;
+import O0.c;
 
-/* loaded from: classes7.dex */
-public class AudioAttributesCompatParcelizer {
-    public static AudioAttributesCompat read(VersionedParcel versionedParcel) {
+/* loaded from: classes.dex */
+public final class AudioAttributesCompatParcelizer {
+    public static AudioAttributesCompat read(a aVar) {
         AudioAttributesCompat audioAttributesCompat = new AudioAttributesCompat();
-        audioAttributesCompat.mImpl = (AudioAttributesImpl) versionedParcel.readVersionedParcelable(audioAttributesCompat.mImpl, 1);
+        c cVar = audioAttributesCompat.f4912a;
+        if (aVar.e(1)) {
+            cVar = aVar.h();
+        }
+        audioAttributesCompat.f4912a = (AudioAttributesImpl) cVar;
         return audioAttributesCompat;
     }
 
-    public static void write(AudioAttributesCompat audioAttributesCompat, VersionedParcel versionedParcel) {
-        versionedParcel.setSerializationFlags(false, false);
-        versionedParcel.writeVersionedParcelable(audioAttributesCompat.mImpl, 1);
+    public static void write(AudioAttributesCompat audioAttributesCompat, a aVar) {
+        aVar.getClass();
+        AudioAttributesImpl audioAttributesImpl = audioAttributesCompat.f4912a;
+        aVar.i(1);
+        aVar.k(audioAttributesImpl);
     }
 }

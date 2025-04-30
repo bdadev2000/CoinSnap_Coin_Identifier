@@ -6,7 +6,7 @@ import android.webkit.ValueCallback;
 import java.util.List;
 import java.util.Set;
 
-/* loaded from: classes9.dex */
+/* loaded from: classes3.dex */
 public interface StaticsBoundaryInterface {
     Uri getSafeBrowsingPrivacyPolicyUrl();
 

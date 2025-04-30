@@ -1,31 +1,11 @@
 package com.google.android.gms.measurement.internal;
 
-import com.google.android.gms.common.internal.Preconditions;
+/* loaded from: classes2.dex */
+public final class zzis {
+    public static final String[] zza = {"firebase_last_notification", "first_open_time", "first_visit_time", "last_deep_link_referrer", "user_id", "last_advertising_id_reset", "first_open_after_install", "lifetime_user_engagement", "session_user_engagement", "non_personalized_ads", "ga_session_number", "ga_session_id", "last_gclid", "session_number", "session_id"};
+    public static final String[] zzb = {"_ln", "_fot", "_fvt", "_ldl", "_id", "_lair", "_fi", "_lte", "_se", "_npa", "_sno", "_sid", "_lgclid", "_sno", "_sid"};
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzis implements Runnable {
-    private final /* synthetic */ zzo zza;
-    private final /* synthetic */ zzic zzb;
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzis(zzic zzicVar, zzo zzoVar) {
-        this.zza = zzoVar;
-        this.zzb = zzicVar;
-    }
-
-    @Override // java.lang.Runnable
-    public final void run() {
-        zznv zznvVar;
-        zznv zznvVar2;
-        zznvVar = this.zzb.zza;
-        zznvVar.zzr();
-        zznvVar2 = this.zzb.zza;
-        zzo zzoVar = this.zza;
-        zznvVar2.zzl().zzt();
-        zznvVar2.zzs();
-        Preconditions.checkNotEmpty(zzoVar.zza);
-        zznvVar2.zzg(zzoVar);
-        zznvVar2.zzf(zzoVar);
+    public static String zza(String str) {
+        return zzkq.zza(str, zza, zzb);
     }
 }

@@ -3,18 +3,17 @@ package com.google.android.gms.cloudmessaging;
 import android.util.Log;
 import java.util.Objects;
 
-/* compiled from: com.google.android.gms:play-services-cloud-messaging@@17.2.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzc extends ClassLoader {
     @Override // java.lang.ClassLoader
-    protected final Class loadClass(String str, boolean z) throws ClassNotFoundException {
+    public final Class loadClass(String str, boolean z8) throws ClassNotFoundException {
         if (Objects.equals(str, "com.google.android.gms.iid.MessengerCompat")) {
-            if (!Log.isLoggable("CloudMessengerCompat", 3)) {
+            if (Log.isLoggable("CloudMessengerCompat", 3)) {
+                Log.d("CloudMessengerCompat", "Using renamed FirebaseIidMessengerCompat class");
                 return zzd.class;
             }
-            Log.d("CloudMessengerCompat", "Using renamed FirebaseIidMessengerCompat class");
             return zzd.class;
         }
-        return super.loadClass(str, z);
+        return super.loadClass(str, z8);
     }
 }

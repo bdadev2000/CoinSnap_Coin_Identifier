@@ -4,12 +4,10 @@ import android.os.Handler;
 import com.google.android.gms.common.internal.BaseGmsClient;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zabp implements BaseGmsClient.SignOutCallbacks {
     final /* synthetic */ zabq zaa;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zabp(zabq zabqVar) {
         this.zaa = zabqVar;
     }

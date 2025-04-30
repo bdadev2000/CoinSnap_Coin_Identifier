@@ -4,13 +4,15 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.wrappers.Wrappers;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzah {
     private static final Object zza = new Object();
     private static boolean zzb;
+
+    @Nullable
     private static String zzc;
     private static int zzd;
 
@@ -19,6 +21,7 @@ public final class zzah {
         return zzd;
     }
 
+    @Nullable
     public static String zzb(Context context) {
         zzc(context);
         return zzc;
@@ -27,20 +30,24 @@ public final class zzah {
     private static void zzc(Context context) {
         Bundle bundle;
         synchronized (zza) {
-            if (zzb) {
-                return;
-            }
-            zzb = true;
             try {
-                bundle = Wrappers.packageManager(context).getApplicationInfo(context.getPackageName(), 128).metaData;
-            } catch (PackageManager.NameNotFoundException e) {
-                Log.wtf("MetadataValueReader", "This should never happen.", e);
+                if (zzb) {
+                    return;
+                }
+                zzb = true;
+                try {
+                    bundle = Wrappers.packageManager(context).getApplicationInfo(context.getPackageName(), 128).metaData;
+                } catch (PackageManager.NameNotFoundException e4) {
+                    Log.wtf("MetadataValueReader", "This should never happen.", e4);
+                }
+                if (bundle == null) {
+                    return;
+                }
+                zzc = bundle.getString("com.google.app.id");
+                zzd = bundle.getInt("com.google.android.gms.version");
+            } catch (Throwable th) {
+                throw th;
             }
-            if (bundle == null) {
-                return;
-            }
-            zzc = bundle.getString("com.google.app.id");
-            zzd = bundle.getInt("com.google.android.gms.version");
         }
     }
 }

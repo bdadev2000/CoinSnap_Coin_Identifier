@@ -1,32 +1,70 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public final class zzfh extends zzbx implements zzdg {
-    private zzfh() {
-        super(zzfj.zzw());
+import java.io.IOException;
+
+/* loaded from: classes2.dex */
+final class zzfh extends zzff {
+    @Override // com.google.android.gms.internal.play_billing.zzff
+    public final /* synthetic */ int zza(Object obj) {
+        return ((zzfg) obj).zza();
     }
 
-    public final zzfh zzi(String str) {
-        zzg();
-        zzfj.zzy((zzfj) this.zza, str);
-        return this;
+    @Override // com.google.android.gms.internal.play_billing.zzff
+    public final /* synthetic */ int zzb(Object obj) {
+        return ((zzfg) obj).zzb();
     }
 
-    public final zzfh zzj(int i) {
-        zzg();
-        zzfj.zzx((zzfj) this.zza, i);
-        return this;
+    @Override // com.google.android.gms.internal.play_billing.zzff
+    public final /* bridge */ /* synthetic */ Object zzc(Object obj) {
+        zzcs zzcsVar = (zzcs) obj;
+        zzfg zzfgVar = zzcsVar.zzc;
+        if (zzfgVar == zzfg.zzc()) {
+            zzfg zzf = zzfg.zzf();
+            zzcsVar.zzc = zzf;
+            return zzf;
+        }
+        return zzfgVar;
     }
 
-    public final zzfh zzk(int i) {
-        zzg();
-        zzfj.zzz((zzfj) this.zza, i);
-        return this;
+    @Override // com.google.android.gms.internal.play_billing.zzff
+    public final /* synthetic */ Object zzd(Object obj) {
+        return ((zzcs) obj).zzc;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public /* synthetic */ zzfh(zzfg zzfgVar) {
-        super(zzfj.zzw());
+    @Override // com.google.android.gms.internal.play_billing.zzff
+    public final /* bridge */ /* synthetic */ Object zze(Object obj, Object obj2) {
+        if (!zzfg.zzc().equals(obj2)) {
+            if (zzfg.zzc().equals(obj)) {
+                return zzfg.zze((zzfg) obj, (zzfg) obj2);
+            }
+            ((zzfg) obj).zzd((zzfg) obj2);
+            return obj;
+        }
+        return obj;
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzff
+    public final /* bridge */ /* synthetic */ void zzf(Object obj, int i9, long j7) {
+        ((zzfg) obj).zzj(i9 << 3, Long.valueOf(j7));
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzff
+    public final void zzg(Object obj) {
+        ((zzcs) obj).zzc.zzh();
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzff
+    public final /* synthetic */ void zzh(Object obj, Object obj2) {
+        ((zzcs) obj).zzc = (zzfg) obj2;
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzff
+    public final /* synthetic */ void zzi(Object obj, zzfx zzfxVar) throws IOException {
+        ((zzfg) obj).zzk(zzfxVar);
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzff
+    public final /* synthetic */ void zzj(Object obj, zzfx zzfxVar) throws IOException {
+        ((zzfg) obj).zzl(zzfxVar);
     }
 }

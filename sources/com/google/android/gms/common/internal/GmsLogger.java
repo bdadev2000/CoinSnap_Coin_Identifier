@@ -1,123 +1,153 @@
 package com.google.android.gms.common.internal;
 
 import android.util.Log;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public final class GmsLogger {
     private final String zza;
+
+    @Nullable
     private final String zzb;
 
-    public GmsLogger(String str) {
+    @KeepForSdk
+    public GmsLogger(@NonNull String str) {
         this(str, null);
     }
 
     private final String zza(String str) {
         String str2 = this.zzb;
-        return str2 == null ? str : str2.concat(str);
+        if (str2 == null) {
+            return str;
+        }
+        return str2.concat(str);
     }
 
     private final String zzb(String str, Object... objArr) {
         String str2 = this.zzb;
         String format = String.format(str, objArr);
-        return str2 == null ? format : str2.concat(format);
+        if (str2 == null) {
+            return format;
+        }
+        return str2.concat(format);
     }
 
-    public boolean canLog(int i) {
-        return Log.isLoggable(this.zza, i);
+    @KeepForSdk
+    public boolean canLog(int i9) {
+        return Log.isLoggable(this.zza, i9);
     }
 
+    @KeepForSdk
     public boolean canLogPii() {
         return false;
     }
 
-    public void d(String str, String str2) {
+    @KeepForSdk
+    public void d(@NonNull String str, @NonNull String str2) {
         if (canLog(3)) {
             Log.d(str, zza(str2));
         }
     }
 
-    public void e(String str, String str2) {
+    @KeepForSdk
+    public void e(@NonNull String str, @NonNull String str2) {
         if (canLog(6)) {
             Log.e(str, zza(str2));
         }
     }
 
-    public void efmt(String str, String str2, Object... objArr) {
+    @KeepForSdk
+    public void efmt(@NonNull String str, @NonNull String str2, @NonNull Object... objArr) {
         if (canLog(6)) {
             Log.e(str, zzb(str2, objArr));
         }
     }
 
-    public void i(String str, String str2) {
+    @KeepForSdk
+    public void i(@NonNull String str, @NonNull String str2) {
         if (canLog(4)) {
             Log.i(str, zza(str2));
         }
     }
 
-    public void pii(String str, String str2) {
+    @KeepForSdk
+    public void pii(@NonNull String str, @NonNull String str2) {
     }
 
-    public void pii(String str, String str2, Throwable th) {
-    }
-
-    public void v(String str, String str2) {
+    @KeepForSdk
+    public void v(@NonNull String str, @NonNull String str2) {
         if (canLog(2)) {
             Log.v(str, zza(str2));
         }
     }
 
-    public void w(String str, String str2) {
+    @KeepForSdk
+    public void w(@NonNull String str, @NonNull String str2) {
         if (canLog(5)) {
             Log.w(str, zza(str2));
         }
     }
 
-    public void wfmt(String str, String str2, Object... objArr) {
+    @KeepForSdk
+    public void wfmt(@NonNull String str, @NonNull String str2, @NonNull Object... objArr) {
         if (canLog(5)) {
             Log.w(this.zza, zzb(str2, objArr));
         }
     }
 
-    public void wtf(String str, String str2, Throwable th) {
+    @KeepForSdk
+    public void wtf(@NonNull String str, @NonNull String str2, @NonNull Throwable th) {
         if (canLog(7)) {
             Log.e(str, zza(str2), th);
             Log.wtf(str, zza(str2), th);
         }
     }
 
-    public GmsLogger(String str, String str2) {
+    @KeepForSdk
+    public GmsLogger(@NonNull String str, @Nullable String str2) {
         Preconditions.checkNotNull(str, "log tag cannot be null");
         Preconditions.checkArgument(str.length() <= 23, "tag \"%s\" is longer than the %d character maximum", str, 23);
         this.zza = str;
         this.zzb = (str2 == null || str2.length() <= 0) ? null : str2;
     }
 
-    public void d(String str, String str2, Throwable th) {
+    @KeepForSdk
+    public void pii(@NonNull String str, @NonNull String str2, @NonNull Throwable th) {
+    }
+
+    @KeepForSdk
+    public void d(@NonNull String str, @NonNull String str2, @NonNull Throwable th) {
         if (canLog(3)) {
             Log.d(str, zza(str2), th);
         }
     }
 
-    public void e(String str, String str2, Throwable th) {
+    @KeepForSdk
+    public void e(@NonNull String str, @NonNull String str2, @NonNull Throwable th) {
         if (canLog(6)) {
             Log.e(str, zza(str2), th);
         }
     }
 
-    public void i(String str, String str2, Throwable th) {
+    @KeepForSdk
+    public void i(@NonNull String str, @NonNull String str2, @NonNull Throwable th) {
         if (canLog(4)) {
             Log.i(str, zza(str2), th);
         }
     }
 
-    public void v(String str, String str2, Throwable th) {
+    @KeepForSdk
+    public void v(@NonNull String str, @NonNull String str2, @NonNull Throwable th) {
         if (canLog(2)) {
             Log.v(str, zza(str2), th);
         }
     }
 
-    public void w(String str, String str2, Throwable th) {
+    @KeepForSdk
+    public void w(@NonNull String str, @NonNull String str2, @NonNull Throwable th) {
         if (canLog(5)) {
             Log.w(str, zza(str2), th);
         }

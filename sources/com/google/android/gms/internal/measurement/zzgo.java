@@ -1,96 +1,55 @@
 package com.google.android.gms.internal.measurement;
 
-import android.content.ContentProviderClient;
-import android.content.ContentResolver;
-import android.database.Cursor;
-import android.os.RemoteException;
-import java.util.Map;
+import x.l;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzgo implements zzgq {
-    @Override // com.google.android.gms.internal.measurement.zzgq
-    public final String zza(ContentResolver contentResolver, String str) throws zzgt {
-        ContentProviderClient acquireUnstableContentProviderClient = contentResolver.acquireUnstableContentProviderClient(zzgi.zza);
-        try {
-            if (acquireUnstableContentProviderClient == null) {
-                throw new zzgt("Unable to acquire ContentProviderClient");
-            }
-            try {
-                Cursor query = acquireUnstableContentProviderClient.query(zzgi.zza, null, null, new String[]{str}, null);
-                try {
-                    if (query == null) {
-                        throw new zzgt("ContentProvider query returned null cursor");
-                    }
-                    if (query.moveToFirst()) {
-                        String string = query.getString(1);
-                        if (query != null) {
-                            query.close();
-                        }
-                        return string;
-                    }
-                    if (query != null) {
-                        query.close();
-                    }
-                    acquireUnstableContentProviderClient.release();
-                    return null;
-                } catch (Throwable th) {
-                    if (query != null) {
-                        try {
-                            query.close();
-                        } catch (Throwable th2) {
-                            th.addSuppressed(th2);
-                        }
-                    }
-                    throw th;
-                }
-            } catch (RemoteException e) {
-                throw new zzgt("ContentProvider query failed", e);
-            }
-        } finally {
-            acquireUnstableContentProviderClient.release();
-        }
+/* loaded from: classes2.dex */
+public final class zzgo implements zzgt {
+    private final l zza;
+
+    public zzgo(l lVar) {
+        this.zza = lVar;
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzgq
-    public final <T extends Map<String, String>> T zza(ContentResolver contentResolver, String[] strArr, zzgr<T> zzgrVar) throws zzgt {
-        ContentProviderClient acquireUnstableContentProviderClient = contentResolver.acquireUnstableContentProviderClient(zzgi.zzb);
-        try {
-            if (acquireUnstableContentProviderClient == null) {
-                throw new zzgt("Unable to acquire ContentProviderClient");
-            }
-            try {
-                Cursor query = acquireUnstableContentProviderClient.query(zzgi.zzb, null, null, strArr, null);
-                try {
-                    if (query == null) {
-                        throw new zzgt("ContentProvider query returned null cursor");
-                    }
-                    T zza = zzgrVar.zza(query.getCount());
-                    while (query.moveToNext()) {
-                        zza.put(query.getString(0), query.getString(1));
-                    }
-                    if (!query.isAfterLast()) {
-                        throw new zzgt("Cursor read incomplete (ContentProvider dead?)");
-                    }
-                    if (query != null) {
-                        query.close();
-                    }
-                    return zza;
-                } catch (Throwable th) {
-                    if (query != null) {
-                        try {
-                            query.close();
-                        } catch (Throwable th2) {
-                            th.addSuppressed(th2);
-                        }
-                    }
-                    throw th;
-                }
-            } catch (RemoteException e) {
-                throw new zzgt("ContentProvider query failed", e);
-            }
-        } finally {
-            acquireUnstableContentProviderClient.release();
-        }
+    /* JADX WARN: Code restructure failed: missing block: B:15:0x0008, code lost:
+    
+        if (r3 != null) goto L6;
+     */
+    /* JADX WARN: Removed duplicated region for block: B:10:0x0019  */
+    /* JADX WARN: Removed duplicated region for block: B:8:0x0018 A[RETURN] */
+    @Override // com.google.android.gms.internal.measurement.zzgt
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    public final java.lang.String zza(android.net.Uri r2, java.lang.String r3, java.lang.String r4, java.lang.String r5) {
+        /*
+            r1 = this;
+            r0 = 0
+            if (r2 == 0) goto L8
+            java.lang.String r3 = r2.toString()
+            goto La
+        L8:
+            if (r3 == 0) goto Le
+        La:
+            x.l r2 = r1.zza
+            if (r2 != 0) goto L10
+        Le:
+            r2 = r0
+            goto L16
+        L10:
+            java.lang.Object r2 = r2.getOrDefault(r3, r0)
+            x.l r2 = (x.l) r2
+        L16:
+            if (r2 != 0) goto L19
+            return r0
+        L19:
+            if (r4 == 0) goto L1f
+            java.lang.String r5 = com.mbridge.msdk.foundation.entity.o.j(r4, r5)
+        L1f:
+            java.lang.Object r2 = r2.getOrDefault(r5, r0)
+            java.lang.String r2 = (java.lang.String) r2
+            return r2
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.internal.measurement.zzgo.zza(android.net.Uri, java.lang.String, java.lang.String, java.lang.String):java.lang.String");
     }
 }

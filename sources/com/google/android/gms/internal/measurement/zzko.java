@@ -1,11 +1,9 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzko {
-    private static final zzkm zza = new zzkl();
+    private static final zzkm zza = new zzkp();
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public static zzkm zza() {
         return zza;
     }

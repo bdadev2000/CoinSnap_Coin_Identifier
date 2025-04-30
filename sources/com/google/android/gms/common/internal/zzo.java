@@ -6,18 +6,25 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import androidx.annotation.Nullable;
+import com.applovin.sdk.AppLovinEventTypes;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzo {
-    private static final Uri zza = new Uri.Builder().scheme("content").authority("com.google.android.gms.chimera").build();
+    private static final Uri zza = new Uri.Builder().scheme(AppLovinEventTypes.USER_VIEWED_CONTENT).authority("com.google.android.gms.chimera").build();
+
+    @Nullable
     private final String zzb;
+
+    @Nullable
     private final String zzc;
+
+    @Nullable
     private final ComponentName zzd;
     private final int zze;
     private final boolean zzf;
 
-    public zzo(ComponentName componentName, int i) {
+    public zzo(ComponentName componentName, int i9) {
         this.zzb = null;
         this.zzc = null;
         Preconditions.checkNotNull(componentName);
@@ -26,7 +33,7 @@ public final class zzo {
         this.zzf = false;
     }
 
-    public final boolean equals(Object obj) {
+    public final boolean equals(@Nullable Object obj) {
         if (this == obj) {
             return true;
         }
@@ -34,11 +41,8 @@ public final class zzo {
             return false;
         }
         zzo zzoVar = (zzo) obj;
-        if (Objects.equal(this.zzb, zzoVar.zzb) && Objects.equal(this.zzc, zzoVar.zzc) && Objects.equal(this.zzd, zzoVar.zzd)) {
-            int i = zzoVar.zze;
-            if (this.zzf == zzoVar.zzf) {
-                return true;
-            }
+        if (Objects.equal(this.zzb, zzoVar.zzb) && Objects.equal(this.zzc, zzoVar.zzc) && Objects.equal(this.zzd, zzoVar.zzd) && this.zzf == zzoVar.zzf) {
+            return true;
         }
         return false;
     }
@@ -49,54 +53,62 @@ public final class zzo {
 
     public final String toString() {
         String str = this.zzb;
-        if (str != null) {
-            return str;
+        if (str == null) {
+            Preconditions.checkNotNull(this.zzd);
+            return this.zzd.flattenToString();
         }
-        Preconditions.checkNotNull(this.zzd);
-        return this.zzd.flattenToString();
+        return str;
     }
 
+    @Nullable
     public final ComponentName zza() {
         return this.zzd;
     }
 
     public final Intent zzb(Context context) {
         Bundle bundle;
-        if (this.zzb == null) {
-            return new Intent().setComponent(this.zzd);
-        }
-        if (this.zzf) {
-            Bundle bundle2 = new Bundle();
-            bundle2.putString("serviceActionBundleKey", this.zzb);
-            try {
-                bundle = context.getContentResolver().call(zza, "serviceIntentCall", (String) null, bundle2);
-            } catch (IllegalArgumentException e) {
-                Log.w("ConnectionStatusConfig", "Dynamic intent resolution failed: ".concat(e.toString()));
-                bundle = null;
+        if (this.zzb != null) {
+            Intent intent = null;
+            if (this.zzf) {
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("serviceActionBundleKey", this.zzb);
+                try {
+                    bundle = context.getContentResolver().call(zza, "serviceIntentCall", (String) null, bundle2);
+                } catch (IllegalArgumentException e4) {
+                    Log.w("ConnectionStatusConfig", "Dynamic intent resolution failed: ".concat(e4.toString()));
+                    bundle = null;
+                }
+                if (bundle != null) {
+                    intent = (Intent) bundle.getParcelable("serviceResponseIntentKey");
+                }
+                if (intent == null) {
+                    Log.w("ConnectionStatusConfig", "Dynamic lookup for intent failed for action: ".concat(String.valueOf(this.zzb)));
+                }
             }
-            r2 = bundle != null ? (Intent) bundle.getParcelable("serviceResponseIntentKey") : null;
-            if (r2 == null) {
-                Log.w("ConnectionStatusConfig", "Dynamic lookup for intent failed for action: ".concat(String.valueOf(this.zzb)));
+            if (intent == null) {
+                return new Intent(this.zzb).setPackage(this.zzc);
             }
+            return intent;
         }
-        return r2 == null ? new Intent(this.zzb).setPackage(this.zzc) : r2;
+        return new Intent().setComponent(this.zzd);
     }
 
+    @Nullable
     public final String zzc() {
         return this.zzc;
     }
 
-    public zzo(String str, int i, boolean z) {
+    public zzo(String str, int i9, boolean z8) {
         this(str, "com.google.android.gms", 4225, false);
     }
 
-    public zzo(String str, String str2, int i, boolean z) {
+    public zzo(String str, String str2, int i9, boolean z8) {
         Preconditions.checkNotEmpty(str);
         this.zzb = str;
         Preconditions.checkNotEmpty(str2);
         this.zzc = str2;
         this.zzd = null;
         this.zze = 4225;
-        this.zzf = z;
+        this.zzf = z8;
     }
 }

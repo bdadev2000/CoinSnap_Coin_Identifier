@@ -1,27 +1,18 @@
 package com.google.android.gms.measurement.internal;
 
-import android.net.Uri;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzlc extends zzat {
+    private final /* synthetic */ zzkx zza;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzlc implements Runnable {
-    private final /* synthetic */ boolean zza;
-    private final /* synthetic */ Uri zzb;
-    private final /* synthetic */ String zzc;
-    private final /* synthetic */ String zzd;
-    private final /* synthetic */ zzkz zze;
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzlc(zzkz zzkzVar, boolean z, Uri uri, String str, String str2) {
-        this.zza = z;
-        this.zzb = uri;
-        this.zzc = str;
-        this.zzd = str2;
-        this.zze = zzkzVar;
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public zzlc(zzkx zzkxVar, zzil zzilVar) {
+        super(zzilVar);
+        this.zza = zzkxVar;
     }
 
-    @Override // java.lang.Runnable
-    public final void run() {
-        zzkz.zza(this.zze, this.zza, this.zzb, this.zzc, this.zzd);
+    @Override // com.google.android.gms.measurement.internal.zzat
+    public final void zzb() {
+        zzkx.zzd(this.zza);
     }
 }

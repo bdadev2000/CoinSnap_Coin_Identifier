@@ -1,13 +1,15 @@
 package com.google.android.gms.internal.measurement;
 
-import java.util.List;
+/* loaded from: classes2.dex */
+final /* synthetic */ class zzkj {
+    static final /* synthetic */ int[] zza;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public interface zzkj extends List {
-    Object zza(int i);
-
-    List<?> zza();
-
-    void zza(zzik zzikVar);
+    static {
+        int[] iArr = new int[zzle.values().length];
+        zza = iArr;
+        try {
+            iArr[zzle.PROTO3.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
+        }
+    }
 }

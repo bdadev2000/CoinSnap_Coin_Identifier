@@ -1,32 +1,28 @@
 package com.google.android.gms.internal.measurement;
 
-import com.google.common.base.Supplier;
-import com.google.common.base.Suppliers;
-import org.checkerframework.dataflow.qual.SideEffectFree;
+/* loaded from: classes2.dex */
+public final class zzow implements zzot {
+    private static final zzgz<Boolean> zza;
+    private static final zzgz<Boolean> zzb;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzow implements Supplier<zzoz> {
-    private static zzow zza = new zzow();
-    private final Supplier<zzoz> zzb = Suppliers.ofInstance(new zzoy());
-
-    @Override // com.google.common.base.Supplier
-    public final /* synthetic */ zzoz get() {
-        return this.zzb.get();
+    static {
+        zzhh zza2 = new zzhh(zzgw.zza("com.google.android.gms.measurement")).zzb().zza();
+        zza = zza2.zza("measurement.item_scoped_custom_parameters.client", true);
+        zzb = zza2.zza("measurement.item_scoped_custom_parameters.service", true);
     }
 
-    @SideEffectFree
-    public static boolean zza() {
-        return ((zzoz) zza.get()).zza();
+    @Override // com.google.android.gms.internal.measurement.zzot
+    public final boolean zza() {
+        return true;
     }
 
-    @SideEffectFree
-    public static boolean zzb() {
-        return ((zzoz) zza.get()).zzb();
+    @Override // com.google.android.gms.internal.measurement.zzot
+    public final boolean zzb() {
+        return zza.zza().booleanValue();
     }
 
-    @SideEffectFree
-    public static boolean zzc() {
-        return ((zzoz) zza.get()).zzc();
+    @Override // com.google.android.gms.internal.measurement.zzot
+    public final boolean zzc() {
+        return zzb.zza().booleanValue();
     }
 }

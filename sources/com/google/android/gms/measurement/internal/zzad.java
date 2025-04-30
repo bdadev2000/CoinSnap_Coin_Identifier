@@ -4,23 +4,22 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelReader;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzad implements Parcelable.Creator<zzae> {
     @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zzae createFromParcel(Parcel parcel) {
         int validateObjectHeader = SafeParcelReader.validateObjectHeader(parcel);
         String str = null;
         String str2 = null;
-        zzon zzonVar = null;
+        zzno zznoVar = null;
         String str3 = null;
-        zzbf zzbfVar = null;
-        zzbf zzbfVar2 = null;
-        zzbf zzbfVar3 = null;
-        long j = 0;
-        long j2 = 0;
-        long j3 = 0;
-        boolean z = false;
+        zzbd zzbdVar = null;
+        zzbd zzbdVar2 = null;
+        zzbd zzbdVar3 = null;
+        long j7 = 0;
+        long j9 = 0;
+        long j10 = 0;
+        boolean z8 = false;
         while (parcel.dataPosition() < validateObjectHeader) {
             int readHeader = SafeParcelReader.readHeader(parcel);
             switch (SafeParcelReader.getFieldId(readHeader)) {
@@ -31,31 +30,31 @@ public final class zzad implements Parcelable.Creator<zzae> {
                     str2 = SafeParcelReader.createString(parcel, readHeader);
                     break;
                 case 4:
-                    zzonVar = (zzon) SafeParcelReader.createParcelable(parcel, readHeader, zzon.CREATOR);
+                    zznoVar = (zzno) SafeParcelReader.createParcelable(parcel, readHeader, zzno.CREATOR);
                     break;
                 case 5:
-                    j = SafeParcelReader.readLong(parcel, readHeader);
+                    j7 = SafeParcelReader.readLong(parcel, readHeader);
                     break;
                 case 6:
-                    z = SafeParcelReader.readBoolean(parcel, readHeader);
+                    z8 = SafeParcelReader.readBoolean(parcel, readHeader);
                     break;
                 case 7:
                     str3 = SafeParcelReader.createString(parcel, readHeader);
                     break;
                 case 8:
-                    zzbfVar = (zzbf) SafeParcelReader.createParcelable(parcel, readHeader, zzbf.CREATOR);
+                    zzbdVar = (zzbd) SafeParcelReader.createParcelable(parcel, readHeader, zzbd.CREATOR);
                     break;
                 case 9:
-                    j2 = SafeParcelReader.readLong(parcel, readHeader);
+                    j9 = SafeParcelReader.readLong(parcel, readHeader);
                     break;
                 case 10:
-                    zzbfVar2 = (zzbf) SafeParcelReader.createParcelable(parcel, readHeader, zzbf.CREATOR);
+                    zzbdVar2 = (zzbd) SafeParcelReader.createParcelable(parcel, readHeader, zzbd.CREATOR);
                     break;
                 case 11:
-                    j3 = SafeParcelReader.readLong(parcel, readHeader);
+                    j10 = SafeParcelReader.readLong(parcel, readHeader);
                     break;
                 case 12:
-                    zzbfVar3 = (zzbf) SafeParcelReader.createParcelable(parcel, readHeader, zzbf.CREATOR);
+                    zzbdVar3 = (zzbd) SafeParcelReader.createParcelable(parcel, readHeader, zzbd.CREATOR);
                     break;
                 default:
                     SafeParcelReader.skipUnknownField(parcel, readHeader);
@@ -63,11 +62,11 @@ public final class zzad implements Parcelable.Creator<zzae> {
             }
         }
         SafeParcelReader.ensureAtEnd(parcel, validateObjectHeader);
-        return new zzae(str, str2, zzonVar, j, z, str3, zzbfVar, j2, zzbfVar2, j3, zzbfVar3);
+        return new zzae(str, str2, zznoVar, j7, z8, str3, zzbdVar, j9, zzbdVar2, j10, zzbdVar3);
     }
 
     @Override // android.os.Parcelable.Creator
-    public final /* synthetic */ zzae[] newArray(int i) {
-        return new zzae[i];
+    public final /* synthetic */ zzae[] newArray(int i9) {
+        return new zzae[i9];
     }
 }

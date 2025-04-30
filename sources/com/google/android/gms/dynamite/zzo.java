@@ -4,13 +4,12 @@ import android.content.Context;
 import com.google.android.gms.dynamite.DynamiteModule;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzo implements DynamiteModule.VersionPolicy.IVersions {
     private final int zza;
 
-    public zzo(int i, int i2) {
-        this.zza = i;
+    public zzo(int i9, int i10) {
+        this.zza = i9;
     }
 
     @Override // com.google.android.gms.dynamite.DynamiteModule.VersionPolicy.IVersions
@@ -19,7 +18,7 @@ public final class zzo implements DynamiteModule.VersionPolicy.IVersions {
     }
 
     @Override // com.google.android.gms.dynamite.DynamiteModule.VersionPolicy.IVersions
-    public final int zzb(Context context, String str, boolean z) {
+    public final int zzb(Context context, String str, boolean z8) {
         return 0;
     }
 }

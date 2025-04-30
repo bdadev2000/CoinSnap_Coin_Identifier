@@ -1,31 +1,18 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final class zzbw implements zzdd {
-    private static final zzbw zza = new zzbw();
+import java.io.IOException;
 
-    private zzbw() {
+/* loaded from: classes2.dex */
+public final class zzbw extends IOException {
+    public zzbw() {
+        super("CodedOutputStream was writing to a flat byte array and ran out of space.");
     }
 
-    public static zzbw zza() {
-        return zza;
+    public zzbw(String str, Throwable th) {
+        super("CodedOutputStream was writing to a flat byte array and ran out of space.: ".concat(String.valueOf(str)), th);
     }
 
-    @Override // com.google.android.gms.internal.play_billing.zzdd
-    public final zzdc zzb(Class cls) {
-        if (!zzcb.class.isAssignableFrom(cls)) {
-            throw new IllegalArgumentException("Unsupported message type: ".concat(String.valueOf(cls.getName())));
-        }
-        try {
-            return (zzdc) zzcb.zzh(cls.asSubclass(zzcb.class)).zzu(3, null, null);
-        } catch (Exception e) {
-            throw new RuntimeException("Unable to get message info for ".concat(String.valueOf(cls.getName())), e);
-        }
-    }
-
-    @Override // com.google.android.gms.internal.play_billing.zzdd
-    public final boolean zzc(Class cls) {
-        return zzcb.class.isAssignableFrom(cls);
+    public zzbw(Throwable th) {
+        super("CodedOutputStream was writing to a flat byte array and ran out of space.", th);
     }
 }

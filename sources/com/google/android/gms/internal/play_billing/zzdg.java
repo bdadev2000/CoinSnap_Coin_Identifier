@@ -1,7 +1,32 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public interface zzdg {
-    zzdf zzf();
+import java.util.Iterator;
+import java.util.Map;
+
+/* loaded from: classes2.dex */
+final class zzdg implements Iterator {
+    private final Iterator zza;
+
+    public zzdg(Iterator it) {
+        this.zza = it;
+    }
+
+    @Override // java.util.Iterator
+    public final boolean hasNext() {
+        return this.zza.hasNext();
+    }
+
+    @Override // java.util.Iterator
+    public final /* bridge */ /* synthetic */ Object next() {
+        Map.Entry entry = (Map.Entry) this.zza.next();
+        if (entry.getValue() instanceof zzdh) {
+            return new zzdf(entry, null);
+        }
+        return entry;
+    }
+
+    @Override // java.util.Iterator
+    public final void remove() {
+        this.zza.remove();
+    }
 }

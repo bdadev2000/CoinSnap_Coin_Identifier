@@ -1,41 +1,30 @@
 package com.google.android.gms.measurement.internal;
 
-import android.os.Handler;
-import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.gms.common.internal.Preconditions;
+import java.util.concurrent.Callable;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzng {
-    final /* synthetic */ zznb zza;
-    private zznf zzb;
+/* loaded from: classes2.dex */
+public final class zzng implements Callable<String> {
+    private final /* synthetic */ zzo zza;
+    private final /* synthetic */ zznc zzb;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzng(zznb zznbVar) {
-        this.zza = zznbVar;
+    public zzng(zznc zzncVar, zzo zzoVar) {
+        this.zza = zzoVar;
+        this.zzb = zzncVar;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public final void zza(long j) {
-        Handler handler;
-        this.zzb = new zznf(this, this.zza.zzb().currentTimeMillis(), j);
-        handler = this.zza.zzc;
-        handler.postDelayed(this.zzb, SimpleExoPlayer.DEFAULT_DETACH_SURFACE_TIMEOUT_MS);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public final void zza() {
-        Handler handler;
-        this.zza.zzt();
-        if (this.zzb != null) {
-            handler = this.zza.zzc;
-            handler.removeCallbacks(this.zzb);
+    @Override // java.util.concurrent.Callable
+    public final /* synthetic */ String call() throws Exception {
+        if (this.zzb.zzb((String) Preconditions.checkNotNull(this.zza.zza)).zzj() && zzin.zzb(this.zza.zzt).zzj()) {
+            zzg zza = this.zzb.zza(this.zza);
+            if (zza == null) {
+                this.zzb.zzj().zzu().zza("App info was null when attempting to get app instance id");
+                return null;
+            }
+            return zza.zzad();
         }
-        this.zza.zzk().zzn.zza(false);
-        this.zza.zza(false);
-        if (this.zza.zze().zza(zzbh.zzcl) && this.zza.zzm().zzau()) {
-            this.zza.zzj().zzp().zza("Retrying trigger URI registration in foreground");
-            this.zza.zzm().zzas();
-        }
+        this.zzb.zzj().zzp().zza("Analytics storage consent denied. Returning null app instance id");
+        return null;
     }
 }

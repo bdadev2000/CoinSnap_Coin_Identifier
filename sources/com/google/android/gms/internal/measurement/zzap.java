@@ -6,13 +6,34 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class zzap implements zzak, zzaq {
     private final Map<String, zzaq> zza = new HashMap();
 
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof zzap)) {
+            return false;
+        }
+        return this.zza.equals(((zzap) obj).zza);
+    }
+
     public int hashCode() {
         return this.zza.hashCode();
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder("{");
+        if (!this.zza.isEmpty()) {
+            for (String str : this.zza.keySet()) {
+                sb.append(String.format("%s: %s,", str, this.zza.get(str)));
+            }
+            sb.deleteCharAt(sb.lastIndexOf(","));
+        }
+        sb.append("}");
+        return sb.toString();
     }
 
     @Override // com.google.android.gms.internal.measurement.zzaq
@@ -36,17 +57,9 @@ public class zzap implements zzak, zzaq {
         return zzapVar;
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzak
-    public final zzaq zza(String str) {
-        if (this.zza.containsKey(str)) {
-            return this.zza.get(str);
-        }
-        return zzc;
-    }
-
     @Override // com.google.android.gms.internal.measurement.zzaq
     public final Boolean zzd() {
-        return true;
+        return Boolean.TRUE;
     }
 
     @Override // com.google.android.gms.internal.measurement.zzaq
@@ -59,21 +72,22 @@ public class zzap implements zzak, zzaq {
         return "[object Object]";
     }
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder("{");
-        if (!this.zza.isEmpty()) {
-            for (String str : this.zza.keySet()) {
-                sb.append(String.format("%s: %s,", str, this.zza.get(str)));
-            }
-            sb.deleteCharAt(sb.lastIndexOf(","));
-        }
-        sb.append("}");
-        return sb.toString();
-    }
-
     @Override // com.google.android.gms.internal.measurement.zzaq
     public final Iterator<zzaq> zzh() {
         return zzan.zza(this.zza);
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzak
+    public final zzaq zza(String str) {
+        if (this.zza.containsKey(str)) {
+            return this.zza.get(str);
+        }
+        return zzaq.zzc;
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzak
+    public final boolean zzc(String str) {
+        return this.zza.containsKey(str);
     }
 
     public final List<String> zza() {
@@ -87,20 +101,5 @@ public class zzap implements zzak, zzaq {
         } else {
             this.zza.put(str, zzaqVar);
         }
-    }
-
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof zzap) {
-            return this.zza.equals(((zzap) obj).zza);
-        }
-        return false;
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzak
-    public final boolean zzc(String str) {
-        return this.zza.containsKey(str);
     }
 }

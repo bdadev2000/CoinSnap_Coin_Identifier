@@ -1,59 +1,23 @@
 package com.google.android.gms.internal.play_billing;
 
-import java.util.NoSuchElementException;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.RemoteException;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-abstract class zzo extends zzai {
-    private final int zza;
-    private int zzb;
-
-    /* JADX INFO: Access modifiers changed from: protected */
-    public zzo(int i, int i2) {
-        zzm.zzb(i2, i, "index");
-        this.zza = i;
-        this.zzb = i2;
+/* loaded from: classes2.dex */
+public abstract class zzo extends zzw implements zzp {
+    public zzo() {
+        super("com.android.vending.billing.IInAppBillingIsExternalPaymentAvailableCallback");
     }
 
-    @Override // java.util.Iterator, java.util.ListIterator
-    public final boolean hasNext() {
-        return this.zzb < this.zza;
-    }
-
-    @Override // java.util.ListIterator
-    public final boolean hasPrevious() {
-        return this.zzb > 0;
-    }
-
-    @Override // java.util.Iterator, java.util.ListIterator
-    public final Object next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
+    @Override // com.google.android.gms.internal.play_billing.zzw
+    public final boolean zzb(int i9, Parcel parcel, Parcel parcel2, int i10) throws RemoteException {
+        if (i9 == 1) {
+            Bundle bundle = (Bundle) zzx.zza(parcel, Bundle.CREATOR);
+            zzx.zzb(parcel);
+            zza(bundle);
+            return true;
         }
-        int i = this.zzb;
-        this.zzb = i + 1;
-        return zza(i);
+        return false;
     }
-
-    @Override // java.util.ListIterator
-    public final int nextIndex() {
-        return this.zzb;
-    }
-
-    @Override // java.util.ListIterator
-    public final Object previous() {
-        if (!hasPrevious()) {
-            throw new NoSuchElementException();
-        }
-        int i = this.zzb - 1;
-        this.zzb = i;
-        return zza(i);
-    }
-
-    @Override // java.util.ListIterator
-    public final int previousIndex() {
-        return this.zzb - 1;
-    }
-
-    protected abstract Object zza(int i);
 }

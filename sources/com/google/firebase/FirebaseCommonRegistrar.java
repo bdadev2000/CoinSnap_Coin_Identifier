@@ -1,113 +1,67 @@
 package com.google.firebase;
 
+import L4.b;
+import L4.e;
+import L4.f;
+import L4.h;
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
 import android.os.Build;
-import com.google.firebase.components.Component;
+import com.applovin.impl.sdk.ad.g;
 import com.google.firebase.components.ComponentRegistrar;
-import com.google.firebase.heartbeatinfo.DefaultHeartBeatController;
-import com.google.firebase.platforminfo.DefaultUserAgentPublisher;
-import com.google.firebase.platforminfo.KotlinDetector;
-import com.google.firebase.platforminfo.LibraryVersionComponent;
+import g4.C2296f;
+import j5.C2398a;
+import j5.C2399b;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import n4.InterfaceC2477a;
+import o4.C2495a;
+import o4.C2496b;
+import o4.C2502h;
+import o4.q;
+import t7.C2716e;
 
-/* loaded from: classes11.dex */
+/* loaded from: classes2.dex */
 public class FirebaseCommonRegistrar implements ComponentRegistrar {
-    private static final String ANDROID_INSTALLER = "android-installer";
-    private static final String ANDROID_PLATFORM = "android-platform";
-    private static final String DEVICE_BRAND = "device-brand";
-    private static final String DEVICE_MODEL = "device-model";
-    private static final String DEVICE_NAME = "device-name";
-    private static final String FIREBASE_ANDROID = "fire-android";
-    private static final String FIREBASE_COMMON = "fire-core";
-    private static final String KOTLIN = "kotlin";
-    private static final String MIN_SDK = "android-min-sdk";
-    private static final String TARGET_SDK = "android-target-sdk";
+    public static String a(String str) {
+        return str.replace(' ', '_').replace('/', '_');
+    }
 
     @Override // com.google.firebase.components.ComponentRegistrar
-    public List<Component<?>> getComponents() {
+    public final List getComponents() {
+        String str;
         ArrayList arrayList = new ArrayList();
-        arrayList.add(DefaultUserAgentPublisher.component());
-        arrayList.add(DefaultHeartBeatController.component());
-        arrayList.add(LibraryVersionComponent.create(FIREBASE_ANDROID, String.valueOf(Build.VERSION.SDK_INT)));
-        arrayList.add(LibraryVersionComponent.create(FIREBASE_COMMON, BuildConfig.VERSION_NAME));
-        arrayList.add(LibraryVersionComponent.create(DEVICE_NAME, safeValue(Build.PRODUCT)));
-        arrayList.add(LibraryVersionComponent.create(DEVICE_MODEL, safeValue(Build.DEVICE)));
-        arrayList.add(LibraryVersionComponent.create(DEVICE_BRAND, safeValue(Build.BRAND)));
-        arrayList.add(LibraryVersionComponent.fromContext(TARGET_SDK, new LibraryVersionComponent.VersionExtractor() { // from class: com.google.firebase.FirebaseCommonRegistrar$$ExternalSyntheticLambda0
-            @Override // com.google.firebase.platforminfo.LibraryVersionComponent.VersionExtractor
-            public final String extract(Object obj) {
-                return FirebaseCommonRegistrar.lambda$getComponents$0((Context) obj);
-            }
-        }));
-        arrayList.add(LibraryVersionComponent.fromContext(MIN_SDK, new LibraryVersionComponent.VersionExtractor() { // from class: com.google.firebase.FirebaseCommonRegistrar$$ExternalSyntheticLambda1
-            @Override // com.google.firebase.platforminfo.LibraryVersionComponent.VersionExtractor
-            public final String extract(Object obj) {
-                return FirebaseCommonRegistrar.lambda$getComponents$1((Context) obj);
-            }
-        }));
-        arrayList.add(LibraryVersionComponent.fromContext(ANDROID_PLATFORM, new LibraryVersionComponent.VersionExtractor() { // from class: com.google.firebase.FirebaseCommonRegistrar$$ExternalSyntheticLambda2
-            @Override // com.google.firebase.platforminfo.LibraryVersionComponent.VersionExtractor
-            public final String extract(Object obj) {
-                return FirebaseCommonRegistrar.lambda$getComponents$2((Context) obj);
-            }
-        }));
-        arrayList.add(LibraryVersionComponent.fromContext(ANDROID_INSTALLER, new LibraryVersionComponent.VersionExtractor() { // from class: com.google.firebase.FirebaseCommonRegistrar$$ExternalSyntheticLambda3
-            @Override // com.google.firebase.platforminfo.LibraryVersionComponent.VersionExtractor
-            public final String extract(Object obj) {
-                return FirebaseCommonRegistrar.lambda$getComponents$3((Context) obj);
-            }
-        }));
-        String detectVersion = KotlinDetector.detectVersion();
-        if (detectVersion != null) {
-            arrayList.add(LibraryVersionComponent.create(KOTLIN, detectVersion));
+        C2495a a6 = C2496b.a(C2399b.class);
+        a6.a(new C2502h(C2398a.class, 2, 0));
+        a6.f21942f = new g(24);
+        arrayList.add(a6.b());
+        q qVar = new q(InterfaceC2477a.class, Executor.class);
+        C2495a c2495a = new C2495a(e.class, new Class[]{L4.g.class, h.class});
+        c2495a.a(C2502h.b(Context.class));
+        c2495a.a(C2502h.b(C2296f.class));
+        c2495a.a(new C2502h(f.class, 2, 0));
+        c2495a.a(new C2502h(C2399b.class, 1, 1));
+        c2495a.a(new C2502h(qVar, 1, 0));
+        c2495a.f21942f = new b(qVar, 0);
+        arrayList.add(c2495a.b());
+        arrayList.add(R2.b.k("fire-android", String.valueOf(Build.VERSION.SDK_INT)));
+        arrayList.add(R2.b.k("fire-core", "21.0.0"));
+        arrayList.add(R2.b.k("device-name", a(Build.PRODUCT)));
+        arrayList.add(R2.b.k("device-model", a(Build.DEVICE)));
+        arrayList.add(R2.b.k("device-brand", a(Build.BRAND)));
+        arrayList.add(R2.b.n("android-target-sdk", new g(18)));
+        arrayList.add(R2.b.n("android-min-sdk", new g(19)));
+        arrayList.add(R2.b.n("android-platform", new g(20)));
+        arrayList.add(R2.b.n("android-installer", new g(21)));
+        try {
+            C2716e.f23017c.getClass();
+            str = "2.0.0";
+        } catch (NoClassDefFoundError unused) {
+            str = null;
+        }
+        if (str != null) {
+            arrayList.add(R2.b.k("kotlin", str));
         }
         return arrayList;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ String lambda$getComponents$0(Context context) {
-        ApplicationInfo applicationInfo = context.getApplicationInfo();
-        if (applicationInfo != null) {
-            return String.valueOf(applicationInfo.targetSdkVersion);
-        }
-        return "";
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ String lambda$getComponents$1(Context context) {
-        ApplicationInfo applicationInfo = context.getApplicationInfo();
-        if (applicationInfo != null) {
-            return String.valueOf(applicationInfo.minSdkVersion);
-        }
-        return "";
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ String lambda$getComponents$2(Context context) {
-        if (context.getPackageManager().hasSystemFeature("android.hardware.type.television")) {
-            return "tv";
-        }
-        if (context.getPackageManager().hasSystemFeature("android.hardware.type.watch")) {
-            return "watch";
-        }
-        if (context.getPackageManager().hasSystemFeature("android.hardware.type.automotive")) {
-            return "auto";
-        }
-        if (context.getPackageManager().hasSystemFeature("android.hardware.type.embedded")) {
-            return "embedded";
-        }
-        return "";
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ String lambda$getComponents$3(Context context) {
-        String installerPackageName = context.getPackageManager().getInstallerPackageName(context.getPackageName());
-        return installerPackageName != null ? safeValue(installerPackageName) : "";
-    }
-
-    private static String safeValue(String str) {
-        return str.replace(' ', '_').replace('/', '_');
     }
 }

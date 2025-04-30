@@ -12,6 +12,7 @@ import com.adjust.sdk.scheduler.SingleThreadCachedScheduler;
 import com.adjust.sdk.scheduler.ThreadExecutor;
 import com.adjust.sdk.scheduler.TimerCycle;
 import com.adjust.sdk.scheduler.TimerOnce;
+import com.google.android.gms.measurement.api.AppMeasurementSdk;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import java.util.Map;
 import java.util.Properties;
 import org.json.JSONObject;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class ActivityHandler implements IActivityHandler {
     private static final String ACTIVITY_STATE_NAME = "Activity state";
     private static final String ATTRIBUTION_NAME = "Attribution";
@@ -58,7 +59,7 @@ public class ActivityHandler implements IActivityHandler {
     private SessionParameters sessionParameters;
     private String subscriptionPath;
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class InternalState {
         public boolean background;
         public boolean delayStart;
@@ -134,7 +135,7 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class a implements Runnable {
         public a() {
         }
@@ -145,7 +146,7 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class a0 implements IRunActivityHandler {
         public a0() {
         }
@@ -156,25 +157,25 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class b implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ ReferrerDetails f182a;
+        public final /* synthetic */ ReferrerDetails f5460a;
         public final /* synthetic */ String b;
 
         public b(ReferrerDetails referrerDetails, String str) {
-            this.f182a = referrerDetails;
+            this.f5460a = referrerDetails;
             this.b = str;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.sendInstallReferrerI(this.f182a, this.b);
+            ActivityHandler.this.sendInstallReferrerI(this.f5460a, this.b);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class b0 implements Runnable {
         public b0() {
         }
@@ -185,23 +186,23 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class c implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ EventResponseData f184a;
+        public final /* synthetic */ EventResponseData f5463a;
 
         public c(EventResponseData eventResponseData) {
-            this.f184a = eventResponseData;
+            this.f5463a = eventResponseData;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.launchEventResponseTasksI(this.f184a);
+            ActivityHandler.this.launchEventResponseTasksI(this.f5463a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class c0 implements Runnable {
         public c0() {
         }
@@ -212,23 +213,23 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class d implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ SdkClickResponseData f186a;
+        public final /* synthetic */ SdkClickResponseData f5465a;
 
         public d(SdkClickResponseData sdkClickResponseData) {
-            this.f186a = sdkClickResponseData;
+            this.f5465a = sdkClickResponseData;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.launchSdkClickResponseTasksI(this.f186a);
+            ActivityHandler.this.launchSdkClickResponseTasksI(this.f5465a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class d0 implements Runnable {
         public d0() {
         }
@@ -239,23 +240,23 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class e implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ SessionResponseData f188a;
+        public final /* synthetic */ SessionResponseData f5467a;
 
         public e(SessionResponseData sessionResponseData) {
-            this.f188a = sessionResponseData;
+            this.f5467a = sessionResponseData;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.launchSessionResponseTasksI(this.f188a);
+            ActivityHandler.this.launchSessionResponseTasksI(this.f5467a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class e0 implements InstallReferrerReadListener {
         public e0() {
         }
@@ -266,23 +267,23 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class f implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ AttributionResponseData f190a;
+        public final /* synthetic */ AttributionResponseData f5469a;
 
         public f(AttributionResponseData attributionResponseData) {
-            this.f190a = attributionResponseData;
+            this.f5469a = attributionResponseData;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.launchAttributionResponseTasksI(this.f190a);
+            ActivityHandler.this.launchAttributionResponseTasksI(this.f5469a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class f0 implements InstallReferrerReadListener {
         public f0() {
         }
@@ -293,7 +294,7 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class g implements Runnable {
         public g() {
         }
@@ -304,7 +305,7 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class g0 implements Runnable {
         public g0() {
         }
@@ -318,27 +319,59 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class h implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ String f194a;
+        public final /* synthetic */ String f5473a;
         public final /* synthetic */ String b;
 
         public h(String str, String str2) {
-            this.f194a = str;
+            this.f5473a = str;
             this.b = str2;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.addSessionCallbackParameterI(this.f194a, this.b);
+            ActivityHandler.this.addSessionCallbackParameterI(this.f5473a, this.b);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class h0 implements Runnable {
         public h0() {
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            ReferrerDetails samsungReferrer = Reflection.getSamsungReferrer(ActivityHandler.this.getContext(), ActivityHandler.this.logger);
+            if (samsungReferrer != null) {
+                ActivityHandler.this.sendInstallReferrer(samsungReferrer, Constants.REFERRER_API_SAMSUNG);
+            }
+        }
+    }
+
+    /* loaded from: classes.dex */
+    public class i implements Runnable {
+
+        /* renamed from: a, reason: collision with root package name */
+        public final /* synthetic */ String f5476a;
+        public final /* synthetic */ String b;
+
+        public i(String str, String str2) {
+            this.f5476a = str;
+            this.b = str2;
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            ActivityHandler.this.addSessionPartnerParameterI(this.f5476a, this.b);
+        }
+    }
+
+    /* loaded from: classes.dex */
+    public class i0 implements Runnable {
+        public i0() {
         }
 
         @Override // java.lang.Runnable
@@ -350,79 +383,37 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
-    public class i implements Runnable {
-
-        /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ String f196a;
-        public final /* synthetic */ String b;
-
-        public i(String str, String str2) {
-            this.f196a = str;
-            this.b = str2;
-        }
-
-        @Override // java.lang.Runnable
-        public final void run() {
-            ActivityHandler.this.addSessionPartnerParameterI(this.f196a, this.b);
-        }
-    }
-
-    /* loaded from: classes7.dex */
-    public class i0 implements Runnable {
-
-        /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ EventResponseData f197a;
-
-        public i0(EventResponseData eventResponseData) {
-            this.f197a = eventResponseData;
-        }
-
-        @Override // java.lang.Runnable
-        public final void run() {
-            if (ActivityHandler.this.adjustConfig == null || ActivityHandler.this.adjustConfig.onEventTrackingSucceededListener == null) {
-                return;
-            }
-            ActivityHandler.this.adjustConfig.onEventTrackingSucceededListener.onFinishedEventTrackingSucceeded(this.f197a.getSuccessResponseData());
-        }
-    }
-
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class j implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ String f198a;
+        public final /* synthetic */ String f5479a;
 
         public j(String str) {
-            this.f198a = str;
+            this.f5479a = str;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.removeSessionCallbackParameterI(this.f198a);
+            ActivityHandler.this.removeSessionCallbackParameterI(this.f5479a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class j0 implements Runnable {
-
-        /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ EventResponseData f199a;
-
-        public j0(EventResponseData eventResponseData) {
-            this.f199a = eventResponseData;
+        public j0() {
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            if (ActivityHandler.this.adjustConfig == null || ActivityHandler.this.adjustConfig.onEventTrackingFailedListener == null) {
-                return;
+            ReferrerDetails vivoReferrer = Reflection.getVivoReferrer(ActivityHandler.this.getContext(), ActivityHandler.this.logger);
+            if (vivoReferrer != null) {
+                ActivityHandler.this.sendInstallReferrer(vivoReferrer, Constants.REFERRER_API_VIVO);
             }
-            ActivityHandler.this.adjustConfig.onEventTrackingFailedListener.onFinishedEventTrackingFailed(this.f199a.getFailureResponseData());
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class k implements Runnable {
         public k() {
         }
@@ -433,61 +424,61 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class k0 implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ SessionResponseData f201a;
+        public final /* synthetic */ EventResponseData f5482a;
 
-        public k0(SessionResponseData sessionResponseData) {
-            this.f201a = sessionResponseData;
+        public k0(EventResponseData eventResponseData) {
+            this.f5482a = eventResponseData;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            if (ActivityHandler.this.adjustConfig == null || ActivityHandler.this.adjustConfig.onSessionTrackingSucceededListener == null) {
+            if (ActivityHandler.this.adjustConfig == null || ActivityHandler.this.adjustConfig.onEventTrackingSucceededListener == null) {
                 return;
             }
-            ActivityHandler.this.adjustConfig.onSessionTrackingSucceededListener.onFinishedSessionTrackingSucceeded(this.f201a.getSuccessResponseData());
+            ActivityHandler.this.adjustConfig.onEventTrackingSucceededListener.onFinishedEventTrackingSucceeded(this.f5482a.getSuccessResponseData());
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class l implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ String f202a;
+        public final /* synthetic */ String f5483a;
 
         public l(String str) {
-            this.f202a = str;
+            this.f5483a = str;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.removeSessionPartnerParameterI(this.f202a);
+            ActivityHandler.this.removeSessionPartnerParameterI(this.f5483a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class l0 implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ SessionResponseData f203a;
+        public final /* synthetic */ EventResponseData f5484a;
 
-        public l0(SessionResponseData sessionResponseData) {
-            this.f203a = sessionResponseData;
+        public l0(EventResponseData eventResponseData) {
+            this.f5484a = eventResponseData;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            if (ActivityHandler.this.adjustConfig == null || ActivityHandler.this.adjustConfig.onSessionTrackingFailedListener == null) {
+            if (ActivityHandler.this.adjustConfig == null || ActivityHandler.this.adjustConfig.onEventTrackingFailedListener == null) {
                 return;
             }
-            ActivityHandler.this.adjustConfig.onSessionTrackingFailedListener.onFinishedSessionTrackingFailed(this.f203a.getFailureResponseData());
+            ActivityHandler.this.adjustConfig.onEventTrackingFailedListener.onFinishedEventTrackingFailed(this.f5484a.getFailureResponseData());
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class m implements Runnable {
         public m() {
         }
@@ -498,9 +489,82 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class m0 implements Runnable {
-        public m0() {
+
+        /* renamed from: a, reason: collision with root package name */
+        public final /* synthetic */ SessionResponseData f5486a;
+
+        public m0(SessionResponseData sessionResponseData) {
+            this.f5486a = sessionResponseData;
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            if (ActivityHandler.this.adjustConfig == null || ActivityHandler.this.adjustConfig.onSessionTrackingSucceededListener == null) {
+                return;
+            }
+            ActivityHandler.this.adjustConfig.onSessionTrackingSucceededListener.onFinishedSessionTrackingSucceeded(this.f5486a.getSuccessResponseData());
+        }
+    }
+
+    /* loaded from: classes.dex */
+    public class n implements Runnable {
+        public n() {
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            ActivityHandler.this.resetSessionPartnerParametersI();
+        }
+    }
+
+    /* loaded from: classes.dex */
+    public class n0 implements Runnable {
+
+        /* renamed from: a, reason: collision with root package name */
+        public final /* synthetic */ SessionResponseData f5488a;
+
+        public n0(SessionResponseData sessionResponseData) {
+            this.f5488a = sessionResponseData;
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            if (ActivityHandler.this.adjustConfig == null || ActivityHandler.this.adjustConfig.onSessionTrackingFailedListener == null) {
+                return;
+            }
+            ActivityHandler.this.adjustConfig.onSessionTrackingFailedListener.onFinishedSessionTrackingFailed(this.f5488a.getFailureResponseData());
+        }
+    }
+
+    /* loaded from: classes.dex */
+    public class o implements Runnable {
+
+        /* renamed from: a, reason: collision with root package name */
+        public final /* synthetic */ boolean f5489a;
+        public final /* synthetic */ String b;
+
+        public o(boolean z8, String str) {
+            this.f5489a = z8;
+            this.b = str;
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            if (!this.f5489a) {
+                SharedPreferencesManager.getDefaultInstance(ActivityHandler.this.getContext()).savePushToken(this.b);
+            }
+            if (ActivityHandler.this.internalState.hasFirstSdkStartNotOcurred()) {
+                return;
+            }
+            ActivityHandler.this.setPushTokenI(this.b);
+        }
+    }
+
+    /* loaded from: classes.dex */
+    public class o0 implements Runnable {
+        public o0() {
         }
 
         @Override // java.lang.Runnable
@@ -512,85 +576,7 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
-    public class n implements Runnable {
-        public n() {
-        }
-
-        @Override // java.lang.Runnable
-        public final void run() {
-            ActivityHandler.this.resetSessionPartnerParametersI();
-        }
-    }
-
-    /* loaded from: classes7.dex */
-    public class n0 implements Runnable {
-
-        /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ Uri f207a;
-        public final /* synthetic */ Intent b;
-
-        public n0(Uri uri, Intent intent) {
-            this.f207a = uri;
-            this.b = intent;
-        }
-
-        @Override // java.lang.Runnable
-        public final void run() {
-            if (ActivityHandler.this.adjustConfig == null) {
-                return;
-            }
-            if (ActivityHandler.this.adjustConfig.onDeeplinkResponseListener == null || ActivityHandler.this.adjustConfig.onDeeplinkResponseListener.launchReceivedDeeplink(this.f207a)) {
-                ActivityHandler.this.launchDeeplinkMain(this.b, this.f207a);
-            }
-        }
-    }
-
-    /* loaded from: classes7.dex */
-    public class o implements Runnable {
-
-        /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ boolean f208a;
-        public final /* synthetic */ String b;
-
-        public o(boolean z, String str) {
-            this.f208a = z;
-            this.b = str;
-        }
-
-        @Override // java.lang.Runnable
-        public final void run() {
-            if (!this.f208a) {
-                SharedPreferencesManager.getDefaultInstance(ActivityHandler.this.getContext()).savePushToken(this.b);
-            }
-            if (ActivityHandler.this.internalState.hasFirstSdkStartNotOcurred()) {
-                return;
-            }
-            ActivityHandler.this.setPushTokenI(this.b);
-        }
-    }
-
-    /* loaded from: classes7.dex */
-    public class o0 implements Runnable {
-
-        /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ AdjustEvent f209a;
-
-        public o0(AdjustEvent adjustEvent) {
-            this.f209a = adjustEvent;
-        }
-
-        @Override // java.lang.Runnable
-        public final void run() {
-            if (ActivityHandler.this.internalState.hasFirstSdkStartNotOcurred()) {
-                ActivityHandler.this.logger.warn("Event tracked before first activity resumed.\nIf it was triggered in the Application class, it might timestamp or even send an install long before the user opens the app.\nPlease check https://github.com/adjust/android_sdk#can-i-trigger-an-event-at-application-launch for more information.", new Object[0]);
-                ActivityHandler.this.startI();
-            }
-            ActivityHandler.this.trackEventI(this.f209a);
-        }
-    }
-
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class p implements Runnable {
         public p() {
         }
@@ -601,23 +587,30 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class p0 implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ boolean f211a;
+        public final /* synthetic */ Uri f5493a;
+        public final /* synthetic */ Intent b;
 
-        public p0(boolean z) {
-            this.f211a = z;
+        public p0(Uri uri, Intent intent) {
+            this.f5493a = uri;
+            this.b = intent;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.setEnabledI(this.f211a);
+            if (ActivityHandler.this.adjustConfig == null) {
+                return;
+            }
+            if (ActivityHandler.this.adjustConfig.onDeeplinkResponseListener != null ? ActivityHandler.this.adjustConfig.onDeeplinkResponseListener.launchReceivedDeeplink(this.f5493a) : true) {
+                ActivityHandler.this.launchDeeplinkMain(this.b, this.f5493a);
+            }
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class q implements Runnable {
         public q() {
         }
@@ -628,134 +621,159 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class q0 implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ boolean f213a;
+        public final /* synthetic */ AdjustEvent f5496a;
 
-        public q0(boolean z) {
-            this.f213a = z;
+        public q0(AdjustEvent adjustEvent) {
+            this.f5496a = adjustEvent;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.setOfflineModeI(this.f213a);
+            if (ActivityHandler.this.internalState.hasFirstSdkStartNotOcurred()) {
+                ActivityHandler.this.logger.warn("Event tracked before first activity resumed.\nIf it was triggered in the Application class, it might timestamp or even send an install long before the user opens the app.\nPlease check https://github.com/adjust/android_sdk#can-i-trigger-an-event-at-application-launch for more information.", new Object[0]);
+                ActivityHandler.this.startI();
+            }
+            ActivityHandler.this.trackEventI(this.f5496a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class r implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ AdjustThirdPartySharing f214a;
+        public final /* synthetic */ AdjustThirdPartySharing f5497a;
 
         public r(AdjustThirdPartySharing adjustThirdPartySharing) {
-            this.f214a = adjustThirdPartySharing;
+            this.f5497a = adjustThirdPartySharing;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.trackThirdPartySharingI(this.f214a);
+            ActivityHandler.this.trackThirdPartySharingI(this.f5497a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class r0 implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ Uri f215a;
-        public final /* synthetic */ long b;
+        public final /* synthetic */ boolean f5498a;
 
-        public r0(Uri uri, long j) {
-            this.f215a = uri;
-            this.b = j;
+        public r0(boolean z8) {
+            this.f5498a = z8;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.readOpenUrlI(this.f215a, this.b);
+            ActivityHandler.this.setEnabledI(this.f5498a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class s implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ boolean f216a;
+        public final /* synthetic */ boolean f5499a;
 
-        public s(boolean z) {
-            this.f216a = z;
+        public s(boolean z8) {
+            this.f5499a = z8;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.trackMeasurementConsentI(this.f216a);
+            ActivityHandler.this.trackMeasurementConsentI(this.f5499a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class s0 implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ boolean f217a;
+        public final /* synthetic */ boolean f5500a;
 
-        public s0(boolean z) {
-            this.f217a = z;
+        public s0(boolean z8) {
+            this.f5500a = z8;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.setAskingAttributionI(this.f217a);
+            ActivityHandler.this.setOfflineModeI(this.f5500a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class t implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ String f218a;
+        public final /* synthetic */ String f5501a;
         public final /* synthetic */ JSONObject b;
 
         public t(String str, JSONObject jSONObject) {
-            this.f218a = str;
+            this.f5501a = str;
             this.b = jSONObject;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.trackAdRevenueI(this.f218a, this.b);
+            ActivityHandler.this.trackAdRevenueI(this.f5501a, this.b);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class t0 implements Runnable {
-        public t0() {
+
+        /* renamed from: a, reason: collision with root package name */
+        public final /* synthetic */ Uri f5503a;
+        public final /* synthetic */ long b;
+
+        public t0(Uri uri, long j7) {
+            this.f5503a = uri;
+            this.b = j7;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.sendReftagReferrerI();
+            ActivityHandler.this.readOpenUrlI(this.f5503a, this.b);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class u implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ AdjustAdRevenue f220a;
+        public final /* synthetic */ AdjustAdRevenue f5505a;
 
         public u(AdjustAdRevenue adjustAdRevenue) {
-            this.f220a = adjustAdRevenue;
+            this.f5505a = adjustAdRevenue;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.trackAdRevenueI(this.f220a);
+            ActivityHandler.this.trackAdRevenueI(this.f5505a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
+    public class u0 implements Runnable {
+
+        /* renamed from: a, reason: collision with root package name */
+        public final /* synthetic */ boolean f5506a;
+
+        public u0(boolean z8) {
+            this.f5506a = z8;
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            ActivityHandler.this.setAskingAttributionI(this.f5506a);
+        }
+    }
+
+    /* loaded from: classes.dex */
     public class v implements Runnable {
         public v() {
         }
@@ -770,23 +788,34 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
-    public class w implements Runnable {
-
-        /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ AdjustPlayStoreSubscription f222a;
-
-        public w(AdjustPlayStoreSubscription adjustPlayStoreSubscription) {
-            this.f222a = adjustPlayStoreSubscription;
+    /* loaded from: classes.dex */
+    public class v0 implements Runnable {
+        public v0() {
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            ActivityHandler.this.trackSubscriptionI(this.f222a);
+            ActivityHandler.this.sendReftagReferrerI();
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
+    public class w implements Runnable {
+
+        /* renamed from: a, reason: collision with root package name */
+        public final /* synthetic */ AdjustPlayStoreSubscription f5509a;
+
+        public w(AdjustPlayStoreSubscription adjustPlayStoreSubscription) {
+            this.f5509a = adjustPlayStoreSubscription;
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            ActivityHandler.this.trackSubscriptionI(this.f5509a);
+        }
+    }
+
+    /* loaded from: classes.dex */
     public class x implements Runnable {
         public x() {
         }
@@ -797,7 +826,7 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class y implements Runnable {
         public y() {
         }
@@ -808,7 +837,7 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class z implements Runnable {
         public z() {
         }
@@ -871,20 +900,6 @@ public class ActivityHandler implements IActivityHandler {
         checkAfterNewStartI(SharedPreferencesManager.getDefaultInstance(getContext()));
     }
 
-    private void checkAfterNewStartI(SharedPreferencesManager sharedPreferencesManager) {
-        String pushToken = sharedPreferencesManager.getPushToken();
-        if (pushToken != null && !pushToken.equals(this.activityState.pushToken)) {
-            setPushToken(pushToken, true);
-        }
-        if (sharedPreferencesManager.getRawReferrerArray() != null) {
-            sendReftagReferrer();
-        }
-        checkForPreinstallI();
-        this.installReferrer.startConnection();
-        this.installReferrerHuawei.readReferrer();
-        readInstallReferrerXiaomi();
-    }
-
     private void checkAttributionStateI() {
         if (checkActivityStateI(this.activityState)) {
             if (this.internalState.isFirstLaunch() && this.internalState.hasSessionResponseNotBeenProcessed()) {
@@ -915,34 +930,52 @@ public class ActivityHandler implements IActivityHandler {
                 String str2 = sdkClickResponseData.referrerApi;
                 if (str2 == null || !str2.equalsIgnoreCase(Constants.REFERRER_API_HUAWEI_APP_GALLERY)) {
                     String str3 = sdkClickResponseData.referrerApi;
-                    if (str3 == null || !str3.equalsIgnoreCase(Constants.REFERRER_API_XIAOMI)) {
-                        ActivityState activityState = this.activityState;
-                        activityState.clickTime = sdkClickResponseData.clickTime;
-                        activityState.installBegin = sdkClickResponseData.installBegin;
-                        activityState.installReferrer = sdkClickResponseData.installReferrer;
-                        activityState.clickTimeServer = sdkClickResponseData.clickTimeServer;
-                        activityState.installBeginServer = sdkClickResponseData.installBeginServer;
-                        activityState.installVersion = sdkClickResponseData.installVersion;
-                        activityState.googlePlayInstant = sdkClickResponseData.googlePlayInstant;
+                    if (str3 == null || !str3.equalsIgnoreCase(Constants.REFERRER_API_SAMSUNG)) {
+                        String str4 = sdkClickResponseData.referrerApi;
+                        if (str4 == null || !str4.equalsIgnoreCase(Constants.REFERRER_API_XIAOMI)) {
+                            String str5 = sdkClickResponseData.referrerApi;
+                            if (str5 == null || !str5.equalsIgnoreCase(Constants.REFERRER_API_VIVO)) {
+                                ActivityState activityState = this.activityState;
+                                activityState.clickTime = sdkClickResponseData.clickTime;
+                                activityState.installBegin = sdkClickResponseData.installBegin;
+                                activityState.installReferrer = sdkClickResponseData.installReferrer;
+                                activityState.clickTimeServer = sdkClickResponseData.clickTimeServer;
+                                activityState.installBeginServer = sdkClickResponseData.installBeginServer;
+                                activityState.installVersion = sdkClickResponseData.installVersion;
+                                activityState.googlePlayInstant = sdkClickResponseData.googlePlayInstant;
+                            } else {
+                                ActivityState activityState2 = this.activityState;
+                                activityState2.clickTimeVivo = sdkClickResponseData.clickTime;
+                                activityState2.installBeginVivo = sdkClickResponseData.installBegin;
+                                activityState2.installReferrerVivo = sdkClickResponseData.installReferrer;
+                                activityState2.installVersionVivo = sdkClickResponseData.installVersion;
+                            }
+                        } else {
+                            ActivityState activityState3 = this.activityState;
+                            activityState3.clickTimeXiaomi = sdkClickResponseData.clickTime;
+                            activityState3.installBeginXiaomi = sdkClickResponseData.installBegin;
+                            activityState3.installReferrerXiaomi = sdkClickResponseData.installReferrer;
+                            activityState3.clickTimeServerXiaomi = sdkClickResponseData.clickTimeServer;
+                            activityState3.installBeginServerXiaomi = sdkClickResponseData.installBeginServer;
+                            activityState3.installVersionXiaomi = sdkClickResponseData.installVersion;
+                        }
                     } else {
-                        ActivityState activityState2 = this.activityState;
-                        activityState2.clickTimeXiaomi = sdkClickResponseData.clickTime;
-                        activityState2.installBeginXiaomi = sdkClickResponseData.installBegin;
-                        activityState2.installReferrerXiaomi = sdkClickResponseData.installReferrer;
-                        activityState2.clickTimeServerXiaomi = sdkClickResponseData.clickTimeServer;
-                        activityState2.installBeginServerXiaomi = sdkClickResponseData.installBeginServer;
+                        ActivityState activityState4 = this.activityState;
+                        activityState4.clickTimeSamsung = sdkClickResponseData.clickTime;
+                        activityState4.installBeginSamsung = sdkClickResponseData.installBegin;
+                        activityState4.installReferrerSamsung = sdkClickResponseData.installReferrer;
                     }
                 } else {
-                    ActivityState activityState3 = this.activityState;
-                    activityState3.clickTimeHuawei = sdkClickResponseData.clickTime;
-                    activityState3.installBeginHuawei = sdkClickResponseData.installBegin;
-                    activityState3.installReferrerHuaweiAppGallery = sdkClickResponseData.installReferrer;
+                    ActivityState activityState5 = this.activityState;
+                    activityState5.clickTimeHuawei = sdkClickResponseData.clickTime;
+                    activityState5.installBeginHuawei = sdkClickResponseData.installBegin;
+                    activityState5.installReferrerHuaweiAppGallery = sdkClickResponseData.installReferrer;
                 }
             } else {
-                ActivityState activityState4 = this.activityState;
-                activityState4.clickTimeHuawei = sdkClickResponseData.clickTime;
-                activityState4.installBeginHuawei = sdkClickResponseData.installBegin;
-                activityState4.installReferrerHuawei = sdkClickResponseData.installReferrer;
+                ActivityState activityState6 = this.activityState;
+                activityState6.clickTimeHuawei = sdkClickResponseData.clickTime;
+                activityState6.installBeginHuawei = sdkClickResponseData.installBegin;
+                activityState6.installReferrerHuawei = sdkClickResponseData.installReferrer;
             }
             writeActivityStateI();
         }
@@ -955,7 +988,7 @@ public class ActivityHandler implements IActivityHandler {
         }
         sendPreinstallReferrerI();
         if (this.adjustConfig.preinstallTrackingEnabled && !this.internalState.hasPreinstallBeenRead()) {
-            String str = this.deviceInfo.i;
+            String str = this.deviceInfo.f5567i;
             if (str == null || str.isEmpty()) {
                 this.logger.debug("Can't read preinstall payload, invalid package name", new Object[0]);
                 return;
@@ -967,7 +1000,7 @@ public class ActivityHandler implements IActivityHandler {
                 return;
             }
             if (PreinstallUtil.hasNotBeenRead(Constants.SYSTEM_PROPERTIES, preinstallPayloadReadStatus)) {
-                String payloadFromSystemProperty = PreinstallUtil.getPayloadFromSystemProperty(this.deviceInfo.i, this.logger);
+                String payloadFromSystemProperty = PreinstallUtil.getPayloadFromSystemProperty(this.deviceInfo.f5567i, this.logger);
                 if (payloadFromSystemProperty == null || payloadFromSystemProperty.isEmpty()) {
                     preinstallPayloadReadStatus = PreinstallUtil.markAsRead(Constants.SYSTEM_PROPERTIES, preinstallPayloadReadStatus);
                 } else {
@@ -975,7 +1008,7 @@ public class ActivityHandler implements IActivityHandler {
                 }
             }
             if (PreinstallUtil.hasNotBeenRead(Constants.SYSTEM_PROPERTIES_REFLECTION, preinstallPayloadReadStatus)) {
-                String payloadFromSystemPropertyReflection = PreinstallUtil.getPayloadFromSystemPropertyReflection(this.deviceInfo.i, this.logger);
+                String payloadFromSystemPropertyReflection = PreinstallUtil.getPayloadFromSystemPropertyReflection(this.deviceInfo.f5567i, this.logger);
                 if (payloadFromSystemPropertyReflection == null || payloadFromSystemPropertyReflection.isEmpty()) {
                     preinstallPayloadReadStatus = PreinstallUtil.markAsRead(Constants.SYSTEM_PROPERTIES_REFLECTION, preinstallPayloadReadStatus);
                 } else {
@@ -983,7 +1016,7 @@ public class ActivityHandler implements IActivityHandler {
                 }
             }
             if (PreinstallUtil.hasNotBeenRead(Constants.SYSTEM_PROPERTIES_PATH, preinstallPayloadReadStatus)) {
-                String payloadFromSystemPropertyFilePath = PreinstallUtil.getPayloadFromSystemPropertyFilePath(this.deviceInfo.i, this.logger);
+                String payloadFromSystemPropertyFilePath = PreinstallUtil.getPayloadFromSystemPropertyFilePath(this.deviceInfo.f5567i, this.logger);
                 if (payloadFromSystemPropertyFilePath == null || payloadFromSystemPropertyFilePath.isEmpty()) {
                     preinstallPayloadReadStatus = PreinstallUtil.markAsRead(Constants.SYSTEM_PROPERTIES_PATH, preinstallPayloadReadStatus);
                 } else {
@@ -991,7 +1024,7 @@ public class ActivityHandler implements IActivityHandler {
                 }
             }
             if (PreinstallUtil.hasNotBeenRead(Constants.SYSTEM_PROPERTIES_PATH_REFLECTION, preinstallPayloadReadStatus)) {
-                String payloadFromSystemPropertyFilePathReflection = PreinstallUtil.getPayloadFromSystemPropertyFilePathReflection(this.deviceInfo.i, this.logger);
+                String payloadFromSystemPropertyFilePathReflection = PreinstallUtil.getPayloadFromSystemPropertyFilePathReflection(this.deviceInfo.f5567i, this.logger);
                 if (payloadFromSystemPropertyFilePathReflection == null || payloadFromSystemPropertyFilePathReflection.isEmpty()) {
                     preinstallPayloadReadStatus = PreinstallUtil.markAsRead(Constants.SYSTEM_PROPERTIES_PATH_REFLECTION, preinstallPayloadReadStatus);
                 } else {
@@ -999,7 +1032,7 @@ public class ActivityHandler implements IActivityHandler {
                 }
             }
             if (PreinstallUtil.hasNotBeenRead(Constants.CONTENT_PROVIDER, preinstallPayloadReadStatus)) {
-                String payloadFromContentProviderDefault = PreinstallUtil.getPayloadFromContentProviderDefault(this.adjustConfig.context, this.deviceInfo.i, this.logger);
+                String payloadFromContentProviderDefault = PreinstallUtil.getPayloadFromContentProviderDefault(this.adjustConfig.context, this.deviceInfo.f5567i, this.logger);
                 if (payloadFromContentProviderDefault == null || payloadFromContentProviderDefault.isEmpty()) {
                     preinstallPayloadReadStatus = PreinstallUtil.markAsRead(Constants.CONTENT_PROVIDER, preinstallPayloadReadStatus);
                 } else {
@@ -1007,7 +1040,7 @@ public class ActivityHandler implements IActivityHandler {
                 }
             }
             if (PreinstallUtil.hasNotBeenRead(Constants.CONTENT_PROVIDER_INTENT_ACTION, preinstallPayloadReadStatus)) {
-                List<String> payloadsFromContentProviderIntentAction = PreinstallUtil.getPayloadsFromContentProviderIntentAction(this.adjustConfig.context, this.deviceInfo.i, this.logger);
+                List<String> payloadsFromContentProviderIntentAction = PreinstallUtil.getPayloadsFromContentProviderIntentAction(this.adjustConfig.context, this.deviceInfo.f5567i, this.logger);
                 if (payloadsFromContentProviderIntentAction == null || payloadsFromContentProviderIntentAction.isEmpty()) {
                     preinstallPayloadReadStatus = PreinstallUtil.markAsRead(Constants.CONTENT_PROVIDER_INTENT_ACTION, preinstallPayloadReadStatus);
                 } else {
@@ -1018,7 +1051,7 @@ public class ActivityHandler implements IActivityHandler {
                 }
             }
             if (PreinstallUtil.hasNotBeenRead(Constants.CONTENT_PROVIDER_NO_PERMISSION, preinstallPayloadReadStatus)) {
-                List<String> payloadsFromContentProviderNoPermission = PreinstallUtil.getPayloadsFromContentProviderNoPermission(this.adjustConfig.context, this.deviceInfo.i, this.logger);
+                List<String> payloadsFromContentProviderNoPermission = PreinstallUtil.getPayloadsFromContentProviderNoPermission(this.adjustConfig.context, this.deviceInfo.f5567i, this.logger);
                 if (payloadsFromContentProviderNoPermission == null || payloadsFromContentProviderNoPermission.isEmpty()) {
                     preinstallPayloadReadStatus = PreinstallUtil.markAsRead(Constants.CONTENT_PROVIDER_NO_PERMISSION, preinstallPayloadReadStatus);
                 } else {
@@ -1029,7 +1062,7 @@ public class ActivityHandler implements IActivityHandler {
                 }
             }
             if (PreinstallUtil.hasNotBeenRead(Constants.FILE_SYSTEM, preinstallPayloadReadStatus)) {
-                String payloadFromFileSystem = PreinstallUtil.getPayloadFromFileSystem(this.deviceInfo.i, this.adjustConfig.preinstallFilePath, this.logger);
+                String payloadFromFileSystem = PreinstallUtil.getPayloadFromFileSystem(this.deviceInfo.f5567i, this.adjustConfig.preinstallFilePath, this.logger);
                 if (payloadFromFileSystem == null || payloadFromFileSystem.isEmpty()) {
                     preinstallPayloadReadStatus = PreinstallUtil.markAsRead(Constants.FILE_SYSTEM, preinstallPayloadReadStatus);
                 } else {
@@ -1074,14 +1107,14 @@ public class ActivityHandler implements IActivityHandler {
         Double d2 = this.adjustConfig.delayStart;
         double doubleValue = d2 != null ? d2.doubleValue() : 0.0d;
         long maxDelayStart = AdjustFactory.getMaxDelayStart();
-        long j2 = (long) (1000.0d * doubleValue);
-        if (j2 > maxDelayStart) {
-            double d3 = maxDelayStart / 1000;
+        long j7 = (long) (1000.0d * doubleValue);
+        if (j7 > maxDelayStart) {
+            double d9 = maxDelayStart / 1000;
             DecimalFormat decimalFormat = Util.SecondsDisplayFormat;
-            this.logger.warn("Delay start of %s seconds bigger than max allowed value of %s seconds", decimalFormat.format(doubleValue), decimalFormat.format(d3));
-            doubleValue = d3;
+            this.logger.warn("Delay start of %s seconds bigger than max allowed value of %s seconds", decimalFormat.format(doubleValue), decimalFormat.format(d9));
+            doubleValue = d9;
         } else {
-            maxDelayStart = j2;
+            maxDelayStart = j7;
         }
         this.logger.info("Waiting %s seconds before starting first session", Util.SecondsDisplayFormat.format(doubleValue));
         this.delayStartTimer.startIn(maxDelayStart);
@@ -1243,11 +1276,11 @@ public class ActivityHandler implements IActivityHandler {
         setEnabledI(false);
     }
 
-    private boolean hasChangedStateI(boolean z2, boolean z3, String str, String str2) {
-        if (z2 != z3) {
+    private boolean hasChangedStateI(boolean z8, boolean z9, String str, String str2) {
+        if (z8 != z9) {
             return true;
         }
-        if (z2) {
+        if (z8) {
             this.logger.debug(str, new Object[0]);
         } else {
             this.logger.debug(str2, new Object[0]);
@@ -1289,7 +1322,7 @@ public class ActivityHandler implements IActivityHandler {
             this.logger.info("Event buffering is enabled", new Object[0]);
         }
         this.deviceInfo.b(this.adjustConfig);
-        if (this.deviceInfo.f260a == null) {
+        if (this.deviceInfo.f5560a == null) {
             if (Util.canReadPlayIds(this.adjustConfig)) {
                 this.logger.warn("Unable to get Google Play Services Advertising ID at start time", new Object[0]);
             } else {
@@ -1300,7 +1333,7 @@ public class ActivityHandler implements IActivityHandler {
                     this.logger.info("Cannot read Google Play Services Advertising ID with play store kids app enabled", new Object[0]);
                 }
             }
-            if (this.deviceInfo.f == null) {
+            if (this.deviceInfo.f5564f == null) {
                 if (Util.canReadNonPlayIds(this.adjustConfig)) {
                     this.logger.error("Unable to get any Device IDs. Please check if Proguard is correctly set with Adjust SDK", new Object[0]);
                 } else {
@@ -1362,11 +1395,11 @@ public class ActivityHandler implements IActivityHandler {
         }
         UtilNetworking.setUserAgent(this.adjustConfig.userAgent);
         AdjustConfig adjustConfig3 = this.adjustConfig;
-        this.packageHandler = AdjustFactory.getPackageHandler(this, this.adjustConfig.context, toSendI(false), new ActivityPackageSender(adjustConfig3.urlStrategy, adjustConfig3.basePath, adjustConfig3.gdprPath, adjustConfig3.subscriptionPath, this.deviceInfo.h));
+        this.packageHandler = AdjustFactory.getPackageHandler(this, this.adjustConfig.context, toSendI(false), new ActivityPackageSender(adjustConfig3.urlStrategy, adjustConfig3.basePath, adjustConfig3.gdprPath, adjustConfig3.subscriptionPath, this.deviceInfo.f5566h));
         AdjustConfig adjustConfig4 = this.adjustConfig;
-        this.attributionHandler = AdjustFactory.getAttributionHandler(this, toSendI(false), new ActivityPackageSender(adjustConfig4.urlStrategy, adjustConfig4.basePath, adjustConfig4.gdprPath, adjustConfig4.subscriptionPath, this.deviceInfo.h));
+        this.attributionHandler = AdjustFactory.getAttributionHandler(this, toSendI(false), new ActivityPackageSender(adjustConfig4.urlStrategy, adjustConfig4.basePath, adjustConfig4.gdprPath, adjustConfig4.subscriptionPath, this.deviceInfo.f5566h));
         AdjustConfig adjustConfig5 = this.adjustConfig;
-        this.sdkClickHandler = AdjustFactory.getSdkClickHandler(this, toSendI(true), new ActivityPackageSender(adjustConfig5.urlStrategy, adjustConfig5.basePath, adjustConfig5.gdprPath, adjustConfig5.subscriptionPath, this.deviceInfo.h));
+        this.sdkClickHandler = AdjustFactory.getSdkClickHandler(this, toSendI(true), new ActivityPackageSender(adjustConfig5.urlStrategy, adjustConfig5.basePath, adjustConfig5.gdprPath, adjustConfig5.subscriptionPath, this.deviceInfo.f5566h));
         if (isToUpdatePackagesI()) {
             updatePackagesI();
         }
@@ -1395,7 +1428,7 @@ public class ActivityHandler implements IActivityHandler {
         if (this.adjustConfig.onAttributionChangedListener == null) {
             return;
         }
-        handler.post(new m0());
+        handler.post(new o0());
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -1420,21 +1453,21 @@ public class ActivityHandler implements IActivityHandler {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void launchEventResponseTasksI(EventResponseData eventResponseData) {
-        Runnable j0Var;
+        Runnable l0Var;
         updateAdidI(eventResponseData.adid);
         Handler handler = new Handler(this.adjustConfig.context.getMainLooper());
-        boolean z2 = eventResponseData.success;
-        if (z2 && this.adjustConfig.onEventTrackingSucceededListener != null) {
+        boolean z8 = eventResponseData.success;
+        if (z8 && this.adjustConfig.onEventTrackingSucceededListener != null) {
             this.logger.debug("Launching success event tracking listener", new Object[0]);
-            j0Var = new i0(eventResponseData);
+            l0Var = new k0(eventResponseData);
         } else {
-            if (z2 || this.adjustConfig.onEventTrackingFailedListener == null) {
+            if (z8 || this.adjustConfig.onEventTrackingFailedListener == null) {
                 return;
             }
             this.logger.debug("Launching failed event tracking listener", new Object[0]);
-            j0Var = new j0(eventResponseData);
+            l0Var = new l0(eventResponseData);
         }
-        handler.post(j0Var);
+        handler.post(l0Var);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -1447,19 +1480,19 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     private void launchSessionResponseListenerI(SessionResponseData sessionResponseData, Handler handler) {
-        Runnable l0Var;
-        boolean z2 = sessionResponseData.success;
-        if (z2 && this.adjustConfig.onSessionTrackingSucceededListener != null) {
+        Runnable n0Var;
+        boolean z8 = sessionResponseData.success;
+        if (z8 && this.adjustConfig.onSessionTrackingSucceededListener != null) {
             this.logger.debug("Launching success session tracking listener", new Object[0]);
-            l0Var = new k0(sessionResponseData);
+            n0Var = new m0(sessionResponseData);
         } else {
-            if (z2 || this.adjustConfig.onSessionTrackingFailedListener == null) {
+            if (z8 || this.adjustConfig.onSessionTrackingFailedListener == null) {
                 return;
             }
             this.logger.debug("Launching failed session tracking listener", new Object[0]);
-            l0Var = new l0(sessionResponseData);
+            n0Var = new n0(sessionResponseData);
         }
-        handler.post(l0Var);
+        handler.post(n0Var);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -1494,10 +1527,6 @@ public class ActivityHandler implements IActivityHandler {
         return pausedI(false);
     }
 
-    private boolean pausedI(boolean z2) {
-        return z2 ? this.internalState.isOffline() || !isEnabledI() : this.internalState.isOffline() || !isEnabledI() || this.internalState.isInDelayedStart();
-    }
-
     private void preLaunchActionsI(List<IRunActivityHandler> list) {
         if (list == null) {
             return;
@@ -1513,7 +1542,7 @@ public class ActivityHandler implements IActivityHandler {
             return;
         }
         this.logger.info("Deferred deeplink received (%s)", uri);
-        handler.post(new n0(uri, createDeeplinkIntentI(uri)));
+        handler.post(new p0(uri, createDeeplinkIntentI(uri)));
     }
 
     private void processCachedDeeplinkI() {
@@ -1543,39 +1572,41 @@ public class ActivityHandler implements IActivityHandler {
         }
         long currentTimeMillis = System.currentTimeMillis();
         ActivityState activityState = this.activityState;
-        long j2 = currentTimeMillis - activityState.lastActivity;
-        if (j2 < 0) {
+        long j7 = currentTimeMillis - activityState.lastActivity;
+        if (j7 < 0) {
             this.logger.error(TIME_TRAVEL, new Object[0]);
             this.activityState.lastActivity = currentTimeMillis;
             writeActivityStateI();
             return;
         }
-        if (j2 > SESSION_INTERVAL) {
+        if (j7 > SESSION_INTERVAL) {
             trackNewSessionI(currentTimeMillis);
             checkAfterNewStartI();
             return;
         }
-        if (j2 <= SUBSESSION_INTERVAL) {
+        if (j7 <= SUBSESSION_INTERVAL) {
             this.logger.verbose("Time span since last activity too short for a new subsession", new Object[0]);
             return;
         }
-        int i2 = activityState.subsessionCount + 1;
-        activityState.subsessionCount = i2;
-        activityState.sessionLength += j2;
+        int i9 = activityState.subsessionCount + 1;
+        activityState.subsessionCount = i9;
+        activityState.sessionLength += j7;
         activityState.lastActivity = currentTimeMillis;
-        this.logger.verbose("Started subsession %d of session %d", Integer.valueOf(i2), Integer.valueOf(this.activityState.sessionCount));
+        this.logger.verbose("Started subsession %d of session %d", Integer.valueOf(i9), Integer.valueOf(this.activityState.sessionCount));
         writeActivityStateI();
         checkForPreinstallI();
         this.installReferrer.startConnection();
         this.installReferrerHuawei.readReferrer();
+        readInstallReferrerSamsung();
         readInstallReferrerXiaomi();
+        readInstallReferrerVivo();
     }
 
     private void readActivityStateI(Context context) {
         try {
             this.activityState = (ActivityState) Util.readObject(context, Constants.ACTIVITY_STATE_FILENAME, ACTIVITY_STATE_NAME, ActivityState.class);
-        } catch (Exception e2) {
-            this.logger.error("Failed to read %s file (%s)", ACTIVITY_STATE_NAME, e2.getMessage());
+        } catch (Exception e4) {
+            this.logger.error("Failed to read %s file (%s)", ACTIVITY_STATE_NAME, e4.getMessage());
             this.activityState = null;
         }
         if (this.activityState != null) {
@@ -1586,8 +1617,8 @@ public class ActivityHandler implements IActivityHandler {
     private void readAttributionI(Context context) {
         try {
             this.attribution = (AdjustAttribution) Util.readObject(context, Constants.ATTRIBUTION_FILENAME, ATTRIBUTION_NAME, AdjustAttribution.class);
-        } catch (Exception e2) {
-            this.logger.error("Failed to read %s file (%s)", ATTRIBUTION_NAME, e2.getMessage());
+        } catch (Exception e4) {
+            this.logger.error("Failed to read %s file (%s)", ATTRIBUTION_NAME, e4.getMessage());
             this.attribution = null;
         }
     }
@@ -1602,35 +1633,43 @@ public class ActivityHandler implements IActivityHandler {
             if (property != null) {
                 this.adjustConfig.defaultTracker = property;
             }
-        } catch (Exception e2) {
-            this.logger.debug("%s file not found in this app", e2.getMessage());
+        } catch (Exception e4) {
+            this.logger.debug("%s file not found in this app", e4.getMessage());
         }
     }
 
-    private void readInstallReferrerXiaomi() {
+    private void readInstallReferrerSamsung() {
         this.executor.submit(new h0());
     }
 
+    private void readInstallReferrerVivo() {
+        this.executor.submit(new j0());
+    }
+
+    private void readInstallReferrerXiaomi() {
+        this.executor.submit(new i0());
+    }
+
     /* JADX INFO: Access modifiers changed from: private */
-    public void readOpenUrlI(Uri uri, long j2) {
+    public void readOpenUrlI(Uri uri, long j7) {
         if (isEnabledI()) {
-            if (Util.isUrlFilteredOut(uri)) {
-                this.logger.debug("Deep link (" + uri.toString() + ") processing skipped", new Object[0]);
+            if (!Util.isUrlFilteredOut(uri)) {
+                ActivityPackage buildDeeplinkSdkClickPackage = PackageFactory.buildDeeplinkSdkClickPackage(uri, j7, this.activityState, this.adjustConfig, this.deviceInfo, this.sessionParameters);
+                if (buildDeeplinkSdkClickPackage == null) {
+                    return;
+                }
+                this.sdkClickHandler.sendSdkClick(buildDeeplinkSdkClickPackage);
                 return;
             }
-            ActivityPackage buildDeeplinkSdkClickPackage = PackageFactory.buildDeeplinkSdkClickPackage(uri, j2, this.activityState, this.adjustConfig, this.deviceInfo, this.sessionParameters);
-            if (buildDeeplinkSdkClickPackage == null) {
-                return;
-            }
-            this.sdkClickHandler.sendSdkClick(buildDeeplinkSdkClickPackage);
+            this.logger.debug("Deep link (" + uri.toString() + ") processing skipped", new Object[0]);
         }
     }
 
     private void readSessionCallbackParametersI(Context context) {
         try {
             this.sessionParameters.callbackParameters = (Map) Util.readObject(context, Constants.SESSION_CALLBACK_PARAMETERS_FILENAME, SESSION_CALLBACK_PARAMETERS_NAME, Map.class);
-        } catch (Exception e2) {
-            this.logger.error("Failed to read %s file (%s)", SESSION_CALLBACK_PARAMETERS_NAME, e2.getMessage());
+        } catch (Exception e4) {
+            this.logger.error("Failed to read %s file (%s)", SESSION_CALLBACK_PARAMETERS_NAME, e4.getMessage());
             this.sessionParameters.callbackParameters = null;
         }
     }
@@ -1638,8 +1677,8 @@ public class ActivityHandler implements IActivityHandler {
     private void readSessionPartnerParametersI(Context context) {
         try {
             this.sessionParameters.partnerParameters = (Map) Util.readObject(context, Constants.SESSION_PARTNER_PARAMETERS_FILENAME, SESSION_PARTNER_PARAMETERS_NAME, Map.class);
-        } catch (Exception e2) {
-            this.logger.error("Failed to read %s file (%s)", SESSION_PARTNER_PARAMETERS_NAME, e2.getMessage());
+        } catch (Exception e4) {
+            this.logger.error("Failed to read %s file (%s)", SESSION_PARTNER_PARAMETERS_NAME, e4.getMessage());
             this.sessionParameters.partnerParameters = null;
         }
     }
@@ -1695,28 +1734,28 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setAskingAttributionI(boolean z2) {
-        this.activityState.askingAttribution = z2;
+    public void setAskingAttributionI(boolean z8) {
+        this.activityState.askingAttribution = z8;
         writeActivityStateI();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setEnabledI(boolean z2) {
+    public void setEnabledI(boolean z8) {
         ActivityState activityState;
-        if (hasChangedStateI(isEnabledI(), z2, "Adjust already enabled", "Adjust already disabled")) {
-            if (z2 && (activityState = this.activityState) != null && activityState.isGdprForgotten) {
+        if (hasChangedStateI(isEnabledI(), z8, "Adjust already enabled", "Adjust already disabled")) {
+            if (z8 && (activityState = this.activityState) != null && activityState.isGdprForgotten) {
                 this.logger.error("Re-enabling SDK not possible for forgotten user", new Object[0]);
                 return;
             }
             InternalState internalState = this.internalState;
-            internalState.enabled = z2;
+            internalState.enabled = z8;
             if (internalState.hasFirstSdkStartNotOcurred()) {
-                updateStatusI(!z2, "Handlers will start as paused due to the SDK being disabled", "Handlers will still start as paused", "Handlers will start as active due to the SDK being enabled");
+                updateStatusI(!z8, "Handlers will start as paused due to the SDK being disabled", "Handlers will still start as paused", "Handlers will start as active due to the SDK being enabled");
                 return;
             }
-            this.activityState.enabled = z2;
+            this.activityState.enabled = z8;
             writeActivityStateI();
-            if (z2) {
+            if (z8) {
                 SharedPreferencesManager defaultInstance = SharedPreferencesManager.getDefaultInstance(getContext());
                 if (defaultInstance.getGdprForgetMe()) {
                     gdprForgetMeI();
@@ -1742,18 +1781,18 @@ public class ActivityHandler implements IActivityHandler {
                 }
                 checkAfterNewStartI(defaultInstance);
             }
-            updateStatusI(!z2, "Pausing handlers due to SDK being disabled", "Handlers remain paused", "Resuming handlers due to SDK being enabled");
+            updateStatusI(!z8, "Pausing handlers due to SDK being disabled", "Handlers remain paused", "Resuming handlers due to SDK being enabled");
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setOfflineModeI(boolean z2) {
+    public void setOfflineModeI(boolean z8) {
         String str;
         String str2;
         String str3;
-        if (hasChangedStateI(this.internalState.isOffline(), z2, "Adjust already in offline mode", "Adjust already in online mode")) {
+        if (hasChangedStateI(this.internalState.isOffline(), z8, "Adjust already in offline mode", "Adjust already in online mode")) {
             InternalState internalState = this.internalState;
-            internalState.offline = z2;
+            internalState.offline = z8;
             if (internalState.hasFirstSdkStartNotOcurred()) {
                 str = "Handlers will still start as paused";
                 str2 = "Handlers will start as active due to SDK being online";
@@ -1763,7 +1802,7 @@ public class ActivityHandler implements IActivityHandler {
                 str2 = "Resuming handlers to put SDK in online mode";
                 str3 = "Pausing handlers to put SDK offline mode";
             }
-            updateStatusI(z2, str3, str, str2);
+            updateStatusI(z8, str3, str, str2);
         }
     }
 
@@ -1882,28 +1921,40 @@ public class ActivityHandler implements IActivityHandler {
 
     private void teardownActivityStateS() {
         synchronized (ActivityState.class) {
-            if (this.activityState == null) {
-                return;
+            try {
+                if (this.activityState == null) {
+                    return;
+                }
+                this.activityState = null;
+            } catch (Throwable th) {
+                throw th;
             }
-            this.activityState = null;
         }
     }
 
     private void teardownAllSessionParametersS() {
         synchronized (SessionParameters.class) {
-            if (this.sessionParameters == null) {
-                return;
+            try {
+                if (this.sessionParameters == null) {
+                    return;
+                }
+                this.sessionParameters = null;
+            } catch (Throwable th) {
+                throw th;
             }
-            this.sessionParameters = null;
         }
     }
 
     private void teardownAttributionS() {
         synchronized (AdjustAttribution.class) {
-            if (this.attribution == null) {
-                return;
+            try {
+                if (this.attribution == null) {
+                    return;
+                }
+                this.attribution = null;
+            } catch (Throwable th) {
+                throw th;
             }
-            this.attribution = null;
         }
     }
 
@@ -1911,28 +1962,10 @@ public class ActivityHandler implements IActivityHandler {
         return toSendI(false);
     }
 
-    private boolean toSendI(boolean z2) {
-        if (pausedI(z2)) {
-            return false;
-        }
-        if (this.adjustConfig.sendInBackground) {
-            return true;
-        }
-        return this.internalState.isInForeground();
-    }
-
     /* JADX INFO: Access modifiers changed from: private */
     public void trackAdRevenueI(AdjustAdRevenue adjustAdRevenue) {
         if (checkActivityStateI(this.activityState) && isEnabledI() && checkAdjustAdRevenue(adjustAdRevenue) && !this.activityState.isGdprForgotten) {
             this.packageHandler.addPackage(new PackageBuilder(this.adjustConfig, this.deviceInfo, this.activityState, this.sessionParameters, System.currentTimeMillis()).buildAdRevenuePackage(adjustAdRevenue, this.internalState.isInDelayedStart()));
-            this.packageHandler.sendFirstPackage();
-        }
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void trackAdRevenueI(String str, JSONObject jSONObject) {
-        if (checkActivityStateI(this.activityState) && isEnabledI() && !this.activityState.isGdprForgotten) {
-            this.packageHandler.addPackage(new PackageBuilder(this.adjustConfig, this.deviceInfo, this.activityState, this.sessionParameters, System.currentTimeMillis()).buildAdRevenuePackage(str, jSONObject));
             this.packageHandler.sendFirstPackage();
         }
     }
@@ -1958,11 +1991,11 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void trackMeasurementConsentI(boolean z2) {
+    public void trackMeasurementConsentI(boolean z8) {
         if (!checkActivityStateI(this.activityState)) {
-            this.adjustConfig.preLaunchActions.lastMeasurementConsentTracked = Boolean.valueOf(z2);
+            this.adjustConfig.preLaunchActions.lastMeasurementConsentTracked = Boolean.valueOf(z8);
         } else if (isEnabledI() && !this.activityState.isGdprForgotten) {
-            ActivityPackage buildMeasurementConsentPackage = new PackageBuilder(this.adjustConfig, this.deviceInfo, this.activityState, this.sessionParameters, System.currentTimeMillis()).buildMeasurementConsentPackage(z2);
+            ActivityPackage buildMeasurementConsentPackage = new PackageBuilder(this.adjustConfig, this.deviceInfo, this.activityState, this.sessionParameters, System.currentTimeMillis()).buildMeasurementConsentPackage(z8);
             this.packageHandler.addPackage(buildMeasurementConsentPackage);
             if (this.adjustConfig.eventBufferingEnabled) {
                 this.logger.info("Buffered event %s", buildMeasurementConsentPackage.getSuffix());
@@ -1972,13 +2005,13 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    private void trackNewSessionI(long j2) {
+    private void trackNewSessionI(long j7) {
         ActivityState activityState = this.activityState;
-        long j3 = j2 - activityState.lastActivity;
+        long j9 = j7 - activityState.lastActivity;
         activityState.sessionCount++;
-        activityState.lastInterval = j3;
-        transferSessionPackageI(j2);
-        this.activityState.resetSessionAttributes(j2);
+        activityState.lastInterval = j9;
+        transferSessionPackageI(j7);
+        this.activityState.resetSessionAttributes(j7);
         writeActivityStateI();
     }
 
@@ -2011,27 +2044,27 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    private void transferSessionPackageI(long j2) {
-        this.packageHandler.addPackage(new PackageBuilder(this.adjustConfig, this.deviceInfo, this.activityState, this.sessionParameters, j2).buildSessionPackage(this.internalState.isInDelayedStart()));
+    private void transferSessionPackageI(long j7) {
+        this.packageHandler.addPackage(new PackageBuilder(this.adjustConfig, this.deviceInfo, this.activityState, this.sessionParameters, j7).buildSessionPackage(this.internalState.isInDelayedStart()));
         this.packageHandler.sendFirstPackage();
     }
 
-    private boolean updateActivityStateI(long j2) {
+    private boolean updateActivityStateI(long j7) {
         if (!checkActivityStateI(this.activityState)) {
             return false;
         }
         ActivityState activityState = this.activityState;
-        long j3 = j2 - activityState.lastActivity;
-        if (j3 > SESSION_INTERVAL) {
+        long j9 = j7 - activityState.lastActivity;
+        if (j9 > SESSION_INTERVAL) {
             return false;
         }
-        activityState.lastActivity = j2;
-        if (j3 < 0) {
+        activityState.lastActivity = j7;
+        if (j9 < 0) {
             this.logger.error(TIME_TRAVEL, new Object[0]);
             return true;
         }
-        activityState.sessionLength += j3;
-        activityState.timeSpent += j3;
+        activityState.sessionLength += j9;
+        activityState.timeSpent += j9;
         return true;
     }
 
@@ -2064,56 +2097,74 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    private void updateStatusI(boolean z2, String str, String str2, String str3) {
-        if (z2) {
+    private void updateStatusI(boolean z8, String str, String str2, String str3) {
+        if (z8) {
             this.logger.info(str, new Object[0]);
-        } else if (!pausedI(false)) {
-            this.logger.info(str3, new Object[0]);
-        } else if (pausedI(true)) {
-            this.logger.info(str2, new Object[0]);
+        } else if (pausedI(false)) {
+            if (pausedI(true)) {
+                this.logger.info(str2, new Object[0]);
+            } else {
+                this.logger.info(com.mbridge.msdk.foundation.entity.o.j(str2, ", except the Sdk Click Handler"), new Object[0]);
+            }
         } else {
-            this.logger.info(str2 + ", except the Sdk Click Handler", new Object[0]);
+            this.logger.info(str3, new Object[0]);
         }
         updateHandlersStatusAndSendI();
     }
 
     private void writeActivityStateI() {
         synchronized (ActivityState.class) {
-            ActivityState activityState = this.activityState;
-            if (activityState == null) {
-                return;
+            try {
+                ActivityState activityState = this.activityState;
+                if (activityState == null) {
+                    return;
+                }
+                Util.writeObject(activityState, this.adjustConfig.context, Constants.ACTIVITY_STATE_FILENAME, ACTIVITY_STATE_NAME);
+            } catch (Throwable th) {
+                throw th;
             }
-            Util.writeObject(activityState, this.adjustConfig.context, Constants.ACTIVITY_STATE_FILENAME, ACTIVITY_STATE_NAME);
         }
     }
 
     private void writeAttributionI() {
         synchronized (AdjustAttribution.class) {
-            AdjustAttribution adjustAttribution = this.attribution;
-            if (adjustAttribution == null) {
-                return;
+            try {
+                AdjustAttribution adjustAttribution = this.attribution;
+                if (adjustAttribution == null) {
+                    return;
+                }
+                Util.writeObject(adjustAttribution, this.adjustConfig.context, Constants.ATTRIBUTION_FILENAME, ATTRIBUTION_NAME);
+            } catch (Throwable th) {
+                throw th;
             }
-            Util.writeObject(adjustAttribution, this.adjustConfig.context, Constants.ATTRIBUTION_FILENAME, ATTRIBUTION_NAME);
         }
     }
 
     private void writeSessionCallbackParametersI() {
         synchronized (SessionParameters.class) {
-            SessionParameters sessionParameters = this.sessionParameters;
-            if (sessionParameters == null) {
-                return;
+            try {
+                SessionParameters sessionParameters = this.sessionParameters;
+                if (sessionParameters == null) {
+                    return;
+                }
+                Util.writeObject(sessionParameters.callbackParameters, this.adjustConfig.context, Constants.SESSION_CALLBACK_PARAMETERS_FILENAME, SESSION_CALLBACK_PARAMETERS_NAME);
+            } catch (Throwable th) {
+                throw th;
             }
-            Util.writeObject(sessionParameters.callbackParameters, this.adjustConfig.context, Constants.SESSION_CALLBACK_PARAMETERS_FILENAME, SESSION_CALLBACK_PARAMETERS_NAME);
         }
     }
 
     private void writeSessionPartnerParametersI() {
         synchronized (SessionParameters.class) {
-            SessionParameters sessionParameters = this.sessionParameters;
-            if (sessionParameters == null) {
-                return;
+            try {
+                SessionParameters sessionParameters = this.sessionParameters;
+                if (sessionParameters == null) {
+                    return;
+                }
+                Util.writeObject(sessionParameters.partnerParameters, this.adjustConfig.context, Constants.SESSION_PARTNER_PARAMETERS_FILENAME, SESSION_PARTNER_PARAMETERS_NAME);
+            } catch (Throwable th) {
+                throw th;
             }
-            Util.writeObject(sessionParameters.partnerParameters, this.adjustConfig.context, Constants.SESSION_PARTNER_PARAMETERS_FILENAME, SESSION_PARTNER_PARAMETERS_NAME);
         }
     }
 
@@ -2123,7 +2174,7 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     public void addSessionCallbackParameterI(String str, String str2) {
-        if (Util.isValidParameter(str, "key", "Session Callback") && Util.isValidParameter(str2, "value", "Session Callback")) {
+        if (Util.isValidParameter(str, "key", "Session Callback") && Util.isValidParameter(str2, AppMeasurementSdk.ConditionalUserProperty.VALUE, "Session Callback")) {
             SessionParameters sessionParameters = this.sessionParameters;
             if (sessionParameters.callbackParameters == null) {
                 sessionParameters.callbackParameters = new LinkedHashMap();
@@ -2147,7 +2198,7 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     public void addSessionPartnerParameterI(String str, String str2) {
-        if (Util.isValidParameter(str, "key", "Session Partner") && Util.isValidParameter(str2, "value", "Session Partner")) {
+        if (Util.isValidParameter(str, "key", "Session Partner") && Util.isValidParameter(str2, AppMeasurementSdk.ConditionalUserProperty.VALUE, "Session Partner")) {
             SessionParameters sessionParameters = this.sessionParameters;
             if (sessionParameters.partnerParameters == null) {
                 sessionParameters.partnerParameters = new LinkedHashMap();
@@ -2288,8 +2339,8 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void readOpenUrl(Uri uri, long j2) {
-        this.executor.submit(new r0(uri, j2));
+    public void readOpenUrl(Uri uri, long j7) {
+        this.executor.submit(new t0(uri, j7));
     }
 
     @Override // com.adjust.sdk.IActivityHandler
@@ -2373,27 +2424,27 @@ public class ActivityHandler implements IActivityHandler {
 
     @Override // com.adjust.sdk.IActivityHandler
     public void sendReftagReferrer() {
-        this.executor.submit(new t0());
+        this.executor.submit(new v0());
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void setAskingAttribution(boolean z2) {
-        this.executor.submit(new s0(z2));
+    public void setAskingAttribution(boolean z8) {
+        this.executor.submit(new u0(z8));
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void setEnabled(boolean z2) {
-        this.executor.submit(new p0(z2));
+    public void setEnabled(boolean z8) {
+        this.executor.submit(new r0(z8));
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void setOfflineMode(boolean z2) {
-        this.executor.submit(new q0(z2));
+    public void setOfflineMode(boolean z8) {
+        this.executor.submit(new s0(z8));
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void setPushToken(String str, boolean z2) {
-        this.executor.submit(new o(z2, str));
+    public void setPushToken(String str, boolean z8) {
+        this.executor.submit(new o(z8, str));
     }
 
     @Override // com.adjust.sdk.IActivityHandler
@@ -2460,18 +2511,13 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void trackAdRevenue(String str, JSONObject jSONObject) {
-        this.executor.submit(new t(str, jSONObject));
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
     public void trackEvent(AdjustEvent adjustEvent) {
-        this.executor.submit(new o0(adjustEvent));
+        this.executor.submit(new q0(adjustEvent));
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void trackMeasurementConsent(boolean z2) {
-        this.executor.submit(new s(z2));
+    public void trackMeasurementConsent(boolean z8) {
+        this.executor.submit(new s(z8));
     }
 
     @Override // com.adjust.sdk.IActivityHandler
@@ -2492,5 +2538,48 @@ public class ActivityHandler implements IActivityHandler {
         this.attribution = adjustAttribution;
         writeAttributionI();
         return true;
+    }
+
+    private void checkAfterNewStartI(SharedPreferencesManager sharedPreferencesManager) {
+        String pushToken = sharedPreferencesManager.getPushToken();
+        if (pushToken != null && !pushToken.equals(this.activityState.pushToken)) {
+            setPushToken(pushToken, true);
+        }
+        if (sharedPreferencesManager.getRawReferrerArray() != null) {
+            sendReftagReferrer();
+        }
+        checkForPreinstallI();
+        this.installReferrer.startConnection();
+        this.installReferrerHuawei.readReferrer();
+        readInstallReferrerSamsung();
+        readInstallReferrerXiaomi();
+        readInstallReferrerVivo();
+    }
+
+    private boolean pausedI(boolean z8) {
+        return z8 ? this.internalState.isOffline() || !isEnabledI() : this.internalState.isOffline() || !isEnabledI() || this.internalState.isInDelayedStart();
+    }
+
+    private boolean toSendI(boolean z8) {
+        if (pausedI(z8)) {
+            return false;
+        }
+        if (this.adjustConfig.sendInBackground) {
+            return true;
+        }
+        return this.internalState.isInForeground();
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void trackAdRevenueI(String str, JSONObject jSONObject) {
+        if (checkActivityStateI(this.activityState) && isEnabledI() && !this.activityState.isGdprForgotten) {
+            this.packageHandler.addPackage(new PackageBuilder(this.adjustConfig, this.deviceInfo, this.activityState, this.sessionParameters, System.currentTimeMillis()).buildAdRevenuePackage(str, jSONObject));
+            this.packageHandler.sendFirstPackage();
+        }
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void trackAdRevenue(String str, JSONObject jSONObject) {
+        this.executor.submit(new t(str, jSONObject));
     }
 }

@@ -5,8 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelReader;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzam implements Parcelable.Creator<zzaj> {
     @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zzaj createFromParcel(Parcel parcel) {
@@ -14,10 +13,10 @@ public final class zzam implements Parcelable.Creator<zzaj> {
         Bundle bundle = null;
         while (parcel.dataPosition() < validateObjectHeader) {
             int readHeader = SafeParcelReader.readHeader(parcel);
-            if (SafeParcelReader.getFieldId(readHeader) == 1) {
-                bundle = SafeParcelReader.createBundle(parcel, readHeader);
-            } else {
+            if (SafeParcelReader.getFieldId(readHeader) != 1) {
                 SafeParcelReader.skipUnknownField(parcel, readHeader);
+            } else {
+                bundle = SafeParcelReader.createBundle(parcel, readHeader);
             }
         }
         SafeParcelReader.ensureAtEnd(parcel, validateObjectHeader);
@@ -25,7 +24,7 @@ public final class zzam implements Parcelable.Creator<zzaj> {
     }
 
     @Override // android.os.Parcelable.Creator
-    public final /* synthetic */ zzaj[] newArray(int i) {
-        return new zzaj[i];
+    public final /* synthetic */ zzaj[] newArray(int i9) {
+        return new zzaj[i9];
     }
 }

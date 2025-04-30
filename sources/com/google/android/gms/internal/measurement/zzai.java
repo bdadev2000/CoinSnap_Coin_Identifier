@@ -1,26 +1,41 @@
 package com.google.android.gms.internal.measurement;
 
-import androidx.exifinterface.media.ExifInterface;
-import com.glority.android.core.definition.APIModelBase$$ExternalSyntheticBackportWithForwarding0;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.List;
+import x0.AbstractC2914a;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzai implements zzaq {
     private final Double zza;
+
+    public zzai(Double d2) {
+        if (d2 == null) {
+            this.zza = Double.valueOf(Double.NaN);
+        } else {
+            this.zza = d2;
+        }
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof zzai)) {
+            return false;
+        }
+        return this.zza.equals(((zzai) obj).zza);
+    }
 
     public final int hashCode() {
         return this.zza.hashCode();
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzaq
-    public final Iterator<zzaq> zzh() {
-        return null;
+    public final String toString() {
+        return zzf();
     }
 
     @Override // com.google.android.gms.internal.measurement.zzaq
@@ -28,7 +43,7 @@ public final class zzai implements zzaq {
         if ("toString".equals(str)) {
             return new zzas(zzf());
         }
-        throw new IllegalArgumentException(String.format("%s.%s is not a function.", zzf(), str));
+        throw new IllegalArgumentException(AbstractC2914a.f(zzf(), ".", str, " is not a function."));
     }
 
     @Override // com.google.android.gms.internal.measurement.zzaq
@@ -38,7 +53,13 @@ public final class zzai implements zzaq {
 
     @Override // com.google.android.gms.internal.measurement.zzaq
     public final Boolean zzd() {
-        return Boolean.valueOf((Double.isNaN(this.zza.doubleValue()) || this.zza.doubleValue() == 0.0d) ? false : true);
+        boolean z8;
+        if (!Double.isNaN(this.zza.doubleValue()) && this.zza.doubleValue() != 0.0d) {
+            z8 = true;
+        } else {
+            z8 = false;
+        }
+        return Boolean.valueOf(z8);
     }
 
     @Override // com.google.android.gms.internal.measurement.zzaq
@@ -48,6 +69,7 @@ public final class zzai implements zzaq {
 
     @Override // com.google.android.gms.internal.measurement.zzaq
     public final String zzf() {
+        BigDecimal stripTrailingZeros;
         int scale;
         if (Double.isNaN(this.zza.doubleValue())) {
             return "NaN";
@@ -59,46 +81,35 @@ public final class zzai implements zzaq {
             return "-Infinity";
         }
         BigDecimal valueOf = BigDecimal.valueOf(this.zza.doubleValue());
-        BigDecimal bigDecimal = valueOf.signum() == 0 ? new BigDecimal(BigInteger.ZERO, 0) : APIModelBase$$ExternalSyntheticBackportWithForwarding0.m(valueOf);
+        if (valueOf.signum() == 0) {
+            stripTrailingZeros = new BigDecimal(BigInteger.ZERO, 0);
+        } else if (valueOf.signum() == 0) {
+            stripTrailingZeros = new BigDecimal(BigInteger.ZERO, 0);
+        } else {
+            stripTrailingZeros = valueOf.stripTrailingZeros();
+        }
         DecimalFormat decimalFormat = new DecimalFormat("0E0");
         decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
-        if (bigDecimal.scale() > 0) {
-            scale = bigDecimal.precision();
+        if (stripTrailingZeros.scale() > 0) {
+            scale = stripTrailingZeros.precision();
         } else {
-            scale = bigDecimal.scale();
+            scale = stripTrailingZeros.scale();
         }
         decimalFormat.setMinimumFractionDigits(scale - 1);
-        String format = decimalFormat.format(bigDecimal);
-        int indexOf = format.indexOf(ExifInterface.LONGITUDE_EAST);
-        if (indexOf <= 0) {
-            return format;
+        String format = decimalFormat.format(stripTrailingZeros);
+        int indexOf = format.indexOf("E");
+        if (indexOf > 0) {
+            int parseInt = Integer.parseInt(format.substring(indexOf + 1));
+            if ((parseInt < 0 && parseInt > -7) || (parseInt >= 0 && parseInt < 21)) {
+                return stripTrailingZeros.toPlainString();
+            }
+            return format.replace("E-", "e-").replace("E", "e+");
         }
-        int parseInt = Integer.parseInt(format.substring(indexOf + 1));
-        if ((parseInt >= 0 || parseInt <= -7) && (parseInt < 0 || parseInt >= 21)) {
-            return format.replace("E-", "e-").replace(ExifInterface.LONGITUDE_EAST, "e+");
-        }
-        return bigDecimal.toPlainString();
+        return format;
     }
 
-    public final String toString() {
-        return zzf();
-    }
-
-    public zzai(Double d) {
-        if (d == null) {
-            this.zza = Double.valueOf(Double.NaN);
-        } else {
-            this.zza = d;
-        }
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof zzai) {
-            return this.zza.equals(((zzai) obj).zza);
-        }
-        return false;
+    @Override // com.google.android.gms.internal.measurement.zzaq
+    public final Iterator<zzaq> zzh() {
+        return null;
     }
 }

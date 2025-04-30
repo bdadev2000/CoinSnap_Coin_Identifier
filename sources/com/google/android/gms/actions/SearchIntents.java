@@ -1,9 +1,14 @@
 package com.google.android.gms.actions;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+import androidx.annotation.NonNull;
+
+/* loaded from: classes2.dex */
 public class SearchIntents {
+
+    @NonNull
     public static final String ACTION_SEARCH = "com.google.android.gms.actions.SEARCH_ACTION";
+
+    @NonNull
     public static final String EXTRA_QUERY = "query";
 
     private SearchIntents() {

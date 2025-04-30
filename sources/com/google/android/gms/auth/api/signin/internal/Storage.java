@@ -3,26 +3,34 @@ package com.google.android.gms.auth.api.signin.internal;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.Preconditions;
+import com.mbridge.msdk.foundation.entity.o;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import org.json.JSONException;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class Storage {
     private static final Lock zaa = new ReentrantLock();
+
+    @Nullable
     private static Storage zab;
     private final Lock zac = new ReentrantLock();
     private final SharedPreferences zad;
 
-    Storage(Context context) {
+    public Storage(Context context) {
         this.zad = context.getSharedPreferences("com.google.android.gms.signin", 0);
     }
 
-    public static Storage getInstance(Context context) {
+    @NonNull
+    @KeepForSdk
+    public static Storage getInstance(@NonNull Context context) {
         Preconditions.checkNotNull(context);
         Lock lock = zaa;
         lock.lock();
@@ -40,9 +48,10 @@ public class Storage {
     }
 
     private static final String zae(String str, String str2) {
-        return str + ":" + str2;
+        return o.k(str, ":", str2);
     }
 
+    @KeepForSdk
     public void clear() {
         this.zac.lock();
         try {
@@ -52,6 +61,8 @@ public class Storage {
         }
     }
 
+    @Nullable
+    @KeepForSdk
     public GoogleSignInAccount getSavedDefaultGoogleSignInAccount() {
         String zaa2;
         String zaa3 = zaa("defaultGoogleSignInAccount");
@@ -65,6 +76,8 @@ public class Storage {
         }
     }
 
+    @Nullable
+    @KeepForSdk
     public GoogleSignInOptions getSavedDefaultGoogleSignInOptions() {
         String zaa2;
         String zaa3 = zaa("defaultGoogleSignInAccount");
@@ -78,11 +91,14 @@ public class Storage {
         }
     }
 
+    @Nullable
+    @KeepForSdk
     public String getSavedRefreshToken() {
         return zaa("refreshToken");
     }
 
-    public void saveDefaultGoogleSignInAccount(GoogleSignInAccount googleSignInAccount, GoogleSignInOptions googleSignInOptions) {
+    @KeepForSdk
+    public void saveDefaultGoogleSignInAccount(@NonNull GoogleSignInAccount googleSignInAccount, @NonNull GoogleSignInOptions googleSignInOptions) {
         Preconditions.checkNotNull(googleSignInAccount);
         Preconditions.checkNotNull(googleSignInOptions);
         zad("defaultGoogleSignInAccount", googleSignInAccount.zac());
@@ -93,7 +109,8 @@ public class Storage {
         zad(zae("googleSignInOptions", zac), googleSignInOptions.zaf());
     }
 
-    protected final String zaa(String str) {
+    @Nullable
+    public final String zaa(@NonNull String str) {
         this.zac.lock();
         try {
             return this.zad.getString(str, null);
@@ -102,7 +119,7 @@ public class Storage {
         }
     }
 
-    protected final void zab(String str) {
+    public final void zab(@NonNull String str) {
         this.zac.lock();
         try {
             this.zad.edit().remove(str).apply();
@@ -121,7 +138,7 @@ public class Storage {
         zab(zae("googleSignInOptions", zaa2));
     }
 
-    protected final void zad(String str, String str2) {
+    public final void zad(@NonNull String str, @NonNull String str2) {
         this.zac.lock();
         try {
             this.zad.edit().putString(str, str2).apply();

@@ -1,17 +1,51 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public interface zzpg {
-    double zza();
+import c4.e;
+import c4.h;
 
-    long zzb();
+/* loaded from: classes2.dex */
+public final class zzpg implements e {
+    private static zzpg zza = new zzpg();
+    private final e zzb = new h(new zzpi());
 
-    long zzc();
+    public static boolean zza() {
+        return ((zzpf) zza.get()).zza();
+    }
 
-    long zzd();
+    public static boolean zzb() {
+        return ((zzpf) zza.get()).zzb();
+    }
 
-    String zze();
+    public static boolean zzc() {
+        return ((zzpf) zza.get()).zzc();
+    }
 
-    boolean zzf();
+    public static boolean zzd() {
+        return ((zzpf) zza.get()).zzd();
+    }
+
+    public static boolean zze() {
+        return ((zzpf) zza.get()).zze();
+    }
+
+    public static boolean zzf() {
+        return ((zzpf) zza.get()).zzf();
+    }
+
+    public static boolean zzg() {
+        return ((zzpf) zza.get()).zzg();
+    }
+
+    public static boolean zzh() {
+        return ((zzpf) zza.get()).zzh();
+    }
+
+    public static boolean zzi() {
+        return ((zzpf) zza.get()).zzi();
+    }
+
+    @Override // c4.e
+    public final /* synthetic */ Object get() {
+        return (zzpf) this.zzb.get();
+    }
 }

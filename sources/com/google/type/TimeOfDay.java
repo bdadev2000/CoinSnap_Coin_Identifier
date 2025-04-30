@@ -1,39 +1,41 @@
 package com.google.type;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.O3;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import y5.t;
+import y5.u;
 
-/* loaded from: classes5.dex */
-public final class TimeOfDay extends GeneratedMessageLite<TimeOfDay, Builder> implements TimeOfDayOrBuilder {
+/* loaded from: classes3.dex */
+public final class TimeOfDay extends L2 implements O3 {
     private static final TimeOfDay DEFAULT_INSTANCE;
     public static final int HOURS_FIELD_NUMBER = 1;
     public static final int MINUTES_FIELD_NUMBER = 2;
     public static final int NANOS_FIELD_NUMBER = 4;
-    private static volatile Parser<TimeOfDay> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int SECONDS_FIELD_NUMBER = 3;
     private int hours_;
     private int minutes_;
     private int nanos_;
     private int seconds_;
 
+    static {
+        TimeOfDay timeOfDay = new TimeOfDay();
+        DEFAULT_INSTANCE = timeOfDay;
+        L2.registerDefaultInstance(TimeOfDay.class, timeOfDay);
+    }
+
     private TimeOfDay() {
-    }
-
-    @Override // com.google.type.TimeOfDayOrBuilder
-    public int getHours() {
-        return this.hours_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setHours(int i) {
-        this.hours_ = i;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -41,44 +43,9 @@ public final class TimeOfDay extends GeneratedMessageLite<TimeOfDay, Builder> im
         this.hours_ = 0;
     }
 
-    @Override // com.google.type.TimeOfDayOrBuilder
-    public int getMinutes() {
-        return this.minutes_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setMinutes(int i) {
-        this.minutes_ = i;
-    }
-
     /* JADX INFO: Access modifiers changed from: private */
     public void clearMinutes() {
         this.minutes_ = 0;
-    }
-
-    @Override // com.google.type.TimeOfDayOrBuilder
-    public int getSeconds() {
-        return this.seconds_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setSeconds(int i) {
-        this.seconds_ = i;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearSeconds() {
-        this.seconds_ = 0;
-    }
-
-    @Override // com.google.type.TimeOfDayOrBuilder
-    public int getNanos() {
-        return this.nanos_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setNanos(int i) {
-        this.nanos_ = i;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -86,204 +53,77 @@ public final class TimeOfDay extends GeneratedMessageLite<TimeOfDay, Builder> im
         this.nanos_ = 0;
     }
 
-    public static TimeOfDay parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (TimeOfDay) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearSeconds() {
+        this.seconds_ = 0;
     }
 
-    public static TimeOfDay parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (TimeOfDay) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
+    public static TimeOfDay getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    public static TimeOfDay parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (TimeOfDay) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static TimeOfDay parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (TimeOfDay) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static TimeOfDay parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (TimeOfDay) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static TimeOfDay parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (TimeOfDay) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static TimeOfDay parseFrom(InputStream inputStream) throws IOException {
-        return (TimeOfDay) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static TimeOfDay parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (TimeOfDay) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static u newBuilder() {
+        return (u) DEFAULT_INSTANCE.createBuilder();
     }
 
     public static TimeOfDay parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (TimeOfDay) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+        return (TimeOfDay) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
     }
 
-    public static TimeOfDay parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (TimeOfDay) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static TimeOfDay parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (TimeOfDay) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
     }
 
-    public static TimeOfDay parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (TimeOfDay) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
-    public static TimeOfDay parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (TimeOfDay) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setHours(int i9) {
+        this.hours_ = i9;
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setMinutes(int i9) {
+        this.minutes_ = i9;
     }
 
-    public static Builder newBuilder(TimeOfDay timeOfDay) {
-        return DEFAULT_INSTANCE.createBuilder(timeOfDay);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setNanos(int i9) {
+        this.nanos_ = i9;
     }
 
-    /* loaded from: classes5.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<TimeOfDay, Builder> implements TimeOfDayOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(TimeOfDay.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.type.TimeOfDayOrBuilder
-        public int getHours() {
-            return ((TimeOfDay) this.instance).getHours();
-        }
-
-        public Builder setHours(int i) {
-            copyOnWrite();
-            ((TimeOfDay) this.instance).setHours(i);
-            return this;
-        }
-
-        public Builder clearHours() {
-            copyOnWrite();
-            ((TimeOfDay) this.instance).clearHours();
-            return this;
-        }
-
-        @Override // com.google.type.TimeOfDayOrBuilder
-        public int getMinutes() {
-            return ((TimeOfDay) this.instance).getMinutes();
-        }
-
-        public Builder setMinutes(int i) {
-            copyOnWrite();
-            ((TimeOfDay) this.instance).setMinutes(i);
-            return this;
-        }
-
-        public Builder clearMinutes() {
-            copyOnWrite();
-            ((TimeOfDay) this.instance).clearMinutes();
-            return this;
-        }
-
-        @Override // com.google.type.TimeOfDayOrBuilder
-        public int getSeconds() {
-            return ((TimeOfDay) this.instance).getSeconds();
-        }
-
-        public Builder setSeconds(int i) {
-            copyOnWrite();
-            ((TimeOfDay) this.instance).setSeconds(i);
-            return this;
-        }
-
-        public Builder clearSeconds() {
-            copyOnWrite();
-            ((TimeOfDay) this.instance).clearSeconds();
-            return this;
-        }
-
-        @Override // com.google.type.TimeOfDayOrBuilder
-        public int getNanos() {
-            return ((TimeOfDay) this.instance).getNanos();
-        }
-
-        public Builder setNanos(int i) {
-            copyOnWrite();
-            ((TimeOfDay) this.instance).setNanos(i);
-            return this;
-        }
-
-        public Builder clearNanos() {
-            copyOnWrite();
-            ((TimeOfDay) this.instance).clearNanos();
-            return this;
-        }
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setSeconds(int i9) {
+        this.seconds_ = i9;
     }
 
-    /* renamed from: com.google.type.TimeOfDay$1, reason: invalid class name */
-    /* loaded from: classes5.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (t.f24444a[k22.ordinal()]) {
             case 1:
                 return new TimeOfDay();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0004\u0000\u0000\u0001\u0004\u0004\u0000\u0000\u0000\u0001\u0004\u0002\u0004\u0003\u0004\u0004\u0004", new Object[]{"hours_", "minutes_", "seconds_", "nanos_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0004\u0000\u0000\u0001\u0004\u0004\u0000\u0000\u0000\u0001\u0004\u0002\u0004\u0003\u0004\u0004\u0004", new Object[]{"hours_", "minutes_", "seconds_", "nanos_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<TimeOfDay> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (TimeOfDay.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -293,17 +133,63 @@ public final class TimeOfDay extends GeneratedMessageLite<TimeOfDay, Builder> im
         }
     }
 
-    static {
-        TimeOfDay timeOfDay = new TimeOfDay();
-        DEFAULT_INSTANCE = timeOfDay;
-        GeneratedMessageLite.registerDefaultInstance(TimeOfDay.class, timeOfDay);
+    public int getHours() {
+        return this.hours_;
     }
 
-    public static TimeOfDay getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public int getMinutes() {
+        return this.minutes_;
     }
 
-    public static Parser<TimeOfDay> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public int getNanos() {
+        return this.nanos_;
+    }
+
+    public int getSeconds() {
+        return this.seconds_;
+    }
+
+    public static u newBuilder(TimeOfDay timeOfDay) {
+        return (u) DEFAULT_INSTANCE.createBuilder(timeOfDay);
+    }
+
+    public static TimeOfDay parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (TimeOfDay) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static TimeOfDay parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (TimeOfDay) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static TimeOfDay parseFrom(H h6) throws C1912g3 {
+        return (TimeOfDay) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static TimeOfDay parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (TimeOfDay) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static TimeOfDay parseFrom(byte[] bArr) throws C1912g3 {
+        return (TimeOfDay) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static TimeOfDay parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (TimeOfDay) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static TimeOfDay parseFrom(InputStream inputStream) throws IOException {
+        return (TimeOfDay) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static TimeOfDay parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (TimeOfDay) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static TimeOfDay parseFrom(S s5) throws IOException {
+        return (TimeOfDay) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static TimeOfDay parseFrom(S s5, W1 w1) throws IOException {
+        return (TimeOfDay) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

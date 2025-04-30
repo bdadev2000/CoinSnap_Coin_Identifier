@@ -3,12 +3,10 @@ package com.google.android.gms.common.api.internal;
 import java.lang.ref.WeakReference;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zabd extends zabw {
     private final WeakReference zaa;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zabd(zabe zabeVar) {
         this.zaa = new WeakReference(zabeVar);
     }

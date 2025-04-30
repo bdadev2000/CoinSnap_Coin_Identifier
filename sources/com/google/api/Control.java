@@ -1,33 +1,61 @@
 package com.google.api;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import a4.AbstractC0345F;
+import a4.G;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.O3;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-/* loaded from: classes12.dex */
-public final class Control extends GeneratedMessageLite<Control, Builder> implements ControlOrBuilder {
+/* loaded from: classes2.dex */
+public final class Control extends L2 implements O3 {
     private static final Control DEFAULT_INSTANCE;
     public static final int ENVIRONMENT_FIELD_NUMBER = 1;
-    private static volatile Parser<Control> PARSER;
+    private static volatile InterfaceC1948l4 PARSER;
     private String environment_ = "";
+
+    static {
+        Control control = new Control();
+        DEFAULT_INSTANCE = control;
+        L2.registerDefaultInstance(Control.class, control);
+    }
 
     private Control() {
     }
 
-    @Override // com.google.api.ControlOrBuilder
-    public String getEnvironment() {
-        return this.environment_;
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearEnvironment() {
+        this.environment_ = getDefaultInstance().getEnvironment();
     }
 
-    @Override // com.google.api.ControlOrBuilder
-    public ByteString getEnvironmentBytes() {
-        return ByteString.copyFromUtf8(this.environment_);
+    public static Control getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    public static G newBuilder() {
+        return (G) DEFAULT_INSTANCE.createBuilder();
+    }
+
+    public static Control parseDelimitedFrom(InputStream inputStream) throws IOException {
+        return (Control) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static Control parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (Control) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    }
+
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -37,174 +65,37 @@ public final class Control extends GeneratedMessageLite<Control, Builder> implem
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearEnvironment() {
-        this.environment_ = getDefaultInstance().getEnvironment();
+    public void setEnvironmentBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.environment_ = h6.toStringUtf8();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setEnvironmentBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.environment_ = byteString.toStringUtf8();
-    }
-
-    public static Control parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (Control) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
-    }
-
-    public static Control parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Control) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static Control parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (Control) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static Control parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Control) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static Control parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (Control) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static Control parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Control) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static Control parseFrom(InputStream inputStream) throws IOException {
-        return (Control) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static Control parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Control) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static Control parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (Control) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static Control parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Control) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static Control parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (Control) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
-    }
-
-    public static Control parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Control) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
-    }
-
-    public static Builder newBuilder(Control control) {
-        return DEFAULT_INSTANCE.createBuilder(control);
-    }
-
-    /* loaded from: classes12.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<Control, Builder> implements ControlOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(Control.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.api.ControlOrBuilder
-        public String getEnvironment() {
-            return ((Control) this.instance).getEnvironment();
-        }
-
-        @Override // com.google.api.ControlOrBuilder
-        public ByteString getEnvironmentBytes() {
-            return ((Control) this.instance).getEnvironmentBytes();
-        }
-
-        public Builder setEnvironment(String str) {
-            copyOnWrite();
-            ((Control) this.instance).setEnvironment(str);
-            return this;
-        }
-
-        public Builder clearEnvironment() {
-            copyOnWrite();
-            ((Control) this.instance).clearEnvironment();
-            return this;
-        }
-
-        public Builder setEnvironmentBytes(ByteString byteString) {
-            copyOnWrite();
-            ((Control) this.instance).setEnvironmentBytes(byteString);
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.api.Control$1, reason: invalid class name */
-    /* loaded from: classes12.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (AbstractC0345F.f3964a[k22.ordinal()]) {
             case 1:
                 return new Control();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0000\u0000\u0001Ȉ", new Object[]{"environment_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0000\u0000\u0001Ȉ", new Object[]{"environment_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<Control> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (Control.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -214,17 +105,55 @@ public final class Control extends GeneratedMessageLite<Control, Builder> implem
         }
     }
 
-    static {
-        Control control = new Control();
-        DEFAULT_INSTANCE = control;
-        GeneratedMessageLite.registerDefaultInstance(Control.class, control);
+    public String getEnvironment() {
+        return this.environment_;
     }
 
-    public static Control getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public H getEnvironmentBytes() {
+        return H.copyFromUtf8(this.environment_);
     }
 
-    public static Parser<Control> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public static G newBuilder(Control control) {
+        return (G) DEFAULT_INSTANCE.createBuilder(control);
+    }
+
+    public static Control parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Control) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Control parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (Control) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static Control parseFrom(H h6) throws C1912g3 {
+        return (Control) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static Control parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (Control) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static Control parseFrom(byte[] bArr) throws C1912g3 {
+        return (Control) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static Control parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (Control) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static Control parseFrom(InputStream inputStream) throws IOException {
+        return (Control) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static Control parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Control) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Control parseFrom(S s5) throws IOException {
+        return (Control) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static Control parseFrom(S s5, W1 w1) throws IOException {
+        return (Control) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

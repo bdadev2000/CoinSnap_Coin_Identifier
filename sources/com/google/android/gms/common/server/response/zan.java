@@ -2,35 +2,43 @@ package com.google.android.gms.common.server.response;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.internal.Preconditions;
+import com.google.android.gms.common.internal.ShowFirstParty;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import com.google.android.gms.common.server.response.FastJsonResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@ShowFirstParty
+@SafeParcelable.Class(creator = "FieldMappingDictionaryCreator")
+/* loaded from: classes2.dex */
 public final class zan extends AbstractSafeParcelable {
     public static final Parcelable.Creator<zan> CREATOR = new zao();
+
+    @SafeParcelable.VersionField(id = 1)
     final int zaa;
     private final HashMap zab;
+
+    @SafeParcelable.Field(getter = "getRootClassName", id = 3)
     private final String zac;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zan(int i, ArrayList arrayList, String str) {
-        this.zaa = i;
+    @SafeParcelable.Constructor
+    public zan(@SafeParcelable.Param(id = 1) int i9, @SafeParcelable.Param(id = 2) ArrayList arrayList, @SafeParcelable.Param(id = 3) String str) {
+        this.zaa = i9;
         HashMap hashMap = new HashMap();
         int size = arrayList.size();
-        for (int i2 = 0; i2 < size; i2++) {
-            zal zalVar = (zal) arrayList.get(i2);
+        for (int i10 = 0; i10 < size; i10++) {
+            zal zalVar = (zal) arrayList.get(i10);
             String str2 = zalVar.zab;
             HashMap hashMap2 = new HashMap();
             int size2 = ((ArrayList) Preconditions.checkNotNull(zalVar.zac)).size();
-            for (int i3 = 0; i3 < size2; i3++) {
-                zam zamVar = (zam) zalVar.zac.get(i3);
+            for (int i11 = 0; i11 < size2; i11++) {
+                zam zamVar = (zam) zalVar.zac.get(i11);
                 hashMap2.put(zamVar.zab, zamVar.zac);
             }
             hashMap.put(str2, hashMap2);
@@ -57,7 +65,7 @@ public final class zan extends AbstractSafeParcelable {
     }
 
     @Override // android.os.Parcelable
-    public final void writeToParcel(Parcel parcel, int i) {
+    public final void writeToParcel(Parcel parcel, int i9) {
         int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
         SafeParcelWriter.writeInt(parcel, 1, this.zaa);
         ArrayList arrayList = new ArrayList();
@@ -73,6 +81,7 @@ public final class zan extends AbstractSafeParcelable {
         return this.zac;
     }
 
+    @Nullable
     public final Map zab(String str) {
         return (Map) this.zab.get(str);
     }

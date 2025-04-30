@@ -7,21 +7,25 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.internal.Preconditions;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class ErrorDialogFragment extends DialogFragment {
     private Dialog zaa;
     private DialogInterface.OnCancelListener zab;
+
+    @Nullable
     private Dialog zac;
 
-    public static ErrorDialogFragment newInstance(Dialog dialog) {
+    @NonNull
+    public static ErrorDialogFragment newInstance(@NonNull Dialog dialog) {
         return newInstance(dialog, null);
     }
 
     @Override // android.app.DialogFragment, android.content.DialogInterface.OnCancelListener
-    public void onCancel(DialogInterface dialogInterface) {
+    public void onCancel(@NonNull DialogInterface dialogInterface) {
         DialogInterface.OnCancelListener onCancelListener = this.zab;
         if (onCancelListener != null) {
             onCancelListener.onCancel(dialogInterface);
@@ -29,24 +33,26 @@ public class ErrorDialogFragment extends DialogFragment {
     }
 
     @Override // android.app.DialogFragment
-    public Dialog onCreateDialog(Bundle bundle) {
+    @NonNull
+    public Dialog onCreateDialog(@Nullable Bundle bundle) {
         Dialog dialog = this.zaa;
-        if (dialog != null) {
-            return dialog;
+        if (dialog == null) {
+            setShowsDialog(false);
+            if (this.zac == null) {
+                this.zac = new AlertDialog.Builder((Context) Preconditions.checkNotNull(getActivity())).create();
+            }
+            return this.zac;
         }
-        setShowsDialog(false);
-        if (this.zac == null) {
-            this.zac = new AlertDialog.Builder((Context) Preconditions.checkNotNull(getActivity())).create();
-        }
-        return this.zac;
+        return dialog;
     }
 
     @Override // android.app.DialogFragment
-    public void show(FragmentManager fragmentManager, String str) {
+    public void show(@NonNull FragmentManager fragmentManager, @Nullable String str) {
         super.show(fragmentManager, str);
     }
 
-    public static ErrorDialogFragment newInstance(Dialog dialog, DialogInterface.OnCancelListener onCancelListener) {
+    @NonNull
+    public static ErrorDialogFragment newInstance(@NonNull Dialog dialog, @Nullable DialogInterface.OnCancelListener onCancelListener) {
         ErrorDialogFragment errorDialogFragment = new ErrorDialogFragment();
         Dialog dialog2 = (Dialog) Preconditions.checkNotNull(dialog, "Cannot display null dialog");
         dialog2.setOnCancelListener(null);

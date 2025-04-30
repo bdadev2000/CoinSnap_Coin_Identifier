@@ -1,27 +1,14 @@
 package com.google.android.gms.internal.measurement;
 
-import com.google.android.gms.internal.measurement.zzgd;
+import com.google.android.gms.internal.measurement.zzft;
 import java.util.concurrent.Callable;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzf {
     final zzh zza;
     final zzh zzb;
     private final zzbb zzc;
     private final zzl zzd;
-
-    public final zzaq zza(zzh zzhVar, zzgd.zzd... zzdVarArr) {
-        zzaq zzaqVar = zzaq.zzc;
-        for (zzgd.zzd zzdVar : zzdVarArr) {
-            zzaqVar = zzj.zza(zzdVar);
-            zzg.zza(this.zzb);
-            if ((zzaqVar instanceof zzat) || (zzaqVar instanceof zzar)) {
-                zzaqVar = this.zzc.zza(zzhVar, zzaqVar);
-            }
-        }
-        return zzaqVar;
-    }
 
     public zzf() {
         zzbb zzbbVar = new zzbb();
@@ -39,6 +26,18 @@ public final class zzf {
             }
         });
         zzhVar.zzc("runtime.counter", new zzai(Double.valueOf(0.0d)));
+    }
+
+    public final zzaq zza(zzh zzhVar, zzft.zzd... zzdVarArr) {
+        zzaq zzaqVar = zzaq.zzc;
+        for (zzft.zzd zzdVar : zzdVarArr) {
+            zzaqVar = zzj.zza(zzdVar);
+            zzg.zza(this.zzb);
+            if ((zzaqVar instanceof zzat) || (zzaqVar instanceof zzar)) {
+                zzaqVar = this.zzc.zza(zzhVar, zzaqVar);
+            }
+        }
+        return zzaqVar;
     }
 
     public final void zza(String str, Callable<? extends zzal> callable) {

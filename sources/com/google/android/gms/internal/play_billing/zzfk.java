@@ -1,41 +1,52 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final /* synthetic */ class zzfk {
-    static final /* synthetic */ int[] zza;
+import java.util.AbstractList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.RandomAccess;
 
-    static {
-        zzca.zza();
-        int[] iArr = new int[7];
-        zza = iArr;
-        try {
-            iArr[3] = 1;
-        } catch (NoSuchFieldError unused) {
-        }
-        try {
-            zza[4] = 2;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            zza[2] = 3;
-        } catch (NoSuchFieldError unused3) {
-        }
-        try {
-            zza[5] = 4;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            zza[6] = 5;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            zza[0] = 6;
-        } catch (NoSuchFieldError unused6) {
-        }
-        try {
-            zza[1] = 7;
-        } catch (NoSuchFieldError unused7) {
-        }
+@Deprecated
+/* loaded from: classes2.dex */
+public final class zzfk extends AbstractList implements RandomAccess, zzdk {
+    private final zzdk zza;
+
+    public zzfk(zzdk zzdkVar) {
+        this.zza = zzdkVar;
+    }
+
+    @Override // java.util.AbstractList, java.util.List
+    public final /* bridge */ /* synthetic */ Object get(int i9) {
+        return ((zzdj) this.zza).get(i9);
+    }
+
+    @Override // java.util.AbstractList, java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.List
+    public final Iterator iterator() {
+        return new zzfj(this);
+    }
+
+    @Override // java.util.AbstractList, java.util.List
+    public final ListIterator listIterator(int i9) {
+        return new zzfi(this, i9);
+    }
+
+    @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
+    public final int size() {
+        return this.zza.size();
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzdk
+    public final zzdk zze() {
+        return this;
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzdk
+    public final Object zzf(int i9) {
+        return this.zza.zzf(i9);
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzdk
+    public final List zzh() {
+        return this.zza.zzh();
     }
 }

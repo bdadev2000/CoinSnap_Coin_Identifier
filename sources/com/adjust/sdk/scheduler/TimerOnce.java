@@ -6,7 +6,7 @@ import com.adjust.sdk.Util;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class TimerOnce {
     private Runnable command;
     private ILogger logger = AdjustFactory.getLogger();
@@ -14,7 +14,7 @@ public class TimerOnce {
     private FutureScheduler scheduler;
     private ScheduledFuture waitingTask;
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class a implements Runnable {
         public a() {
         }
@@ -33,15 +33,6 @@ public class TimerOnce {
         this.command = runnable;
     }
 
-    private void cancel(boolean z) {
-        ScheduledFuture scheduledFuture = this.waitingTask;
-        if (scheduledFuture != null) {
-            scheduledFuture.cancel(z);
-        }
-        this.waitingTask = null;
-        this.logger.verbose("%s canceled", this.name);
-    }
-
     public void cancel() {
         cancel(false);
     }
@@ -54,10 +45,10 @@ public class TimerOnce {
         return scheduledFuture.getDelay(TimeUnit.MILLISECONDS);
     }
 
-    public void startIn(long j) {
+    public void startIn(long j7) {
         cancel(false);
-        this.logger.verbose("%s starting. Launching in %s seconds", this.name, Util.SecondsDisplayFormat.format(j / 1000.0d));
-        this.waitingTask = this.scheduler.scheduleFuture(new a(), j);
+        this.logger.verbose("%s starting. Launching in %s seconds", this.name, Util.SecondsDisplayFormat.format(j7 / 1000.0d));
+        this.waitingTask = this.scheduler.scheduleFuture(new a(), j7);
     }
 
     public void teardown() {
@@ -67,5 +58,14 @@ public class TimerOnce {
             futureScheduler.teardown();
         }
         this.scheduler = null;
+    }
+
+    private void cancel(boolean z8) {
+        ScheduledFuture scheduledFuture = this.waitingTask;
+        if (scheduledFuture != null) {
+            scheduledFuture.cancel(z8);
+        }
+        this.waitingTask = null;
+        this.logger.verbose("%s canceled", this.name);
     }
 }

@@ -1,16 +1,10 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final class zzp {
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static void zza(Object obj, Object obj2) {
-        if (obj == null) {
-            throw new NullPointerException("null key in entry: null=".concat(String.valueOf(String.valueOf(obj2))));
-        }
-        if (obj2 != null) {
-            return;
-        }
-        throw new NullPointerException("null value in entry: " + obj.toString() + "=null");
-    }
+import android.os.Bundle;
+import android.os.IInterface;
+import android.os.RemoteException;
+
+/* loaded from: classes2.dex */
+public interface zzp extends IInterface {
+    void zza(Bundle bundle) throws RemoteException;
 }

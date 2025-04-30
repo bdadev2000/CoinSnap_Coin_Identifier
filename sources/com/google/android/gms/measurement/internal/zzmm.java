@@ -1,52 +1,33 @@
 package com.google.android.gms.measurement.internal;
 
-import android.os.RemoteException;
-import android.text.TextUtils;
-import com.google.android.gms.common.internal.Preconditions;
+import android.os.Handler;
+import com.mbridge.msdk.playercommon.exoplayer2.trackselection.AdaptiveTrackSelection;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzmm implements Runnable {
-    private final /* synthetic */ boolean zza = true;
-    private final /* synthetic */ zzo zzb;
-    private final /* synthetic */ boolean zzc;
-    private final /* synthetic */ zzae zzd;
-    private final /* synthetic */ zzae zze;
-    private final /* synthetic */ zzls zzf;
+/* loaded from: classes2.dex */
+public final class zzmm {
+    final /* synthetic */ zzmh zza;
+    private zzml zzb;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzmm(zzls zzlsVar, boolean z, zzo zzoVar, boolean z2, zzae zzaeVar, zzae zzaeVar2) {
-        this.zzb = zzoVar;
-        this.zzc = z2;
-        this.zzd = zzaeVar;
-        this.zze = zzaeVar2;
-        this.zzf = zzlsVar;
+    public zzmm(zzmh zzmhVar) {
+        this.zza = zzmhVar;
     }
 
-    @Override // java.lang.Runnable
-    public final void run() {
-        zzgb zzgbVar;
-        zzgbVar = this.zzf.zzb;
-        if (zzgbVar == null) {
-            this.zzf.zzj().zzg().zza("Discarding data. Failed to send conditional user property to service");
-            return;
+    public final void zza(long j7) {
+        Handler handler;
+        this.zzb = new zzml(this, this.zza.zzb().currentTimeMillis(), j7);
+        handler = this.zza.zzc;
+        handler.postDelayed(this.zzb, AdaptiveTrackSelection.DEFAULT_MIN_TIME_BETWEEN_BUFFER_REEVALUTATION_MS);
+    }
+
+    public final void zza() {
+        Handler handler;
+        this.zza.zzt();
+        if (this.zzb != null) {
+            handler = this.zza.zzc;
+            handler.removeCallbacks(this.zzb);
         }
-        if (this.zza) {
-            Preconditions.checkNotNull(this.zzb);
-            this.zzf.zza(zzgbVar, this.zzc ? null : this.zzd, this.zzb);
-        } else {
-            try {
-                if (TextUtils.isEmpty(this.zze.zza)) {
-                    Preconditions.checkNotNull(this.zzb);
-                    zzgbVar.zza(this.zzd, this.zzb);
-                } else {
-                    zzgbVar.zza(this.zzd);
-                }
-            } catch (RemoteException e) {
-                this.zzf.zzj().zzg().zza("Failed to send conditional user property to the service", e);
-            }
-        }
-        this.zzf.zzar();
+        this.zza.zzk().zzn.zza(false);
+        this.zza.zza(false);
     }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONObject;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class AdjustInstance {
     private IActivityHandler activityHandler;
     private String basePath;
@@ -17,82 +17,82 @@ public class AdjustInstance {
     private boolean startOffline = false;
     private PreLaunchActions preLaunchActions = new PreLaunchActions();
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public static class PreLaunchActions {
         public List<IRunActivityHandler> preLaunchActionsArray = new ArrayList();
         public List<AdjustThirdPartySharing> preLaunchAdjustThirdPartySharingArray = new ArrayList();
         public Boolean lastMeasurementConsentTracked = null;
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class a implements IRunActivityHandler {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ String f227a;
+        public final /* synthetic */ String f5514a;
         public final /* synthetic */ String b;
 
         public a(String str, String str2) {
-            this.f227a = str;
+            this.f5514a = str;
             this.b = str2;
         }
 
         @Override // com.adjust.sdk.IRunActivityHandler
         public final void run(ActivityHandler activityHandler) {
-            activityHandler.addSessionCallbackParameterI(this.f227a, this.b);
+            activityHandler.addSessionCallbackParameterI(this.f5514a, this.b);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class b implements IRunActivityHandler {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ String f228a;
+        public final /* synthetic */ String f5515a;
         public final /* synthetic */ String b;
 
         public b(String str, String str2) {
-            this.f228a = str;
+            this.f5515a = str;
             this.b = str2;
         }
 
         @Override // com.adjust.sdk.IRunActivityHandler
         public final void run(ActivityHandler activityHandler) {
-            activityHandler.addSessionPartnerParameterI(this.f228a, this.b);
+            activityHandler.addSessionPartnerParameterI(this.f5515a, this.b);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class c implements IRunActivityHandler {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ String f229a;
+        public final /* synthetic */ String f5516a;
 
         public c(String str) {
-            this.f229a = str;
+            this.f5516a = str;
         }
 
         @Override // com.adjust.sdk.IRunActivityHandler
         public final void run(ActivityHandler activityHandler) {
-            activityHandler.removeSessionCallbackParameterI(this.f229a);
+            activityHandler.removeSessionCallbackParameterI(this.f5516a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class d implements IRunActivityHandler {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ String f230a;
+        public final /* synthetic */ String f5517a;
 
         public d(String str) {
-            this.f230a = str;
+            this.f5517a = str;
         }
 
         @Override // com.adjust.sdk.IRunActivityHandler
         public final void run(ActivityHandler activityHandler) {
-            activityHandler.removeSessionPartnerParameterI(this.f230a);
+            activityHandler.removeSessionPartnerParameterI(this.f5517a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class e implements IRunActivityHandler {
         @Override // com.adjust.sdk.IRunActivityHandler
         public final void run(ActivityHandler activityHandler) {
@@ -100,7 +100,7 @@ public class AdjustInstance {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class f implements IRunActivityHandler {
         @Override // com.adjust.sdk.IRunActivityHandler
         public final void run(ActivityHandler activityHandler) {
@@ -112,33 +112,13 @@ public class AdjustInstance {
         return checkActivityHandler(str, false);
     }
 
-    private boolean checkActivityHandler(String str, boolean z) {
-        if (this.activityHandler != null) {
-            return true;
-        }
-        if (str == null) {
-            AdjustFactory.getLogger().error("Adjust not initialized correctly", new Object[0]);
-            return false;
-        }
-        if (z) {
-            AdjustFactory.getLogger().warn("Adjust not initialized, but %s saved for launch", str);
-        } else {
-            AdjustFactory.getLogger().warn("Adjust not initialized, can't perform %s", str);
-        }
-        return false;
-    }
-
-    private boolean checkActivityHandler(boolean z, String str, String str2) {
-        return z ? checkActivityHandler(str, true) : checkActivityHandler(str2, true);
-    }
-
     private boolean isInstanceEnabled() {
         Boolean bool = this.startEnabled;
         return bool == null || bool.booleanValue();
     }
 
-    private void saveDeeplink(Uri uri, long j, Context context) {
-        SharedPreferencesManager.getDefaultInstance(context).saveDeeplink(uri, j);
+    private void saveDeeplink(Uri uri, long j7, Context context) {
+        SharedPreferencesManager.getDefaultInstance(context).saveDeeplink(uri, j7);
     }
 
     private void saveDisableThirdPartySharing(Context context) {
@@ -157,8 +137,8 @@ public class AdjustInstance {
         SharedPreferencesManager.getDefaultInstance(context).savePushToken(str);
     }
 
-    private void saveRawReferrer(String str, long j, Context context) {
-        SharedPreferencesManager.getDefaultInstance(context).saveRawReferrer(str, j);
+    private void saveRawReferrer(String str, long j7, Context context) {
+        SharedPreferencesManager.getDefaultInstance(context).saveRawReferrer(str, j7);
     }
 
     private void setSendingReferrersAsNotSent(Context context) {
@@ -184,19 +164,6 @@ public class AdjustInstance {
     public void appWillOpenUrl(Uri uri) {
         if (checkActivityHandler("appWillOpenUrl")) {
             this.activityHandler.readOpenUrl(uri, System.currentTimeMillis());
-        }
-    }
-
-    public void appWillOpenUrl(Uri uri, Context context) {
-        if (uri == null || uri.toString().length() == 0) {
-            AdjustFactory.getLogger().warn("Skipping deep link processing (null or empty)", new Object[0]);
-            return;
-        }
-        long currentTimeMillis = System.currentTimeMillis();
-        if (checkActivityHandler("appWillOpenUrl", true)) {
-            this.activityHandler.readOpenUrl(uri, currentTimeMillis);
-        } else {
-            saveDeeplink(uri, currentTimeMillis, context);
         }
     }
 
@@ -234,7 +201,7 @@ public class AdjustInstance {
     }
 
     public boolean isEnabled() {
-        return !checkActivityHandler(com.google.firebase.perf.util.Constants.ENABLE_DISABLE) ? isInstanceEnabled() : this.activityHandler.isEnabled();
+        return !checkActivityHandler("isEnabled") ? isInstanceEnabled() : this.activityHandler.isEnabled();
     }
 
     public void onCreate(AdjustConfig adjustConfig) {
@@ -334,18 +301,18 @@ public class AdjustInstance {
         }
     }
 
-    public void setEnabled(boolean z) {
-        this.startEnabled = Boolean.valueOf(z);
-        if (checkActivityHandler(z, "enabled mode", "disabled mode")) {
-            this.activityHandler.setEnabled(z);
+    public void setEnabled(boolean z8) {
+        this.startEnabled = Boolean.valueOf(z8);
+        if (checkActivityHandler(z8, "enabled mode", "disabled mode")) {
+            this.activityHandler.setEnabled(z8);
         }
     }
 
-    public void setOfflineMode(boolean z) {
-        if (checkActivityHandler(z, "offline mode", "online mode")) {
-            this.activityHandler.setOfflineMode(z);
+    public void setOfflineMode(boolean z8) {
+        if (checkActivityHandler(z8, "offline mode", "online mode")) {
+            this.activityHandler.setOfflineMode(z8);
         } else {
-            this.startOffline = z;
+            this.startOffline = z8;
         }
     }
 
@@ -354,13 +321,6 @@ public class AdjustInstance {
             this.activityHandler.setPushToken(str, false);
         } else {
             this.pushToken = str;
-        }
-    }
-
-    public void setPushToken(String str, Context context) {
-        savePushToken(str, context);
-        if (checkActivityHandler("push token", true) && this.activityHandler.isEnabled()) {
-            this.activityHandler.setPushToken(str, true);
         }
     }
 
@@ -400,9 +360,9 @@ public class AdjustInstance {
         if (l2 != null) {
             AdjustFactory.setSessionInterval(l2.longValue());
         }
-        Long l3 = adjustTestOptions.subsessionIntervalInMilliseconds;
-        if (l3 != null) {
-            AdjustFactory.setSubsessionInterval(l3.longValue());
+        Long l6 = adjustTestOptions.subsessionIntervalInMilliseconds;
+        if (l6 != null) {
+            AdjustFactory.setSubsessionInterval(l6.longValue());
         }
         Boolean bool = adjustTestOptions.tryInstallReferrer;
         if (bool != null) {
@@ -437,23 +397,17 @@ public class AdjustInstance {
         }
     }
 
-    public void trackAdRevenue(String str, JSONObject jSONObject) {
-        if (checkActivityHandler("trackAdRevenue")) {
-            this.activityHandler.trackAdRevenue(str, jSONObject);
-        }
-    }
-
     public void trackEvent(AdjustEvent adjustEvent) {
         if (checkActivityHandler("trackEvent")) {
             this.activityHandler.trackEvent(adjustEvent);
         }
     }
 
-    public void trackMeasurementConsent(boolean z) {
+    public void trackMeasurementConsent(boolean z8) {
         if (checkActivityHandler("measurement consent", true)) {
-            this.activityHandler.trackMeasurementConsent(z);
+            this.activityHandler.trackMeasurementConsent(z8);
         } else {
-            this.preLaunchActions.lastMeasurementConsentTracked = Boolean.valueOf(z);
+            this.preLaunchActions.lastMeasurementConsentTracked = Boolean.valueOf(z8);
         }
     }
 
@@ -469,5 +423,51 @@ public class AdjustInstance {
         } else {
             this.preLaunchActions.preLaunchAdjustThirdPartySharingArray.add(adjustThirdPartySharing);
         }
+    }
+
+    private boolean checkActivityHandler(String str, boolean z8) {
+        if (this.activityHandler != null) {
+            return true;
+        }
+        if (str == null) {
+            AdjustFactory.getLogger().error("Adjust not initialized correctly", new Object[0]);
+            return false;
+        }
+        if (z8) {
+            AdjustFactory.getLogger().warn("Adjust not initialized, but %s saved for launch", str);
+        } else {
+            AdjustFactory.getLogger().warn("Adjust not initialized, can't perform %s", str);
+        }
+        return false;
+    }
+
+    public void appWillOpenUrl(Uri uri, Context context) {
+        if (uri == null || uri.toString().length() == 0) {
+            AdjustFactory.getLogger().warn("Skipping deep link processing (null or empty)", new Object[0]);
+            return;
+        }
+        long currentTimeMillis = System.currentTimeMillis();
+        if (checkActivityHandler("appWillOpenUrl", true)) {
+            this.activityHandler.readOpenUrl(uri, currentTimeMillis);
+        } else {
+            saveDeeplink(uri, currentTimeMillis, context);
+        }
+    }
+
+    public void setPushToken(String str, Context context) {
+        savePushToken(str, context);
+        if (checkActivityHandler("push token", true) && this.activityHandler.isEnabled()) {
+            this.activityHandler.setPushToken(str, true);
+        }
+    }
+
+    public void trackAdRevenue(String str, JSONObject jSONObject) {
+        if (checkActivityHandler("trackAdRevenue")) {
+            this.activityHandler.trackAdRevenue(str, jSONObject);
+        }
+    }
+
+    private boolean checkActivityHandler(boolean z8, String str, String str2) {
+        return z8 ? checkActivityHandler(str, true) : checkActivityHandler(str2, true);
     }
 }

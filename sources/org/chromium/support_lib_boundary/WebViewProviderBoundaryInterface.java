@@ -5,7 +5,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebViewClient;
 import java.lang.reflect.InvocationHandler;
 
-/* loaded from: classes9.dex */
+/* loaded from: classes3.dex */
 public interface WebViewProviderBoundaryInterface {
     InvocationHandler addDocumentStartJavaScript(String str, String[] strArr);
 
@@ -23,11 +23,15 @@ public interface WebViewProviderBoundaryInterface {
 
     InvocationHandler getWebViewRendererClient();
 
-    void insertVisualStateCallback(long j, InvocationHandler invocationHandler);
+    void insertVisualStateCallback(long j7, InvocationHandler invocationHandler);
+
+    boolean isAudioMuted();
 
     void postMessageToMainFrame(InvocationHandler invocationHandler, Uri uri);
 
     void removeWebMessageListener(String str);
+
+    void setAudioMuted(boolean z8);
 
     void setProfile(String str);
 

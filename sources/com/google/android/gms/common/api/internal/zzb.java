@@ -5,7 +5,8 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
-import androidx.collection.ArrayMap;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.internal.common.zzi;
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -14,13 +15,16 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.WeakHashMap;
+import x.l;
+import x0.AbstractC2914a;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzb extends Fragment implements LifecycleFragment {
     private static final WeakHashMap zza = new WeakHashMap();
-    private final Map zzb = Collections.synchronizedMap(new ArrayMap());
+    private final Map zzb = Collections.synchronizedMap(new l());
     private int zzc = 0;
+
+    @Nullable
     private Bundle zzd;
 
     public static zzb zzc(Activity activity) {
@@ -38,13 +42,13 @@ public final class zzb extends Fragment implements LifecycleFragment {
             }
             weakHashMap.put(activity, new WeakReference(zzbVar2));
             return zzbVar2;
-        } catch (ClassCastException e) {
-            throw new IllegalStateException("Fragment with tag LifecycleFragmentImpl is not a LifecycleFragmentImpl", e);
+        } catch (ClassCastException e4) {
+            throw new IllegalStateException("Fragment with tag LifecycleFragmentImpl is not a LifecycleFragmentImpl", e4);
         }
     }
 
     @Override // com.google.android.gms.common.api.internal.LifecycleFragment
-    public final void addCallback(String str, LifecycleCallback lifecycleCallback) {
+    public final void addCallback(String str, @NonNull LifecycleCallback lifecycleCallback) {
         if (!this.zzb.containsKey(str)) {
             this.zzb.put(str, lifecycleCallback);
             if (this.zzc > 0) {
@@ -53,11 +57,11 @@ public final class zzb extends Fragment implements LifecycleFragment {
             }
             return;
         }
-        throw new IllegalArgumentException("LifecycleCallback with tag " + str + " already added to this fragment.");
+        throw new IllegalArgumentException(AbstractC2914a.e("LifecycleCallback with tag ", str, " already added to this fragment."));
     }
 
     @Override // android.app.Fragment
-    public final void dump(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
+    public final void dump(String str, @Nullable FileDescriptor fileDescriptor, PrintWriter printWriter, @Nullable String[] strArr) {
         super.dump(str, fileDescriptor, printWriter, strArr);
         Iterator it = this.zzb.values().iterator();
         while (it.hasNext()) {
@@ -66,11 +70,13 @@ public final class zzb extends Fragment implements LifecycleFragment {
     }
 
     @Override // com.google.android.gms.common.api.internal.LifecycleFragment
+    @Nullable
     public final <T extends LifecycleCallback> T getCallbackOrNull(String str, Class<T> cls) {
         return cls.cast(this.zzb.get(str));
     }
 
     @Override // com.google.android.gms.common.api.internal.LifecycleFragment
+    @Nullable
     public final Activity getLifecycleActivity() {
         return getActivity();
     }
@@ -86,21 +92,28 @@ public final class zzb extends Fragment implements LifecycleFragment {
     }
 
     @Override // android.app.Fragment
-    public final void onActivityResult(int i, int i2, Intent intent) {
-        super.onActivityResult(i, i2, intent);
+    public final void onActivityResult(int i9, int i10, @Nullable Intent intent) {
+        super.onActivityResult(i9, i10, intent);
         Iterator it = this.zzb.values().iterator();
         while (it.hasNext()) {
-            ((LifecycleCallback) it.next()).onActivityResult(i, i2, intent);
+            ((LifecycleCallback) it.next()).onActivityResult(i9, i10, intent);
         }
     }
 
     @Override // android.app.Fragment
-    public final void onCreate(Bundle bundle) {
+    public final void onCreate(@Nullable Bundle bundle) {
+        Bundle bundle2;
         super.onCreate(bundle);
         this.zzc = 1;
         this.zzd = bundle;
         for (Map.Entry entry : this.zzb.entrySet()) {
-            ((LifecycleCallback) entry.getValue()).onCreate(bundle != null ? bundle.getBundle((String) entry.getKey()) : null);
+            LifecycleCallback lifecycleCallback = (LifecycleCallback) entry.getValue();
+            if (bundle != null) {
+                bundle2 = bundle.getBundle((String) entry.getKey());
+            } else {
+                bundle2 = null;
+            }
+            lifecycleCallback.onCreate(bundle2);
         }
     }
 
@@ -127,13 +140,12 @@ public final class zzb extends Fragment implements LifecycleFragment {
     @Override // android.app.Fragment
     public final void onSaveInstanceState(Bundle bundle) {
         super.onSaveInstanceState(bundle);
-        if (bundle == null) {
-            return;
-        }
-        for (Map.Entry entry : this.zzb.entrySet()) {
-            Bundle bundle2 = new Bundle();
-            ((LifecycleCallback) entry.getValue()).onSaveInstanceState(bundle2);
-            bundle.putBundle((String) entry.getKey(), bundle2);
+        if (bundle != null) {
+            for (Map.Entry entry : this.zzb.entrySet()) {
+                Bundle bundle2 = new Bundle();
+                ((LifecycleCallback) entry.getValue()).onSaveInstanceState(bundle2);
+                bundle.putBundle((String) entry.getKey(), bundle2);
+            }
         }
     }
 

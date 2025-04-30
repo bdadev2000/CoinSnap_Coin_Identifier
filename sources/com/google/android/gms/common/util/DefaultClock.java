@@ -1,15 +1,19 @@
 package com.google.android.gms.common.util;
 
 import android.os.SystemClock;
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class DefaultClock implements Clock {
     private static final DefaultClock zza = new DefaultClock();
 
     private DefaultClock() {
     }
 
+    @NonNull
+    @KeepForSdk
     public static Clock getInstance() {
         return zza;
     }

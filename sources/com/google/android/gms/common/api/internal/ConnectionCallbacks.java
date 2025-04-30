@@ -1,11 +1,18 @@
 package com.google.android.gms.common.api.internal;
 
 import android.os.Bundle;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
+import com.google.android.gms.common.internal.ShowFirstParty;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public interface ConnectionCallbacks {
-    void onConnected(Bundle bundle);
+    @ShowFirstParty
+    @KeepForSdk
+    void onConnected(@Nullable Bundle bundle);
 
-    void onConnectionSuspended(int i);
+    @ShowFirstParty
+    @KeepForSdk
+    void onConnectionSuspended(int i9);
 }

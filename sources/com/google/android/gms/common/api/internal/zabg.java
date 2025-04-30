@@ -2,17 +2,15 @@ package com.google.android.gms.common.api.internal;
 
 import java.util.concurrent.locks.Lock;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 abstract class zabg {
     private final zabf zaa;
 
-    /* JADX INFO: Access modifiers changed from: protected */
     public zabg(zabf zabfVar) {
         this.zaa = zabfVar;
     }
 
-    protected abstract void zaa();
+    public abstract void zaa();
 
     public final void zab(zabi zabiVar) {
         Lock lock;

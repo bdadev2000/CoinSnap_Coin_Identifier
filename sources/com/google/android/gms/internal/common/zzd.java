@@ -1,9 +1,6 @@
 package com.google.android.gms.internal.common;
 
-import androidx.core.view.accessibility.AccessibilityEventCompat;
-
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzd {
-    public static final int zza = AccessibilityEventCompat.TYPE_VIEW_TARGETED_BY_SCROLL;
+    public static final int zza = 67108864;
 }

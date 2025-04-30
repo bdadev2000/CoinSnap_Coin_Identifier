@@ -1,8 +1,10 @@
 package com.google.android.gms.common.data;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+import androidx.annotation.NonNull;
+
+/* loaded from: classes2.dex */
 public interface Freezable<T> {
+    @NonNull
     T freeze();
 
     boolean isDataValid();

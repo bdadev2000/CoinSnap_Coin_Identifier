@@ -1,113 +1,29 @@
 package com.google.android.gms.measurement.internal;
 
-import android.os.Process;
-import com.google.android.gms.common.internal.Preconditions;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Semaphore;
+import java.util.List;
+import java.util.concurrent.Callable;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzhz extends Thread {
-    private final Object zza;
-    private final BlockingQueue<zzhw<?>> zzb;
-    private boolean zzc = false;
-    private final /* synthetic */ zzhv zzd;
+/* loaded from: classes2.dex */
+final class zzhz implements Callable<List<zzae>> {
+    private final /* synthetic */ String zza;
+    private final /* synthetic */ String zzb;
+    private final /* synthetic */ String zzc;
+    private final /* synthetic */ zzhn zzd;
 
-    public zzhz(zzhv zzhvVar, String str, BlockingQueue<zzhw<?>> blockingQueue) {
-        this.zzd = zzhvVar;
-        Preconditions.checkNotNull(str);
-        Preconditions.checkNotNull(blockingQueue);
-        this.zza = new Object();
-        this.zzb = blockingQueue;
-        setName(str);
+    public zzhz(zzhn zzhnVar, String str, String str2, String str3) {
+        this.zza = str;
+        this.zzb = str2;
+        this.zzc = str3;
+        this.zzd = zzhnVar;
     }
 
-    private final void zzb() {
-        Object obj;
-        Semaphore semaphore;
-        Object obj2;
-        zzhz zzhzVar;
-        zzhz zzhzVar2;
-        obj = this.zzd.zzh;
-        synchronized (obj) {
-            if (!this.zzc) {
-                semaphore = this.zzd.zzi;
-                semaphore.release();
-                obj2 = this.zzd.zzh;
-                obj2.notifyAll();
-                zzhzVar = this.zzd.zzb;
-                if (this == zzhzVar) {
-                    this.zzd.zzb = null;
-                } else {
-                    zzhzVar2 = this.zzd.zzc;
-                    if (this == zzhzVar2) {
-                        this.zzd.zzc = null;
-                    } else {
-                        this.zzd.zzj().zzg().zza("Current scheduler thread is neither worker nor network");
-                    }
-                }
-                this.zzc = true;
-            }
-        }
-    }
-
-    private final void zza(InterruptedException interruptedException) {
-        this.zzd.zzj().zzu().zza(getName() + " was interrupted", interruptedException);
-    }
-
-    public final void zza() {
-        synchronized (this.zza) {
-            this.zza.notifyAll();
-        }
-    }
-
-    @Override // java.lang.Thread, java.lang.Runnable
-    public final void run() {
-        Semaphore semaphore;
-        Object obj;
-        boolean z;
-        boolean z2 = false;
-        while (!z2) {
-            try {
-                semaphore = this.zzd.zzi;
-                semaphore.acquire();
-                z2 = true;
-            } catch (InterruptedException e) {
-                zza(e);
-            }
-        }
-        try {
-            int threadPriority = Process.getThreadPriority(Process.myTid());
-            while (true) {
-                zzhw<?> poll = this.zzb.poll();
-                if (poll != null) {
-                    Process.setThreadPriority(poll.zza ? threadPriority : 10);
-                    poll.run();
-                } else {
-                    synchronized (this.zza) {
-                        if (this.zzb.peek() == null) {
-                            z = this.zzd.zzj;
-                            if (!z) {
-                                try {
-                                    this.zza.wait(30000L);
-                                } catch (InterruptedException e2) {
-                                    zza(e2);
-                                }
-                            }
-                        }
-                    }
-                    obj = this.zzd.zzh;
-                    synchronized (obj) {
-                        if (this.zzb.peek() == null) {
-                            zzb();
-                            return;
-                        }
-                    }
-                }
-            }
-        } finally {
-            zzb();
-        }
+    @Override // java.util.concurrent.Callable
+    public final /* synthetic */ List<zzae> call() throws Exception {
+        zznc zzncVar;
+        zznc zzncVar2;
+        zzncVar = this.zzd.zza;
+        zzncVar.zzr();
+        zzncVar2 = this.zzd.zza;
+        return zzncVar2.zzf().zza(this.zza, this.zzb, this.zzc);
     }
 }

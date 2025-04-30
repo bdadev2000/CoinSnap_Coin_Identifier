@@ -1,106 +1,34 @@
 package com.google.protobuf;
 
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.Internal;
-import com.google.protobuf.Option;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.Collections;
 import java.util.List;
 
-/* loaded from: classes5.dex */
-public final class EnumValue extends GeneratedMessageLite<EnumValue, Builder> implements EnumValueOrBuilder {
+/* loaded from: classes3.dex */
+public final class EnumValue extends L2 implements R1 {
     private static final EnumValue DEFAULT_INSTANCE;
     public static final int NAME_FIELD_NUMBER = 1;
     public static final int NUMBER_FIELD_NUMBER = 2;
     public static final int OPTIONS_FIELD_NUMBER = 3;
-    private static volatile Parser<EnumValue> PARSER;
+    private static volatile InterfaceC1948l4 PARSER;
     private int number_;
     private String name_ = "";
-    private Internal.ProtobufList<Option> options_ = emptyProtobufList();
+    private InterfaceC1891d3 options_ = L2.emptyProtobufList();
+
+    static {
+        EnumValue enumValue = new EnumValue();
+        DEFAULT_INSTANCE = enumValue;
+        L2.registerDefaultInstance(EnumValue.class, enumValue);
+    }
 
     private EnumValue() {
     }
 
-    @Override // com.google.protobuf.EnumValueOrBuilder
-    public String getName() {
-        return this.name_;
-    }
-
-    @Override // com.google.protobuf.EnumValueOrBuilder
-    public ByteString getNameBytes() {
-        return ByteString.copyFromUtf8(this.name_);
-    }
-
     /* JADX INFO: Access modifiers changed from: private */
-    public void setName(String str) {
-        str.getClass();
-        this.name_ = str;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearName() {
-        this.name_ = getDefaultInstance().getName();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setNameBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.name_ = byteString.toStringUtf8();
-    }
-
-    @Override // com.google.protobuf.EnumValueOrBuilder
-    public int getNumber() {
-        return this.number_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setNumber(int i) {
-        this.number_ = i;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearNumber() {
-        this.number_ = 0;
-    }
-
-    @Override // com.google.protobuf.EnumValueOrBuilder
-    public List<Option> getOptionsList() {
-        return this.options_;
-    }
-
-    public List<? extends OptionOrBuilder> getOptionsOrBuilderList() {
-        return this.options_;
-    }
-
-    @Override // com.google.protobuf.EnumValueOrBuilder
-    public int getOptionsCount() {
-        return this.options_.size();
-    }
-
-    @Override // com.google.protobuf.EnumValueOrBuilder
-    public Option getOptions(int i) {
-        return this.options_.get(i);
-    }
-
-    public OptionOrBuilder getOptionsOrBuilder(int i) {
-        return this.options_.get(i);
-    }
-
-    private void ensureOptionsIsMutable() {
-        Internal.ProtobufList<Option> protobufList = this.options_;
-        if (protobufList.isModifiable()) {
-            return;
-        }
-        this.options_ = GeneratedMessageLite.mutableCopy(protobufList);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setOptions(int i, Option option) {
-        option.getClass();
+    public void addAllOptions(Iterable<? extends Option> iterable) {
         ensureOptionsIsMutable();
-        this.options_.set(i, option);
+        AbstractC1880c.addAll((Iterable) iterable, (List) this.options_);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -111,273 +39,104 @@ public final class EnumValue extends GeneratedMessageLite<EnumValue, Builder> im
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void addOptions(int i, Option option) {
-        option.getClass();
-        ensureOptionsIsMutable();
-        this.options_.add(i, option);
+    public void clearName() {
+        this.name_ = getDefaultInstance().getName();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void addAllOptions(Iterable<? extends Option> iterable) {
-        ensureOptionsIsMutable();
-        AbstractMessageLite.addAll((Iterable) iterable, (List) this.options_);
+    public void clearNumber() {
+        this.number_ = 0;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void clearOptions() {
-        this.options_ = emptyProtobufList();
+        this.options_ = L2.emptyProtobufList();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void removeOptions(int i) {
-        ensureOptionsIsMutable();
-        this.options_.remove(i);
+    private void ensureOptionsIsMutable() {
+        InterfaceC1891d3 interfaceC1891d3 = this.options_;
+        if (!interfaceC1891d3.isModifiable()) {
+            this.options_ = L2.mutableCopy(interfaceC1891d3);
+        }
     }
 
-    public static EnumValue parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (EnumValue) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    public static EnumValue getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    public static EnumValue parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (EnumValue) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static EnumValue parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (EnumValue) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static EnumValue parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (EnumValue) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static EnumValue parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (EnumValue) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static EnumValue parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (EnumValue) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static EnumValue parseFrom(InputStream inputStream) throws IOException {
-        return (EnumValue) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static EnumValue parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (EnumValue) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static Q1 newBuilder() {
+        return (Q1) DEFAULT_INSTANCE.createBuilder();
     }
 
     public static EnumValue parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (EnumValue) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+        return (EnumValue) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
     }
 
-    public static EnumValue parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (EnumValue) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static EnumValue parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (EnumValue) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
     }
 
-    public static EnumValue parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (EnumValue) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
-    public static EnumValue parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (EnumValue) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void removeOptions(int i9) {
+        ensureOptionsIsMutable();
+        this.options_.remove(i9);
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setName(String str) {
+        str.getClass();
+        this.name_ = str;
     }
 
-    public static Builder newBuilder(EnumValue enumValue) {
-        return DEFAULT_INSTANCE.createBuilder(enumValue);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setNameBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.name_ = h6.toStringUtf8();
     }
 
-    /* loaded from: classes5.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<EnumValue, Builder> implements EnumValueOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(EnumValue.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.protobuf.EnumValueOrBuilder
-        public String getName() {
-            return ((EnumValue) this.instance).getName();
-        }
-
-        @Override // com.google.protobuf.EnumValueOrBuilder
-        public ByteString getNameBytes() {
-            return ((EnumValue) this.instance).getNameBytes();
-        }
-
-        public Builder setName(String str) {
-            copyOnWrite();
-            ((EnumValue) this.instance).setName(str);
-            return this;
-        }
-
-        public Builder clearName() {
-            copyOnWrite();
-            ((EnumValue) this.instance).clearName();
-            return this;
-        }
-
-        public Builder setNameBytes(ByteString byteString) {
-            copyOnWrite();
-            ((EnumValue) this.instance).setNameBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.protobuf.EnumValueOrBuilder
-        public int getNumber() {
-            return ((EnumValue) this.instance).getNumber();
-        }
-
-        public Builder setNumber(int i) {
-            copyOnWrite();
-            ((EnumValue) this.instance).setNumber(i);
-            return this;
-        }
-
-        public Builder clearNumber() {
-            copyOnWrite();
-            ((EnumValue) this.instance).clearNumber();
-            return this;
-        }
-
-        @Override // com.google.protobuf.EnumValueOrBuilder
-        public List<Option> getOptionsList() {
-            return Collections.unmodifiableList(((EnumValue) this.instance).getOptionsList());
-        }
-
-        @Override // com.google.protobuf.EnumValueOrBuilder
-        public int getOptionsCount() {
-            return ((EnumValue) this.instance).getOptionsCount();
-        }
-
-        @Override // com.google.protobuf.EnumValueOrBuilder
-        public Option getOptions(int i) {
-            return ((EnumValue) this.instance).getOptions(i);
-        }
-
-        public Builder setOptions(int i, Option option) {
-            copyOnWrite();
-            ((EnumValue) this.instance).setOptions(i, option);
-            return this;
-        }
-
-        public Builder setOptions(int i, Option.Builder builder) {
-            copyOnWrite();
-            ((EnumValue) this.instance).setOptions(i, builder.build());
-            return this;
-        }
-
-        public Builder addOptions(Option option) {
-            copyOnWrite();
-            ((EnumValue) this.instance).addOptions(option);
-            return this;
-        }
-
-        public Builder addOptions(int i, Option option) {
-            copyOnWrite();
-            ((EnumValue) this.instance).addOptions(i, option);
-            return this;
-        }
-
-        public Builder addOptions(Option.Builder builder) {
-            copyOnWrite();
-            ((EnumValue) this.instance).addOptions(builder.build());
-            return this;
-        }
-
-        public Builder addOptions(int i, Option.Builder builder) {
-            copyOnWrite();
-            ((EnumValue) this.instance).addOptions(i, builder.build());
-            return this;
-        }
-
-        public Builder addAllOptions(Iterable<? extends Option> iterable) {
-            copyOnWrite();
-            ((EnumValue) this.instance).addAllOptions(iterable);
-            return this;
-        }
-
-        public Builder clearOptions() {
-            copyOnWrite();
-            ((EnumValue) this.instance).clearOptions();
-            return this;
-        }
-
-        public Builder removeOptions(int i) {
-            copyOnWrite();
-            ((EnumValue) this.instance).removeOptions(i);
-            return this;
-        }
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setNumber(int i9) {
+        this.number_ = i9;
     }
 
-    /* renamed from: com.google.protobuf.EnumValue$1, reason: invalid class name */
-    /* loaded from: classes5.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setOptions(int i9, Option option) {
+        option.getClass();
+        ensureOptionsIsMutable();
+        this.options_.set(i9, option);
     }
 
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        P1 p12 = null;
+        switch (P1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[k22.ordinal()]) {
             case 1:
                 return new EnumValue();
             case 2:
-                return new Builder(anonymousClass1);
+                return new Q1(p12);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0001\u0000\u0001Ȉ\u0002\u0004\u0003\u001b", new Object[]{"name_", "number_", "options_", Option.class});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0001\u0000\u0001Ȉ\u0002\u0004\u0003\u001b", new Object[]{"name_", "number_", "options_", Option.class});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<EnumValue> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (EnumValue.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -387,17 +146,92 @@ public final class EnumValue extends GeneratedMessageLite<EnumValue, Builder> im
         }
     }
 
-    static {
-        EnumValue enumValue = new EnumValue();
-        DEFAULT_INSTANCE = enumValue;
-        GeneratedMessageLite.registerDefaultInstance(EnumValue.class, enumValue);
+    @Override // com.google.protobuf.R1
+    public String getName() {
+        return this.name_;
     }
 
-    public static EnumValue getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    @Override // com.google.protobuf.R1
+    public H getNameBytes() {
+        return H.copyFromUtf8(this.name_);
     }
 
-    public static Parser<EnumValue> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    @Override // com.google.protobuf.R1
+    public int getNumber() {
+        return this.number_;
+    }
+
+    @Override // com.google.protobuf.R1
+    public Option getOptions(int i9) {
+        return (Option) this.options_.get(i9);
+    }
+
+    @Override // com.google.protobuf.R1
+    public int getOptionsCount() {
+        return this.options_.size();
+    }
+
+    @Override // com.google.protobuf.R1
+    public List<Option> getOptionsList() {
+        return this.options_;
+    }
+
+    public InterfaceC1941k4 getOptionsOrBuilder(int i9) {
+        return (InterfaceC1941k4) this.options_.get(i9);
+    }
+
+    public List<? extends InterfaceC1941k4> getOptionsOrBuilderList() {
+        return this.options_;
+    }
+
+    public static Q1 newBuilder(EnumValue enumValue) {
+        return (Q1) DEFAULT_INSTANCE.createBuilder(enumValue);
+    }
+
+    public static EnumValue parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (EnumValue) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static EnumValue parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (EnumValue) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static EnumValue parseFrom(H h6) throws C1912g3 {
+        return (EnumValue) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void addOptions(int i9, Option option) {
+        option.getClass();
+        ensureOptionsIsMutable();
+        this.options_.add(i9, option);
+    }
+
+    public static EnumValue parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (EnumValue) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static EnumValue parseFrom(byte[] bArr) throws C1912g3 {
+        return (EnumValue) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static EnumValue parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (EnumValue) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static EnumValue parseFrom(InputStream inputStream) throws IOException {
+        return (EnumValue) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static EnumValue parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (EnumValue) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static EnumValue parseFrom(S s5) throws IOException {
+        return (EnumValue) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static EnumValue parseFrom(S s5, W1 w1) throws IOException {
+        return (EnumValue) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

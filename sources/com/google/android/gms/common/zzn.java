@@ -13,14 +13,11 @@ import com.google.android.gms.common.util.AndroidUtilsLight;
 import com.google.android.gms.common.util.Hex;
 import com.google.android.gms.dynamic.ObjectWrapper;
 import com.google.android.gms.dynamite.DynamiteModule;
-import com.google.errorprone.annotations.CheckReturnValue;
 import java.security.MessageDigest;
 import java.util.concurrent.Callable;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-@CheckReturnValue
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzn {
     private static volatile zzag zze;
     private static Context zzg;
@@ -30,119 +27,119 @@ public final class zzn {
     static final zzl zzd = new zzi(zzj.zze("0\u0082\u0004¨0\u0082\u0003\u0090 \u0003\u0002\u0001\u0002\u0002\t\u0000Õ\u0085¸l}ÓNõ0"));
     private static final Object zzf = new Object();
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzx zza(String str, zzj zzjVar, boolean z, boolean z2) {
+    public static zzx zza(String str, zzj zzjVar, boolean z8, boolean z9) {
         StrictMode.ThreadPolicy allowThreadDiskReads = StrictMode.allowThreadDiskReads();
         try {
-            return zzh(str, zzjVar, z, z2);
+            return zzh(str, zzjVar, z8, z9);
         } finally {
             StrictMode.setThreadPolicy(allowThreadDiskReads);
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzx zzb(String str, boolean z, boolean z2, boolean z3) {
-        return zzi(str, z, false, false, true);
+    public static zzx zzb(String str, boolean z8, boolean z9, boolean z10) {
+        return zzi(str, z8, false, false, true);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzx zzc(String str, boolean z, boolean z2, boolean z3) {
-        return zzi(str, z, false, false, false);
+    public static zzx zzc(String str, boolean z8, boolean z9, boolean z10) {
+        return zzi(str, z8, false, false, false);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ String zzd(boolean z, String str, zzj zzjVar) throws Exception {
+    public static /* synthetic */ String zzd(boolean z8, String str, zzj zzjVar) throws Exception {
         String str2;
-        if (z || !zzh(str, zzjVar, true, false).zza) {
-            str2 = "not allowed";
-        } else {
+        if (!z8 && zzh(str, zzjVar, true, false).zza) {
             str2 = "debug cert rejected";
+        } else {
+            str2 = "not allowed";
         }
         MessageDigest zza2 = AndroidUtilsLight.zza(Constants.SHA256);
         Preconditions.checkNotNull(zza2);
-        return String.format("%s: pkg=%s, sha256=%s, atk=%s, ver=%s", str2, str, Hex.bytesToStringLowercase(zza2.digest(zzjVar.zzf())), Boolean.valueOf(z), "12451000.false");
+        return str2 + ": pkg=" + str + ", sha256=" + Hex.bytesToStringLowercase(zza2.digest(zzjVar.zzf())) + ", atk=" + z8 + ", ver=12451000.false";
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public static synchronized void zze(Context context) {
         synchronized (zzn.class) {
-            if (zzg != null) {
-                Log.w("GoogleCertificates", "GoogleCertificates has been initialized already");
-            } else if (context != null) {
-                zzg = context.getApplicationContext();
+            if (zzg == null) {
+                if (context != null) {
+                    zzg = context.getApplicationContext();
+                    return;
+                }
+                return;
             }
+            Log.w("GoogleCertificates", "GoogleCertificates has been initialized already");
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public static boolean zzf() {
-        boolean z;
+        boolean z8;
         StrictMode.ThreadPolicy allowThreadDiskReads = StrictMode.allowThreadDiskReads();
         try {
             try {
                 zzj();
-                z = zze.zzg();
-            } catch (RemoteException | DynamiteModule.LoadingException e) {
-                Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e);
-                z = false;
+                z8 = zze.zzg();
+            } catch (RemoteException | DynamiteModule.LoadingException e4) {
+                Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e4);
+                z8 = false;
             }
-            return z;
+            return z8;
         } finally {
             StrictMode.setThreadPolicy(allowThreadDiskReads);
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public static boolean zzg() {
-        boolean z;
+        boolean z8;
         StrictMode.ThreadPolicy allowThreadDiskReads = StrictMode.allowThreadDiskReads();
         try {
             try {
                 zzj();
-                z = zze.zzi();
-            } catch (RemoteException | DynamiteModule.LoadingException e) {
-                Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e);
-                z = false;
+                z8 = zze.zzi();
+            } catch (RemoteException | DynamiteModule.LoadingException e4) {
+                Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e4);
+                z8 = false;
             }
-            return z;
+            return z8;
         } finally {
             StrictMode.setThreadPolicy(allowThreadDiskReads);
         }
     }
 
-    private static zzx zzh(final String str, final zzj zzjVar, final boolean z, boolean z2) {
+    private static zzx zzh(final String str, final zzj zzjVar, final boolean z8, boolean z9) {
         try {
             zzj();
             Preconditions.checkNotNull(zzg);
             try {
-                return zze.zzh(new zzs(str, zzjVar, z, z2), ObjectWrapper.wrap(zzg.getPackageManager())) ? zzx.zzb() : new zzv(new Callable() { // from class: com.google.android.gms.common.zze
+                if (zze.zzh(new zzs(str, zzjVar, z8, z9), ObjectWrapper.wrap(zzg.getPackageManager()))) {
+                    return zzx.zzb();
+                }
+                return new zzv(new Callable() { // from class: com.google.android.gms.common.zze
                     @Override // java.util.concurrent.Callable
                     public final Object call() {
-                        return zzn.zzd(z, str, zzjVar);
+                        return zzn.zzd(z8, str, zzjVar);
                     }
                 }, null);
-            } catch (RemoteException e) {
-                Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e);
-                return zzx.zzd("module call", e);
+            } catch (RemoteException e4) {
+                Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e4);
+                return zzx.zzd("module call", e4);
             }
-        } catch (DynamiteModule.LoadingException e2) {
-            Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e2);
-            return zzx.zzd("module init: ".concat(String.valueOf(e2.getMessage())), e2);
+        } catch (DynamiteModule.LoadingException e9) {
+            Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e9);
+            return zzx.zzd("module init: ".concat(String.valueOf(e9.getMessage())), e9);
         }
     }
 
     /* JADX WARN: Type inference failed for: r6v0, types: [com.google.android.gms.dynamic.IObjectWrapper, android.os.IBinder] */
-    private static zzx zzi(String str, boolean z, boolean z2, boolean z3, boolean z4) {
+    private static zzx zzi(String str, boolean z8, boolean z9, boolean z10, boolean z11) {
         zzx zzd2;
         zzq zzf2;
+        PackageManager.NameNotFoundException nameNotFoundException;
         StrictMode.ThreadPolicy allowThreadDiskReads = StrictMode.allowThreadDiskReads();
         try {
             Preconditions.checkNotNull(zzg);
             try {
                 zzj();
-                zzo zzoVar = new zzo(str, z, false, ObjectWrapper.wrap(zzg), false, true);
+                zzo zzoVar = new zzo(str, z8, false, ObjectWrapper.wrap(zzg), false, true);
                 try {
-                    if (z4) {
+                    if (z11) {
                         zzf2 = zze.zze(zzoVar);
                     } else {
                         zzf2 = zze.zzf(zzoVar);
@@ -151,23 +148,29 @@ public final class zzn {
                         zzd2 = zzx.zzf(zzf2.zzc());
                     } else {
                         String zza2 = zzf2.zza();
-                        PackageManager.NameNotFoundException nameNotFoundException = zzf2.zzd() == 4 ? new PackageManager.NameNotFoundException() : null;
+                        if (zzf2.zzd() == 4) {
+                            nameNotFoundException = new PackageManager.NameNotFoundException();
+                        } else {
+                            nameNotFoundException = null;
+                        }
                         if (zza2 == null) {
                             zza2 = "error checking package certificate";
                         }
                         zzd2 = zzx.zzg(zzf2.zzc(), zzf2.zzd(), zza2, nameNotFoundException);
                     }
-                } catch (RemoteException e) {
-                    Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e);
-                    zzd2 = zzx.zzd("module call", e);
+                } catch (RemoteException e4) {
+                    Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e4);
+                    zzd2 = zzx.zzd("module call", e4);
                 }
-            } catch (DynamiteModule.LoadingException e2) {
-                Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e2);
-                zzd2 = zzx.zzd("module init: ".concat(String.valueOf(e2.getMessage())), e2);
+            } catch (DynamiteModule.LoadingException e9) {
+                Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e9);
+                zzd2 = zzx.zzd("module init: ".concat(String.valueOf(e9.getMessage())), e9);
             }
-            return zzd2;
-        } finally {
             StrictMode.setThreadPolicy(allowThreadDiskReads);
+            return zzd2;
+        } catch (Throwable th) {
+            StrictMode.setThreadPolicy(allowThreadDiskReads);
+            throw th;
         }
     }
 
@@ -177,8 +180,12 @@ public final class zzn {
         }
         Preconditions.checkNotNull(zzg);
         synchronized (zzf) {
-            if (zze == null) {
-                zze = zzaf.zzb(DynamiteModule.load(zzg, DynamiteModule.PREFER_HIGHEST_OR_LOCAL_VERSION_NO_FORCE_STAGING, "com.google.android.gms.googlecertificates").instantiate("com.google.android.gms.common.GoogleCertificatesImpl"));
+            try {
+                if (zze == null) {
+                    zze = zzaf.zzb(DynamiteModule.load(zzg, DynamiteModule.PREFER_HIGHEST_OR_LOCAL_VERSION_NO_FORCE_STAGING, "com.google.android.gms.googlecertificates").instantiate("com.google.android.gms.common.GoogleCertificatesImpl"));
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }

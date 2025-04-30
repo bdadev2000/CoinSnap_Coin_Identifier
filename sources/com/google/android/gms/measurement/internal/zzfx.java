@@ -1,8 +1,10 @@
 package com.google.android.gms.measurement.internal;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public interface zzfx<V> {
-    V zza();
+/* loaded from: classes2.dex */
+final class zzfx {
+    private final String zza;
+
+    public zzfx(String str) {
+        this.zza = str;
+    }
 }

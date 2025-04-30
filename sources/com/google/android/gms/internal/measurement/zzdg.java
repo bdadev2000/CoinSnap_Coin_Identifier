@@ -1,11 +1,10 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public final /* synthetic */ class zzdg {
-    public static zzdd zza() {
-        zzdd zzddVar;
-        zzddVar = zzdf.zza;
-        return zzddVar;
-    }
+import android.os.Bundle;
+import android.os.IInterface;
+import android.os.RemoteException;
+
+/* loaded from: classes2.dex */
+public interface zzdg extends IInterface {
+    void zza(Bundle bundle) throws RemoteException;
 }

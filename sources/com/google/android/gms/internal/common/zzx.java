@@ -6,17 +6,16 @@ import java.util.Iterator;
 import java.util.List;
 import org.jspecify.nullness.NullMarked;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
 @NullMarked
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzx {
     private final zzo zza;
     private final boolean zzb;
     private final zzu zzc;
 
-    private zzx(zzu zzuVar, boolean z, zzo zzoVar, int i) {
+    private zzx(zzu zzuVar, boolean z8, zzo zzoVar, int i9) {
         this.zzc = zzuVar;
-        this.zzb = z;
+        this.zzb = z8;
         this.zza = zzoVar;
     }
 

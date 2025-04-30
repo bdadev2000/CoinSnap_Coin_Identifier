@@ -5,34 +5,37 @@ import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelReader;
 import com.google.android.gms.common.server.response.FastJsonResponse;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zak implements Parcelable.Creator {
     @Override // android.os.Parcelable.Creator
     public final /* bridge */ /* synthetic */ Object createFromParcel(Parcel parcel) {
         int validateObjectHeader = SafeParcelReader.validateObjectHeader(parcel);
         String str = null;
-        int i = 0;
+        int i9 = 0;
         FastJsonResponse.Field field = null;
         while (parcel.dataPosition() < validateObjectHeader) {
             int readHeader = SafeParcelReader.readHeader(parcel);
             int fieldId = SafeParcelReader.getFieldId(readHeader);
-            if (fieldId == 1) {
-                i = SafeParcelReader.readInt(parcel, readHeader);
-            } else if (fieldId == 2) {
-                str = SafeParcelReader.createString(parcel, readHeader);
-            } else if (fieldId == 3) {
-                field = (FastJsonResponse.Field) SafeParcelReader.createParcelable(parcel, readHeader, FastJsonResponse.Field.CREATOR);
+            if (fieldId != 1) {
+                if (fieldId != 2) {
+                    if (fieldId != 3) {
+                        SafeParcelReader.skipUnknownField(parcel, readHeader);
+                    } else {
+                        field = (FastJsonResponse.Field) SafeParcelReader.createParcelable(parcel, readHeader, FastJsonResponse.Field.CREATOR);
+                    }
+                } else {
+                    str = SafeParcelReader.createString(parcel, readHeader);
+                }
             } else {
-                SafeParcelReader.skipUnknownField(parcel, readHeader);
+                i9 = SafeParcelReader.readInt(parcel, readHeader);
             }
         }
         SafeParcelReader.ensureAtEnd(parcel, validateObjectHeader);
-        return new zam(i, str, field);
+        return new zam(i9, str, field);
     }
 
     @Override // android.os.Parcelable.Creator
-    public final /* synthetic */ Object[] newArray(int i) {
-        return new zam[i];
+    public final /* synthetic */ Object[] newArray(int i9) {
+        return new zam[i9];
     }
 }

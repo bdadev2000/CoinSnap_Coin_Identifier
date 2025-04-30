@@ -1,68 +1,48 @@
 package com.google.android.gms.measurement.internal;
 
+import android.os.RemoteException;
 import com.google.android.gms.common.internal.Preconditions;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzlh {
-    public static Object zza(Object obj) {
-        ObjectInputStream objectInputStream;
-        ObjectOutputStream objectOutputStream;
-        try {
-            if (obj == null) {
-                return null;
-            }
-            try {
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-                try {
-                    objectOutputStream.writeObject(obj);
-                    objectOutputStream.flush();
-                    objectInputStream = new ObjectInputStream(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
-                } catch (Throwable th) {
-                    th = th;
-                    objectInputStream = null;
-                }
-                try {
-                    Object readObject = objectInputStream.readObject();
-                    objectOutputStream.close();
-                    objectInputStream.close();
-                    return readObject;
-                } catch (Throwable th2) {
-                    th = th2;
-                    if (objectOutputStream != null) {
-                        objectOutputStream.close();
-                    }
-                    if (objectInputStream != null) {
-                        objectInputStream.close();
-                    }
-                    throw th;
-                }
-            } catch (Throwable th3) {
-                th = th3;
-                objectInputStream = null;
-                objectOutputStream = null;
-            }
-        } catch (IOException | ClassNotFoundException unused) {
-            return null;
-        }
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzlh implements Runnable {
+    private final /* synthetic */ zzo zza;
+    private final /* synthetic */ com.google.android.gms.internal.measurement.zzdg zzb;
+    private final /* synthetic */ zzkx zzc;
+
+    public zzlh(zzkx zzkxVar, zzo zzoVar, com.google.android.gms.internal.measurement.zzdg zzdgVar) {
+        this.zza = zzoVar;
+        this.zzb = zzdgVar;
+        this.zzc = zzkxVar;
     }
 
-    public static String zza(String str, String[] strArr, String[] strArr2) {
-        Preconditions.checkNotNull(strArr);
-        Preconditions.checkNotNull(strArr2);
-        int min = Math.min(strArr.length, strArr2.length);
-        for (int i = 0; i < min; i++) {
-            String str2 = strArr[i];
-            if ((str == null && str2 == null) || (str != null && str.equals(str2))) {
-                return strArr2[i];
+    @Override // java.lang.Runnable
+    public final void run() {
+        zzfl zzflVar;
+        try {
+            if (this.zzc.zzk().zzn().zzj()) {
+                zzflVar = this.zzc.zzb;
+                if (zzflVar == null) {
+                    this.zzc.zzj().zzg().zza("Failed to get app instance id");
+                    return;
+                }
+                Preconditions.checkNotNull(this.zza);
+                String zzb = zzflVar.zzb(this.zza);
+                if (zzb != null) {
+                    this.zzc.zzm().zzc(zzb);
+                    this.zzc.zzk().zze.zza(zzb);
+                }
+                this.zzc.zzaq();
+                this.zzc.zzq().zza(this.zzb, zzb);
+                return;
             }
+            this.zzc.zzj().zzv().zza("Analytics storage consent denied; will not get app instance id");
+            this.zzc.zzm().zzc((String) null);
+            this.zzc.zzk().zze.zza(null);
+        } catch (RemoteException e4) {
+            this.zzc.zzj().zzg().zza("Failed to get app instance id", e4);
+        } finally {
+            this.zzc.zzq().zza(this.zzb, (String) null);
         }
-        return null;
     }
 }

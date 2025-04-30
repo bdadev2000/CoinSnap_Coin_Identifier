@@ -1,6 +1,12 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final class zzdk {
+import java.util.List;
+
+/* loaded from: classes2.dex */
+public interface zzdk extends List {
+    zzdk zze();
+
+    Object zzf(int i9);
+
+    List zzh();
 }

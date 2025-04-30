@@ -3,19 +3,20 @@ package com.google.android.gms.common.api;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.IntentSender;
+import androidx.annotation.NonNull;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class ResolvableApiException extends ApiException {
-    public ResolvableApiException(Status status) {
+    public ResolvableApiException(@NonNull Status status) {
         super(status);
     }
 
+    @NonNull
     public PendingIntent getResolution() {
         return getStatus().getResolution();
     }
 
-    public void startResolutionForResult(Activity activity, int i) throws IntentSender.SendIntentException {
-        getStatus().startResolutionForResult(activity, i);
+    public void startResolutionForResult(@NonNull Activity activity, int i9) throws IntentSender.SendIntentException {
+        getStatus().startResolutionForResult(activity, i9);
     }
 }

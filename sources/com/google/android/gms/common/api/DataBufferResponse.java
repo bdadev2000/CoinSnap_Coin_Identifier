@@ -1,14 +1,18 @@
 package com.google.android.gms.common.api;
 
 import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.api.Result;
 import com.google.android.gms.common.data.AbstractDataBuffer;
 import com.google.android.gms.common.data.DataBuffer;
 import java.util.Iterator;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class DataBufferResponse<T, R extends AbstractDataBuffer<T> & Result> extends Response<R> implements DataBuffer<T> {
+    @KeepForSdk
     public DataBufferResponse() {
     }
 
@@ -20,8 +24,9 @@ public class DataBufferResponse<T, R extends AbstractDataBuffer<T> & Result> ext
 
     /* JADX WARN: Multi-variable type inference failed */
     @Override // com.google.android.gms.common.data.DataBuffer
-    public final T get(int i) {
-        return (T) ((AbstractDataBuffer) getResult()).get(i);
+    @NonNull
+    public final T get(int i9) {
+        return (T) ((AbstractDataBuffer) getResult()).get(i9);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -32,6 +37,7 @@ public class DataBufferResponse<T, R extends AbstractDataBuffer<T> & Result> ext
 
     /* JADX WARN: Multi-variable type inference failed */
     @Override // com.google.android.gms.common.data.DataBuffer
+    @Nullable
     public final Bundle getMetadata() {
         return ((AbstractDataBuffer) getResult()).getMetadata();
     }
@@ -44,6 +50,7 @@ public class DataBufferResponse<T, R extends AbstractDataBuffer<T> & Result> ext
 
     /* JADX WARN: Multi-variable type inference failed */
     @Override // com.google.android.gms.common.data.DataBuffer, java.lang.Iterable
+    @NonNull
     public final Iterator<T> iterator() {
         return ((AbstractDataBuffer) getResult()).iterator();
     }
@@ -56,13 +63,15 @@ public class DataBufferResponse<T, R extends AbstractDataBuffer<T> & Result> ext
 
     /* JADX WARN: Multi-variable type inference failed */
     @Override // com.google.android.gms.common.data.DataBuffer
+    @NonNull
     public final Iterator<T> singleRefIterator() {
         return ((AbstractDataBuffer) getResult()).singleRefIterator();
     }
 
     /* JADX WARN: Incorrect types in method signature: (TR;)V */
     /* JADX WARN: Multi-variable type inference failed */
-    public DataBufferResponse(AbstractDataBuffer abstractDataBuffer) {
+    @KeepForSdk
+    public DataBufferResponse(@NonNull AbstractDataBuffer abstractDataBuffer) {
         super(abstractDataBuffer);
     }
 }

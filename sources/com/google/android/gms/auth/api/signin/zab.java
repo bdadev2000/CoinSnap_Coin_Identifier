@@ -7,8 +7,7 @@ import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelReader;
 import java.util.ArrayList;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zab implements Parcelable.Creator {
     @Override // android.os.Parcelable.Creator
     public final /* bridge */ /* synthetic */ Object createFromParcel(Parcel parcel) {
@@ -23,13 +22,13 @@ public final class zab implements Parcelable.Creator {
         ArrayList arrayList = null;
         String str7 = null;
         String str8 = null;
-        long j = 0;
-        int i = 0;
+        long j7 = 0;
+        int i9 = 0;
         while (parcel.dataPosition() < validateObjectHeader) {
             int readHeader = SafeParcelReader.readHeader(parcel);
             switch (SafeParcelReader.getFieldId(readHeader)) {
                 case 1:
-                    i = SafeParcelReader.readInt(parcel, readHeader);
+                    i9 = SafeParcelReader.readInt(parcel, readHeader);
                     break;
                 case 2:
                     str = SafeParcelReader.createString(parcel, readHeader);
@@ -50,7 +49,7 @@ public final class zab implements Parcelable.Creator {
                     str5 = SafeParcelReader.createString(parcel, readHeader);
                     break;
                 case 8:
-                    j = SafeParcelReader.readLong(parcel, readHeader);
+                    j7 = SafeParcelReader.readLong(parcel, readHeader);
                     break;
                 case 9:
                     str6 = SafeParcelReader.createString(parcel, readHeader);
@@ -70,11 +69,11 @@ public final class zab implements Parcelable.Creator {
             }
         }
         SafeParcelReader.ensureAtEnd(parcel, validateObjectHeader);
-        return new GoogleSignInAccount(i, str, str2, str3, str4, uri, str5, j, str6, arrayList, str7, str8);
+        return new GoogleSignInAccount(i9, str, str2, str3, str4, uri, str5, j7, str6, arrayList, str7, str8);
     }
 
     @Override // android.os.Parcelable.Creator
-    public final /* synthetic */ Object[] newArray(int i) {
-        return new GoogleSignInAccount[i];
+    public final /* synthetic */ Object[] newArray(int i9) {
+        return new GoogleSignInAccount[i9];
     }
 }

@@ -3,8 +3,7 @@ package com.google.android.gms.internal.measurement;
 import android.os.IBinder;
 import android.os.IInterface;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class zzby extends zzbx implements zzbz {
     public static zzbz zza(IBinder iBinder) {
         if (iBinder == null) {

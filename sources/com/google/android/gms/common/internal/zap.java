@@ -6,16 +6,13 @@ import com.google.android.gms.common.internal.PendingResultUtil;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.concurrent.TimeUnit;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
-public final class zap implements PendingResult.StatusListener {
+/* loaded from: classes2.dex */
+final class zap implements PendingResult.StatusListener {
     final /* synthetic */ PendingResult zaa;
     final /* synthetic */ TaskCompletionSource zab;
     final /* synthetic */ PendingResultUtil.ResultConverter zac;
     final /* synthetic */ zas zad;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zap(PendingResult pendingResult, TaskCompletionSource taskCompletionSource, PendingResultUtil.ResultConverter resultConverter, zas zasVar) {
         this.zaa = pendingResult;
         this.zab = taskCompletionSource;

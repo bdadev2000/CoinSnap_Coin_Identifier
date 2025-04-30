@@ -1,27 +1,33 @@
 package com.google.android.gms.internal.common;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+import x0.AbstractC2914a;
+
+/* loaded from: classes2.dex */
 final class zzl extends zzk {
     private final char zza;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzl(char c) {
-        this.zza = c;
+    public zzl(char c9) {
+        this.zza = c9;
     }
 
     public final String toString() {
-        char[] cArr = {'\\', 'u', 0, 0, 0, 0};
-        int i = this.zza;
-        for (int i2 = 0; i2 < 4; i2++) {
-            cArr[5 - i2] = "0123456789ABCDEF".charAt(i & 15);
-            i >>= 4;
+        char[] cArr = new char[6];
+        cArr[0] = '\\';
+        cArr[1] = 'u';
+        cArr[2] = 0;
+        cArr[3] = 0;
+        cArr[4] = 0;
+        cArr[5] = 0;
+        int i9 = this.zza;
+        for (int i10 = 0; i10 < 4; i10++) {
+            cArr[5 - i10] = "0123456789ABCDEF".charAt(i9 & 15);
+            i9 >>= 4;
         }
-        return "CharMatcher.is('" + String.copyValueOf(cArr) + "')";
+        return AbstractC2914a.e("CharMatcher.is('", String.copyValueOf(cArr), "')");
     }
 
     @Override // com.google.android.gms.internal.common.zzo
-    public final boolean zza(char c) {
-        return c == this.zza;
+    public final boolean zza(char c9) {
+        return c9 == this.zza;
     }
 }

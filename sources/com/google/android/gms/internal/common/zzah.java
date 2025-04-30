@@ -1,16 +1,15 @@
 package com.google.android.gms.internal.common;
 
+import com.mbridge.msdk.foundation.entity.o;
 import org.jspecify.nullness.NullMarked;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
 @NullMarked
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzah {
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static Object[] zza(Object[] objArr, int i) {
-        for (int i2 = 0; i2 < i; i2++) {
-            if (objArr[i2] == null) {
-                throw new NullPointerException("at index " + i2);
+    public static Object[] zza(Object[] objArr, int i9) {
+        for (int i10 = 0; i10 < i9; i10++) {
+            if (objArr[i10] == null) {
+                throw new NullPointerException(o.h(i10, "at index "));
             }
         }
         return objArr;

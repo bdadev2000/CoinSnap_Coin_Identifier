@@ -1,47 +1,23 @@
 package com.google.android.gms.internal.measurement;
 
-import com.google.common.base.Supplier;
-import com.google.common.base.Suppliers;
-import org.checkerframework.dataflow.qual.SideEffectFree;
+import c4.e;
+import c4.h;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzph implements Supplier<zzpg> {
+/* loaded from: classes2.dex */
+public final class zzph implements e {
     private static zzph zza = new zzph();
-    private final Supplier<zzpg> zzb = Suppliers.ofInstance(new zzpj());
+    private final e zzb = new h(new zzpj());
 
-    @SideEffectFree
-    public static double zza() {
-        return ((zzpg) zza.get()).zza();
+    public static boolean zza() {
+        return ((zzpk) zza.get()).zza();
     }
 
-    @SideEffectFree
-    public static long zzb() {
-        return ((zzpg) zza.get()).zzb();
+    public static boolean zzb() {
+        return ((zzpk) zza.get()).zzb();
     }
 
-    @SideEffectFree
-    public static long zzc() {
-        return ((zzpg) zza.get()).zzc();
-    }
-
-    @SideEffectFree
-    public static long zzd() {
-        return ((zzpg) zza.get()).zzd();
-    }
-
-    @Override // com.google.common.base.Supplier
-    public final /* synthetic */ zzpg get() {
-        return this.zzb.get();
-    }
-
-    @SideEffectFree
-    public static String zze() {
-        return ((zzpg) zza.get()).zze();
-    }
-
-    @SideEffectFree
-    public static boolean zzf() {
-        return ((zzpg) zza.get()).zzf();
+    @Override // c4.e
+    public final /* synthetic */ Object get() {
+        return (zzpk) this.zzb.get();
     }
 }

@@ -2,9 +2,8 @@ package com.adjust.sdk;
 
 import android.content.Context;
 import com.adjust.sdk.AdjustInstance;
-import com.google.android.material.timepicker.TimeModel;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class AdjustConfig {
     public static final String AD_REVENUE_ADMOB = "admob_sdk";
     public static final String AD_REVENUE_ADMOST = "admost_sdk";
@@ -20,6 +19,7 @@ public class AdjustConfig {
     public static final String ENVIRONMENT_PRODUCTION = "production";
     public static final String ENVIRONMENT_SANDBOX = "sandbox";
     public static final String URL_STRATEGY_CHINA = "url_strategy_china";
+    public static final String URL_STRATEGY_CN = "url_strategy_cn";
     public static final String URL_STRATEGY_INDIA = "url_strategy_india";
     public String appSecret;
     public String appToken;
@@ -59,10 +59,6 @@ public class AdjustConfig {
 
     public AdjustConfig(Context context, String str, String str2) {
         init(context, str, str2, false);
-    }
-
-    public AdjustConfig(Context context, String str, String str2, boolean z) {
-        init(context, str, str2, z);
     }
 
     private boolean checkAppToken(String str) {
@@ -106,9 +102,9 @@ public class AdjustConfig {
         return false;
     }
 
-    private void init(Context context, String str, String str2, boolean z) {
+    private void init(Context context, String str, String str2, boolean z8) {
         this.logger = AdjustFactory.getLogger();
-        setLogLevel((z && ENVIRONMENT_PRODUCTION.equals(str2)) ? LogLevel.SUPRESS : LogLevel.INFO, str2);
+        setLogLevel((z8 && ENVIRONMENT_PRODUCTION.equals(str2)) ? LogLevel.SUPRESS : LogLevel.INFO, str2);
         if (context != null) {
             context = context.getApplicationContext();
         }
@@ -120,21 +116,17 @@ public class AdjustConfig {
         this.preinstallTrackingEnabled = false;
     }
 
-    private void setLogLevel(LogLevel logLevel, String str) {
-        this.logger.setLogLevel(logLevel, ENVIRONMENT_PRODUCTION.equals(str));
-    }
-
     public boolean isValid() {
         return checkAppToken(this.appToken) && checkEnvironment(this.environment) && checkContext(this.context);
     }
 
-    public void setAppSecret(long j, long j2, long j3, long j4, long j5) {
-        this.secretId = Util.formatString(TimeModel.NUMBER_FORMAT, Long.valueOf(j));
-        this.appSecret = Util.formatString("%d%d%d%d", Long.valueOf(j2), Long.valueOf(j3), Long.valueOf(j4), Long.valueOf(j5));
+    public void setAppSecret(long j7, long j9, long j10, long j11, long j12) {
+        this.secretId = Util.formatString("%d", Long.valueOf(j7));
+        this.appSecret = Util.formatString("%d%d%d%d", Long.valueOf(j9), Long.valueOf(j10), Long.valueOf(j11), Long.valueOf(j12));
     }
 
-    public void setCoppaCompliantEnabled(boolean z) {
-        this.coppaCompliantEnabled = z;
+    public void setCoppaCompliantEnabled(boolean z8) {
+        this.coppaCompliantEnabled = z8;
     }
 
     public void setDeepLinkComponent(Class cls) {
@@ -145,12 +137,12 @@ public class AdjustConfig {
         this.defaultTracker = str;
     }
 
-    public void setDelayStart(double d) {
-        this.delayStart = Double.valueOf(d);
+    public void setDelayStart(double d2) {
+        this.delayStart = Double.valueOf(d2);
     }
 
-    public void setDeviceKnown(boolean z) {
-        this.deviceKnown = Boolean.valueOf(z);
+    public void setDeviceKnown(boolean z8) {
+        this.deviceKnown = Boolean.valueOf(z8);
     }
 
     public void setEventBufferingEnabled(Boolean bool) {
@@ -165,8 +157,8 @@ public class AdjustConfig {
         setLogLevel(logLevel, this.environment);
     }
 
-    public void setNeedsCost(boolean z) {
-        this.needsCost = Boolean.valueOf(z);
+    public void setNeedsCost(boolean z8) {
+        this.needsCost = Boolean.valueOf(z8);
     }
 
     public void setOnAttributionChangedListener(OnAttributionChangedListener onAttributionChangedListener) {
@@ -193,16 +185,16 @@ public class AdjustConfig {
         this.onSessionTrackingSucceededListener = onSessionTrackingSucceededListener;
     }
 
-    public void setPlayStoreKidsAppEnabled(boolean z) {
-        this.playStoreKidsAppEnabled = z;
+    public void setPlayStoreKidsAppEnabled(boolean z8) {
+        this.playStoreKidsAppEnabled = z8;
     }
 
     public void setPreinstallFilePath(String str) {
         this.preinstallFilePath = str;
     }
 
-    public void setPreinstallTrackingEnabled(boolean z) {
-        this.preinstallTrackingEnabled = z;
+    public void setPreinstallTrackingEnabled(boolean z8) {
+        this.preinstallTrackingEnabled = z8;
     }
 
     public void setProcessName(String str) {
@@ -210,7 +202,7 @@ public class AdjustConfig {
     }
 
     @Deprecated
-    public void setReadMobileEquipmentIdentity(boolean z) {
+    public void setReadMobileEquipmentIdentity(boolean z8) {
         this.logger.warn("This method has been deprecated and shouldn't be used anymore", new Object[0]);
     }
 
@@ -218,8 +210,8 @@ public class AdjustConfig {
         this.sdkPrefix = str;
     }
 
-    public void setSendInBackground(boolean z) {
-        this.sendInBackground = z;
+    public void setSendInBackground(boolean z8) {
+        this.sendInBackground = z8;
     }
 
     public void setUrlStrategy(String str) {
@@ -227,7 +219,7 @@ public class AdjustConfig {
             this.logger.error("Invalid url strategy", new Object[0]);
             return;
         }
-        if (!str.equals(URL_STRATEGY_INDIA) && !str.equals(URL_STRATEGY_CHINA) && !str.equals(DATA_RESIDENCY_EU) && !str.equals(DATA_RESIDENCY_TR) && !str.equals(DATA_RESIDENCY_US)) {
+        if (!str.equals(URL_STRATEGY_INDIA) && !str.equals(URL_STRATEGY_CHINA) && !str.equals(URL_STRATEGY_CN) && !str.equals(DATA_RESIDENCY_EU) && !str.equals(DATA_RESIDENCY_TR) && !str.equals(DATA_RESIDENCY_US)) {
             this.logger.warn("Unrecognised url strategy %s", str);
         }
         this.urlStrategy = str;
@@ -235,5 +227,13 @@ public class AdjustConfig {
 
     public void setUserAgent(String str) {
         this.userAgent = str;
+    }
+
+    public AdjustConfig(Context context, String str, String str2, boolean z8) {
+        init(context, str, str2, z8);
+    }
+
+    private void setLogLevel(LogLevel logLevel, String str) {
+        this.logger.setLogLevel(logLevel, ENVIRONMENT_PRODUCTION.equals(str));
     }
 }

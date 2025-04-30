@@ -1,24 +1,44 @@
 package com.google.android.gms.measurement.internal;
 
-import java.util.concurrent.atomic.AtomicReference;
+import android.os.Bundle;
+import java.util.List;
+import java.util.Map;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzkk implements Runnable {
-    private final /* synthetic */ AtomicReference zza;
-    private final /* synthetic */ boolean zzb;
-    private final /* synthetic */ zzjq zzc;
+/* loaded from: classes2.dex */
+public interface zzkk {
+    int zza(String str);
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzkk(zzjq zzjqVar, AtomicReference atomicReference, boolean z) {
-        this.zza = atomicReference;
-        this.zzb = z;
-        this.zzc = zzjqVar;
-    }
+    Object zza(int i9);
 
-    @Override // java.lang.Runnable
-    public final void run() {
-        this.zzc.zzo().zza(this.zza, this.zzb);
-    }
+    List<Bundle> zza(String str, String str2);
+
+    Map<String, Object> zza(String str, String str2, boolean z8);
+
+    void zza(Bundle bundle);
+
+    void zza(zzir zzirVar);
+
+    void zza(zziu zziuVar);
+
+    void zza(String str, String str2, Bundle bundle);
+
+    void zza(String str, String str2, Bundle bundle, long j7);
+
+    void zzb(zziu zziuVar);
+
+    void zzb(String str);
+
+    void zzb(String str, String str2, Bundle bundle);
+
+    void zzc(String str);
+
+    long zzf();
+
+    String zzg();
+
+    String zzh();
+
+    String zzi();
+
+    String zzj();
 }

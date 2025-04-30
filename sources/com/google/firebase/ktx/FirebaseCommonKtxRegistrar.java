@@ -1,69 +1,41 @@
 package com.google.firebase.ktx;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
-import com.google.firebase.annotations.concurrent.Background;
-import com.google.firebase.annotations.concurrent.Blocking;
-import com.google.firebase.annotations.concurrent.Lightweight;
-import com.google.firebase.annotations.concurrent.UiThread;
-import com.google.firebase.components.Component;
-import com.google.firebase.components.ComponentContainer;
-import com.google.firebase.components.ComponentFactory;
+import Q7.AbstractC0251t;
+import T4.a;
+import androidx.annotation.Keep;
 import com.google.firebase.components.ComponentRegistrar;
-import com.google.firebase.components.Dependency;
-import com.google.firebase.components.Qualified;
 import java.util.List;
 import java.util.concurrent.Executor;
-import kotlin.Deprecated;
-import kotlin.Metadata;
-import kotlin.ReplaceWith;
-import kotlin.collections.CollectionsKt;
-import kotlin.jvm.internal.Intrinsics;
-import kotlinx.coroutines.CoroutineDispatcher;
-import kotlinx.coroutines.ExecutorsKt;
+import n4.InterfaceC2477a;
+import n4.InterfaceC2478b;
+import n4.c;
+import n4.d;
+import o4.C2495a;
+import o4.C2496b;
+import o4.C2502h;
+import o4.q;
+import u7.AbstractC2817h;
 
-/* compiled from: Firebase.kt */
-@Deprecated(message = "Migrate to use the KTX API from the main module: https://firebase.google.com/docs/android/kotlin-migration.", replaceWith = @ReplaceWith(expression = "", imports = {}))
-@Metadata(d1 = {"\u0000\u0016\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010 \n\u0002\u0018\u0002\n\u0000\b\u0007\u0018\u00002\u00020\u0001B\u0005¢\u0006\u0002\u0010\u0002J\u0012\u0010\u0003\u001a\f\u0012\b\u0012\u0006\u0012\u0002\b\u00030\u00050\u0004H\u0016¨\u0006\u0006"}, d2 = {"Lcom/google/firebase/ktx/FirebaseCommonKtxRegistrar;", "Lcom/google/firebase/components/ComponentRegistrar;", "()V", "getComponents", "", "Lcom/google/firebase/components/Component;", "com.google.firebase-firebase-common"}, k = 1, mv = {1, 8, 0}, xi = ConstraintLayout.LayoutParams.Table.LAYOUT_CONSTRAINT_VERTICAL_CHAINSTYLE)
-/* loaded from: classes11.dex */
+@Keep
+/* loaded from: classes2.dex */
 public final class FirebaseCommonKtxRegistrar implements ComponentRegistrar {
     @Override // com.google.firebase.components.ComponentRegistrar
-    public List<Component<?>> getComponents() {
-        Component build = Component.builder(Qualified.qualified(Background.class, CoroutineDispatcher.class)).add(Dependency.required((Qualified<?>) Qualified.qualified(Background.class, Executor.class))).factory(new ComponentFactory() { // from class: com.google.firebase.ktx.FirebaseCommonKtxRegistrar$getComponents$$inlined$coroutineDispatcher$1
-            @Override // com.google.firebase.components.ComponentFactory
-            public final CoroutineDispatcher create(ComponentContainer componentContainer) {
-                Object obj = componentContainer.get(Qualified.qualified(Background.class, Executor.class));
-                Intrinsics.checkNotNullExpressionValue(obj, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return ExecutorsKt.from((Executor) obj);
-            }
-        }).build();
-        Intrinsics.checkNotNullExpressionValue(build, "builder(Qualified.qualif…cher()\n    }\n    .build()");
-        Component build2 = Component.builder(Qualified.qualified(Lightweight.class, CoroutineDispatcher.class)).add(Dependency.required((Qualified<?>) Qualified.qualified(Lightweight.class, Executor.class))).factory(new ComponentFactory() { // from class: com.google.firebase.ktx.FirebaseCommonKtxRegistrar$getComponents$$inlined$coroutineDispatcher$2
-            @Override // com.google.firebase.components.ComponentFactory
-            public final CoroutineDispatcher create(ComponentContainer componentContainer) {
-                Object obj = componentContainer.get(Qualified.qualified(Lightweight.class, Executor.class));
-                Intrinsics.checkNotNullExpressionValue(obj, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return ExecutorsKt.from((Executor) obj);
-            }
-        }).build();
-        Intrinsics.checkNotNullExpressionValue(build2, "builder(Qualified.qualif…cher()\n    }\n    .build()");
-        Component build3 = Component.builder(Qualified.qualified(Blocking.class, CoroutineDispatcher.class)).add(Dependency.required((Qualified<?>) Qualified.qualified(Blocking.class, Executor.class))).factory(new ComponentFactory() { // from class: com.google.firebase.ktx.FirebaseCommonKtxRegistrar$getComponents$$inlined$coroutineDispatcher$3
-            @Override // com.google.firebase.components.ComponentFactory
-            public final CoroutineDispatcher create(ComponentContainer componentContainer) {
-                Object obj = componentContainer.get(Qualified.qualified(Blocking.class, Executor.class));
-                Intrinsics.checkNotNullExpressionValue(obj, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return ExecutorsKt.from((Executor) obj);
-            }
-        }).build();
-        Intrinsics.checkNotNullExpressionValue(build3, "builder(Qualified.qualif…cher()\n    }\n    .build()");
-        Component build4 = Component.builder(Qualified.qualified(UiThread.class, CoroutineDispatcher.class)).add(Dependency.required((Qualified<?>) Qualified.qualified(UiThread.class, Executor.class))).factory(new ComponentFactory() { // from class: com.google.firebase.ktx.FirebaseCommonKtxRegistrar$getComponents$$inlined$coroutineDispatcher$4
-            @Override // com.google.firebase.components.ComponentFactory
-            public final CoroutineDispatcher create(ComponentContainer componentContainer) {
-                Object obj = componentContainer.get(Qualified.qualified(UiThread.class, Executor.class));
-                Intrinsics.checkNotNullExpressionValue(obj, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return ExecutorsKt.from((Executor) obj);
-            }
-        }).build();
-        Intrinsics.checkNotNullExpressionValue(build4, "builder(Qualified.qualif…cher()\n    }\n    .build()");
-        return CollectionsKt.listOf((Object[]) new Component[]{build, build2, build3, build4});
+    public List<C2496b> getComponents() {
+        C2495a b = C2496b.b(new q(InterfaceC2477a.class, AbstractC0251t.class));
+        b.a(new C2502h(new q(InterfaceC2477a.class, Executor.class), 1, 0));
+        b.f21942f = a.f3015c;
+        C2496b b8 = b.b();
+        C2495a b9 = C2496b.b(new q(c.class, AbstractC0251t.class));
+        b9.a(new C2502h(new q(c.class, Executor.class), 1, 0));
+        b9.f21942f = a.f3016d;
+        C2496b b10 = b9.b();
+        C2495a b11 = C2496b.b(new q(InterfaceC2478b.class, AbstractC0251t.class));
+        b11.a(new C2502h(new q(InterfaceC2478b.class, Executor.class), 1, 0));
+        b11.f21942f = a.f3017f;
+        C2496b b12 = b11.b();
+        C2495a b13 = C2496b.b(new q(d.class, AbstractC0251t.class));
+        b13.a(new C2502h(new q(d.class, Executor.class), 1, 0));
+        b13.f21942f = a.f3018g;
+        return AbstractC2817h.B(b8, b10, b12, b13.b());
     }
 }

@@ -1,28 +1,48 @@
 package com.google.protobuf;
 
-import com.google.protobuf.GeneratedMessageLite;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-/* loaded from: classes5.dex */
-public final class SourceContext extends GeneratedMessageLite<SourceContext, Builder> implements SourceContextOrBuilder {
+/* loaded from: classes3.dex */
+public final class SourceContext extends L2 implements N4 {
     private static final SourceContext DEFAULT_INSTANCE;
     public static final int FILE_NAME_FIELD_NUMBER = 1;
-    private static volatile Parser<SourceContext> PARSER;
+    private static volatile InterfaceC1948l4 PARSER;
     private String fileName_ = "";
+
+    static {
+        SourceContext sourceContext = new SourceContext();
+        DEFAULT_INSTANCE = sourceContext;
+        L2.registerDefaultInstance(SourceContext.class, sourceContext);
+    }
 
     private SourceContext() {
     }
 
-    @Override // com.google.protobuf.SourceContextOrBuilder
-    public String getFileName() {
-        return this.fileName_;
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearFileName() {
+        this.fileName_ = getDefaultInstance().getFileName();
     }
 
-    @Override // com.google.protobuf.SourceContextOrBuilder
-    public ByteString getFileNameBytes() {
-        return ByteString.copyFromUtf8(this.fileName_);
+    public static SourceContext getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    public static M4 newBuilder() {
+        return (M4) DEFAULT_INSTANCE.createBuilder();
+    }
+
+    public static SourceContext parseDelimitedFrom(InputStream inputStream) throws IOException {
+        return (SourceContext) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static SourceContext parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (SourceContext) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    }
+
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -32,174 +52,38 @@ public final class SourceContext extends GeneratedMessageLite<SourceContext, Bui
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearFileName() {
-        this.fileName_ = getDefaultInstance().getFileName();
+    public void setFileNameBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.fileName_ = h6.toStringUtf8();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setFileNameBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.fileName_ = byteString.toStringUtf8();
-    }
-
-    public static SourceContext parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (SourceContext) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
-    }
-
-    public static SourceContext parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (SourceContext) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static SourceContext parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (SourceContext) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static SourceContext parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (SourceContext) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static SourceContext parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (SourceContext) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static SourceContext parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (SourceContext) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static SourceContext parseFrom(InputStream inputStream) throws IOException {
-        return (SourceContext) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static SourceContext parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (SourceContext) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static SourceContext parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (SourceContext) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static SourceContext parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (SourceContext) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static SourceContext parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (SourceContext) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
-    }
-
-    public static SourceContext parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (SourceContext) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
-    }
-
-    public static Builder newBuilder(SourceContext sourceContext) {
-        return DEFAULT_INSTANCE.createBuilder(sourceContext);
-    }
-
-    /* loaded from: classes5.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<SourceContext, Builder> implements SourceContextOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(SourceContext.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.protobuf.SourceContextOrBuilder
-        public String getFileName() {
-            return ((SourceContext) this.instance).getFileName();
-        }
-
-        @Override // com.google.protobuf.SourceContextOrBuilder
-        public ByteString getFileNameBytes() {
-            return ((SourceContext) this.instance).getFileNameBytes();
-        }
-
-        public Builder setFileName(String str) {
-            copyOnWrite();
-            ((SourceContext) this.instance).setFileName(str);
-            return this;
-        }
-
-        public Builder clearFileName() {
-            copyOnWrite();
-            ((SourceContext) this.instance).clearFileName();
-            return this;
-        }
-
-        public Builder setFileNameBytes(ByteString byteString) {
-            copyOnWrite();
-            ((SourceContext) this.instance).setFileNameBytes(byteString);
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.protobuf.SourceContext$1, reason: invalid class name */
-    /* loaded from: classes5.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        L4 l42 = null;
+        switch (L4.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[k22.ordinal()]) {
             case 1:
                 return new SourceContext();
             case 2:
-                return new Builder(anonymousClass1);
+                return new M4(l42);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0000\u0000\u0001Ȉ", new Object[]{"fileName_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0000\u0000\u0001Ȉ", new Object[]{"fileName_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<SourceContext> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (SourceContext.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -209,17 +93,57 @@ public final class SourceContext extends GeneratedMessageLite<SourceContext, Bui
         }
     }
 
-    static {
-        SourceContext sourceContext = new SourceContext();
-        DEFAULT_INSTANCE = sourceContext;
-        GeneratedMessageLite.registerDefaultInstance(SourceContext.class, sourceContext);
+    @Override // com.google.protobuf.N4
+    public String getFileName() {
+        return this.fileName_;
     }
 
-    public static SourceContext getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    @Override // com.google.protobuf.N4
+    public H getFileNameBytes() {
+        return H.copyFromUtf8(this.fileName_);
     }
 
-    public static Parser<SourceContext> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public static M4 newBuilder(SourceContext sourceContext) {
+        return (M4) DEFAULT_INSTANCE.createBuilder(sourceContext);
+    }
+
+    public static SourceContext parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (SourceContext) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static SourceContext parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (SourceContext) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static SourceContext parseFrom(H h6) throws C1912g3 {
+        return (SourceContext) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static SourceContext parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (SourceContext) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static SourceContext parseFrom(byte[] bArr) throws C1912g3 {
+        return (SourceContext) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static SourceContext parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (SourceContext) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static SourceContext parseFrom(InputStream inputStream) throws IOException {
+        return (SourceContext) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static SourceContext parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (SourceContext) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static SourceContext parseFrom(S s5) throws IOException {
+        return (SourceContext) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static SourceContext parseFrom(S s5, W1 w1) throws IOException {
+        return (SourceContext) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

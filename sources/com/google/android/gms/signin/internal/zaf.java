@@ -6,25 +6,23 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import com.google.android.gms.common.internal.IAccountAccessor;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zaf extends com.google.android.gms.internal.base.zaa implements IInterface {
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zaf(IBinder iBinder) {
         super(iBinder, "com.google.android.gms.signin.internal.ISignInService");
     }
 
-    public final void zae(int i) throws RemoteException {
+    public final void zae(int i9) throws RemoteException {
         Parcel zaa = zaa();
-        zaa.writeInt(i);
+        zaa.writeInt(i9);
         zac(7, zaa);
     }
 
-    public final void zaf(IAccountAccessor iAccountAccessor, int i, boolean z) throws RemoteException {
+    public final void zaf(IAccountAccessor iAccountAccessor, int i9, boolean z8) throws RemoteException {
         Parcel zaa = zaa();
         com.google.android.gms.internal.base.zac.zad(zaa, iAccountAccessor);
-        zaa.writeInt(i);
-        zaa.writeInt(z ? 1 : 0);
+        zaa.writeInt(i9);
+        zaa.writeInt(z8 ? 1 : 0);
         zac(9, zaa);
     }
 

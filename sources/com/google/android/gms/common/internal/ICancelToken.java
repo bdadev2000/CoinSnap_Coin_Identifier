@@ -4,33 +4,36 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
+import androidx.annotation.NonNull;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public interface ICancelToken extends IInterface {
 
-    /* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-    /* loaded from: classes12.dex */
+    /* loaded from: classes2.dex */
     public static abstract class Stub extends com.google.android.gms.internal.common.zzb implements ICancelToken {
         public Stub() {
             super("com.google.android.gms.common.internal.ICancelToken");
         }
 
-        public static ICancelToken asInterface(IBinder iBinder) {
+        @NonNull
+        public static ICancelToken asInterface(@NonNull IBinder iBinder) {
             if (iBinder == null) {
                 return null;
             }
             IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.ICancelToken");
-            return queryLocalInterface instanceof ICancelToken ? (ICancelToken) queryLocalInterface : new zzx(iBinder);
+            if (queryLocalInterface instanceof ICancelToken) {
+                return (ICancelToken) queryLocalInterface;
+            }
+            return new zzx(iBinder);
         }
 
         @Override // com.google.android.gms.internal.common.zzb
-        protected final boolean zza(int i, Parcel parcel, Parcel parcel2, int i2) throws RemoteException {
-            if (i != 2) {
-                return false;
+        public final boolean zza(int i9, @NonNull Parcel parcel, @NonNull Parcel parcel2, int i10) throws RemoteException {
+            if (i9 == 2) {
+                cancel();
+                return true;
             }
-            cancel();
-            return true;
+            return false;
         }
     }
 

@@ -1,64 +1,59 @@
 package com.google.android.gms.internal.measurement;
 
-import java.util.AbstractSet;
-import java.util.Iterator;
-import java.util.Map;
-
-/* JADX INFO: Access modifiers changed from: package-private */
-/* JADX INFO: Add missing generic type declarations: [V, K] */
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public class zzmb<K, V> extends AbstractSet<Map.Entry<K, V>> {
-    private final /* synthetic */ zzlv zza;
-
-    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
-    public int size() {
-        return this.zza.size();
-    }
-
-    @Override // java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
-    public Iterator<Map.Entry<K, V>> iterator() {
-        return new zzmc(this.zza);
-    }
-
-    private zzmb(zzlv zzlvVar) {
-        this.zza = zzlvVar;
-    }
-
-    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
-    public void clear() {
-        this.zza.clear();
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
-    public /* synthetic */ boolean add(Object obj) {
-        Map.Entry entry = (Map.Entry) obj;
-        if (contains(entry)) {
-            return false;
+/* loaded from: classes2.dex */
+final class zzmb {
+    public static String zza(zzia zziaVar) {
+        zzma zzmaVar = new zzma(zziaVar);
+        StringBuilder sb = new StringBuilder(zzmaVar.zza());
+        for (int i9 = 0; i9 < zzmaVar.zza(); i9++) {
+            byte zza = zzmaVar.zza(i9);
+            if (zza != 34) {
+                if (zza != 39) {
+                    if (zza != 92) {
+                        switch (zza) {
+                            case 7:
+                                sb.append("\\a");
+                                break;
+                            case 8:
+                                sb.append("\\b");
+                                break;
+                            case 9:
+                                sb.append("\\t");
+                                break;
+                            case 10:
+                                sb.append("\\n");
+                                break;
+                            case 11:
+                                sb.append("\\v");
+                                break;
+                            case 12:
+                                sb.append("\\f");
+                                break;
+                            case 13:
+                                sb.append("\\r");
+                                break;
+                            default:
+                                if (zza >= 32 && zza <= 126) {
+                                    sb.append((char) zza);
+                                    break;
+                                } else {
+                                    sb.append('\\');
+                                    sb.append((char) (((zza >>> 6) & 3) + 48));
+                                    sb.append((char) (((zza >>> 3) & 7) + 48));
+                                    sb.append((char) ((zza & 7) + 48));
+                                    break;
+                                }
+                        }
+                    } else {
+                        sb.append("\\\\");
+                    }
+                } else {
+                    sb.append("\\'");
+                }
+            } else {
+                sb.append("\\\"");
+            }
         }
-        this.zza.zza((zzlv) entry.getKey(), (Comparable) entry.getValue());
-        return true;
-    }
-
-    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
-    public boolean contains(Object obj) {
-        Map.Entry entry = (Map.Entry) obj;
-        Object obj2 = this.zza.get(entry.getKey());
-        Object value = entry.getValue();
-        if (obj2 != value) {
-            return obj2 != null && obj2.equals(value);
-        }
-        return true;
-    }
-
-    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
-    public boolean remove(Object obj) {
-        Map.Entry entry = (Map.Entry) obj;
-        if (!contains(entry)) {
-            return false;
-        }
-        this.zza.remove(entry.getKey());
-        return true;
+        return sb.toString();
     }
 }

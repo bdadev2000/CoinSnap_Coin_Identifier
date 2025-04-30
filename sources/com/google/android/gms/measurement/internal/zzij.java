@@ -1,30 +1,73 @@
 package com.google.android.gms.measurement.internal;
 
+import android.content.Context;
 import com.google.android.gms.common.internal.Preconditions;
+import com.google.android.gms.common.util.Clock;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzij implements Runnable {
-    private final /* synthetic */ zzo zza;
-    private final /* synthetic */ zzic zzb;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public class zzij implements zzil {
+    protected final zzhj zzu;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzij(zzic zzicVar, zzo zzoVar) {
-        this.zza = zzoVar;
-        this.zzb = zzicVar;
+    public zzij(zzhj zzhjVar) {
+        Preconditions.checkNotNull(zzhjVar);
+        this.zzu = zzhjVar;
     }
 
-    @Override // java.lang.Runnable
-    public final void run() {
-        zznv zznvVar;
-        zznv zznvVar2;
-        zznvVar = this.zzb.zza;
-        zznvVar.zzr();
-        zznvVar2 = this.zzb.zza;
-        zzo zzoVar = this.zza;
-        zznvVar2.zzl().zzt();
-        zznvVar2.zzs();
-        Preconditions.checkNotEmpty(zzoVar.zza);
-        zznvVar2.zza(zzoVar);
+    @Override // com.google.android.gms.measurement.internal.zzil
+    public Context zza() {
+        return this.zzu.zza();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzil
+    public Clock zzb() {
+        return this.zzu.zzb();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzil
+    public zzab zzd() {
+        return this.zzu.zzd();
+    }
+
+    public zzag zze() {
+        return this.zzu.zzf();
+    }
+
+    public zzax zzf() {
+        return this.zzu.zzg();
+    }
+
+    public zzfr zzi() {
+        return this.zzu.zzk();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzil
+    public zzfw zzj() {
+        return this.zzu.zzj();
+    }
+
+    public zzgh zzk() {
+        return this.zzu.zzn();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzil
+    public zzhc zzl() {
+        return this.zzu.zzl();
+    }
+
+    public zznp zzq() {
+        return this.zzu.zzt();
+    }
+
+    public void zzr() {
+        this.zzu.zzl().zzr();
+    }
+
+    public void zzs() {
+        this.zzu.zzy();
+    }
+
+    public void zzt() {
+        this.zzu.zzl().zzt();
     }
 }

@@ -5,15 +5,18 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
+import androidx.annotation.Nullable;
 import java.util.Objects;
 
-/* compiled from: com.google.android.gms:play-services-cloud-messaging@@17.2.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzq {
+
+    @Nullable
     private final Messenger zza;
+
+    @Nullable
     private final zzd zzb;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zzq(IBinder iBinder) throws RemoteException {
         String interfaceDescriptor = iBinder.getInterfaceDescriptor();
         if (Objects.equals(interfaceDescriptor, "android.os.IMessenger")) {
@@ -28,7 +31,6 @@ final class zzq {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public final void zza(Message message) throws RemoteException {
         Messenger messenger = this.zza;
         if (messenger != null) {

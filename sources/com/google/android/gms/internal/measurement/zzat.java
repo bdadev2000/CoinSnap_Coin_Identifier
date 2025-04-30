@@ -4,56 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzat implements zzaq {
     private final String zza;
     private final ArrayList<zzaq> zzb;
-
-    public final int hashCode() {
-        String str = this.zza;
-        int hashCode = (str != null ? str.hashCode() : 0) * 31;
-        ArrayList<zzaq> arrayList = this.zzb;
-        return hashCode + (arrayList != null ? arrayList.hashCode() : 0);
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzaq
-    public final zzaq zzc() {
-        return this;
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzaq
-    public final Iterator<zzaq> zzh() {
-        return null;
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzaq
-    public final zzaq zza(String str, zzh zzhVar, List<zzaq> list) {
-        throw new IllegalStateException("Statement is not an evaluated entity");
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzaq
-    public final Boolean zzd() {
-        throw new IllegalStateException("Statement cannot be cast as Boolean");
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzaq
-    public final Double zze() {
-        throw new IllegalStateException("Statement cannot be cast as Double");
-    }
-
-    public final String zza() {
-        return this.zza;
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzaq
-    public final String zzf() {
-        throw new IllegalStateException("Statement cannot be cast as String");
-    }
-
-    public final ArrayList<zzaq> zzb() {
-        return this.zzb;
-    }
 
     public zzat(String str, List<zzaq> list) {
         this.zza = str;
@@ -76,6 +30,67 @@ public final class zzat implements zzaq {
         }
         ArrayList<zzaq> arrayList = this.zzb;
         ArrayList<zzaq> arrayList2 = zzatVar.zzb;
-        return arrayList != null ? arrayList.equals(arrayList2) : arrayList2 == null;
+        if (arrayList != null) {
+            return arrayList.equals(arrayList2);
+        }
+        if (arrayList2 == null) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int i9;
+        String str = this.zza;
+        int i10 = 0;
+        if (str != null) {
+            i9 = str.hashCode();
+        } else {
+            i9 = 0;
+        }
+        int i11 = i9 * 31;
+        ArrayList<zzaq> arrayList = this.zzb;
+        if (arrayList != null) {
+            i10 = arrayList.hashCode();
+        }
+        return i11 + i10;
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzaq
+    public final zzaq zza(String str, zzh zzhVar, List<zzaq> list) {
+        throw new IllegalStateException("Statement is not an evaluated entity");
+    }
+
+    public final ArrayList<zzaq> zzb() {
+        return this.zzb;
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzaq
+    public final zzaq zzc() {
+        return this;
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzaq
+    public final Boolean zzd() {
+        throw new IllegalStateException("Statement cannot be cast as Boolean");
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzaq
+    public final Double zze() {
+        throw new IllegalStateException("Statement cannot be cast as Double");
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzaq
+    public final String zzf() {
+        throw new IllegalStateException("Statement cannot be cast as String");
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzaq
+    public final Iterator<zzaq> zzh() {
+        return null;
+    }
+
+    public final String zza() {
+        return this.zza;
     }
 }

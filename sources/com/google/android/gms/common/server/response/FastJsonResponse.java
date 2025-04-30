@@ -2,46 +2,57 @@ package com.google.android.gms.common.server.response;
 
 import android.os.Parcel;
 import android.util.Log;
-import com.glority.android.xx.constants.LogEvents;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.Objects;
 import com.google.android.gms.common.internal.Preconditions;
+import com.google.android.gms.common.internal.ShowFirstParty;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import com.google.android.gms.common.util.Base64Utils;
 import com.google.android.gms.common.util.JsonUtils;
 import com.google.android.gms.common.util.MapUtils;
+import com.mbridge.msdk.foundation.entity.o;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@ShowFirstParty
+@KeepForSdk
+/* loaded from: classes2.dex */
 public abstract class FastJsonResponse {
 
-    /* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-    /* loaded from: classes12.dex */
+    @ShowFirstParty
+    /* loaded from: classes2.dex */
     public interface FieldConverter<I, O> {
         int zaa();
 
         int zab();
 
-        Object zac(Object obj);
+        @Nullable
+        Object zac(@NonNull Object obj);
 
-        Object zad(Object obj);
+        @NonNull
+        Object zad(@NonNull Object obj);
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public static final Object zaD(Field field, Object obj) {
-        return field.zak != null ? field.zaf(obj) : obj;
+    @NonNull
+    public static final Object zaD(@NonNull Field field, @Nullable Object obj) {
+        if (field.zak != null) {
+            return field.zaf(obj);
+        }
+        return obj;
     }
 
-    private final void zaE(Field field, Object obj) {
-        int i = field.zac;
+    private final void zaE(Field field, @Nullable Object obj) {
+        int i9 = field.zac;
         Object zae = field.zae(obj);
         String str = field.zae;
-        switch (i) {
+        switch (i9) {
             case 0:
                 if (zae != null) {
                     setIntegerInternal(field, str, ((Integer) zae).intValue());
@@ -63,7 +74,7 @@ public abstract class FastJsonResponse {
                 }
             case 3:
             default:
-                throw new IllegalStateException("Unsupported type for conversion: " + i);
+                throw new IllegalStateException(o.h(i9, "Unsupported type for conversion: "));
             case 4:
                 if (zae != null) {
                     zan(field, str, ((Double) zae).doubleValue());
@@ -99,20 +110,20 @@ public abstract class FastJsonResponse {
     }
 
     private static final void zaF(StringBuilder sb, Field field, Object obj) {
-        int i = field.zaa;
-        if (i == 11) {
-            Class cls = field.zag;
-            Preconditions.checkNotNull(cls);
-            sb.append(((FastJsonResponse) cls.cast(obj)).toString());
-        } else {
-            if (i == 7) {
+        int i9 = field.zaa;
+        if (i9 != 11) {
+            if (i9 == 7) {
                 sb.append("\"");
                 sb.append(JsonUtils.escapeString((String) obj));
                 sb.append("\"");
                 return;
             }
             sb.append(obj);
+            return;
         }
+        Class cls = field.zag;
+        Preconditions.checkNotNull(cls);
+        sb.append(((FastJsonResponse) cls.cast(obj)).toString());
     }
 
     private static final void zaG(String str) {
@@ -121,48 +132,96 @@ public abstract class FastJsonResponse {
         }
     }
 
-    public <T extends FastJsonResponse> void addConcreteTypeArrayInternal(Field field, String str, ArrayList<T> arrayList) {
+    @KeepForSdk
+    public <T extends FastJsonResponse> void addConcreteTypeArrayInternal(@NonNull Field field, @NonNull String str, @Nullable ArrayList<T> arrayList) {
         throw new UnsupportedOperationException("Concrete type array not supported");
     }
 
-    public <T extends FastJsonResponse> void addConcreteTypeInternal(Field field, String str, T t) {
+    @KeepForSdk
+    public <T extends FastJsonResponse> void addConcreteTypeInternal(@NonNull Field field, @NonNull String str, @NonNull T t9) {
         throw new UnsupportedOperationException("Concrete type not supported");
     }
 
+    @NonNull
+    @KeepForSdk
     public abstract Map<String, Field<?, ?>> getFieldMappings();
 
-    protected abstract Object getValueObject(String str);
+    @Nullable
+    @KeepForSdk
+    public Object getFieldValue(@NonNull Field field) {
+        boolean z8;
+        String str = field.zae;
+        if (field.zag != null) {
+            if (getValueObject(str) == null) {
+                z8 = true;
+            } else {
+                z8 = false;
+            }
+            Preconditions.checkState(z8, "Concrete field shouldn't be value object: %s", field.zae);
+            try {
+                return getClass().getMethod("get" + Character.toUpperCase(str.charAt(0)) + str.substring(1), null).invoke(this, null);
+            } catch (Exception e4) {
+                throw new RuntimeException(e4);
+            }
+        }
+        return getValueObject(str);
+    }
 
-    protected abstract boolean isPrimitiveFieldSet(String str);
+    @Nullable
+    @KeepForSdk
+    public abstract Object getValueObject(@NonNull String str);
 
-    protected void setBooleanInternal(Field<?, ?> field, String str, boolean z) {
+    @KeepForSdk
+    public boolean isFieldSet(@NonNull Field field) {
+        if (field.zac == 11) {
+            if (field.zad) {
+                throw new UnsupportedOperationException("Concrete type arrays not supported");
+            }
+            throw new UnsupportedOperationException("Concrete types not supported");
+        }
+        return isPrimitiveFieldSet(field.zae);
+    }
+
+    @KeepForSdk
+    public abstract boolean isPrimitiveFieldSet(@NonNull String str);
+
+    @KeepForSdk
+    public void setBooleanInternal(@NonNull Field<?, ?> field, @NonNull String str, boolean z8) {
         throw new UnsupportedOperationException("Boolean not supported");
     }
 
-    protected void setDecodedBytesInternal(Field<?, ?> field, String str, byte[] bArr) {
+    @KeepForSdk
+    public void setDecodedBytesInternal(@NonNull Field<?, ?> field, @NonNull String str, @Nullable byte[] bArr) {
         throw new UnsupportedOperationException("byte[] not supported");
     }
 
-    protected void setIntegerInternal(Field<?, ?> field, String str, int i) {
+    @KeepForSdk
+    public void setIntegerInternal(@NonNull Field<?, ?> field, @NonNull String str, int i9) {
         throw new UnsupportedOperationException("Integer not supported");
     }
 
-    protected void setLongInternal(Field<?, ?> field, String str, long j) {
+    @KeepForSdk
+    public void setLongInternal(@NonNull Field<?, ?> field, @NonNull String str, long j7) {
         throw new UnsupportedOperationException("Long not supported");
     }
 
-    protected void setStringInternal(Field<?, ?> field, String str, String str2) {
+    @KeepForSdk
+    public void setStringInternal(@NonNull Field<?, ?> field, @NonNull String str, @Nullable String str2) {
         throw new UnsupportedOperationException("String not supported");
     }
 
-    protected void setStringMapInternal(Field<?, ?> field, String str, Map<String, String> map) {
+    @KeepForSdk
+    public void setStringMapInternal(@NonNull Field<?, ?> field, @NonNull String str, @Nullable Map<String, String> map) {
         throw new UnsupportedOperationException("String map not supported");
     }
 
-    protected void setStringsInternal(Field<?, ?> field, String str, ArrayList<String> arrayList) {
+    @KeepForSdk
+    public void setStringsInternal(@NonNull Field<?, ?> field, @NonNull String str, @Nullable ArrayList<String> arrayList) {
         throw new UnsupportedOperationException("String list not supported");
     }
 
+    @NonNull
+    @KeepForSdk
     public String toString() {
         Map<String, Field<?, ?>> fieldMappings = getFieldMappings();
         StringBuilder sb = new StringBuilder(100);
@@ -200,11 +259,11 @@ public abstract class FastJsonResponse {
                                 ArrayList arrayList = (ArrayList) zaD;
                                 sb.append("[");
                                 int size = arrayList.size();
-                                for (int i = 0; i < size; i++) {
-                                    if (i > 0) {
+                                for (int i9 = 0; i9 < size; i9++) {
+                                    if (i9 > 0) {
                                         sb.append(",");
                                     }
-                                    Object obj = arrayList.get(i);
+                                    Object obj = arrayList.get(i9);
                                     if (obj != null) {
                                         zaF(sb, field, obj);
                                     }
@@ -222,224 +281,249 @@ public abstract class FastJsonResponse {
         if (sb.length() > 0) {
             sb.append("}");
         } else {
-            sb.append("{}");
+            sb.append(com.applovin.impl.sdk.utils.JsonUtils.EMPTY_JSON);
         }
         return sb.toString();
     }
 
-    public final void zaA(Field field, String str) {
-        if (field.zak == null) {
-            setStringInternal(field, field.zae, str);
-        } else {
+    public final void zaA(@NonNull Field field, @Nullable String str) {
+        if (field.zak != null) {
             zaE(field, str);
+        } else {
+            setStringInternal(field, field.zae, str);
         }
     }
 
-    public final void zaB(Field field, Map map) {
-        if (field.zak == null) {
-            setStringMapInternal(field, field.zae, map);
-        } else {
+    public final void zaB(@NonNull Field field, @Nullable Map map) {
+        if (field.zak != null) {
             zaE(field, map);
+        } else {
+            setStringMapInternal(field, field.zae, map);
         }
     }
 
-    public final void zaC(Field field, ArrayList arrayList) {
-        if (field.zak == null) {
-            setStringsInternal(field, field.zae, arrayList);
-        } else {
+    public final void zaC(@NonNull Field field, @Nullable ArrayList arrayList) {
+        if (field.zak != null) {
             zaE(field, arrayList);
-        }
-    }
-
-    public final void zaa(Field field, BigDecimal bigDecimal) {
-        if (field.zak == null) {
-            zab(field, field.zae, bigDecimal);
         } else {
-            zaE(field, bigDecimal);
+            setStringsInternal(field, field.zae, arrayList);
         }
     }
 
-    protected void zab(Field field, String str, BigDecimal bigDecimal) {
+    public final void zaa(@NonNull Field field, @Nullable BigDecimal bigDecimal) {
+        if (field.zak != null) {
+            zaE(field, bigDecimal);
+        } else {
+            zab(field, field.zae, bigDecimal);
+        }
+    }
+
+    public void zab(@NonNull Field field, @NonNull String str, @Nullable BigDecimal bigDecimal) {
         throw new UnsupportedOperationException("BigDecimal not supported");
     }
 
-    public final void zac(Field field, ArrayList arrayList) {
-        if (field.zak == null) {
-            zad(field, field.zae, arrayList);
-        } else {
+    public final void zac(@NonNull Field field, @Nullable ArrayList arrayList) {
+        if (field.zak != null) {
             zaE(field, arrayList);
+        } else {
+            zad(field, field.zae, arrayList);
         }
     }
 
-    protected void zad(Field field, String str, ArrayList arrayList) {
+    public void zad(@NonNull Field field, @NonNull String str, @Nullable ArrayList arrayList) {
         throw new UnsupportedOperationException("BigDecimal list not supported");
     }
 
-    public final void zae(Field field, BigInteger bigInteger) {
-        if (field.zak == null) {
-            zaf(field, field.zae, bigInteger);
-        } else {
+    public final void zae(@NonNull Field field, @Nullable BigInteger bigInteger) {
+        if (field.zak != null) {
             zaE(field, bigInteger);
+        } else {
+            zaf(field, field.zae, bigInteger);
         }
     }
 
-    protected void zaf(Field field, String str, BigInteger bigInteger) {
+    public void zaf(@NonNull Field field, @NonNull String str, @Nullable BigInteger bigInteger) {
         throw new UnsupportedOperationException("BigInteger not supported");
     }
 
-    public final void zag(Field field, ArrayList arrayList) {
-        if (field.zak == null) {
-            zah(field, field.zae, arrayList);
-        } else {
+    public final void zag(@NonNull Field field, @Nullable ArrayList arrayList) {
+        if (field.zak != null) {
             zaE(field, arrayList);
+        } else {
+            zah(field, field.zae, arrayList);
         }
     }
 
-    protected void zah(Field field, String str, ArrayList arrayList) {
+    public void zah(@NonNull Field field, @NonNull String str, @Nullable ArrayList arrayList) {
         throw new UnsupportedOperationException("BigInteger list not supported");
     }
 
-    public final void zai(Field field, boolean z) {
-        if (field.zak == null) {
-            setBooleanInternal(field, field.zae, z);
+    public final void zai(@NonNull Field field, boolean z8) {
+        if (field.zak != null) {
+            zaE(field, Boolean.valueOf(z8));
         } else {
-            zaE(field, Boolean.valueOf(z));
+            setBooleanInternal(field, field.zae, z8);
         }
     }
 
-    public final void zaj(Field field, ArrayList arrayList) {
-        if (field.zak == null) {
-            zak(field, field.zae, arrayList);
-        } else {
+    public final void zaj(@NonNull Field field, @Nullable ArrayList arrayList) {
+        if (field.zak != null) {
             zaE(field, arrayList);
+        } else {
+            zak(field, field.zae, arrayList);
         }
     }
 
-    protected void zak(Field field, String str, ArrayList arrayList) {
+    public void zak(@NonNull Field field, @NonNull String str, @Nullable ArrayList arrayList) {
         throw new UnsupportedOperationException("Boolean list not supported");
     }
 
-    public final void zal(Field field, byte[] bArr) {
-        if (field.zak == null) {
-            setDecodedBytesInternal(field, field.zae, bArr);
-        } else {
+    public final void zal(@NonNull Field field, @Nullable byte[] bArr) {
+        if (field.zak != null) {
             zaE(field, bArr);
-        }
-    }
-
-    public final void zam(Field field, double d) {
-        if (field.zak == null) {
-            zan(field, field.zae, d);
         } else {
-            zaE(field, Double.valueOf(d));
+            setDecodedBytesInternal(field, field.zae, bArr);
         }
     }
 
-    protected void zan(Field field, String str, double d) {
+    public final void zam(@NonNull Field field, double d2) {
+        if (field.zak != null) {
+            zaE(field, Double.valueOf(d2));
+        } else {
+            zan(field, field.zae, d2);
+        }
+    }
+
+    public void zan(@NonNull Field field, @NonNull String str, double d2) {
         throw new UnsupportedOperationException("Double not supported");
     }
 
-    public final void zao(Field field, ArrayList arrayList) {
-        if (field.zak == null) {
-            zap(field, field.zae, arrayList);
-        } else {
+    public final void zao(@NonNull Field field, @Nullable ArrayList arrayList) {
+        if (field.zak != null) {
             zaE(field, arrayList);
+        } else {
+            zap(field, field.zae, arrayList);
         }
     }
 
-    protected void zap(Field field, String str, ArrayList arrayList) {
+    public void zap(@NonNull Field field, @NonNull String str, @Nullable ArrayList arrayList) {
         throw new UnsupportedOperationException("Double list not supported");
     }
 
-    public final void zaq(Field field, float f) {
-        if (field.zak == null) {
-            zar(field, field.zae, f);
+    public final void zaq(@NonNull Field field, float f9) {
+        if (field.zak != null) {
+            zaE(field, Float.valueOf(f9));
         } else {
-            zaE(field, Float.valueOf(f));
+            zar(field, field.zae, f9);
         }
     }
 
-    protected void zar(Field field, String str, float f) {
+    public void zar(@NonNull Field field, @NonNull String str, float f9) {
         throw new UnsupportedOperationException("Float not supported");
     }
 
-    public final void zas(Field field, ArrayList arrayList) {
-        if (field.zak == null) {
-            zat(field, field.zae, arrayList);
-        } else {
+    public final void zas(@NonNull Field field, @Nullable ArrayList arrayList) {
+        if (field.zak != null) {
             zaE(field, arrayList);
+        } else {
+            zat(field, field.zae, arrayList);
         }
     }
 
-    protected void zat(Field field, String str, ArrayList arrayList) {
+    public void zat(@NonNull Field field, @NonNull String str, @Nullable ArrayList arrayList) {
         throw new UnsupportedOperationException("Float list not supported");
     }
 
-    public final void zau(Field field, int i) {
-        if (field.zak == null) {
-            setIntegerInternal(field, field.zae, i);
+    public final void zau(@NonNull Field field, int i9) {
+        if (field.zak != null) {
+            zaE(field, Integer.valueOf(i9));
         } else {
-            zaE(field, Integer.valueOf(i));
+            setIntegerInternal(field, field.zae, i9);
         }
     }
 
-    public final void zav(Field field, ArrayList arrayList) {
-        if (field.zak == null) {
-            zaw(field, field.zae, arrayList);
-        } else {
+    public final void zav(@NonNull Field field, @Nullable ArrayList arrayList) {
+        if (field.zak != null) {
             zaE(field, arrayList);
+        } else {
+            zaw(field, field.zae, arrayList);
         }
     }
 
-    protected void zaw(Field field, String str, ArrayList arrayList) {
+    public void zaw(@NonNull Field field, @NonNull String str, @Nullable ArrayList arrayList) {
         throw new UnsupportedOperationException("Integer list not supported");
     }
 
-    public final void zax(Field field, long j) {
-        if (field.zak == null) {
-            setLongInternal(field, field.zae, j);
+    public final void zax(@NonNull Field field, long j7) {
+        if (field.zak != null) {
+            zaE(field, Long.valueOf(j7));
         } else {
-            zaE(field, Long.valueOf(j));
+            setLongInternal(field, field.zae, j7);
         }
     }
 
-    public final void zay(Field field, ArrayList arrayList) {
-        if (field.zak == null) {
-            zaz(field, field.zae, arrayList);
-        } else {
+    public final void zay(@NonNull Field field, @Nullable ArrayList arrayList) {
+        if (field.zak != null) {
             zaE(field, arrayList);
+        } else {
+            zaz(field, field.zae, arrayList);
         }
     }
 
-    protected void zaz(Field field, String str, ArrayList arrayList) {
+    public void zaz(@NonNull Field field, @NonNull String str, @Nullable ArrayList arrayList) {
         throw new UnsupportedOperationException("Long list not supported");
     }
 
-    /* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-    /* loaded from: classes12.dex */
+    @SafeParcelable.Class(creator = "FieldCreator")
+    @ShowFirstParty
+    @KeepForSdk
+    /* loaded from: classes2.dex */
     public static class Field<I, O> extends AbstractSafeParcelable {
         public static final zaj CREATOR = new zaj();
+
+        @SafeParcelable.Field(getter = "getTypeIn", id = 2)
         protected final int zaa;
+
+        @SafeParcelable.Field(getter = "isTypeInArray", id = 3)
         protected final boolean zab;
+
+        @SafeParcelable.Field(getter = "getTypeOut", id = 4)
         protected final int zac;
+
+        @SafeParcelable.Field(getter = "isTypeOutArray", id = 5)
         protected final boolean zad;
+
+        @NonNull
+        @SafeParcelable.Field(getter = "getOutputFieldName", id = 6)
         protected final String zae;
+
+        @SafeParcelable.Field(getter = "getSafeParcelableFieldId", id = 7)
         protected final int zaf;
+
+        @Nullable
         protected final Class zag;
+
+        @Nullable
+        @SafeParcelable.Field(getter = "getConcreteTypeName", id = 8)
         protected final String zah;
+
+        @SafeParcelable.VersionField(getter = "getVersionCode", id = 1)
         private final int zai;
         private zan zaj;
+
+        @Nullable
+        @SafeParcelable.Field(getter = "getWrappedConverter", id = 9, type = "com.google.android.gms.common.server.converter.ConverterWrapper")
         private final FieldConverter zak;
 
-        /* JADX INFO: Access modifiers changed from: package-private */
-        public Field(int i, int i2, boolean z, int i3, boolean z2, String str, int i4, String str2, com.google.android.gms.common.server.converter.zaa zaaVar) {
-            this.zai = i;
-            this.zaa = i2;
-            this.zab = z;
-            this.zac = i3;
-            this.zad = z2;
+        @SafeParcelable.Constructor
+        public Field(@SafeParcelable.Param(id = 1) int i9, @SafeParcelable.Param(id = 2) int i10, @SafeParcelable.Param(id = 3) boolean z8, @SafeParcelable.Param(id = 4) int i11, @SafeParcelable.Param(id = 5) boolean z9, @SafeParcelable.Param(id = 6) String str, @SafeParcelable.Param(id = 7) int i12, @Nullable @SafeParcelable.Param(id = 8) String str2, @Nullable @SafeParcelable.Param(id = 9) com.google.android.gms.common.server.converter.zaa zaaVar) {
+            this.zai = i9;
+            this.zaa = i10;
+            this.zab = z8;
+            this.zac = i11;
+            this.zad = z9;
             this.zae = str;
-            this.zaf = i4;
+            this.zaf = i12;
             if (str2 == null) {
                 this.zag = null;
                 this.zah = null;
@@ -454,60 +538,86 @@ public abstract class FastJsonResponse {
             }
         }
 
-        public static Field<byte[], byte[]> forBase64(String str, int i) {
-            return new Field<>(8, false, 8, false, str, i, null, null);
+        @NonNull
+        @KeepForSdk
+        public static Field<byte[], byte[]> forBase64(@NonNull String str, int i9) {
+            return new Field<>(8, false, 8, false, str, i9, null, null);
         }
 
-        public static Field<Boolean, Boolean> forBoolean(String str, int i) {
-            return new Field<>(6, false, 6, false, str, i, null, null);
+        @NonNull
+        @KeepForSdk
+        public static Field<Boolean, Boolean> forBoolean(@NonNull String str, int i9) {
+            return new Field<>(6, false, 6, false, str, i9, null, null);
         }
 
-        public static <T extends FastJsonResponse> Field<T, T> forConcreteType(String str, int i, Class<T> cls) {
-            return new Field<>(11, false, 11, false, str, i, cls, null);
+        @NonNull
+        @KeepForSdk
+        public static <T extends FastJsonResponse> Field<T, T> forConcreteType(@NonNull String str, int i9, @NonNull Class<T> cls) {
+            return new Field<>(11, false, 11, false, str, i9, cls, null);
         }
 
-        public static <T extends FastJsonResponse> Field<ArrayList<T>, ArrayList<T>> forConcreteTypeArray(String str, int i, Class<T> cls) {
-            return new Field<>(11, true, 11, true, str, i, cls, null);
+        @NonNull
+        @KeepForSdk
+        public static <T extends FastJsonResponse> Field<ArrayList<T>, ArrayList<T>> forConcreteTypeArray(@NonNull String str, int i9, @NonNull Class<T> cls) {
+            return new Field<>(11, true, 11, true, str, i9, cls, null);
         }
 
-        public static Field<Double, Double> forDouble(String str, int i) {
-            return new Field<>(4, false, 4, false, str, i, null, null);
+        @NonNull
+        @KeepForSdk
+        public static Field<Double, Double> forDouble(@NonNull String str, int i9) {
+            return new Field<>(4, false, 4, false, str, i9, null, null);
         }
 
-        public static Field<Float, Float> forFloat(String str, int i) {
-            return new Field<>(3, false, 3, false, str, i, null, null);
+        @NonNull
+        @KeepForSdk
+        public static Field<Float, Float> forFloat(@NonNull String str, int i9) {
+            return new Field<>(3, false, 3, false, str, i9, null, null);
         }
 
-        public static Field<Integer, Integer> forInteger(String str, int i) {
-            return new Field<>(0, false, 0, false, str, i, null, null);
+        @NonNull
+        @KeepForSdk
+        public static Field<Integer, Integer> forInteger(@NonNull String str, int i9) {
+            return new Field<>(0, false, 0, false, str, i9, null, null);
         }
 
-        public static Field<Long, Long> forLong(String str, int i) {
-            return new Field<>(2, false, 2, false, str, i, null, null);
+        @NonNull
+        @KeepForSdk
+        public static Field<Long, Long> forLong(@NonNull String str, int i9) {
+            return new Field<>(2, false, 2, false, str, i9, null, null);
         }
 
-        public static Field<String, String> forString(String str, int i) {
-            return new Field<>(7, false, 7, false, str, i, null, null);
+        @NonNull
+        @KeepForSdk
+        public static Field<String, String> forString(@NonNull String str, int i9) {
+            return new Field<>(7, false, 7, false, str, i9, null, null);
         }
 
-        public static Field<HashMap<String, String>, HashMap<String, String>> forStringMap(String str, int i) {
-            return new Field<>(10, false, 10, false, str, i, null, null);
+        @NonNull
+        @KeepForSdk
+        public static Field<HashMap<String, String>, HashMap<String, String>> forStringMap(@NonNull String str, int i9) {
+            return new Field<>(10, false, 10, false, str, i9, null, null);
         }
 
-        public static Field<ArrayList<String>, ArrayList<String>> forStrings(String str, int i) {
-            return new Field<>(7, true, 7, true, str, i, null, null);
+        @NonNull
+        @KeepForSdk
+        public static Field<ArrayList<String>, ArrayList<String>> forStrings(@NonNull String str, int i9) {
+            return new Field<>(7, true, 7, true, str, i9, null, null);
         }
 
-        public static Field withConverter(String str, int i, FieldConverter<?, ?> fieldConverter, boolean z) {
+        @NonNull
+        @KeepForSdk
+        public static Field withConverter(@NonNull String str, int i9, @NonNull FieldConverter<?, ?> fieldConverter, boolean z8) {
             fieldConverter.zaa();
             fieldConverter.zab();
-            return new Field(7, z, 0, false, str, i, null, fieldConverter);
+            return new Field(7, z8, 0, false, str, i9, null, fieldConverter);
         }
 
+        @KeepForSdk
         public int getSafeParcelableFieldId() {
             return this.zaf;
         }
 
+        @NonNull
         public final String toString() {
             Objects.ToStringHelper add = Objects.toStringHelper(this).add("versionCode", Integer.valueOf(this.zai)).add("typeIn", Integer.valueOf(this.zaa)).add("typeInArray", Boolean.valueOf(this.zab)).add("typeOut", Integer.valueOf(this.zac)).add("typeOutArray", Boolean.valueOf(this.zad)).add("outputFieldName", this.zae).add("safeParcelFieldId", Integer.valueOf(this.zaf)).add("concreteTypeName", zag());
             Class cls = this.zag;
@@ -522,10 +632,10 @@ public abstract class FastJsonResponse {
         }
 
         @Override // android.os.Parcelable
-        public final void writeToParcel(Parcel parcel, int i) {
-            int i2 = this.zai;
+        public final void writeToParcel(@NonNull Parcel parcel, int i9) {
+            int i10 = this.zai;
             int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
-            SafeParcelWriter.writeInt(parcel, 1, i2);
+            SafeParcelWriter.writeInt(parcel, 1, i10);
             SafeParcelWriter.writeInt(parcel, 2, this.zaa);
             SafeParcelWriter.writeBoolean(parcel, 3, this.zab);
             SafeParcelWriter.writeInt(parcel, 4, this.zac);
@@ -533,11 +643,12 @@ public abstract class FastJsonResponse {
             SafeParcelWriter.writeString(parcel, 6, this.zae, false);
             SafeParcelWriter.writeInt(parcel, 7, getSafeParcelableFieldId());
             SafeParcelWriter.writeString(parcel, 8, zag(), false);
-            SafeParcelWriter.writeParcelable(parcel, 9, zaa(), i, false);
+            SafeParcelWriter.writeParcelable(parcel, 9, zaa(), i9, false);
             SafeParcelWriter.finishObjectHeader(parcel, beginObjectHeader);
         }
 
-        final com.google.android.gms.common.server.converter.zaa zaa() {
+        @Nullable
+        public final com.google.android.gms.common.server.converter.zaa zaa() {
             FieldConverter fieldConverter = this.zak;
             if (fieldConverter == null) {
                 return null;
@@ -545,10 +656,12 @@ public abstract class FastJsonResponse {
             return com.google.android.gms.common.server.converter.zaa.zaa(fieldConverter);
         }
 
+        @NonNull
         public final Field zab() {
             return new Field(this.zai, this.zaa, this.zab, this.zac, this.zad, this.zae, this.zaf, this.zah, zaa());
         }
 
+        @NonNull
         public final FastJsonResponse zad() throws InstantiationException, IllegalAccessException {
             Preconditions.checkNotNull(this.zag);
             Class cls = this.zag;
@@ -560,17 +673,20 @@ public abstract class FastJsonResponse {
             return (FastJsonResponse) cls.newInstance();
         }
 
-        public final Object zae(Object obj) {
+        @NonNull
+        public final Object zae(@Nullable Object obj) {
             Preconditions.checkNotNull(this.zak);
             return Preconditions.checkNotNull(this.zak.zac(obj));
         }
 
-        public final Object zaf(Object obj) {
+        @NonNull
+        public final Object zaf(@NonNull Object obj) {
             Preconditions.checkNotNull(this.zak);
             return this.zak.zad(obj);
         }
 
-        final String zag() {
+        @Nullable
+        public final String zag() {
             String str = this.zah;
             if (str == null) {
                 return null;
@@ -578,6 +694,7 @@ public abstract class FastJsonResponse {
             return str;
         }
 
+        @NonNull
         public final Map zah() {
             Preconditions.checkNotNull(this.zah);
             Preconditions.checkNotNull(this.zaj);
@@ -592,14 +709,14 @@ public abstract class FastJsonResponse {
             return this.zak != null;
         }
 
-        protected Field(int i, boolean z, int i2, boolean z2, String str, int i3, Class cls, FieldConverter fieldConverter) {
+        public Field(int i9, boolean z8, int i10, boolean z9, @NonNull String str, int i11, @Nullable Class cls, @Nullable FieldConverter fieldConverter) {
             this.zai = 1;
-            this.zaa = i;
-            this.zab = z;
-            this.zac = i2;
-            this.zad = z2;
+            this.zaa = i9;
+            this.zab = z8;
+            this.zac = i10;
+            this.zad = z9;
             this.zae = str;
-            this.zaf = i3;
+            this.zaf = i11;
             this.zag = cls;
             if (cls == null) {
                 this.zah = null;
@@ -608,33 +725,5 @@ public abstract class FastJsonResponse {
             }
             this.zak = fieldConverter;
         }
-    }
-
-    /* JADX INFO: Access modifiers changed from: protected */
-    public Object getFieldValue(Field field) {
-        String str = field.zae;
-        if (field.zag == null) {
-            return getValueObject(str);
-        }
-        Preconditions.checkState(getValueObject(str) == null, "Concrete field shouldn't be value object: %s", field.zae);
-        boolean z = field.zad;
-        try {
-            return getClass().getMethod(LogEvents.exportemptyalert_close_click_type_get + Character.toUpperCase(str.charAt(0)) + str.substring(1), new Class[0]).invoke(this, new Object[0]);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    /* JADX INFO: Access modifiers changed from: protected */
-    public boolean isFieldSet(Field field) {
-        if (field.zac != 11) {
-            return isPrimitiveFieldSet(field.zae);
-        }
-        boolean z = field.zad;
-        String str = field.zae;
-        if (z) {
-            throw new UnsupportedOperationException("Concrete type arrays not supported");
-        }
-        throw new UnsupportedOperationException("Concrete types not supported");
     }
 }

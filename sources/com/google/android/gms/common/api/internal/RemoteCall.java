@@ -1,9 +1,12 @@
 package com.google.android.gms.common.api.internal;
 
 import android.os.RemoteException;
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public interface RemoteCall<T, U> {
-    void accept(T t, U u) throws RemoteException;
+    @KeepForSdk
+    void accept(@NonNull T t9, @NonNull U u8) throws RemoteException;
 }

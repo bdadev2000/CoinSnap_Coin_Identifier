@@ -3,37 +3,49 @@ package com.google.android.gms.common.server.converter;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.SparseArray;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import com.google.android.gms.common.server.response.FastJsonResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+@SafeParcelable.Class(creator = "StringToIntConverterCreator")
+/* loaded from: classes2.dex */
 public final class StringToIntConverter extends AbstractSafeParcelable implements FastJsonResponse.FieldConverter<String, Integer> {
+
+    @NonNull
     public static final Parcelable.Creator<StringToIntConverter> CREATOR = new zad();
+
+    @SafeParcelable.VersionField(id = 1)
     final int zaa;
     private final HashMap zab;
     private final SparseArray zac;
 
+    @KeepForSdk
     public StringToIntConverter() {
         this.zaa = 1;
         this.zab = new HashMap();
         this.zac = new SparseArray();
     }
 
-    public StringToIntConverter add(String str, int i) {
-        this.zab.put(str, Integer.valueOf(i));
-        this.zac.put(i, str);
+    @NonNull
+    @KeepForSdk
+    public StringToIntConverter add(@NonNull String str, int i9) {
+        this.zab.put(str, Integer.valueOf(i9));
+        this.zac.put(i9, str);
         return this;
     }
 
     @Override // android.os.Parcelable
-    public final void writeToParcel(Parcel parcel, int i) {
-        int i2 = this.zaa;
+    public final void writeToParcel(@NonNull Parcel parcel, int i9) {
+        int i10 = this.zaa;
         int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
-        SafeParcelWriter.writeInt(parcel, 1, i2);
+        SafeParcelWriter.writeInt(parcel, 1, i10);
         ArrayList arrayList = new ArrayList();
         for (String str : this.zab.keySet()) {
             arrayList.add(new zac(str, ((Integer) this.zab.get(str)).intValue()));
@@ -53,25 +65,33 @@ public final class StringToIntConverter extends AbstractSafeParcelable implement
     }
 
     @Override // com.google.android.gms.common.server.response.FastJsonResponse.FieldConverter
-    public final /* bridge */ /* synthetic */ Object zac(Object obj) {
+    @Nullable
+    public final /* bridge */ /* synthetic */ Object zac(@NonNull Object obj) {
         Integer num = (Integer) this.zab.get((String) obj);
-        return num == null ? (Integer) this.zab.get("gms_unknown") : num;
+        if (num == null) {
+            return (Integer) this.zab.get("gms_unknown");
+        }
+        return num;
     }
 
     @Override // com.google.android.gms.common.server.response.FastJsonResponse.FieldConverter
-    public final /* bridge */ /* synthetic */ Object zad(Object obj) {
+    @NonNull
+    public final /* bridge */ /* synthetic */ Object zad(@NonNull Object obj) {
         String str = (String) this.zac.get(((Integer) obj).intValue());
-        return (str == null && this.zab.containsKey("gms_unknown")) ? "gms_unknown" : str;
+        if (str == null && this.zab.containsKey("gms_unknown")) {
+            return "gms_unknown";
+        }
+        return str;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public StringToIntConverter(int i, ArrayList arrayList) {
-        this.zaa = i;
+    @SafeParcelable.Constructor
+    public StringToIntConverter(@SafeParcelable.Param(id = 1) int i9, @SafeParcelable.Param(id = 2) ArrayList arrayList) {
+        this.zaa = i9;
         this.zab = new HashMap();
         this.zac = new SparseArray();
         int size = arrayList.size();
-        for (int i2 = 0; i2 < size; i2++) {
-            zac zacVar = (zac) arrayList.get(i2);
+        for (int i10 = 0; i10 < size; i10++) {
+            zac zacVar = (zac) arrayList.get(i10);
             add(zacVar.zab, zacVar.zac);
         }
     }

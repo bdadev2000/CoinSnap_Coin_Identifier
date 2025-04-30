@@ -1,27 +1,28 @@
 package com.google.android.gms.internal.measurement;
 
-import com.google.common.base.Supplier;
-import com.google.common.base.Suppliers;
-import org.checkerframework.dataflow.qual.SideEffectFree;
+/* loaded from: classes2.dex */
+public final class zzpo implements zzpl {
+    private static final zzgz<Boolean> zza;
+    private static final zzgz<Boolean> zzb;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzpo implements Supplier<zzpr> {
-    private static zzpo zza = new zzpo();
-    private final Supplier<zzpr> zzb = Suppliers.ofInstance(new zzpq());
-
-    @Override // com.google.common.base.Supplier
-    public final /* synthetic */ zzpr get() {
-        return this.zzb.get();
+    static {
+        zzhh zza2 = new zzhh(zzgw.zza("com.google.android.gms.measurement")).zzb().zza();
+        zza2.zza("measurement.client.sessions.background_sessions_enabled", true);
+        zza = zza2.zza("measurement.client.sessions.enable_fix_background_engagement", false);
+        zza2.zza("measurement.client.sessions.immediate_start_enabled_foreground", true);
+        zzb = zza2.zza("measurement.client.sessions.enable_pause_engagement_in_background", true);
+        zza2.zza("measurement.client.sessions.remove_expired_session_properties_enabled", true);
+        zza2.zza("measurement.client.sessions.session_id_enabled", true);
+        zza2.zza("measurement.id.client.sessions.enable_fix_background_engagement", 0L);
     }
 
-    @SideEffectFree
-    public static boolean zza() {
-        return ((zzpr) zza.get()).zza();
+    @Override // com.google.android.gms.internal.measurement.zzpl
+    public final boolean zza() {
+        return zza.zza().booleanValue();
     }
 
-    @SideEffectFree
-    public static boolean zzb() {
-        return ((zzpr) zza.get()).zzb();
+    @Override // com.google.android.gms.internal.measurement.zzpl
+    public final boolean zzb() {
+        return zzb.zza().booleanValue();
     }
 }

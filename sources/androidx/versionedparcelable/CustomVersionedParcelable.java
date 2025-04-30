@@ -1,10 +1,7 @@
 package androidx.versionedparcelable;
 
-/* loaded from: classes7.dex */
-public abstract class CustomVersionedParcelable implements VersionedParcelable {
-    public void onPostParceling() {
-    }
+import O0.c;
 
-    public void onPreParceling(boolean z) {
-    }
+/* loaded from: classes.dex */
+public abstract class CustomVersionedParcelable implements c {
 }

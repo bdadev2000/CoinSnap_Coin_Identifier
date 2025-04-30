@@ -1,29 +1,19 @@
 package com.google.android.gms.internal.measurement;
 
-import android.app.Activity;
-import android.os.RemoteException;
-import com.google.android.gms.common.internal.Preconditions;
-import com.google.android.gms.dynamic.ObjectWrapper;
-import com.google.android.gms.internal.measurement.zzdy;
+import com.google.android.gms.internal.measurement.zzfi;
 
-/* compiled from: com.google.android.gms:play-services-measurement-sdk-api@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzfl extends zzdy.zza {
-    private final /* synthetic */ Activity zzc;
-    private final /* synthetic */ zzdy.zzd zzd;
+/* loaded from: classes2.dex */
+final class zzfl implements zzjo {
+    static final zzjo zza = new zzfl();
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public zzfl(zzdy.zzd zzdVar, Activity activity) {
-        super(zzdy.this);
-        this.zzc = activity;
-        this.zzd = zzdVar;
+    private zzfl() {
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzdy.zza
-    final void zza() throws RemoteException {
-        zzdj zzdjVar;
-        zzdjVar = zzdy.this.zzj;
-        ((zzdj) Preconditions.checkNotNull(zzdjVar)).onActivityDestroyed(ObjectWrapper.wrap(this.zzc), this.zzb);
+    @Override // com.google.android.gms.internal.measurement.zzjo
+    public final boolean zza(int i9) {
+        if (zzfi.zza.zzd.zza(i9) != null) {
+            return true;
+        }
+        return false;
     }
 }

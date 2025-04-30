@@ -1,7 +1,6 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 interface zzlk {
-    Object zza(Object obj);
+    <T> zzll<T> zza(Class<T> cls);
 }

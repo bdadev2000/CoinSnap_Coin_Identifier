@@ -3,55 +3,52 @@ package com.google.android.gms.common.config;
 import android.os.Binder;
 import android.os.StrictMode;
 import android.util.Log;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.errorprone.annotations.ResultIgnorabilityUnspecified;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public abstract class GservicesValue<T> {
     private static final Object zzc = new Object();
+
+    @NonNull
     protected final String zza;
+
+    @NonNull
     protected final Object zzb;
+
+    @Nullable
     private Object zzd = null;
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public GservicesValue(String str, Object obj) {
+    public GservicesValue(@NonNull String str, @NonNull Object obj) {
         this.zza = str;
         this.zzb = obj;
     }
 
     @ResultIgnorabilityUnspecified
+    @KeepForSdk
     public static boolean isInitialized() {
         synchronized (zzc) {
         }
         return false;
     }
 
-    public static GservicesValue<Float> value(String str, Float f) {
-        return new zzd(str, f);
+    @NonNull
+    @KeepForSdk
+    public static GservicesValue<Float> value(@NonNull String str, @NonNull Float f9) {
+        return new zzd(str, f9);
     }
 
-    public static GservicesValue<Integer> value(String str, Integer num) {
-        return new zzc(str, num);
-    }
-
-    public static GservicesValue<Long> value(String str, Long l) {
-        return new zzb(str, l);
-    }
-
-    public static GservicesValue<String> value(String str, String str2) {
-        return new zze(str, str2);
-    }
-
-    public static GservicesValue<Boolean> value(String str, boolean z) {
-        return new zza(str, Boolean.valueOf(z));
-    }
-
+    @NonNull
     @ResultIgnorabilityUnspecified
+    @KeepForSdk
     public final T get() {
-        T t;
-        T t2 = (T) this.zzd;
-        if (t2 != null) {
-            return t2;
+        T t9;
+        T t10 = (T) this.zzd;
+        if (t10 != null) {
+            return t10;
         }
         StrictMode.ThreadPolicy allowThreadDiskReads = StrictMode.allowThreadDiskReads();
         Object obj = zzc;
@@ -64,26 +61,29 @@ public abstract class GservicesValue<T> {
             }
         }
         try {
-            t = (T) zza(this.zza);
+            t9 = (T) zza(this.zza);
         } catch (SecurityException unused) {
             long clearCallingIdentity = Binder.clearCallingIdentity();
             try {
-                t = (T) zza(this.zza);
+                t9 = (T) zza(this.zza);
             } finally {
                 Binder.restoreCallingIdentity(clearCallingIdentity);
             }
         }
-        return t;
+        return t9;
     }
 
+    @NonNull
+    @KeepForSdk
     @Deprecated
     public final T getBinderSafe() {
         return get();
     }
 
-    public void override(T t) {
+    @KeepForSdk
+    public void override(@NonNull T t9) {
         Log.w("GservicesValue", "GservicesValue.override(): test should probably call initForTests() first");
-        this.zzd = t;
+        this.zzd = t9;
         Object obj = zzc;
         synchronized (obj) {
             synchronized (obj) {
@@ -91,9 +91,35 @@ public abstract class GservicesValue<T> {
         }
     }
 
+    @KeepForSdk
     public void resetOverride() {
         this.zzd = null;
     }
 
-    protected abstract Object zza(String str);
+    @NonNull
+    public abstract Object zza(@NonNull String str);
+
+    @NonNull
+    @KeepForSdk
+    public static GservicesValue<Integer> value(@NonNull String str, @NonNull Integer num) {
+        return new zzc(str, num);
+    }
+
+    @NonNull
+    @KeepForSdk
+    public static GservicesValue<Long> value(@NonNull String str, @NonNull Long l) {
+        return new zzb(str, l);
+    }
+
+    @NonNull
+    @KeepForSdk
+    public static GservicesValue<String> value(@NonNull String str, @NonNull String str2) {
+        return new zze(str, str2);
+    }
+
+    @NonNull
+    @KeepForSdk
+    public static GservicesValue<Boolean> value(@NonNull String str, boolean z8) {
+        return new zza(str, Boolean.valueOf(z8));
+    }
 }

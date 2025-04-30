@@ -1,24 +1,56 @@
 package com.google.android.gms.measurement.internal;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzit implements Runnable {
-    private final /* synthetic */ zzo zza;
-    private final /* synthetic */ zzic zzb;
+import android.content.Context;
+import android.os.Bundle;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.internal.Preconditions;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzit(zzic zzicVar, zzo zzoVar) {
-        this.zza = zzoVar;
-        this.zzb = zzicVar;
-    }
+/* loaded from: classes2.dex */
+public final class zzit {
+    final Context zza;
 
-    @Override // java.lang.Runnable
-    public final void run() {
-        zznv zznvVar;
-        zznv zznvVar2;
-        zznvVar = this.zzb.zza;
-        zznvVar.zzr();
-        zznvVar2 = this.zzb.zza;
-        zznvVar2.zze(this.zza);
+    @Nullable
+    String zzb;
+
+    @Nullable
+    String zzc;
+
+    @Nullable
+    String zzd;
+
+    @Nullable
+    Boolean zze;
+    long zzf;
+
+    @Nullable
+    com.google.android.gms.internal.measurement.zzdo zzg;
+    boolean zzh;
+
+    @Nullable
+    Long zzi;
+
+    @Nullable
+    String zzj;
+
+    public zzit(Context context, @Nullable com.google.android.gms.internal.measurement.zzdo zzdoVar, @Nullable Long l) {
+        this.zzh = true;
+        Preconditions.checkNotNull(context);
+        Context applicationContext = context.getApplicationContext();
+        Preconditions.checkNotNull(applicationContext);
+        this.zza = applicationContext;
+        this.zzi = l;
+        if (zzdoVar != null) {
+            this.zzg = zzdoVar;
+            this.zzb = zzdoVar.zzf;
+            this.zzc = zzdoVar.zze;
+            this.zzd = zzdoVar.zzd;
+            this.zzh = zzdoVar.zzc;
+            this.zzf = zzdoVar.zzb;
+            this.zzj = zzdoVar.zzh;
+            Bundle bundle = zzdoVar.zzg;
+            if (bundle != null) {
+                this.zze = Boolean.valueOf(bundle.getBoolean("dataCollectionDefaultEnabled", true));
+            }
+        }
     }
 }

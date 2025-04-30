@@ -1,25 +1,26 @@
 package com.google.android.gms.measurement.internal;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzkr implements zzor {
-    private final /* synthetic */ zzjq zza;
+/* loaded from: classes2.dex */
+public final class zzkr implements Runnable {
+    private final /* synthetic */ Bundle zza;
+    private final /* synthetic */ zzkp zzb;
+    private final /* synthetic */ zzkp zzc;
+    private final /* synthetic */ long zzd;
+    private final /* synthetic */ zzks zze;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzkr(zzjq zzjqVar) {
-        this.zza = zzjqVar;
+    public zzkr(zzks zzksVar, Bundle bundle, zzkp zzkpVar, zzkp zzkpVar2, long j7) {
+        this.zza = bundle;
+        this.zzb = zzkpVar;
+        this.zzc = zzkpVar2;
+        this.zzd = j7;
+        this.zze = zzksVar;
     }
 
-    @Override // com.google.android.gms.measurement.internal.zzor
-    public final void zza(String str, String str2, Bundle bundle) {
-        if (!TextUtils.isEmpty(str)) {
-            this.zza.zza("auto", str2, bundle, str);
-        } else {
-            this.zza.zzb("auto", str2, bundle);
-        }
+    @Override // java.lang.Runnable
+    public final void run() {
+        zzks.zza(this.zze, this.zza, this.zzb, this.zzc, this.zzd);
     }
 }

@@ -4,26 +4,31 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzar extends zzal implements zzak {
     private final List<String> zzk;
     private final List<zzaq> zzl;
     private zzh zzm;
 
-    @Override // com.google.android.gms.internal.measurement.zzal, com.google.android.gms.internal.measurement.zzaq
-    public final zzaq zzc() {
-        return new zzar(this);
+    private zzar(zzar zzarVar) {
+        super(zzarVar.zza);
+        ArrayList arrayList = new ArrayList(zzarVar.zzk.size());
+        this.zzk = arrayList;
+        arrayList.addAll(zzarVar.zzk);
+        ArrayList arrayList2 = new ArrayList(zzarVar.zzl.size());
+        this.zzl = arrayList2;
+        arrayList2.addAll(zzarVar.zzl);
+        this.zzm = zzarVar.zzm;
     }
 
     @Override // com.google.android.gms.internal.measurement.zzal
     public final zzaq zza(zzh zzhVar, List<zzaq> list) {
         zzh zza = this.zzm.zza();
-        for (int i = 0; i < this.zzk.size(); i++) {
-            if (i < list.size()) {
-                zza.zza(this.zzk.get(i), zzhVar.zza(list.get(i)));
+        for (int i9 = 0; i9 < this.zzk.size(); i9++) {
+            if (i9 < list.size()) {
+                zza.zza(this.zzk.get(i9), zzhVar.zza(list.get(i9)));
             } else {
-                zza.zza(this.zzk.get(i), zzc);
+                zza.zza(this.zzk.get(i9), zzaq.zzc);
             }
         }
         for (zzaq zzaqVar : this.zzl) {
@@ -38,15 +43,9 @@ public final class zzar extends zzal implements zzak {
         return zzaq.zzc;
     }
 
-    private zzar(zzar zzarVar) {
-        super(zzarVar.zza);
-        ArrayList arrayList = new ArrayList(zzarVar.zzk.size());
-        this.zzk = arrayList;
-        arrayList.addAll(zzarVar.zzk);
-        ArrayList arrayList2 = new ArrayList(zzarVar.zzl.size());
-        this.zzl = arrayList2;
-        arrayList2.addAll(zzarVar.zzl);
-        this.zzm = zzarVar.zzm;
+    @Override // com.google.android.gms.internal.measurement.zzal, com.google.android.gms.internal.measurement.zzaq
+    public final zzaq zzc() {
+        return new zzar(this);
     }
 
     public zzar(String str, List<zzaq> list, List<zzaq> list2, zzh zzhVar) {

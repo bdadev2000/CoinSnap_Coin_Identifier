@@ -1,34 +1,50 @@
 package com.google.android.gms.measurement.internal;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
+import android.os.Bundle;
+import com.google.android.gms.common.wrappers.PackageManagerWrapper;
+import com.google.android.gms.common.wrappers.Wrappers;
+import com.mbridge.msdk.foundation.entity.CampaignEx;
+
+/* loaded from: classes2.dex */
 public final class zzgq {
-    private final int zza;
-    private final boolean zzb;
-    private final boolean zzc;
-    private final /* synthetic */ zzgo zzd;
+    final zzhj zza;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzgq(zzgo zzgoVar, int i, boolean z, boolean z2) {
-        this.zzd = zzgoVar;
-        this.zza = i;
-        this.zzb = z;
-        this.zzc = z2;
+    public zzgq(zznc zzncVar) {
+        this.zza = zzncVar.zzk();
     }
 
-    public final void zza(String str) {
-        this.zzd.zza(this.zza, this.zzb, this.zzc, str, null, null, null);
+    public final Bundle zza(String str, com.google.android.gms.internal.measurement.zzbz zzbzVar) {
+        this.zza.zzl().zzt();
+        if (zzbzVar == null) {
+            this.zza.zzj().zzu().zza("Attempting to use Install Referrer Service while it is not initialized");
+            return null;
+        }
+        Bundle bundle = new Bundle();
+        bundle.putString(CampaignEx.JSON_KEY_PACKAGE_NAME, str);
+        try {
+            Bundle zza = zzbzVar.zza(bundle);
+            if (zza != null) {
+                return zza;
+            }
+            this.zza.zzj().zzg().zza("Install Referrer Service returned a null response");
+            return null;
+        } catch (Exception e4) {
+            this.zza.zzj().zzg().zza("Exception occurred while retrieving the Install Referrer", e4.getMessage());
+            return null;
+        }
     }
 
-    public final void zza(String str, Object obj) {
-        this.zzd.zza(this.zza, this.zzb, this.zzc, str, obj, null, null);
-    }
-
-    public final void zza(String str, Object obj, Object obj2) {
-        this.zzd.zza(this.zza, this.zzb, this.zzc, str, obj, obj2, null);
-    }
-
-    public final void zza(String str, Object obj, Object obj2, Object obj3) {
-        this.zzd.zza(this.zza, this.zzb, this.zzc, str, obj, obj2, obj3);
+    public final boolean zza() {
+        try {
+            PackageManagerWrapper packageManager = Wrappers.packageManager(this.zza.zza());
+            if (packageManager != null) {
+                return packageManager.getPackageInfo("com.android.vending", 128).versionCode >= 80837300;
+            }
+            this.zza.zzj().zzp().zza("Failed to get PackageManager for Install Referrer Play Store compatibility check");
+            return false;
+        } catch (Exception e4) {
+            this.zza.zzj().zzp().zza("Failed to retrieve Play Store version for Install Referrer", e4);
+            return false;
+        }
     }
 }

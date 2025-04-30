@@ -4,12 +4,16 @@ import android.accounts.Account;
 import android.os.Binder;
 import android.os.RemoteException;
 import android.util.Log;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.IAccountAccessor;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class AccountAccessor extends IAccountAccessor.Stub {
-    public static Account getAccountBinderSafe(IAccountAccessor iAccountAccessor) {
+    @Nullable
+    @KeepForSdk
+    public static Account getAccountBinderSafe(@NonNull IAccountAccessor iAccountAccessor) {
         Account account = null;
         if (iAccountAccessor != null) {
             long clearCallingIdentity = Binder.clearCallingIdentity();
@@ -26,11 +30,12 @@ public class AccountAccessor extends IAccountAccessor.Stub {
         return account;
     }
 
-    public final boolean equals(Object obj) {
+    public final boolean equals(@Nullable Object obj) {
         throw null;
     }
 
     @Override // com.google.android.gms.common.internal.IAccountAccessor
+    @NonNull
     public final Account zzb() {
         throw null;
     }

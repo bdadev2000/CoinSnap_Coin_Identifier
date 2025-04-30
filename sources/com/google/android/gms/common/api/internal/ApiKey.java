@@ -1,29 +1,38 @@
 package com.google.android.gms.common.api.internal;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.api.Api.ApiOptions;
 import com.google.android.gms.common.internal.Objects;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public final class ApiKey<O extends Api.ApiOptions> {
     private final int zaa;
     private final Api zab;
+
+    @Nullable
     private final Api.ApiOptions zac;
+
+    @Nullable
     private final String zad;
 
-    private ApiKey(Api api, Api.ApiOptions apiOptions, String str) {
+    private ApiKey(Api api, @Nullable Api.ApiOptions apiOptions, @Nullable String str) {
         this.zab = api;
         this.zac = apiOptions;
         this.zad = str;
         this.zaa = Objects.hashCode(api, apiOptions, str);
     }
 
-    public static <O extends Api.ApiOptions> ApiKey<O> getSharedApiKey(Api<O> api, O o, String str) {
-        return new ApiKey<>(api, o, str);
+    @NonNull
+    @KeepForSdk
+    public static <O extends Api.ApiOptions> ApiKey<O> getSharedApiKey(@NonNull Api<O> api, @Nullable O o3, @Nullable String str) {
+        return new ApiKey<>(api, o3, str);
     }
 
-    public final boolean equals(Object obj) {
+    public final boolean equals(@Nullable Object obj) {
         if (obj == null) {
             return false;
         }
@@ -34,13 +43,17 @@ public final class ApiKey<O extends Api.ApiOptions> {
             return false;
         }
         ApiKey apiKey = (ApiKey) obj;
-        return Objects.equal(this.zab, apiKey.zab) && Objects.equal(this.zac, apiKey.zac) && Objects.equal(this.zad, apiKey.zad);
+        if (!Objects.equal(this.zab, apiKey.zab) || !Objects.equal(this.zac, apiKey.zac) || !Objects.equal(this.zad, apiKey.zad)) {
+            return false;
+        }
+        return true;
     }
 
     public final int hashCode() {
         return this.zaa;
     }
 
+    @NonNull
     public final String zaa() {
         return this.zab.zad();
     }

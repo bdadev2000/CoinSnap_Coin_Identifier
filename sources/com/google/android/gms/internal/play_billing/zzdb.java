@@ -1,29 +1,8 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final class zzdb {
-    private static final zzda zza;
-    private static final zzda zzb;
-
-    static {
-        zzda zzdaVar;
-        try {
-            zzdaVar = (zzda) Class.forName("com.google.protobuf.MapFieldSchemaFull").getDeclaredConstructor(new Class[0]).newInstance(new Object[0]);
-        } catch (Exception unused) {
-            zzdaVar = null;
-        }
-        zza = zzdaVar;
-        zzb = new zzda();
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzda zza() {
-        return zza;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzda zzb() {
-        return zzb;
+/* loaded from: classes2.dex */
+public final class zzdb extends zzdc {
+    public zzdb(String str) {
+        super("Protocol message tag had invalid wire type.");
     }
 }

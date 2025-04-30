@@ -3,12 +3,10 @@ package com.google.android.gms.ads.identifier;
 import android.net.Uri;
 import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-ads-identifier@@17.1.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zza extends Thread {
     final /* synthetic */ Map zza;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zza(AdvertisingIdClient advertisingIdClient, Map map) {
         this.zza = map;
     }

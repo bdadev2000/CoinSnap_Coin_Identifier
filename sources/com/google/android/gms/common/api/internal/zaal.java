@@ -1,6 +1,7 @@
 package com.google.android.gms.common.api.internal;
 
 import android.os.Looper;
+import androidx.annotation.NonNull;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.internal.BaseGmsClient;
@@ -8,22 +9,22 @@ import com.google.android.gms.common.internal.Preconditions;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.locks.Lock;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zaal implements BaseGmsClient.ConnectionProgressReportCallbacks {
     private final WeakReference zaa;
     private final Api zab;
     private final boolean zac;
 
-    public zaal(zaaw zaawVar, Api api, boolean z) {
+    public zaal(zaaw zaawVar, Api api, boolean z8) {
         this.zaa = new WeakReference(zaawVar);
         this.zab = api;
-        this.zac = z;
+        this.zac = z8;
     }
 
     @Override // com.google.android.gms.common.internal.BaseGmsClient.ConnectionProgressReportCallbacks
-    public final void onReportServiceBinding(ConnectionResult connectionResult) {
+    public final void onReportServiceBinding(@NonNull ConnectionResult connectionResult) {
         zabi zabiVar;
+        boolean z8;
         Lock lock;
         Lock lock2;
         boolean zaG;
@@ -34,7 +35,12 @@ final class zaal implements BaseGmsClient.ConnectionProgressReportCallbacks {
         }
         Looper myLooper = Looper.myLooper();
         zabiVar = zaawVar.zaa;
-        Preconditions.checkState(myLooper == zabiVar.zag.getLooper(), "onReportServiceBinding must be called on the GoogleApiClient handler thread");
+        if (myLooper == zabiVar.zag.getLooper()) {
+            z8 = true;
+        } else {
+            z8 = false;
+        }
+        Preconditions.checkState(z8, "onReportServiceBinding must be called on the GoogleApiClient handler thread");
         lock = zaawVar.zab;
         lock.lock();
         try {

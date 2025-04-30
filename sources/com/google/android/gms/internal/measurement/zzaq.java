@@ -3,8 +3,7 @@ package com.google.android.gms.internal.measurement;
 import java.util.Iterator;
 import java.util.List;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public interface zzaq {
     public static final zzaq zzc = new zzax();
     public static final zzaq zzd = new zzao();

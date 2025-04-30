@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zza extends com.google.android.gms.internal.common.zza implements IFragmentWrapper {
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zza(IBinder iBinder) {
         super(iBinder, "com.google.android.gms.dynamic.IFragmentWrapper");
     }
@@ -69,22 +67,22 @@ public final class zza extends com.google.android.gms.internal.common.zza implem
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
-    public final void zzl(boolean z) throws RemoteException {
+    public final void zzl(boolean z8) throws RemoteException {
         throw null;
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
-    public final void zzm(boolean z) throws RemoteException {
+    public final void zzm(boolean z8) throws RemoteException {
         throw null;
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
-    public final void zzn(boolean z) throws RemoteException {
+    public final void zzn(boolean z8) throws RemoteException {
         throw null;
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
-    public final void zzo(boolean z) throws RemoteException {
+    public final void zzo(boolean z8) throws RemoteException {
         throw null;
     }
 
@@ -94,7 +92,7 @@ public final class zza extends com.google.android.gms.internal.common.zza implem
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
-    public final void zzq(Intent intent, int i) throws RemoteException {
+    public final void zzq(Intent intent, int i9) throws RemoteException {
         throw null;
     }
 

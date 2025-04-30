@@ -1,6 +1,6 @@
 package com.adjust.sdk;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class SdkClickResponseData extends ResponseData {
     public long clickTime;
     public long clickTimeServer;

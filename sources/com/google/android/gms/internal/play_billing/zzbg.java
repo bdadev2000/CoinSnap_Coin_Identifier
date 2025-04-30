@@ -1,21 +1,30 @@
 package com.google.android.gms.internal.play_billing;
 
-import java.io.IOException;
+import java.util.NoSuchElementException;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public final class zzbg extends IOException {
-    zzbg() {
-        super("CodedOutputStream was writing to a flat byte array and ran out of space.");
+/* loaded from: classes2.dex */
+final class zzbg extends zzbi {
+    final /* synthetic */ zzbq zza;
+    private int zzb = 0;
+    private final int zzc;
+
+    public zzbg(zzbq zzbqVar) {
+        this.zza = zzbqVar;
+        this.zzc = zzbqVar.zzd();
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzbg(String str, Throwable th) {
-        super("CodedOutputStream was writing to a flat byte array and ran out of space.: ".concat(String.valueOf(str)), th);
+    @Override // java.util.Iterator
+    public final boolean hasNext() {
+        return this.zzb < this.zzc;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzbg(Throwable th) {
-        super("CodedOutputStream was writing to a flat byte array and ran out of space.", th);
+    @Override // com.google.android.gms.internal.play_billing.zzbk
+    public final byte zza() {
+        int i9 = this.zzb;
+        if (i9 < this.zzc) {
+            this.zzb = i9 + 1;
+            return this.zza.zzb(i9);
+        }
+        throw new NoSuchElementException();
     }
 }

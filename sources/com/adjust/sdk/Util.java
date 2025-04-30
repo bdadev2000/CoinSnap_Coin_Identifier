@@ -12,7 +12,6 @@ import android.os.LocaleList;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import androidx.autofill.HintConstants;
 import com.adjust.sdk.GooglePlayServicesClient;
 import com.adjust.sdk.scheduler.AsyncTaskExecutor;
 import com.adjust.sdk.scheduler.SingleThreadFutureScheduler;
@@ -27,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.Callable;
@@ -34,8 +34,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.regex.Pattern;
+import x0.AbstractC2914a;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class Util {
     private static final String fieldReadErrorMessage = "Unable to read '%s' field in migration device with message (%s)";
     public static final DecimalFormat SecondsDisplayFormat = newLocalDecimalFormat();
@@ -43,83 +44,83 @@ public class Util {
     public static final SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_FORMAT, Locale.US);
     private static volatile SingleThreadFutureScheduler playAdIdScheduler = null;
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class a implements Callable<Object> {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ Context f256a;
+        public final /* synthetic */ Context f5553a;
 
         public a(Context context) {
-            this.f256a = context;
+            this.f5553a = context;
         }
 
         @Override // java.util.concurrent.Callable
         public final Object call() {
             try {
-                return Reflection.getAdvertisingInfoObject(this.f256a);
+                return Reflection.getAdvertisingInfoObject(this.f5553a);
             } catch (Exception unused) {
                 return null;
             }
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class b implements Callable<String> {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ Context f257a;
+        public final /* synthetic */ Context f5554a;
         public final /* synthetic */ Object b;
 
         public b(Context context, Object obj) {
-            this.f257a = context;
+            this.f5554a = context;
             this.b = obj;
         }
 
         @Override // java.util.concurrent.Callable
         public final String call() {
-            return Reflection.getPlayAdId(this.f257a, this.b);
+            return Reflection.getPlayAdId(this.f5554a, this.b);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class c implements Callable<Boolean> {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ Context f258a;
+        public final /* synthetic */ Context f5555a;
         public final /* synthetic */ Object b;
 
         public c(Context context, Object obj) {
-            this.f258a = context;
+            this.f5555a = context;
             this.b = obj;
         }
 
         @Override // java.util.concurrent.Callable
         public final Boolean call() {
-            return Reflection.isPlayTrackingEnabled(this.f258a, this.b);
+            return Reflection.isPlayTrackingEnabled(this.f5555a, this.b);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class d extends AsyncTaskExecutor<Context, String> {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ OnDeviceIdsRead f259a;
+        public final /* synthetic */ OnDeviceIdsRead f5556a;
 
         public d(OnDeviceIdsRead onDeviceIdsRead) {
-            this.f259a = onDeviceIdsRead;
+            this.f5556a = onDeviceIdsRead;
         }
 
         @Override // com.adjust.sdk.scheduler.AsyncTaskExecutor
         public final String doInBackground(Context[] contextArr) {
             ILogger logger = AdjustFactory.getLogger();
             String googleAdId = Util.getGoogleAdId(contextArr[0]);
-            logger.debug("GoogleAdId read " + googleAdId, new Object[0]);
+            logger.debug(AbstractC2914a.d("GoogleAdId read ", googleAdId), new Object[0]);
             return googleAdId;
         }
 
         @Override // com.adjust.sdk.scheduler.AsyncTaskExecutor
         public final void onPostExecute(String str) {
-            this.f259a.onGoogleAdIdRead(str);
+            this.f5556a.onGoogleAdIdRead(str);
         }
     }
 
@@ -134,14 +135,14 @@ public class Util {
     public static boolean checkPermission(Context context, String str) {
         try {
             return context.checkCallingOrSelfPermission(str) == 0;
-        } catch (Exception e) {
-            getLogger().debug("Unable to check permission '%s' with message (%s)", str, e.getMessage());
+        } catch (Exception e4) {
+            getLogger().debug("Unable to check permission '%s' with message (%s)", str, e4.getMessage());
             return false;
         }
     }
 
     public static String convertToHex(byte[] bArr) {
-        return formatString("%0" + (bArr.length << 1) + "x", new BigInteger(1, bArr));
+        return formatString(AbstractC2914a.g(new StringBuilder("%0"), bArr.length << 1, "x"), new BigInteger(1, bArr));
     }
 
     public static String createUuid() {
@@ -152,8 +153,8 @@ public class Util {
         return equalObject(bool, bool2);
     }
 
-    public static boolean equalEnum(Enum r0, Enum r1) {
-        return equalObject(r0, r1);
+    public static boolean equalEnum(Enum r02, Enum r12) {
+        return equalObject(r02, r12);
     }
 
     public static boolean equalInt(Integer num, Integer num2) {
@@ -172,16 +173,16 @@ public class Util {
         return equalObject(str, str2);
     }
 
-    public static boolean equalsDouble(Double d2, Double d3) {
-        return (d2 == null || d3 == null) ? d2 == null && d3 == null : Double.doubleToLongBits(d2.doubleValue()) == Double.doubleToLongBits(d3.doubleValue());
+    public static boolean equalsDouble(Double d2, Double d9) {
+        return (d2 == null || d9 == null) ? d2 == null && d9 == null : Double.doubleToLongBits(d2.doubleValue()) == Double.doubleToLongBits(d9.doubleValue());
     }
 
     public static String formatString(String str, Object... objArr) {
         return String.format(Locale.US, str, objArr);
     }
 
-    public static Object getAdvertisingInfoObject(Context context, long j) {
-        return runSyncInPlayAdIdSchedulerWithTimeout(context, new a(context), j);
+    public static Object getAdvertisingInfoObject(Context context, long j7) {
+        return runSyncInPlayAdIdSchedulerWithTimeout(context, new a(context), j7);
     }
 
     public static String getAndroidId(Context context) {
@@ -190,14 +191,18 @@ public class Util {
 
     public static int getConnectivityType(Context context) {
         ConnectivityManager connectivityManager;
-        Network activeNetwork;
         NetworkCapabilities networkCapabilities;
         try {
             connectivityManager = (ConnectivityManager) context.getSystemService("connectivity");
-        } catch (Exception e) {
-            getLogger().warn("Couldn't read connectivity type (%s)", e.getMessage());
+        } catch (Exception e4) {
+            getLogger().warn("Couldn't read connectivity type (%s)", e4.getMessage());
         }
-        if (connectivityManager == null || (activeNetwork = connectivityManager.getActiveNetwork()) == null || (networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork)) == null) {
+        if (connectivityManager == null) {
+            return -1;
+        }
+        int i9 = Build.VERSION.SDK_INT;
+        Network activeNetwork = connectivityManager.getActiveNetwork();
+        if (activeNetwork == null || (networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork)) == null) {
             return -1;
         }
         if (networkCapabilities.hasTransport(1)) {
@@ -215,8 +220,14 @@ public class Util {
         if (networkCapabilities.hasTransport(2)) {
             return 2;
         }
+        if (i9 < 26) {
+            return -1;
+        }
         if (networkCapabilities.hasTransport(5)) {
             return 5;
+        }
+        if (i9 < 27) {
+            return -1;
         }
         return networkCapabilities.hasTransport(6) ? 6 : -1;
     }
@@ -236,26 +247,12 @@ public class Util {
         }
     }
 
-    public static String getFireAdvertisingId(AdjustConfig adjustConfig) {
-        if (adjustConfig.coppaCompliantEnabled) {
-            return null;
-        }
-        return getFireAdvertisingId(adjustConfig.context.getContentResolver());
-    }
-
     public static Boolean getFireTrackingEnabled(ContentResolver contentResolver) {
         try {
             return Boolean.valueOf(Settings.Secure.getInt(contentResolver, "limit_ad_tracking") == 0);
         } catch (Exception unused) {
             return null;
         }
-    }
-
-    public static Boolean getFireTrackingEnabled(AdjustConfig adjustConfig) {
-        if (adjustConfig.coppaCompliantEnabled) {
-            return null;
-        }
-        return getFireTrackingEnabled(adjustConfig.context.getContentResolver());
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -275,10 +272,6 @@ public class Util {
         if (str != null) {
             return str;
         }
-    }
-
-    public static void getGoogleAdId(Context context, OnDeviceIdsRead onDeviceIdsRead) {
-        new d(onDeviceIdsRead).execute(context);
     }
 
     public static Map<String, String> getImeiParameters(AdjustConfig adjustConfig, ILogger iLogger) {
@@ -302,7 +295,7 @@ public class Util {
 
     public static String getMcc(Context context) {
         try {
-            String networkOperator = ((TelephonyManager) context.getSystemService(HintConstants.AUTOFILL_HINT_PHONE)).getNetworkOperator();
+            String networkOperator = ((TelephonyManager) context.getSystemService("phone")).getNetworkOperator();
             if (!TextUtils.isEmpty(networkOperator)) {
                 return networkOperator.substring(0, 3);
             }
@@ -316,7 +309,7 @@ public class Util {
 
     public static String getMnc(Context context) {
         try {
-            String networkOperator = ((TelephonyManager) context.getSystemService(HintConstants.AUTOFILL_HINT_PHONE)).getNetworkOperator();
+            String networkOperator = ((TelephonyManager) context.getSystemService("phone")).getNetworkOperator();
             if (!TextUtils.isEmpty(networkOperator)) {
                 return networkOperator.substring(3);
             }
@@ -335,8 +328,8 @@ public class Util {
         return Reflection.getOaidParameters(adjustConfig.context, iLogger);
     }
 
-    public static String getPlayAdId(Context context, Object obj, long j) {
-        return (String) runSyncInPlayAdIdSchedulerWithTimeout(context, new b(context, obj), j);
+    public static String getPlayAdId(Context context, Object obj, long j7) {
+        return (String) runSyncInPlayAdIdSchedulerWithTimeout(context, new b(context, obj), j7);
     }
 
     public static String getReasonString(String str, Throwable th) {
@@ -379,11 +372,11 @@ public class Util {
         return Build.SUPPORTED_ABIS;
     }
 
-    public static long getWaitingTime(int i, BackoffStrategy backoffStrategy) {
-        if (i < backoffStrategy.minRetries) {
+    public static long getWaitingTime(int i9, BackoffStrategy backoffStrategy) {
+        if (i9 < backoffStrategy.minRetries) {
             return 0L;
         }
-        return (long) (Math.min(((long) Math.pow(2.0d, i - r0)) * backoffStrategy.milliSecondMultiplier, backoffStrategy.maxWait) * randomInRange(backoffStrategy.minRange, backoffStrategy.maxRange));
+        return (long) (Math.min(((long) Math.pow(2.0d, i9 - r0)) * backoffStrategy.milliSecondMultiplier, backoffStrategy.maxWait) * randomInRange(backoffStrategy.minRange, backoffStrategy.maxRange));
     }
 
     public static boolean hasRootCause(Exception exc) {
@@ -417,11 +410,11 @@ public class Util {
         return d2.hashCode();
     }
 
-    public static int hashEnum(Enum r0) {
-        if (r0 == null) {
+    public static int hashEnum(Enum r02) {
+        if (r02 == null) {
             return 0;
         }
-        return r0.hashCode();
+        return r02.hashCode();
     }
 
     public static int hashLong(Long l) {
@@ -443,6 +436,10 @@ public class Util {
             return 0;
         }
         return str.hashCode();
+    }
+
+    public static boolean isAdjustUninstallDetectionPayload(Map<String, String> map) {
+        return map != null && map.size() == 1 && Objects.equals(map.get(Constants.FCM_PAYLOAD_KEY), Constants.FCM_PAYLOAD_VALUE);
     }
 
     private static boolean isEqualGoogleReferrerDetails(ReferrerDetails referrerDetails, ActivityState activityState) {
@@ -467,18 +464,32 @@ public class Util {
         if (str.equals(Constants.REFERRER_API_HUAWEI_APP_GALLERY)) {
             return isEqualHuaweiReferrerAppGalleryDetails(referrerDetails, activityState);
         }
+        if (str.equals(Constants.REFERRER_API_SAMSUNG)) {
+            return isEqualSamsungReferrerDetails(referrerDetails, activityState);
+        }
         if (str.equals(Constants.REFERRER_API_XIAOMI)) {
             return isEqualXiaomiReferrerDetails(referrerDetails, activityState);
+        }
+        if (str.equals(Constants.REFERRER_API_VIVO)) {
+            return isEqualVivoReferrerDetails(referrerDetails, activityState);
         }
         return false;
     }
 
-    private static boolean isEqualXiaomiReferrerDetails(ReferrerDetails referrerDetails, ActivityState activityState) {
-        return referrerDetails.referrerClickTimestampSeconds == activityState.clickTimeXiaomi && referrerDetails.installBeginTimestampSeconds == activityState.installBeginXiaomi && referrerDetails.referrerClickTimestampServerSeconds == activityState.clickTimeServerXiaomi && referrerDetails.installBeginTimestampServerSeconds == activityState.installBeginServerXiaomi && equalString(referrerDetails.installReferrer, activityState.installReferrerXiaomi);
+    private static boolean isEqualSamsungReferrerDetails(ReferrerDetails referrerDetails, ActivityState activityState) {
+        return referrerDetails.referrerClickTimestampSeconds == activityState.clickTimeSamsung && referrerDetails.installBeginTimestampSeconds == activityState.installBeginSamsung && equalString(referrerDetails.installReferrer, activityState.installReferrerSamsung);
     }
 
-    public static Boolean isPlayTrackingEnabled(Context context, Object obj, long j) {
-        return (Boolean) runSyncInPlayAdIdSchedulerWithTimeout(context, new c(context, obj), j);
+    private static boolean isEqualVivoReferrerDetails(ReferrerDetails referrerDetails, ActivityState activityState) {
+        return referrerDetails.referrerClickTimestampSeconds == activityState.clickTimeVivo && referrerDetails.installBeginTimestampSeconds == activityState.installBeginVivo && equalString(referrerDetails.installReferrer, activityState.installReferrerVivo) && equalString(referrerDetails.installVersion, activityState.installVersionVivo);
+    }
+
+    private static boolean isEqualXiaomiReferrerDetails(ReferrerDetails referrerDetails, ActivityState activityState) {
+        return referrerDetails.referrerClickTimestampSeconds == activityState.clickTimeXiaomi && referrerDetails.installBeginTimestampSeconds == activityState.installBeginXiaomi && referrerDetails.referrerClickTimestampServerSeconds == activityState.clickTimeServerXiaomi && referrerDetails.installBeginTimestampServerSeconds == activityState.installBeginServerXiaomi && equalString(referrerDetails.installReferrer, activityState.installReferrerXiaomi) && equalString(referrerDetails.installVersion, activityState.installVersionXiaomi);
+    }
+
+    public static Boolean isPlayTrackingEnabled(Context context, Object obj, long j7) {
+        return (Boolean) runSyncInPlayAdIdSchedulerWithTimeout(context, new c(context, obj), j7);
     }
 
     public static boolean isUrlFilteredOut(Uri uri) {
@@ -527,164 +538,162 @@ public class Util {
         return !Pattern.compile("\\s").matcher(str).find() ? str : formatString("'%s'", str);
     }
 
-    private static double randomInRange(double d2, double d3) {
-        return (new Random().nextDouble() * (d3 - d2)) + d2;
+    private static double randomInRange(double d2, double d9) {
+        return (new Random().nextDouble() * (d9 - d2)) + d2;
     }
 
-    public static boolean readBooleanField(ObjectInputStream.GetField getField, String str, boolean z) {
+    public static boolean readBooleanField(ObjectInputStream.GetField getField, String str, boolean z8) {
         try {
-            return getField.get(str, z);
-        } catch (Exception e) {
-            getLogger().debug(fieldReadErrorMessage, str, e.getMessage());
-            return z;
+            return getField.get(str, z8);
+        } catch (Exception e4) {
+            getLogger().debug(fieldReadErrorMessage, str, e4.getMessage());
+            return z8;
         }
     }
 
-    public static int readIntField(ObjectInputStream.GetField getField, String str, int i) {
+    public static int readIntField(ObjectInputStream.GetField getField, String str, int i9) {
         try {
-            return getField.get(str, i);
-        } catch (Exception e) {
-            getLogger().debug(fieldReadErrorMessage, str, e.getMessage());
-            return i;
+            return getField.get(str, i9);
+        } catch (Exception e4) {
+            getLogger().debug(fieldReadErrorMessage, str, e4.getMessage());
+            return i9;
         }
     }
 
-    public static long readLongField(ObjectInputStream.GetField getField, String str, long j) {
+    public static long readLongField(ObjectInputStream.GetField getField, String str, long j7) {
         try {
-            return getField.get(str, j);
-        } catch (Exception e) {
-            getLogger().debug(fieldReadErrorMessage, str, e.getMessage());
-            return j;
+            return getField.get(str, j7);
+        } catch (Exception e4) {
+            getLogger().debug(fieldReadErrorMessage, str, e4.getMessage());
+            return j7;
         }
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    /* JADX WARN: Removed duplicated region for block: B:15:0x009b A[EXC_TOP_SPLITTER, SYNTHETIC] */
-    /* JADX WARN: Type inference failed for: r6v10, types: [java.io.Closeable] */
-    /* JADX WARN: Type inference failed for: r6v13, types: [java.io.FileInputStream, java.io.InputStream] */
-    /* JADX WARN: Type inference failed for: r6v14 */
-    /* JADX WARN: Type inference failed for: r6v16 */
-    /* JADX WARN: Type inference failed for: r6v19, types: [java.io.ObjectInputStream] */
-    /* JADX WARN: Type inference failed for: r6v8 */
-    /* JADX WARN: Type inference failed for: r7v10, types: [java.io.BufferedInputStream, java.io.InputStream] */
-    /* JADX WARN: Type inference failed for: r7v3 */
-    /* JADX WARN: Type inference failed for: r7v4 */
-    /* JADX WARN: Type inference failed for: r7v5 */
-    /* JADX WARN: Type inference failed for: r7v7 */
+    /* JADX WARN: Removed duplicated region for block: B:15:0x0096 A[EXC_TOP_SPLITTER, SYNTHETIC] */
+    /* JADX WARN: Type inference failed for: r3v10, types: [java.io.Closeable] */
+    /* JADX WARN: Type inference failed for: r3v13, types: [java.io.FileInputStream, java.io.InputStream] */
+    /* JADX WARN: Type inference failed for: r3v14 */
+    /* JADX WARN: Type inference failed for: r3v16 */
+    /* JADX WARN: Type inference failed for: r3v19, types: [java.io.ObjectInputStream] */
+    /* JADX WARN: Type inference failed for: r3v8 */
+    /* JADX WARN: Type inference failed for: r4v10, types: [java.io.BufferedInputStream, java.io.InputStream] */
+    /* JADX WARN: Type inference failed for: r4v3 */
+    /* JADX WARN: Type inference failed for: r4v4 */
+    /* JADX WARN: Type inference failed for: r4v5 */
+    /* JADX WARN: Type inference failed for: r4v7 */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static <T> T readObject(android.content.Context r6, java.lang.String r7, java.lang.String r8, java.lang.Class<T> r9) {
+    public static <T> T readObject(android.content.Context r3, java.lang.String r4, java.lang.String r5, java.lang.Class<T> r6) {
         /*
             r0 = 0
-            java.io.FileInputStream r6 = r6.openFileInput(r7)     // Catch: java.lang.Exception -> L74 java.io.FileNotFoundException -> L88
-            java.io.BufferedInputStream r7 = new java.io.BufferedInputStream     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            r7.<init>(r6)     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            java.io.ObjectInputStream r6 = new java.io.ObjectInputStream     // Catch: java.lang.Exception -> L69 java.io.FileNotFoundException -> L8b
-            r6.<init>(r7)     // Catch: java.lang.Exception -> L69 java.io.FileNotFoundException -> L8b
-            r7 = 1
-            r1 = 0
-            r2 = 2
-            java.lang.Object r3 = r6.readObject()     // Catch: java.lang.Exception -> L29 java.lang.ClassCastException -> L3f java.lang.ClassNotFoundException -> L54
-            java.lang.Object r0 = r9.cast(r3)     // Catch: java.lang.Exception -> L29 java.lang.ClassCastException -> L3f java.lang.ClassNotFoundException -> L54
-            com.adjust.sdk.ILogger r9 = getLogger()     // Catch: java.lang.Exception -> L29 java.lang.ClassCastException -> L3f java.lang.ClassNotFoundException -> L54
-            java.lang.String r3 = "Read %s: %s"
-            java.lang.Object[] r4 = new java.lang.Object[]{r8, r0}     // Catch: java.lang.Exception -> L29 java.lang.ClassCastException -> L3f java.lang.ClassNotFoundException -> L54
-            r9.debug(r3, r4)     // Catch: java.lang.Exception -> L29 java.lang.ClassCastException -> L3f java.lang.ClassNotFoundException -> L54
-            goto L99
-        L29:
-            r9 = move-exception
-            com.adjust.sdk.ILogger r3 = getLogger()     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            java.lang.String r4 = "Failed to read %s object (%s)"
-            java.lang.Object[] r2 = new java.lang.Object[r2]     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            r2[r1] = r8     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            java.lang.String r9 = r9.getMessage()     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            r2[r7] = r9     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            r3.error(r4, r2)     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            goto L99
+            java.io.FileInputStream r3 = r3.openFileInput(r4)     // Catch: java.lang.Exception -> L6e java.io.FileNotFoundException -> L83
+            java.io.BufferedInputStream r4 = new java.io.BufferedInputStream     // Catch: java.lang.Exception -> L3f java.io.FileNotFoundException -> L44
+            r4.<init>(r3)     // Catch: java.lang.Exception -> L3f java.io.FileNotFoundException -> L44
+            java.io.ObjectInputStream r3 = new java.io.ObjectInputStream     // Catch: java.lang.Exception -> L6c java.io.FileNotFoundException -> L86
+            r3.<init>(r4)     // Catch: java.lang.Exception -> L6c java.io.FileNotFoundException -> L86
+            java.lang.Object r4 = r3.readObject()     // Catch: java.lang.Exception -> L26 java.lang.ClassCastException -> L28 java.lang.ClassNotFoundException -> L2a
+            java.lang.Object r0 = r6.cast(r4)     // Catch: java.lang.Exception -> L26 java.lang.ClassCastException -> L28 java.lang.ClassNotFoundException -> L2a
+            com.adjust.sdk.ILogger r4 = getLogger()     // Catch: java.lang.Exception -> L26 java.lang.ClassCastException -> L28 java.lang.ClassNotFoundException -> L2a
+            java.lang.String r6 = "Read %s: %s"
+            java.lang.Object[] r1 = new java.lang.Object[]{r5, r0}     // Catch: java.lang.Exception -> L26 java.lang.ClassCastException -> L28 java.lang.ClassNotFoundException -> L2a
+            r4.debug(r6, r1)     // Catch: java.lang.Exception -> L26 java.lang.ClassCastException -> L28 java.lang.ClassNotFoundException -> L2a
+            goto L94
+        L26:
+            r4 = move-exception
+            goto L2c
+        L28:
+            r4 = move-exception
+            goto L48
+        L2a:
+            r4 = move-exception
+            goto L5a
+        L2c:
+            com.adjust.sdk.ILogger r6 = getLogger()     // Catch: java.lang.Exception -> L3f java.io.FileNotFoundException -> L44
+            java.lang.String r1 = "Failed to read %s object (%s)"
+            java.lang.String r4 = r4.getMessage()     // Catch: java.lang.Exception -> L3f java.io.FileNotFoundException -> L44
+            java.lang.Object[] r4 = new java.lang.Object[]{r5, r4}     // Catch: java.lang.Exception -> L3f java.io.FileNotFoundException -> L44
+            r6.error(r1, r4)     // Catch: java.lang.Exception -> L3f java.io.FileNotFoundException -> L44
+            goto L94
         L3f:
-            r9 = move-exception
-            com.adjust.sdk.ILogger r3 = getLogger()     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            java.lang.String r4 = "Failed to cast %s object (%s)"
-            java.lang.Object[] r2 = new java.lang.Object[r2]     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            r2[r1] = r8     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            java.lang.String r9 = r9.getMessage()     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            r2[r7] = r9     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            r3.error(r4, r2)     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            goto L99
-        L54:
-            r9 = move-exception
-            com.adjust.sdk.ILogger r3 = getLogger()     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            java.lang.String r4 = "Failed to find %s class (%s)"
-            java.lang.Object[] r2 = new java.lang.Object[r2]     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            r2[r1] = r8     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            java.lang.String r9 = r9.getMessage()     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            r2[r7] = r9     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            r3.error(r4, r2)     // Catch: java.lang.Exception -> L6b java.io.FileNotFoundException -> L70
-            goto L99
-        L69:
-            r6 = move-exception
-            goto L7a
-        L6b:
-            r7 = move-exception
-            r5 = r0
-            r0 = r6
-            r6 = r5
-            goto L76
+            r4 = move-exception
+            r2 = r0
+            r0 = r3
+            r3 = r2
+            goto L70
+        L44:
+            r2 = r0
+            r0 = r3
+            r3 = r2
+            goto L84
+        L48:
+            com.adjust.sdk.ILogger r6 = getLogger()     // Catch: java.lang.Exception -> L3f java.io.FileNotFoundException -> L44
+            java.lang.String r1 = "Failed to cast %s object (%s)"
+            java.lang.String r4 = r4.getMessage()     // Catch: java.lang.Exception -> L3f java.io.FileNotFoundException -> L44
+            java.lang.Object[] r4 = new java.lang.Object[]{r5, r4}     // Catch: java.lang.Exception -> L3f java.io.FileNotFoundException -> L44
+            r6.error(r1, r4)     // Catch: java.lang.Exception -> L3f java.io.FileNotFoundException -> L44
+            goto L94
+        L5a:
+            com.adjust.sdk.ILogger r6 = getLogger()     // Catch: java.lang.Exception -> L3f java.io.FileNotFoundException -> L44
+            java.lang.String r1 = "Failed to find %s class (%s)"
+            java.lang.String r4 = r4.getMessage()     // Catch: java.lang.Exception -> L3f java.io.FileNotFoundException -> L44
+            java.lang.Object[] r4 = new java.lang.Object[]{r5, r4}     // Catch: java.lang.Exception -> L3f java.io.FileNotFoundException -> L44
+            r6.error(r1, r4)     // Catch: java.lang.Exception -> L3f java.io.FileNotFoundException -> L44
+            goto L94
+        L6c:
+            r3 = move-exception
+            goto L74
+        L6e:
+            r4 = move-exception
+            r3 = r0
         L70:
-            r5 = r0
-            r0 = r6
-            r6 = r5
-            goto L89
+            r2 = r0
+            r0 = r3
+            r3 = r4
+            r4 = r2
         L74:
-            r7 = move-exception
-            r6 = r0
-        L76:
-            r5 = r0
-            r0 = r6
-            r6 = r7
-            r7 = r5
-        L7a:
-            com.adjust.sdk.ILogger r9 = getLogger()
-            java.lang.Object[] r6 = new java.lang.Object[]{r8, r6}
-            java.lang.String r1 = "Failed to open %s file for reading (%s)"
-            r9.error(r1, r6)
-            goto L98
-        L88:
-            r6 = r0
-        L89:
-            r7 = r0
-            r0 = r6
-        L8b:
             com.adjust.sdk.ILogger r6 = getLogger()
-            java.lang.Object[] r9 = new java.lang.Object[]{r8}
+            java.lang.Object[] r3 = new java.lang.Object[]{r5, r3}
+            java.lang.String r1 = "Failed to open %s file for reading (%s)"
+            r6.error(r1, r3)
+        L81:
+            r3 = r4
+            goto L94
+        L83:
+            r3 = r0
+        L84:
+            r4 = r0
+            r0 = r3
+        L86:
+            com.adjust.sdk.ILogger r3 = getLogger()
+            java.lang.Object[] r6 = new java.lang.Object[]{r5}
             java.lang.String r1 = "%s file not found"
-            r6.debug(r1, r9)
-        L98:
-            r6 = r7
-        L99:
-            if (r6 == 0) goto Lad
-            r6.close()     // Catch: java.lang.Exception -> L9f
-            goto Lad
-        L9f:
-            r6 = move-exception
-            com.adjust.sdk.ILogger r7 = getLogger()
-            java.lang.Object[] r6 = new java.lang.Object[]{r8, r6}
-            java.lang.String r8 = "Failed to close %s file for reading (%s)"
-            r7.error(r8, r6)
-        Lad:
+            r3.debug(r1, r6)
+            goto L81
+        L94:
+            if (r3 == 0) goto La8
+            r3.close()     // Catch: java.lang.Exception -> L9a
+            goto La8
+        L9a:
+            r3 = move-exception
+            com.adjust.sdk.ILogger r4 = getLogger()
+            java.lang.Object[] r3 = new java.lang.Object[]{r5, r3}
+            java.lang.String r5 = "Failed to close %s file for reading (%s)"
+            r4.error(r5, r3)
+        La8:
             return r0
         */
         throw new UnsupportedOperationException("Method not decompiled: com.adjust.sdk.Util.readObject(android.content.Context, java.lang.String, java.lang.String, java.lang.Class):java.lang.Object");
     }
 
-    public static <T> T readObjectField(ObjectInputStream.GetField getField, String str, T t) {
+    public static <T> T readObjectField(ObjectInputStream.GetField getField, String str, T t9) {
         try {
-            return (T) getField.get(str, t);
-        } catch (Exception e) {
-            getLogger().debug(fieldReadErrorMessage, str, e.getMessage());
-            return t;
+            return (T) getField.get(str, t9);
+        } catch (Exception e4) {
+            getLogger().debug(fieldReadErrorMessage, str, e4.getMessage());
+            return t9;
         }
     }
 
@@ -700,16 +709,19 @@ public class Util {
         }
     }
 
-    private static <R> R runSyncInPlayAdIdSchedulerWithTimeout(Context context, Callable<R> callable, long j) {
+    private static <R> R runSyncInPlayAdIdSchedulerWithTimeout(Context context, Callable<R> callable, long j7) {
         if (playAdIdScheduler == null) {
             synchronized (Util.class) {
-                if (playAdIdScheduler == null) {
-                    playAdIdScheduler = new SingleThreadFutureScheduler("PlayAdIdLibrary", true);
+                try {
+                    if (playAdIdScheduler == null) {
+                        playAdIdScheduler = new SingleThreadFutureScheduler("PlayAdIdLibrary", true);
+                    }
+                } finally {
                 }
             }
         }
         try {
-            return (R) playAdIdScheduler.scheduleFutureWithReturn(callable, 0L).get(j, TimeUnit.MILLISECONDS);
+            return (R) playAdIdScheduler.scheduleFutureWithReturn(callable, 0L).get(j7, TimeUnit.MILLISECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException unused) {
             return null;
         }
@@ -737,28 +749,28 @@ public class Util {
         /*
             r0 = 0
             java.io.FileOutputStream r2 = r2.openFileOutput(r3, r0)     // Catch: java.lang.Exception -> L32
-            java.io.BufferedOutputStream r3 = new java.io.BufferedOutputStream     // Catch: java.lang.Exception -> L30
-            r3.<init>(r2)     // Catch: java.lang.Exception -> L30
-            java.io.ObjectOutputStream r2 = new java.io.ObjectOutputStream     // Catch: java.lang.Exception -> L2e
-            r2.<init>(r3)     // Catch: java.lang.Exception -> L2e
-            r2.writeObject(r1)     // Catch: java.io.NotSerializableException -> L20 java.lang.Exception -> L30
-            com.adjust.sdk.ILogger r3 = getLogger()     // Catch: java.io.NotSerializableException -> L20 java.lang.Exception -> L30
+            java.io.BufferedOutputStream r3 = new java.io.BufferedOutputStream     // Catch: java.lang.Exception -> L20
+            r3.<init>(r2)     // Catch: java.lang.Exception -> L20
+            java.io.ObjectOutputStream r2 = new java.io.ObjectOutputStream     // Catch: java.lang.Exception -> L30
+            r2.<init>(r3)     // Catch: java.lang.Exception -> L30
+            r2.writeObject(r1)     // Catch: java.lang.Exception -> L20 java.io.NotSerializableException -> L22
+            com.adjust.sdk.ILogger r3 = getLogger()     // Catch: java.lang.Exception -> L20 java.io.NotSerializableException -> L22
             java.lang.String r0 = "Wrote %s: %s"
-            java.lang.Object[] r1 = new java.lang.Object[]{r4, r1}     // Catch: java.io.NotSerializableException -> L20 java.lang.Exception -> L30
-            r3.debug(r0, r1)     // Catch: java.io.NotSerializableException -> L20 java.lang.Exception -> L30
+            java.lang.Object[] r1 = new java.lang.Object[]{r4, r1}     // Catch: java.lang.Exception -> L20 java.io.NotSerializableException -> L22
+            r3.debug(r0, r1)     // Catch: java.lang.Exception -> L20 java.io.NotSerializableException -> L22
             goto L43
         L20:
-            com.adjust.sdk.ILogger r1 = getLogger()     // Catch: java.lang.Exception -> L30
-            java.lang.String r3 = "Failed to serialize %s"
-            java.lang.Object[] r0 = new java.lang.Object[]{r4}     // Catch: java.lang.Exception -> L30
-            r1.error(r3, r0)     // Catch: java.lang.Exception -> L30
-            goto L43
-        L2e:
-            r1 = move-exception
-            goto L35
-        L30:
             r1 = move-exception
             goto L34
+        L22:
+            com.adjust.sdk.ILogger r1 = getLogger()     // Catch: java.lang.Exception -> L20
+            java.lang.String r3 = "Failed to serialize %s"
+            java.lang.Object[] r0 = new java.lang.Object[]{r4}     // Catch: java.lang.Exception -> L20
+            r1.error(r3, r0)     // Catch: java.lang.Exception -> L20
+            goto L43
+        L30:
+            r1 = move-exception
+            goto L35
         L32:
             r1 = move-exception
             r2 = 0
@@ -784,5 +796,23 @@ public class Util {
             return
         */
         throw new UnsupportedOperationException("Method not decompiled: com.adjust.sdk.Util.writeObject(java.lang.Object, android.content.Context, java.lang.String, java.lang.String):void");
+    }
+
+    public static String getFireAdvertisingId(AdjustConfig adjustConfig) {
+        if (adjustConfig.coppaCompliantEnabled) {
+            return null;
+        }
+        return getFireAdvertisingId(adjustConfig.context.getContentResolver());
+    }
+
+    public static Boolean getFireTrackingEnabled(AdjustConfig adjustConfig) {
+        if (adjustConfig.coppaCompliantEnabled) {
+            return null;
+        }
+        return getFireTrackingEnabled(adjustConfig.context.getContentResolver());
+    }
+
+    public static void getGoogleAdId(Context context, OnDeviceIdsRead onDeviceIdsRead) {
+        new d(onDeviceIdsRead).execute(context);
     }
 }

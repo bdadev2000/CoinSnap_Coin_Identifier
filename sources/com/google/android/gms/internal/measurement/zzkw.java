@@ -1,144 +1,79 @@
 package com.google.android.gms.internal.measurement;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
-
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzkw<K, V> extends LinkedHashMap<K, V> {
-    private static final zzkw<?, ?> zza;
-    private boolean zzb;
-
-    private static int zza(Object obj) {
-        if (obj instanceof byte[]) {
-            return zzjv.zza((byte[]) obj);
-        }
-        if (obj instanceof zzjy) {
-            throw new UnsupportedOperationException();
-        }
-        return obj.hashCode();
-    }
-
-    @Override // java.util.AbstractMap, java.util.Map
-    public final int hashCode() {
-        int i = 0;
-        for (Map.Entry<K, V> entry : entrySet()) {
-            i += zza(entry.getValue()) ^ zza(entry.getKey());
-        }
-        return i;
-    }
-
-    public static <K, V> zzkw<K, V> zza() {
-        return (zzkw<K, V>) zza;
-    }
-
-    public final zzkw<K, V> zzb() {
-        return isEmpty() ? new zzkw<>() : new zzkw<>(this);
-    }
-
-    @Override // java.util.HashMap, java.util.AbstractMap, java.util.Map
-    public final V put(K k, V v) {
-        zze();
-        zzjv.zza(k);
-        zzjv.zza(v);
-        return (V) super.put(k, v);
-    }
-
-    @Override // java.util.HashMap, java.util.AbstractMap, java.util.Map
-    public final V remove(Object obj) {
-        zze();
-        return (V) super.remove(obj);
-    }
-
-    @Override // java.util.LinkedHashMap, java.util.HashMap, java.util.AbstractMap, java.util.Map
-    public final Set<Map.Entry<K, V>> entrySet() {
-        return isEmpty() ? Collections.emptySet() : super.entrySet();
-    }
+/* loaded from: classes2.dex */
+final /* synthetic */ class zzkw {
+    static final /* synthetic */ int[] zza;
 
     static {
-        zzkw<?, ?> zzkwVar = new zzkw<>();
-        zza = zzkwVar;
-        ((zzkw) zzkwVar).zzb = false;
-    }
-
-    private zzkw() {
-        this.zzb = true;
-    }
-
-    private zzkw(Map<K, V> map) {
-        super(map);
-        this.zzb = true;
-    }
-
-    @Override // java.util.LinkedHashMap, java.util.HashMap, java.util.AbstractMap, java.util.Map
-    public final void clear() {
-        zze();
-        super.clear();
-    }
-
-    private final void zze() {
-        if (!this.zzb) {
-            throw new UnsupportedOperationException();
+        int[] iArr = new int[zzmn.values().length];
+        zza = iArr;
+        try {
+            iArr[zzmn.zzh.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
         }
-    }
-
-    public final void zzc() {
-        this.zzb = false;
-    }
-
-    public final void zza(zzkw<K, V> zzkwVar) {
-        zze();
-        if (zzkwVar.isEmpty()) {
-            return;
+        try {
+            zza[zzmn.zzl.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
         }
-        putAll(zzkwVar);
-    }
-
-    @Override // java.util.HashMap, java.util.AbstractMap, java.util.Map
-    public final void putAll(Map<? extends K, ? extends V> map) {
-        zze();
-        for (K k : map.keySet()) {
-            zzjv.zza(k);
-            zzjv.zza(map.get(k));
+        try {
+            zza[zzmn.zza.ordinal()] = 3;
+        } catch (NoSuchFieldError unused3) {
         }
-        super.putAll(map);
-    }
-
-    @Override // java.util.AbstractMap, java.util.Map
-    public final boolean equals(Object obj) {
-        boolean equals;
-        if (!(obj instanceof Map)) {
-            return false;
+        try {
+            zza[zzmn.zzg.ordinal()] = 4;
+        } catch (NoSuchFieldError unused4) {
         }
-        Map map = (Map) obj;
-        if (this == map) {
-            return true;
+        try {
+            zza[zzmn.zzo.ordinal()] = 5;
+        } catch (NoSuchFieldError unused5) {
         }
-        if (size() != map.size()) {
-            return false;
+        try {
+            zza[zzmn.zzf.ordinal()] = 6;
+        } catch (NoSuchFieldError unused6) {
         }
-        for (Map.Entry<K, V> entry : entrySet()) {
-            if (!map.containsKey(entry.getKey())) {
-                return false;
-            }
-            V value = entry.getValue();
-            Object obj2 = map.get(entry.getKey());
-            if ((value instanceof byte[]) && (obj2 instanceof byte[])) {
-                equals = Arrays.equals((byte[]) value, (byte[]) obj2);
-            } else {
-                equals = value.equals(obj2);
-            }
-            if (!equals) {
-                return false;
-            }
+        try {
+            zza[zzmn.zzp.ordinal()] = 7;
+        } catch (NoSuchFieldError unused7) {
         }
-        return true;
-    }
-
-    public final boolean zzd() {
-        return this.zzb;
+        try {
+            zza[zzmn.zzb.ordinal()] = 8;
+        } catch (NoSuchFieldError unused8) {
+        }
+        try {
+            zza[zzmn.zzn.ordinal()] = 9;
+        } catch (NoSuchFieldError unused9) {
+        }
+        try {
+            zza[zzmn.zze.ordinal()] = 10;
+        } catch (NoSuchFieldError unused10) {
+        }
+        try {
+            zza[zzmn.zzm.ordinal()] = 11;
+        } catch (NoSuchFieldError unused11) {
+        }
+        try {
+            zza[zzmn.zzc.ordinal()] = 12;
+        } catch (NoSuchFieldError unused12) {
+        }
+        try {
+            zza[zzmn.zzd.ordinal()] = 13;
+        } catch (NoSuchFieldError unused13) {
+        }
+        try {
+            zza[zzmn.zzk.ordinal()] = 14;
+        } catch (NoSuchFieldError unused14) {
+        }
+        try {
+            zza[zzmn.zzq.ordinal()] = 15;
+        } catch (NoSuchFieldError unused15) {
+        }
+        try {
+            zza[zzmn.zzr.ordinal()] = 16;
+        } catch (NoSuchFieldError unused16) {
+        }
+        try {
+            zza[zzmn.zzi.ordinal()] = 17;
+        } catch (NoSuchFieldError unused17) {
+        }
     }
 }

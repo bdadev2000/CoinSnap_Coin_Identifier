@@ -1,21 +1,23 @@
 package androidx.work;
 
-import androidx.work.Data;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 
-/* loaded from: classes7.dex */
-public final class OverwritingInputMerger extends InputMerger {
-    @Override // androidx.work.InputMerger
-    public Data merge(List<Data> inputs) {
-        Data.Builder builder = new Data.Builder();
+/* loaded from: classes.dex */
+public final class OverwritingInputMerger extends j {
+    @Override // androidx.work.j
+    public final g a(ArrayList arrayList) {
+        f fVar = new f();
         HashMap hashMap = new HashMap();
-        Iterator<Data> it = inputs.iterator();
+        Iterator it = arrayList.iterator();
         while (it.hasNext()) {
-            hashMap.putAll(it.next().getKeyValueMap());
+            hashMap.putAll(Collections.unmodifiableMap(((g) it.next()).f5214a));
         }
-        builder.putAll(hashMap);
-        return builder.build();
+        fVar.a(hashMap);
+        g gVar = new g(fVar.f5212a);
+        g.c(gVar);
+        return gVar;
     }
 }

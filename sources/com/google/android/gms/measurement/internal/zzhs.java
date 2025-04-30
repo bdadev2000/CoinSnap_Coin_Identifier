@@ -1,45 +1,30 @@
 package com.google.android.gms.measurement.internal;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.text.TextUtils;
-import androidx.constraintlayout.core.motion.utils.TypedValues;
-import com.google.android.gms.common.R;
-import com.google.android.gms.common.internal.Preconditions;
+/* loaded from: classes2.dex */
+final class zzhs implements Runnable {
+    private final /* synthetic */ zzae zza;
+    private final /* synthetic */ zzo zzb;
+    private final /* synthetic */ zzhn zzc;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzhs {
-    private final Resources zza;
-    private final String zzb;
-
-    public final String zza(String str) {
-        int identifier = this.zza.getIdentifier(str, TypedValues.Custom.S_STRING, this.zzb);
-        if (identifier == 0) {
-            return null;
-        }
-        try {
-            return this.zza.getString(identifier);
-        } catch (Resources.NotFoundException unused) {
-            return null;
-        }
+    public zzhs(zzhn zzhnVar, zzae zzaeVar, zzo zzoVar) {
+        this.zza = zzaeVar;
+        this.zzb = zzoVar;
+        this.zzc = zzhnVar;
     }
 
-    public static String zza(Context context) {
-        try {
-            return context.getResources().getResourcePackageName(R.string.common_google_play_services_unknown_issue);
-        } catch (Resources.NotFoundException unused) {
-            return context.getPackageName();
-        }
-    }
-
-    public zzhs(Context context, String str) {
-        Preconditions.checkNotNull(context);
-        this.zza = context.getResources();
-        if (!TextUtils.isEmpty(str)) {
-            this.zzb = str;
+    @Override // java.lang.Runnable
+    public final void run() {
+        zznc zzncVar;
+        zznc zzncVar2;
+        zznc zzncVar3;
+        zzncVar = this.zzc.zza;
+        zzncVar.zzr();
+        if (this.zza.zzc.zza() == null) {
+            zzncVar3 = this.zzc.zza;
+            zzncVar3.zza(this.zza, this.zzb);
         } else {
-            this.zzb = zza(context);
+            zzncVar2 = this.zzc.zza;
+            zzncVar2.zzb(this.zza, this.zzb);
         }
     }
 }

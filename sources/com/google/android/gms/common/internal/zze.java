@@ -2,18 +2,18 @@ package com.google.android.gms.common.internal;
 
 import android.content.ComponentName;
 import android.content.ServiceConnection;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.IInterface;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zze implements ServiceConnection {
     final /* synthetic */ BaseGmsClient zza;
     private final int zzb;
 
-    public zze(BaseGmsClient baseGmsClient, int i) {
+    public zze(BaseGmsClient baseGmsClient, int i9) {
         this.zza = baseGmsClient;
-        this.zzb = i;
+        this.zzb = i9;
     }
 
     @Override // android.content.ServiceConnection
@@ -27,14 +27,18 @@ public final class zze implements ServiceConnection {
         }
         obj = baseGmsClient.zzq;
         synchronized (obj) {
-            BaseGmsClient baseGmsClient2 = this.zza;
-            IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.IGmsServiceBroker");
-            if (queryLocalInterface != null && (queryLocalInterface instanceof IGmsServiceBroker)) {
-                zzadVar = (IGmsServiceBroker) queryLocalInterface;
-            } else {
-                zzadVar = new zzad(iBinder);
+            try {
+                BaseGmsClient baseGmsClient2 = this.zza;
+                IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.IGmsServiceBroker");
+                if (queryLocalInterface != null && (queryLocalInterface instanceof IGmsServiceBroker)) {
+                    zzadVar = (IGmsServiceBroker) queryLocalInterface;
+                } else {
+                    zzadVar = new zzad(iBinder);
+                }
+                baseGmsClient2.zzr = zzadVar;
+            } catch (Throwable th) {
+                throw th;
             }
-            baseGmsClient2.zzr = zzadVar;
         }
         this.zza.zzl(0, null, this.zzb);
     }
@@ -47,6 +51,8 @@ public final class zze implements ServiceConnection {
             this.zza.zzr = null;
         }
         BaseGmsClient baseGmsClient = this.zza;
-        baseGmsClient.zzb.sendMessage(baseGmsClient.zzb.obtainMessage(6, this.zzb, 1));
+        int i9 = this.zzb;
+        Handler handler = baseGmsClient.zzb;
+        handler.sendMessage(handler.obtainMessage(6, i9, 1));
     }
 }

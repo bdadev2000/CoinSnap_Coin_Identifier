@@ -1,15 +1,16 @@
 package com.google.android.gms.tasks;
 
+import androidx.annotation.NonNull;
 import java.util.concurrent.Executor;
 
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
-final class zzf<TResult, TContinuationResult> implements OnSuccessListener<TContinuationResult>, OnFailureListener, OnCanceledListener, zzq {
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzf<TResult, TContinuationResult> implements OnSuccessListener<TContinuationResult>, OnFailureListener, OnCanceledListener, zzq {
     private final Executor zza;
     private final Continuation zzb;
     private final zzw zzc;
 
-    public zzf(Executor executor, Continuation continuation, zzw zzwVar) {
+    public zzf(@NonNull Executor executor, @NonNull Continuation continuation, @NonNull zzw zzwVar) {
         this.zza = executor;
         this.zzb = continuation;
         this.zzc = zzwVar;
@@ -21,7 +22,7 @@ final class zzf<TResult, TContinuationResult> implements OnSuccessListener<TCont
     }
 
     @Override // com.google.android.gms.tasks.OnFailureListener
-    public final void onFailure(Exception exc) {
+    public final void onFailure(@NonNull Exception exc) {
         this.zzc.zza(exc);
     }
 
@@ -36,7 +37,7 @@ final class zzf<TResult, TContinuationResult> implements OnSuccessListener<TCont
     }
 
     @Override // com.google.android.gms.tasks.zzq
-    public final void zzd(Task task) {
+    public final void zzd(@NonNull Task task) {
         this.zza.execute(new zze(this, task));
     }
 }

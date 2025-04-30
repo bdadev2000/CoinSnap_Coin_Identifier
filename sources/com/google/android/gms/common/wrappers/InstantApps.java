@@ -1,15 +1,22 @@
 package com.google.android.gms.common.wrappers;
 
 import android.content.Context;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.util.PlatformVersion;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class InstantApps {
     private static Context zza;
+
+    @Nullable
     private static Boolean zzb;
 
-    public static synchronized boolean isInstantApp(Context context) {
+    @KeepForSdk
+    public static synchronized boolean isInstantApp(@NonNull Context context) {
+        boolean isInstantApp;
         Boolean bool;
         synchronized (InstantApps.class) {
             Context applicationContext = context.getApplicationContext();
@@ -19,13 +26,14 @@ public class InstantApps {
             }
             zzb = null;
             if (PlatformVersion.isAtLeastO()) {
-                zzb = Boolean.valueOf(applicationContext.getPackageManager().isInstantApp());
+                isInstantApp = applicationContext.getPackageManager().isInstantApp();
+                zzb = Boolean.valueOf(isInstantApp);
             } else {
                 try {
                     context.getClassLoader().loadClass("com.google.android.instantapps.supervisor.InstantAppsRuntime");
-                    zzb = true;
+                    zzb = Boolean.TRUE;
                 } catch (ClassNotFoundException unused) {
-                    zzb = false;
+                    zzb = Boolean.FALSE;
                 }
             }
             zza = applicationContext;

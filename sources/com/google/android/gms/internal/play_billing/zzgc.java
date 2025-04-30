@@ -1,15 +1,40 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final class zzgc implements zzce {
-    static final zzce zza = new zzgc();
+/* loaded from: classes2.dex */
+final /* synthetic */ class zzgc {
+    static final /* synthetic */ int[] zza;
 
-    private zzgc() {
-    }
-
-    @Override // com.google.android.gms.internal.play_billing.zzce
-    public final boolean zza(int i) {
-        return i == 0 || i == 1;
+    static {
+        zzcr.zza();
+        int[] iArr = new int[7];
+        zza = iArr;
+        try {
+            iArr[3] = 1;
+        } catch (NoSuchFieldError unused) {
+        }
+        try {
+            zza[4] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            zza[2] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        try {
+            zza[5] = 4;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            zza[6] = 5;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            zza[0] = 6;
+        } catch (NoSuchFieldError unused6) {
+        }
+        try {
+            zza[1] = 7;
+        } catch (NoSuchFieldError unused7) {
+        }
     }
 }

@@ -1,81 +1,70 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public class zzcl {
-    private static final zzbn zzb = zzbn.zza;
-    protected volatile zzdf zza;
-    private volatile zzba zzc;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.ServiceConfigurationError;
+import java.util.ServiceLoader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import x0.AbstractC2914a;
 
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+/* loaded from: classes2.dex */
+public abstract class zzcl {
+    public static zzcd zzb(Class cls) {
+        String f9;
+        ClassLoader classLoader = zzcl.class.getClassLoader();
+        if (cls.equals(zzcd.class)) {
+            f9 = "com.google.protobuf.BlazeGeneratedExtensionRegistryLiteLoader";
+        } else if (cls.getPackage().equals(zzcl.class.getPackage())) {
+            f9 = AbstractC2914a.f(cls.getPackage().getName(), ".BlazeGenerated", cls.getSimpleName(), "Loader");
+        } else {
+            throw new IllegalArgumentException(cls.getName());
         }
-        if (!(obj instanceof zzcl)) {
-            return false;
-        }
-        zzcl zzclVar = (zzcl) obj;
-        zzdf zzdfVar = this.zza;
-        zzdf zzdfVar2 = zzclVar.zza;
-        if (zzdfVar == null && zzdfVar2 == null) {
-            return zzb().equals(zzclVar.zzb());
-        }
-        if (zzdfVar != null && zzdfVar2 != null) {
-            return zzdfVar.equals(zzdfVar2);
-        }
-        if (zzdfVar != null) {
-            zzclVar.zzc(zzdfVar.zzf());
-            return zzdfVar.equals(zzclVar.zza);
-        }
-        zzc(zzdfVar2.zzf());
-        return this.zza.equals(zzdfVar2);
-    }
-
-    public int hashCode() {
-        return 1;
-    }
-
-    public final int zza() {
-        if (this.zzc != null) {
-            return ((zzax) this.zzc).zza.length;
-        }
-        if (this.zza != null) {
-            return this.zza.zze();
-        }
-        return 0;
-    }
-
-    public final zzba zzb() {
-        if (this.zzc != null) {
-            return this.zzc;
-        }
-        synchronized (this) {
-            if (this.zzc != null) {
-                return this.zzc;
-            }
-            if (this.zza == null) {
-                this.zzc = zzba.zzb;
-            } else {
-                this.zzc = this.zza.zzb();
-            }
-            return this.zzc;
-        }
-    }
-
-    protected final void zzc(zzdf zzdfVar) {
-        if (this.zza != null) {
-            return;
-        }
-        synchronized (this) {
-            if (this.zza == null) {
+        try {
+            try {
                 try {
-                    this.zza = zzdfVar;
-                    this.zzc = zzba.zzb;
-                } catch (zzci unused) {
-                    this.zza = zzdfVar;
-                    this.zzc = zzba.zzb;
+                    try {
+                        return (zzcd) cls.cast(((zzcl) Class.forName(f9, true, classLoader).getConstructor(null).newInstance(null)).zza());
+                    } catch (IllegalAccessException e4) {
+                        throw new IllegalStateException(e4);
+                    } catch (InstantiationException e9) {
+                        throw new IllegalStateException(e9);
+                    }
+                } catch (NoSuchMethodException e10) {
+                    throw new IllegalStateException(e10);
+                }
+            } catch (InvocationTargetException e11) {
+                throw new IllegalStateException(e11);
+            }
+        } catch (ClassNotFoundException unused) {
+            Iterator it = ServiceLoader.load(zzcl.class, classLoader).iterator();
+            ArrayList arrayList = new ArrayList();
+            while (it.hasNext()) {
+                try {
+                    arrayList.add((zzcd) cls.cast(((zzcl) it.next()).zza()));
+                } catch (ServiceConfigurationError e12) {
+                    Logger.getLogger(zzby.class.getName()).logp(Level.SEVERE, "com.google.protobuf.GeneratedExtensionRegistryLoader", "load", "Unable to load ".concat(cls.getSimpleName()), (Throwable) e12);
                 }
             }
+            if (arrayList.size() == 1) {
+                return (zzcd) arrayList.get(0);
+            }
+            if (arrayList.size() == 0) {
+                return null;
+            }
+            try {
+                return (zzcd) cls.getMethod("combine", Collection.class).invoke(null, arrayList);
+            } catch (IllegalAccessException e13) {
+                throw new IllegalStateException(e13);
+            } catch (NoSuchMethodException e14) {
+                throw new IllegalStateException(e14);
+            } catch (InvocationTargetException e15) {
+                throw new IllegalStateException(e15);
+            }
         }
     }
+
+    public abstract zzcd zza();
 }

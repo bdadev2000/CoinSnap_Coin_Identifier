@@ -1,7 +1,8 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public interface zzhx {
-    boolean zza();
+import java.io.IOException;
+
+/* loaded from: classes2.dex */
+public abstract class zzhx {
+    public abstract void zza(byte[] bArr, int i9, int i10) throws IOException;
 }

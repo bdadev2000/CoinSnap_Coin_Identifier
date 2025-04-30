@@ -1,19 +1,18 @@
 package com.google.android.gms.common;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzy {
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zza(int i) {
+    public static int zza(int i9) {
         int[] iArr = {1, 2, 3, 4, 5, 6};
-        for (int i2 = 0; i2 < 6; i2++) {
-            int i3 = iArr[i2];
-            int i4 = i3 - 1;
-            if (i3 == 0) {
+        for (int i10 = 0; i10 < 6; i10++) {
+            int i11 = iArr[i10];
+            int i12 = i11 - 1;
+            if (i11 != 0) {
+                if (i12 == i9) {
+                    return i11;
+                }
+            } else {
                 throw null;
-            }
-            if (i4 == i) {
-                return i3;
             }
         }
         return 1;

@@ -5,35 +5,36 @@ import android.os.IBinder;
 import android.os.Parcel;
 import android.os.RemoteException;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class zzac extends com.google.android.gms.internal.common.zzb implements IGmsCallbacks {
     public zzac() {
         super("com.google.android.gms.common.internal.IGmsCallbacks");
     }
 
     @Override // com.google.android.gms.internal.common.zzb
-    protected final boolean zza(int i, Parcel parcel, Parcel parcel2, int i2) throws RemoteException {
-        if (i == 1) {
-            int readInt = parcel.readInt();
-            IBinder readStrongBinder = parcel.readStrongBinder();
-            Bundle bundle = (Bundle) com.google.android.gms.internal.common.zzc.zza(parcel, Bundle.CREATOR);
-            com.google.android.gms.internal.common.zzc.zzb(parcel);
-            onPostInitComplete(readInt, readStrongBinder, bundle);
-        } else if (i == 2) {
-            int readInt2 = parcel.readInt();
-            Bundle bundle2 = (Bundle) com.google.android.gms.internal.common.zzc.zza(parcel, Bundle.CREATOR);
-            com.google.android.gms.internal.common.zzc.zzb(parcel);
-            zzb(readInt2, bundle2);
-        } else {
-            if (i != 3) {
-                return false;
+    public final boolean zza(int i9, Parcel parcel, Parcel parcel2, int i10) throws RemoteException {
+        if (i9 != 1) {
+            if (i9 != 2) {
+                if (i9 != 3) {
+                    return false;
+                }
+                int readInt = parcel.readInt();
+                IBinder readStrongBinder = parcel.readStrongBinder();
+                zzk zzkVar = (zzk) com.google.android.gms.internal.common.zzc.zza(parcel, zzk.CREATOR);
+                com.google.android.gms.internal.common.zzc.zzb(parcel);
+                zzc(readInt, readStrongBinder, zzkVar);
+            } else {
+                int readInt2 = parcel.readInt();
+                Bundle bundle = (Bundle) com.google.android.gms.internal.common.zzc.zza(parcel, Bundle.CREATOR);
+                com.google.android.gms.internal.common.zzc.zzb(parcel);
+                zzb(readInt2, bundle);
             }
+        } else {
             int readInt3 = parcel.readInt();
             IBinder readStrongBinder2 = parcel.readStrongBinder();
-            zzk zzkVar = (zzk) com.google.android.gms.internal.common.zzc.zza(parcel, zzk.CREATOR);
+            Bundle bundle2 = (Bundle) com.google.android.gms.internal.common.zzc.zza(parcel, Bundle.CREATOR);
             com.google.android.gms.internal.common.zzc.zzb(parcel);
-            zzc(readInt3, readStrongBinder2, zzkVar);
+            onPostInitComplete(readInt3, readStrongBinder2, bundle2);
         }
         parcel2.writeNoException();
         return true;

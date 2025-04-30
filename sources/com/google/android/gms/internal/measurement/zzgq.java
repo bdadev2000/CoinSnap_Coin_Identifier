@@ -1,12 +1,19 @@
 package com.google.android.gms.internal.measurement;
 
-import android.content.ContentResolver;
-import java.util.Map;
+import android.os.Binder;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public interface zzgq {
-    String zza(ContentResolver contentResolver, String str) throws zzgt;
-
-    <T extends Map<String, String>> T zza(ContentResolver contentResolver, String[] strArr, zzgr<T> zzgrVar) throws zzgt;
+/* loaded from: classes2.dex */
+public final /* synthetic */ class zzgq {
+    public static <V> V zza(zzgp<V> zzgpVar) {
+        try {
+            return zzgpVar.zza();
+        } catch (SecurityException unused) {
+            long clearCallingIdentity = Binder.clearCallingIdentity();
+            try {
+                return zzgpVar.zza();
+            } finally {
+                Binder.restoreCallingIdentity(clearCallingIdentity);
+            }
+        }
+    }
 }

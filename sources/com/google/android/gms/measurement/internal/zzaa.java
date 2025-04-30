@@ -1,178 +1,49 @@
 package com.google.android.gms.measurement.internal;
 
-import com.google.android.gms.common.internal.Preconditions;
-import com.google.android.gms.internal.measurement.zzfo;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
+import com.google.android.gms.internal.measurement.zzff;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-public abstract class zzaa {
-    String zza;
-    int zzb;
-    Boolean zzc;
-    Boolean zzd;
-    Long zze;
-    Long zzf;
+/* loaded from: classes2.dex */
+public final class zzaa extends zzz {
+    private zzff.zzb zzg;
+    private final /* synthetic */ zzu zzh;
 
-    /* JADX WARN: Code restructure failed: missing block: B:69:0x0084, code lost:
-    
-        if (r2 != null) goto L37;
-     */
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public zzaa(zzu zzuVar, String str, int i9, zzff.zzb zzbVar) {
+        super(str, i9);
+        this.zzh = zzuVar;
+        this.zzg = zzbVar;
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzz
+    public final int zza() {
+        return this.zzg.zzb();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzz
+    public final boolean zzb() {
+        return this.zzg.zzk();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzz
+    public final boolean zzc() {
+        return false;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    /* JADX WARN: Removed duplicated region for block: B:42:0x03ae  */
+    /* JADX WARN: Removed duplicated region for block: B:45:0x03b9 A[RETURN] */
+    /* JADX WARN: Removed duplicated region for block: B:46:0x03ba  */
+    /* JADX WARN: Removed duplicated region for block: B:66:0x03b1  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private static java.lang.Boolean zza(java.math.BigDecimal r8, com.google.android.gms.internal.measurement.zzfo.zzd r9, double r10) {
+    public final boolean zza(java.lang.Long r16, java.lang.Long r17, com.google.android.gms.internal.measurement.zzfn.zzf r18, long r19, com.google.android.gms.measurement.internal.zzaz r21, boolean r22) {
         /*
-            Method dump skipped, instructions count: 281
+            Method dump skipped, instructions count: 1065
             To view this dump change 'Code comments level' option to 'DEBUG'
         */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.measurement.internal.zzaa.zza(java.math.BigDecimal, com.google.android.gms.internal.measurement.zzfo$zzd, double):java.lang.Boolean");
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract int zza();
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract boolean zzb();
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract boolean zzc();
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static Boolean zza(String str, zzfo.zzf zzfVar, zzgo zzgoVar) {
-        String zze;
-        List<String> list;
-        Preconditions.checkNotNull(zzfVar);
-        if (str == null || !zzfVar.zzj() || zzfVar.zzb() == zzfo.zzf.zzb.UNKNOWN_MATCH_TYPE) {
-            return null;
-        }
-        if (zzfVar.zzb() == zzfo.zzf.zzb.IN_LIST) {
-            if (zzfVar.zza() == 0) {
-                return null;
-            }
-        } else if (!zzfVar.zzi()) {
-            return null;
-        }
-        zzfo.zzf.zzb zzb = zzfVar.zzb();
-        boolean zzg = zzfVar.zzg();
-        if (zzg || zzb == zzfo.zzf.zzb.REGEXP || zzb == zzfo.zzf.zzb.IN_LIST) {
-            zze = zzfVar.zze();
-        } else {
-            zze = zzfVar.zze().toUpperCase(Locale.ENGLISH);
-        }
-        String str2 = zze;
-        if (zzfVar.zza() == 0) {
-            list = null;
-        } else {
-            List<String> zzf = zzfVar.zzf();
-            if (!zzg) {
-                ArrayList arrayList = new ArrayList(zzf.size());
-                Iterator<String> it = zzf.iterator();
-                while (it.hasNext()) {
-                    arrayList.add(it.next().toUpperCase(Locale.ENGLISH));
-                }
-                zzf = Collections.unmodifiableList(arrayList);
-            }
-            list = zzf;
-        }
-        return zza(str, zzb, zzg, str2, list, zzb == zzfo.zzf.zzb.REGEXP ? str2 : null, zzgoVar);
-    }
-
-    private static Boolean zza(String str, zzfo.zzf.zzb zzbVar, boolean z, String str2, List<String> list, String str3, zzgo zzgoVar) {
-        if (str == null) {
-            return null;
-        }
-        if (zzbVar == zzfo.zzf.zzb.IN_LIST) {
-            if (list == null || list.isEmpty()) {
-                return null;
-            }
-        } else if (str2 == null) {
-            return null;
-        }
-        if (!z && zzbVar != zzfo.zzf.zzb.REGEXP) {
-            str = str.toUpperCase(Locale.ENGLISH);
-        }
-        switch (zzw.zza[zzbVar.ordinal()]) {
-            case 1:
-                if (str3 == null) {
-                    return null;
-                }
-                try {
-                    return Boolean.valueOf(Pattern.compile(str3, z ? 0 : 66).matcher(str).matches());
-                } catch (PatternSyntaxException unused) {
-                    if (zzgoVar != null) {
-                        zzgoVar.zzu().zza("Invalid regular expression in REGEXP audience filter. expression", str3);
-                    }
-                    return null;
-                }
-            case 2:
-                return Boolean.valueOf(str.startsWith(str2));
-            case 3:
-                return Boolean.valueOf(str.endsWith(str2));
-            case 4:
-                return Boolean.valueOf(str.contains(str2));
-            case 5:
-                return Boolean.valueOf(str.equals(str2));
-            case 6:
-                if (list == null) {
-                    return null;
-                }
-                return Boolean.valueOf(list.contains(str));
-            default:
-                return null;
-        }
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static Boolean zza(double d, zzfo.zzd zzdVar) {
-        try {
-            return zza(new BigDecimal(d), zzdVar, Math.ulp(d));
-        } catch (NumberFormatException unused) {
-            return null;
-        }
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static Boolean zza(long j, zzfo.zzd zzdVar) {
-        try {
-            return zza(new BigDecimal(j), zzdVar, 0.0d);
-        } catch (NumberFormatException unused) {
-            return null;
-        }
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static Boolean zza(String str, zzfo.zzd zzdVar) {
-        if (!zzoo.zzb(str)) {
-            return null;
-        }
-        try {
-            return zza(new BigDecimal(str), zzdVar, 0.0d);
-        } catch (NumberFormatException unused) {
-            return null;
-        }
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static Boolean zza(Boolean bool, boolean z) {
-        if (bool == null) {
-            return null;
-        }
-        return Boolean.valueOf(bool.booleanValue() != z);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzaa(String str, int i) {
-        this.zza = str;
-        this.zzb = i;
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.measurement.internal.zzaa.zza(java.lang.Long, java.lang.Long, com.google.android.gms.internal.measurement.zzfn$zzf, long, com.google.android.gms.measurement.internal.zzaz, boolean):boolean");
     }
 }

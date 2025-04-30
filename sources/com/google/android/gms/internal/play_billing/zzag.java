@@ -1,19 +1,16 @@
 package com.google.android.gms.internal.play_billing;
 
-import java.util.Iterator;
-import java.util.Set;
+/* loaded from: classes2.dex */
+final class zzag extends zzac {
+    private final zzai zza;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public final class zzag {
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zza(Set set) {
-        Iterator it = set.iterator();
-        int i = 0;
-        while (it.hasNext()) {
-            Object next = it.next();
-            i += next != null ? next.hashCode() : 0;
-        }
-        return i;
+    public zzag(zzai zzaiVar, int i9) {
+        super(zzaiVar.size(), i9);
+        this.zza = zzaiVar;
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzac
+    public final Object zza(int i9) {
+        return this.zza.get(i9);
     }
 }

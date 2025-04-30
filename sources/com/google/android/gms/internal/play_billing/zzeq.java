@@ -1,213 +1,373 @@
 package com.google.android.gms.internal.play_billing;
 
-import java.lang.reflect.Field;
-import java.nio.Buffer;
-import java.security.AccessController;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import sun.misc.Unsafe;
+import com.applovin.impl.L;
+import java.io.IOException;
+import java.util.List;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final class zzeq {
-    static final long zza;
-    static final boolean zzb;
-    private static final Unsafe zzc;
-    private static final Class zzd;
-    private static final boolean zze;
-    private static final zzep zzf;
-    private static final boolean zzg;
-    private static final boolean zzh;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzeq {
+    public static final /* synthetic */ int zza = 0;
+    private static final Class zzb;
+    private static final zzff zzc;
+    private static final zzff zzd;
 
-    /* JADX WARN: Removed duplicated region for block: B:15:0x0142  */
-    /* JADX WARN: Removed duplicated region for block: B:20:0x0154  */
-    /* JADX WARN: Removed duplicated region for block: B:24:0x006d  */
     static {
-        /*
-            Method dump skipped, instructions count: 344
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.internal.play_billing.zzeq.<clinit>():void");
-    }
-
-    private zzeq() {
-    }
-
-    private static int zzA(Class cls) {
-        if (zzh) {
-            return zzf.zza.arrayIndexScale(cls);
-        }
-        return -1;
-    }
-
-    private static Field zzB() {
-        int i = zzam.zza;
-        Field zzC = zzC(Buffer.class, "effectiveDirectAddress");
-        if (zzC != null) {
-            return zzC;
-        }
-        Field zzC2 = zzC(Buffer.class, "address");
-        if (zzC2 == null || zzC2.getType() != Long.TYPE) {
-            return null;
-        }
-        return zzC2;
-    }
-
-    private static Field zzC(Class cls, String str) {
+        Class<?> cls;
+        Class<?> cls2;
+        zzff zzffVar = null;
         try {
-            return cls.getDeclaredField(str);
+            cls = Class.forName("com.google.protobuf.GeneratedMessage");
         } catch (Throwable unused) {
-            return null;
+            cls = null;
+        }
+        zzb = cls;
+        try {
+            cls2 = Class.forName("com.google.protobuf.UnknownFieldSetSchema");
+        } catch (Throwable unused2) {
+            cls2 = null;
+        }
+        if (cls2 != null) {
+            try {
+                zzffVar = (zzff) cls2.getConstructor(null).newInstance(null);
+            } catch (Throwable unused3) {
+            }
+        }
+        zzc = zzffVar;
+        zzd = new zzfh();
+    }
+
+    public static void zzA(int i9, List list, zzfx zzfxVar, boolean z8) throws IOException {
+        if (list != null && !list.isEmpty()) {
+            zzfxVar.zzy(i9, list, z8);
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public static void zzD(Object obj, long j, byte b) {
-        zzep zzepVar = zzf;
-        long j2 = (-4) & j;
-        int i = zzepVar.zza.getInt(obj, j2);
-        int i2 = ((~((int) j)) & 3) << 3;
-        zzepVar.zza.putInt(obj, j2, ((255 & b) << i2) | (i & (~(255 << i2))));
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public static void zzE(Object obj, long j, byte b) {
-        zzep zzepVar = zzf;
-        long j2 = (-4) & j;
-        int i = (((int) j) & 3) << 3;
-        zzepVar.zza.putInt(obj, j2, ((255 & b) << i) | (zzepVar.zza.getInt(obj, j2) & (~(255 << i))));
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static double zza(Object obj, long j) {
-        return zzf.zza(obj, j);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static float zzb(Object obj, long j) {
-        return zzf.zzb(obj, j);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zzc(Object obj, long j) {
-        return zzf.zza.getInt(obj, j);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static long zzd(Object obj, long j) {
-        return zzf.zza.getLong(obj, j);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static Object zze(Class cls) {
-        try {
-            return zzc.allocateInstance(cls);
-        } catch (InstantiationException e) {
-            throw new IllegalStateException(e);
+    public static void zzB(int i9, List list, zzfx zzfxVar, boolean z8) throws IOException {
+        if (list != null && !list.isEmpty()) {
+            zzfxVar.zzA(i9, list, z8);
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static Object zzf(Object obj, long j) {
-        return zzf.zza.getObject(obj, j);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static Unsafe zzg() {
-        try {
-            return (Unsafe) AccessController.doPrivileged(new zzem());
-        } catch (Throwable unused) {
-            return null;
+    public static void zzC(int i9, List list, zzfx zzfxVar, boolean z8) throws IOException {
+        if (list != null && !list.isEmpty()) {
+            zzfxVar.zzC(i9, list, z8);
         }
     }
 
-    static /* bridge */ /* synthetic */ void zzh(Throwable th) {
-        Logger.getLogger(zzeq.class.getName()).logp(Level.WARNING, "com.google.protobuf.UnsafeUtil", "logMissingMethod", "platform method missing - proto runtime falling back to safer methods: ".concat(th.toString()));
+    public static void zzD(int i9, List list, zzfx zzfxVar, boolean z8) throws IOException {
+        if (list != null && !list.isEmpty()) {
+            zzfxVar.zzE(i9, list, z8);
+        }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static void zzm(Object obj, long j, boolean z) {
-        zzf.zzc(obj, j, z);
+    public static void zzE(int i9, List list, zzfx zzfxVar, boolean z8) throws IOException {
+        if (list != null && !list.isEmpty()) {
+            zzfxVar.zzJ(i9, list, z8);
+        }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static void zzn(byte[] bArr, long j, byte b) {
-        zzf.zzd(bArr, zza + j, b);
+    public static void zzF(int i9, List list, zzfx zzfxVar, boolean z8) throws IOException {
+        if (list != null && !list.isEmpty()) {
+            zzfxVar.zzL(i9, list, z8);
+        }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static void zzo(Object obj, long j, double d) {
-        zzf.zze(obj, j, d);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static void zzp(Object obj, long j, float f) {
-        zzf.zzf(obj, j, f);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static void zzq(Object obj, long j, int i) {
-        zzf.zza.putInt(obj, j, i);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static void zzr(Object obj, long j, long j2) {
-        zzf.zza.putLong(obj, j, j2);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static void zzs(Object obj, long j, Object obj2) {
-        zzf.zza.putObject(obj, j, obj2);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* bridge */ /* synthetic */ boolean zzt(Object obj, long j) {
-        return ((byte) ((zzf.zza.getInt(obj, (-4) & j) >>> ((int) (((~j) & 3) << 3))) & 255)) != 0;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* bridge */ /* synthetic */ boolean zzu(Object obj, long j) {
-        return ((byte) ((zzf.zza.getInt(obj, (-4) & j) >>> ((int) ((j & 3) << 3))) & 255)) != 0;
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    static boolean zzv(Class cls) {
-        int i = zzam.zza;
-        try {
-            Class cls2 = zzd;
-            cls2.getMethod("peekLong", cls, Boolean.TYPE);
-            cls2.getMethod("pokeLong", cls, Long.TYPE, Boolean.TYPE);
-            cls2.getMethod("pokeInt", cls, Integer.TYPE, Boolean.TYPE);
-            cls2.getMethod("peekInt", cls, Boolean.TYPE);
-            cls2.getMethod("pokeByte", cls, Byte.TYPE);
-            cls2.getMethod("peekByte", cls);
-            cls2.getMethod("pokeByteArray", cls, byte[].class, Integer.TYPE, Integer.TYPE);
-            cls2.getMethod("peekByteArray", cls, byte[].class, Integer.TYPE, Integer.TYPE);
+    public static boolean zzG(Object obj, Object obj2) {
+        if (obj == obj2) {
             return true;
-        } catch (Throwable unused) {
-            return false;
+        }
+        if (obj != null && obj.equals(obj2)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static int zza(List list) {
+        int i9;
+        int size = list.size();
+        int i10 = 0;
+        if (size == 0) {
+            return 0;
+        }
+        if (list instanceof zzct) {
+            zzct zzctVar = (zzct) list;
+            i9 = 0;
+            while (i10 < size) {
+                i9 += zzby.zzx(zzctVar.zze(i10));
+                i10++;
+            }
+        } else {
+            i9 = 0;
+            while (i10 < size) {
+                i9 += zzby.zzx(((Integer) list.get(i10)).intValue());
+                i10++;
+            }
+        }
+        return i9;
+    }
+
+    public static int zzb(int i9, List list, boolean z8) {
+        int size = list.size();
+        if (size == 0) {
+            return 0;
+        }
+        return (zzby.zzw(i9 << 3) + 4) * size;
+    }
+
+    public static int zzc(List list) {
+        return list.size() * 4;
+    }
+
+    public static int zzd(int i9, List list, boolean z8) {
+        int size = list.size();
+        if (size == 0) {
+            return 0;
+        }
+        return (zzby.zzw(i9 << 3) + 8) * size;
+    }
+
+    public static int zze(List list) {
+        return list.size() * 8;
+    }
+
+    public static int zzf(List list) {
+        int i9;
+        int size = list.size();
+        int i10 = 0;
+        if (size == 0) {
+            return 0;
+        }
+        if (list instanceof zzct) {
+            zzct zzctVar = (zzct) list;
+            i9 = 0;
+            while (i10 < size) {
+                i9 += zzby.zzx(zzctVar.zze(i10));
+                i10++;
+            }
+        } else {
+            i9 = 0;
+            while (i10 < size) {
+                i9 += zzby.zzx(((Integer) list.get(i10)).intValue());
+                i10++;
+            }
+        }
+        return i9;
+    }
+
+    public static int zzg(List list) {
+        int i9;
+        int size = list.size();
+        int i10 = 0;
+        if (size == 0) {
+            return 0;
+        }
+        if (list instanceof zzdr) {
+            zzdr zzdrVar = (zzdr) list;
+            i9 = 0;
+            while (i10 < size) {
+                i9 += zzby.zzx(zzdrVar.zze(i10));
+                i10++;
+            }
+        } else {
+            i9 = 0;
+            while (i10 < size) {
+                i9 += zzby.zzx(((Long) list.get(i10)).longValue());
+                i10++;
+            }
+        }
+        return i9;
+    }
+
+    public static int zzh(int i9, Object obj, zzeo zzeoVar) {
+        int i10 = i9 << 3;
+        if (obj instanceof zzdi) {
+            int zzw = zzby.zzw(i10);
+            int zza2 = ((zzdi) obj).zza();
+            return L.y(zza2, zza2, zzw);
+        }
+        return zzby.zzu((zzec) obj, zzeoVar) + zzby.zzw(i10);
+    }
+
+    public static int zzi(List list) {
+        int i9;
+        int size = list.size();
+        int i10 = 0;
+        if (size == 0) {
+            return 0;
+        }
+        if (list instanceof zzct) {
+            zzct zzctVar = (zzct) list;
+            i9 = 0;
+            while (i10 < size) {
+                int zze = zzctVar.zze(i10);
+                i9 += zzby.zzw((zze >> 31) ^ (zze + zze));
+                i10++;
+            }
+        } else {
+            i9 = 0;
+            while (i10 < size) {
+                int intValue = ((Integer) list.get(i10)).intValue();
+                i9 += zzby.zzw((intValue >> 31) ^ (intValue + intValue));
+                i10++;
+            }
+        }
+        return i9;
+    }
+
+    public static int zzj(List list) {
+        int i9;
+        int size = list.size();
+        int i10 = 0;
+        if (size == 0) {
+            return 0;
+        }
+        if (list instanceof zzdr) {
+            zzdr zzdrVar = (zzdr) list;
+            i9 = 0;
+            while (i10 < size) {
+                long zze = zzdrVar.zze(i10);
+                i9 += zzby.zzx((zze >> 63) ^ (zze + zze));
+                i10++;
+            }
+        } else {
+            i9 = 0;
+            while (i10 < size) {
+                long longValue = ((Long) list.get(i10)).longValue();
+                i9 += zzby.zzx((longValue >> 63) ^ (longValue + longValue));
+                i10++;
+            }
+        }
+        return i9;
+    }
+
+    public static int zzk(List list) {
+        int i9;
+        int size = list.size();
+        int i10 = 0;
+        if (size == 0) {
+            return 0;
+        }
+        if (list instanceof zzct) {
+            zzct zzctVar = (zzct) list;
+            i9 = 0;
+            while (i10 < size) {
+                i9 += zzby.zzw(zzctVar.zze(i10));
+                i10++;
+            }
+        } else {
+            i9 = 0;
+            while (i10 < size) {
+                i9 += zzby.zzw(((Integer) list.get(i10)).intValue());
+                i10++;
+            }
+        }
+        return i9;
+    }
+
+    public static int zzl(List list) {
+        int i9;
+        int size = list.size();
+        int i10 = 0;
+        if (size == 0) {
+            return 0;
+        }
+        if (list instanceof zzdr) {
+            zzdr zzdrVar = (zzdr) list;
+            i9 = 0;
+            while (i10 < size) {
+                i9 += zzby.zzx(zzdrVar.zze(i10));
+                i10++;
+            }
+        } else {
+            i9 = 0;
+            while (i10 < size) {
+                i9 += zzby.zzx(((Long) list.get(i10)).longValue());
+                i10++;
+            }
+        }
+        return i9;
+    }
+
+    public static zzff zzm() {
+        return zzc;
+    }
+
+    public static zzff zzn() {
+        return zzd;
+    }
+
+    public static Object zzo(Object obj, int i9, int i10, Object obj2, zzff zzffVar) {
+        if (obj2 == null) {
+            obj2 = zzffVar.zzc(obj);
+        }
+        zzffVar.zzf(obj2, i9, i10);
+        return obj2;
+    }
+
+    public static void zzp(zzce zzceVar, Object obj, Object obj2) {
+        zzci zzb2 = zzceVar.zzb(obj2);
+        if (!zzb2.zza.isEmpty()) {
+            zzceVar.zzc(obj).zzh(zzb2);
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static boolean zzw(Object obj, long j) {
-        return zzf.zzg(obj, j);
+    public static void zzq(zzff zzffVar, Object obj, Object obj2) {
+        zzffVar.zzh(obj, zzffVar.zze(zzffVar.zzd(obj), zzffVar.zzd(obj2)));
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static boolean zzx() {
-        return zzh;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static boolean zzy() {
-        return zzg;
-    }
-
-    private static int zzz(Class cls) {
-        if (zzh) {
-            return zzf.zza.arrayBaseOffset(cls);
+    public static void zzr(Class cls) {
+        Class cls2;
+        if (!zzcs.class.isAssignableFrom(cls) && (cls2 = zzb) != null && !cls2.isAssignableFrom(cls)) {
+            throw new IllegalArgumentException("Message classes must extend GeneratedMessage or GeneratedMessageLite");
         }
-        return -1;
+    }
+
+    public static void zzs(int i9, List list, zzfx zzfxVar, boolean z8) throws IOException {
+        if (list != null && !list.isEmpty()) {
+            zzfxVar.zzc(i9, list, z8);
+        }
+    }
+
+    public static void zzt(int i9, List list, zzfx zzfxVar, boolean z8) throws IOException {
+        if (list != null && !list.isEmpty()) {
+            zzfxVar.zzg(i9, list, z8);
+        }
+    }
+
+    public static void zzu(int i9, List list, zzfx zzfxVar, boolean z8) throws IOException {
+        if (list != null && !list.isEmpty()) {
+            zzfxVar.zzj(i9, list, z8);
+        }
+    }
+
+    public static void zzv(int i9, List list, zzfx zzfxVar, boolean z8) throws IOException {
+        if (list != null && !list.isEmpty()) {
+            zzfxVar.zzl(i9, list, z8);
+        }
+    }
+
+    public static void zzw(int i9, List list, zzfx zzfxVar, boolean z8) throws IOException {
+        if (list != null && !list.isEmpty()) {
+            zzfxVar.zzn(i9, list, z8);
+        }
+    }
+
+    public static void zzx(int i9, List list, zzfx zzfxVar, boolean z8) throws IOException {
+        if (list != null && !list.isEmpty()) {
+            zzfxVar.zzp(i9, list, z8);
+        }
+    }
+
+    public static void zzy(int i9, List list, zzfx zzfxVar, boolean z8) throws IOException {
+        if (list != null && !list.isEmpty()) {
+            zzfxVar.zzs(i9, list, z8);
+        }
+    }
+
+    public static void zzz(int i9, List list, zzfx zzfxVar, boolean z8) throws IOException {
+        if (list != null && !list.isEmpty()) {
+            zzfxVar.zzu(i9, list, z8);
+        }
     }
 }

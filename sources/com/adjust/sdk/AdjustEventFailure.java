@@ -2,7 +2,7 @@ package com.adjust.sdk;
 
 import org.json.JSONObject;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class AdjustEventFailure {
     public String adid;
     public String callbackId;

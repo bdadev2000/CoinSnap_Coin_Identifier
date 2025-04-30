@@ -1,214 +1,60 @@
 package com.google.firebase.perf.v1;
 
-import com.google.firebase.perf.v1.AndroidMemoryReading;
-import com.google.firebase.perf.v1.CpuMetricReading;
-import com.google.firebase.perf.v1.GaugeMetadata;
-import com.google.protobuf.AbstractMessageLite;
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.Internal;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1891d3;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.O3;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
+import i5.AbstractC2361p;
+import i5.C2360o;
+import i5.InterfaceC2350e;
+import i5.InterfaceC2358m;
+import i5.q;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.Collections;
 import java.util.List;
 
-/* loaded from: classes3.dex */
-public final class GaugeMetric extends GeneratedMessageLite<GaugeMetric, Builder> implements GaugeMetricOrBuilder {
+/* loaded from: classes2.dex */
+public final class GaugeMetric extends L2 implements O3 {
     public static final int ANDROID_MEMORY_READINGS_FIELD_NUMBER = 4;
     public static final int CPU_METRIC_READINGS_FIELD_NUMBER = 2;
     private static final GaugeMetric DEFAULT_INSTANCE;
     public static final int GAUGE_METADATA_FIELD_NUMBER = 3;
-    private static volatile Parser<GaugeMetric> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int SESSION_ID_FIELD_NUMBER = 1;
     private int bitField0_;
     private GaugeMetadata gaugeMetadata_;
     private String sessionId_ = "";
-    private Internal.ProtobufList<CpuMetricReading> cpuMetricReadings_ = emptyProtobufList();
-    private Internal.ProtobufList<AndroidMemoryReading> androidMemoryReadings_ = emptyProtobufList();
+    private InterfaceC1891d3 cpuMetricReadings_ = L2.emptyProtobufList();
+    private InterfaceC1891d3 androidMemoryReadings_ = L2.emptyProtobufList();
+
+    static {
+        GaugeMetric gaugeMetric = new GaugeMetric();
+        DEFAULT_INSTANCE = gaugeMetric;
+        L2.registerDefaultInstance(GaugeMetric.class, gaugeMetric);
+    }
 
     private GaugeMetric() {
     }
 
-    @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-    public boolean hasSessionId() {
-        return (this.bitField0_ & 1) != 0;
-    }
-
-    @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-    public String getSessionId() {
-        return this.sessionId_;
-    }
-
-    @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-    public ByteString getSessionIdBytes() {
-        return ByteString.copyFromUtf8(this.sessionId_);
-    }
-
     /* JADX INFO: Access modifiers changed from: private */
-    public void setSessionId(String str) {
-        str.getClass();
-        this.bitField0_ |= 1;
-        this.sessionId_ = str;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearSessionId() {
-        this.bitField0_ &= -2;
-        this.sessionId_ = getDefaultInstance().getSessionId();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setSessionIdBytes(ByteString byteString) {
-        this.sessionId_ = byteString.toStringUtf8();
-        this.bitField0_ |= 1;
-    }
-
-    @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-    public boolean hasGaugeMetadata() {
-        return (this.bitField0_ & 2) != 0;
-    }
-
-    @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-    public GaugeMetadata getGaugeMetadata() {
-        GaugeMetadata gaugeMetadata = this.gaugeMetadata_;
-        return gaugeMetadata == null ? GaugeMetadata.getDefaultInstance() : gaugeMetadata;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setGaugeMetadata(GaugeMetadata gaugeMetadata) {
-        gaugeMetadata.getClass();
-        this.gaugeMetadata_ = gaugeMetadata;
-        this.bitField0_ |= 2;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void mergeGaugeMetadata(GaugeMetadata gaugeMetadata) {
-        gaugeMetadata.getClass();
-        GaugeMetadata gaugeMetadata2 = this.gaugeMetadata_;
-        if (gaugeMetadata2 != null && gaugeMetadata2 != GaugeMetadata.getDefaultInstance()) {
-            this.gaugeMetadata_ = GaugeMetadata.newBuilder(this.gaugeMetadata_).mergeFrom((GaugeMetadata.Builder) gaugeMetadata).buildPartial();
-        } else {
-            this.gaugeMetadata_ = gaugeMetadata;
-        }
-        this.bitField0_ |= 2;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearGaugeMetadata() {
-        this.gaugeMetadata_ = null;
-        this.bitField0_ &= -3;
-    }
-
-    @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-    public List<CpuMetricReading> getCpuMetricReadingsList() {
-        return this.cpuMetricReadings_;
-    }
-
-    public List<? extends CpuMetricReadingOrBuilder> getCpuMetricReadingsOrBuilderList() {
-        return this.cpuMetricReadings_;
-    }
-
-    @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-    public int getCpuMetricReadingsCount() {
-        return this.cpuMetricReadings_.size();
-    }
-
-    @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-    public CpuMetricReading getCpuMetricReadings(int i) {
-        return this.cpuMetricReadings_.get(i);
-    }
-
-    public CpuMetricReadingOrBuilder getCpuMetricReadingsOrBuilder(int i) {
-        return this.cpuMetricReadings_.get(i);
-    }
-
-    private void ensureCpuMetricReadingsIsMutable() {
-        Internal.ProtobufList<CpuMetricReading> protobufList = this.cpuMetricReadings_;
-        if (protobufList.isModifiable()) {
-            return;
-        }
-        this.cpuMetricReadings_ = GeneratedMessageLite.mutableCopy(protobufList);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setCpuMetricReadings(int i, CpuMetricReading cpuMetricReading) {
-        cpuMetricReading.getClass();
-        ensureCpuMetricReadingsIsMutable();
-        this.cpuMetricReadings_.set(i, cpuMetricReading);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void addCpuMetricReadings(CpuMetricReading cpuMetricReading) {
-        cpuMetricReading.getClass();
-        ensureCpuMetricReadingsIsMutable();
-        this.cpuMetricReadings_.add(cpuMetricReading);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void addCpuMetricReadings(int i, CpuMetricReading cpuMetricReading) {
-        cpuMetricReading.getClass();
-        ensureCpuMetricReadingsIsMutable();
-        this.cpuMetricReadings_.add(i, cpuMetricReading);
+    public void addAllAndroidMemoryReadings(Iterable<? extends AndroidMemoryReading> iterable) {
+        ensureAndroidMemoryReadingsIsMutable();
+        AbstractC1880c.addAll((Iterable) iterable, (List) this.androidMemoryReadings_);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void addAllCpuMetricReadings(Iterable<? extends CpuMetricReading> iterable) {
         ensureCpuMetricReadingsIsMutable();
-        AbstractMessageLite.addAll((Iterable) iterable, (List) this.cpuMetricReadings_);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearCpuMetricReadings() {
-        this.cpuMetricReadings_ = emptyProtobufList();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void removeCpuMetricReadings(int i) {
-        ensureCpuMetricReadingsIsMutable();
-        this.cpuMetricReadings_.remove(i);
-    }
-
-    @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-    public List<AndroidMemoryReading> getAndroidMemoryReadingsList() {
-        return this.androidMemoryReadings_;
-    }
-
-    public List<? extends AndroidMemoryReadingOrBuilder> getAndroidMemoryReadingsOrBuilderList() {
-        return this.androidMemoryReadings_;
-    }
-
-    @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-    public int getAndroidMemoryReadingsCount() {
-        return this.androidMemoryReadings_.size();
-    }
-
-    @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-    public AndroidMemoryReading getAndroidMemoryReadings(int i) {
-        return this.androidMemoryReadings_.get(i);
-    }
-
-    public AndroidMemoryReadingOrBuilder getAndroidMemoryReadingsOrBuilder(int i) {
-        return this.androidMemoryReadings_.get(i);
-    }
-
-    private void ensureAndroidMemoryReadingsIsMutable() {
-        Internal.ProtobufList<AndroidMemoryReading> protobufList = this.androidMemoryReadings_;
-        if (protobufList.isModifiable()) {
-            return;
-        }
-        this.androidMemoryReadings_ = GeneratedMessageLite.mutableCopy(protobufList);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setAndroidMemoryReadings(int i, AndroidMemoryReading androidMemoryReading) {
-        androidMemoryReading.getClass();
-        ensureAndroidMemoryReadingsIsMutable();
-        this.androidMemoryReadings_.set(i, androidMemoryReading);
+        AbstractC1880c.addAll((Iterable) iterable, (List) this.cpuMetricReadings_);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -219,364 +65,152 @@ public final class GaugeMetric extends GeneratedMessageLite<GaugeMetric, Builder
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void addAndroidMemoryReadings(int i, AndroidMemoryReading androidMemoryReading) {
-        androidMemoryReading.getClass();
-        ensureAndroidMemoryReadingsIsMutable();
-        this.androidMemoryReadings_.add(i, androidMemoryReading);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void addAllAndroidMemoryReadings(Iterable<? extends AndroidMemoryReading> iterable) {
-        ensureAndroidMemoryReadingsIsMutable();
-        AbstractMessageLite.addAll((Iterable) iterable, (List) this.androidMemoryReadings_);
+    public void addCpuMetricReadings(CpuMetricReading cpuMetricReading) {
+        cpuMetricReading.getClass();
+        ensureCpuMetricReadingsIsMutable();
+        this.cpuMetricReadings_.add(cpuMetricReading);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void clearAndroidMemoryReadings() {
-        this.androidMemoryReadings_ = emptyProtobufList();
+        this.androidMemoryReadings_ = L2.emptyProtobufList();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void removeAndroidMemoryReadings(int i) {
-        ensureAndroidMemoryReadingsIsMutable();
-        this.androidMemoryReadings_.remove(i);
+    public void clearCpuMetricReadings() {
+        this.cpuMetricReadings_ = L2.emptyProtobufList();
     }
 
-    public static GaugeMetric parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (GaugeMetric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearGaugeMetadata() {
+        this.gaugeMetadata_ = null;
+        this.bitField0_ &= -3;
     }
 
-    public static GaugeMetric parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (GaugeMetric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearSessionId() {
+        this.bitField0_ &= -2;
+        this.sessionId_ = getDefaultInstance().getSessionId();
     }
 
-    public static GaugeMetric parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (GaugeMetric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
+    private void ensureAndroidMemoryReadingsIsMutable() {
+        InterfaceC1891d3 interfaceC1891d3 = this.androidMemoryReadings_;
+        if (!interfaceC1891d3.isModifiable()) {
+            this.androidMemoryReadings_ = L2.mutableCopy(interfaceC1891d3);
+        }
     }
 
-    public static GaugeMetric parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (GaugeMetric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
+    private void ensureCpuMetricReadingsIsMutable() {
+        InterfaceC1891d3 interfaceC1891d3 = this.cpuMetricReadings_;
+        if (!interfaceC1891d3.isModifiable()) {
+            this.cpuMetricReadings_ = L2.mutableCopy(interfaceC1891d3);
+        }
     }
 
-    public static GaugeMetric parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (GaugeMetric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
+    public static GaugeMetric getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    public static GaugeMetric parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (GaugeMetric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void mergeGaugeMetadata(GaugeMetadata gaugeMetadata) {
+        gaugeMetadata.getClass();
+        GaugeMetadata gaugeMetadata2 = this.gaugeMetadata_;
+        if (gaugeMetadata2 != null && gaugeMetadata2 != GaugeMetadata.getDefaultInstance()) {
+            this.gaugeMetadata_ = (GaugeMetadata) ((C2360o) GaugeMetadata.newBuilder(this.gaugeMetadata_).mergeFrom((L2) gaugeMetadata)).buildPartial();
+        } else {
+            this.gaugeMetadata_ = gaugeMetadata;
+        }
+        this.bitField0_ |= 2;
     }
 
-    public static GaugeMetric parseFrom(InputStream inputStream) throws IOException {
-        return (GaugeMetric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static GaugeMetric parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (GaugeMetric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static q newBuilder() {
+        return (q) DEFAULT_INSTANCE.createBuilder();
     }
 
     public static GaugeMetric parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (GaugeMetric) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+        return (GaugeMetric) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
     }
 
-    public static GaugeMetric parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (GaugeMetric) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static GaugeMetric parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (GaugeMetric) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
     }
 
-    public static GaugeMetric parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (GaugeMetric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
-    public static GaugeMetric parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (GaugeMetric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void removeAndroidMemoryReadings(int i9) {
+        ensureAndroidMemoryReadingsIsMutable();
+        this.androidMemoryReadings_.remove(i9);
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
+    /* JADX INFO: Access modifiers changed from: private */
+    public void removeCpuMetricReadings(int i9) {
+        ensureCpuMetricReadingsIsMutable();
+        this.cpuMetricReadings_.remove(i9);
     }
 
-    public static Builder newBuilder(GaugeMetric gaugeMetric) {
-        return DEFAULT_INSTANCE.createBuilder(gaugeMetric);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setAndroidMemoryReadings(int i9, AndroidMemoryReading androidMemoryReading) {
+        androidMemoryReading.getClass();
+        ensureAndroidMemoryReadingsIsMutable();
+        this.androidMemoryReadings_.set(i9, androidMemoryReading);
     }
 
-    /* loaded from: classes3.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<GaugeMetric, Builder> implements GaugeMetricOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(GaugeMetric.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-        public boolean hasSessionId() {
-            return ((GaugeMetric) this.instance).hasSessionId();
-        }
-
-        @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-        public String getSessionId() {
-            return ((GaugeMetric) this.instance).getSessionId();
-        }
-
-        @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-        public ByteString getSessionIdBytes() {
-            return ((GaugeMetric) this.instance).getSessionIdBytes();
-        }
-
-        public Builder setSessionId(String str) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).setSessionId(str);
-            return this;
-        }
-
-        public Builder clearSessionId() {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).clearSessionId();
-            return this;
-        }
-
-        public Builder setSessionIdBytes(ByteString byteString) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).setSessionIdBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-        public boolean hasGaugeMetadata() {
-            return ((GaugeMetric) this.instance).hasGaugeMetadata();
-        }
-
-        @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-        public GaugeMetadata getGaugeMetadata() {
-            return ((GaugeMetric) this.instance).getGaugeMetadata();
-        }
-
-        public Builder setGaugeMetadata(GaugeMetadata gaugeMetadata) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).setGaugeMetadata(gaugeMetadata);
-            return this;
-        }
-
-        public Builder setGaugeMetadata(GaugeMetadata.Builder builder) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).setGaugeMetadata(builder.build());
-            return this;
-        }
-
-        public Builder mergeGaugeMetadata(GaugeMetadata gaugeMetadata) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).mergeGaugeMetadata(gaugeMetadata);
-            return this;
-        }
-
-        public Builder clearGaugeMetadata() {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).clearGaugeMetadata();
-            return this;
-        }
-
-        @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-        public List<CpuMetricReading> getCpuMetricReadingsList() {
-            return Collections.unmodifiableList(((GaugeMetric) this.instance).getCpuMetricReadingsList());
-        }
-
-        @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-        public int getCpuMetricReadingsCount() {
-            return ((GaugeMetric) this.instance).getCpuMetricReadingsCount();
-        }
-
-        @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-        public CpuMetricReading getCpuMetricReadings(int i) {
-            return ((GaugeMetric) this.instance).getCpuMetricReadings(i);
-        }
-
-        public Builder setCpuMetricReadings(int i, CpuMetricReading cpuMetricReading) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).setCpuMetricReadings(i, cpuMetricReading);
-            return this;
-        }
-
-        public Builder setCpuMetricReadings(int i, CpuMetricReading.Builder builder) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).setCpuMetricReadings(i, builder.build());
-            return this;
-        }
-
-        public Builder addCpuMetricReadings(CpuMetricReading cpuMetricReading) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).addCpuMetricReadings(cpuMetricReading);
-            return this;
-        }
-
-        public Builder addCpuMetricReadings(int i, CpuMetricReading cpuMetricReading) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).addCpuMetricReadings(i, cpuMetricReading);
-            return this;
-        }
-
-        public Builder addCpuMetricReadings(CpuMetricReading.Builder builder) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).addCpuMetricReadings(builder.build());
-            return this;
-        }
-
-        public Builder addCpuMetricReadings(int i, CpuMetricReading.Builder builder) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).addCpuMetricReadings(i, builder.build());
-            return this;
-        }
-
-        public Builder addAllCpuMetricReadings(Iterable<? extends CpuMetricReading> iterable) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).addAllCpuMetricReadings(iterable);
-            return this;
-        }
-
-        public Builder clearCpuMetricReadings() {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).clearCpuMetricReadings();
-            return this;
-        }
-
-        public Builder removeCpuMetricReadings(int i) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).removeCpuMetricReadings(i);
-            return this;
-        }
-
-        @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-        public List<AndroidMemoryReading> getAndroidMemoryReadingsList() {
-            return Collections.unmodifiableList(((GaugeMetric) this.instance).getAndroidMemoryReadingsList());
-        }
-
-        @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-        public int getAndroidMemoryReadingsCount() {
-            return ((GaugeMetric) this.instance).getAndroidMemoryReadingsCount();
-        }
-
-        @Override // com.google.firebase.perf.v1.GaugeMetricOrBuilder
-        public AndroidMemoryReading getAndroidMemoryReadings(int i) {
-            return ((GaugeMetric) this.instance).getAndroidMemoryReadings(i);
-        }
-
-        public Builder setAndroidMemoryReadings(int i, AndroidMemoryReading androidMemoryReading) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).setAndroidMemoryReadings(i, androidMemoryReading);
-            return this;
-        }
-
-        public Builder setAndroidMemoryReadings(int i, AndroidMemoryReading.Builder builder) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).setAndroidMemoryReadings(i, builder.build());
-            return this;
-        }
-
-        public Builder addAndroidMemoryReadings(AndroidMemoryReading androidMemoryReading) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).addAndroidMemoryReadings(androidMemoryReading);
-            return this;
-        }
-
-        public Builder addAndroidMemoryReadings(int i, AndroidMemoryReading androidMemoryReading) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).addAndroidMemoryReadings(i, androidMemoryReading);
-            return this;
-        }
-
-        public Builder addAndroidMemoryReadings(AndroidMemoryReading.Builder builder) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).addAndroidMemoryReadings(builder.build());
-            return this;
-        }
-
-        public Builder addAndroidMemoryReadings(int i, AndroidMemoryReading.Builder builder) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).addAndroidMemoryReadings(i, builder.build());
-            return this;
-        }
-
-        public Builder addAllAndroidMemoryReadings(Iterable<? extends AndroidMemoryReading> iterable) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).addAllAndroidMemoryReadings(iterable);
-            return this;
-        }
-
-        public Builder clearAndroidMemoryReadings() {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).clearAndroidMemoryReadings();
-            return this;
-        }
-
-        public Builder removeAndroidMemoryReadings(int i) {
-            copyOnWrite();
-            ((GaugeMetric) this.instance).removeAndroidMemoryReadings(i);
-            return this;
-        }
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setCpuMetricReadings(int i9, CpuMetricReading cpuMetricReading) {
+        cpuMetricReading.getClass();
+        ensureCpuMetricReadingsIsMutable();
+        this.cpuMetricReadings_.set(i9, cpuMetricReading);
     }
 
-    /* renamed from: com.google.firebase.perf.v1.GaugeMetric$1, reason: invalid class name */
-    /* loaded from: classes3.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setGaugeMetadata(GaugeMetadata gaugeMetadata) {
+        gaugeMetadata.getClass();
+        this.gaugeMetadata_ = gaugeMetadata;
+        this.bitField0_ |= 2;
     }
 
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setSessionId(String str) {
+        str.getClass();
+        this.bitField0_ |= 1;
+        this.sessionId_ = str;
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setSessionIdBytes(H h6) {
+        this.sessionId_ = h6.toStringUtf8();
+        this.bitField0_ |= 1;
+    }
+
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (AbstractC2361p.f20688a[k22.ordinal()]) {
             case 1:
                 return new GaugeMetric();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0001\u0004\u0000\u0001\u0001\u0004\u0004\u0000\u0002\u0000\u0001ဈ\u0000\u0002\u001b\u0003ဉ\u0001\u0004\u001b", new Object[]{"bitField0_", "sessionId_", "cpuMetricReadings_", CpuMetricReading.class, "gaugeMetadata_", "androidMemoryReadings_", AndroidMemoryReading.class});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0001\u0004\u0000\u0001\u0001\u0004\u0004\u0000\u0002\u0000\u0001ဈ\u0000\u0002\u001b\u0003ဉ\u0001\u0004\u001b", new Object[]{"bitField0_", "sessionId_", "cpuMetricReadings_", CpuMetricReading.class, "gaugeMetadata_", "androidMemoryReadings_", AndroidMemoryReading.class});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<GaugeMetric> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (GaugeMetric.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -586,17 +220,131 @@ public final class GaugeMetric extends GeneratedMessageLite<GaugeMetric, Builder
         }
     }
 
-    static {
-        GaugeMetric gaugeMetric = new GaugeMetric();
-        DEFAULT_INSTANCE = gaugeMetric;
-        GeneratedMessageLite.registerDefaultInstance(GaugeMetric.class, gaugeMetric);
+    public AndroidMemoryReading getAndroidMemoryReadings(int i9) {
+        return (AndroidMemoryReading) this.androidMemoryReadings_.get(i9);
     }
 
-    public static GaugeMetric getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public int getAndroidMemoryReadingsCount() {
+        return this.androidMemoryReadings_.size();
     }
 
-    public static Parser<GaugeMetric> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public List<AndroidMemoryReading> getAndroidMemoryReadingsList() {
+        return this.androidMemoryReadings_;
+    }
+
+    public InterfaceC2350e getAndroidMemoryReadingsOrBuilder(int i9) {
+        return (InterfaceC2350e) this.androidMemoryReadings_.get(i9);
+    }
+
+    public List<? extends InterfaceC2350e> getAndroidMemoryReadingsOrBuilderList() {
+        return this.androidMemoryReadings_;
+    }
+
+    public CpuMetricReading getCpuMetricReadings(int i9) {
+        return (CpuMetricReading) this.cpuMetricReadings_.get(i9);
+    }
+
+    public int getCpuMetricReadingsCount() {
+        return this.cpuMetricReadings_.size();
+    }
+
+    public List<CpuMetricReading> getCpuMetricReadingsList() {
+        return this.cpuMetricReadings_;
+    }
+
+    public InterfaceC2358m getCpuMetricReadingsOrBuilder(int i9) {
+        return (InterfaceC2358m) this.cpuMetricReadings_.get(i9);
+    }
+
+    public List<? extends InterfaceC2358m> getCpuMetricReadingsOrBuilderList() {
+        return this.cpuMetricReadings_;
+    }
+
+    public GaugeMetadata getGaugeMetadata() {
+        GaugeMetadata gaugeMetadata = this.gaugeMetadata_;
+        if (gaugeMetadata == null) {
+            return GaugeMetadata.getDefaultInstance();
+        }
+        return gaugeMetadata;
+    }
+
+    public String getSessionId() {
+        return this.sessionId_;
+    }
+
+    public H getSessionIdBytes() {
+        return H.copyFromUtf8(this.sessionId_);
+    }
+
+    public boolean hasGaugeMetadata() {
+        if ((this.bitField0_ & 2) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hasSessionId() {
+        if ((this.bitField0_ & 1) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public static q newBuilder(GaugeMetric gaugeMetric) {
+        return (q) DEFAULT_INSTANCE.createBuilder(gaugeMetric);
+    }
+
+    public static GaugeMetric parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (GaugeMetric) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static GaugeMetric parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (GaugeMetric) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static GaugeMetric parseFrom(H h6) throws C1912g3 {
+        return (GaugeMetric) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void addAndroidMemoryReadings(int i9, AndroidMemoryReading androidMemoryReading) {
+        androidMemoryReading.getClass();
+        ensureAndroidMemoryReadingsIsMutable();
+        this.androidMemoryReadings_.add(i9, androidMemoryReading);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void addCpuMetricReadings(int i9, CpuMetricReading cpuMetricReading) {
+        cpuMetricReading.getClass();
+        ensureCpuMetricReadingsIsMutable();
+        this.cpuMetricReadings_.add(i9, cpuMetricReading);
+    }
+
+    public static GaugeMetric parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (GaugeMetric) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static GaugeMetric parseFrom(byte[] bArr) throws C1912g3 {
+        return (GaugeMetric) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static GaugeMetric parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (GaugeMetric) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static GaugeMetric parseFrom(InputStream inputStream) throws IOException {
+        return (GaugeMetric) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static GaugeMetric parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (GaugeMetric) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static GaugeMetric parseFrom(S s5) throws IOException {
+        return (GaugeMetric) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static GaugeMetric parseFrom(S s5, W1 w1) throws IOException {
+        return (GaugeMetric) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

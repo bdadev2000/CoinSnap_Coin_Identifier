@@ -1,72 +1,158 @@
 package com.google.android.gms.measurement.internal;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzfz<V> {
-    private static final Object zza = new Object();
-    private final String zzb;
-    private final zzfx<V> zzc;
-    private final V zzd;
-    private final Object zze;
-    private volatile V zzf;
-    private volatile V zzg;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import com.google.android.gms.common.util.Clock;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 
-    public final V zza(V v) {
-        synchronized (this.zze) {
-        }
-        if (v != null) {
-            return v;
-        }
-        if (zzga.zza == null) {
-            return this.zzd;
-        }
-        synchronized (zza) {
-            if (zzab.zza()) {
-                return this.zzg == null ? this.zzd : this.zzg;
-            }
+/* loaded from: classes2.dex */
+public final class zzfz extends zzmx {
+    public zzfz(zznc zzncVar) {
+        super(zzncVar);
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzmy
+    public final /* bridge */ /* synthetic */ zznl g_() {
+        return super.g_();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij, com.google.android.gms.measurement.internal.zzil
+    public final /* bridge */ /* synthetic */ Clock zzb() {
+        return super.zzb();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzmx
+    public final boolean zzc() {
+        return false;
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij, com.google.android.gms.measurement.internal.zzil
+    public final /* bridge */ /* synthetic */ zzab zzd() {
+        return super.zzd();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ zzag zze() {
+        return super.zze();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ zzax zzf() {
+        return super.zzf();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzmy
+    public final /* bridge */ /* synthetic */ zzu zzg() {
+        return super.zzg();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzmy
+    public final /* bridge */ /* synthetic */ zzal zzh() {
+        return super.zzh();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ zzfr zzi() {
+        return super.zzi();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij, com.google.android.gms.measurement.internal.zzil
+    public final /* bridge */ /* synthetic */ zzfw zzj() {
+        return super.zzj();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ zzgh zzk() {
+        return super.zzk();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij, com.google.android.gms.measurement.internal.zzil
+    public final /* bridge */ /* synthetic */ zzhc zzl() {
+        return super.zzl();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzmy
+    public final /* bridge */ /* synthetic */ zzgt zzm() {
+        return super.zzm();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzmy
+    public final /* bridge */ /* synthetic */ zzmc zzn() {
+        return super.zzn();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzmy
+    public final /* bridge */ /* synthetic */ zzna zzo() {
+        return super.zzo();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ zznp zzq() {
+        return super.zzq();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ void zzr() {
+        super.zzr();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ void zzs() {
+        super.zzs();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ void zzt() {
+        super.zzt();
+    }
+
+    public final boolean zzu() {
+        zzal();
+        ConnectivityManager connectivityManager = (ConnectivityManager) zza().getSystemService("connectivity");
+        NetworkInfo networkInfo = null;
+        if (connectivityManager != null) {
             try {
-                for (zzfz zzfzVar : zzbh.zzdl()) {
-                    if (zzab.zza()) {
-                        throw new IllegalStateException("Refreshing flag cache must be done on a worker thread.");
-                    }
-                    V v2 = null;
-                    try {
-                        zzfx<V> zzfxVar = zzfzVar.zzc;
-                        if (zzfxVar != null) {
-                            v2 = zzfxVar.zza();
-                        }
-                    } catch (IllegalStateException unused) {
-                    }
-                    synchronized (zza) {
-                        zzfzVar.zzg = v2;
-                    }
+                networkInfo = connectivityManager.getActiveNetworkInfo();
+            } catch (SecurityException unused) {
+            }
+        }
+        if (networkInfo != null && networkInfo.isConnected()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij, com.google.android.gms.measurement.internal.zzil
+    public final /* bridge */ /* synthetic */ Context zza() {
+        return super.zza();
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public static byte[] zza(HttpURLConnection httpURLConnection) throws IOException {
+        InputStream inputStream = null;
+        try {
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            inputStream = httpURLConnection.getInputStream();
+            byte[] bArr = new byte[1024];
+            while (true) {
+                int read = inputStream.read(bArr);
+                if (read > 0) {
+                    byteArrayOutputStream.write(bArr, 0, read);
+                } else {
+                    byte[] byteArray = byteArrayOutputStream.toByteArray();
+                    inputStream.close();
+                    return byteArray;
                 }
-            } catch (SecurityException unused2) {
             }
-            zzfx<V> zzfxVar2 = this.zzc;
-            if (zzfxVar2 == null) {
-                return this.zzd;
+        } catch (Throwable th) {
+            if (inputStream != null) {
+                inputStream.close();
             }
-            try {
-                return zzfxVar2.zza();
-            } catch (IllegalStateException unused3) {
-                return this.zzd;
-            } catch (SecurityException unused4) {
-                return this.zzd;
-            }
+            throw th;
         }
-    }
-
-    public final String zza() {
-        return this.zzb;
-    }
-
-    private zzfz(String str, V v, V v2, zzfx<V> zzfxVar) {
-        this.zze = new Object();
-        this.zzf = null;
-        this.zzg = null;
-        this.zzb = str;
-        this.zzd = v;
-        this.zzc = zzfxVar;
     }
 }

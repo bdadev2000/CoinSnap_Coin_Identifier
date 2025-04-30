@@ -1,18 +1,28 @@
 package com.google.android.gms.measurement.internal;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzkd implements Runnable {
-    private final /* synthetic */ zzjq zza;
+    private final /* synthetic */ zzav zza;
+    private final /* synthetic */ zziv zzb;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzkd(zzjq zzjqVar) {
-        this.zza = zzjqVar;
+    public zzkd(zziv zzivVar, zzav zzavVar) {
+        this.zza = zzavVar;
+        this.zzb = zzivVar;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        this.zza.zza.zza();
+        if (this.zzb.zzk().zza(this.zza)) {
+            this.zzb.zzj().zzp().zza("Setting DMA consent(FE)", this.zza);
+            if (this.zzb.zzo().zzan()) {
+                this.zzb.zzo().zzai();
+                return;
+            } else {
+                this.zzb.zzo().zza(false);
+                return;
+            }
+        }
+        this.zzb.zzj().zzn().zza("Lower precedence consent source ignored, proposed source", Integer.valueOf(this.zza.zza()));
     }
 }

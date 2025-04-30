@@ -1,35 +1,67 @@
 package com.google.api;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import a4.I;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.O3;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-/* loaded from: classes12.dex */
-public final class CustomHttpPattern extends GeneratedMessageLite<CustomHttpPattern, Builder> implements CustomHttpPatternOrBuilder {
+/* loaded from: classes2.dex */
+public final class CustomHttpPattern extends L2 implements O3 {
     private static final CustomHttpPattern DEFAULT_INSTANCE;
     public static final int KIND_FIELD_NUMBER = 1;
-    private static volatile Parser<CustomHttpPattern> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int PATH_FIELD_NUMBER = 2;
     private String kind_ = "";
     private String path_ = "";
 
+    static {
+        CustomHttpPattern customHttpPattern = new CustomHttpPattern();
+        DEFAULT_INSTANCE = customHttpPattern;
+        L2.registerDefaultInstance(CustomHttpPattern.class, customHttpPattern);
+    }
+
     private CustomHttpPattern() {
     }
 
-    @Override // com.google.api.CustomHttpPatternOrBuilder
-    public String getKind() {
-        return this.kind_;
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearKind() {
+        this.kind_ = getDefaultInstance().getKind();
     }
 
-    @Override // com.google.api.CustomHttpPatternOrBuilder
-    public ByteString getKindBytes() {
-        return ByteString.copyFromUtf8(this.kind_);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearPath() {
+        this.path_ = getDefaultInstance().getPath();
+    }
+
+    public static CustomHttpPattern getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    public static I newBuilder() {
+        return (I) DEFAULT_INSTANCE.createBuilder();
+    }
+
+    public static CustomHttpPattern parseDelimitedFrom(InputStream inputStream) throws IOException {
+        return (CustomHttpPattern) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static CustomHttpPattern parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (CustomHttpPattern) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    }
+
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -39,24 +71,9 @@ public final class CustomHttpPattern extends GeneratedMessageLite<CustomHttpPatt
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearKind() {
-        this.kind_ = getDefaultInstance().getKind();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setKindBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.kind_ = byteString.toStringUtf8();
-    }
-
-    @Override // com.google.api.CustomHttpPatternOrBuilder
-    public String getPath() {
-        return this.path_;
-    }
-
-    @Override // com.google.api.CustomHttpPatternOrBuilder
-    public ByteString getPathBytes() {
-        return ByteString.copyFromUtf8(this.path_);
+    public void setKindBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.kind_ = h6.toStringUtf8();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -66,202 +83,37 @@ public final class CustomHttpPattern extends GeneratedMessageLite<CustomHttpPatt
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearPath() {
-        this.path_ = getDefaultInstance().getPath();
+    public void setPathBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.path_ = h6.toStringUtf8();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setPathBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.path_ = byteString.toStringUtf8();
-    }
-
-    public static CustomHttpPattern parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (CustomHttpPattern) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
-    }
-
-    public static CustomHttpPattern parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (CustomHttpPattern) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static CustomHttpPattern parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (CustomHttpPattern) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static CustomHttpPattern parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (CustomHttpPattern) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static CustomHttpPattern parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (CustomHttpPattern) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static CustomHttpPattern parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (CustomHttpPattern) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static CustomHttpPattern parseFrom(InputStream inputStream) throws IOException {
-        return (CustomHttpPattern) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static CustomHttpPattern parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (CustomHttpPattern) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static CustomHttpPattern parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (CustomHttpPattern) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static CustomHttpPattern parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (CustomHttpPattern) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static CustomHttpPattern parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (CustomHttpPattern) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
-    }
-
-    public static CustomHttpPattern parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (CustomHttpPattern) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
-    }
-
-    public static Builder newBuilder(CustomHttpPattern customHttpPattern) {
-        return DEFAULT_INSTANCE.createBuilder(customHttpPattern);
-    }
-
-    /* loaded from: classes12.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<CustomHttpPattern, Builder> implements CustomHttpPatternOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(CustomHttpPattern.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.api.CustomHttpPatternOrBuilder
-        public String getKind() {
-            return ((CustomHttpPattern) this.instance).getKind();
-        }
-
-        @Override // com.google.api.CustomHttpPatternOrBuilder
-        public ByteString getKindBytes() {
-            return ((CustomHttpPattern) this.instance).getKindBytes();
-        }
-
-        public Builder setKind(String str) {
-            copyOnWrite();
-            ((CustomHttpPattern) this.instance).setKind(str);
-            return this;
-        }
-
-        public Builder clearKind() {
-            copyOnWrite();
-            ((CustomHttpPattern) this.instance).clearKind();
-            return this;
-        }
-
-        public Builder setKindBytes(ByteString byteString) {
-            copyOnWrite();
-            ((CustomHttpPattern) this.instance).setKindBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.api.CustomHttpPatternOrBuilder
-        public String getPath() {
-            return ((CustomHttpPattern) this.instance).getPath();
-        }
-
-        @Override // com.google.api.CustomHttpPatternOrBuilder
-        public ByteString getPathBytes() {
-            return ((CustomHttpPattern) this.instance).getPathBytes();
-        }
-
-        public Builder setPath(String str) {
-            copyOnWrite();
-            ((CustomHttpPattern) this.instance).setPath(str);
-            return this;
-        }
-
-        public Builder clearPath() {
-            copyOnWrite();
-            ((CustomHttpPattern) this.instance).clearPath();
-            return this;
-        }
-
-        public Builder setPathBytes(ByteString byteString) {
-            copyOnWrite();
-            ((CustomHttpPattern) this.instance).setPathBytes(byteString);
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.api.CustomHttpPattern$1, reason: invalid class name */
-    /* loaded from: classes12.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (a4.H.f3966a[k22.ordinal()]) {
             case 1:
                 return new CustomHttpPattern();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001Ȉ\u0002Ȉ", new Object[]{"kind_", "path_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001Ȉ\u0002Ȉ", new Object[]{"kind_", "path_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<CustomHttpPattern> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (CustomHttpPattern.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -271,17 +123,63 @@ public final class CustomHttpPattern extends GeneratedMessageLite<CustomHttpPatt
         }
     }
 
-    static {
-        CustomHttpPattern customHttpPattern = new CustomHttpPattern();
-        DEFAULT_INSTANCE = customHttpPattern;
-        GeneratedMessageLite.registerDefaultInstance(CustomHttpPattern.class, customHttpPattern);
+    public String getKind() {
+        return this.kind_;
     }
 
-    public static CustomHttpPattern getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public H getKindBytes() {
+        return H.copyFromUtf8(this.kind_);
     }
 
-    public static Parser<CustomHttpPattern> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public String getPath() {
+        return this.path_;
+    }
+
+    public H getPathBytes() {
+        return H.copyFromUtf8(this.path_);
+    }
+
+    public static I newBuilder(CustomHttpPattern customHttpPattern) {
+        return (I) DEFAULT_INSTANCE.createBuilder(customHttpPattern);
+    }
+
+    public static CustomHttpPattern parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (CustomHttpPattern) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static CustomHttpPattern parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (CustomHttpPattern) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static CustomHttpPattern parseFrom(H h6) throws C1912g3 {
+        return (CustomHttpPattern) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static CustomHttpPattern parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (CustomHttpPattern) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static CustomHttpPattern parseFrom(byte[] bArr) throws C1912g3 {
+        return (CustomHttpPattern) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static CustomHttpPattern parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (CustomHttpPattern) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static CustomHttpPattern parseFrom(InputStream inputStream) throws IOException {
+        return (CustomHttpPattern) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static CustomHttpPattern parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (CustomHttpPattern) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static CustomHttpPattern parseFrom(S s5) throws IOException {
+        return (CustomHttpPattern) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static CustomHttpPattern parseFrom(S s5, W1 w1) throws IOException {
+        return (CustomHttpPattern) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

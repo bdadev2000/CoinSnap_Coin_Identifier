@@ -1,15 +1,27 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final class zzfo implements zzce {
-    static final zzce zza = new zzfo();
+import sun.misc.Unsafe;
 
-    private zzfo() {
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public abstract class zzfo {
+    final Unsafe zza;
+
+    public zzfo(Unsafe unsafe) {
+        this.zza = unsafe;
     }
 
-    @Override // com.google.android.gms.internal.play_billing.zzce
-    public final boolean zza(int i) {
-        return i == 0;
-    }
+    public abstract double zza(Object obj, long j7);
+
+    public abstract float zzb(Object obj, long j7);
+
+    public abstract void zzc(Object obj, long j7, boolean z8);
+
+    public abstract void zzd(Object obj, long j7, byte b);
+
+    public abstract void zze(Object obj, long j7, double d2);
+
+    public abstract void zzf(Object obj, long j7, float f9);
+
+    public abstract boolean zzg(Object obj, long j7);
 }

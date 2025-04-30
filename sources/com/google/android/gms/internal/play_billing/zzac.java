@@ -1,66 +1,57 @@
 package com.google.android.gms.internal.play_billing;
 
-import java.util.Iterator;
-import java.util.Map;
-import javax.annotation.CheckForNull;
+import java.util.NoSuchElementException;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final class zzac extends zzy {
-    private final transient zzx zza;
-    private final transient Object[] zzb;
-    private final transient int zzc;
+/* loaded from: classes2.dex */
+abstract class zzac extends zzaw {
+    private final int zza;
+    private int zzb;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzac(zzx zzxVar, Object[] objArr, int i, int i2) {
-        this.zza = zzxVar;
-        this.zzb = objArr;
-        this.zzc = i2;
+    public zzac(int i9, int i10) {
+        zzaa.zzb(i10, i9, "index");
+        this.zza = i9;
+        this.zzb = i10;
     }
 
-    @Override // com.google.android.gms.internal.play_billing.zzr, java.util.AbstractCollection, java.util.Collection, java.util.Set
-    public final boolean contains(@CheckForNull Object obj) {
-        if (obj instanceof Map.Entry) {
-            Map.Entry entry = (Map.Entry) obj;
-            Object key = entry.getKey();
-            Object value = entry.getValue();
-            if (value != null && value.equals(this.zza.get(key))) {
-                return true;
-            }
+    @Override // java.util.Iterator, java.util.ListIterator
+    public final boolean hasNext() {
+        return this.zzb < this.zza;
+    }
+
+    @Override // java.util.ListIterator
+    public final boolean hasPrevious() {
+        return this.zzb > 0;
+    }
+
+    @Override // java.util.Iterator, java.util.ListIterator
+    public final Object next() {
+        if (hasNext()) {
+            int i9 = this.zzb;
+            this.zzb = i9 + 1;
+            return zza(i9);
         }
-        return false;
+        throw new NoSuchElementException();
     }
 
-    @Override // com.google.android.gms.internal.play_billing.zzy, com.google.android.gms.internal.play_billing.zzr, java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
-    public final /* synthetic */ Iterator iterator() {
-        return zzd().listIterator(0);
+    @Override // java.util.ListIterator
+    public final int nextIndex() {
+        return this.zzb;
     }
 
-    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
-    public final int size() {
-        return this.zzc;
+    @Override // java.util.ListIterator
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i9 = this.zzb - 1;
+            this.zzb = i9;
+            return zza(i9);
+        }
+        throw new NoSuchElementException();
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    @Override // com.google.android.gms.internal.play_billing.zzr
-    public final int zza(Object[] objArr, int i) {
-        return zzd().zza(objArr, 0);
+    @Override // java.util.ListIterator
+    public final int previousIndex() {
+        return this.zzb - 1;
     }
 
-    @Override // com.google.android.gms.internal.play_billing.zzy, com.google.android.gms.internal.play_billing.zzr
-    /* renamed from: zze */
-    public final zzah iterator() {
-        return zzd().listIterator(0);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    @Override // com.google.android.gms.internal.play_billing.zzr
-    public final boolean zzf() {
-        throw null;
-    }
-
-    @Override // com.google.android.gms.internal.play_billing.zzy
-    final zzu zzh() {
-        return new zzab(this);
-    }
+    public abstract Object zza(int i9);
 }

@@ -2,12 +2,10 @@ package com.google.android.gms.common.api.internal;
 
 import com.google.android.gms.common.api.Api;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zabo implements Runnable {
     final /* synthetic */ zabp zaa;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zabo(zabp zabpVar) {
         this.zaa = zabpVar;
     }
@@ -19,6 +17,6 @@ final class zabo implements Runnable {
         zabq zabqVar = this.zaa.zaa;
         client = zabqVar.zac;
         client2 = zabqVar.zac;
-        client.disconnect(String.valueOf(client2.getClass().getName()).concat(" disconnecting because it was signed out."));
+        client.disconnect(client2.getClass().getName().concat(" disconnecting because it was signed out."));
     }
 }

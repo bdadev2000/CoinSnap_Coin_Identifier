@@ -1,6 +1,8 @@
 package com.google.android.gms.tasks;
 
 import android.os.Looper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.internal.Preconditions;
 import java.util.Arrays;
 import java.util.Collection;
@@ -14,13 +16,12 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class Tasks {
     private Tasks() {
     }
 
-    public static <TResult> TResult await(Task<TResult> task) throws ExecutionException, InterruptedException {
+    public static <TResult> TResult await(@NonNull Task<TResult> task) throws ExecutionException, InterruptedException {
         Preconditions.checkNotMainThread();
         Preconditions.checkNotGoogleApiHandlerThread();
         Preconditions.checkNotNull(task, "Task must not be null");
@@ -33,59 +34,73 @@ public final class Tasks {
         return (TResult) zza(task);
     }
 
+    @NonNull
     @Deprecated
-    public static <TResult> Task<TResult> call(Callable<TResult> callable) {
+    public static <TResult> Task<TResult> call(@NonNull Callable<TResult> callable) {
         return call(TaskExecutors.MAIN_THREAD, callable);
     }
 
+    @NonNull
     public static <TResult> Task<TResult> forCanceled() {
         zzw zzwVar = new zzw();
         zzwVar.zzc();
         return zzwVar;
     }
 
-    public static <TResult> Task<TResult> forException(Exception exc) {
+    @NonNull
+    public static <TResult> Task<TResult> forException(@NonNull Exception exc) {
         zzw zzwVar = new zzw();
         zzwVar.zza(exc);
         return zzwVar;
     }
 
+    @NonNull
     public static <TResult> Task<TResult> forResult(TResult tresult) {
         zzw zzwVar = new zzw();
         zzwVar.zzb(tresult);
         return zzwVar;
     }
 
-    public static Task<Void> whenAll(Collection<? extends Task<?>> collection) {
-        if (collection == null || collection.isEmpty()) {
-            return forResult(null);
-        }
-        Iterator<? extends Task<?>> it = collection.iterator();
-        while (it.hasNext()) {
-            if (it.next() == null) {
-                throw new NullPointerException("null tasks are not accepted");
+    @NonNull
+    public static Task<Void> whenAll(@Nullable Collection<? extends Task<?>> collection) {
+        if (collection != null && !collection.isEmpty()) {
+            Iterator<? extends Task<?>> it = collection.iterator();
+            while (it.hasNext()) {
+                if (it.next() == null) {
+                    throw new NullPointerException("null tasks are not accepted");
+                }
             }
+            zzw zzwVar = new zzw();
+            zzaf zzafVar = new zzaf(collection.size(), zzwVar);
+            Iterator<? extends Task<?>> it2 = collection.iterator();
+            while (it2.hasNext()) {
+                zzb(it2.next(), zzafVar);
+            }
+            return zzwVar;
         }
-        zzw zzwVar = new zzw();
-        zzaf zzafVar = new zzaf(collection.size(), zzwVar);
-        Iterator<? extends Task<?>> it2 = collection.iterator();
-        while (it2.hasNext()) {
-            zzb(it2.next(), zzafVar);
-        }
-        return zzwVar;
+        return forResult(null);
     }
 
-    public static Task<List<Task<?>>> whenAllComplete(Collection<? extends Task<?>> collection) {
+    @NonNull
+    public static Task<List<Task<?>>> whenAllComplete(@Nullable Collection<? extends Task<?>> collection) {
         return whenAllComplete(TaskExecutors.MAIN_THREAD, collection);
     }
 
-    public static <TResult> Task<List<TResult>> whenAllSuccess(Collection<? extends Task> collection) {
+    @NonNull
+    public static <TResult> Task<List<TResult>> whenAllSuccess(@Nullable Collection<? extends Task> collection) {
         return whenAllSuccess(TaskExecutors.MAIN_THREAD, collection);
     }
 
-    public static <T> Task<T> withTimeout(Task<T> task, long j, TimeUnit timeUnit) {
+    @NonNull
+    public static <T> Task<T> withTimeout(@NonNull Task<T> task, long j7, @NonNull TimeUnit timeUnit) {
+        boolean z8;
         Preconditions.checkNotNull(task, "Task must not be null");
-        Preconditions.checkArgument(j > 0, "Timeout must be positive");
+        if (j7 > 0) {
+            z8 = true;
+        } else {
+            z8 = false;
+        }
+        Preconditions.checkArgument(z8, "Timeout must be positive");
         Preconditions.checkNotNull(timeUnit, "TimeUnit must not be null");
         final zzb zzbVar = new zzb();
         final TaskCompletionSource taskCompletionSource = new TaskCompletionSource(zzbVar);
@@ -95,7 +110,7 @@ public final class Tasks {
             public final void run() {
                 TaskCompletionSource.this.trySetException(new TimeoutException());
             }
-        }, timeUnit.toMillis(j));
+        }, timeUnit.toMillis(j7));
         task.addOnCompleteListener(new OnCompleteListener() { // from class: com.google.android.gms.tasks.zzy
             @Override // com.google.android.gms.tasks.OnCompleteListener
             public final void onComplete(Task task2) {
@@ -117,7 +132,7 @@ public final class Tasks {
         return taskCompletionSource.getTask();
     }
 
-    private static Object zza(Task task) throws ExecutionException {
+    private static Object zza(@NonNull Task task) throws ExecutionException {
         if (task.isSuccessful()) {
             return task.getResult();
         }
@@ -128,13 +143,15 @@ public final class Tasks {
     }
 
     private static void zzb(Task task, zzae zzaeVar) {
-        task.addOnSuccessListener(TaskExecutors.zza, zzaeVar);
-        task.addOnFailureListener(TaskExecutors.zza, zzaeVar);
-        task.addOnCanceledListener(TaskExecutors.zza, zzaeVar);
+        Executor executor = TaskExecutors.zza;
+        task.addOnSuccessListener(executor, zzaeVar);
+        task.addOnFailureListener(executor, zzaeVar);
+        task.addOnCanceledListener(executor, zzaeVar);
     }
 
+    @NonNull
     @Deprecated
-    public static <TResult> Task<TResult> call(Executor executor, Callable<TResult> callable) {
+    public static <TResult> Task<TResult> call(@NonNull Executor executor, @NonNull Callable<TResult> callable) {
         Preconditions.checkNotNull(executor, "Executor must not be null");
         Preconditions.checkNotNull(callable, "Callback must not be null");
         zzw zzwVar = new zzw();
@@ -142,49 +159,63 @@ public final class Tasks {
         return zzwVar;
     }
 
-    public static Task<List<Task<?>>> whenAllComplete(Executor executor, Collection<? extends Task<?>> collection) {
-        if (collection == null || collection.isEmpty()) {
-            return forResult(Collections.emptyList());
+    @NonNull
+    public static Task<List<Task<?>>> whenAllComplete(@NonNull Executor executor, @Nullable Collection<? extends Task<?>> collection) {
+        if (collection != null && !collection.isEmpty()) {
+            return whenAll(collection).continueWithTask(executor, new zzab(collection));
         }
-        return whenAll(collection).continueWithTask(executor, new zzab(collection));
+        return forResult(Collections.emptyList());
     }
 
-    public static <TResult> Task<List<TResult>> whenAllSuccess(Executor executor, Collection<? extends Task> collection) {
-        if (collection == null || collection.isEmpty()) {
-            return forResult(Collections.emptyList());
+    @NonNull
+    public static <TResult> Task<List<TResult>> whenAllSuccess(@NonNull Executor executor, @Nullable Collection<? extends Task> collection) {
+        if (collection != null && !collection.isEmpty()) {
+            return (Task<List<TResult>>) whenAll((Collection<? extends Task<?>>) collection).continueWith(executor, new zzaa(collection));
         }
-        return (Task<List<TResult>>) whenAll((Collection<? extends Task<?>>) collection).continueWith(executor, new zzaa(collection));
+        return forResult(Collections.emptyList());
     }
 
-    public static Task<List<Task<?>>> whenAllComplete(Executor executor, Task<?>... taskArr) {
-        if (taskArr == null || taskArr.length == 0) {
-            return forResult(Collections.emptyList());
+    @NonNull
+    public static Task<List<Task<?>>> whenAllComplete(@NonNull Executor executor, @Nullable Task<?>... taskArr) {
+        if (taskArr != null && taskArr.length != 0) {
+            return whenAllComplete(executor, Arrays.asList(taskArr));
         }
-        return whenAllComplete(executor, Arrays.asList(taskArr));
+        return forResult(Collections.emptyList());
     }
 
-    public static <TResult> Task<List<TResult>> whenAllSuccess(Executor executor, Task... taskArr) {
-        if (taskArr == null || taskArr.length == 0) {
-            return forResult(Collections.emptyList());
+    @NonNull
+    public static <TResult> Task<List<TResult>> whenAllSuccess(@NonNull Executor executor, @Nullable Task... taskArr) {
+        if (taskArr != null && taskArr.length != 0) {
+            return whenAllSuccess(executor, Arrays.asList(taskArr));
         }
-        return whenAllSuccess(executor, Arrays.asList(taskArr));
+        return forResult(Collections.emptyList());
     }
 
-    public static Task<List<Task<?>>> whenAllComplete(Task<?>... taskArr) {
-        if (taskArr == null || taskArr.length == 0) {
-            return forResult(Collections.emptyList());
+    @NonNull
+    public static Task<List<Task<?>>> whenAllComplete(@Nullable Task<?>... taskArr) {
+        if (taskArr != null && taskArr.length != 0) {
+            return whenAllComplete(Arrays.asList(taskArr));
         }
-        return whenAllComplete(Arrays.asList(taskArr));
+        return forResult(Collections.emptyList());
     }
 
-    public static <TResult> Task<List<TResult>> whenAllSuccess(Task... taskArr) {
-        if (taskArr == null || taskArr.length == 0) {
-            return forResult(Collections.emptyList());
+    @NonNull
+    public static <TResult> Task<List<TResult>> whenAllSuccess(@Nullable Task... taskArr) {
+        if (taskArr != null && taskArr.length != 0) {
+            return whenAllSuccess(Arrays.asList(taskArr));
         }
-        return whenAllSuccess(Arrays.asList(taskArr));
+        return forResult(Collections.emptyList());
     }
 
-    public static <TResult> TResult await(Task<TResult> task, long j, TimeUnit timeUnit) throws ExecutionException, InterruptedException, TimeoutException {
+    @NonNull
+    public static Task<Void> whenAll(@Nullable Task<?>... taskArr) {
+        if (taskArr != null && taskArr.length != 0) {
+            return whenAll(Arrays.asList(taskArr));
+        }
+        return forResult(null);
+    }
+
+    public static <TResult> TResult await(@NonNull Task<TResult> task, long j7, @NonNull TimeUnit timeUnit) throws ExecutionException, InterruptedException, TimeoutException {
         Preconditions.checkNotMainThread();
         Preconditions.checkNotGoogleApiHandlerThread();
         Preconditions.checkNotNull(task, "Task must not be null");
@@ -194,16 +225,9 @@ public final class Tasks {
         }
         zzad zzadVar = new zzad(null);
         zzb(task, zzadVar);
-        if (!zzadVar.zzb(j, timeUnit)) {
-            throw new TimeoutException("Timed out waiting for Task");
+        if (zzadVar.zzb(j7, timeUnit)) {
+            return (TResult) zza(task);
         }
-        return (TResult) zza(task);
-    }
-
-    public static Task<Void> whenAll(Task<?>... taskArr) {
-        if (taskArr == null || taskArr.length == 0) {
-            return forResult(null);
-        }
-        return whenAll(Arrays.asList(taskArr));
+        throw new TimeoutException("Timed out waiting for Task");
     }
 }

@@ -1,84 +1,170 @@
 package com.google.firebase.perf.session.gauges;
 
+import U4.RunnableC0311g;
+import U4.m;
+import Y4.a;
+import Y4.n;
+import Y4.o;
+import Y4.q;
+import Y4.r;
+import a5.C0397a;
+import android.annotation.SuppressLint;
 import android.content.Context;
-import com.google.firebase.components.Lazy;
-import com.google.firebase.inject.Provider;
-import com.google.firebase.perf.config.ConfigResolver;
-import com.google.firebase.perf.logging.AndroidLogger;
-import com.google.firebase.perf.session.PerfSession;
-import com.google.firebase.perf.transport.TransportManager;
-import com.google.firebase.perf.util.Timer;
-import com.google.firebase.perf.v1.ApplicationProcessState;
+import androidx.annotation.Keep;
+import androidx.annotation.Nullable;
+import com.bumptech.glide.c;
+import com.google.firebase.perf.v1.AndroidMemoryReading;
+import com.google.firebase.perf.v1.CpuMetricReading;
 import com.google.firebase.perf.v1.GaugeMetadata;
 import com.google.firebase.perf.v1.GaugeMetric;
-import java.util.concurrent.Executors;
+import e5.C2221a;
+import f5.b;
+import f5.d;
+import f5.e;
+import f5.f;
+import g5.C2303f;
+import h5.C2323d;
+import h5.i;
+import i5.C2360o;
+import i5.EnumC2355j;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+import o4.l;
 
-/* loaded from: classes3.dex */
+@Keep
+/* loaded from: classes2.dex */
 public class GaugeManager {
     private static final long APPROX_NUMBER_OF_DATA_POINTS_PER_GAUGE_METRIC = 20;
     private static final long INVALID_GAUGE_COLLECTION_FREQUENCY = -1;
     private static final long TIME_TO_WAIT_BEFORE_FLUSHING_GAUGES_QUEUE_MS = 20;
-    private ApplicationProcessState applicationProcessState;
-    private final ConfigResolver configResolver;
-    private final Lazy<CpuGaugeCollector> cpuGaugeCollector;
+    private EnumC2355j applicationProcessState;
+    private final a configResolver;
+    private final l cpuGaugeCollector;
+
+    @Nullable
     private ScheduledFuture gaugeManagerDataCollectionJob;
-    private final Lazy<ScheduledExecutorService> gaugeManagerExecutor;
-    private GaugeMetadataManager gaugeMetadataManager;
-    private final Lazy<MemoryGaugeCollector> memoryGaugeCollector;
+    private final l gaugeManagerExecutor;
+
+    @Nullable
+    private d gaugeMetadataManager;
+    private final l memoryGaugeCollector;
+
+    @Nullable
     private String sessionId;
-    private final TransportManager transportManager;
-    private static final AndroidLogger logger = AndroidLogger.getInstance();
+    private final C2303f transportManager;
+    private static final C0397a logger = C0397a.d();
     private static final GaugeManager instance = new GaugeManager();
 
+    @SuppressLint({"ThreadPoolCreation"})
     private GaugeManager() {
-        this(new Lazy(new Provider() { // from class: com.google.firebase.perf.session.gauges.GaugeManager$$ExternalSyntheticLambda2
-            @Override // com.google.firebase.inject.Provider
-            public final Object get() {
-                ScheduledExecutorService newSingleThreadScheduledExecutor;
-                newSingleThreadScheduledExecutor = Executors.newSingleThreadScheduledExecutor();
-                return newSingleThreadScheduledExecutor;
+        this(new l(new m(1)), C2303f.f20472u, a.e(), null, new l(new m(2)), new l(new m(3)));
+    }
+
+    private static void collectGaugeMetricOnce(b bVar, f fVar, i iVar) {
+        synchronized (bVar) {
+            try {
+                bVar.b.schedule(new f5.a(bVar, iVar, 1), 0L, TimeUnit.MILLISECONDS);
+            } catch (RejectedExecutionException e4) {
+                b.f20331g.f("Unable to collect Cpu Metric: " + e4.getMessage());
             }
-        }), TransportManager.getInstance(), ConfigResolver.getInstance(), null, new Lazy(new Provider() { // from class: com.google.firebase.perf.session.gauges.GaugeManager$$ExternalSyntheticLambda3
-            @Override // com.google.firebase.inject.Provider
-            public final Object get() {
-                return GaugeManager.lambda$new$0();
+        }
+        synchronized (fVar) {
+            try {
+                fVar.f20347a.schedule(new e(fVar, iVar, 1), 0L, TimeUnit.MILLISECONDS);
+            } catch (RejectedExecutionException e9) {
+                f.f20346f.f("Unable to collect Memory Metric: " + e9.getMessage());
             }
-        }), new Lazy(new Provider() { // from class: com.google.firebase.perf.session.gauges.GaugeManager$$ExternalSyntheticLambda4
-            @Override // com.google.firebase.inject.Provider
-            public final Object get() {
-                return GaugeManager.lambda$new$1();
+        }
+    }
+
+    /* JADX WARN: Type inference failed for: r5v13, types: [Y4.o, java.lang.Object] */
+    /* JADX WARN: Type inference failed for: r5v23, types: [Y4.n, java.lang.Object] */
+    private long getCpuGaugeCollectionFrequencyMs(EnumC2355j enumC2355j) {
+        o oVar;
+        long j7;
+        n nVar;
+        int ordinal = enumC2355j.ordinal();
+        if (ordinal != 1) {
+            if (ordinal != 2) {
+                j7 = -1;
+            } else {
+                a aVar = this.configResolver;
+                aVar.getClass();
+                synchronized (n.class) {
+                    try {
+                        if (n.f3804j == null) {
+                            n.f3804j = new Object();
+                        }
+                        nVar = n.f3804j;
+                    } finally {
+                    }
+                }
+                C2323d j9 = aVar.j(nVar);
+                if (j9.b() && a.n(((Long) j9.a()).longValue())) {
+                    j7 = ((Long) j9.a()).longValue();
+                } else {
+                    C2323d c2323d = aVar.f3790a.getLong("fpr_session_gauge_cpu_capture_frequency_bg_ms");
+                    if (c2323d.b() && a.n(((Long) c2323d.a()).longValue())) {
+                        aVar.f3791c.d(((Long) c2323d.a()).longValue(), "com.google.firebase.perf.SessionsCpuCaptureFrequencyBackgroundMs");
+                        j7 = ((Long) c2323d.a()).longValue();
+                    } else {
+                        C2323d c9 = aVar.c(nVar);
+                        if (c9.b() && a.n(((Long) c9.a()).longValue())) {
+                            j7 = ((Long) c9.a()).longValue();
+                        } else {
+                            j7 = 0;
+                        }
+                    }
+                }
             }
-        }));
+        } else {
+            a aVar2 = this.configResolver;
+            aVar2.getClass();
+            synchronized (o.class) {
+                try {
+                    if (o.f3805j == null) {
+                        o.f3805j = new Object();
+                    }
+                    oVar = o.f3805j;
+                } catch (Throwable th) {
+                    throw th;
+                }
+            }
+            C2323d j10 = aVar2.j(oVar);
+            if (j10.b() && a.n(((Long) j10.a()).longValue())) {
+                j7 = ((Long) j10.a()).longValue();
+            } else {
+                C2323d c2323d2 = aVar2.f3790a.getLong("fpr_session_gauge_cpu_capture_frequency_fg_ms");
+                if (c2323d2.b() && a.n(((Long) c2323d2.a()).longValue())) {
+                    aVar2.f3791c.d(((Long) c2323d2.a()).longValue(), "com.google.firebase.perf.SessionsCpuCaptureFrequencyForegroundMs");
+                    j7 = ((Long) c2323d2.a()).longValue();
+                } else {
+                    C2323d c10 = aVar2.c(oVar);
+                    if (c10.b() && a.n(((Long) c10.a()).longValue())) {
+                        j7 = ((Long) c10.a()).longValue();
+                    } else if (aVar2.f3790a.isLastFetchFailed()) {
+                        j7 = 300;
+                    } else {
+                        j7 = 100;
+                    }
+                }
+            }
+        }
+        C0397a c0397a = b.f20331g;
+        if (j7 <= 0) {
+            return -1L;
+        }
+        return j7;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ CpuGaugeCollector lambda$new$0() {
-        return new CpuGaugeCollector();
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* synthetic */ MemoryGaugeCollector lambda$new$1() {
-        return new MemoryGaugeCollector();
-    }
-
-    GaugeManager(Lazy<ScheduledExecutorService> lazy, TransportManager transportManager, ConfigResolver configResolver, GaugeMetadataManager gaugeMetadataManager, Lazy<CpuGaugeCollector> lazy2, Lazy<MemoryGaugeCollector> lazy3) {
-        this.gaugeManagerDataCollectionJob = null;
-        this.sessionId = null;
-        this.applicationProcessState = ApplicationProcessState.APPLICATION_PROCESS_STATE_UNKNOWN;
-        this.gaugeManagerExecutor = lazy;
-        this.transportManager = transportManager;
-        this.configResolver = configResolver;
-        this.gaugeMetadataManager = gaugeMetadataManager;
-        this.cpuGaugeCollector = lazy2;
-        this.memoryGaugeCollector = lazy3;
-    }
-
-    public void initializeGaugeMetadataManager(Context context) {
-        this.gaugeMetadataManager = new GaugeMetadataManager(context);
+    private GaugeMetadata getGaugeMetadata() {
+        C2360o newBuilder = GaugeMetadata.newBuilder();
+        newBuilder.a(c.R((com.mbridge.msdk.foundation.entity.o.e(5) * this.gaugeMetadataManager.f20342c.totalMem) / 1024));
+        newBuilder.b(c.R((com.mbridge.msdk.foundation.entity.o.e(5) * this.gaugeMetadataManager.f20341a.maxMemory()) / 1024));
+        newBuilder.c(c.R((com.mbridge.msdk.foundation.entity.o.e(3) * this.gaugeMetadataManager.b.getMemoryClass()) / 1024));
+        return (GaugeMetadata) newBuilder.build();
     }
 
     public static synchronized GaugeManager getInstance() {
@@ -89,160 +175,251 @@ public class GaugeManager {
         return gaugeManager;
     }
 
-    public void startCollectingGauges(PerfSession perfSession, final ApplicationProcessState applicationProcessState) {
+    /* JADX WARN: Type inference failed for: r5v13, types: [Y4.r, java.lang.Object] */
+    /* JADX WARN: Type inference failed for: r5v23, types: [Y4.q, java.lang.Object] */
+    private long getMemoryGaugeCollectionFrequencyMs(EnumC2355j enumC2355j) {
+        r rVar;
+        long j7;
+        q qVar;
+        int ordinal = enumC2355j.ordinal();
+        if (ordinal != 1) {
+            if (ordinal != 2) {
+                j7 = -1;
+            } else {
+                a aVar = this.configResolver;
+                aVar.getClass();
+                synchronized (q.class) {
+                    try {
+                        if (q.f3807j == null) {
+                            q.f3807j = new Object();
+                        }
+                        qVar = q.f3807j;
+                    } finally {
+                    }
+                }
+                C2323d j9 = aVar.j(qVar);
+                if (j9.b() && a.n(((Long) j9.a()).longValue())) {
+                    j7 = ((Long) j9.a()).longValue();
+                } else {
+                    C2323d c2323d = aVar.f3790a.getLong("fpr_session_gauge_memory_capture_frequency_bg_ms");
+                    if (c2323d.b() && a.n(((Long) c2323d.a()).longValue())) {
+                        aVar.f3791c.d(((Long) c2323d.a()).longValue(), "com.google.firebase.perf.SessionsMemoryCaptureFrequencyBackgroundMs");
+                        j7 = ((Long) c2323d.a()).longValue();
+                    } else {
+                        C2323d c9 = aVar.c(qVar);
+                        if (c9.b() && a.n(((Long) c9.a()).longValue())) {
+                            j7 = ((Long) c9.a()).longValue();
+                        } else {
+                            j7 = 0;
+                        }
+                    }
+                }
+            }
+        } else {
+            a aVar2 = this.configResolver;
+            aVar2.getClass();
+            synchronized (r.class) {
+                try {
+                    if (r.f3808j == null) {
+                        r.f3808j = new Object();
+                    }
+                    rVar = r.f3808j;
+                } catch (Throwable th) {
+                    throw th;
+                }
+            }
+            C2323d j10 = aVar2.j(rVar);
+            if (j10.b() && a.n(((Long) j10.a()).longValue())) {
+                j7 = ((Long) j10.a()).longValue();
+            } else {
+                C2323d c2323d2 = aVar2.f3790a.getLong("fpr_session_gauge_memory_capture_frequency_fg_ms");
+                if (c2323d2.b() && a.n(((Long) c2323d2.a()).longValue())) {
+                    aVar2.f3791c.d(((Long) c2323d2.a()).longValue(), "com.google.firebase.perf.SessionsMemoryCaptureFrequencyForegroundMs");
+                    j7 = ((Long) c2323d2.a()).longValue();
+                } else {
+                    C2323d c10 = aVar2.c(rVar);
+                    if (c10.b() && a.n(((Long) c10.a()).longValue())) {
+                        j7 = ((Long) c10.a()).longValue();
+                    } else if (aVar2.f3790a.isLastFetchFailed()) {
+                        j7 = 300;
+                    } else {
+                        j7 = 100;
+                    }
+                }
+            }
+        }
+        C0397a c0397a = f.f20346f;
+        if (j7 <= 0) {
+            return -1L;
+        }
+        return j7;
+    }
+
+    public static /* synthetic */ b lambda$new$0() {
+        return new b();
+    }
+
+    public static /* synthetic */ f lambda$new$1() {
+        return new f();
+    }
+
+    private boolean startCollectingCpuMetrics(long j7, i iVar) {
+        if (j7 == -1) {
+            logger.a("Invalid Cpu Metrics collection frequency. Did not collect Cpu Metrics.");
+            return false;
+        }
+        b bVar = (b) this.cpuGaugeCollector.get();
+        long j9 = bVar.f20335d;
+        if (j9 != -1 && j9 != 0 && j7 > 0) {
+            ScheduledFuture scheduledFuture = bVar.f20336e;
+            if (scheduledFuture != null) {
+                if (bVar.f20337f != j7) {
+                    if (scheduledFuture != null) {
+                        scheduledFuture.cancel(false);
+                        bVar.f20336e = null;
+                        bVar.f20337f = -1L;
+                    }
+                    bVar.a(j7, iVar);
+                    return true;
+                }
+                return true;
+            }
+            bVar.a(j7, iVar);
+            return true;
+        }
+        return true;
+    }
+
+    private boolean startCollectingMemoryMetrics(long j7, i iVar) {
+        if (j7 == -1) {
+            logger.a("Invalid Memory Metrics collection frequency. Did not collect Memory Metrics.");
+            return false;
+        }
+        f fVar = (f) this.memoryGaugeCollector.get();
+        C0397a c0397a = f.f20346f;
+        if (j7 <= 0) {
+            fVar.getClass();
+            return true;
+        }
+        ScheduledFuture scheduledFuture = fVar.f20349d;
+        if (scheduledFuture != null) {
+            if (fVar.f20350e != j7) {
+                if (scheduledFuture != null) {
+                    scheduledFuture.cancel(false);
+                    fVar.f20349d = null;
+                    fVar.f20350e = -1L;
+                }
+                fVar.a(j7, iVar);
+                return true;
+            }
+            return true;
+        }
+        fVar.a(j7, iVar);
+        return true;
+    }
+
+    /* renamed from: syncFlush, reason: merged with bridge method [inline-methods] and merged with bridge method [inline-methods] */
+    public void lambda$stopCollectingGauges$3(String str, EnumC2355j enumC2355j) {
+        i5.q newBuilder = GaugeMetric.newBuilder();
+        while (!((b) this.cpuGaugeCollector.get()).f20333a.isEmpty()) {
+            newBuilder.b((CpuMetricReading) ((b) this.cpuGaugeCollector.get()).f20333a.poll());
+        }
+        while (!((f) this.memoryGaugeCollector.get()).b.isEmpty()) {
+            newBuilder.a((AndroidMemoryReading) ((f) this.memoryGaugeCollector.get()).b.poll());
+        }
+        newBuilder.d(str);
+        C2303f c2303f = this.transportManager;
+        c2303f.f20480k.execute(new RunnableC0311g(c2303f, (GaugeMetric) newBuilder.build(), enumC2355j, 16));
+    }
+
+    public void initializeGaugeMetadataManager(Context context) {
+        this.gaugeMetadataManager = new d(context);
+    }
+
+    public boolean logGaugeMetadata(String str, EnumC2355j enumC2355j) {
+        if (this.gaugeMetadataManager != null) {
+            i5.q newBuilder = GaugeMetric.newBuilder();
+            newBuilder.d(str);
+            newBuilder.c(getGaugeMetadata());
+            GaugeMetric gaugeMetric = (GaugeMetric) newBuilder.build();
+            C2303f c2303f = this.transportManager;
+            c2303f.f20480k.execute(new RunnableC0311g(c2303f, gaugeMetric, enumC2355j, 16));
+            return true;
+        }
+        return false;
+    }
+
+    public void startCollectingGauges(C2221a c2221a, EnumC2355j enumC2355j) {
         if (this.sessionId != null) {
             stopCollectingGauges();
         }
-        long startCollectingGauges = startCollectingGauges(applicationProcessState, perfSession.getTimer());
+        long startCollectingGauges = startCollectingGauges(enumC2355j, c2221a.f20110c);
         if (startCollectingGauges == -1) {
-            logger.warn("Invalid gauge collection frequency. Unable to start collecting Gauges.");
+            logger.f("Invalid gauge collection frequency. Unable to start collecting Gauges.");
             return;
         }
-        final String sessionId = perfSession.sessionId();
-        this.sessionId = sessionId;
-        this.applicationProcessState = applicationProcessState;
+        String str = c2221a.b;
+        this.sessionId = str;
+        this.applicationProcessState = enumC2355j;
         try {
-            long j = startCollectingGauges * 20;
-            this.gaugeManagerDataCollectionJob = this.gaugeManagerExecutor.get().scheduleAtFixedRate(new Runnable() { // from class: com.google.firebase.perf.session.gauges.GaugeManager$$ExternalSyntheticLambda1
-                @Override // java.lang.Runnable
-                public final void run() {
-                    GaugeManager.this.m8235xe4401769(sessionId, applicationProcessState);
-                }
-            }, j, j, TimeUnit.MILLISECONDS);
-        } catch (RejectedExecutionException e) {
-            logger.warn("Unable to start collecting Gauges: " + e.getMessage());
+            long j7 = startCollectingGauges * 20;
+            this.gaugeManagerDataCollectionJob = ((ScheduledExecutorService) this.gaugeManagerExecutor.get()).scheduleAtFixedRate(new f5.c(this, str, enumC2355j, 1), j7, j7, TimeUnit.MILLISECONDS);
+        } catch (RejectedExecutionException e4) {
+            logger.f("Unable to start collecting Gauges: " + e4.getMessage());
         }
-    }
-
-    private long startCollectingGauges(ApplicationProcessState applicationProcessState, Timer timer) {
-        long cpuGaugeCollectionFrequencyMs = getCpuGaugeCollectionFrequencyMs(applicationProcessState);
-        if (!startCollectingCpuMetrics(cpuGaugeCollectionFrequencyMs, timer)) {
-            cpuGaugeCollectionFrequencyMs = -1;
-        }
-        long memoryGaugeCollectionFrequencyMs = getMemoryGaugeCollectionFrequencyMs(applicationProcessState);
-        return startCollectingMemoryMetrics(memoryGaugeCollectionFrequencyMs, timer) ? cpuGaugeCollectionFrequencyMs == -1 ? memoryGaugeCollectionFrequencyMs : Math.min(cpuGaugeCollectionFrequencyMs, memoryGaugeCollectionFrequencyMs) : cpuGaugeCollectionFrequencyMs;
     }
 
     public void stopCollectingGauges() {
-        final String str = this.sessionId;
+        String str = this.sessionId;
         if (str == null) {
             return;
         }
-        final ApplicationProcessState applicationProcessState = this.applicationProcessState;
-        this.cpuGaugeCollector.get().stopCollecting();
-        this.memoryGaugeCollector.get().stopCollecting();
-        ScheduledFuture scheduledFuture = this.gaugeManagerDataCollectionJob;
+        EnumC2355j enumC2355j = this.applicationProcessState;
+        b bVar = (b) this.cpuGaugeCollector.get();
+        ScheduledFuture scheduledFuture = bVar.f20336e;
         if (scheduledFuture != null) {
             scheduledFuture.cancel(false);
+            bVar.f20336e = null;
+            bVar.f20337f = -1L;
         }
-        this.gaugeManagerExecutor.get().schedule(new Runnable() { // from class: com.google.firebase.perf.session.gauges.GaugeManager$$ExternalSyntheticLambda0
-            @Override // java.lang.Runnable
-            public final void run() {
-                GaugeManager.this.m8236xc8a5bf4e(str, applicationProcessState);
-            }
-        }, 20L, TimeUnit.MILLISECONDS);
+        f fVar = (f) this.memoryGaugeCollector.get();
+        ScheduledFuture scheduledFuture2 = fVar.f20349d;
+        if (scheduledFuture2 != null) {
+            scheduledFuture2.cancel(false);
+            fVar.f20349d = null;
+            fVar.f20350e = -1L;
+        }
+        ScheduledFuture scheduledFuture3 = this.gaugeManagerDataCollectionJob;
+        if (scheduledFuture3 != null) {
+            scheduledFuture3.cancel(false);
+        }
+        ((ScheduledExecutorService) this.gaugeManagerExecutor.get()).schedule(new f5.c(this, str, enumC2355j, 0), 20L, TimeUnit.MILLISECONDS);
         this.sessionId = null;
-        this.applicationProcessState = ApplicationProcessState.APPLICATION_PROCESS_STATE_UNKNOWN;
+        this.applicationProcessState = EnumC2355j.APPLICATION_PROCESS_STATE_UNKNOWN;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: syncFlush, reason: merged with bridge method [inline-methods] and merged with bridge method [inline-methods] */
-    public void m8236xc8a5bf4e(String str, ApplicationProcessState applicationProcessState) {
-        GaugeMetric.Builder newBuilder = GaugeMetric.newBuilder();
-        while (!this.cpuGaugeCollector.get().cpuMetricReadings.isEmpty()) {
-            newBuilder.addCpuMetricReadings(this.cpuGaugeCollector.get().cpuMetricReadings.poll());
-        }
-        while (!this.memoryGaugeCollector.get().memoryMetricReadings.isEmpty()) {
-            newBuilder.addAndroidMemoryReadings(this.memoryGaugeCollector.get().memoryMetricReadings.poll());
-        }
-        newBuilder.setSessionId(str);
-        this.transportManager.log(newBuilder.build(), applicationProcessState);
+    public GaugeManager(l lVar, C2303f c2303f, a aVar, d dVar, l lVar2, l lVar3) {
+        this.gaugeManagerDataCollectionJob = null;
+        this.sessionId = null;
+        this.applicationProcessState = EnumC2355j.APPLICATION_PROCESS_STATE_UNKNOWN;
+        this.gaugeManagerExecutor = lVar;
+        this.transportManager = c2303f;
+        this.configResolver = aVar;
+        this.gaugeMetadataManager = dVar;
+        this.cpuGaugeCollector = lVar2;
+        this.memoryGaugeCollector = lVar3;
     }
 
-    public boolean logGaugeMetadata(String str, ApplicationProcessState applicationProcessState) {
-        if (this.gaugeMetadataManager == null) {
-            return false;
+    private long startCollectingGauges(EnumC2355j enumC2355j, i iVar) {
+        long cpuGaugeCollectionFrequencyMs = getCpuGaugeCollectionFrequencyMs(enumC2355j);
+        if (!startCollectingCpuMetrics(cpuGaugeCollectionFrequencyMs, iVar)) {
+            cpuGaugeCollectionFrequencyMs = -1;
         }
-        this.transportManager.log(GaugeMetric.newBuilder().setSessionId(str).setGaugeMetadata(getGaugeMetadata()).build(), applicationProcessState);
-        return true;
+        long memoryGaugeCollectionFrequencyMs = getMemoryGaugeCollectionFrequencyMs(enumC2355j);
+        return startCollectingMemoryMetrics(memoryGaugeCollectionFrequencyMs, iVar) ? cpuGaugeCollectionFrequencyMs == -1 ? memoryGaugeCollectionFrequencyMs : Math.min(cpuGaugeCollectionFrequencyMs, memoryGaugeCollectionFrequencyMs) : cpuGaugeCollectionFrequencyMs;
     }
 
-    private GaugeMetadata getGaugeMetadata() {
-        return GaugeMetadata.newBuilder().setDeviceRamSizeKb(this.gaugeMetadataManager.getDeviceRamSizeKb()).setMaxAppJavaHeapMemoryKb(this.gaugeMetadataManager.getMaxAppJavaHeapMemoryKb()).setMaxEncouragedAppJavaHeapMemoryKb(this.gaugeMetadataManager.getMaxEncouragedAppJavaHeapMemoryKb()).build();
-    }
-
-    private boolean startCollectingCpuMetrics(long j, Timer timer) {
-        if (j == -1) {
-            logger.debug("Invalid Cpu Metrics collection frequency. Did not collect Cpu Metrics.");
-            return false;
-        }
-        this.cpuGaugeCollector.get().startCollecting(j, timer);
-        return true;
-    }
-
-    private boolean startCollectingMemoryMetrics(long j, Timer timer) {
-        if (j == -1) {
-            logger.debug("Invalid Memory Metrics collection frequency. Did not collect Memory Metrics.");
-            return false;
-        }
-        this.memoryGaugeCollector.get().startCollecting(j, timer);
-        return true;
-    }
-
-    public void collectGaugeMetricOnce(Timer timer) {
-        collectGaugeMetricOnce(this.cpuGaugeCollector.get(), this.memoryGaugeCollector.get(), timer);
-    }
-
-    private static void collectGaugeMetricOnce(CpuGaugeCollector cpuGaugeCollector, MemoryGaugeCollector memoryGaugeCollector, Timer timer) {
-        cpuGaugeCollector.collectOnce(timer);
-        memoryGaugeCollector.collectOnce(timer);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* renamed from: com.google.firebase.perf.session.gauges.GaugeManager$1, reason: invalid class name */
-    /* loaded from: classes3.dex */
-    public static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$firebase$perf$v1$ApplicationProcessState;
-
-        static {
-            int[] iArr = new int[ApplicationProcessState.values().length];
-            $SwitchMap$com$google$firebase$perf$v1$ApplicationProcessState = iArr;
-            try {
-                iArr[ApplicationProcessState.BACKGROUND.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$firebase$perf$v1$ApplicationProcessState[ApplicationProcessState.FOREGROUND.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-        }
-    }
-
-    private long getCpuGaugeCollectionFrequencyMs(ApplicationProcessState applicationProcessState) {
-        long sessionsCpuCaptureFrequencyBackgroundMs;
-        int i = AnonymousClass1.$SwitchMap$com$google$firebase$perf$v1$ApplicationProcessState[applicationProcessState.ordinal()];
-        if (i == 1) {
-            sessionsCpuCaptureFrequencyBackgroundMs = this.configResolver.getSessionsCpuCaptureFrequencyBackgroundMs();
-        } else {
-            sessionsCpuCaptureFrequencyBackgroundMs = i != 2 ? -1L : this.configResolver.getSessionsCpuCaptureFrequencyForegroundMs();
-        }
-        if (CpuGaugeCollector.isInvalidCollectionFrequency(sessionsCpuCaptureFrequencyBackgroundMs)) {
-            return -1L;
-        }
-        return sessionsCpuCaptureFrequencyBackgroundMs;
-    }
-
-    private long getMemoryGaugeCollectionFrequencyMs(ApplicationProcessState applicationProcessState) {
-        long sessionsMemoryCaptureFrequencyBackgroundMs;
-        int i = AnonymousClass1.$SwitchMap$com$google$firebase$perf$v1$ApplicationProcessState[applicationProcessState.ordinal()];
-        if (i == 1) {
-            sessionsMemoryCaptureFrequencyBackgroundMs = this.configResolver.getSessionsMemoryCaptureFrequencyBackgroundMs();
-        } else {
-            sessionsMemoryCaptureFrequencyBackgroundMs = i != 2 ? -1L : this.configResolver.getSessionsMemoryCaptureFrequencyForegroundMs();
-        }
-        if (MemoryGaugeCollector.isInvalidCollectionFrequency(sessionsMemoryCaptureFrequencyBackgroundMs)) {
-            return -1L;
-        }
-        return sessionsMemoryCaptureFrequencyBackgroundMs;
+    public void collectGaugeMetricOnce(i iVar) {
+        collectGaugeMetricOnce((b) this.cpuGaugeCollector.get(), (f) this.memoryGaugeCollector.get(), iVar);
     }
 }

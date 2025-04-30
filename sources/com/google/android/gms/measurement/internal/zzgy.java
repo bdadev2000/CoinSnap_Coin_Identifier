@@ -1,67 +1,59 @@
 package com.google.android.gms.measurement.internal;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import com.google.android.gms.common.internal.Preconditions;
+import java.util.List;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-public class zzgy extends BroadcastReceiver {
-    private final zznv zza;
-    private boolean zzb;
-    private boolean zzc;
+/* loaded from: classes2.dex */
+public final class zzgy implements com.google.android.gms.internal.measurement.zzv {
+    private final /* synthetic */ zzgt zza;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzgy(zznv zznvVar) {
-        Preconditions.checkNotNull(zznvVar);
-        this.zza = zznvVar;
+    public zzgy(zzgt zzgtVar) {
+        this.zza = zzgtVar;
     }
 
-    @Override // android.content.BroadcastReceiver
-    public void onReceive(Context context, Intent intent) {
-        this.zza.zzs();
-        String action = intent.getAction();
-        this.zza.zzj().zzp().zza("NetworkBroadcastReceiver received action", action);
-        if ("android.net.conn.CONNECTIVITY_CHANGE".equals(action)) {
-            boolean zzu = this.zza.zzh().zzu();
-            if (this.zzc != zzu) {
-                this.zzc = zzu;
-                this.zza.zzl().zzb(new zzgx(this, zzu));
-                return;
+    @Override // com.google.android.gms.internal.measurement.zzv
+    public final void zza(com.google.android.gms.internal.measurement.zzs zzsVar, String str, List<String> list, boolean z8, boolean z9) {
+        zzfy zzc;
+        int i9 = zzha.zza[zzsVar.ordinal()];
+        if (i9 != 1) {
+            if (i9 != 2) {
+                if (i9 != 3) {
+                    if (i9 != 4) {
+                        zzc = this.zza.zzj().zzn();
+                    } else {
+                        zzc = this.zza.zzj().zzp();
+                    }
+                } else if (z8) {
+                    zzc = this.zza.zzj().zzw();
+                } else if (!z9) {
+                    zzc = this.zza.zzj().zzv();
+                } else {
+                    zzc = this.zza.zzj().zzu();
+                }
+            } else if (z8) {
+                zzc = this.zza.zzj().zzm();
+            } else if (!z9) {
+                zzc = this.zza.zzj().zzh();
+            } else {
+                zzc = this.zza.zzj().zzg();
             }
+        } else {
+            zzc = this.zza.zzj().zzc();
+        }
+        int size = list.size();
+        if (size != 1) {
+            if (size != 2) {
+                if (size != 3) {
+                    zzc.zza(str);
+                    return;
+                } else {
+                    zzc.zza(str, list.get(0), list.get(1), list.get(2));
+                    return;
+                }
+            }
+            zzc.zza(str, list.get(0), list.get(1));
             return;
         }
-        this.zza.zzj().zzu().zza("NetworkBroadcastReceiver received unknown action", action);
-    }
-
-    public final void zza() {
-        this.zza.zzs();
-        this.zza.zzl().zzt();
-        if (this.zzb) {
-            return;
-        }
-        this.zza.zza().registerReceiver(this, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
-        this.zzc = this.zza.zzh().zzu();
-        this.zza.zzj().zzp().zza("Registering connectivity change receiver. Network connected", Boolean.valueOf(this.zzc));
-        this.zzb = true;
-    }
-
-    public final void zzb() {
-        this.zza.zzs();
-        this.zza.zzl().zzt();
-        this.zza.zzl().zzt();
-        if (this.zzb) {
-            this.zza.zzj().zzp().zza("Unregistering connectivity change receiver");
-            this.zzb = false;
-            this.zzc = false;
-            try {
-                this.zza.zza().unregisterReceiver(this);
-            } catch (IllegalArgumentException e) {
-                this.zza.zzj().zzg().zza("Failed to unregister the network broadcast receiver", e);
-            }
-        }
+        zzc.zza(str, list.get(0));
     }
 }

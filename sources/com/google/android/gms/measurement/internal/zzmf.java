@@ -1,37 +1,19 @@
 package com.google.android.gms.measurement.internal;
 
-import android.os.Bundle;
-import android.os.RemoteException;
-import com.google.android.gms.common.internal.Preconditions;
+/* loaded from: classes2.dex */
+final class zzmf implements Runnable {
+    private final /* synthetic */ zznc zza;
+    private final /* synthetic */ Runnable zzb;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzmf implements Runnable {
-    private final /* synthetic */ zzo zza;
-    private final /* synthetic */ Bundle zzb;
-    private final /* synthetic */ zzls zzc;
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzmf(zzls zzlsVar, zzo zzoVar, Bundle bundle) {
-        this.zza = zzoVar;
-        this.zzb = bundle;
-        this.zzc = zzlsVar;
+    public zzmf(zzme zzmeVar, zznc zzncVar, Runnable runnable) {
+        this.zza = zzncVar;
+        this.zzb = runnable;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        zzgb zzgbVar;
-        zzgbVar = this.zzc.zzb;
-        if (zzgbVar == null) {
-            this.zzc.zzj().zzg().zza("Failed to send default event parameters to service");
-            return;
-        }
-        try {
-            Preconditions.checkNotNull(this.zza);
-            zzgbVar.zza(this.zzb, this.zza);
-        } catch (RemoteException e) {
-            this.zzc.zzj().zzg().zza("Failed to send default event parameters to service", e);
-        }
+        this.zza.zzr();
+        this.zza.zza(this.zzb);
+        this.zza.zzw();
     }
 }

@@ -1,36 +1,23 @@
 package com.google.android.gms.measurement.internal;
 
-import android.content.SharedPreferences;
 import com.google.android.gms.common.internal.Preconditions;
+import x.g;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzgz {
-    private final String zza;
-    private final boolean zzb;
-    private boolean zzc;
-    private boolean zzd;
-    private final /* synthetic */ zzha zze;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzgz extends g {
+    private final /* synthetic */ zzgt zza;
 
-    public zzgz(zzha zzhaVar, String str, boolean z) {
-        this.zze = zzhaVar;
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public zzgz(zzgt zzgtVar, int i9) {
+        super(20);
+        this.zza = zzgtVar;
+    }
+
+    @Override // x.g
+    public final /* synthetic */ Object create(Object obj) {
+        String str = (String) obj;
         Preconditions.checkNotEmpty(str);
-        this.zza = str;
-        this.zzb = z;
-    }
-
-    public final void zza(boolean z) {
-        SharedPreferences.Editor edit = this.zze.zzg().edit();
-        edit.putBoolean(this.zza, z);
-        edit.apply();
-        this.zzd = z;
-    }
-
-    public final boolean zza() {
-        if (!this.zzc) {
-            this.zzc = true;
-            this.zzd = this.zze.zzg().getBoolean(this.zza, this.zzb);
-        }
-        return this.zzd;
+        return zzgt.zza(this.zza, str);
     }
 }

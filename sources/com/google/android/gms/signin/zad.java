@@ -3,11 +3,13 @@ package com.google.android.gms.signin;
 import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.internal.ShowFirstParty;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zad {
     public static final Api.ClientKey zaa;
+
+    @ShowFirstParty
     public static final Api.ClientKey zab;
     public static final Api.AbstractClientBuilder zac;
     static final Api.AbstractClientBuilder zad;

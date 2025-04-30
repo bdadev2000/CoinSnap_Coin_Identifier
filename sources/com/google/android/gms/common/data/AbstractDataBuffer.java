@@ -1,15 +1,20 @@
 package com.google.android.gms.common.data;
 
 import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import java.util.Iterator;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class AbstractDataBuffer<T> implements DataBuffer<T> {
+
+    @Nullable
+    @KeepForSdk
     protected final DataHolder mDataHolder;
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public AbstractDataBuffer(DataHolder dataHolder) {
+    @KeepForSdk
+    public AbstractDataBuffer(@Nullable DataHolder dataHolder) {
         this.mDataHolder = dataHolder;
     }
 
@@ -19,7 +24,8 @@ public abstract class AbstractDataBuffer<T> implements DataBuffer<T> {
     }
 
     @Override // com.google.android.gms.common.data.DataBuffer
-    public abstract T get(int i);
+    @NonNull
+    public abstract T get(int i9);
 
     @Override // com.google.android.gms.common.data.DataBuffer
     public int getCount() {
@@ -31,6 +37,7 @@ public abstract class AbstractDataBuffer<T> implements DataBuffer<T> {
     }
 
     @Override // com.google.android.gms.common.data.DataBuffer
+    @Nullable
     public final Bundle getMetadata() {
         DataHolder dataHolder = this.mDataHolder;
         if (dataHolder == null) {
@@ -43,10 +50,14 @@ public abstract class AbstractDataBuffer<T> implements DataBuffer<T> {
     @Deprecated
     public boolean isClosed() {
         DataHolder dataHolder = this.mDataHolder;
-        return dataHolder == null || dataHolder.isClosed();
+        if (dataHolder != null && !dataHolder.isClosed()) {
+            return false;
+        }
+        return true;
     }
 
     @Override // com.google.android.gms.common.data.DataBuffer, java.lang.Iterable
+    @NonNull
     public Iterator<T> iterator() {
         return new DataBufferIterator(this);
     }
@@ -60,6 +71,7 @@ public abstract class AbstractDataBuffer<T> implements DataBuffer<T> {
     }
 
     @Override // com.google.android.gms.common.data.DataBuffer
+    @NonNull
     public Iterator<T> singleRefIterator() {
         return new SingleRefDataBufferIterator(this);
     }

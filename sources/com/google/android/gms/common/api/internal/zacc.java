@@ -1,6 +1,7 @@
 package com.google.android.gms.common.api.internal;
 
 import android.app.Activity;
+import androidx.annotation.NonNull;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.ApiException;
@@ -9,8 +10,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.concurrent.CancellationException;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zacc extends zap {
     private TaskCompletionSource zad;
 
@@ -20,8 +20,8 @@ public final class zacc extends zap {
         this.mLifecycleFragment.addCallback("GmsAvailabilityHelper", this);
     }
 
-    public static zacc zaa(Activity activity) {
-        LifecycleFragment fragment = getFragment(activity);
+    public static zacc zaa(@NonNull Activity activity) {
+        LifecycleFragment fragment = LifecycleCallback.getFragment(activity);
         zacc zaccVar = (zacc) fragment.getCallbackOrNull("GmsAvailabilityHelper", zacc.class);
         if (zaccVar != null) {
             if (zaccVar.zad.getTask().isComplete()) {
@@ -39,7 +39,7 @@ public final class zacc extends zap {
     }
 
     @Override // com.google.android.gms.common.api.internal.zap
-    protected final void zab(ConnectionResult connectionResult, int i) {
+    public final void zab(ConnectionResult connectionResult, int i9) {
         String errorMessage = connectionResult.getErrorMessage();
         if (errorMessage == null) {
             errorMessage = "Error connecting to Google Play services";
@@ -48,7 +48,7 @@ public final class zacc extends zap {
     }
 
     @Override // com.google.android.gms.common.api.internal.zap
-    protected final void zac() {
+    public final void zac() {
         Activity lifecycleActivity = this.mLifecycleFragment.getLifecycleActivity();
         if (lifecycleActivity == null) {
             this.zad.trySetException(new ApiException(new Status(8)));
@@ -57,10 +57,7 @@ public final class zacc extends zap {
         int isGooglePlayServicesAvailable = this.zac.isGooglePlayServicesAvailable(lifecycleActivity);
         if (isGooglePlayServicesAvailable == 0) {
             this.zad.trySetResult(null);
-        } else {
-            if (this.zad.getTask().isComplete()) {
-                return;
-            }
+        } else if (!this.zad.getTask().isComplete()) {
             zah(new ConnectionResult(isGooglePlayServicesAvailable, null), 0);
         }
     }

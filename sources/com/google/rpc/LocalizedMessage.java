@@ -1,35 +1,68 @@
 package com.google.rpc;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.O3;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import w5.j;
+import w5.k;
 
-/* loaded from: classes5.dex */
-public final class LocalizedMessage extends GeneratedMessageLite<LocalizedMessage, Builder> implements LocalizedMessageOrBuilder {
+/* loaded from: classes3.dex */
+public final class LocalizedMessage extends L2 implements O3 {
     private static final LocalizedMessage DEFAULT_INSTANCE;
     public static final int LOCALE_FIELD_NUMBER = 1;
     public static final int MESSAGE_FIELD_NUMBER = 2;
-    private static volatile Parser<LocalizedMessage> PARSER;
+    private static volatile InterfaceC1948l4 PARSER;
     private String locale_ = "";
     private String message_ = "";
+
+    static {
+        LocalizedMessage localizedMessage = new LocalizedMessage();
+        DEFAULT_INSTANCE = localizedMessage;
+        L2.registerDefaultInstance(LocalizedMessage.class, localizedMessage);
+    }
 
     private LocalizedMessage() {
     }
 
-    @Override // com.google.rpc.LocalizedMessageOrBuilder
-    public String getLocale() {
-        return this.locale_;
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearLocale() {
+        this.locale_ = getDefaultInstance().getLocale();
     }
 
-    @Override // com.google.rpc.LocalizedMessageOrBuilder
-    public ByteString getLocaleBytes() {
-        return ByteString.copyFromUtf8(this.locale_);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearMessage() {
+        this.message_ = getDefaultInstance().getMessage();
+    }
+
+    public static LocalizedMessage getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    public static k newBuilder() {
+        return (k) DEFAULT_INSTANCE.createBuilder();
+    }
+
+    public static LocalizedMessage parseDelimitedFrom(InputStream inputStream) throws IOException {
+        return (LocalizedMessage) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static LocalizedMessage parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (LocalizedMessage) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    }
+
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -39,24 +72,9 @@ public final class LocalizedMessage extends GeneratedMessageLite<LocalizedMessag
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearLocale() {
-        this.locale_ = getDefaultInstance().getLocale();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setLocaleBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.locale_ = byteString.toStringUtf8();
-    }
-
-    @Override // com.google.rpc.LocalizedMessageOrBuilder
-    public String getMessage() {
-        return this.message_;
-    }
-
-    @Override // com.google.rpc.LocalizedMessageOrBuilder
-    public ByteString getMessageBytes() {
-        return ByteString.copyFromUtf8(this.message_);
+    public void setLocaleBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.locale_ = h6.toStringUtf8();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -66,202 +84,37 @@ public final class LocalizedMessage extends GeneratedMessageLite<LocalizedMessag
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearMessage() {
-        this.message_ = getDefaultInstance().getMessage();
+    public void setMessageBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.message_ = h6.toStringUtf8();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setMessageBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.message_ = byteString.toStringUtf8();
-    }
-
-    public static LocalizedMessage parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (LocalizedMessage) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
-    }
-
-    public static LocalizedMessage parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (LocalizedMessage) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static LocalizedMessage parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (LocalizedMessage) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static LocalizedMessage parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (LocalizedMessage) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static LocalizedMessage parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (LocalizedMessage) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static LocalizedMessage parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (LocalizedMessage) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static LocalizedMessage parseFrom(InputStream inputStream) throws IOException {
-        return (LocalizedMessage) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static LocalizedMessage parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (LocalizedMessage) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static LocalizedMessage parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (LocalizedMessage) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static LocalizedMessage parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (LocalizedMessage) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static LocalizedMessage parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (LocalizedMessage) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
-    }
-
-    public static LocalizedMessage parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (LocalizedMessage) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
-    }
-
-    public static Builder newBuilder(LocalizedMessage localizedMessage) {
-        return DEFAULT_INSTANCE.createBuilder(localizedMessage);
-    }
-
-    /* loaded from: classes5.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<LocalizedMessage, Builder> implements LocalizedMessageOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(LocalizedMessage.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.rpc.LocalizedMessageOrBuilder
-        public String getLocale() {
-            return ((LocalizedMessage) this.instance).getLocale();
-        }
-
-        @Override // com.google.rpc.LocalizedMessageOrBuilder
-        public ByteString getLocaleBytes() {
-            return ((LocalizedMessage) this.instance).getLocaleBytes();
-        }
-
-        public Builder setLocale(String str) {
-            copyOnWrite();
-            ((LocalizedMessage) this.instance).setLocale(str);
-            return this;
-        }
-
-        public Builder clearLocale() {
-            copyOnWrite();
-            ((LocalizedMessage) this.instance).clearLocale();
-            return this;
-        }
-
-        public Builder setLocaleBytes(ByteString byteString) {
-            copyOnWrite();
-            ((LocalizedMessage) this.instance).setLocaleBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.rpc.LocalizedMessageOrBuilder
-        public String getMessage() {
-            return ((LocalizedMessage) this.instance).getMessage();
-        }
-
-        @Override // com.google.rpc.LocalizedMessageOrBuilder
-        public ByteString getMessageBytes() {
-            return ((LocalizedMessage) this.instance).getMessageBytes();
-        }
-
-        public Builder setMessage(String str) {
-            copyOnWrite();
-            ((LocalizedMessage) this.instance).setMessage(str);
-            return this;
-        }
-
-        public Builder clearMessage() {
-            copyOnWrite();
-            ((LocalizedMessage) this.instance).clearMessage();
-            return this;
-        }
-
-        public Builder setMessageBytes(ByteString byteString) {
-            copyOnWrite();
-            ((LocalizedMessage) this.instance).setMessageBytes(byteString);
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.rpc.LocalizedMessage$1, reason: invalid class name */
-    /* loaded from: classes5.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (j.f23987a[k22.ordinal()]) {
             case 1:
                 return new LocalizedMessage();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001Ȉ\u0002Ȉ", new Object[]{"locale_", "message_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001Ȉ\u0002Ȉ", new Object[]{"locale_", "message_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<LocalizedMessage> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (LocalizedMessage.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -271,17 +124,63 @@ public final class LocalizedMessage extends GeneratedMessageLite<LocalizedMessag
         }
     }
 
-    static {
-        LocalizedMessage localizedMessage = new LocalizedMessage();
-        DEFAULT_INSTANCE = localizedMessage;
-        GeneratedMessageLite.registerDefaultInstance(LocalizedMessage.class, localizedMessage);
+    public String getLocale() {
+        return this.locale_;
     }
 
-    public static LocalizedMessage getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public H getLocaleBytes() {
+        return H.copyFromUtf8(this.locale_);
     }
 
-    public static Parser<LocalizedMessage> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public String getMessage() {
+        return this.message_;
+    }
+
+    public H getMessageBytes() {
+        return H.copyFromUtf8(this.message_);
+    }
+
+    public static k newBuilder(LocalizedMessage localizedMessage) {
+        return (k) DEFAULT_INSTANCE.createBuilder(localizedMessage);
+    }
+
+    public static LocalizedMessage parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (LocalizedMessage) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static LocalizedMessage parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (LocalizedMessage) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static LocalizedMessage parseFrom(H h6) throws C1912g3 {
+        return (LocalizedMessage) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static LocalizedMessage parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (LocalizedMessage) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static LocalizedMessage parseFrom(byte[] bArr) throws C1912g3 {
+        return (LocalizedMessage) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static LocalizedMessage parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (LocalizedMessage) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static LocalizedMessage parseFrom(InputStream inputStream) throws IOException {
+        return (LocalizedMessage) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static LocalizedMessage parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (LocalizedMessage) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static LocalizedMessage parseFrom(S s5) throws IOException {
+        return (LocalizedMessage) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static LocalizedMessage parseFrom(S s5, W1 w1) throws IOException {
+        return (LocalizedMessage) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

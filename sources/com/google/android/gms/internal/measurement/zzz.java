@@ -4,11 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzz extends zzal {
     private final zzl zzk;
     private final Map<String, zzal> zzl;
+
+    public zzz(zzl zzlVar) {
+        super("require");
+        this.zzl = new HashMap();
+        this.zzk = zzlVar;
+    }
 
     @Override // com.google.android.gms.internal.measurement.zzal
     public final zzaq zza(zzh zzhVar, List<zzaq> list) {
@@ -22,11 +27,5 @@ public final class zzz extends zzal {
             this.zzl.put(zzf, (zzal) zza);
         }
         return zza;
-    }
-
-    public zzz(zzl zzlVar) {
-        super("require");
-        this.zzl = new HashMap();
-        this.zzk = zzlVar;
     }
 }

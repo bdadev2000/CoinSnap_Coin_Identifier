@@ -1,7 +1,10 @@
 package com.google.android.gms.common.util;
 
-import androidx.collection.ArrayMap;
-import androidx.collection.ArraySet;
+import Q7.n0;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -10,112 +13,145 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import x.b;
+import x.c;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public final class CollectionUtils {
     private CollectionUtils() {
     }
 
-    public static boolean isEmpty(Collection<?> collection) {
+    @KeepForSdk
+    public static boolean isEmpty(@Nullable Collection<?> collection) {
         if (collection == null) {
             return true;
         }
         return collection.isEmpty();
     }
 
+    @NonNull
+    @KeepForSdk
     @Deprecated
     public static <T> List<T> listOf() {
         return Collections.emptyList();
     }
 
-    public static <K, V> Map<K, V> mapOf(K k, V v, K k2, V v2, K k3, V v3) {
+    @NonNull
+    @KeepForSdk
+    public static <K, V> Map<K, V> mapOf(@NonNull K k6, @NonNull V v6, @NonNull K k7, @NonNull V v9, @NonNull K k9, @NonNull V v10) {
         Map zza = zza(3, false);
-        zza.put(k, v);
-        zza.put(k2, v2);
-        zza.put(k3, v3);
+        zza.put(k6, v6);
+        zza.put(k7, v9);
+        zza.put(k9, v10);
         return Collections.unmodifiableMap(zza);
     }
 
-    public static <K, V> Map<K, V> mapOfKeyValueArrays(K[] kArr, V[] vArr) {
+    @NonNull
+    @KeepForSdk
+    public static <K, V> Map<K, V> mapOfKeyValueArrays(@NonNull K[] kArr, @NonNull V[] vArr) {
         int length = kArr.length;
         int length2 = vArr.length;
-        if (length != length2) {
-            throw new IllegalArgumentException("Key and values array lengths not equal: " + length + " != " + length2);
-        }
-        if (length == 0) {
+        if (length == length2) {
+            if (length != 0) {
+                if (length != 1) {
+                    Map zza = zza(length, false);
+                    for (int i9 = 0; i9 < kArr.length; i9++) {
+                        zza.put(kArr[i9], vArr[i9]);
+                    }
+                    return Collections.unmodifiableMap(zza);
+                }
+                return Collections.singletonMap(kArr[0], vArr[0]);
+            }
             return Collections.emptyMap();
         }
-        if (length == 1) {
-            return Collections.singletonMap(kArr[0], vArr[0]);
-        }
-        Map zza = zza(length, false);
-        for (int i = 0; i < kArr.length; i++) {
-            zza.put(kArr[i], vArr[i]);
-        }
-        return Collections.unmodifiableMap(zza);
+        throw new IllegalArgumentException(n0.e(length, length2, "Key and values array lengths not equal: ", " != "));
     }
 
-    public static <T> Set<T> mutableSetOfWithSize(int i) {
-        if (i == 0) {
-            return new ArraySet();
+    @NonNull
+    @KeepForSdk
+    public static <T> Set<T> mutableSetOfWithSize(int i9) {
+        if (i9 == 0) {
+            return new c(0);
         }
-        return zzb(i, true);
+        return zzb(i9, true);
     }
 
+    @NonNull
+    @KeepForSdk
     @Deprecated
-    public static <T> Set<T> setOf(T t, T t2, T t3) {
+    public static <T> Set<T> setOf(@NonNull T t9, @NonNull T t10, @NonNull T t11) {
         Set zzb = zzb(3, false);
-        zzb.add(t);
-        zzb.add(t2);
-        zzb.add(t3);
+        zzb.add(t9);
+        zzb.add(t10);
+        zzb.add(t11);
         return Collections.unmodifiableSet(zzb);
     }
 
-    private static Map zza(int i, boolean z) {
-        if (i <= 256) {
-            return new ArrayMap(i);
+    private static Map zza(int i9, boolean z8) {
+        if (i9 <= 256) {
+            return new b(i9);
         }
-        return new HashMap(i, 1.0f);
+        return new HashMap(i9, 1.0f);
     }
 
-    @Deprecated
-    public static <T> List<T> listOf(T t) {
-        return Collections.singletonList(t);
-    }
-
-    private static Set zzb(int i, boolean z) {
-        if (i > (true != z ? 256 : 128)) {
-            return new HashSet(i, true != z ? 1.0f : 0.75f);
+    private static Set zzb(int i9, boolean z8) {
+        int i10;
+        float f9;
+        if (true != z8) {
+            i10 = NotificationCompat.FLAG_LOCAL_ONLY;
+        } else {
+            i10 = 128;
         }
-        return new ArraySet(i);
+        if (i9 <= i10) {
+            return new c(i9);
+        }
+        if (true != z8) {
+            f9 = 1.0f;
+        } else {
+            f9 = 0.75f;
+        }
+        return new HashSet(i9, f9);
     }
 
+    @NonNull
+    @KeepForSdk
     @Deprecated
-    public static <T> List<T> listOf(T... tArr) {
+    public static <T> List<T> listOf(@NonNull T t9) {
+        return Collections.singletonList(t9);
+    }
+
+    @NonNull
+    @KeepForSdk
+    @Deprecated
+    public static <T> List<T> listOf(@NonNull T... tArr) {
         int length = tArr.length;
         if (length == 0) {
             return Collections.emptyList();
         }
-        if (length == 1) {
-            return Collections.singletonList(tArr[0]);
+        if (length != 1) {
+            return Collections.unmodifiableList(Arrays.asList(tArr));
         }
-        return Collections.unmodifiableList(Arrays.asList(tArr));
+        return Collections.singletonList(tArr[0]);
     }
 
-    public static <K, V> Map<K, V> mapOf(K k, V v, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5, K k6, V v6) {
+    @NonNull
+    @KeepForSdk
+    public static <K, V> Map<K, V> mapOf(@NonNull K k6, @NonNull V v6, @NonNull K k7, @NonNull V v9, @NonNull K k9, @NonNull V v10, @NonNull K k10, @NonNull V v11, @NonNull K k11, @NonNull V v12, @NonNull K k12, @NonNull V v13) {
         Map zza = zza(6, false);
-        zza.put(k, v);
-        zza.put(k2, v2);
-        zza.put(k3, v3);
-        zza.put(k4, v4);
-        zza.put(k5, v5);
         zza.put(k6, v6);
+        zza.put(k7, v9);
+        zza.put(k9, v10);
+        zza.put(k10, v11);
+        zza.put(k11, v12);
+        zza.put(k12, v13);
         return Collections.unmodifiableMap(zza);
     }
 
+    @NonNull
+    @KeepForSdk
     @Deprecated
-    public static <T> Set<T> setOf(T... tArr) {
+    public static <T> Set<T> setOf(@NonNull T... tArr) {
         int length = tArr.length;
         if (length == 0) {
             return Collections.emptySet();
@@ -124,30 +160,30 @@ public final class CollectionUtils {
             return Collections.singleton(tArr[0]);
         }
         if (length == 2) {
-            T t = tArr[0];
-            T t2 = tArr[1];
+            T t9 = tArr[0];
+            T t10 = tArr[1];
             Set zzb = zzb(2, false);
-            zzb.add(t);
-            zzb.add(t2);
+            zzb.add(t9);
+            zzb.add(t10);
             return Collections.unmodifiableSet(zzb);
         }
         if (length == 3) {
             return setOf(tArr[0], tArr[1], tArr[2]);
         }
-        if (length == 4) {
-            T t3 = tArr[0];
-            T t4 = tArr[1];
-            T t5 = tArr[2];
-            T t6 = tArr[3];
-            Set zzb2 = zzb(4, false);
-            zzb2.add(t3);
-            zzb2.add(t4);
-            zzb2.add(t5);
-            zzb2.add(t6);
+        if (length != 4) {
+            Set zzb2 = zzb(length, false);
+            Collections.addAll(zzb2, tArr);
             return Collections.unmodifiableSet(zzb2);
         }
-        Set zzb3 = zzb(length, false);
-        Collections.addAll(zzb3, tArr);
+        T t11 = tArr[0];
+        T t12 = tArr[1];
+        T t13 = tArr[2];
+        T t14 = tArr[3];
+        Set zzb3 = zzb(4, false);
+        zzb3.add(t11);
+        zzb3.add(t12);
+        zzb3.add(t13);
+        zzb3.add(t14);
         return Collections.unmodifiableSet(zzb3);
     }
 }

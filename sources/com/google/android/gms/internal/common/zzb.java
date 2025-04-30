@@ -6,10 +6,8 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class zzb extends Binder implements IInterface {
-    /* JADX INFO: Access modifiers changed from: protected */
     public zzb(String str) {
         attachInterface(this, str);
     }
@@ -20,18 +18,18 @@ public class zzb extends Binder implements IInterface {
     }
 
     @Override // android.os.Binder
-    public final boolean onTransact(int i, Parcel parcel, Parcel parcel2, int i2) throws RemoteException {
-        if (i > 16777215) {
-            if (super.onTransact(i, parcel, parcel2, i2)) {
+    public final boolean onTransact(int i9, Parcel parcel, Parcel parcel2, int i10) throws RemoteException {
+        if (i9 > 16777215) {
+            if (super.onTransact(i9, parcel, parcel2, i10)) {
                 return true;
             }
         } else {
             parcel.enforceInterface(getInterfaceDescriptor());
         }
-        return zza(i, parcel, parcel2, i2);
+        return zza(i9, parcel, parcel2, i10);
     }
 
-    protected boolean zza(int i, Parcel parcel, Parcel parcel2, int i2) throws RemoteException {
+    public boolean zza(int i9, Parcel parcel, Parcel parcel2, int i10) throws RemoteException {
         return false;
     }
 }

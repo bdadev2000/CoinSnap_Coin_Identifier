@@ -2,9 +2,10 @@ package com.adjust.sdk;
 
 import android.content.Context;
 import android.net.Uri;
+import java.util.Map;
 import org.json.JSONObject;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class Adjust {
     private static AdjustInstance defaultInstance;
 
@@ -22,10 +23,6 @@ public class Adjust {
     @Deprecated
     public static void appWillOpenUrl(Uri uri) {
         getDefaultInstance().appWillOpenUrl(uri);
-    }
-
-    public static void appWillOpenUrl(Uri uri, Context context) {
-        getDefaultInstance().appWillOpenUrl(uri, extractApplicationContext(context));
     }
 
     public static void disableThirdPartySharing(Context context) {
@@ -62,10 +59,14 @@ public class Adjust {
     public static synchronized AdjustInstance getDefaultInstance() {
         AdjustInstance adjustInstance;
         synchronized (Adjust.class) {
-            if (defaultInstance == null) {
-                defaultInstance = new AdjustInstance();
+            try {
+                if (defaultInstance == null) {
+                    defaultInstance = new AdjustInstance();
+                }
+                adjustInstance = defaultInstance;
+            } catch (Throwable th) {
+                throw th;
             }
-            adjustInstance = defaultInstance;
         }
         return adjustInstance;
     }
@@ -76,6 +77,10 @@ public class Adjust {
 
     public static String getSdkVersion() {
         return getDefaultInstance().getSdkVersion();
+    }
+
+    public static boolean isAdjustUninstallDetectionPayload(Map<String, String> map) {
+        return Util.isAdjustUninstallDetectionPayload(map);
     }
 
     public static boolean isEnabled() {
@@ -114,20 +119,16 @@ public class Adjust {
         getDefaultInstance().sendFirstPackages();
     }
 
-    public static void setEnabled(boolean z) {
-        getDefaultInstance().setEnabled(z);
+    public static void setEnabled(boolean z8) {
+        getDefaultInstance().setEnabled(z8);
     }
 
-    public static void setOfflineMode(boolean z) {
-        getDefaultInstance().setOfflineMode(z);
+    public static void setOfflineMode(boolean z8) {
+        getDefaultInstance().setOfflineMode(z8);
     }
 
     public static void setPushToken(String str) {
         getDefaultInstance().setPushToken(str);
-    }
-
-    public static void setPushToken(String str, Context context) {
-        getDefaultInstance().setPushToken(str, extractApplicationContext(context));
     }
 
     public static void setReferrer(String str, Context context) {
@@ -151,16 +152,12 @@ public class Adjust {
         getDefaultInstance().trackAdRevenue(adjustAdRevenue);
     }
 
-    public static void trackAdRevenue(String str, JSONObject jSONObject) {
-        getDefaultInstance().trackAdRevenue(str, jSONObject);
-    }
-
     public static void trackEvent(AdjustEvent adjustEvent) {
         getDefaultInstance().trackEvent(adjustEvent);
     }
 
-    public static void trackMeasurementConsent(boolean z) {
-        getDefaultInstance().trackMeasurementConsent(z);
+    public static void trackMeasurementConsent(boolean z8) {
+        getDefaultInstance().trackMeasurementConsent(z8);
     }
 
     public static void trackPlayStoreSubscription(AdjustPlayStoreSubscription adjustPlayStoreSubscription) {
@@ -169,5 +166,17 @@ public class Adjust {
 
     public static void trackThirdPartySharing(AdjustThirdPartySharing adjustThirdPartySharing) {
         getDefaultInstance().trackThirdPartySharing(adjustThirdPartySharing);
+    }
+
+    public static void appWillOpenUrl(Uri uri, Context context) {
+        getDefaultInstance().appWillOpenUrl(uri, extractApplicationContext(context));
+    }
+
+    public static void setPushToken(String str, Context context) {
+        getDefaultInstance().setPushToken(str, extractApplicationContext(context));
+    }
+
+    public static void trackAdRevenue(String str, JSONObject jSONObject) {
+        getDefaultInstance().trackAdRevenue(str, jSONObject);
     }
 }

@@ -1,38 +1,35 @@
 package com.google.android.gms.internal.measurement;
 
-import android.content.Context;
-import android.net.Uri;
-import androidx.collection.ArrayMap;
+import d4.AbstractC2186n;
+import d4.C2182j;
+import d4.s;
+import java.util.Collection;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzhk {
-    private static final ArrayMap<String, Uri> zza = new ArrayMap<>();
+    private final boolean zza;
 
-    public static synchronized Uri zza(String str) {
-        Uri uri;
-        synchronized (zzhk.class) {
-            ArrayMap<String, Uri> arrayMap = zza;
-            uri = arrayMap.get(str);
-            if (uri == null) {
-                uri = Uri.parse("content://com.google.android.gms.phenotype/" + Uri.encode(str));
-                arrayMap.put(str, uri);
+    public zzhk(zzhn zzhnVar) {
+        if (zzhnVar != null) {
+            this.zza = !zzhnVar.zza();
+            return;
+        }
+        throw new NullPointerException("BuildInfo must be non-null");
+    }
+
+    public final boolean zza(String str) {
+        if (str != null) {
+            if (!this.zza) {
+                return true;
             }
+            C2182j listIterator = ((AbstractC2186n) ((s) zzhm.zza.get()).b.values()).listIterator(0);
+            while (listIterator.hasNext()) {
+                if (((Collection) listIterator.next()).contains(str)) {
+                    return true;
+                }
+            }
+            return false;
         }
-        return uri;
-    }
-
-    public static String zza(Context context, String str) {
-        if (str.contains("#")) {
-            throw new IllegalArgumentException("The passed in package cannot already have a subpackage: " + str);
-        }
-        return str + "#" + context.getPackageName();
-    }
-
-    public static boolean zza(String str, String str2) {
-        if (str.equals("eng") || str.equals("userdebug")) {
-            return str2.contains("dev-keys") || str2.contains("test-keys");
-        }
-        return false;
+        throw new NullPointerException("flagName must not be null");
     }
 }

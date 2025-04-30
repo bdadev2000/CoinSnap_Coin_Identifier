@@ -1,28 +1,19 @@
 package com.google.android.gms.measurement.internal;
 
-import java.util.concurrent.Callable;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zziw implements zzfu {
+    private final /* synthetic */ zzhj zza;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zziw implements Callable<byte[]> {
-    private final /* synthetic */ zzbf zza;
-    private final /* synthetic */ String zzb;
-    private final /* synthetic */ zzic zzc;
-
-    @Override // java.util.concurrent.Callable
-    public final /* synthetic */ byte[] call() throws Exception {
-        zznv zznvVar;
-        zznv zznvVar2;
-        zznvVar = this.zzc.zza;
-        zznvVar.zzr();
-        zznvVar2 = this.zzc.zza;
-        return zznvVar2.zzm().zza(this.zza, this.zzb);
+    public zziw(zzit zzitVar, zzhj zzhjVar) {
+        this.zza = zzhjVar;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zziw(zzic zzicVar, zzbf zzbfVar, String str) {
-        this.zza = zzbfVar;
-        this.zzb = str;
-        this.zzc = zzicVar;
+    @Override // com.google.android.gms.measurement.internal.zzfu
+    public final boolean zza() {
+        if (this.zza.zzae() && this.zza.zzj().zza(3)) {
+            return true;
+        }
+        return false;
     }
 }

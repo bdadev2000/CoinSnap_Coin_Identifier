@@ -4,29 +4,35 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
-import javax.annotation.Nullable;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@SafeParcelable.Class(creator = "GoogleCertificatesLookupResponseCreator")
+/* loaded from: classes2.dex */
 public final class zzq extends AbstractSafeParcelable {
     public static final Parcelable.Creator<zzq> CREATOR = new zzr();
+
+    @SafeParcelable.Field(getter = "getResult", id = 1)
     private final boolean zza;
 
-    @Nullable
+    @SafeParcelable.Field(getter = "getErrorMessage", id = 2)
     private final String zzb;
+
+    @SafeParcelable.Field(getter = "getStatusValue", id = 3)
     private final int zzc;
+
+    @SafeParcelable.Field(getter = "getFirstPartyStatusValue", id = 4)
     private final int zzd;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzq(boolean z, String str, int i, int i2) {
-        this.zza = z;
+    @SafeParcelable.Constructor
+    public zzq(@SafeParcelable.Param(id = 1) boolean z8, @SafeParcelable.Param(id = 2) String str, @SafeParcelable.Param(id = 3) int i9, @SafeParcelable.Param(id = 4) int i10) {
+        this.zza = z8;
         this.zzb = str;
-        this.zzc = zzy.zza(i) - 1;
-        this.zzd = zzd.zza(i2) - 1;
+        this.zzc = zzy.zza(i9) - 1;
+        this.zzd = zzd.zza(i10) - 1;
     }
 
     @Override // android.os.Parcelable
-    public final void writeToParcel(Parcel parcel, int i) {
+    public final void writeToParcel(Parcel parcel, int i9) {
         int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
         SafeParcelWriter.writeBoolean(parcel, 1, this.zza);
         SafeParcelWriter.writeString(parcel, 2, this.zzb, false);
@@ -35,7 +41,6 @@ public final class zzq extends AbstractSafeParcelable {
         SafeParcelWriter.finishObjectHeader(parcel, beginObjectHeader);
     }
 
-    @Nullable
     public final String zza() {
         return this.zzb;
     }

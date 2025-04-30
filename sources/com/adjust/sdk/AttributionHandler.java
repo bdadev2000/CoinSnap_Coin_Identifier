@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class AttributionHandler implements IAttributionHandler, IActivityPackageSender.ResponseDataCallbackSubscriber {
     private static final String ATTRIBUTION_TIMER_NAME = "Attribution timer";
     private WeakReference<IActivityHandler> activityHandlerWeakRef;
@@ -21,7 +21,7 @@ public class AttributionHandler implements IAttributionHandler, IActivityPackage
     private ThreadScheduler scheduler = new SingleThreadCachedScheduler("AttributionHandler");
     private TimerOnce timer = new TimerOnce(new a(), ATTRIBUTION_TIMER_NAME);
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class a implements Runnable {
         public a() {
         }
@@ -32,7 +32,7 @@ public class AttributionHandler implements IAttributionHandler, IActivityPackage
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class b implements Runnable {
         public b() {
         }
@@ -44,14 +44,14 @@ public class AttributionHandler implements IAttributionHandler, IActivityPackage
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class c implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ SessionResponseData f234a;
+        public final /* synthetic */ SessionResponseData f5521a;
 
         public c(SessionResponseData sessionResponseData) {
-            this.f234a = sessionResponseData;
+            this.f5521a = sessionResponseData;
         }
 
         @Override // java.lang.Runnable
@@ -60,18 +60,18 @@ public class AttributionHandler implements IAttributionHandler, IActivityPackage
             if (iActivityHandler == null) {
                 return;
             }
-            AttributionHandler.this.checkSessionResponseI(iActivityHandler, this.f234a);
+            AttributionHandler.this.checkSessionResponseI(iActivityHandler, this.f5521a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class d implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ SdkClickResponseData f235a;
+        public final /* synthetic */ SdkClickResponseData f5522a;
 
         public d(SdkClickResponseData sdkClickResponseData) {
-            this.f235a = sdkClickResponseData;
+            this.f5522a = sdkClickResponseData;
         }
 
         @Override // java.lang.Runnable
@@ -80,18 +80,18 @@ public class AttributionHandler implements IAttributionHandler, IActivityPackage
             if (iActivityHandler == null) {
                 return;
             }
-            AttributionHandler.this.checkSdkClickResponseI(iActivityHandler, this.f235a);
+            AttributionHandler.this.checkSdkClickResponseI(iActivityHandler, this.f5522a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class e implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ AttributionResponseData f236a;
+        public final /* synthetic */ AttributionResponseData f5523a;
 
         public e(AttributionResponseData attributionResponseData) {
-            this.f236a = attributionResponseData;
+            this.f5523a = attributionResponseData;
         }
 
         @Override // java.lang.Runnable
@@ -100,11 +100,11 @@ public class AttributionHandler implements IAttributionHandler, IActivityPackage
             if (iActivityHandler == null) {
                 return;
             }
-            AttributionHandler.this.checkAttributionResponseI(iActivityHandler, this.f236a);
+            AttributionHandler.this.checkAttributionResponseI(iActivityHandler, this.f5523a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class f implements Runnable {
         public f() {
         }
@@ -115,14 +115,14 @@ public class AttributionHandler implements IAttributionHandler, IActivityPackage
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class g implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ ResponseData f238a;
+        public final /* synthetic */ ResponseData f5525a;
 
         public g(ResponseData responseData) {
-            this.f238a = responseData;
+            this.f5525a = responseData;
         }
 
         @Override // java.lang.Runnable
@@ -131,7 +131,7 @@ public class AttributionHandler implements IAttributionHandler, IActivityPackage
             if (iActivityHandler == null) {
                 return;
             }
-            ResponseData responseData = this.f238a;
+            ResponseData responseData = this.f5525a;
             if (responseData.trackingState == TrackingState.OPTED_OUT) {
                 iActivityHandler.gotOptOutResponse();
             } else if (responseData instanceof AttributionResponseData) {
@@ -140,8 +140,8 @@ public class AttributionHandler implements IAttributionHandler, IActivityPackage
         }
     }
 
-    public AttributionHandler(IActivityHandler iActivityHandler, boolean z, IActivityPackageSender iActivityPackageSender) {
-        init(iActivityHandler, z, iActivityPackageSender);
+    public AttributionHandler(IActivityHandler iActivityHandler, boolean z8, IActivityPackageSender iActivityPackageSender) {
+        init(iActivityHandler, z8, iActivityPackageSender);
     }
 
     private ActivityPackage buildAndGetAttributionPackage() {
@@ -202,14 +202,14 @@ public class AttributionHandler implements IAttributionHandler, IActivityPackage
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void getAttributionI(long j) {
-        if (this.timer.getFireIn() > j) {
+    public void getAttributionI(long j7) {
+        if (this.timer.getFireIn() > j7) {
             return;
         }
-        if (j != 0) {
-            this.logger.debug("Waiting to query attribution in %s seconds", Util.SecondsDisplayFormat.format(j / 1000.0d));
+        if (j7 != 0) {
+            this.logger.debug("Waiting to query attribution in %s seconds", Util.SecondsDisplayFormat.format(j7 / 1000.0d));
         }
-        this.timer.startIn(j);
+        this.timer.startIn(j7);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -251,9 +251,9 @@ public class AttributionHandler implements IAttributionHandler, IActivityPackage
     }
 
     @Override // com.adjust.sdk.IAttributionHandler
-    public void init(IActivityHandler iActivityHandler, boolean z, IActivityPackageSender iActivityPackageSender) {
+    public void init(IActivityHandler iActivityHandler, boolean z8, IActivityPackageSender iActivityPackageSender) {
         this.activityHandlerWeakRef = new WeakReference<>(iActivityHandler);
-        this.paused = !z;
+        this.paused = !z8;
         this.activityPackageSender = iActivityPackageSender;
     }
 

@@ -6,13 +6,11 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zae implements View.OnClickListener {
     final /* synthetic */ Context zaa;
     final /* synthetic */ Intent zab;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zae(Context context, Intent intent) {
         this.zaa = context;
         this.zab = intent;
@@ -22,8 +20,8 @@ final class zae implements View.OnClickListener {
     public final void onClick(View view) {
         try {
             this.zaa.startActivity(this.zab);
-        } catch (ActivityNotFoundException e) {
-            Log.e("DeferredLifecycleHelper", "Failed to start resolution intent", e);
+        } catch (ActivityNotFoundException e4) {
+            Log.e("DeferredLifecycleHelper", "Failed to start resolution intent", e4);
         }
     }
 }

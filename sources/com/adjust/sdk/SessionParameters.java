@@ -3,7 +3,7 @@ package com.adjust.sdk;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class SessionParameters {
     public Map<String, String> callbackParameters;
     public Map<String, String> partnerParameters;

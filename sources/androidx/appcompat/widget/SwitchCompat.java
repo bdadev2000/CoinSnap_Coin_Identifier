@@ -1,9 +1,12 @@
 package androidx.appcompat.widget;
 
+import M.a;
+import M0.C0211b;
 import android.R;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
@@ -18,932 +21,670 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.method.TransformationMethod;
 import android.util.AttributeSet;
-import android.util.Property;
 import android.view.ActionMode;
-import android.view.MotionEvent;
 import android.view.VelocityTracker;
+import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
-import android.view.inspector.InspectionCompanion;
-import android.view.inspector.PropertyMapper;
-import android.view.inspector.PropertyReader;
 import android.widget.CompoundButton;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.appcompat.text.AllCapsTransformationMethod;
-import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
-import androidx.core.widget.TextViewCompat;
-import androidx.emoji2.text.EmojiCompat;
-import com.glority.base.utils.StatusBarUtils;
-import java.lang.ref.Reference;
-import java.lang.ref.WeakReference;
+import com.facebook.appevents.n;
+import e1.f;
+import g4.AbstractC2292b;
+import j.AbstractC2379a;
+import j0.j;
+import l0.h;
+import l5.k;
+import n.C2468a;
+import q.AbstractC2610l0;
+import q.C2628v;
+import q.O0;
+import q.W;
+import q.g1;
 
 /* loaded from: classes.dex */
-public class SwitchCompat extends CompoundButton implements EmojiCompatConfigurationView {
-    private static final String ACCESSIBILITY_EVENT_CLASS_NAME = "android.widget.Switch";
-    private static final int MONOSPACE = 3;
-    private static final int SANS = 1;
-    private static final int SERIF = 2;
-    private static final int THUMB_ANIMATION_DURATION = 250;
-    private static final int TOUCH_MODE_DOWN = 1;
-    private static final int TOUCH_MODE_DRAGGING = 2;
-    private static final int TOUCH_MODE_IDLE = 0;
-    private AppCompatEmojiTextHelper mAppCompatEmojiTextHelper;
-    private EmojiCompatInitCallback mEmojiCompatInitCallback;
-    private boolean mEnforceSwitchWidth;
-    private boolean mHasThumbTint;
-    private boolean mHasThumbTintMode;
-    private boolean mHasTrackTint;
-    private boolean mHasTrackTintMode;
-    private int mMinFlingVelocity;
-    private Layout mOffLayout;
-    private Layout mOnLayout;
-    ObjectAnimator mPositionAnimator;
-    private boolean mShowText;
-    private boolean mSplitTrack;
-    private int mSwitchBottom;
-    private int mSwitchHeight;
-    private int mSwitchLeft;
-    private int mSwitchMinWidth;
-    private int mSwitchPadding;
-    private int mSwitchRight;
-    private int mSwitchTop;
-    private TransformationMethod mSwitchTransformationMethod;
-    private int mSwitchWidth;
-    private final Rect mTempRect;
-    private ColorStateList mTextColors;
-    private final AppCompatTextHelper mTextHelper;
-    private CharSequence mTextOff;
-    private CharSequence mTextOffTransformed;
-    private CharSequence mTextOn;
-    private CharSequence mTextOnTransformed;
-    private final TextPaint mTextPaint;
-    private Drawable mThumbDrawable;
-    float mThumbPosition;
-    private int mThumbTextPadding;
-    private ColorStateList mThumbTintList;
-    private PorterDuff.Mode mThumbTintMode;
-    private int mThumbWidth;
-    private int mTouchMode;
-    private int mTouchSlop;
-    private float mTouchX;
-    private float mTouchY;
-    private Drawable mTrackDrawable;
-    private ColorStateList mTrackTintList;
-    private PorterDuff.Mode mTrackTintMode;
-    private VelocityTracker mVelocityTracker;
-    private static final Property<SwitchCompat, Float> THUMB_POS = new Property<SwitchCompat, Float>(Float.class, "thumbPos") { // from class: androidx.appcompat.widget.SwitchCompat.1
-        @Override // android.util.Property
-        public Float get(SwitchCompat switchCompat) {
-            return Float.valueOf(switchCompat.mThumbPosition);
-        }
+public class SwitchCompat extends CompoundButton {
 
-        @Override // android.util.Property
-        public void set(SwitchCompat switchCompat, Float f) {
-            switchCompat.setThumbPosition(f.floatValue());
-        }
-    };
-    private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
+    /* renamed from: T, reason: collision with root package name */
+    public static final C0211b f4236T = new C0211b("thumbPos", 7, Float.class);
 
-    private static float constrain(float f, float f2, float f3) {
-        return f < f2 ? f2 : f > f3 ? f3 : f;
-    }
+    /* renamed from: U, reason: collision with root package name */
+    public static final int[] f4237U = {R.attr.state_checked};
 
-    /* loaded from: classes.dex */
-    public final class InspectionCompanion implements android.view.inspector.InspectionCompanion<SwitchCompat> {
-        private boolean mPropertiesMapped = false;
-        private int mShowTextId;
-        private int mSplitTrackId;
-        private int mSwitchMinWidthId;
-        private int mSwitchPaddingId;
-        private int mTextOffId;
-        private int mTextOnId;
-        private int mThumbId;
-        private int mThumbTextPaddingId;
-        private int mThumbTintId;
-        private int mThumbTintModeId;
-        private int mTrackId;
-        private int mTrackTintId;
-        private int mTrackTintModeId;
+    /* renamed from: A, reason: collision with root package name */
+    public final int f4238A;
 
-        @Override // android.view.inspector.InspectionCompanion
-        public void mapProperties(PropertyMapper propertyMapper) {
-            this.mTextOffId = propertyMapper.mapObject("textOff", R.attr.textOff);
-            this.mTextOnId = propertyMapper.mapObject("textOn", R.attr.textOn);
-            this.mThumbId = propertyMapper.mapObject("thumb", R.attr.thumb);
-            this.mShowTextId = propertyMapper.mapBoolean("showText", androidx.appcompat.R.attr.showText);
-            this.mSplitTrackId = propertyMapper.mapBoolean("splitTrack", androidx.appcompat.R.attr.splitTrack);
-            this.mSwitchMinWidthId = propertyMapper.mapInt("switchMinWidth", androidx.appcompat.R.attr.switchMinWidth);
-            this.mSwitchPaddingId = propertyMapper.mapInt("switchPadding", androidx.appcompat.R.attr.switchPadding);
-            this.mThumbTextPaddingId = propertyMapper.mapInt("thumbTextPadding", androidx.appcompat.R.attr.thumbTextPadding);
-            this.mThumbTintId = propertyMapper.mapObject("thumbTint", androidx.appcompat.R.attr.thumbTint);
-            this.mThumbTintModeId = propertyMapper.mapObject("thumbTintMode", androidx.appcompat.R.attr.thumbTintMode);
-            this.mTrackId = propertyMapper.mapObject("track", androidx.appcompat.R.attr.track);
-            this.mTrackTintId = propertyMapper.mapObject("trackTint", androidx.appcompat.R.attr.trackTint);
-            this.mTrackTintModeId = propertyMapper.mapObject("trackTintMode", androidx.appcompat.R.attr.trackTintMode);
-            this.mPropertiesMapped = true;
-        }
+    /* renamed from: B, reason: collision with root package name */
+    public float f4239B;
 
-        @Override // android.view.inspector.InspectionCompanion
-        public void readProperties(SwitchCompat switchCompat, PropertyReader propertyReader) {
-            if (!this.mPropertiesMapped) {
-                throw new InspectionCompanion.UninitializedPropertyMapException();
-            }
-            propertyReader.readObject(this.mTextOffId, switchCompat.getTextOff());
-            propertyReader.readObject(this.mTextOnId, switchCompat.getTextOn());
-            propertyReader.readObject(this.mThumbId, switchCompat.getThumbDrawable());
-            propertyReader.readBoolean(this.mShowTextId, switchCompat.getShowText());
-            propertyReader.readBoolean(this.mSplitTrackId, switchCompat.getSplitTrack());
-            propertyReader.readInt(this.mSwitchMinWidthId, switchCompat.getSwitchMinWidth());
-            propertyReader.readInt(this.mSwitchPaddingId, switchCompat.getSwitchPadding());
-            propertyReader.readInt(this.mThumbTextPaddingId, switchCompat.getThumbTextPadding());
-            propertyReader.readObject(this.mThumbTintId, switchCompat.getThumbTintList());
-            propertyReader.readObject(this.mThumbTintModeId, switchCompat.getThumbTintMode());
-            propertyReader.readObject(this.mTrackId, switchCompat.getTrackDrawable());
-            propertyReader.readObject(this.mTrackTintId, switchCompat.getTrackTintList());
-            propertyReader.readObject(this.mTrackTintModeId, switchCompat.getTrackTintMode());
-        }
-    }
+    /* renamed from: C, reason: collision with root package name */
+    public int f4240C;
 
-    public SwitchCompat(Context context) {
-        this(context, null);
-    }
+    /* renamed from: D, reason: collision with root package name */
+    public int f4241D;
 
-    public SwitchCompat(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, androidx.appcompat.R.attr.switchStyle);
-    }
+    /* renamed from: E, reason: collision with root package name */
+    public int f4242E;
 
-    public SwitchCompat(Context context, AttributeSet attributeSet, int i) {
-        super(context, attributeSet, i);
-        this.mThumbTintList = null;
-        this.mThumbTintMode = null;
-        this.mHasThumbTint = false;
-        this.mHasThumbTintMode = false;
-        this.mTrackTintList = null;
-        this.mTrackTintMode = null;
-        this.mHasTrackTint = false;
-        this.mHasTrackTintMode = false;
-        this.mVelocityTracker = VelocityTracker.obtain();
-        this.mEnforceSwitchWidth = true;
-        this.mTempRect = new Rect();
-        ThemeUtils.checkAppCompatTheme(this, getContext());
+    /* renamed from: F, reason: collision with root package name */
+    public int f4243F;
+
+    /* renamed from: G, reason: collision with root package name */
+    public int f4244G;
+
+    /* renamed from: H, reason: collision with root package name */
+    public int f4245H;
+
+    /* renamed from: I, reason: collision with root package name */
+    public int f4246I;
+
+    /* renamed from: J, reason: collision with root package name */
+    public boolean f4247J;
+
+    /* renamed from: K, reason: collision with root package name */
+    public final TextPaint f4248K;
+
+    /* renamed from: L, reason: collision with root package name */
+    public final ColorStateList f4249L;
+
+    /* renamed from: M, reason: collision with root package name */
+    public StaticLayout f4250M;
+
+    /* renamed from: N, reason: collision with root package name */
+    public StaticLayout f4251N;
+    public final C2468a O;
+
+    /* renamed from: P, reason: collision with root package name */
+    public ObjectAnimator f4252P;
+
+    /* renamed from: Q, reason: collision with root package name */
+    public C2628v f4253Q;
+
+    /* renamed from: R, reason: collision with root package name */
+    public h f4254R;
+
+    /* renamed from: S, reason: collision with root package name */
+    public final Rect f4255S;
+    public Drawable b;
+
+    /* renamed from: c, reason: collision with root package name */
+    public ColorStateList f4256c;
+
+    /* renamed from: d, reason: collision with root package name */
+    public PorterDuff.Mode f4257d;
+
+    /* renamed from: f, reason: collision with root package name */
+    public boolean f4258f;
+
+    /* renamed from: g, reason: collision with root package name */
+    public boolean f4259g;
+
+    /* renamed from: h, reason: collision with root package name */
+    public Drawable f4260h;
+
+    /* renamed from: i, reason: collision with root package name */
+    public ColorStateList f4261i;
+
+    /* renamed from: j, reason: collision with root package name */
+    public PorterDuff.Mode f4262j;
+
+    /* renamed from: k, reason: collision with root package name */
+    public boolean f4263k;
+    public boolean l;
+    public int m;
+
+    /* renamed from: n, reason: collision with root package name */
+    public int f4264n;
+
+    /* renamed from: o, reason: collision with root package name */
+    public int f4265o;
+
+    /* renamed from: p, reason: collision with root package name */
+    public boolean f4266p;
+
+    /* renamed from: q, reason: collision with root package name */
+    public CharSequence f4267q;
+
+    /* renamed from: r, reason: collision with root package name */
+    public CharSequence f4268r;
+
+    /* renamed from: s, reason: collision with root package name */
+    public CharSequence f4269s;
+
+    /* renamed from: t, reason: collision with root package name */
+    public CharSequence f4270t;
+
+    /* renamed from: u, reason: collision with root package name */
+    public boolean f4271u;
+
+    /* renamed from: v, reason: collision with root package name */
+    public int f4272v;
+
+    /* renamed from: w, reason: collision with root package name */
+    public final int f4273w;
+
+    /* renamed from: x, reason: collision with root package name */
+    public float f4274x;
+
+    /* renamed from: y, reason: collision with root package name */
+    public float f4275y;
+
+    /* renamed from: z, reason: collision with root package name */
+    public final VelocityTracker f4276z;
+
+    /* JADX WARN: Type inference failed for: r0v15, types: [n.a, java.lang.Object] */
+    public SwitchCompat(@NonNull Context context, @Nullable AttributeSet attributeSet) {
+        super(context, attributeSet, com.tools.arruler.photomeasure.camera.ruler.R.attr.switchStyle);
+        Typeface typeface;
+        Typeface create;
+        int i9;
+        int resourceId;
+        this.f4256c = null;
+        this.f4257d = null;
+        this.f4258f = false;
+        this.f4259g = false;
+        this.f4261i = null;
+        this.f4262j = null;
+        this.f4263k = false;
+        this.l = false;
+        this.f4276z = VelocityTracker.obtain();
+        this.f4247J = true;
+        this.f4255S = new Rect();
+        O0.a(this, getContext());
         TextPaint textPaint = new TextPaint(1);
-        this.mTextPaint = textPaint;
+        this.f4248K = textPaint;
         textPaint.density = getResources().getDisplayMetrics().density;
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, androidx.appcompat.R.styleable.SwitchCompat, i, 0);
-        ViewCompat.saveAttributeDataForStyleable(this, context, androidx.appcompat.R.styleable.SwitchCompat, attributeSet, obtainStyledAttributes.getWrappedTypeArray(), i, 0);
-        Drawable drawable = obtainStyledAttributes.getDrawable(androidx.appcompat.R.styleable.SwitchCompat_android_thumb);
-        this.mThumbDrawable = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
+        int[] iArr = AbstractC2379a.f20960v;
+        k i10 = k.i(context, attributeSet, iArr, com.tools.arruler.photomeasure.camera.ruler.R.attr.switchStyle, 0);
+        ViewCompat.saveAttributeDataForStyleable(this, context, iArr, attributeSet, (TypedArray) i10.b, com.tools.arruler.photomeasure.camera.ruler.R.attr.switchStyle, 0);
+        Drawable e4 = i10.e(2);
+        this.b = e4;
+        if (e4 != null) {
+            e4.setCallback(this);
         }
-        Drawable drawable2 = obtainStyledAttributes.getDrawable(androidx.appcompat.R.styleable.SwitchCompat_track);
-        this.mTrackDrawable = drawable2;
-        if (drawable2 != null) {
-            drawable2.setCallback(this);
+        Drawable e9 = i10.e(11);
+        this.f4260h = e9;
+        if (e9 != null) {
+            e9.setCallback(this);
         }
-        setTextOnInternal(obtainStyledAttributes.getText(androidx.appcompat.R.styleable.SwitchCompat_android_textOn));
-        setTextOffInternal(obtainStyledAttributes.getText(androidx.appcompat.R.styleable.SwitchCompat_android_textOff));
-        this.mShowText = obtainStyledAttributes.getBoolean(androidx.appcompat.R.styleable.SwitchCompat_showText, true);
-        this.mThumbTextPadding = obtainStyledAttributes.getDimensionPixelSize(androidx.appcompat.R.styleable.SwitchCompat_thumbTextPadding, 0);
-        this.mSwitchMinWidth = obtainStyledAttributes.getDimensionPixelSize(androidx.appcompat.R.styleable.SwitchCompat_switchMinWidth, 0);
-        this.mSwitchPadding = obtainStyledAttributes.getDimensionPixelSize(androidx.appcompat.R.styleable.SwitchCompat_switchPadding, 0);
-        this.mSplitTrack = obtainStyledAttributes.getBoolean(androidx.appcompat.R.styleable.SwitchCompat_splitTrack, false);
-        ColorStateList colorStateList = obtainStyledAttributes.getColorStateList(androidx.appcompat.R.styleable.SwitchCompat_thumbTint);
-        if (colorStateList != null) {
-            this.mThumbTintList = colorStateList;
-            this.mHasThumbTint = true;
+        TypedArray typedArray = (TypedArray) i10.b;
+        setTextOnInternal(typedArray.getText(0));
+        setTextOffInternal(typedArray.getText(1));
+        this.f4271u = typedArray.getBoolean(3, true);
+        this.m = typedArray.getDimensionPixelSize(8, 0);
+        this.f4264n = typedArray.getDimensionPixelSize(5, 0);
+        this.f4265o = typedArray.getDimensionPixelSize(6, 0);
+        this.f4266p = typedArray.getBoolean(4, false);
+        ColorStateList d2 = i10.d(9);
+        if (d2 != null) {
+            this.f4256c = d2;
+            this.f4258f = true;
         }
-        PorterDuff.Mode parseTintMode = DrawableUtils.parseTintMode(obtainStyledAttributes.getInt(androidx.appcompat.R.styleable.SwitchCompat_thumbTintMode, -1), null);
-        if (this.mThumbTintMode != parseTintMode) {
-            this.mThumbTintMode = parseTintMode;
-            this.mHasThumbTintMode = true;
+        PorterDuff.Mode c9 = AbstractC2610l0.c(typedArray.getInt(10, -1), null);
+        if (this.f4257d != c9) {
+            this.f4257d = c9;
+            this.f4259g = true;
         }
-        if (this.mHasThumbTint || this.mHasThumbTintMode) {
-            applyThumbTint();
+        if (this.f4258f || this.f4259g) {
+            a();
         }
-        ColorStateList colorStateList2 = obtainStyledAttributes.getColorStateList(androidx.appcompat.R.styleable.SwitchCompat_trackTint);
-        if (colorStateList2 != null) {
-            this.mTrackTintList = colorStateList2;
-            this.mHasTrackTint = true;
+        ColorStateList d9 = i10.d(12);
+        if (d9 != null) {
+            this.f4261i = d9;
+            this.f4263k = true;
         }
-        PorterDuff.Mode parseTintMode2 = DrawableUtils.parseTintMode(obtainStyledAttributes.getInt(androidx.appcompat.R.styleable.SwitchCompat_trackTintMode, -1), null);
-        if (this.mTrackTintMode != parseTintMode2) {
-            this.mTrackTintMode = parseTintMode2;
-            this.mHasTrackTintMode = true;
+        PorterDuff.Mode c10 = AbstractC2610l0.c(typedArray.getInt(13, -1), null);
+        if (this.f4262j != c10) {
+            this.f4262j = c10;
+            this.l = true;
         }
-        if (this.mHasTrackTint || this.mHasTrackTintMode) {
-            applyTrackTint();
+        if (this.f4263k || this.l) {
+            b();
         }
-        int resourceId = obtainStyledAttributes.getResourceId(androidx.appcompat.R.styleable.SwitchCompat_switchTextAppearance, 0);
-        if (resourceId != 0) {
-            setSwitchTextAppearance(context, resourceId);
+        int resourceId2 = typedArray.getResourceId(7, 0);
+        if (resourceId2 != 0) {
+            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(resourceId2, AbstractC2379a.f20961w);
+            ColorStateList colorStateList = (!obtainStyledAttributes.hasValue(3) || (resourceId = obtainStyledAttributes.getResourceId(3, 0)) == 0 || (colorStateList = I.h.getColorStateList(context, resourceId)) == null) ? obtainStyledAttributes.getColorStateList(3) : colorStateList;
+            if (colorStateList != null) {
+                this.f4249L = colorStateList;
+            } else {
+                this.f4249L = getTextColors();
+            }
+            int dimensionPixelSize = obtainStyledAttributes.getDimensionPixelSize(0, 0);
+            if (dimensionPixelSize != 0) {
+                float f9 = dimensionPixelSize;
+                if (f9 != textPaint.getTextSize()) {
+                    textPaint.setTextSize(f9);
+                    requestLayout();
+                }
+            }
+            int i11 = obtainStyledAttributes.getInt(1, -1);
+            int i12 = obtainStyledAttributes.getInt(2, -1);
+            if (i11 != 1) {
+                if (i11 != 2) {
+                    if (i11 != 3) {
+                        typeface = null;
+                    } else {
+                        typeface = Typeface.MONOSPACE;
+                    }
+                } else {
+                    typeface = Typeface.SERIF;
+                }
+            } else {
+                typeface = Typeface.SANS_SERIF;
+            }
+            if (i12 > 0) {
+                if (typeface == null) {
+                    create = Typeface.defaultFromStyle(i12);
+                } else {
+                    create = Typeface.create(typeface, i12);
+                }
+                setSwitchTypeface(create);
+                if (create != null) {
+                    i9 = create.getStyle();
+                } else {
+                    i9 = 0;
+                }
+                int i13 = (~i9) & i12;
+                textPaint.setFakeBoldText((i13 & 1) != 0);
+                textPaint.setTextSkewX((2 & i13) != 0 ? -0.25f : 0.0f);
+            } else {
+                textPaint.setFakeBoldText(false);
+                textPaint.setTextSkewX(0.0f);
+                setSwitchTypeface(typeface);
+            }
+            if (obtainStyledAttributes.getBoolean(14, false)) {
+                Context context2 = getContext();
+                ?? obj = new Object();
+                obj.f21817a = context2.getResources().getConfiguration().locale;
+                this.O = obj;
+            } else {
+                this.O = null;
+            }
+            setTextOnInternal(this.f4267q);
+            setTextOffInternal(this.f4269s);
+            obtainStyledAttributes.recycle();
         }
-        AppCompatTextHelper appCompatTextHelper = new AppCompatTextHelper(this);
-        this.mTextHelper = appCompatTextHelper;
-        appCompatTextHelper.loadFromAttributes(attributeSet, i);
-        obtainStyledAttributes.recycle();
+        new W(this).f(attributeSet, com.tools.arruler.photomeasure.camera.ruler.R.attr.switchStyle);
+        i10.j();
         ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
-        this.mTouchSlop = viewConfiguration.getScaledTouchSlop();
-        this.mMinFlingVelocity = viewConfiguration.getScaledMinimumFlingVelocity();
-        getEmojiTextViewHelper().loadFromAttributes(attributeSet, i);
+        this.f4273w = viewConfiguration.getScaledTouchSlop();
+        this.f4238A = viewConfiguration.getScaledMinimumFlingVelocity();
+        getEmojiTextViewHelper().b(attributeSet, com.tools.arruler.photomeasure.camera.ruler.R.attr.switchStyle);
         refreshDrawableState();
         setChecked(isChecked());
     }
 
-    public void setSwitchTextAppearance(Context context, int i) {
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, i, androidx.appcompat.R.styleable.TextAppearance);
-        ColorStateList colorStateList = obtainStyledAttributes.getColorStateList(androidx.appcompat.R.styleable.TextAppearance_android_textColor);
-        if (colorStateList != null) {
-            this.mTextColors = colorStateList;
-        } else {
-            this.mTextColors = getTextColors();
+    @NonNull
+    private C2628v getEmojiTextViewHelper() {
+        if (this.f4253Q == null) {
+            this.f4253Q = new C2628v(this);
         }
-        int dimensionPixelSize = obtainStyledAttributes.getDimensionPixelSize(androidx.appcompat.R.styleable.TextAppearance_android_textSize, 0);
-        if (dimensionPixelSize != 0) {
-            float f = dimensionPixelSize;
-            if (f != this.mTextPaint.getTextSize()) {
-                this.mTextPaint.setTextSize(f);
-                requestLayout();
-            }
-        }
-        setSwitchTypefaceByIndex(obtainStyledAttributes.getInt(androidx.appcompat.R.styleable.TextAppearance_android_typeface, -1), obtainStyledAttributes.getInt(androidx.appcompat.R.styleable.TextAppearance_android_textStyle, -1));
-        if (obtainStyledAttributes.getBoolean(androidx.appcompat.R.styleable.TextAppearance_textAllCaps, false)) {
-            this.mSwitchTransformationMethod = new AllCapsTransformationMethod(getContext());
-        } else {
-            this.mSwitchTransformationMethod = null;
-        }
-        setTextOnInternal(this.mTextOn);
-        setTextOffInternal(this.mTextOff);
-        obtainStyledAttributes.recycle();
-    }
-
-    private void setSwitchTypefaceByIndex(int i, int i2) {
-        Typeface typeface;
-        if (i == 1) {
-            typeface = Typeface.SANS_SERIF;
-        } else if (i == 2) {
-            typeface = Typeface.SERIF;
-        } else {
-            typeface = i != 3 ? null : Typeface.MONOSPACE;
-        }
-        setSwitchTypeface(typeface, i2);
-    }
-
-    public void setSwitchTypeface(Typeface typeface, int i) {
-        Typeface create;
-        if (i > 0) {
-            if (typeface == null) {
-                create = Typeface.defaultFromStyle(i);
-            } else {
-                create = Typeface.create(typeface, i);
-            }
-            setSwitchTypeface(create);
-            int i2 = (~(create != null ? create.getStyle() : 0)) & i;
-            this.mTextPaint.setFakeBoldText((i2 & 1) != 0);
-            this.mTextPaint.setTextSkewX((i2 & 2) != 0 ? -0.25f : 0.0f);
-            return;
-        }
-        this.mTextPaint.setFakeBoldText(false);
-        this.mTextPaint.setTextSkewX(0.0f);
-        setSwitchTypeface(typeface);
-    }
-
-    public void setSwitchTypeface(Typeface typeface) {
-        if ((this.mTextPaint.getTypeface() == null || this.mTextPaint.getTypeface().equals(typeface)) && (this.mTextPaint.getTypeface() != null || typeface == null)) {
-            return;
-        }
-        this.mTextPaint.setTypeface(typeface);
-        requestLayout();
-        invalidate();
-    }
-
-    public void setSwitchPadding(int i) {
-        this.mSwitchPadding = i;
-        requestLayout();
-    }
-
-    public int getSwitchPadding() {
-        return this.mSwitchPadding;
-    }
-
-    public void setSwitchMinWidth(int i) {
-        this.mSwitchMinWidth = i;
-        requestLayout();
-    }
-
-    public int getSwitchMinWidth() {
-        return this.mSwitchMinWidth;
-    }
-
-    public void setThumbTextPadding(int i) {
-        this.mThumbTextPadding = i;
-        requestLayout();
-    }
-
-    public int getThumbTextPadding() {
-        return this.mThumbTextPadding;
-    }
-
-    public void setTrackDrawable(Drawable drawable) {
-        Drawable drawable2 = this.mTrackDrawable;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.mTrackDrawable = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        requestLayout();
-    }
-
-    public void setTrackResource(int i) {
-        setTrackDrawable(AppCompatResources.getDrawable(getContext(), i));
-    }
-
-    public Drawable getTrackDrawable() {
-        return this.mTrackDrawable;
-    }
-
-    public void setTrackTintList(ColorStateList colorStateList) {
-        this.mTrackTintList = colorStateList;
-        this.mHasTrackTint = true;
-        applyTrackTint();
-    }
-
-    public ColorStateList getTrackTintList() {
-        return this.mTrackTintList;
-    }
-
-    public void setTrackTintMode(PorterDuff.Mode mode) {
-        this.mTrackTintMode = mode;
-        this.mHasTrackTintMode = true;
-        applyTrackTint();
-    }
-
-    public PorterDuff.Mode getTrackTintMode() {
-        return this.mTrackTintMode;
-    }
-
-    private void applyTrackTint() {
-        Drawable drawable = this.mTrackDrawable;
-        if (drawable != null) {
-            if (this.mHasTrackTint || this.mHasTrackTintMode) {
-                Drawable mutate = DrawableCompat.wrap(drawable).mutate();
-                this.mTrackDrawable = mutate;
-                if (this.mHasTrackTint) {
-                    DrawableCompat.setTintList(mutate, this.mTrackTintList);
-                }
-                if (this.mHasTrackTintMode) {
-                    DrawableCompat.setTintMode(this.mTrackDrawable, this.mTrackTintMode);
-                }
-                if (this.mTrackDrawable.isStateful()) {
-                    this.mTrackDrawable.setState(getDrawableState());
-                }
-            }
-        }
-    }
-
-    public void setThumbDrawable(Drawable drawable) {
-        Drawable drawable2 = this.mThumbDrawable;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.mThumbDrawable = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        requestLayout();
-    }
-
-    public void setThumbResource(int i) {
-        setThumbDrawable(AppCompatResources.getDrawable(getContext(), i));
-    }
-
-    public Drawable getThumbDrawable() {
-        return this.mThumbDrawable;
-    }
-
-    public void setThumbTintList(ColorStateList colorStateList) {
-        this.mThumbTintList = colorStateList;
-        this.mHasThumbTint = true;
-        applyThumbTint();
-    }
-
-    public ColorStateList getThumbTintList() {
-        return this.mThumbTintList;
-    }
-
-    public void setThumbTintMode(PorterDuff.Mode mode) {
-        this.mThumbTintMode = mode;
-        this.mHasThumbTintMode = true;
-        applyThumbTint();
-    }
-
-    public PorterDuff.Mode getThumbTintMode() {
-        return this.mThumbTintMode;
-    }
-
-    private void applyThumbTint() {
-        Drawable drawable = this.mThumbDrawable;
-        if (drawable != null) {
-            if (this.mHasThumbTint || this.mHasThumbTintMode) {
-                Drawable mutate = DrawableCompat.wrap(drawable).mutate();
-                this.mThumbDrawable = mutate;
-                if (this.mHasThumbTint) {
-                    DrawableCompat.setTintList(mutate, this.mThumbTintList);
-                }
-                if (this.mHasThumbTintMode) {
-                    DrawableCompat.setTintMode(this.mThumbDrawable, this.mThumbTintMode);
-                }
-                if (this.mThumbDrawable.isStateful()) {
-                    this.mThumbDrawable.setState(getDrawableState());
-                }
-            }
-        }
-    }
-
-    public void setSplitTrack(boolean z) {
-        this.mSplitTrack = z;
-        invalidate();
-    }
-
-    public boolean getSplitTrack() {
-        return this.mSplitTrack;
-    }
-
-    public CharSequence getTextOn() {
-        return this.mTextOn;
-    }
-
-    private void setTextOnInternal(CharSequence charSequence) {
-        this.mTextOn = charSequence;
-        this.mTextOnTransformed = doTransformForOnOffText(charSequence);
-        this.mOnLayout = null;
-        if (this.mShowText) {
-            setupEmojiCompatLoadCallback();
-        }
-    }
-
-    public void setTextOn(CharSequence charSequence) {
-        setTextOnInternal(charSequence);
-        requestLayout();
-        if (isChecked()) {
-            setOnStateDescriptionOnRAndAbove();
-        }
-    }
-
-    public CharSequence getTextOff() {
-        return this.mTextOff;
-    }
-
-    private void setTextOffInternal(CharSequence charSequence) {
-        this.mTextOff = charSequence;
-        this.mTextOffTransformed = doTransformForOnOffText(charSequence);
-        this.mOffLayout = null;
-        if (this.mShowText) {
-            setupEmojiCompatLoadCallback();
-        }
-    }
-
-    public void setTextOff(CharSequence charSequence) {
-        setTextOffInternal(charSequence);
-        requestLayout();
-        if (isChecked()) {
-            return;
-        }
-        setOffStateDescriptionOnRAndAbove();
-    }
-
-    private CharSequence doTransformForOnOffText(CharSequence charSequence) {
-        TransformationMethod wrapTransformationMethod = getEmojiTextViewHelper().wrapTransformationMethod(this.mSwitchTransformationMethod);
-        return wrapTransformationMethod != null ? wrapTransformationMethod.getTransformation(charSequence, this) : charSequence;
-    }
-
-    public void setShowText(boolean z) {
-        if (this.mShowText != z) {
-            this.mShowText = z;
-            requestLayout();
-            if (z) {
-                setupEmojiCompatLoadCallback();
-            }
-        }
-    }
-
-    public boolean getShowText() {
-        return this.mShowText;
-    }
-
-    @Override // android.widget.TextView, android.view.View
-    public void onMeasure(int i, int i2) {
-        int i3;
-        int i4;
-        int i5;
-        if (this.mShowText) {
-            if (this.mOnLayout == null) {
-                this.mOnLayout = makeLayout(this.mTextOnTransformed);
-            }
-            if (this.mOffLayout == null) {
-                this.mOffLayout = makeLayout(this.mTextOffTransformed);
-            }
-        }
-        Rect rect = this.mTempRect;
-        Drawable drawable = this.mThumbDrawable;
-        int i6 = 0;
-        if (drawable != null) {
-            drawable.getPadding(rect);
-            i3 = (this.mThumbDrawable.getIntrinsicWidth() - rect.left) - rect.right;
-            i4 = this.mThumbDrawable.getIntrinsicHeight();
-        } else {
-            i3 = 0;
-            i4 = 0;
-        }
-        this.mThumbWidth = Math.max(this.mShowText ? Math.max(this.mOnLayout.getWidth(), this.mOffLayout.getWidth()) + (this.mThumbTextPadding * 2) : 0, i3);
-        Drawable drawable2 = this.mTrackDrawable;
-        if (drawable2 != null) {
-            drawable2.getPadding(rect);
-            i6 = this.mTrackDrawable.getIntrinsicHeight();
-        } else {
-            rect.setEmpty();
-        }
-        int i7 = rect.left;
-        int i8 = rect.right;
-        Drawable drawable3 = this.mThumbDrawable;
-        if (drawable3 != null) {
-            Rect opticalBounds = DrawableUtils.getOpticalBounds(drawable3);
-            i7 = Math.max(i7, opticalBounds.left);
-            i8 = Math.max(i8, opticalBounds.right);
-        }
-        if (this.mEnforceSwitchWidth) {
-            i5 = Math.max(this.mSwitchMinWidth, (this.mThumbWidth * 2) + i7 + i8);
-        } else {
-            i5 = this.mSwitchMinWidth;
-        }
-        int max = Math.max(i6, i4);
-        this.mSwitchWidth = i5;
-        this.mSwitchHeight = max;
-        super.onMeasure(i, i2);
-        if (getMeasuredHeight() < max) {
-            setMeasuredDimension(getMeasuredWidthAndState(), max);
-        }
-    }
-
-    @Override // android.view.View
-    public void onPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        super.onPopulateAccessibilityEvent(accessibilityEvent);
-        CharSequence charSequence = isChecked() ? this.mTextOn : this.mTextOff;
-        if (charSequence != null) {
-            accessibilityEvent.getText().add(charSequence);
-        }
-    }
-
-    private Layout makeLayout(CharSequence charSequence) {
-        return new StaticLayout(charSequence, this.mTextPaint, charSequence != null ? (int) Math.ceil(Layout.getDesiredWidth(charSequence, r2)) : 0, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
-    }
-
-    private boolean hitThumb(float f, float f2) {
-        if (this.mThumbDrawable == null) {
-            return false;
-        }
-        int thumbOffset = getThumbOffset();
-        this.mThumbDrawable.getPadding(this.mTempRect);
-        int i = this.mSwitchTop;
-        int i2 = this.mTouchSlop;
-        int i3 = i - i2;
-        int i4 = (this.mSwitchLeft + thumbOffset) - i2;
-        int i5 = this.mThumbWidth + i4 + this.mTempRect.left + this.mTempRect.right;
-        int i6 = this.mTouchSlop;
-        return f > ((float) i4) && f < ((float) (i5 + i6)) && f2 > ((float) i3) && f2 < ((float) (this.mSwitchBottom + i6));
-    }
-
-    /* JADX WARN: Code restructure failed: missing block: B:7:0x0012, code lost:
-    
-        if (r0 != 3) goto L44;
-     */
-    @Override // android.widget.TextView, android.view.View
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public boolean onTouchEvent(android.view.MotionEvent r7) {
-        /*
-            r6 = this;
-            android.view.VelocityTracker r0 = r6.mVelocityTracker
-            r0.addMovement(r7)
-            int r0 = r7.getActionMasked()
-            r1 = 1
-            if (r0 == 0) goto L9d
-            r2 = 2
-            if (r0 == r1) goto L89
-            if (r0 == r2) goto L16
-            r3 = 3
-            if (r0 == r3) goto L89
-            goto Lb7
-        L16:
-            int r0 = r6.mTouchMode
-            if (r0 == r1) goto L55
-            if (r0 == r2) goto L1e
-            goto Lb7
-        L1e:
-            float r7 = r7.getX()
-            int r0 = r6.getThumbScrollRange()
-            float r2 = r6.mTouchX
-            float r2 = r7 - r2
-            r3 = 1065353216(0x3f800000, float:1.0)
-            r4 = 0
-            if (r0 == 0) goto L32
-            float r0 = (float) r0
-            float r2 = r2 / r0
-            goto L3b
-        L32:
-            int r0 = (r2 > r4 ? 1 : (r2 == r4 ? 0 : -1))
-            if (r0 <= 0) goto L38
-            r2 = r3
-            goto L3b
-        L38:
-            r0 = -1082130432(0xffffffffbf800000, float:-1.0)
-            r2 = r0
-        L3b:
-            boolean r0 = androidx.appcompat.widget.ViewUtils.isLayoutRtl(r6)
-            if (r0 == 0) goto L42
-            float r2 = -r2
-        L42:
-            float r0 = r6.mThumbPosition
-            float r0 = r0 + r2
-            float r0 = constrain(r0, r4, r3)
-            float r2 = r6.mThumbPosition
-            int r2 = (r0 > r2 ? 1 : (r0 == r2 ? 0 : -1))
-            if (r2 == 0) goto L54
-            r6.mTouchX = r7
-            r6.setThumbPosition(r0)
-        L54:
-            return r1
-        L55:
-            float r0 = r7.getX()
-            float r3 = r7.getY()
-            float r4 = r6.mTouchX
-            float r4 = r0 - r4
-            float r4 = java.lang.Math.abs(r4)
-            int r5 = r6.mTouchSlop
-            float r5 = (float) r5
-            int r4 = (r4 > r5 ? 1 : (r4 == r5 ? 0 : -1))
-            if (r4 > 0) goto L7b
-            float r4 = r6.mTouchY
-            float r4 = r3 - r4
-            float r4 = java.lang.Math.abs(r4)
-            int r5 = r6.mTouchSlop
-            float r5 = (float) r5
-            int r4 = (r4 > r5 ? 1 : (r4 == r5 ? 0 : -1))
-            if (r4 <= 0) goto Lb7
-        L7b:
-            r6.mTouchMode = r2
-            android.view.ViewParent r7 = r6.getParent()
-            r7.requestDisallowInterceptTouchEvent(r1)
-            r6.mTouchX = r0
-            r6.mTouchY = r3
-            return r1
-        L89:
-            int r0 = r6.mTouchMode
-            if (r0 != r2) goto L94
-            r6.stopDrag(r7)
-            super.onTouchEvent(r7)
-            return r1
-        L94:
-            r0 = 0
-            r6.mTouchMode = r0
-            android.view.VelocityTracker r0 = r6.mVelocityTracker
-            r0.clear()
-            goto Lb7
-        L9d:
-            float r0 = r7.getX()
-            float r2 = r7.getY()
-            boolean r3 = r6.isEnabled()
-            if (r3 == 0) goto Lb7
-            boolean r3 = r6.hitThumb(r0, r2)
-            if (r3 == 0) goto Lb7
-            r6.mTouchMode = r1
-            r6.mTouchX = r0
-            r6.mTouchY = r2
-        Lb7:
-            boolean r7 = super.onTouchEvent(r7)
-            return r7
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.appcompat.widget.SwitchCompat.onTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    private void cancelSuperTouch(MotionEvent motionEvent) {
-        MotionEvent obtain = MotionEvent.obtain(motionEvent);
-        obtain.setAction(3);
-        super.onTouchEvent(obtain);
-        obtain.recycle();
-    }
-
-    private void stopDrag(MotionEvent motionEvent) {
-        this.mTouchMode = 0;
-        boolean z = true;
-        boolean z2 = motionEvent.getAction() == 1 && isEnabled();
-        boolean isChecked = isChecked();
-        if (z2) {
-            this.mVelocityTracker.computeCurrentVelocity(1000);
-            float xVelocity = this.mVelocityTracker.getXVelocity();
-            if (Math.abs(xVelocity) > this.mMinFlingVelocity) {
-                if (!ViewUtils.isLayoutRtl(this) ? xVelocity <= 0.0f : xVelocity >= 0.0f) {
-                    z = false;
-                }
-            } else {
-                z = getTargetCheckedState();
-            }
-        } else {
-            z = isChecked;
-        }
-        if (z != isChecked) {
-            playSoundEffect(0);
-        }
-        setChecked(z);
-        cancelSuperTouch(motionEvent);
-    }
-
-    private void animateThumbToCheckedState(boolean z) {
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, THUMB_POS, z ? 1.0f : 0.0f);
-        this.mPositionAnimator = ofFloat;
-        ofFloat.setDuration(250L);
-        this.mPositionAnimator.setAutoCancel(true);
-        this.mPositionAnimator.start();
-    }
-
-    private void cancelPositionAnimator() {
-        ObjectAnimator objectAnimator = this.mPositionAnimator;
-        if (objectAnimator != null) {
-            objectAnimator.cancel();
-        }
+        return this.f4253Q;
     }
 
     private boolean getTargetCheckedState() {
-        return this.mThumbPosition > 0.5f;
-    }
-
-    /* JADX INFO: Access modifiers changed from: protected */
-    public final float getThumbPosition() {
-        return this.mThumbPosition;
-    }
-
-    void setThumbPosition(float f) {
-        this.mThumbPosition = f;
-        invalidate();
-    }
-
-    @Override // android.widget.CompoundButton, android.widget.Checkable
-    public void toggle() {
-        setChecked(!isChecked());
-    }
-
-    @Override // android.widget.CompoundButton, android.widget.Checkable
-    public void setChecked(boolean z) {
-        super.setChecked(z);
-        boolean isChecked = isChecked();
-        if (isChecked) {
-            setOnStateDescriptionOnRAndAbove();
-        } else {
-            setOffStateDescriptionOnRAndAbove();
+        if (this.f4239B > 0.5f) {
+            return true;
         }
-        if (getWindowToken() != null && isLaidOut()) {
-            animateThumbToCheckedState(isChecked);
-        } else {
-            cancelPositionAnimator();
-            setThumbPosition(isChecked ? 1.0f : 0.0f);
-        }
+        return false;
     }
 
-    @Override // android.widget.TextView, android.view.View
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int i5;
-        int width;
-        int i6;
-        int i7;
-        int i8;
-        int i9;
-        super.onLayout(z, i, i2, i3, i4);
-        int i10 = 0;
-        if (this.mThumbDrawable != null) {
-            Rect rect = this.mTempRect;
-            Drawable drawable = this.mTrackDrawable;
-            if (drawable != null) {
-                drawable.getPadding(rect);
+    private int getThumbOffset() {
+        float f9;
+        boolean z8 = g1.f22657a;
+        if (getLayoutDirection() == 1) {
+            f9 = 1.0f - this.f4239B;
+        } else {
+            f9 = this.f4239B;
+        }
+        return (int) ((f9 * getThumbScrollRange()) + 0.5f);
+    }
+
+    private int getThumbScrollRange() {
+        Rect rect;
+        Drawable drawable = this.f4260h;
+        if (drawable != null) {
+            Rect rect2 = this.f4255S;
+            drawable.getPadding(rect2);
+            Drawable drawable2 = this.b;
+            if (drawable2 != null) {
+                rect = AbstractC2610l0.b(drawable2);
             } else {
-                rect.setEmpty();
+                rect = AbstractC2610l0.f22686c;
             }
-            Rect opticalBounds = DrawableUtils.getOpticalBounds(this.mThumbDrawable);
-            i5 = Math.max(0, opticalBounds.left - rect.left);
-            i10 = Math.max(0, opticalBounds.right - rect.right);
-        } else {
-            i5 = 0;
+            return ((((this.f4240C - this.f4242E) - rect2.left) - rect2.right) - rect.left) - rect.right;
         }
-        if (ViewUtils.isLayoutRtl(this)) {
-            i6 = getPaddingLeft() + i5;
-            width = ((this.mSwitchWidth + i6) - i5) - i10;
-        } else {
-            width = (getWidth() - getPaddingRight()) - i10;
-            i6 = (width - this.mSwitchWidth) + i5 + i10;
+        return 0;
+    }
+
+    private void setTextOffInternal(CharSequence charSequence) {
+        this.f4269s = charSequence;
+        C2628v emojiTextViewHelper = getEmojiTextViewHelper();
+        TransformationMethod u8 = ((f) emojiTextViewHelper.b.b).u(this.O);
+        if (u8 != null) {
+            charSequence = u8.getTransformation(charSequence, this);
         }
-        int gravity = getGravity() & StatusBarUtils.DEFAULT_STATUS_BAR_ALPHA;
-        if (gravity == 16) {
-            int paddingTop = ((getPaddingTop() + getHeight()) - getPaddingBottom()) / 2;
-            i7 = this.mSwitchHeight;
-            i8 = paddingTop - (i7 / 2);
-        } else if (gravity != 80) {
-            i8 = getPaddingTop();
-            i7 = this.mSwitchHeight;
-        } else {
-            i9 = getHeight() - getPaddingBottom();
-            i8 = i9 - this.mSwitchHeight;
-            this.mSwitchLeft = i6;
-            this.mSwitchTop = i8;
-            this.mSwitchBottom = i9;
-            this.mSwitchRight = width;
+        this.f4270t = charSequence;
+        this.f4251N = null;
+        if (this.f4271u) {
+            d();
         }
-        i9 = i7 + i8;
-        this.mSwitchLeft = i6;
-        this.mSwitchTop = i8;
-        this.mSwitchBottom = i9;
-        this.mSwitchRight = width;
+    }
+
+    private void setTextOnInternal(CharSequence charSequence) {
+        this.f4267q = charSequence;
+        C2628v emojiTextViewHelper = getEmojiTextViewHelper();
+        TransformationMethod u8 = ((f) emojiTextViewHelper.b.b).u(this.O);
+        if (u8 != null) {
+            charSequence = u8.getTransformation(charSequence, this);
+        }
+        this.f4268r = charSequence;
+        this.f4250M = null;
+        if (this.f4271u) {
+            d();
+        }
+    }
+
+    public final void a() {
+        Drawable drawable = this.b;
+        if (drawable != null) {
+            if (this.f4258f || this.f4259g) {
+                Drawable mutate = drawable.mutate();
+                this.b = mutate;
+                if (this.f4258f) {
+                    a.h(mutate, this.f4256c);
+                }
+                if (this.f4259g) {
+                    a.i(this.b, this.f4257d);
+                }
+                if (this.b.isStateful()) {
+                    this.b.setState(getDrawableState());
+                }
+            }
+        }
+    }
+
+    public final void b() {
+        Drawable drawable = this.f4260h;
+        if (drawable != null) {
+            if (this.f4263k || this.l) {
+                Drawable mutate = drawable.mutate();
+                this.f4260h = mutate;
+                if (this.f4263k) {
+                    a.h(mutate, this.f4261i);
+                }
+                if (this.l) {
+                    a.i(this.f4260h, this.f4262j);
+                }
+                if (this.f4260h.isStateful()) {
+                    this.f4260h.setState(getDrawableState());
+                }
+            }
+        }
+    }
+
+    public final void c() {
+        setTextOnInternal(this.f4267q);
+        setTextOffInternal(this.f4269s);
+        requestLayout();
+    }
+
+    public final void d() {
+        if (this.f4254R == null && ((f) this.f4253Q.b.b).n() && j.f20971k != null) {
+            j a6 = j.a();
+            int b = a6.b();
+            if (b == 3 || b == 0) {
+                h hVar = new h(this);
+                this.f4254R = hVar;
+                a6.g(hVar);
+            }
+        }
     }
 
     @Override // android.view.View
-    public void draw(Canvas canvas) {
+    public final void draw(Canvas canvas) {
         Rect rect;
-        int i;
-        int i2;
-        Rect rect2 = this.mTempRect;
-        int i3 = this.mSwitchLeft;
-        int i4 = this.mSwitchTop;
-        int i5 = this.mSwitchRight;
-        int i6 = this.mSwitchBottom;
-        int thumbOffset = getThumbOffset() + i3;
-        Drawable drawable = this.mThumbDrawable;
+        int i9;
+        int i10;
+        int i11 = this.f4243F;
+        int i12 = this.f4244G;
+        int i13 = this.f4245H;
+        int i14 = this.f4246I;
+        int thumbOffset = getThumbOffset() + i11;
+        Drawable drawable = this.b;
         if (drawable != null) {
-            rect = DrawableUtils.getOpticalBounds(drawable);
+            rect = AbstractC2610l0.b(drawable);
         } else {
-            rect = DrawableUtils.INSETS_NONE;
+            rect = AbstractC2610l0.f22686c;
         }
-        Drawable drawable2 = this.mTrackDrawable;
+        Drawable drawable2 = this.f4260h;
+        Rect rect2 = this.f4255S;
         if (drawable2 != null) {
             drawable2.getPadding(rect2);
-            thumbOffset += rect2.left;
+            int i15 = rect2.left;
+            thumbOffset += i15;
             if (rect != null) {
-                if (rect.left > rect2.left) {
-                    i3 += rect.left - rect2.left;
+                int i16 = rect.left;
+                if (i16 > i15) {
+                    i11 += i16 - i15;
                 }
-                i = rect.top > rect2.top ? (rect.top - rect2.top) + i4 : i4;
-                if (rect.right > rect2.right) {
-                    i5 -= rect.right - rect2.right;
+                int i17 = rect.top;
+                int i18 = rect2.top;
+                if (i17 > i18) {
+                    i9 = (i17 - i18) + i12;
+                } else {
+                    i9 = i12;
                 }
-                if (rect.bottom > rect2.bottom) {
-                    i2 = i6 - (rect.bottom - rect2.bottom);
-                    this.mTrackDrawable.setBounds(i3, i, i5, i2);
+                int i19 = rect.right;
+                int i20 = rect2.right;
+                if (i19 > i20) {
+                    i13 -= i19 - i20;
+                }
+                int i21 = rect.bottom;
+                int i22 = rect2.bottom;
+                if (i21 > i22) {
+                    i10 = i14 - (i21 - i22);
+                    this.f4260h.setBounds(i11, i9, i13, i10);
                 }
             } else {
-                i = i4;
+                i9 = i12;
             }
-            i2 = i6;
-            this.mTrackDrawable.setBounds(i3, i, i5, i2);
+            i10 = i14;
+            this.f4260h.setBounds(i11, i9, i13, i10);
         }
-        Drawable drawable3 = this.mThumbDrawable;
+        Drawable drawable3 = this.b;
         if (drawable3 != null) {
             drawable3.getPadding(rect2);
-            int i7 = thumbOffset - rect2.left;
-            int i8 = thumbOffset + this.mThumbWidth + rect2.right;
-            this.mThumbDrawable.setBounds(i7, i4, i8, i6);
+            int i23 = thumbOffset - rect2.left;
+            int i24 = thumbOffset + this.f4242E + rect2.right;
+            this.b.setBounds(i23, i12, i24, i14);
             Drawable background = getBackground();
             if (background != null) {
-                DrawableCompat.setHotspotBounds(background, i7, i4, i8, i6);
+                a.f(background, i23, i12, i24, i14);
             }
         }
         super.draw(canvas);
     }
 
     @Override // android.widget.CompoundButton, android.widget.TextView, android.view.View
-    protected void onDraw(Canvas canvas) {
+    public final void drawableHotspotChanged(float f9, float f10) {
+        super.drawableHotspotChanged(f9, f10);
+        Drawable drawable = this.b;
+        if (drawable != null) {
+            a.e(drawable, f9, f10);
+        }
+        Drawable drawable2 = this.f4260h;
+        if (drawable2 != null) {
+            a.e(drawable2, f9, f10);
+        }
+    }
+
+    @Override // android.widget.CompoundButton, android.widget.TextView, android.view.View
+    public final void drawableStateChanged() {
+        boolean z8;
+        super.drawableStateChanged();
+        int[] drawableState = getDrawableState();
+        Drawable drawable = this.b;
+        if (drawable != null && drawable.isStateful()) {
+            z8 = drawable.setState(drawableState);
+        } else {
+            z8 = false;
+        }
+        Drawable drawable2 = this.f4260h;
+        if (drawable2 != null && drawable2.isStateful()) {
+            z8 |= drawable2.setState(drawableState);
+        }
+        if (z8) {
+            invalidate();
+        }
+    }
+
+    @Override // android.widget.CompoundButton, android.widget.TextView
+    public int getCompoundPaddingLeft() {
+        boolean z8 = g1.f22657a;
+        if (getLayoutDirection() == 1) {
+            int compoundPaddingLeft = super.getCompoundPaddingLeft() + this.f4240C;
+            if (!TextUtils.isEmpty(getText())) {
+                return compoundPaddingLeft + this.f4265o;
+            }
+            return compoundPaddingLeft;
+        }
+        return super.getCompoundPaddingLeft();
+    }
+
+    @Override // android.widget.CompoundButton, android.widget.TextView
+    public int getCompoundPaddingRight() {
+        boolean z8 = g1.f22657a;
+        if (getLayoutDirection() == 1) {
+            return super.getCompoundPaddingRight();
+        }
+        int compoundPaddingRight = super.getCompoundPaddingRight() + this.f4240C;
+        if (!TextUtils.isEmpty(getText())) {
+            return compoundPaddingRight + this.f4265o;
+        }
+        return compoundPaddingRight;
+    }
+
+    @Override // android.widget.TextView
+    @Nullable
+    public ActionMode.Callback getCustomSelectionActionModeCallback() {
+        return AbstractC2292b.q(super.getCustomSelectionActionModeCallback());
+    }
+
+    public boolean getShowText() {
+        return this.f4271u;
+    }
+
+    public boolean getSplitTrack() {
+        return this.f4266p;
+    }
+
+    public int getSwitchMinWidth() {
+        return this.f4264n;
+    }
+
+    public int getSwitchPadding() {
+        return this.f4265o;
+    }
+
+    public CharSequence getTextOff() {
+        return this.f4269s;
+    }
+
+    public CharSequence getTextOn() {
+        return this.f4267q;
+    }
+
+    public Drawable getThumbDrawable() {
+        return this.b;
+    }
+
+    public final float getThumbPosition() {
+        return this.f4239B;
+    }
+
+    public int getThumbTextPadding() {
+        return this.m;
+    }
+
+    @Nullable
+    public ColorStateList getThumbTintList() {
+        return this.f4256c;
+    }
+
+    @Nullable
+    public PorterDuff.Mode getThumbTintMode() {
+        return this.f4257d;
+    }
+
+    public Drawable getTrackDrawable() {
+        return this.f4260h;
+    }
+
+    @Nullable
+    public ColorStateList getTrackTintList() {
+        return this.f4261i;
+    }
+
+    @Nullable
+    public PorterDuff.Mode getTrackTintMode() {
+        return this.f4262j;
+    }
+
+    @Override // android.widget.CompoundButton, android.widget.TextView, android.view.View
+    public final void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        Drawable drawable = this.b;
+        if (drawable != null) {
+            drawable.jumpToCurrentState();
+        }
+        Drawable drawable2 = this.f4260h;
+        if (drawable2 != null) {
+            drawable2.jumpToCurrentState();
+        }
+        ObjectAnimator objectAnimator = this.f4252P;
+        if (objectAnimator != null && objectAnimator.isStarted()) {
+            this.f4252P.end();
+            this.f4252P = null;
+        }
+    }
+
+    @Override // android.widget.CompoundButton, android.widget.TextView, android.view.View
+    public final int[] onCreateDrawableState(int i9) {
+        int[] onCreateDrawableState = super.onCreateDrawableState(i9 + 1);
+        if (isChecked()) {
+            View.mergeDrawableStates(onCreateDrawableState, f4237U);
+        }
+        return onCreateDrawableState;
+    }
+
+    @Override // android.widget.CompoundButton, android.widget.TextView, android.view.View
+    public final void onDraw(Canvas canvas) {
+        StaticLayout staticLayout;
         int width;
         super.onDraw(canvas);
-        Rect rect = this.mTempRect;
-        Drawable drawable = this.mTrackDrawable;
+        Drawable drawable = this.f4260h;
+        Rect rect = this.f4255S;
         if (drawable != null) {
             drawable.getPadding(rect);
         } else {
             rect.setEmpty();
         }
-        int i = this.mSwitchTop;
-        int i2 = this.mSwitchBottom;
-        int i3 = i + rect.top;
-        int i4 = i2 - rect.bottom;
-        Drawable drawable2 = this.mThumbDrawable;
+        int i9 = this.f4244G;
+        int i10 = this.f4246I;
+        int i11 = i9 + rect.top;
+        int i12 = i10 - rect.bottom;
+        Drawable drawable2 = this.b;
         if (drawable != null) {
-            if (this.mSplitTrack && drawable2 != null) {
-                Rect opticalBounds = DrawableUtils.getOpticalBounds(drawable2);
+            if (this.f4266p && drawable2 != null) {
+                Rect b = AbstractC2610l0.b(drawable2);
                 drawable2.copyBounds(rect);
-                rect.left += opticalBounds.left;
-                rect.right -= opticalBounds.right;
+                rect.left += b.left;
+                rect.right -= b.right;
                 int save = canvas.save();
                 canvas.clipRect(rect, Region.Op.DIFFERENCE);
                 drawable.draw(canvas);
@@ -956,267 +697,426 @@ public class SwitchCompat extends CompoundButton implements EmojiCompatConfigura
         if (drawable2 != null) {
             drawable2.draw(canvas);
         }
-        Layout layout = getTargetCheckedState() ? this.mOnLayout : this.mOffLayout;
-        if (layout != null) {
+        if (getTargetCheckedState()) {
+            staticLayout = this.f4250M;
+        } else {
+            staticLayout = this.f4251N;
+        }
+        if (staticLayout != null) {
             int[] drawableState = getDrawableState();
-            ColorStateList colorStateList = this.mTextColors;
+            ColorStateList colorStateList = this.f4249L;
+            TextPaint textPaint = this.f4248K;
             if (colorStateList != null) {
-                this.mTextPaint.setColor(colorStateList.getColorForState(drawableState, 0));
+                textPaint.setColor(colorStateList.getColorForState(drawableState, 0));
             }
-            this.mTextPaint.drawableState = drawableState;
+            textPaint.drawableState = drawableState;
             if (drawable2 != null) {
                 Rect bounds = drawable2.getBounds();
                 width = bounds.left + bounds.right;
             } else {
                 width = getWidth();
             }
-            canvas.translate((width / 2) - (layout.getWidth() / 2), ((i3 + i4) / 2) - (layout.getHeight() / 2));
-            layout.draw(canvas);
+            canvas.translate((width / 2) - (staticLayout.getWidth() / 2), ((i11 + i12) / 2) - (staticLayout.getHeight() / 2));
+            staticLayout.draw(canvas);
         }
         canvas.restoreToCount(save2);
     }
 
-    @Override // android.widget.CompoundButton, android.widget.TextView
-    public int getCompoundPaddingLeft() {
-        if (!ViewUtils.isLayoutRtl(this)) {
-            return super.getCompoundPaddingLeft();
-        }
-        int compoundPaddingLeft = super.getCompoundPaddingLeft() + this.mSwitchWidth;
-        return !TextUtils.isEmpty(getText()) ? compoundPaddingLeft + this.mSwitchPadding : compoundPaddingLeft;
+    @Override // android.view.View
+    public final void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        super.onInitializeAccessibilityEvent(accessibilityEvent);
+        accessibilityEvent.setClassName("android.widget.Switch");
     }
 
-    @Override // android.widget.CompoundButton, android.widget.TextView
-    public int getCompoundPaddingRight() {
-        if (ViewUtils.isLayoutRtl(this)) {
-            return super.getCompoundPaddingRight();
+    @Override // android.view.View
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        CharSequence charSequence;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Switch");
+        if (Build.VERSION.SDK_INT < 30) {
+            if (isChecked()) {
+                charSequence = this.f4267q;
+            } else {
+                charSequence = this.f4269s;
+            }
+            if (!TextUtils.isEmpty(charSequence)) {
+                CharSequence text = accessibilityNodeInfo.getText();
+                if (TextUtils.isEmpty(text)) {
+                    accessibilityNodeInfo.setText(charSequence);
+                    return;
+                }
+                StringBuilder sb = new StringBuilder();
+                sb.append(text);
+                sb.append(' ');
+                sb.append(charSequence);
+                accessibilityNodeInfo.setText(sb);
+            }
         }
-        int compoundPaddingRight = super.getCompoundPaddingRight() + this.mSwitchWidth;
-        return !TextUtils.isEmpty(getText()) ? compoundPaddingRight + this.mSwitchPadding : compoundPaddingRight;
     }
 
-    private int getThumbOffset() {
-        float f;
-        if (ViewUtils.isLayoutRtl(this)) {
-            f = 1.0f - this.mThumbPosition;
+    @Override // android.widget.TextView, android.view.View
+    public final void onLayout(boolean z8, int i9, int i10, int i11, int i12) {
+        int i13;
+        int width;
+        int i14;
+        int i15;
+        int i16;
+        super.onLayout(z8, i9, i10, i11, i12);
+        int i17 = 0;
+        if (this.b != null) {
+            Drawable drawable = this.f4260h;
+            Rect rect = this.f4255S;
+            if (drawable != null) {
+                drawable.getPadding(rect);
+            } else {
+                rect.setEmpty();
+            }
+            Rect b = AbstractC2610l0.b(this.b);
+            i13 = Math.max(0, b.left - rect.left);
+            i17 = Math.max(0, b.right - rect.right);
         } else {
-            f = this.mThumbPosition;
+            i13 = 0;
         }
-        return (int) ((f * getThumbScrollRange()) + 0.5f);
+        boolean z9 = g1.f22657a;
+        if (getLayoutDirection() == 1) {
+            i14 = getPaddingLeft() + i13;
+            width = ((this.f4240C + i14) - i13) - i17;
+        } else {
+            width = (getWidth() - getPaddingRight()) - i17;
+            i14 = (width - this.f4240C) + i13 + i17;
+        }
+        int gravity = getGravity() & 112;
+        if (gravity != 16) {
+            if (gravity != 80) {
+                i16 = getPaddingTop();
+                i15 = this.f4241D + i16;
+            } else {
+                i15 = getHeight() - getPaddingBottom();
+                i16 = i15 - this.f4241D;
+            }
+        } else {
+            int height = ((getHeight() + getPaddingTop()) - getPaddingBottom()) / 2;
+            int i18 = this.f4241D;
+            int i19 = height - (i18 / 2);
+            i15 = i18 + i19;
+            i16 = i19;
+        }
+        this.f4243F = i14;
+        this.f4244G = i16;
+        this.f4246I = i15;
+        this.f4245H = width;
     }
 
-    private int getThumbScrollRange() {
-        Rect rect;
-        Drawable drawable = this.mTrackDrawable;
-        if (drawable == null) {
-            return 0;
+    @Override // android.widget.TextView, android.view.View
+    public final void onMeasure(int i9, int i10) {
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17 = 0;
+        if (this.f4271u) {
+            StaticLayout staticLayout = this.f4250M;
+            TextPaint textPaint = this.f4248K;
+            if (staticLayout == null) {
+                CharSequence charSequence = this.f4268r;
+                if (charSequence != null) {
+                    i16 = (int) Math.ceil(Layout.getDesiredWidth(charSequence, textPaint));
+                } else {
+                    i16 = 0;
+                }
+                this.f4250M = new StaticLayout(charSequence, textPaint, i16, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+            }
+            if (this.f4251N == null) {
+                CharSequence charSequence2 = this.f4270t;
+                if (charSequence2 != null) {
+                    i15 = (int) Math.ceil(Layout.getDesiredWidth(charSequence2, textPaint));
+                } else {
+                    i15 = 0;
+                }
+                this.f4251N = new StaticLayout(charSequence2, textPaint, i15, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+            }
         }
-        Rect rect2 = this.mTempRect;
-        drawable.getPadding(rect2);
-        Drawable drawable2 = this.mThumbDrawable;
+        Drawable drawable = this.b;
+        Rect rect = this.f4255S;
+        if (drawable != null) {
+            drawable.getPadding(rect);
+            i11 = (this.b.getIntrinsicWidth() - rect.left) - rect.right;
+            i12 = this.b.getIntrinsicHeight();
+        } else {
+            i11 = 0;
+            i12 = 0;
+        }
+        if (this.f4271u) {
+            i13 = (this.m * 2) + Math.max(this.f4250M.getWidth(), this.f4251N.getWidth());
+        } else {
+            i13 = 0;
+        }
+        this.f4242E = Math.max(i13, i11);
+        Drawable drawable2 = this.f4260h;
         if (drawable2 != null) {
-            rect = DrawableUtils.getOpticalBounds(drawable2);
+            drawable2.getPadding(rect);
+            i17 = this.f4260h.getIntrinsicHeight();
         } else {
-            rect = DrawableUtils.INSETS_NONE;
+            rect.setEmpty();
         }
-        return ((((this.mSwitchWidth - this.mThumbWidth) - rect2.left) - rect2.right) - rect.left) - rect.right;
+        int i18 = rect.left;
+        int i19 = rect.right;
+        Drawable drawable3 = this.b;
+        if (drawable3 != null) {
+            Rect b = AbstractC2610l0.b(drawable3);
+            i18 = Math.max(i18, b.left);
+            i19 = Math.max(i19, b.right);
+        }
+        if (this.f4247J) {
+            i14 = Math.max(this.f4264n, (this.f4242E * 2) + i18 + i19);
+        } else {
+            i14 = this.f4264n;
+        }
+        int max = Math.max(i17, i12);
+        this.f4240C = i14;
+        this.f4241D = max;
+        super.onMeasure(i9, i10);
+        if (getMeasuredHeight() < max) {
+            setMeasuredDimension(getMeasuredWidthAndState(), max);
+        }
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    @Override // android.widget.CompoundButton, android.widget.TextView, android.view.View
-    public int[] onCreateDrawableState(int i) {
-        int[] onCreateDrawableState = super.onCreateDrawableState(i + 1);
+    @Override // android.view.View
+    public final void onPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        CharSequence charSequence;
+        super.onPopulateAccessibilityEvent(accessibilityEvent);
         if (isChecked()) {
-            mergeDrawableStates(onCreateDrawableState, CHECKED_STATE_SET);
+            charSequence = this.f4267q;
+        } else {
+            charSequence = this.f4269s;
         }
-        return onCreateDrawableState;
+        if (charSequence != null) {
+            accessibilityEvent.getText().add(charSequence);
+        }
     }
 
-    @Override // android.widget.CompoundButton, android.widget.TextView, android.view.View
-    protected void drawableStateChanged() {
-        super.drawableStateChanged();
-        int[] drawableState = getDrawableState();
-        Drawable drawable = this.mThumbDrawable;
-        boolean state = (drawable == null || !drawable.isStateful()) ? false : drawable.setState(drawableState);
-        Drawable drawable2 = this.mTrackDrawable;
-        if (drawable2 != null && drawable2.isStateful()) {
-            state |= drawable2.setState(drawableState);
+    /* JADX WARN: Code restructure failed: missing block: B:6:0x0015, code lost:
+    
+        if (r1 != 3) goto L82;
+     */
+    @Override // android.widget.TextView, android.view.View
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    public final boolean onTouchEvent(android.view.MotionEvent r10) {
+        /*
+            Method dump skipped, instructions count: 330
+            To view this dump change 'Code comments level' option to 'DEBUG'
+        */
+        throw new UnsupportedOperationException("Method not decompiled: androidx.appcompat.widget.SwitchCompat.onTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    @Override // android.widget.TextView
+    public void setAllCaps(boolean z8) {
+        super.setAllCaps(z8);
+        getEmojiTextViewHelper().c(z8);
+    }
+
+    @Override // android.widget.CompoundButton, android.widget.Checkable
+    public void setChecked(boolean z8) {
+        super.setChecked(z8);
+        boolean isChecked = isChecked();
+        if (isChecked) {
+            if (Build.VERSION.SDK_INT >= 30) {
+                CharSequence charSequence = this.f4267q;
+                if (charSequence == null) {
+                    charSequence = getResources().getString(com.tools.arruler.photomeasure.camera.ruler.R.string.abc_capital_on);
+                }
+                ViewCompat.setStateDescription(this, charSequence);
+            }
+        } else if (Build.VERSION.SDK_INT >= 30) {
+            CharSequence charSequence2 = this.f4269s;
+            if (charSequence2 == null) {
+                charSequence2 = getResources().getString(com.tools.arruler.photomeasure.camera.ruler.R.string.abc_capital_off);
+            }
+            ViewCompat.setStateDescription(this, charSequence2);
         }
-        if (state) {
+        float f9 = 0.0f;
+        if (getWindowToken() != null && isLaidOut()) {
+            if (isChecked) {
+                f9 = 1.0f;
+            }
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, f4236T, f9);
+            this.f4252P = ofFloat;
+            ofFloat.setDuration(250L);
+            this.f4252P.setAutoCancel(true);
+            this.f4252P.start();
+            return;
+        }
+        ObjectAnimator objectAnimator = this.f4252P;
+        if (objectAnimator != null) {
+            objectAnimator.cancel();
+        }
+        if (isChecked) {
+            f9 = 1.0f;
+        }
+        setThumbPosition(f9);
+    }
+
+    @Override // android.widget.TextView
+    public void setCustomSelectionActionModeCallback(@Nullable ActionMode.Callback callback) {
+        super.setCustomSelectionActionModeCallback(AbstractC2292b.r(callback, this));
+    }
+
+    public void setEmojiCompatEnabled(boolean z8) {
+        getEmojiTextViewHelper().d(z8);
+        setTextOnInternal(this.f4267q);
+        setTextOffInternal(this.f4269s);
+        requestLayout();
+    }
+
+    public final void setEnforceSwitchWidth(boolean z8) {
+        this.f4247J = z8;
+        invalidate();
+    }
+
+    @Override // android.widget.TextView
+    public void setFilters(@NonNull InputFilter[] inputFilterArr) {
+        super.setFilters(getEmojiTextViewHelper().a(inputFilterArr));
+    }
+
+    public void setShowText(boolean z8) {
+        if (this.f4271u != z8) {
+            this.f4271u = z8;
+            requestLayout();
+            if (z8) {
+                d();
+            }
+        }
+    }
+
+    public void setSplitTrack(boolean z8) {
+        this.f4266p = z8;
+        invalidate();
+    }
+
+    public void setSwitchMinWidth(int i9) {
+        this.f4264n = i9;
+        requestLayout();
+    }
+
+    public void setSwitchPadding(int i9) {
+        this.f4265o = i9;
+        requestLayout();
+    }
+
+    public void setSwitchTypeface(Typeface typeface) {
+        TextPaint textPaint = this.f4248K;
+        if ((textPaint.getTypeface() != null && !textPaint.getTypeface().equals(typeface)) || (textPaint.getTypeface() == null && typeface != null)) {
+            textPaint.setTypeface(typeface);
+            requestLayout();
             invalidate();
         }
     }
 
-    @Override // android.widget.CompoundButton, android.widget.TextView, android.view.View
-    public void drawableHotspotChanged(float f, float f2) {
-        super.drawableHotspotChanged(f, f2);
-        Drawable drawable = this.mThumbDrawable;
-        if (drawable != null) {
-            DrawableCompat.setHotspot(drawable, f, f2);
-        }
-        Drawable drawable2 = this.mTrackDrawable;
-        if (drawable2 != null) {
-            DrawableCompat.setHotspot(drawable2, f, f2);
-        }
-    }
-
-    @Override // android.widget.CompoundButton, android.widget.TextView, android.view.View
-    protected boolean verifyDrawable(Drawable drawable) {
-        return super.verifyDrawable(drawable) || drawable == this.mThumbDrawable || drawable == this.mTrackDrawable;
-    }
-
-    @Override // android.widget.CompoundButton, android.widget.TextView, android.view.View
-    public void jumpDrawablesToCurrentState() {
-        super.jumpDrawablesToCurrentState();
-        Drawable drawable = this.mThumbDrawable;
-        if (drawable != null) {
-            drawable.jumpToCurrentState();
-        }
-        Drawable drawable2 = this.mTrackDrawable;
-        if (drawable2 != null) {
-            drawable2.jumpToCurrentState();
-        }
-        ObjectAnimator objectAnimator = this.mPositionAnimator;
-        if (objectAnimator == null || !objectAnimator.isStarted()) {
-            return;
-        }
-        this.mPositionAnimator.end();
-        this.mPositionAnimator = null;
-    }
-
-    @Override // android.view.View
-    public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        super.onInitializeAccessibilityEvent(accessibilityEvent);
-        accessibilityEvent.setClassName(ACCESSIBILITY_EVENT_CLASS_NAME);
-    }
-
-    @Override // android.view.View
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName(ACCESSIBILITY_EVENT_CLASS_NAME);
-        if (Build.VERSION.SDK_INT < 30) {
-            CharSequence charSequence = isChecked() ? this.mTextOn : this.mTextOff;
-            if (TextUtils.isEmpty(charSequence)) {
-                return;
+    public void setTextOff(CharSequence charSequence) {
+        setTextOffInternal(charSequence);
+        requestLayout();
+        if (!isChecked() && Build.VERSION.SDK_INT >= 30) {
+            CharSequence charSequence2 = this.f4269s;
+            if (charSequence2 == null) {
+                charSequence2 = getResources().getString(com.tools.arruler.photomeasure.camera.ruler.R.string.abc_capital_off);
             }
-            CharSequence text = accessibilityNodeInfo.getText();
-            if (TextUtils.isEmpty(text)) {
-                accessibilityNodeInfo.setText(charSequence);
-                return;
-            }
-            StringBuilder sb = new StringBuilder();
-            sb.append(text).append(' ').append(charSequence);
-            accessibilityNodeInfo.setText(sb);
+            ViewCompat.setStateDescription(this, charSequence2);
         }
     }
 
-    @Override // android.widget.TextView
-    public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-        super.setCustomSelectionActionModeCallback(TextViewCompat.wrapCustomSelectionActionModeCallback(this, callback));
+    public void setTextOn(CharSequence charSequence) {
+        setTextOnInternal(charSequence);
+        requestLayout();
+        if (isChecked() && Build.VERSION.SDK_INT >= 30) {
+            CharSequence charSequence2 = this.f4267q;
+            if (charSequence2 == null) {
+                charSequence2 = getResources().getString(com.tools.arruler.photomeasure.camera.ruler.R.string.abc_capital_on);
+            }
+            ViewCompat.setStateDescription(this, charSequence2);
+        }
     }
 
-    @Override // android.widget.TextView
-    public ActionMode.Callback getCustomSelectionActionModeCallback() {
-        return TextViewCompat.unwrapCustomSelectionActionModeCallback(super.getCustomSelectionActionModeCallback());
+    public void setThumbDrawable(Drawable drawable) {
+        Drawable drawable2 = this.b;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.b = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        requestLayout();
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public final void setEnforceSwitchWidth(boolean z) {
-        this.mEnforceSwitchWidth = z;
+    public void setThumbPosition(float f9) {
+        this.f4239B = f9;
         invalidate();
     }
 
-    private void setOnStateDescriptionOnRAndAbove() {
-        if (Build.VERSION.SDK_INT >= 30) {
-            CharSequence charSequence = this.mTextOn;
-            if (charSequence == null) {
-                charSequence = getResources().getString(androidx.appcompat.R.string.abc_capital_on);
-            }
-            ViewCompat.setStateDescription(this, charSequence);
-        }
+    public void setThumbResource(int i9) {
+        setThumbDrawable(n.g(getContext(), i9));
     }
 
-    private void setOffStateDescriptionOnRAndAbove() {
-        if (Build.VERSION.SDK_INT >= 30) {
-            CharSequence charSequence = this.mTextOff;
-            if (charSequence == null) {
-                charSequence = getResources().getString(androidx.appcompat.R.string.abc_capital_off);
-            }
-            ViewCompat.setStateDescription(this, charSequence);
-        }
-    }
-
-    @Override // android.widget.TextView
-    public void setAllCaps(boolean z) {
-        super.setAllCaps(z);
-        getEmojiTextViewHelper().setAllCaps(z);
-    }
-
-    @Override // android.widget.TextView
-    public void setFilters(InputFilter[] inputFilterArr) {
-        super.setFilters(getEmojiTextViewHelper().getFilters(inputFilterArr));
-    }
-
-    private AppCompatEmojiTextHelper getEmojiTextViewHelper() {
-        if (this.mAppCompatEmojiTextHelper == null) {
-            this.mAppCompatEmojiTextHelper = new AppCompatEmojiTextHelper(this);
-        }
-        return this.mAppCompatEmojiTextHelper;
-    }
-
-    @Override // androidx.appcompat.widget.EmojiCompatConfigurationView
-    public void setEmojiCompatEnabled(boolean z) {
-        getEmojiTextViewHelper().setEnabled(z);
-        setTextOnInternal(this.mTextOn);
-        setTextOffInternal(this.mTextOff);
+    public void setThumbTextPadding(int i9) {
+        this.m = i9;
         requestLayout();
     }
 
-    @Override // androidx.appcompat.widget.EmojiCompatConfigurationView
-    public boolean isEmojiCompatEnabled() {
-        return getEmojiTextViewHelper().isEnabled();
+    public void setThumbTintList(@Nullable ColorStateList colorStateList) {
+        this.f4256c = colorStateList;
+        this.f4258f = true;
+        a();
     }
 
-    private void setupEmojiCompatLoadCallback() {
-        if (this.mEmojiCompatInitCallback == null && this.mAppCompatEmojiTextHelper.isEnabled() && EmojiCompat.isConfigured()) {
-            EmojiCompat emojiCompat = EmojiCompat.get();
-            int loadState = emojiCompat.getLoadState();
-            if (loadState == 3 || loadState == 0) {
-                EmojiCompatInitCallback emojiCompatInitCallback = new EmojiCompatInitCallback(this);
-                this.mEmojiCompatInitCallback = emojiCompatInitCallback;
-                emojiCompat.registerInitCallback(emojiCompatInitCallback);
-            }
+    public void setThumbTintMode(@Nullable PorterDuff.Mode mode) {
+        this.f4257d = mode;
+        this.f4259g = true;
+        a();
+    }
+
+    public void setTrackDrawable(Drawable drawable) {
+        Drawable drawable2 = this.f4260h;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
         }
-    }
-
-    void onEmojiCompatInitializedForSwitchText() {
-        setTextOnInternal(this.mTextOn);
-        setTextOffInternal(this.mTextOff);
+        this.f4260h = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
         requestLayout();
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* loaded from: classes.dex */
-    public static class EmojiCompatInitCallback extends EmojiCompat.InitCallback {
-        private final Reference<SwitchCompat> mOuterWeakRef;
+    public void setTrackResource(int i9) {
+        setTrackDrawable(n.g(getContext(), i9));
+    }
 
-        EmojiCompatInitCallback(SwitchCompat switchCompat) {
-            this.mOuterWeakRef = new WeakReference(switchCompat);
-        }
+    public void setTrackTintList(@Nullable ColorStateList colorStateList) {
+        this.f4261i = colorStateList;
+        this.f4263k = true;
+        b();
+    }
 
-        @Override // androidx.emoji2.text.EmojiCompat.InitCallback
-        public void onInitialized() {
-            SwitchCompat switchCompat = this.mOuterWeakRef.get();
-            if (switchCompat != null) {
-                switchCompat.onEmojiCompatInitializedForSwitchText();
-            }
-        }
+    public void setTrackTintMode(@Nullable PorterDuff.Mode mode) {
+        this.f4262j = mode;
+        this.l = true;
+        b();
+    }
 
-        @Override // androidx.emoji2.text.EmojiCompat.InitCallback
-        public void onFailed(Throwable th) {
-            SwitchCompat switchCompat = this.mOuterWeakRef.get();
-            if (switchCompat != null) {
-                switchCompat.onEmojiCompatInitializedForSwitchText();
-            }
+    @Override // android.widget.CompoundButton, android.widget.Checkable
+    public final void toggle() {
+        setChecked(!isChecked());
+    }
+
+    @Override // android.widget.CompoundButton, android.widget.TextView, android.view.View
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (!super.verifyDrawable(drawable) && drawable != this.b && drawable != this.f4260h) {
+            return false;
         }
+        return true;
     }
 }

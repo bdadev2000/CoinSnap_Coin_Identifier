@@ -1,6 +1,6 @@
 package com.adjust.sdk;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public enum LogLevel {
     VERBOSE(2),
     DEBUG(3),
@@ -12,8 +12,8 @@ public enum LogLevel {
 
     public final int androidLogLevel;
 
-    LogLevel(int i) {
-        this.androidLogLevel = i;
+    LogLevel(int i9) {
+        this.androidLogLevel = i9;
     }
 
     public int getAndroidLogLevel() {

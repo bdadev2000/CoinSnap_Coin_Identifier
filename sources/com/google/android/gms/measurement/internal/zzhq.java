@@ -1,27 +1,22 @@
 package com.google.android.gms.measurement.internal;
 
-import java.util.Map;
+/* loaded from: classes2.dex */
+final class zzhq implements Runnable {
+    private final /* synthetic */ zzo zza;
+    private final /* synthetic */ zzhn zzb;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzhq implements com.google.android.gms.internal.measurement.zzo {
-    private final /* synthetic */ String zza;
-    private final /* synthetic */ zzhl zzb;
-
-    @Override // com.google.android.gms.internal.measurement.zzo
-    public final String zza(String str) {
-        Map map;
-        map = this.zzb.zzc;
-        Map map2 = (Map) map.get(this.zza);
-        if (map2 == null || !map2.containsKey(str)) {
-            return null;
-        }
-        return (String) map2.get(str);
+    public zzhq(zzhn zzhnVar, zzo zzoVar) {
+        this.zza = zzoVar;
+        this.zzb = zzhnVar;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzhq(zzhl zzhlVar, String str) {
-        this.zza = str;
-        this.zzb = zzhlVar;
+    @Override // java.lang.Runnable
+    public final void run() {
+        zznc zzncVar;
+        zznc zzncVar2;
+        zzncVar = this.zzb.zza;
+        zzncVar.zzr();
+        zzncVar2 = this.zzb.zza;
+        zzncVar2.zzc(this.zza);
     }
 }

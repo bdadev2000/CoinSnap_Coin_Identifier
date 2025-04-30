@@ -1,9 +1,9 @@
 package com.google.android.gms.common.moduleinstall;
 
+import androidx.annotation.NonNull;
 import com.google.android.gms.common.api.CommonStatusCodes;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class ModuleInstallStatusCodes extends CommonStatusCodes {
     public static final int INSUFFICIENT_STORAGE = 46003;
     public static final int MODULE_NOT_FOUND = 46002;
@@ -14,8 +14,9 @@ public final class ModuleInstallStatusCodes extends CommonStatusCodes {
     private ModuleInstallStatusCodes() {
     }
 
-    public static String getStatusCodeString(int i) {
-        switch (i) {
+    @NonNull
+    public static String getStatusCodeString(int i9) {
+        switch (i9) {
             case UNKNOWN_MODULE /* 46000 */:
                 return "UNKNOWN_MODULE";
             case NOT_ALLOWED_MODULE /* 46001 */:
@@ -25,7 +26,7 @@ public final class ModuleInstallStatusCodes extends CommonStatusCodes {
             case INSUFFICIENT_STORAGE /* 46003 */:
                 return "INSUFFICIENT_STORAGE";
             default:
-                return CommonStatusCodes.getStatusCodeString(i);
+                return CommonStatusCodes.getStatusCodeString(i9);
         }
     }
 }

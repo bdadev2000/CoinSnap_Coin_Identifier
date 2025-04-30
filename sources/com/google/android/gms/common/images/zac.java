@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.SystemClock;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.images.ImageManager;
 import com.google.android.gms.common.internal.Asserts;
 import com.google.android.gms.internal.base.zam;
@@ -12,15 +13,16 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zac implements Runnable {
     final /* synthetic */ ImageManager zaa;
     private final Uri zab;
+
+    @Nullable
     private final Bitmap zac;
     private final CountDownLatch zad;
 
-    public zac(ImageManager imageManager, Uri uri, Bitmap bitmap, boolean z, CountDownLatch countDownLatch) {
+    public zac(ImageManager imageManager, @Nullable Uri uri, Bitmap bitmap, boolean z8, CountDownLatch countDownLatch) {
         this.zaa = imageManager;
         this.zab = uri;
         this.zac = bitmap;
@@ -42,8 +44,8 @@ final class zac implements Runnable {
         if (imageReceiver != null) {
             arrayList = imageReceiver.zac;
             int size = arrayList.size();
-            for (int i = 0; i < size; i++) {
-                zag zagVar = (zag) arrayList.get(i);
+            for (int i9 = 0; i9 < size; i9++) {
+                zag zagVar = (zag) arrayList.get(i9);
                 Bitmap bitmap = this.zac;
                 if (bitmap != null) {
                     zagVar.zac(this.zaa.zad, bitmap, false);

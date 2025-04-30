@@ -1,58 +1,62 @@
 package com.google.android.gms.internal.play_billing;
 
-import sun.misc.Unsafe;
+/* loaded from: classes2.dex */
+final class zzen implements zzdz {
+    private final zzec zza;
+    private final String zzb;
+    private final Object[] zzc;
+    private final int zzd;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final class zzen extends zzep {
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzen(Unsafe unsafe) {
-        super(unsafe);
-    }
-
-    @Override // com.google.android.gms.internal.play_billing.zzep
-    public final double zza(Object obj, long j) {
-        return Double.longBitsToDouble(this.zza.getLong(obj, j));
-    }
-
-    @Override // com.google.android.gms.internal.play_billing.zzep
-    public final float zzb(Object obj, long j) {
-        return Float.intBitsToFloat(this.zza.getInt(obj, j));
-    }
-
-    @Override // com.google.android.gms.internal.play_billing.zzep
-    public final void zzc(Object obj, long j, boolean z) {
-        if (zzeq.zzb) {
-            zzeq.zzD(obj, j, r3 ? (byte) 1 : (byte) 0);
-        } else {
-            zzeq.zzE(obj, j, r3 ? (byte) 1 : (byte) 0);
+    public zzen(zzec zzecVar, String str, Object[] objArr) {
+        this.zza = zzecVar;
+        this.zzb = str;
+        this.zzc = objArr;
+        char charAt = str.charAt(0);
+        if (charAt < 55296) {
+            this.zzd = charAt;
+            return;
+        }
+        int i9 = charAt & 8191;
+        int i10 = 1;
+        int i11 = 13;
+        while (true) {
+            int i12 = i10 + 1;
+            char charAt2 = str.charAt(i10);
+            if (charAt2 >= 55296) {
+                i9 |= (charAt2 & 8191) << i11;
+                i11 += 13;
+                i10 = i12;
+            } else {
+                this.zzd = i9 | (charAt2 << i11);
+                return;
+            }
         }
     }
 
-    @Override // com.google.android.gms.internal.play_billing.zzep
-    public final void zzd(Object obj, long j, byte b) {
-        if (zzeq.zzb) {
-            zzeq.zzD(obj, j, b);
-        } else {
-            zzeq.zzE(obj, j, b);
+    @Override // com.google.android.gms.internal.play_billing.zzdz
+    public final zzec zza() {
+        return this.zza;
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzdz
+    public final boolean zzb() {
+        return (this.zzd & 2) == 2;
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzdz
+    public final int zzc() {
+        int i9 = this.zzd;
+        if ((i9 & 1) != 0) {
+            return 1;
         }
+        return (i9 & 4) == 4 ? 3 : 2;
     }
 
-    @Override // com.google.android.gms.internal.play_billing.zzep
-    public final void zze(Object obj, long j, double d) {
-        this.zza.putLong(obj, j, Double.doubleToLongBits(d));
+    public final String zzd() {
+        return this.zzb;
     }
 
-    @Override // com.google.android.gms.internal.play_billing.zzep
-    public final void zzf(Object obj, long j, float f) {
-        this.zza.putInt(obj, j, Float.floatToIntBits(f));
-    }
-
-    @Override // com.google.android.gms.internal.play_billing.zzep
-    public final boolean zzg(Object obj, long j) {
-        if (zzeq.zzb) {
-            return zzeq.zzt(obj, j);
-        }
-        return zzeq.zzu(obj, j);
+    public final Object[] zze() {
+        return this.zzc;
     }
 }

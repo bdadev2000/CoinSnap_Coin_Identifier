@@ -1,20 +1,23 @@
 package com.google.android.gms.measurement.internal;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzkv implements Runnable {
-    private final /* synthetic */ Boolean zza;
-    private final /* synthetic */ zzjq zzb;
+    private final /* synthetic */ zzkp zza;
+    private final /* synthetic */ long zzb;
+    private final /* synthetic */ zzks zzc;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzkv(zzjq zzjqVar, Boolean bool) {
-        this.zza = bool;
-        this.zzb = zzjqVar;
+    public zzkv(zzks zzksVar, zzkp zzkpVar, long j7) {
+        this.zza = zzkpVar;
+        this.zzb = j7;
+        this.zzc = zzksVar;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        this.zzb.zza(this.zza, true);
+        this.zzc.zza(this.zza, false, this.zzb);
+        zzks zzksVar = this.zzc;
+        zzksVar.zza = null;
+        zzksVar.zzo().zza((zzkp) null);
     }
 }

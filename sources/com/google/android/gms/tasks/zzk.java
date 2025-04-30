@@ -2,13 +2,11 @@ package com.google.android.gms.tasks;
 
 import com.google.android.gms.common.internal.Preconditions;
 
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzk implements Runnable {
     final /* synthetic */ Task zza;
     final /* synthetic */ zzl zzb;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zzk(zzl zzlVar, Task task) {
         this.zzb = zzlVar;
         this.zza = task;
@@ -21,11 +19,15 @@ final class zzk implements Runnable {
         OnFailureListener onFailureListener2;
         obj = this.zzb.zzb;
         synchronized (obj) {
-            zzl zzlVar = this.zzb;
-            onFailureListener = zzlVar.zzc;
-            if (onFailureListener != null) {
-                onFailureListener2 = zzlVar.zzc;
-                onFailureListener2.onFailure((Exception) Preconditions.checkNotNull(this.zza.getException()));
+            try {
+                zzl zzlVar = this.zzb;
+                onFailureListener = zzlVar.zzc;
+                if (onFailureListener != null) {
+                    onFailureListener2 = zzlVar.zzc;
+                    onFailureListener2.onFailure((Exception) Preconditions.checkNotNull(this.zza.getException()));
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }

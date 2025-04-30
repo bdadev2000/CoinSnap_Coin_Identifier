@@ -2,8 +2,7 @@ package com.google.android.gms.internal.base;
 
 import android.graphics.drawable.Drawable;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zah extends Drawable.ConstantState {
     private zah() {
     }
@@ -15,10 +14,9 @@ final class zah extends Drawable.ConstantState {
 
     @Override // android.graphics.drawable.Drawable.ConstantState
     public final Drawable newDrawable() {
-        return zai.zaa();
+        return zai.zaa;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public /* synthetic */ zah(zag zagVar) {
     }
 }

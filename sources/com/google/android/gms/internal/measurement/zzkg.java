@@ -1,19 +1,14 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzkg extends zzkk {
-    @Override // com.google.android.gms.internal.measurement.zzkk
-    public final int hashCode() {
-        throw new NoSuchMethodError();
+/* loaded from: classes2.dex */
+final class zzkg implements zzkq {
+    @Override // com.google.android.gms.internal.measurement.zzkq
+    public final zzkr zza(Class<?> cls) {
+        throw new IllegalStateException("This should never be called.");
     }
 
-    public final String toString() {
-        throw new NoSuchMethodError();
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzkk
-    public final boolean equals(Object obj) {
-        throw new NoSuchMethodError();
+    @Override // com.google.android.gms.internal.measurement.zzkq
+    public final boolean zzb(Class<?> cls) {
+        return false;
     }
 }

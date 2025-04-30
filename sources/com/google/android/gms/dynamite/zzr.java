@@ -4,37 +4,30 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
+import com.applovin.impl.L;
 import com.google.android.gms.dynamic.IObjectWrapper;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzr extends com.google.android.gms.internal.common.zza implements IInterface {
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zzr(IBinder iBinder) {
         super(iBinder, "com.google.android.gms.dynamite.IDynamiteLoaderV2");
     }
 
-    public final IObjectWrapper zze(IObjectWrapper iObjectWrapper, String str, int i, IObjectWrapper iObjectWrapper2) throws RemoteException {
+    public final IObjectWrapper zze(IObjectWrapper iObjectWrapper, String str, int i9, IObjectWrapper iObjectWrapper2) throws RemoteException {
         Parcel zza = zza();
         com.google.android.gms.internal.common.zzc.zze(zza, iObjectWrapper);
         zza.writeString(str);
-        zza.writeInt(i);
+        zza.writeInt(i9);
         com.google.android.gms.internal.common.zzc.zze(zza, iObjectWrapper2);
-        Parcel zzB = zzB(2, zza);
-        IObjectWrapper asInterface = IObjectWrapper.Stub.asInterface(zzB.readStrongBinder());
-        zzB.recycle();
-        return asInterface;
+        return L.e(zzB(2, zza));
     }
 
-    public final IObjectWrapper zzf(IObjectWrapper iObjectWrapper, String str, int i, IObjectWrapper iObjectWrapper2) throws RemoteException {
+    public final IObjectWrapper zzf(IObjectWrapper iObjectWrapper, String str, int i9, IObjectWrapper iObjectWrapper2) throws RemoteException {
         Parcel zza = zza();
         com.google.android.gms.internal.common.zzc.zze(zza, iObjectWrapper);
         zza.writeString(str);
-        zza.writeInt(i);
+        zza.writeInt(i9);
         com.google.android.gms.internal.common.zzc.zze(zza, iObjectWrapper2);
-        Parcel zzB = zzB(3, zza);
-        IObjectWrapper asInterface = IObjectWrapper.Stub.asInterface(zzB.readStrongBinder());
-        zzB.recycle();
-        return asInterface;
+        return L.e(zzB(3, zza));
     }
 }

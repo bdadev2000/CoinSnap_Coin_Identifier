@@ -1,263 +1,106 @@
 package com.google.protobuf;
 
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.Internal;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.Collections;
 import java.util.List;
 
-/* loaded from: classes5.dex */
-public final class FieldMask extends GeneratedMessageLite<FieldMask, Builder> implements FieldMaskOrBuilder {
+/* loaded from: classes3.dex */
+public final class FieldMask extends L2 implements InterfaceC1967o2 {
     private static final FieldMask DEFAULT_INSTANCE;
-    private static volatile Parser<FieldMask> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int PATHS_FIELD_NUMBER = 1;
-    private Internal.ProtobufList<String> paths_ = GeneratedMessageLite.emptyProtobufList();
+    private InterfaceC1891d3 paths_ = L2.emptyProtobufList();
+
+    static {
+        FieldMask fieldMask = new FieldMask();
+        DEFAULT_INSTANCE = fieldMask;
+        L2.registerDefaultInstance(FieldMask.class, fieldMask);
+    }
 
     private FieldMask() {
     }
 
-    @Override // com.google.protobuf.FieldMaskOrBuilder
-    public List<String> getPathsList() {
-        return this.paths_;
-    }
-
-    @Override // com.google.protobuf.FieldMaskOrBuilder
-    public int getPathsCount() {
-        return this.paths_.size();
-    }
-
-    @Override // com.google.protobuf.FieldMaskOrBuilder
-    public String getPaths(int i) {
-        return this.paths_.get(i);
-    }
-
-    @Override // com.google.protobuf.FieldMaskOrBuilder
-    public ByteString getPathsBytes(int i) {
-        return ByteString.copyFromUtf8(this.paths_.get(i));
-    }
-
-    private void ensurePathsIsMutable() {
-        Internal.ProtobufList<String> protobufList = this.paths_;
-        if (protobufList.isModifiable()) {
-            return;
-        }
-        this.paths_ = GeneratedMessageLite.mutableCopy(protobufList);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setPaths(int i, String str) {
-        str.getClass();
+    public void addAllPaths(Iterable<String> iterable) {
         ensurePathsIsMutable();
-        this.paths_.set(i, str);
+        AbstractC1880c.addAll((Iterable) iterable, (List) this.paths_);
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public void addPaths(String str) {
         str.getClass();
         ensurePathsIsMutable();
         this.paths_.add(str);
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void addAllPaths(Iterable<String> iterable) {
+    public void addPathsBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
         ensurePathsIsMutable();
-        AbstractMessageLite.addAll((Iterable) iterable, (List) this.paths_);
+        this.paths_.add(h6.toStringUtf8());
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public void clearPaths() {
-        this.paths_ = GeneratedMessageLite.emptyProtobufList();
+        this.paths_ = L2.emptyProtobufList();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void addPathsBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        ensurePathsIsMutable();
-        this.paths_.add(byteString.toStringUtf8());
+    private void ensurePathsIsMutable() {
+        InterfaceC1891d3 interfaceC1891d3 = this.paths_;
+        if (!interfaceC1891d3.isModifiable()) {
+            this.paths_ = L2.mutableCopy(interfaceC1891d3);
+        }
     }
 
-    public static FieldMask parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (FieldMask) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    public static FieldMask getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    public static FieldMask parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (FieldMask) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static FieldMask parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (FieldMask) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static FieldMask parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (FieldMask) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static FieldMask parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (FieldMask) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static FieldMask parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (FieldMask) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static FieldMask parseFrom(InputStream inputStream) throws IOException {
-        return (FieldMask) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static FieldMask parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (FieldMask) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static C1960n2 newBuilder() {
+        return (C1960n2) DEFAULT_INSTANCE.createBuilder();
     }
 
     public static FieldMask parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (FieldMask) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+        return (FieldMask) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
     }
 
-    public static FieldMask parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (FieldMask) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static FieldMask parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (FieldMask) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
     }
 
-    public static FieldMask parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (FieldMask) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
-    public static FieldMask parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (FieldMask) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
+    public void setPaths(int i9, String str) {
+        str.getClass();
+        ensurePathsIsMutable();
+        this.paths_.set(i9, str);
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
-    }
-
-    public static Builder newBuilder(FieldMask fieldMask) {
-        return DEFAULT_INSTANCE.createBuilder(fieldMask);
-    }
-
-    /* loaded from: classes5.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<FieldMask, Builder> implements FieldMaskOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(FieldMask.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.protobuf.FieldMaskOrBuilder
-        public List<String> getPathsList() {
-            return Collections.unmodifiableList(((FieldMask) this.instance).getPathsList());
-        }
-
-        @Override // com.google.protobuf.FieldMaskOrBuilder
-        public int getPathsCount() {
-            return ((FieldMask) this.instance).getPathsCount();
-        }
-
-        @Override // com.google.protobuf.FieldMaskOrBuilder
-        public String getPaths(int i) {
-            return ((FieldMask) this.instance).getPaths(i);
-        }
-
-        @Override // com.google.protobuf.FieldMaskOrBuilder
-        public ByteString getPathsBytes(int i) {
-            return ((FieldMask) this.instance).getPathsBytes(i);
-        }
-
-        public Builder setPaths(int i, String str) {
-            copyOnWrite();
-            ((FieldMask) this.instance).setPaths(i, str);
-            return this;
-        }
-
-        public Builder addPaths(String str) {
-            copyOnWrite();
-            ((FieldMask) this.instance).addPaths(str);
-            return this;
-        }
-
-        public Builder addAllPaths(Iterable<String> iterable) {
-            copyOnWrite();
-            ((FieldMask) this.instance).addAllPaths(iterable);
-            return this;
-        }
-
-        public Builder clearPaths() {
-            copyOnWrite();
-            ((FieldMask) this.instance).clearPaths();
-            return this;
-        }
-
-        public Builder addPathsBytes(ByteString byteString) {
-            copyOnWrite();
-            ((FieldMask) this.instance).addPathsBytes(byteString);
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.protobuf.FieldMask$1, reason: invalid class name */
-    /* loaded from: classes5.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (AbstractC1953m2.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[k22.ordinal()]) {
             case 1:
                 return new FieldMask();
             case 2:
-                return new Builder(anonymousClass1);
+                return new C1960n2(null);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0001\u0000\u0001Ț", new Object[]{"paths_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0001\u0000\u0001Ț", new Object[]{"paths_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<FieldMask> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (FieldMask.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -267,17 +110,67 @@ public final class FieldMask extends GeneratedMessageLite<FieldMask, Builder> im
         }
     }
 
-    static {
-        FieldMask fieldMask = new FieldMask();
-        DEFAULT_INSTANCE = fieldMask;
-        GeneratedMessageLite.registerDefaultInstance(FieldMask.class, fieldMask);
+    @Override // com.google.protobuf.InterfaceC1967o2
+    public String getPaths(int i9) {
+        return (String) this.paths_.get(i9);
     }
 
-    public static FieldMask getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    @Override // com.google.protobuf.InterfaceC1967o2
+    public H getPathsBytes(int i9) {
+        return H.copyFromUtf8((String) this.paths_.get(i9));
     }
 
-    public static Parser<FieldMask> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    @Override // com.google.protobuf.InterfaceC1967o2
+    public int getPathsCount() {
+        return this.paths_.size();
+    }
+
+    @Override // com.google.protobuf.InterfaceC1967o2
+    public List<String> getPathsList() {
+        return this.paths_;
+    }
+
+    public static C1960n2 newBuilder(FieldMask fieldMask) {
+        return (C1960n2) DEFAULT_INSTANCE.createBuilder(fieldMask);
+    }
+
+    public static FieldMask parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (FieldMask) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static FieldMask parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (FieldMask) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static FieldMask parseFrom(H h6) throws C1912g3 {
+        return (FieldMask) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static FieldMask parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (FieldMask) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static FieldMask parseFrom(byte[] bArr) throws C1912g3 {
+        return (FieldMask) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static FieldMask parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (FieldMask) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static FieldMask parseFrom(InputStream inputStream) throws IOException {
+        return (FieldMask) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static FieldMask parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (FieldMask) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static FieldMask parseFrom(S s5) throws IOException {
+        return (FieldMask) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static FieldMask parseFrom(S s5, W1 w1) throws IOException {
+        return (FieldMask) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

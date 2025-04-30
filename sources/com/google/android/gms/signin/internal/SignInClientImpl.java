@@ -8,9 +8,13 @@ import android.os.IInterface;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.util.Log;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtilLight;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.internal.BaseGmsClient;
 import com.google.android.gms.common.internal.ClientSettings;
@@ -19,16 +23,18 @@ import com.google.android.gms.common.internal.IAccountAccessor;
 import com.google.android.gms.common.internal.Preconditions;
 import com.google.android.gms.common.internal.zat;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class SignInClientImpl extends GmsClient<zaf> implements com.google.android.gms.signin.zae {
     public static final /* synthetic */ int zaa = 0;
     private final boolean zab;
     private final ClientSettings zac;
     private final Bundle zad;
+
+    @Nullable
     private final Integer zae;
 
-    public SignInClientImpl(Context context, Looper looper, boolean z, ClientSettings clientSettings, Bundle bundle, GoogleApiClient.ConnectionCallbacks connectionCallbacks, GoogleApiClient.OnConnectionFailedListener onConnectionFailedListener) {
+    public SignInClientImpl(@NonNull Context context, @NonNull Looper looper, boolean z8, @NonNull ClientSettings clientSettings, @NonNull Bundle bundle, @NonNull GoogleApiClient.ConnectionCallbacks connectionCallbacks, @NonNull GoogleApiClient.OnConnectionFailedListener onConnectionFailedListener) {
         super(context, looper, 44, clientSettings, connectionCallbacks, onConnectionFailedListener);
         this.zab = true;
         this.zac = clientSettings;
@@ -36,7 +42,9 @@ public class SignInClientImpl extends GmsClient<zaf> implements com.google.andro
         this.zae = clientSettings.zab();
     }
 
-    public static Bundle createBundleFromClientSettings(ClientSettings clientSettings) {
+    @NonNull
+    @KeepForSdk
+    public static Bundle createBundleFromClientSettings(@NonNull ClientSettings clientSettings) {
         clientSettings.zaa();
         Integer zab = clientSettings.zab();
         Bundle bundle = new Bundle();
@@ -55,18 +63,22 @@ public class SignInClientImpl extends GmsClient<zaf> implements com.google.andro
         return bundle;
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.google.android.gms.common.internal.BaseGmsClient
-    public final /* synthetic */ IInterface createServiceInterface(IBinder iBinder) {
+    @NonNull
+    public final /* synthetic */ IInterface createServiceInterface(@NonNull IBinder iBinder) {
         if (iBinder == null) {
             return null;
         }
         IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.signin.internal.ISignInService");
-        return queryLocalInterface instanceof zaf ? (zaf) queryLocalInterface : new zaf(iBinder);
+        if (queryLocalInterface instanceof zaf) {
+            return (zaf) queryLocalInterface;
+        }
+        return new zaf(iBinder);
     }
 
     @Override // com.google.android.gms.common.internal.BaseGmsClient
-    protected final Bundle getGetServiceRequestExtraArgs() {
+    @NonNull
+    public final Bundle getGetServiceRequestExtraArgs() {
         if (!getContext().getPackageName().equals(this.zac.getRealClientPackageName())) {
             this.zad.putString("com.google.android.gms.signin.internal.realClientPackageName", this.zac.getRealClientPackageName());
         }
@@ -78,14 +90,15 @@ public class SignInClientImpl extends GmsClient<zaf> implements com.google.andro
         return GooglePlayServicesUtilLight.GOOGLE_PLAY_SERVICES_VERSION_CODE;
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.google.android.gms.common.internal.BaseGmsClient
+    @NonNull
     public final String getServiceDescriptor() {
         return "com.google.android.gms.signin.internal.ISignInService";
     }
 
     @Override // com.google.android.gms.common.internal.BaseGmsClient
-    protected final String getStartServiceAction() {
+    @NonNull
+    public final String getStartServiceAction() {
         return "com.google.android.gms.signin.service.START";
     }
 
@@ -111,9 +124,9 @@ public class SignInClientImpl extends GmsClient<zaf> implements com.google.andro
 
     /* JADX WARN: Multi-variable type inference failed */
     @Override // com.google.android.gms.signin.zae
-    public final void zac(IAccountAccessor iAccountAccessor, boolean z) {
+    public final void zac(@NonNull IAccountAccessor iAccountAccessor, boolean z8) {
         try {
-            ((zaf) getService()).zaf(iAccountAccessor, ((Integer) Preconditions.checkNotNull(this.zae)).intValue(), z);
+            ((zaf) getService()).zaf(iAccountAccessor, ((Integer) Preconditions.checkNotNull(this.zae)).intValue(), z8);
         } catch (RemoteException unused) {
             Log.w("SignInClientImpl", "Remote service probably died when saveDefaultAccount is called");
         }
@@ -122,16 +135,22 @@ public class SignInClientImpl extends GmsClient<zaf> implements com.google.andro
     /* JADX WARN: Multi-variable type inference failed */
     @Override // com.google.android.gms.signin.zae
     public final void zad(zae zaeVar) {
+        GoogleSignInAccount googleSignInAccount;
         Preconditions.checkNotNull(zaeVar, "Expecting a valid ISignInCallbacks");
         try {
             Account accountOrDefault = this.zac.getAccountOrDefault();
-            ((zaf) getService()).zag(new zai(1, new zat(accountOrDefault, ((Integer) Preconditions.checkNotNull(this.zae)).intValue(), "<<default account>>".equals(accountOrDefault.name) ? Storage.getInstance(getContext()).getSavedDefaultGoogleSignInAccount() : null)), zaeVar);
-        } catch (RemoteException e) {
+            if ("<<default account>>".equals(accountOrDefault.name)) {
+                googleSignInAccount = Storage.getInstance(getContext()).getSavedDefaultGoogleSignInAccount();
+            } else {
+                googleSignInAccount = null;
+            }
+            ((zaf) getService()).zag(new zai(1, new zat(accountOrDefault, ((Integer) Preconditions.checkNotNull(this.zae)).intValue(), googleSignInAccount)), zaeVar);
+        } catch (RemoteException e4) {
             Log.w("SignInClientImpl", "Remote service probably died when signIn is called");
             try {
                 zaeVar.zab(new zak(1, new ConnectionResult(8, null), null));
             } catch (RemoteException unused) {
-                Log.wtf("SignInClientImpl", "ISignInCallbacks#onSignInComplete should be executed from the same process, unexpected RemoteException.", e);
+                Log.wtf("SignInClientImpl", "ISignInCallbacks#onSignInComplete should be executed from the same process, unexpected RemoteException.", e4);
             }
         }
     }

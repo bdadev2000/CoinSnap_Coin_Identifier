@@ -3,27 +3,39 @@ package com.google.android.gms.common.moduleinstall;
 import android.app.PendingIntent;
 import android.os.Parcel;
 import android.os.Parcelable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@SafeParcelable.Class(creator = "ModuleInstallIntentResponseCreator")
+/* loaded from: classes2.dex */
 public class ModuleInstallIntentResponse extends AbstractSafeParcelable {
+
+    @NonNull
     public static final Parcelable.Creator<ModuleInstallIntentResponse> CREATOR = new zab();
+
+    @Nullable
+    @SafeParcelable.Field(getter = "getPendingIntent", id = 1)
     private final PendingIntent zaa;
 
-    public ModuleInstallIntentResponse(PendingIntent pendingIntent) {
+    @SafeParcelable.Constructor
+    @KeepForSdk
+    public ModuleInstallIntentResponse(@Nullable @SafeParcelable.Param(id = 1) PendingIntent pendingIntent) {
         this.zaa = pendingIntent;
     }
 
+    @Nullable
     public PendingIntent getPendingIntent() {
         return this.zaa;
     }
 
     @Override // android.os.Parcelable
-    public void writeToParcel(Parcel parcel, int i) {
+    public void writeToParcel(@NonNull Parcel parcel, int i9) {
         int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
-        SafeParcelWriter.writeParcelable(parcel, 1, getPendingIntent(), i, false);
+        SafeParcelWriter.writeParcelable(parcel, 1, getPendingIntent(), i9, false);
         SafeParcelWriter.finishObjectHeader(parcel, beginObjectHeader);
     }
 }

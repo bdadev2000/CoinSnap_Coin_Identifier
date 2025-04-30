@@ -1,42 +1,47 @@
 package com.google.android.gms.common.util;
 
-import androidx.collection.ScatterMapKt;
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class MurmurHash3 {
     private MurmurHash3() {
     }
 
-    public static int murmurhash3_x86_32(byte[] bArr, int i, int i2, int i3) {
-        int i4;
-        int i5 = i;
+    @KeepForSdk
+    public static int murmurhash3_x86_32(@NonNull byte[] bArr, int i9, int i10, int i11) {
+        int i12;
+        int i13 = i9;
         while (true) {
-            i4 = (i2 & (-4)) + i;
-            if (i5 >= i4) {
+            i12 = (i10 & (-4)) + i9;
+            if (i13 >= i12) {
                 break;
             }
-            int i6 = ((bArr[i5] & 255) | ((bArr[i5 + 1] & 255) << 8) | ((bArr[i5 + 2] & 255) << 16) | (bArr[i5 + 3] << 24)) * ScatterMapKt.MurmurHashC1;
-            int i7 = i3 ^ (((i6 >>> 17) | (i6 << 15)) * 461845907);
-            i3 = (((i7 >>> 19) | (i7 << 13)) * 5) - 430675100;
-            i5 += 4;
+            int i14 = ((bArr[i13] & 255) | ((bArr[i13 + 1] & 255) << 8) | ((bArr[i13 + 2] & 255) << 16) | (bArr[i13 + 3] << 24)) * (-862048943);
+            int i15 = i11 ^ (((i14 >>> 17) | (i14 << 15)) * 461845907);
+            i11 = (((i15 >>> 19) | (i15 << 13)) * 5) - 430675100;
+            i13 += 4;
         }
-        int i8 = i2 & 3;
-        if (i8 != 1) {
-            if (i8 != 2) {
-                r0 = i8 == 3 ? (bArr[i4 + 2] & 255) << 16 : 0;
-                int i9 = i3 ^ i2;
-                int i10 = (i9 ^ (i9 >>> 16)) * (-2048144789);
-                int i11 = (i10 ^ (i10 >>> 13)) * (-1028477387);
-                return i11 ^ (i11 >>> 16);
+        int i16 = i10 & 3;
+        int i17 = 0;
+        if (i16 != 1) {
+            if (i16 != 2) {
+                if (i16 == 3) {
+                    i17 = (bArr[i12 + 2] & 255) << 16;
+                }
+                int i18 = i11 ^ i10;
+                int i19 = (i18 ^ (i18 >>> 16)) * (-2048144789);
+                int i20 = (i19 ^ (i19 >>> 13)) * (-1028477387);
+                return i20 ^ (i20 >>> 16);
             }
-            r0 |= (bArr[i4 + 1] & 255) << 8;
+            i17 |= (bArr[i12 + 1] & 255) << 8;
         }
-        int i12 = ((bArr[i4] & 255) | r0) * ScatterMapKt.MurmurHashC1;
-        i3 ^= ((i12 >>> 17) | (i12 << 15)) * 461845907;
-        int i92 = i3 ^ i2;
-        int i102 = (i92 ^ (i92 >>> 16)) * (-2048144789);
-        int i112 = (i102 ^ (i102 >>> 13)) * (-1028477387);
-        return i112 ^ (i112 >>> 16);
+        int i21 = ((bArr[i12] & 255) | i17) * (-862048943);
+        i11 ^= ((i21 >>> 17) | (i21 << 15)) * 461845907;
+        int i182 = i11 ^ i10;
+        int i192 = (i182 ^ (i182 >>> 16)) * (-2048144789);
+        int i202 = (i192 ^ (i192 >>> 13)) * (-1028477387);
+        return i202 ^ (i202 >>> 16);
     }
 }

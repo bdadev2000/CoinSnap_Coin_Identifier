@@ -5,17 +5,14 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
-public final class zad implements zah {
+/* loaded from: classes2.dex */
+final class zad implements zah {
     final /* synthetic */ FrameLayout zaa;
     final /* synthetic */ LayoutInflater zab;
     final /* synthetic */ ViewGroup zac;
     final /* synthetic */ Bundle zad;
     final /* synthetic */ DeferredLifecycleHelper zae;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zad(DeferredLifecycleHelper deferredLifecycleHelper, FrameLayout frameLayout, LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         this.zae = deferredLifecycleHelper;
         this.zaa = frameLayout;

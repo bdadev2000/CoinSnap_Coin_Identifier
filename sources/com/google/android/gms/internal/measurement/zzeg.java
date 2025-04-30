@@ -1,34 +1,32 @@
 package com.google.android.gms.internal.measurement;
 
+import android.os.Bundle;
 import android.os.RemoteException;
 import com.google.android.gms.common.internal.Preconditions;
-import com.google.android.gms.internal.measurement.zzdy;
+import com.google.android.gms.internal.measurement.zzdq;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-sdk-api@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzeg extends zzdy.zza {
-    private final /* synthetic */ Boolean zzc;
-    private final /* synthetic */ zzdy zzd;
+/* loaded from: classes2.dex */
+public final class zzeg extends zzdq.zza {
+    private final /* synthetic */ zzdc zzc;
+    private final /* synthetic */ zzdq zzd;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public zzeg(zzdy zzdyVar, Boolean bool) {
-        super(zzdyVar);
-        this.zzc = bool;
-        this.zzd = zzdyVar;
+    public zzeg(zzdq zzdqVar, zzdc zzdcVar) {
+        super(zzdqVar);
+        this.zzc = zzdcVar;
+        this.zzd = zzdqVar;
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzdy.zza
-    final void zza() throws RemoteException {
-        zzdj zzdjVar;
-        zzdj zzdjVar2;
-        if (this.zzc != null) {
-            zzdjVar2 = this.zzd.zzj;
-            ((zzdj) Preconditions.checkNotNull(zzdjVar2)).setMeasurementEnabled(this.zzc.booleanValue(), this.zza);
-        } else {
-            zzdjVar = this.zzd.zzj;
-            ((zzdj) Preconditions.checkNotNull(zzdjVar)).clearMeasurementEnabled(this.zza);
-        }
+    @Override // com.google.android.gms.internal.measurement.zzdq.zza
+    public final void zza() throws RemoteException {
+        zzdb zzdbVar;
+        zzdbVar = this.zzd.zzj;
+        ((zzdb) Preconditions.checkNotNull(zzdbVar)).getGmpAppId(this.zzc);
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzdq.zza
+    public final void zzb() {
+        this.zzc.zza((Bundle) null);
     }
 }

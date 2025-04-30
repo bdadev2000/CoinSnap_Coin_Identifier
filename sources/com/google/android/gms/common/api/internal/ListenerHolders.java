@@ -1,6 +1,8 @@
 package com.google.android.gms.common.api.internal;
 
 import android.os.Looper;
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.api.internal.ListenerHolder;
 import com.google.android.gms.common.internal.Preconditions;
 import java.util.Collections;
@@ -9,26 +11,31 @@ import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.concurrent.Executor;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class ListenerHolders {
     private final Set zaa = Collections.newSetFromMap(new WeakHashMap());
 
-    public static <L> ListenerHolder<L> createListenerHolder(L l, Looper looper, String str) {
+    @NonNull
+    @KeepForSdk
+    public static <L> ListenerHolder<L> createListenerHolder(@NonNull L l, @NonNull Looper looper, @NonNull String str) {
         Preconditions.checkNotNull(l, "Listener must not be null");
         Preconditions.checkNotNull(looper, "Looper must not be null");
         Preconditions.checkNotNull(str, "Listener type must not be null");
         return new ListenerHolder<>(looper, l, str);
     }
 
-    public static <L> ListenerHolder.ListenerKey<L> createListenerKey(L l, String str) {
+    @NonNull
+    @KeepForSdk
+    public static <L> ListenerHolder.ListenerKey<L> createListenerKey(@NonNull L l, @NonNull String str) {
         Preconditions.checkNotNull(l, "Listener must not be null");
         Preconditions.checkNotNull(str, "Listener type must not be null");
         Preconditions.checkNotEmpty(str, "Listener type must not be empty");
         return new ListenerHolder.ListenerKey<>(l, str);
     }
 
-    public final ListenerHolder zaa(Object obj, Looper looper, String str) {
+    @NonNull
+    public final ListenerHolder zaa(@NonNull Object obj, @NonNull Looper looper, @NonNull String str) {
         Set set = this.zaa;
         ListenerHolder createListenerHolder = createListenerHolder(obj, looper, "NO_TYPE");
         set.add(createListenerHolder);
@@ -43,7 +50,9 @@ public class ListenerHolders {
         this.zaa.clear();
     }
 
-    public static <L> ListenerHolder<L> createListenerHolder(L l, Executor executor, String str) {
+    @NonNull
+    @KeepForSdk
+    public static <L> ListenerHolder<L> createListenerHolder(@NonNull L l, @NonNull Executor executor, @NonNull String str) {
         Preconditions.checkNotNull(l, "Listener must not be null");
         Preconditions.checkNotNull(executor, "Executor must not be null");
         Preconditions.checkNotNull(str, "Listener type must not be null");

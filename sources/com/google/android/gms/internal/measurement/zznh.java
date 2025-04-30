@@ -1,12 +1,19 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zznh implements zzne {
-    private static final zzhj<Boolean> zza = new zzhr(zzhk.zza("com.google.android.gms.measurement")).zzb().zza().zza("measurement.chimera.parameter.service", false);
+/* loaded from: classes2.dex */
+public final class zznh implements zzni {
+    private static final zzgz<Long> zza;
 
-    @Override // com.google.android.gms.internal.measurement.zzne
-    public final boolean zza() {
-        return zza.zza().booleanValue();
+    static {
+        zzhh zza2 = new zzhh(zzgw.zza("com.google.android.gms.measurement")).zzb().zza();
+        zza2.zza("measurement.client.consent_state_v1", true);
+        zza2.zza("measurement.client.3p_consent_state_v1", true);
+        zza2.zza("measurement.service.consent_state_v1_W36", true);
+        zza = zza2.zza("measurement.service.storage_consent_support_version", 203600L);
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzni
+    public final long zza() {
+        return zza.zza().longValue();
     }
 }

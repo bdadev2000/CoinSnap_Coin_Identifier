@@ -1,37 +1,36 @@
 package com.google.android.gms.internal.measurement;
 
-import com.google.common.base.Supplier;
-import com.google.common.base.Suppliers;
-import org.checkerframework.dataflow.qual.SideEffectFree;
+/* loaded from: classes2.dex */
+public final class zzoe implements zzob {
+    private static final zzgz<Boolean> zza;
+    private static final zzgz<Boolean> zzb;
+    private static final zzgz<Boolean> zzc;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzoe implements Supplier<zzoh> {
-    private static zzoe zza = new zzoe();
-    private final Supplier<zzoh> zzb = Suppliers.ofInstance(new zzog());
-
-    @Override // com.google.common.base.Supplier
-    public final /* synthetic */ zzoh get() {
-        return this.zzb.get();
+    static {
+        zzhh zza2 = new zzhh(zzgw.zza("com.google.android.gms.measurement")).zzb().zza();
+        zza2.zza("measurement.service.audience.fix_skip_audience_with_failed_filters", true);
+        zza = zza2.zza("measurement.audience.refresh_event_count_filters_timestamp", false);
+        zzb = zza2.zza("measurement.audience.use_bundle_end_timestamp_for_non_sequence_property_filters", false);
+        zzc = zza2.zza("measurement.audience.use_bundle_timestamp_for_event_count_filters", false);
     }
 
-    @SideEffectFree
-    public static boolean zza() {
-        return ((zzoh) zza.get()).zza();
+    @Override // com.google.android.gms.internal.measurement.zzob
+    public final boolean zza() {
+        return true;
     }
 
-    @SideEffectFree
-    public static boolean zzb() {
-        return ((zzoh) zza.get()).zzb();
+    @Override // com.google.android.gms.internal.measurement.zzob
+    public final boolean zzb() {
+        return zza.zza().booleanValue();
     }
 
-    @SideEffectFree
-    public static boolean zzc() {
-        return ((zzoh) zza.get()).zzc();
+    @Override // com.google.android.gms.internal.measurement.zzob
+    public final boolean zzc() {
+        return zzb.zza().booleanValue();
     }
 
-    @SideEffectFree
-    public static boolean zzd() {
-        return ((zzoh) zza.get()).zzd();
+    @Override // com.google.android.gms.internal.measurement.zzob
+    public final boolean zzd() {
+        return zzc.zza().booleanValue();
     }
 }

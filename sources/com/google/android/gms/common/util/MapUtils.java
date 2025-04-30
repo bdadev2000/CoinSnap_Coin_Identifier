@@ -1,15 +1,18 @@
 package com.google.android.gms.common.util;
 
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import java.util.HashMap;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class MapUtils {
-    public static void writeStringMapToJson(StringBuilder sb, HashMap<String, String> hashMap) {
+    @KeepForSdk
+    public static void writeStringMapToJson(@NonNull StringBuilder sb, @NonNull HashMap<String, String> hashMap) {
         sb.append("{");
-        boolean z = true;
+        boolean z8 = true;
         for (String str : hashMap.keySet()) {
-            if (!z) {
+            if (!z8) {
                 sb.append(",");
             }
             String str2 = hashMap.get(str);
@@ -23,7 +26,7 @@ public class MapUtils {
                 sb.append(str2);
                 sb.append("\"");
             }
-            z = false;
+            z8 = false;
         }
         sb.append("}");
     }

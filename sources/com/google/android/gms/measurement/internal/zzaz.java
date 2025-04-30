@@ -1,114 +1,54 @@
 package com.google.android.gms.measurement.internal;
 
-import android.content.Context;
-import com.google.android.gms.common.util.Clock;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
-import org.checkerframework.dataflow.qual.Pure;
+import com.google.android.gms.common.internal.Preconditions;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzaz extends zzjd {
-    private long zza;
-    private String zzb;
+/* loaded from: classes2.dex */
+final class zzaz {
+    final String zza;
+    final String zzb;
+    final long zzc;
+    final long zzd;
+    final long zze;
+    final long zzf;
+    final long zzg;
+    final Long zzh;
+    final Long zzi;
+    final Long zzj;
+    final Boolean zzk;
 
-    public final long zzc() {
-        zzac();
-        return this.zza;
+    public zzaz(String str, String str2, long j7, long j9, long j10, long j11, Long l, Long l2, Long l6, Boolean bool) {
+        this(str, str2, 0L, 0L, 0L, j10, 0L, null, null, null, null);
     }
 
-    @Override // com.google.android.gms.measurement.internal.zzja, com.google.android.gms.measurement.internal.zzjc
-    @Pure
-    public final /* bridge */ /* synthetic */ Context zza() {
-        return super.zza();
+    public final zzaz zza(Long l, Long l2, Boolean bool) {
+        return new zzaz(this.zza, this.zzb, this.zzc, this.zzd, this.zze, this.zzf, this.zzg, this.zzh, l, l2, (bool == null || bool.booleanValue()) ? bool : null);
     }
 
-    @Override // com.google.android.gms.measurement.internal.zzja, com.google.android.gms.measurement.internal.zzjc
-    @Pure
-    public final /* bridge */ /* synthetic */ Clock zzb() {
-        return super.zzb();
+    public zzaz(String str, String str2, long j7, long j9, long j10, long j11, long j12, Long l, Long l2, Long l6, Boolean bool) {
+        Preconditions.checkNotEmpty(str);
+        Preconditions.checkNotEmpty(str2);
+        Preconditions.checkArgument(j7 >= 0);
+        Preconditions.checkArgument(j9 >= 0);
+        Preconditions.checkArgument(j10 >= 0);
+        Preconditions.checkArgument(j12 >= 0);
+        this.zza = str;
+        this.zzb = str2;
+        this.zzc = j7;
+        this.zzd = j9;
+        this.zze = j10;
+        this.zzf = j11;
+        this.zzg = j12;
+        this.zzh = l;
+        this.zzi = l2;
+        this.zzj = l6;
+        this.zzk = bool;
     }
 
-    @Override // com.google.android.gms.measurement.internal.zzja, com.google.android.gms.measurement.internal.zzjc
-    @Pure
-    public final /* bridge */ /* synthetic */ zzab zzd() {
-        return super.zzd();
+    public final zzaz zza(long j7, long j9) {
+        return new zzaz(this.zza, this.zzb, this.zzc, this.zzd, this.zze, this.zzf, j7, Long.valueOf(j9), this.zzi, this.zzj, this.zzk);
     }
 
-    @Override // com.google.android.gms.measurement.internal.zzja
-    @Pure
-    public final /* bridge */ /* synthetic */ zzag zze() {
-        return super.zze();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    @Pure
-    public final /* bridge */ /* synthetic */ zzaz zzf() {
-        return super.zzf();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    @Pure
-    public final /* bridge */ /* synthetic */ zzgh zzi() {
-        return super.zzi();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja, com.google.android.gms.measurement.internal.zzjc
-    @Pure
-    public final /* bridge */ /* synthetic */ zzgo zzj() {
-        return super.zzj();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    @Pure
-    public final /* bridge */ /* synthetic */ zzha zzk() {
-        return super.zzk();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja, com.google.android.gms.measurement.internal.zzjc
-    @Pure
-    public final /* bridge */ /* synthetic */ zzhv zzl() {
-        return super.zzl();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    @Pure
-    public final /* bridge */ /* synthetic */ zzos zzq() {
-        return super.zzq();
-    }
-
-    public final String zzg() {
-        zzac();
-        return this.zzb;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzaz(zzhy zzhyVar) {
-        super(zzhyVar);
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    public final /* bridge */ /* synthetic */ void zzr() {
-        super.zzr();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    public final /* bridge */ /* synthetic */ void zzs() {
-        super.zzs();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzja
-    public final /* bridge */ /* synthetic */ void zzt() {
-        super.zzt();
-    }
-
-    @Override // com.google.android.gms.measurement.internal.zzjd
-    protected final boolean zzh() {
-        Calendar calendar = Calendar.getInstance();
-        this.zza = TimeUnit.MINUTES.convert(calendar.get(15) + calendar.get(16), TimeUnit.MILLISECONDS);
-        Locale locale = Locale.getDefault();
-        this.zzb = locale.getLanguage().toLowerCase(Locale.ENGLISH) + "-" + locale.getCountry().toLowerCase(Locale.ENGLISH);
-        return false;
+    public final zzaz zza(long j7) {
+        return new zzaz(this.zza, this.zzb, this.zzc, this.zzd, this.zze, j7, this.zzg, this.zzh, this.zzi, this.zzj, this.zzk);
     }
 }

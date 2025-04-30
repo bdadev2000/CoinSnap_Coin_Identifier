@@ -1,16 +1,8 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzgt extends Exception {
-    public zzgt() {
-    }
+import android.net.Uri;
 
-    public zzgt(String str) {
-        super(str);
-    }
-
-    public zzgt(String str, Throwable th) {
-        super(str, th);
-    }
+/* loaded from: classes2.dex */
+public interface zzgt {
+    String zza(Uri uri, String str, String str2, String str3);
 }

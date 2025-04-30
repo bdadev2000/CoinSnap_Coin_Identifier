@@ -1,38 +1,55 @@
 package com.google.android.gms.common.internal;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
+
+@KeepForSdk
+/* loaded from: classes2.dex */
 public final class RootTelemetryConfigManager {
+
+    @Nullable
     private static RootTelemetryConfigManager zza;
     private static final RootTelemetryConfiguration zzb = new RootTelemetryConfiguration(0, false, false, 0, 0);
+
+    @Nullable
     private RootTelemetryConfiguration zzc;
 
     private RootTelemetryConfigManager() {
     }
 
+    @NonNull
+    @KeepForSdk
     public static synchronized RootTelemetryConfigManager getInstance() {
         RootTelemetryConfigManager rootTelemetryConfigManager;
         synchronized (RootTelemetryConfigManager.class) {
-            if (zza == null) {
-                zza = new RootTelemetryConfigManager();
+            try {
+                if (zza == null) {
+                    zza = new RootTelemetryConfigManager();
+                }
+                rootTelemetryConfigManager = zza;
+            } catch (Throwable th) {
+                throw th;
             }
-            rootTelemetryConfigManager = zza;
         }
         return rootTelemetryConfigManager;
     }
 
+    @Nullable
+    @KeepForSdk
     public RootTelemetryConfiguration getConfig() {
         return this.zzc;
     }
 
-    public final synchronized void zza(RootTelemetryConfiguration rootTelemetryConfiguration) {
+    public final synchronized void zza(@Nullable RootTelemetryConfiguration rootTelemetryConfiguration) {
         if (rootTelemetryConfiguration == null) {
             this.zzc = zzb;
             return;
         }
         RootTelemetryConfiguration rootTelemetryConfiguration2 = this.zzc;
-        if (rootTelemetryConfiguration2 == null || rootTelemetryConfiguration2.getVersion() < rootTelemetryConfiguration.getVersion()) {
-            this.zzc = rootTelemetryConfiguration;
+        if (rootTelemetryConfiguration2 != null && rootTelemetryConfiguration2.getVersion() >= rootTelemetryConfiguration.getVersion()) {
+            return;
         }
+        this.zzc = rootTelemetryConfiguration;
     }
 }

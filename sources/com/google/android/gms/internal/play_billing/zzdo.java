@@ -1,62 +1,35 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final class zzdo implements zzdc {
-    private final zzdf zza;
-    private final String zzb;
-    private final Object[] zzc;
-    private final int zzd;
+/* loaded from: classes2.dex */
+final class zzdo extends zzdq {
+    private zzdo() {
+        throw null;
+    }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzdo(zzdf zzdfVar, String str, Object[] objArr) {
-        this.zza = zzdfVar;
-        this.zzb = str;
-        this.zzc = objArr;
-        char charAt = str.charAt(0);
-        if (charAt < 55296) {
-            this.zzd = charAt;
-            return;
-        }
-        int i = charAt & 8191;
-        int i2 = 1;
-        int i3 = 13;
-        while (true) {
-            int i4 = i2 + 1;
-            char charAt2 = str.charAt(i2);
-            if (charAt2 < 55296) {
-                this.zzd = i | (charAt2 << i3);
-                return;
-            } else {
-                i |= (charAt2 & 8191) << i3;
-                i3 += 13;
-                i2 = i4;
+    @Override // com.google.android.gms.internal.play_billing.zzdq
+    public final void zza(Object obj, long j7) {
+        ((zzcz) zzfp.zzf(obj, j7)).zzb();
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzdq
+    public final void zzb(Object obj, Object obj2, long j7) {
+        zzcz zzczVar = (zzcz) zzfp.zzf(obj, j7);
+        zzcz zzczVar2 = (zzcz) zzfp.zzf(obj2, j7);
+        int size = zzczVar.size();
+        int size2 = zzczVar2.size();
+        if (size > 0 && size2 > 0) {
+            if (!zzczVar.zzc()) {
+                zzczVar = zzczVar.zzd(size2 + size);
             }
+            zzczVar.addAll(zzczVar2);
         }
+        if (size > 0) {
+            zzczVar2 = zzczVar;
+        }
+        zzfp.zzs(obj, j7, zzczVar2);
     }
 
-    @Override // com.google.android.gms.internal.play_billing.zzdc
-    public final zzdf zza() {
-        return this.zza;
-    }
-
-    @Override // com.google.android.gms.internal.play_billing.zzdc
-    public final boolean zzb() {
-        return (this.zzd & 2) == 2;
-    }
-
-    @Override // com.google.android.gms.internal.play_billing.zzdc
-    public final int zzc() {
-        return (this.zzd & 1) != 0 ? 1 : 2;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public final String zzd() {
-        return this.zzb;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public final Object[] zze() {
-        return this.zzc;
+    public /* synthetic */ zzdo(zzdn zzdnVar) {
+        super(null);
     }
 }

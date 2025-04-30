@@ -1,0 +1,924 @@
+package com.google.protobuf;
+
+import com.applovin.exoplayer2.common.base.Ascii;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/* loaded from: classes3.dex */
+public final class P extends S {
+    private final byte[] buffer;
+    private int bufferSize;
+    private int bufferSizeAfterLimit;
+    private int currentLimit;
+    private final InputStream input;
+    private int lastTag;
+    private int pos;
+    private O refillCallback;
+    private int totalBytesRetired;
+
+    private static int available(InputStream inputStream) throws IOException {
+        try {
+            return inputStream.available();
+        } catch (C1912g3 e4) {
+            e4.setThrownFromInputStream();
+            throw e4;
+        }
+    }
+
+    private static int read(InputStream inputStream, byte[] bArr, int i9, int i10) throws IOException {
+        try {
+            return inputStream.read(bArr, i9, i10);
+        } catch (C1912g3 e4) {
+            e4.setThrownFromInputStream();
+            throw e4;
+        }
+    }
+
+    private H readBytesSlowPath(int i9) throws IOException {
+        byte[] readRawBytesSlowPathOneChunk = readRawBytesSlowPathOneChunk(i9);
+        if (readRawBytesSlowPathOneChunk != null) {
+            return H.copyFrom(readRawBytesSlowPathOneChunk);
+        }
+        int i10 = this.pos;
+        int i11 = this.bufferSize;
+        int i12 = i11 - i10;
+        this.totalBytesRetired += i11;
+        this.pos = 0;
+        this.bufferSize = 0;
+        List<byte[]> readRawBytesSlowPathRemainingChunks = readRawBytesSlowPathRemainingChunks(i9 - i12);
+        byte[] bArr = new byte[i9];
+        System.arraycopy(this.buffer, i10, bArr, 0, i12);
+        for (byte[] bArr2 : readRawBytesSlowPathRemainingChunks) {
+            System.arraycopy(bArr2, 0, bArr, i12, bArr2.length);
+            i12 += bArr2.length;
+        }
+        return H.wrap(bArr);
+    }
+
+    private byte[] readRawBytesSlowPath(int i9, boolean z8) throws IOException {
+        byte[] readRawBytesSlowPathOneChunk = readRawBytesSlowPathOneChunk(i9);
+        if (readRawBytesSlowPathOneChunk != null) {
+            if (z8) {
+                return (byte[]) readRawBytesSlowPathOneChunk.clone();
+            }
+            return readRawBytesSlowPathOneChunk;
+        }
+        int i10 = this.pos;
+        int i11 = this.bufferSize;
+        int i12 = i11 - i10;
+        this.totalBytesRetired += i11;
+        this.pos = 0;
+        this.bufferSize = 0;
+        List<byte[]> readRawBytesSlowPathRemainingChunks = readRawBytesSlowPathRemainingChunks(i9 - i12);
+        byte[] bArr = new byte[i9];
+        System.arraycopy(this.buffer, i10, bArr, 0, i12);
+        for (byte[] bArr2 : readRawBytesSlowPathRemainingChunks) {
+            System.arraycopy(bArr2, 0, bArr, i12, bArr2.length);
+            i12 += bArr2.length;
+        }
+        return bArr;
+    }
+
+    private byte[] readRawBytesSlowPathOneChunk(int i9) throws IOException {
+        if (i9 == 0) {
+            return C1898e3.EMPTY_BYTE_ARRAY;
+        }
+        if (i9 >= 0) {
+            int i10 = this.totalBytesRetired;
+            int i11 = this.pos;
+            int i12 = i10 + i11 + i9;
+            if (i12 - this.sizeLimit <= 0) {
+                int i13 = this.currentLimit;
+                if (i12 <= i13) {
+                    int i14 = this.bufferSize - i11;
+                    int i15 = i9 - i14;
+                    if (i15 >= 4096 && i15 > available(this.input)) {
+                        return null;
+                    }
+                    byte[] bArr = new byte[i9];
+                    System.arraycopy(this.buffer, this.pos, bArr, 0, i14);
+                    this.totalBytesRetired += this.bufferSize;
+                    this.pos = 0;
+                    this.bufferSize = 0;
+                    while (i14 < i9) {
+                        int read = read(this.input, bArr, i14, i9 - i14);
+                        if (read != -1) {
+                            this.totalBytesRetired += read;
+                            i14 += read;
+                        } else {
+                            throw C1912g3.truncatedMessage();
+                        }
+                    }
+                    return bArr;
+                }
+                skipRawBytes((i13 - i10) - i11);
+                throw C1912g3.truncatedMessage();
+            }
+            throw C1912g3.sizeLimitExceeded();
+        }
+        throw C1912g3.negativeSize();
+    }
+
+    private List<byte[]> readRawBytesSlowPathRemainingChunks(int i9) throws IOException {
+        ArrayList arrayList = new ArrayList();
+        while (i9 > 0) {
+            int min = Math.min(i9, 4096);
+            byte[] bArr = new byte[min];
+            int i10 = 0;
+            while (i10 < min) {
+                int read = this.input.read(bArr, i10, min - i10);
+                if (read != -1) {
+                    this.totalBytesRetired += read;
+                    i10 += read;
+                } else {
+                    throw C1912g3.truncatedMessage();
+                }
+            }
+            i9 -= min;
+            arrayList.add(bArr);
+        }
+        return arrayList;
+    }
+
+    private void recomputeBufferSizeAfterLimit() {
+        int i9 = this.bufferSize + this.bufferSizeAfterLimit;
+        this.bufferSize = i9;
+        int i10 = this.totalBytesRetired + i9;
+        int i11 = this.currentLimit;
+        if (i10 > i11) {
+            int i12 = i10 - i11;
+            this.bufferSizeAfterLimit = i12;
+            this.bufferSize = i9 - i12;
+            return;
+        }
+        this.bufferSizeAfterLimit = 0;
+    }
+
+    private void refillBuffer(int i9) throws IOException {
+        if (!tryRefillBuffer(i9)) {
+            if (i9 > (this.sizeLimit - this.totalBytesRetired) - this.pos) {
+                throw C1912g3.sizeLimitExceeded();
+            }
+            throw C1912g3.truncatedMessage();
+        }
+    }
+
+    private static long skip(InputStream inputStream, long j7) throws IOException {
+        try {
+            return inputStream.skip(j7);
+        } catch (C1912g3 e4) {
+            e4.setThrownFromInputStream();
+            throw e4;
+        }
+    }
+
+    private void skipRawBytesSlowPath(int i9) throws IOException {
+        if (i9 >= 0) {
+            int i10 = this.totalBytesRetired;
+            int i11 = this.pos;
+            int i12 = i10 + i11 + i9;
+            int i13 = this.currentLimit;
+            if (i12 <= i13) {
+                this.totalBytesRetired = i10 + i11;
+                int i14 = this.bufferSize - i11;
+                this.bufferSize = 0;
+                this.pos = 0;
+                while (i14 < i9) {
+                    try {
+                        long j7 = i9 - i14;
+                        long skip = skip(this.input, j7);
+                        if (skip >= 0 && skip <= j7) {
+                            if (skip == 0) {
+                                break;
+                            } else {
+                                i14 += (int) skip;
+                            }
+                        } else {
+                            throw new IllegalStateException(this.input.getClass() + "#skip returned invalid result: " + skip + "\nThe InputStream implementation is buggy.");
+                        }
+                    } finally {
+                        this.totalBytesRetired += i14;
+                        recomputeBufferSizeAfterLimit();
+                    }
+                }
+                if (i14 < i9) {
+                    int i15 = this.bufferSize;
+                    int i16 = i15 - this.pos;
+                    this.pos = i15;
+                    refillBuffer(1);
+                    while (true) {
+                        int i17 = i9 - i16;
+                        int i18 = this.bufferSize;
+                        if (i17 > i18) {
+                            i16 += i18;
+                            this.pos = i18;
+                            refillBuffer(1);
+                        } else {
+                            this.pos = i17;
+                            return;
+                        }
+                    }
+                }
+            } else {
+                skipRawBytes((i13 - i10) - i11);
+                throw C1912g3.truncatedMessage();
+            }
+        } else {
+            throw C1912g3.negativeSize();
+        }
+    }
+
+    private void skipRawVarint() throws IOException {
+        if (this.bufferSize - this.pos >= 10) {
+            skipRawVarintFastPath();
+        } else {
+            skipRawVarintSlowPath();
+        }
+    }
+
+    private void skipRawVarintFastPath() throws IOException {
+        for (int i9 = 0; i9 < 10; i9++) {
+            byte[] bArr = this.buffer;
+            int i10 = this.pos;
+            this.pos = i10 + 1;
+            if (bArr[i10] >= 0) {
+                return;
+            }
+        }
+        throw C1912g3.malformedVarint();
+    }
+
+    private void skipRawVarintSlowPath() throws IOException {
+        for (int i9 = 0; i9 < 10; i9++) {
+            if (readRawByte() >= 0) {
+                return;
+            }
+        }
+        throw C1912g3.malformedVarint();
+    }
+
+    private boolean tryRefillBuffer(int i9) throws IOException {
+        int i10 = this.pos;
+        int i11 = i10 + i9;
+        int i12 = this.bufferSize;
+        if (i11 > i12) {
+            int i13 = this.sizeLimit;
+            int i14 = this.totalBytesRetired;
+            if (i9 > (i13 - i14) - i10 || i14 + i10 + i9 > this.currentLimit) {
+                return false;
+            }
+            if (i10 > 0) {
+                if (i12 > i10) {
+                    byte[] bArr = this.buffer;
+                    System.arraycopy(bArr, i10, bArr, 0, i12 - i10);
+                }
+                this.totalBytesRetired += i10;
+                this.bufferSize -= i10;
+                this.pos = 0;
+            }
+            InputStream inputStream = this.input;
+            byte[] bArr2 = this.buffer;
+            int i15 = this.bufferSize;
+            int read = read(inputStream, bArr2, i15, Math.min(bArr2.length - i15, (this.sizeLimit - this.totalBytesRetired) - i15));
+            if (read != 0 && read >= -1 && read <= this.buffer.length) {
+                if (read <= 0) {
+                    return false;
+                }
+                this.bufferSize += read;
+                recomputeBufferSizeAfterLimit();
+                if (this.bufferSize >= i9) {
+                    return true;
+                }
+                return tryRefillBuffer(i9);
+            }
+            throw new IllegalStateException(this.input.getClass() + "#read(byte[]) returned invalid result: " + read + "\nThe InputStream implementation is buggy.");
+        }
+        throw new IllegalStateException(Q7.n0.f(i9, "refillBuffer() called when ", " bytes were already available in buffer"));
+    }
+
+    @Override // com.google.protobuf.S
+    public void checkLastTagWas(int i9) throws C1912g3 {
+        if (this.lastTag == i9) {
+        } else {
+            throw C1912g3.invalidEndTag();
+        }
+    }
+
+    @Override // com.google.protobuf.S
+    public void enableAliasing(boolean z8) {
+    }
+
+    @Override // com.google.protobuf.S
+    public int getBytesUntilLimit() {
+        int i9 = this.currentLimit;
+        if (i9 == Integer.MAX_VALUE) {
+            return -1;
+        }
+        return i9 - (this.totalBytesRetired + this.pos);
+    }
+
+    @Override // com.google.protobuf.S
+    public int getLastTag() {
+        return this.lastTag;
+    }
+
+    @Override // com.google.protobuf.S
+    public int getTotalBytesRead() {
+        return this.totalBytesRetired + this.pos;
+    }
+
+    @Override // com.google.protobuf.S
+    public boolean isAtEnd() throws IOException {
+        if (this.pos == this.bufferSize && !tryRefillBuffer(1)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override // com.google.protobuf.S
+    public void popLimit(int i9) {
+        this.currentLimit = i9;
+        recomputeBufferSizeAfterLimit();
+    }
+
+    @Override // com.google.protobuf.S
+    public int pushLimit(int i9) throws C1912g3 {
+        if (i9 >= 0) {
+            int i10 = this.totalBytesRetired + this.pos + i9;
+            int i11 = this.currentLimit;
+            if (i10 <= i11) {
+                this.currentLimit = i10;
+                recomputeBufferSizeAfterLimit();
+                return i11;
+            }
+            throw C1912g3.truncatedMessage();
+        }
+        throw C1912g3.negativeSize();
+    }
+
+    @Override // com.google.protobuf.S
+    public boolean readBool() throws IOException {
+        if (readRawVarint64() != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override // com.google.protobuf.S
+    public byte[] readByteArray() throws IOException {
+        int readRawVarint32 = readRawVarint32();
+        int i9 = this.bufferSize;
+        int i10 = this.pos;
+        if (readRawVarint32 <= i9 - i10 && readRawVarint32 > 0) {
+            byte[] copyOfRange = Arrays.copyOfRange(this.buffer, i10, i10 + readRawVarint32);
+            this.pos += readRawVarint32;
+            return copyOfRange;
+        }
+        return readRawBytesSlowPath(readRawVarint32, false);
+    }
+
+    @Override // com.google.protobuf.S
+    public ByteBuffer readByteBuffer() throws IOException {
+        int readRawVarint32 = readRawVarint32();
+        int i9 = this.bufferSize;
+        int i10 = this.pos;
+        if (readRawVarint32 <= i9 - i10 && readRawVarint32 > 0) {
+            ByteBuffer wrap = ByteBuffer.wrap(Arrays.copyOfRange(this.buffer, i10, i10 + readRawVarint32));
+            this.pos += readRawVarint32;
+            return wrap;
+        }
+        if (readRawVarint32 == 0) {
+            return C1898e3.EMPTY_BYTE_BUFFER;
+        }
+        return ByteBuffer.wrap(readRawBytesSlowPath(readRawVarint32, true));
+    }
+
+    @Override // com.google.protobuf.S
+    public H readBytes() throws IOException {
+        int readRawVarint32 = readRawVarint32();
+        int i9 = this.bufferSize;
+        int i10 = this.pos;
+        if (readRawVarint32 <= i9 - i10 && readRawVarint32 > 0) {
+            H copyFrom = H.copyFrom(this.buffer, i10, readRawVarint32);
+            this.pos += readRawVarint32;
+            return copyFrom;
+        }
+        if (readRawVarint32 == 0) {
+            return H.EMPTY;
+        }
+        return readBytesSlowPath(readRawVarint32);
+    }
+
+    @Override // com.google.protobuf.S
+    public double readDouble() throws IOException {
+        return Double.longBitsToDouble(readRawLittleEndian64());
+    }
+
+    @Override // com.google.protobuf.S
+    public int readEnum() throws IOException {
+        return readRawVarint32();
+    }
+
+    @Override // com.google.protobuf.S
+    public int readFixed32() throws IOException {
+        return readRawLittleEndian32();
+    }
+
+    @Override // com.google.protobuf.S
+    public long readFixed64() throws IOException {
+        return readRawLittleEndian64();
+    }
+
+    @Override // com.google.protobuf.S
+    public float readFloat() throws IOException {
+        return Float.intBitsToFloat(readRawLittleEndian32());
+    }
+
+    @Override // com.google.protobuf.S
+    public void readGroup(int i9, M3 m32, W1 w1) throws IOException {
+        checkRecursionLimit();
+        this.recursionDepth++;
+        m32.mergeFrom(this, w1);
+        checkLastTagWas(Y5.makeTag(i9, 4));
+        this.recursionDepth--;
+    }
+
+    @Override // com.google.protobuf.S
+    public int readInt32() throws IOException {
+        return readRawVarint32();
+    }
+
+    @Override // com.google.protobuf.S
+    public long readInt64() throws IOException {
+        return readRawVarint64();
+    }
+
+    @Override // com.google.protobuf.S
+    public void readMessage(M3 m32, W1 w1) throws IOException {
+        int readRawVarint32 = readRawVarint32();
+        checkRecursionLimit();
+        int pushLimit = pushLimit(readRawVarint32);
+        this.recursionDepth++;
+        m32.mergeFrom(this, w1);
+        checkLastTagWas(0);
+        this.recursionDepth--;
+        if (getBytesUntilLimit() == 0) {
+            popLimit(pushLimit);
+            return;
+        }
+        throw C1912g3.truncatedMessage();
+    }
+
+    @Override // com.google.protobuf.S
+    public byte readRawByte() throws IOException {
+        if (this.pos == this.bufferSize) {
+            refillBuffer(1);
+        }
+        byte[] bArr = this.buffer;
+        int i9 = this.pos;
+        this.pos = i9 + 1;
+        return bArr[i9];
+    }
+
+    @Override // com.google.protobuf.S
+    public byte[] readRawBytes(int i9) throws IOException {
+        int i10 = this.pos;
+        if (i9 <= this.bufferSize - i10 && i9 > 0) {
+            int i11 = i9 + i10;
+            this.pos = i11;
+            return Arrays.copyOfRange(this.buffer, i10, i11);
+        }
+        return readRawBytesSlowPath(i9, false);
+    }
+
+    @Override // com.google.protobuf.S
+    public int readRawLittleEndian32() throws IOException {
+        int i9 = this.pos;
+        if (this.bufferSize - i9 < 4) {
+            refillBuffer(4);
+            i9 = this.pos;
+        }
+        byte[] bArr = this.buffer;
+        this.pos = i9 + 4;
+        return ((bArr[i9 + 3] & 255) << 24) | (bArr[i9] & 255) | ((bArr[i9 + 1] & 255) << 8) | ((bArr[i9 + 2] & 255) << 16);
+    }
+
+    @Override // com.google.protobuf.S
+    public long readRawLittleEndian64() throws IOException {
+        int i9 = this.pos;
+        if (this.bufferSize - i9 < 8) {
+            refillBuffer(8);
+            i9 = this.pos;
+        }
+        byte[] bArr = this.buffer;
+        this.pos = i9 + 8;
+        return ((bArr[i9 + 7] & 255) << 56) | (bArr[i9] & 255) | ((bArr[i9 + 1] & 255) << 8) | ((bArr[i9 + 2] & 255) << 16) | ((bArr[i9 + 3] & 255) << 24) | ((bArr[i9 + 4] & 255) << 32) | ((bArr[i9 + 5] & 255) << 40) | ((bArr[i9 + 6] & 255) << 48);
+    }
+
+    @Override // com.google.protobuf.S
+    public int readRawVarint32() throws IOException {
+        int i9;
+        int i10 = this.pos;
+        int i11 = this.bufferSize;
+        if (i11 != i10) {
+            byte[] bArr = this.buffer;
+            int i12 = i10 + 1;
+            byte b = bArr[i10];
+            if (b >= 0) {
+                this.pos = i12;
+                return b;
+            }
+            if (i11 - i12 >= 9) {
+                int i13 = i10 + 2;
+                int i14 = (bArr[i12] << 7) ^ b;
+                if (i14 < 0) {
+                    i9 = i14 ^ (-128);
+                } else {
+                    int i15 = i10 + 3;
+                    int i16 = (bArr[i13] << Ascii.SO) ^ i14;
+                    if (i16 >= 0) {
+                        i9 = i16 ^ 16256;
+                    } else {
+                        int i17 = i10 + 4;
+                        int i18 = i16 ^ (bArr[i15] << Ascii.NAK);
+                        if (i18 < 0) {
+                            i9 = (-2080896) ^ i18;
+                        } else {
+                            i15 = i10 + 5;
+                            byte b8 = bArr[i17];
+                            int i19 = (i18 ^ (b8 << Ascii.FS)) ^ 266354560;
+                            if (b8 < 0) {
+                                i17 = i10 + 6;
+                                if (bArr[i15] < 0) {
+                                    i15 = i10 + 7;
+                                    if (bArr[i17] < 0) {
+                                        i17 = i10 + 8;
+                                        if (bArr[i15] < 0) {
+                                            i15 = i10 + 9;
+                                            if (bArr[i17] < 0) {
+                                                int i20 = i10 + 10;
+                                                if (bArr[i15] >= 0) {
+                                                    i13 = i20;
+                                                    i9 = i19;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                i9 = i19;
+                            }
+                            i9 = i19;
+                        }
+                        i13 = i17;
+                    }
+                    i13 = i15;
+                }
+                this.pos = i13;
+                return i9;
+            }
+        }
+        return (int) readRawVarint64SlowPath();
+    }
+
+    @Override // com.google.protobuf.S
+    public long readRawVarint64() throws IOException {
+        long j7;
+        long j9;
+        long j10;
+        int i9 = this.pos;
+        int i10 = this.bufferSize;
+        if (i10 != i9) {
+            byte[] bArr = this.buffer;
+            int i11 = i9 + 1;
+            byte b = bArr[i9];
+            if (b >= 0) {
+                this.pos = i11;
+                return b;
+            }
+            if (i10 - i11 >= 9) {
+                int i12 = i9 + 2;
+                int i13 = (bArr[i11] << 7) ^ b;
+                if (i13 < 0) {
+                    j7 = i13 ^ (-128);
+                } else {
+                    int i14 = i9 + 3;
+                    int i15 = (bArr[i12] << Ascii.SO) ^ i13;
+                    if (i15 >= 0) {
+                        j7 = i15 ^ 16256;
+                        i12 = i14;
+                    } else {
+                        int i16 = i9 + 4;
+                        int i17 = i15 ^ (bArr[i14] << Ascii.NAK);
+                        if (i17 < 0) {
+                            long j11 = (-2080896) ^ i17;
+                            i12 = i16;
+                            j7 = j11;
+                        } else {
+                            long j12 = i17;
+                            i12 = i9 + 5;
+                            long j13 = j12 ^ (bArr[i16] << 28);
+                            if (j13 >= 0) {
+                                j10 = 266354560;
+                            } else {
+                                int i18 = i9 + 6;
+                                long j14 = j13 ^ (bArr[i12] << 35);
+                                if (j14 < 0) {
+                                    j9 = -34093383808L;
+                                } else {
+                                    i12 = i9 + 7;
+                                    j13 = j14 ^ (bArr[i18] << 42);
+                                    if (j13 >= 0) {
+                                        j10 = 4363953127296L;
+                                    } else {
+                                        i18 = i9 + 8;
+                                        j14 = j13 ^ (bArr[i12] << 49);
+                                        if (j14 < 0) {
+                                            j9 = -558586000294016L;
+                                        } else {
+                                            i12 = i9 + 9;
+                                            long j15 = (j14 ^ (bArr[i18] << 56)) ^ 71499008037633920L;
+                                            if (j15 < 0) {
+                                                int i19 = i9 + 10;
+                                                if (bArr[i12] >= 0) {
+                                                    i12 = i19;
+                                                }
+                                            }
+                                            j7 = j15;
+                                        }
+                                    }
+                                }
+                                j7 = j14 ^ j9;
+                                i12 = i18;
+                            }
+                            j7 = j13 ^ j10;
+                        }
+                    }
+                }
+                this.pos = i12;
+                return j7;
+            }
+        }
+        return readRawVarint64SlowPath();
+    }
+
+    @Override // com.google.protobuf.S
+    public long readRawVarint64SlowPath() throws IOException {
+        long j7 = 0;
+        for (int i9 = 0; i9 < 64; i9 += 7) {
+            j7 |= (r3 & Ascii.DEL) << i9;
+            if ((readRawByte() & 128) == 0) {
+                return j7;
+            }
+        }
+        throw C1912g3.malformedVarint();
+    }
+
+    @Override // com.google.protobuf.S
+    public int readSFixed32() throws IOException {
+        return readRawLittleEndian32();
+    }
+
+    @Override // com.google.protobuf.S
+    public long readSFixed64() throws IOException {
+        return readRawLittleEndian64();
+    }
+
+    @Override // com.google.protobuf.S
+    public int readSInt32() throws IOException {
+        return S.decodeZigZag32(readRawVarint32());
+    }
+
+    @Override // com.google.protobuf.S
+    public long readSInt64() throws IOException {
+        return S.decodeZigZag64(readRawVarint64());
+    }
+
+    @Override // com.google.protobuf.S
+    public String readString() throws IOException {
+        int readRawVarint32 = readRawVarint32();
+        if (readRawVarint32 > 0) {
+            int i9 = this.bufferSize;
+            int i10 = this.pos;
+            if (readRawVarint32 <= i9 - i10) {
+                String str = new String(this.buffer, i10, readRawVarint32, C1898e3.UTF_8);
+                this.pos += readRawVarint32;
+                return str;
+            }
+        }
+        if (readRawVarint32 == 0) {
+            return "";
+        }
+        if (readRawVarint32 <= this.bufferSize) {
+            refillBuffer(readRawVarint32);
+            String str2 = new String(this.buffer, this.pos, readRawVarint32, C1898e3.UTF_8);
+            this.pos += readRawVarint32;
+            return str2;
+        }
+        return new String(readRawBytesSlowPath(readRawVarint32, false), C1898e3.UTF_8);
+    }
+
+    @Override // com.google.protobuf.S
+    public String readStringRequireUtf8() throws IOException {
+        byte[] readRawBytesSlowPath;
+        int readRawVarint32 = readRawVarint32();
+        int i9 = this.pos;
+        int i10 = this.bufferSize;
+        if (readRawVarint32 <= i10 - i9 && readRawVarint32 > 0) {
+            readRawBytesSlowPath = this.buffer;
+            this.pos = i9 + readRawVarint32;
+        } else {
+            if (readRawVarint32 == 0) {
+                return "";
+            }
+            i9 = 0;
+            if (readRawVarint32 <= i10) {
+                refillBuffer(readRawVarint32);
+                readRawBytesSlowPath = this.buffer;
+                this.pos = readRawVarint32;
+            } else {
+                readRawBytesSlowPath = readRawBytesSlowPath(readRawVarint32, false);
+            }
+        }
+        return I5.decodeUtf8(readRawBytesSlowPath, i9, readRawVarint32);
+    }
+
+    @Override // com.google.protobuf.S
+    public int readTag() throws IOException {
+        if (isAtEnd()) {
+            this.lastTag = 0;
+            return 0;
+        }
+        int readRawVarint32 = readRawVarint32();
+        this.lastTag = readRawVarint32;
+        if (Y5.getTagFieldNumber(readRawVarint32) != 0) {
+            return this.lastTag;
+        }
+        throw C1912g3.invalidTag();
+    }
+
+    @Override // com.google.protobuf.S
+    public int readUInt32() throws IOException {
+        return readRawVarint32();
+    }
+
+    @Override // com.google.protobuf.S
+    public long readUInt64() throws IOException {
+        return readRawVarint64();
+    }
+
+    @Override // com.google.protobuf.S
+    @Deprecated
+    public void readUnknownGroup(int i9, M3 m32) throws IOException {
+        readGroup(i9, m32, W1.getEmptyRegistry());
+    }
+
+    @Override // com.google.protobuf.S
+    public void resetSizeCounter() {
+        this.totalBytesRetired = -this.pos;
+    }
+
+    @Override // com.google.protobuf.S
+    public boolean skipField(int i9) throws IOException {
+        int tagWireType = Y5.getTagWireType(i9);
+        if (tagWireType == 0) {
+            skipRawVarint();
+            return true;
+        }
+        if (tagWireType == 1) {
+            skipRawBytes(8);
+            return true;
+        }
+        if (tagWireType == 2) {
+            skipRawBytes(readRawVarint32());
+            return true;
+        }
+        if (tagWireType == 3) {
+            skipMessage();
+            checkLastTagWas(Y5.makeTag(Y5.getTagFieldNumber(i9), 4));
+            return true;
+        }
+        if (tagWireType == 4) {
+            return false;
+        }
+        if (tagWireType == 5) {
+            skipRawBytes(4);
+            return true;
+        }
+        throw C1912g3.invalidWireType();
+    }
+
+    @Override // com.google.protobuf.S
+    public void skipMessage() throws IOException {
+        int readTag;
+        do {
+            readTag = readTag();
+            if (readTag == 0) {
+                return;
+            }
+        } while (skipField(readTag));
+    }
+
+    @Override // com.google.protobuf.S
+    public void skipRawBytes(int i9) throws IOException {
+        int i10 = this.bufferSize;
+        int i11 = this.pos;
+        if (i9 <= i10 - i11 && i9 >= 0) {
+            this.pos = i11 + i9;
+        } else {
+            skipRawBytesSlowPath(i9);
+        }
+    }
+
+    private P(InputStream inputStream, int i9) {
+        super();
+        this.currentLimit = Integer.MAX_VALUE;
+        C1898e3.checkNotNull(inputStream, "input");
+        this.input = inputStream;
+        this.buffer = new byte[i9];
+        this.bufferSize = 0;
+        this.pos = 0;
+        this.totalBytesRetired = 0;
+    }
+
+    @Override // com.google.protobuf.S
+    public void skipMessage(AbstractC1895e0 abstractC1895e0) throws IOException {
+        int readTag;
+        do {
+            readTag = readTag();
+            if (readTag == 0) {
+                return;
+            }
+        } while (skipField(readTag, abstractC1895e0));
+    }
+
+    @Override // com.google.protobuf.S
+    public <T extends N3> T readGroup(int i9, InterfaceC1948l4 interfaceC1948l4, W1 w1) throws IOException {
+        checkRecursionLimit();
+        this.recursionDepth++;
+        T t9 = (T) ((E2) interfaceC1948l4).parsePartialFrom((S) this, w1);
+        checkLastTagWas(Y5.makeTag(i9, 4));
+        this.recursionDepth--;
+        return t9;
+    }
+
+    @Override // com.google.protobuf.S
+    public boolean skipField(int i9, AbstractC1895e0 abstractC1895e0) throws IOException {
+        int tagWireType = Y5.getTagWireType(i9);
+        if (tagWireType == 0) {
+            long readInt64 = readInt64();
+            abstractC1895e0.writeUInt32NoTag(i9);
+            abstractC1895e0.writeUInt64NoTag(readInt64);
+            return true;
+        }
+        if (tagWireType == 1) {
+            long readRawLittleEndian64 = readRawLittleEndian64();
+            abstractC1895e0.writeUInt32NoTag(i9);
+            abstractC1895e0.writeFixed64NoTag(readRawLittleEndian64);
+            return true;
+        }
+        if (tagWireType == 2) {
+            H readBytes = readBytes();
+            abstractC1895e0.writeUInt32NoTag(i9);
+            abstractC1895e0.writeBytesNoTag(readBytes);
+            return true;
+        }
+        if (tagWireType == 3) {
+            abstractC1895e0.writeUInt32NoTag(i9);
+            skipMessage(abstractC1895e0);
+            int makeTag = Y5.makeTag(Y5.getTagFieldNumber(i9), 4);
+            checkLastTagWas(makeTag);
+            abstractC1895e0.writeUInt32NoTag(makeTag);
+            return true;
+        }
+        if (tagWireType == 4) {
+            return false;
+        }
+        if (tagWireType == 5) {
+            int readRawLittleEndian32 = readRawLittleEndian32();
+            abstractC1895e0.writeUInt32NoTag(i9);
+            abstractC1895e0.writeFixed32NoTag(readRawLittleEndian32);
+            return true;
+        }
+        throw C1912g3.invalidWireType();
+    }
+
+    @Override // com.google.protobuf.S
+    public <T extends N3> T readMessage(InterfaceC1948l4 interfaceC1948l4, W1 w1) throws IOException {
+        int readRawVarint32 = readRawVarint32();
+        checkRecursionLimit();
+        int pushLimit = pushLimit(readRawVarint32);
+        this.recursionDepth++;
+        T t9 = (T) ((E2) interfaceC1948l4).parsePartialFrom((S) this, w1);
+        checkLastTagWas(0);
+        this.recursionDepth--;
+        if (getBytesUntilLimit() == 0) {
+            popLimit(pushLimit);
+            return t9;
+        }
+        throw C1912g3.truncatedMessage();
+    }
+}

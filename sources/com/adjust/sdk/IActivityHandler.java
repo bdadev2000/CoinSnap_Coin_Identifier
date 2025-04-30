@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import org.json.JSONObject;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public interface IActivityHandler {
     void addSessionCallbackParameter(String str, String str2);
 
@@ -48,7 +48,7 @@ public interface IActivityHandler {
 
     void onResume();
 
-    void readOpenUrl(Uri uri, long j);
+    void readOpenUrl(Uri uri, long j7);
 
     void removeSessionCallbackParameter(String str);
 
@@ -66,13 +66,13 @@ public interface IActivityHandler {
 
     void sendReftagReferrer();
 
-    void setAskingAttribution(boolean z);
+    void setAskingAttribution(boolean z8);
 
-    void setEnabled(boolean z);
+    void setEnabled(boolean z8);
 
-    void setOfflineMode(boolean z);
+    void setOfflineMode(boolean z8);
 
-    void setPushToken(String str, boolean z);
+    void setPushToken(String str, boolean z8);
 
     void teardown();
 
@@ -82,7 +82,7 @@ public interface IActivityHandler {
 
     void trackEvent(AdjustEvent adjustEvent);
 
-    void trackMeasurementConsent(boolean z);
+    void trackMeasurementConsent(boolean z8);
 
     void trackPlayStoreSubscription(AdjustPlayStoreSubscription adjustPlayStoreSubscription);
 

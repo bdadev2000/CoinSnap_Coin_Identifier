@@ -1,22 +1,14 @@
 package com.google.android.gms.internal.measurement;
 
-import java.util.Comparator;
+/* loaded from: classes2.dex */
+final class zzim implements zzid {
+    private zzim() {
+    }
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzim implements Comparator<zzik> {
-    @Override // java.util.Comparator
-    public final /* synthetic */ int compare(zzik zzikVar, zzik zzikVar2) {
-        zzik zzikVar3 = zzikVar;
-        zzik zzikVar4 = zzikVar2;
-        zziq zziqVar = (zziq) zzikVar3.iterator();
-        zziq zziqVar2 = (zziq) zzikVar4.iterator();
-        while (zziqVar.hasNext() && zziqVar2.hasNext()) {
-            int compare = Integer.compare(zzik.zza(zziqVar.zza()), zzik.zza(zziqVar2.zza()));
-            if (compare != 0) {
-                return compare;
-            }
-        }
-        return Integer.compare(zzikVar3.zzb(), zzikVar4.zzb());
+    @Override // com.google.android.gms.internal.measurement.zzid
+    public final byte[] zza(byte[] bArr, int i9, int i10) {
+        byte[] bArr2 = new byte[i10];
+        System.arraycopy(bArr, i9, bArr2, 0, i10);
+        return bArr2;
     }
 }

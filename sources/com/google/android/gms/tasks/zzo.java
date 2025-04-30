@@ -1,14 +1,13 @@
 package com.google.android.gms.tasks;
 
 import java.util.concurrent.CancellationException;
+import java.util.concurrent.Executor;
 
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzo implements Runnable {
     final /* synthetic */ Task zza;
     final /* synthetic */ zzp zzb;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zzo(zzp zzpVar, Task task) {
         this.zzb = zzpVar;
         this.zza = task;
@@ -24,19 +23,21 @@ final class zzo implements Runnable {
                 this.zzb.onFailure(new NullPointerException("Continuation returned null"));
                 return;
             }
-            then.addOnSuccessListener(TaskExecutors.zza, this.zzb);
-            then.addOnFailureListener(TaskExecutors.zza, this.zzb);
-            then.addOnCanceledListener(TaskExecutors.zza, this.zzb);
-        } catch (RuntimeExecutionException e) {
-            if (e.getCause() instanceof Exception) {
-                this.zzb.onFailure((Exception) e.getCause());
+            zzp zzpVar = this.zzb;
+            Executor executor = TaskExecutors.zza;
+            then.addOnSuccessListener(executor, zzpVar);
+            then.addOnFailureListener(executor, this.zzb);
+            then.addOnCanceledListener(executor, this.zzb);
+        } catch (RuntimeExecutionException e4) {
+            if (e4.getCause() instanceof Exception) {
+                this.zzb.onFailure((Exception) e4.getCause());
             } else {
-                this.zzb.onFailure(e);
+                this.zzb.onFailure(e4);
             }
         } catch (CancellationException unused) {
             this.zzb.onCanceled();
-        } catch (Exception e2) {
-            this.zzb.onFailure(e2);
+        } catch (Exception e9) {
+            this.zzb.onFailure(e9);
         }
     }
 }

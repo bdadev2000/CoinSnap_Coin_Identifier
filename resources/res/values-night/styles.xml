@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Base.Theme.SplashScreen.DayNight" parent="@style/Base.Theme.SplashScreen">
-    </style>
     <style name="Theme.AppCompat.DayNight" parent="@style/Theme.AppCompat">
     </style>
     <style name="Theme.AppCompat.DayNight.DarkActionBar" parent="@style/Theme.AppCompat">
@@ -33,6 +31,8 @@
     <style name="Theme.Material3.DayNight.SideSheetDialog" parent="@style/Theme.Material3.Dark.SideSheetDialog">
     </style>
     <style name="Theme.Material3.DynamicColors.DayNight" parent="@style/Theme.Material3.DynamicColors.Dark">
+    </style>
+    <style name="Theme.Material3.DynamicColors.DayNight.NoActionBar" parent="@style/Theme.Material3.DynamicColors.Dark.NoActionBar">
     </style>
     <style name="Theme.MaterialComponents.DayNight" parent="@style/Theme.MaterialComponents">
     </style>

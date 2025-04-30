@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class PackageFactory {
     private static final String ADJUST_PREFIX = "adjust_";
 
@@ -26,38 +26,44 @@ public class PackageFactory {
             return r0
         L4:
             java.lang.String r1 = r5.toString()
-            if (r1 == 0) goto L8b
+            if (r1 == 0) goto L8e
             int r2 = r1.length()
             if (r2 != 0) goto L12
-            goto L8b
+            goto L8e
         L12:
             java.lang.String r2 = "UTF-8"
-            java.lang.String r1 = java.net.URLDecoder.decode(r1, r2)     // Catch: java.lang.Exception -> L19 java.lang.IllegalArgumentException -> L2c java.io.UnsupportedEncodingException -> L3f
-            goto L51
+            java.lang.String r1 = java.net.URLDecoder.decode(r1, r2)     // Catch: java.lang.Exception -> L19 java.lang.IllegalArgumentException -> L1b java.io.UnsupportedEncodingException -> L1d
+            goto L54
         L19:
             r2 = move-exception
+            goto L1f
+        L1b:
+            r2 = move-exception
+            goto L31
+        L1d:
+            r2 = move-exception
+            goto L43
+        L1f:
             com.adjust.sdk.ILogger r3 = com.adjust.sdk.AdjustFactory.getLogger()
             java.lang.String r2 = r2.getMessage()
             java.lang.Object[] r2 = new java.lang.Object[]{r2}
             java.lang.String r4 = "Deeplink url decoding failed. Message: (%s)"
             r3.error(r4, r2)
-            goto L51
-        L2c:
-            r2 = move-exception
+            goto L54
+        L31:
             com.adjust.sdk.ILogger r3 = com.adjust.sdk.AdjustFactory.getLogger()
             java.lang.String r2 = r2.getMessage()
             java.lang.Object[] r2 = new java.lang.Object[]{r2}
             java.lang.String r4 = "Deeplink url decoding failed due to IllegalArgumentException. Message: (%s)"
             r3.error(r4, r2)
-            goto L51
-        L3f:
-            r2 = move-exception
+            goto L54
+        L43:
             com.adjust.sdk.ILogger r3 = com.adjust.sdk.AdjustFactory.getLogger()
             java.lang.String r2 = r2.getMessage()
             java.lang.Object[] r2 = new java.lang.Object[]{r2}
             java.lang.String r4 = "Deeplink url decoding failed due to UnsupportedEncodingException. Message: (%s)"
             r3.error(r4, r2)
-        L51:
+        L54:
             com.adjust.sdk.ILogger r2 = com.adjust.sdk.AdjustFactory.getLogger()
             java.lang.Object[] r3 = new java.lang.Object[]{r1}
             java.lang.String r4 = "Url to parse (%s)"
@@ -71,16 +77,16 @@ public class PackageFactory {
             r2.parseUrl(r1)
             java.util.List r1 = r2.getParameterList()
             com.adjust.sdk.PackageBuilder r8 = queryStringClickPackageBuilder(r1, r8, r9, r10, r11)
-            if (r8 != 0) goto L7c
+            if (r8 != 0) goto L7f
             return r0
-        L7c:
+        L7f:
             java.lang.String r5 = r5.toString()
             r8.deeplink = r5
             r8.clickTimeInMilliseconds = r6
             java.lang.String r5 = "deeplink"
             com.adjust.sdk.ActivityPackage r5 = r8.buildClickPackage(r5)
             return r5
-        L8b:
+        L8e:
             return r0
         */
         throw new UnsupportedOperationException("Method not decompiled: com.adjust.sdk.PackageFactory.buildDeeplinkSdkClickPackage(android.net.Uri, long, com.adjust.sdk.ActivityState, com.adjust.sdk.AdjustConfig, com.adjust.sdk.a, com.adjust.sdk.SessionParameters):com.adjust.sdk.ActivityPackage");
@@ -109,19 +115,19 @@ public class PackageFactory {
         return packageBuilder.buildClickPackage(Constants.PREINSTALL);
     }
 
-    public static ActivityPackage buildReftagSdkClickPackage(String str, long j, ActivityState activityState, AdjustConfig adjustConfig, a aVar, SessionParameters sessionParameters) {
+    public static ActivityPackage buildReftagSdkClickPackage(String str, long j7, ActivityState activityState, AdjustConfig adjustConfig, a aVar, SessionParameters sessionParameters) {
         String str2 = Constants.MALFORMED;
         if (str == null || str.length() == 0) {
             return null;
         }
         try {
             str2 = URLDecoder.decode(str, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            AdjustFactory.getLogger().error("Referrer decoding failed due to UnsupportedEncodingException. Message: (%s)", e.getMessage());
-        } catch (IllegalArgumentException e2) {
-            AdjustFactory.getLogger().error("Referrer decoding failed due to IllegalArgumentException. Message: (%s)", e2.getMessage());
-        } catch (Exception e3) {
-            AdjustFactory.getLogger().error("Referrer decoding failed. Message: (%s)", e3.getMessage());
+        } catch (UnsupportedEncodingException e4) {
+            AdjustFactory.getLogger().error("Referrer decoding failed due to UnsupportedEncodingException. Message: (%s)", e4.getMessage());
+        } catch (IllegalArgumentException e9) {
+            AdjustFactory.getLogger().error("Referrer decoding failed due to IllegalArgumentException. Message: (%s)", e9.getMessage());
+        } catch (Exception e10) {
+            AdjustFactory.getLogger().error("Referrer decoding failed. Message: (%s)", e10.getMessage());
         }
         AdjustFactory.getLogger().verbose("Referrer to parse (%s)", str2);
         UrlQuerySanitizer urlQuerySanitizer = new UrlQuerySanitizer();
@@ -133,7 +139,7 @@ public class PackageFactory {
             return null;
         }
         queryStringClickPackageBuilder.referrer = str2;
-        queryStringClickPackageBuilder.clickTimeInMilliseconds = j;
+        queryStringClickPackageBuilder.clickTimeInMilliseconds = j7;
         queryStringClickPackageBuilder.rawReferrer = str;
         return queryStringClickPackageBuilder.buildClickPackage(Constants.REFTAG);
     }

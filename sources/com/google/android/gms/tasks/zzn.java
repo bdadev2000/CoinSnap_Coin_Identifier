@@ -1,19 +1,16 @@
 package com.google.android.gms.tasks;
 
+import androidx.annotation.NonNull;
 import java.util.concurrent.Executor;
-import javax.annotation.Nullable;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzn implements zzq {
     private final Executor zza;
     private final Object zzb = new Object();
-
-    @Nullable
     private OnSuccessListener zzc;
 
-    public zzn(Executor executor, OnSuccessListener onSuccessListener) {
+    public zzn(@NonNull Executor executor, @NonNull OnSuccessListener onSuccessListener) {
         this.zza = executor;
         this.zzc = onSuccessListener;
     }
@@ -26,13 +23,17 @@ public final class zzn implements zzq {
     }
 
     @Override // com.google.android.gms.tasks.zzq
-    public final void zzd(Task task) {
+    public final void zzd(@NonNull Task task) {
         if (task.isSuccessful()) {
             synchronized (this.zzb) {
-                if (this.zzc == null) {
-                    return;
+                try {
+                    if (this.zzc == null) {
+                        return;
+                    }
+                    this.zza.execute(new zzm(this, task));
+                } catch (Throwable th) {
+                    throw th;
                 }
-                this.zza.execute(new zzm(this, task));
             }
         }
     }

@@ -3,13 +3,10 @@ package com.google.android.gms.dynamic;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
-public final class zaa implements OnDelegateCreatedListener {
+/* loaded from: classes2.dex */
+final class zaa implements OnDelegateCreatedListener {
     final /* synthetic */ DeferredLifecycleHelper zaa;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zaa(DeferredLifecycleHelper deferredLifecycleHelper) {
         this.zaa = deferredLifecycleHelper;
     }

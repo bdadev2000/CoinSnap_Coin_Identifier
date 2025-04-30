@@ -1,19 +1,17 @@
 package com.google.android.gms.internal.measurement;
 
-import android.database.ContentObserver;
-import android.os.Handler;
-
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzhe extends ContentObserver {
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzhe(zzhc zzhcVar, Handler handler) {
-        super(null);
+/* loaded from: classes2.dex */
+public final class zzhe extends zzgz<String> {
+    public zzhe(zzhh zzhhVar, String str, String str2, boolean z8) {
+        super(zzhhVar, str, str2);
     }
 
-    @Override // android.database.ContentObserver
-    public final void onChange(boolean z) {
-        zzhj.zzc();
+    @Override // com.google.android.gms.internal.measurement.zzgz
+    public final /* synthetic */ String zza(Object obj) {
+        if (obj instanceof String) {
+            return (String) obj;
+        }
+        return null;
     }
 }

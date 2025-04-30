@@ -5,26 +5,20 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class TouchObserverFrameLayout extends FrameLayout {
-    private View.OnTouchListener onTouchListener;
+    public View.OnTouchListener b;
 
-    public TouchObserverFrameLayout(Context context) {
-        super(context);
-    }
-
-    public TouchObserverFrameLayout(Context context, AttributeSet attributeSet) {
+    public TouchObserverFrameLayout(@NonNull Context context, @Nullable AttributeSet attributeSet) {
         super(context, attributeSet);
     }
 
-    public TouchObserverFrameLayout(Context context, AttributeSet attributeSet, int i) {
-        super(context, attributeSet, i);
-    }
-
     @Override // android.view.ViewGroup
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        View.OnTouchListener onTouchListener = this.onTouchListener;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        View.OnTouchListener onTouchListener = this.b;
         if (onTouchListener != null) {
             onTouchListener.onTouch(this, motionEvent);
         }
@@ -32,7 +26,7 @@ public class TouchObserverFrameLayout extends FrameLayout {
     }
 
     @Override // android.view.View
-    public void setOnTouchListener(View.OnTouchListener onTouchListener) {
-        this.onTouchListener = onTouchListener;
+    public void setOnTouchListener(@Nullable View.OnTouchListener onTouchListener) {
+        this.b = onTouchListener;
     }
 }

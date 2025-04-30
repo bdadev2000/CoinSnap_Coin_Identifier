@@ -1,44 +1,65 @@
 package com.google.android.gms.internal.play_billing;
 
-import java.util.AbstractMap;
+import Q7.n0;
+import com.mbridge.msdk.foundation.entity.o;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final class zzab extends zzu {
-    final /* synthetic */ zzac zza;
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzab(zzac zzacVar) {
-        this.zza = zzacVar;
+/* loaded from: classes2.dex */
+public final class zzab {
+    public static String zza(String str, Object... objArr) {
+        int length;
+        int length2;
+        int indexOf;
+        String j7;
+        int i9 = 0;
+        int i10 = 0;
+        while (true) {
+            length = objArr.length;
+            if (i10 >= length) {
+                break;
+            }
+            Object obj = objArr[i10];
+            if (obj == null) {
+                j7 = "null";
+            } else {
+                try {
+                    j7 = obj.toString();
+                } catch (Exception e4) {
+                    String k6 = o.k(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(k6), (Throwable) e4);
+                    j7 = n0.j("<", k6, " threw ", e4.getClass().getName(), ">");
+                }
+            }
+            objArr[i10] = j7;
+            i10++;
+        }
+        StringBuilder sb = new StringBuilder(str.length() + (length * 16));
+        int i11 = 0;
+        while (true) {
+            length2 = objArr.length;
+            if (i9 >= length2 || (indexOf = str.indexOf("%s", i11)) == -1) {
+                break;
+            }
+            sb.append((CharSequence) str, i11, indexOf);
+            sb.append(objArr[i9]);
+            i11 = indexOf + 2;
+            i9++;
+        }
+        sb.append((CharSequence) str, i11, str.length());
+        if (i9 < length2) {
+            sb.append(" [");
+            sb.append(objArr[i9]);
+            for (int i12 = i9 + 1; i12 < objArr.length; i12++) {
+                sb.append(", ");
+                sb.append(objArr[i12]);
+            }
+            sb.append(']');
+        }
+        return sb.toString();
     }
 
-    @Override // java.util.List
-    public final /* bridge */ /* synthetic */ Object get(int i) {
-        int i2;
-        Object[] objArr;
-        Object[] objArr2;
-        i2 = this.zza.zzc;
-        zzm.zza(i, i2, "index");
-        zzac zzacVar = this.zza;
-        objArr = zzacVar.zzb;
-        int i3 = i + i;
-        Object obj = objArr[i3];
-        obj.getClass();
-        objArr2 = zzacVar.zzb;
-        Object obj2 = objArr2[i3 + 1];
-        obj2.getClass();
-        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
-    }
-
-    @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
-    public final int size() {
-        int i;
-        i = this.zza.zzc;
-        return i;
-    }
-
-    @Override // com.google.android.gms.internal.play_billing.zzr
-    public final boolean zzf() {
-        return true;
+    public static String zzb(String str) {
+        return str == null ? "" : str;
     }
 }

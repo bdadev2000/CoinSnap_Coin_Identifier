@@ -1,26 +1,25 @@
 package com.google.android.gms.measurement.internal;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzkh implements Runnable {
-    private final /* synthetic */ String zza;
-    private final /* synthetic */ String zzb;
-    private final /* synthetic */ Object zzc;
-    private final /* synthetic */ long zzd;
-    private final /* synthetic */ zzjq zze;
+import android.net.Uri;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzkh(zzjq zzjqVar, String str, String str2, Object obj, long j) {
-        this.zza = str;
-        this.zzb = str2;
-        this.zzc = obj;
-        this.zzd = j;
-        this.zze = zzjqVar;
+/* loaded from: classes2.dex */
+final class zzkh implements Runnable {
+    private final /* synthetic */ boolean zza;
+    private final /* synthetic */ Uri zzb;
+    private final /* synthetic */ String zzc;
+    private final /* synthetic */ String zzd;
+    private final /* synthetic */ zzki zze;
+
+    public zzkh(zzki zzkiVar, boolean z8, Uri uri, String str, String str2) {
+        this.zza = z8;
+        this.zzb = uri;
+        this.zzc = str;
+        this.zzd = str2;
+        this.zze = zzkiVar;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        this.zze.zza(this.zza, this.zzb, this.zzc, this.zzd);
+        zzki.zza(this.zze, this.zza, this.zzb, this.zzc, this.zzd);
     }
 }

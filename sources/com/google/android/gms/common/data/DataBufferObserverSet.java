@@ -1,16 +1,16 @@
 package com.google.android.gms.common.data;
 
+import androidx.annotation.NonNull;
 import com.google.android.gms.common.data.DataBufferObserver;
 import java.util.HashSet;
 import java.util.Iterator;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class DataBufferObserverSet implements DataBufferObserver, DataBufferObserver.Observable {
     private final HashSet zaa = new HashSet();
 
     @Override // com.google.android.gms.common.data.DataBufferObserver.Observable
-    public void addObserver(DataBufferObserver dataBufferObserver) {
+    public void addObserver(@NonNull DataBufferObserver dataBufferObserver) {
         this.zaa.add(dataBufferObserver);
     }
 
@@ -19,7 +19,10 @@ public final class DataBufferObserverSet implements DataBufferObserver, DataBuff
     }
 
     public boolean hasObservers() {
-        return !this.zaa.isEmpty();
+        if (!this.zaa.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     @Override // com.google.android.gms.common.data.DataBufferObserver
@@ -31,39 +34,39 @@ public final class DataBufferObserverSet implements DataBufferObserver, DataBuff
     }
 
     @Override // com.google.android.gms.common.data.DataBufferObserver
-    public void onDataRangeChanged(int i, int i2) {
+    public void onDataRangeChanged(int i9, int i10) {
         Iterator it = this.zaa.iterator();
         while (it.hasNext()) {
-            ((DataBufferObserver) it.next()).onDataRangeChanged(i, i2);
+            ((DataBufferObserver) it.next()).onDataRangeChanged(i9, i10);
         }
     }
 
     @Override // com.google.android.gms.common.data.DataBufferObserver
-    public void onDataRangeInserted(int i, int i2) {
+    public void onDataRangeInserted(int i9, int i10) {
         Iterator it = this.zaa.iterator();
         while (it.hasNext()) {
-            ((DataBufferObserver) it.next()).onDataRangeInserted(i, i2);
+            ((DataBufferObserver) it.next()).onDataRangeInserted(i9, i10);
         }
     }
 
     @Override // com.google.android.gms.common.data.DataBufferObserver
-    public void onDataRangeMoved(int i, int i2, int i3) {
+    public void onDataRangeMoved(int i9, int i10, int i11) {
         Iterator it = this.zaa.iterator();
         while (it.hasNext()) {
-            ((DataBufferObserver) it.next()).onDataRangeMoved(i, i2, i3);
+            ((DataBufferObserver) it.next()).onDataRangeMoved(i9, i10, i11);
         }
     }
 
     @Override // com.google.android.gms.common.data.DataBufferObserver
-    public void onDataRangeRemoved(int i, int i2) {
+    public void onDataRangeRemoved(int i9, int i10) {
         Iterator it = this.zaa.iterator();
         while (it.hasNext()) {
-            ((DataBufferObserver) it.next()).onDataRangeRemoved(i, i2);
+            ((DataBufferObserver) it.next()).onDataRangeRemoved(i9, i10);
         }
     }
 
     @Override // com.google.android.gms.common.data.DataBufferObserver.Observable
-    public void removeObserver(DataBufferObserver dataBufferObserver) {
+    public void removeObserver(@NonNull DataBufferObserver dataBufferObserver) {
         this.zaa.remove(dataBufferObserver);
     }
 }

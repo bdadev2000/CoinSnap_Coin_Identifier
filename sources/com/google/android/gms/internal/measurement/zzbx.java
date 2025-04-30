@@ -6,32 +6,33 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class zzbx extends Binder implements IInterface {
+    public zzbx(String str) {
+        attachInterface(this, str);
+    }
+
     @Override // android.os.IInterface
     public IBinder asBinder() {
         return this;
     }
 
-    protected boolean zza(int i, Parcel parcel, Parcel parcel2, int i2) throws RemoteException {
-        return false;
-    }
-
-    /* JADX INFO: Access modifiers changed from: protected */
-    public zzbx(String str) {
-        attachInterface(this, str);
-    }
-
     @Override // android.os.Binder
-    public boolean onTransact(int i, Parcel parcel, Parcel parcel2, int i2) throws RemoteException {
-        if (i > 16777215) {
-            if (super.onTransact(i, parcel, parcel2, i2)) {
-                return true;
-            }
+    public boolean onTransact(int i9, Parcel parcel, Parcel parcel2, int i10) throws RemoteException {
+        boolean z8;
+        if (i9 > 16777215) {
+            z8 = super.onTransact(i9, parcel, parcel2, i10);
         } else {
             parcel.enforceInterface(getInterfaceDescriptor());
+            z8 = false;
         }
-        return zza(i, parcel, parcel2, i2);
+        if (z8) {
+            return true;
+        }
+        return zza(i9, parcel, parcel2, i10);
+    }
+
+    public boolean zza(int i9, Parcel parcel, Parcel parcel2, int i10) throws RemoteException {
+        return false;
     }
 }

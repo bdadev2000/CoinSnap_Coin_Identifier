@@ -1,117 +1,53 @@
 package com.google.api;
 
-import com.google.protobuf.AbstractMessageLite;
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.Internal;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.MessageLiteOrBuilder;
-import com.google.protobuf.Parser;
+import a4.AbstractC0387v;
+import a4.InterfaceC0389w;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1891d3;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.O3;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.Collections;
 import java.util.List;
 
-/* loaded from: classes12.dex */
-public final class Billing extends GeneratedMessageLite<Billing, Builder> implements BillingOrBuilder {
+/* loaded from: classes2.dex */
+public final class Billing extends L2 implements O3 {
     public static final int CONSUMER_DESTINATIONS_FIELD_NUMBER = 8;
     private static final Billing DEFAULT_INSTANCE;
-    private static volatile Parser<Billing> PARSER;
-    private Internal.ProtobufList<BillingDestination> consumerDestinations_ = emptyProtobufList();
+    private static volatile InterfaceC1948l4 PARSER;
+    private InterfaceC1891d3 consumerDestinations_ = L2.emptyProtobufList();
 
-    /* loaded from: classes12.dex */
-    public interface BillingDestinationOrBuilder extends MessageLiteOrBuilder {
-        String getMetrics(int i);
-
-        ByteString getMetricsBytes(int i);
-
-        int getMetricsCount();
-
-        List<String> getMetricsList();
-
-        String getMonitoredResource();
-
-        ByteString getMonitoredResourceBytes();
-    }
-
-    private Billing() {
-    }
-
-    /* loaded from: classes12.dex */
-    public static final class BillingDestination extends GeneratedMessageLite<BillingDestination, Builder> implements BillingDestinationOrBuilder {
+    /* loaded from: classes2.dex */
+    public static final class BillingDestination extends L2 implements InterfaceC0389w {
         private static final BillingDestination DEFAULT_INSTANCE;
         public static final int METRICS_FIELD_NUMBER = 2;
         public static final int MONITORED_RESOURCE_FIELD_NUMBER = 1;
-        private static volatile Parser<BillingDestination> PARSER;
+        private static volatile InterfaceC1948l4 PARSER;
         private String monitoredResource_ = "";
-        private Internal.ProtobufList<String> metrics_ = GeneratedMessageLite.emptyProtobufList();
+        private InterfaceC1891d3 metrics_ = L2.emptyProtobufList();
+
+        static {
+            BillingDestination billingDestination = new BillingDestination();
+            DEFAULT_INSTANCE = billingDestination;
+            L2.registerDefaultInstance(BillingDestination.class, billingDestination);
+        }
 
         private BillingDestination() {
         }
 
-        @Override // com.google.api.Billing.BillingDestinationOrBuilder
-        public String getMonitoredResource() {
-            return this.monitoredResource_;
-        }
-
-        @Override // com.google.api.Billing.BillingDestinationOrBuilder
-        public ByteString getMonitoredResourceBytes() {
-            return ByteString.copyFromUtf8(this.monitoredResource_);
-        }
-
         /* JADX INFO: Access modifiers changed from: private */
-        public void setMonitoredResource(String str) {
-            str.getClass();
-            this.monitoredResource_ = str;
-        }
-
-        /* JADX INFO: Access modifiers changed from: private */
-        public void clearMonitoredResource() {
-            this.monitoredResource_ = getDefaultInstance().getMonitoredResource();
-        }
-
-        /* JADX INFO: Access modifiers changed from: private */
-        public void setMonitoredResourceBytes(ByteString byteString) {
-            checkByteStringIsUtf8(byteString);
-            this.monitoredResource_ = byteString.toStringUtf8();
-        }
-
-        @Override // com.google.api.Billing.BillingDestinationOrBuilder
-        public List<String> getMetricsList() {
-            return this.metrics_;
-        }
-
-        @Override // com.google.api.Billing.BillingDestinationOrBuilder
-        public int getMetricsCount() {
-            return this.metrics_.size();
-        }
-
-        @Override // com.google.api.Billing.BillingDestinationOrBuilder
-        public String getMetrics(int i) {
-            return this.metrics_.get(i);
-        }
-
-        @Override // com.google.api.Billing.BillingDestinationOrBuilder
-        public ByteString getMetricsBytes(int i) {
-            return ByteString.copyFromUtf8(this.metrics_.get(i));
-        }
-
-        private void ensureMetricsIsMutable() {
-            Internal.ProtobufList<String> protobufList = this.metrics_;
-            if (protobufList.isModifiable()) {
-                return;
-            }
-            this.metrics_ = GeneratedMessageLite.mutableCopy(protobufList);
-        }
-
-        /* JADX INFO: Access modifiers changed from: private */
-        public void setMetrics(int i, String str) {
-            str.getClass();
+        public void addAllMetrics(Iterable<String> iterable) {
             ensureMetricsIsMutable();
-            this.metrics_.set(i, str);
+            AbstractC1880c.addAll((Iterable) iterable, (List) this.metrics_);
         }
 
         /* JADX INFO: Access modifiers changed from: private */
@@ -122,192 +58,94 @@ public final class Billing extends GeneratedMessageLite<Billing, Builder> implem
         }
 
         /* JADX INFO: Access modifiers changed from: private */
-        public void addAllMetrics(Iterable<String> iterable) {
+        public void addMetricsBytes(H h6) {
+            AbstractC1880c.checkByteStringIsUtf8(h6);
             ensureMetricsIsMutable();
-            AbstractMessageLite.addAll((Iterable) iterable, (List) this.metrics_);
+            this.metrics_.add(h6.toStringUtf8());
         }
 
         /* JADX INFO: Access modifiers changed from: private */
         public void clearMetrics() {
-            this.metrics_ = GeneratedMessageLite.emptyProtobufList();
+            this.metrics_ = L2.emptyProtobufList();
         }
 
         /* JADX INFO: Access modifiers changed from: private */
-        public void addMetricsBytes(ByteString byteString) {
-            checkByteStringIsUtf8(byteString);
-            ensureMetricsIsMutable();
-            this.metrics_.add(byteString.toStringUtf8());
+        public void clearMonitoredResource() {
+            this.monitoredResource_ = getDefaultInstance().getMonitoredResource();
         }
 
-        public static BillingDestination parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-            return (BillingDestination) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+        private void ensureMetricsIsMutable() {
+            InterfaceC1891d3 interfaceC1891d3 = this.metrics_;
+            if (!interfaceC1891d3.isModifiable()) {
+                this.metrics_ = L2.mutableCopy(interfaceC1891d3);
+            }
         }
 
-        public static BillingDestination parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-            return (BillingDestination) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
+        public static BillingDestination getDefaultInstance() {
+            return DEFAULT_INSTANCE;
         }
 
-        public static BillingDestination parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-            return (BillingDestination) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-        }
-
-        public static BillingDestination parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-            return (BillingDestination) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-        }
-
-        public static BillingDestination parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-            return (BillingDestination) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-        }
-
-        public static BillingDestination parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-            return (BillingDestination) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-        }
-
-        public static BillingDestination parseFrom(InputStream inputStream) throws IOException {
-            return (BillingDestination) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-        }
-
-        public static BillingDestination parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-            return (BillingDestination) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+        public static a newBuilder() {
+            return (a) DEFAULT_INSTANCE.createBuilder();
         }
 
         public static BillingDestination parseDelimitedFrom(InputStream inputStream) throws IOException {
-            return (BillingDestination) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+            return (BillingDestination) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
         }
 
-        public static BillingDestination parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-            return (BillingDestination) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+        public static BillingDestination parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+            return (BillingDestination) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
         }
 
-        public static BillingDestination parseFrom(CodedInputStream codedInputStream) throws IOException {
-            return (BillingDestination) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
+        public static InterfaceC1948l4 parser() {
+            return DEFAULT_INSTANCE.getParserForType();
         }
 
-        public static BillingDestination parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-            return (BillingDestination) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
+        /* JADX INFO: Access modifiers changed from: private */
+        public void setMetrics(int i9, String str) {
+            str.getClass();
+            ensureMetricsIsMutable();
+            this.metrics_.set(i9, str);
         }
 
-        public static Builder newBuilder() {
-            return DEFAULT_INSTANCE.createBuilder();
+        /* JADX INFO: Access modifiers changed from: private */
+        public void setMonitoredResource(String str) {
+            str.getClass();
+            this.monitoredResource_ = str;
         }
 
-        public static Builder newBuilder(BillingDestination billingDestination) {
-            return DEFAULT_INSTANCE.createBuilder(billingDestination);
+        /* JADX INFO: Access modifiers changed from: private */
+        public void setMonitoredResourceBytes(H h6) {
+            AbstractC1880c.checkByteStringIsUtf8(h6);
+            this.monitoredResource_ = h6.toStringUtf8();
         }
 
-        /* loaded from: classes12.dex */
-        public static final class Builder extends GeneratedMessageLite.Builder<BillingDestination, Builder> implements BillingDestinationOrBuilder {
-            /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-                this();
-            }
-
-            private Builder() {
-                super(BillingDestination.DEFAULT_INSTANCE);
-            }
-
-            @Override // com.google.api.Billing.BillingDestinationOrBuilder
-            public String getMonitoredResource() {
-                return ((BillingDestination) this.instance).getMonitoredResource();
-            }
-
-            @Override // com.google.api.Billing.BillingDestinationOrBuilder
-            public ByteString getMonitoredResourceBytes() {
-                return ((BillingDestination) this.instance).getMonitoredResourceBytes();
-            }
-
-            public Builder setMonitoredResource(String str) {
-                copyOnWrite();
-                ((BillingDestination) this.instance).setMonitoredResource(str);
-                return this;
-            }
-
-            public Builder clearMonitoredResource() {
-                copyOnWrite();
-                ((BillingDestination) this.instance).clearMonitoredResource();
-                return this;
-            }
-
-            public Builder setMonitoredResourceBytes(ByteString byteString) {
-                copyOnWrite();
-                ((BillingDestination) this.instance).setMonitoredResourceBytes(byteString);
-                return this;
-            }
-
-            @Override // com.google.api.Billing.BillingDestinationOrBuilder
-            public List<String> getMetricsList() {
-                return Collections.unmodifiableList(((BillingDestination) this.instance).getMetricsList());
-            }
-
-            @Override // com.google.api.Billing.BillingDestinationOrBuilder
-            public int getMetricsCount() {
-                return ((BillingDestination) this.instance).getMetricsCount();
-            }
-
-            @Override // com.google.api.Billing.BillingDestinationOrBuilder
-            public String getMetrics(int i) {
-                return ((BillingDestination) this.instance).getMetrics(i);
-            }
-
-            @Override // com.google.api.Billing.BillingDestinationOrBuilder
-            public ByteString getMetricsBytes(int i) {
-                return ((BillingDestination) this.instance).getMetricsBytes(i);
-            }
-
-            public Builder setMetrics(int i, String str) {
-                copyOnWrite();
-                ((BillingDestination) this.instance).setMetrics(i, str);
-                return this;
-            }
-
-            public Builder addMetrics(String str) {
-                copyOnWrite();
-                ((BillingDestination) this.instance).addMetrics(str);
-                return this;
-            }
-
-            public Builder addAllMetrics(Iterable<String> iterable) {
-                copyOnWrite();
-                ((BillingDestination) this.instance).addAllMetrics(iterable);
-                return this;
-            }
-
-            public Builder clearMetrics() {
-                copyOnWrite();
-                ((BillingDestination) this.instance).clearMetrics();
-                return this;
-            }
-
-            public Builder addMetricsBytes(ByteString byteString) {
-                copyOnWrite();
-                ((BillingDestination) this.instance).addMetricsBytes(byteString);
-                return this;
-            }
-        }
-
-        @Override // com.google.protobuf.GeneratedMessageLite
-        protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-            AnonymousClass1 anonymousClass1 = null;
-            switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+        @Override // com.google.protobuf.L2
+        public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+            switch (AbstractC0387v.f4054a[k22.ordinal()]) {
                 case 1:
                     return new BillingDestination();
                 case 2:
-                    return new Builder(anonymousClass1);
+                    return new D2(DEFAULT_INSTANCE);
                 case 3:
-                    return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0001\u0000\u0001Ȉ\u0002Ț", new Object[]{"monitoredResource_", "metrics_"});
+                    return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0001\u0000\u0001Ȉ\u0002Ț", new Object[]{"monitoredResource_", "metrics_"});
                 case 4:
                     return DEFAULT_INSTANCE;
                 case 5:
-                    Parser<BillingDestination> parser = PARSER;
-                    if (parser == null) {
+                    InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                    if (interfaceC1948l4 == null) {
                         synchronized (BillingDestination.class) {
-                            parser = PARSER;
-                            if (parser == null) {
-                                parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                                PARSER = parser;
+                            try {
+                                interfaceC1948l4 = PARSER;
+                                if (interfaceC1948l4 == null) {
+                                    interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                    PARSER = interfaceC1948l4;
+                                }
+                            } finally {
                             }
                         }
                     }
-                    return parser;
+                    return interfaceC1948l4;
                 case 6:
                     return (byte) 1;
                 case 7:
@@ -317,96 +155,88 @@ public final class Billing extends GeneratedMessageLite<Billing, Builder> implem
             }
         }
 
-        static {
-            BillingDestination billingDestination = new BillingDestination();
-            DEFAULT_INSTANCE = billingDestination;
-            GeneratedMessageLite.registerDefaultInstance(BillingDestination.class, billingDestination);
+        public String getMetrics(int i9) {
+            return (String) this.metrics_.get(i9);
         }
 
-        public static BillingDestination getDefaultInstance() {
-            return DEFAULT_INSTANCE;
+        public H getMetricsBytes(int i9) {
+            return H.copyFromUtf8((String) this.metrics_.get(i9));
         }
 
-        public static Parser<BillingDestination> parser() {
-            return DEFAULT_INSTANCE.getParserForType();
+        public int getMetricsCount() {
+            return this.metrics_.size();
+        }
+
+        public List<String> getMetricsList() {
+            return this.metrics_;
+        }
+
+        public String getMonitoredResource() {
+            return this.monitoredResource_;
+        }
+
+        public H getMonitoredResourceBytes() {
+            return H.copyFromUtf8(this.monitoredResource_);
+        }
+
+        public static a newBuilder(BillingDestination billingDestination) {
+            return (a) DEFAULT_INSTANCE.createBuilder(billingDestination);
+        }
+
+        public static BillingDestination parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+            return (BillingDestination) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+        }
+
+        public static BillingDestination parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+            return (BillingDestination) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+        }
+
+        public static BillingDestination parseFrom(H h6) throws C1912g3 {
+            return (BillingDestination) L2.parseFrom(DEFAULT_INSTANCE, h6);
+        }
+
+        public static BillingDestination parseFrom(H h6, W1 w1) throws C1912g3 {
+            return (BillingDestination) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+        }
+
+        public static BillingDestination parseFrom(byte[] bArr) throws C1912g3 {
+            return (BillingDestination) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+        }
+
+        public static BillingDestination parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+            return (BillingDestination) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+        }
+
+        public static BillingDestination parseFrom(InputStream inputStream) throws IOException {
+            return (BillingDestination) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+        }
+
+        public static BillingDestination parseFrom(InputStream inputStream, W1 w1) throws IOException {
+            return (BillingDestination) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+        }
+
+        public static BillingDestination parseFrom(S s5) throws IOException {
+            return (BillingDestination) L2.parseFrom(DEFAULT_INSTANCE, s5);
+        }
+
+        public static BillingDestination parseFrom(S s5, W1 w1) throws IOException {
+            return (BillingDestination) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
         }
     }
 
-    /* renamed from: com.google.api.Billing$1, reason: invalid class name */
-    /* loaded from: classes12.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
+    static {
+        Billing billing = new Billing();
+        DEFAULT_INSTANCE = billing;
+        L2.registerDefaultInstance(Billing.class, billing);
     }
 
-    @Override // com.google.api.BillingOrBuilder
-    public List<BillingDestination> getConsumerDestinationsList() {
-        return this.consumerDestinations_;
-    }
-
-    public List<? extends BillingDestinationOrBuilder> getConsumerDestinationsOrBuilderList() {
-        return this.consumerDestinations_;
-    }
-
-    @Override // com.google.api.BillingOrBuilder
-    public int getConsumerDestinationsCount() {
-        return this.consumerDestinations_.size();
-    }
-
-    @Override // com.google.api.BillingOrBuilder
-    public BillingDestination getConsumerDestinations(int i) {
-        return this.consumerDestinations_.get(i);
-    }
-
-    public BillingDestinationOrBuilder getConsumerDestinationsOrBuilder(int i) {
-        return this.consumerDestinations_.get(i);
-    }
-
-    private void ensureConsumerDestinationsIsMutable() {
-        Internal.ProtobufList<BillingDestination> protobufList = this.consumerDestinations_;
-        if (protobufList.isModifiable()) {
-            return;
-        }
-        this.consumerDestinations_ = GeneratedMessageLite.mutableCopy(protobufList);
+    private Billing() {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setConsumerDestinations(int i, BillingDestination billingDestination) {
-        billingDestination.getClass();
+    public void addAllConsumerDestinations(Iterable<? extends BillingDestination> iterable) {
         ensureConsumerDestinationsIsMutable();
-        this.consumerDestinations_.set(i, billingDestination);
+        AbstractC1880c.addAll((Iterable) iterable, (List) this.consumerDestinations_);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -417,189 +247,76 @@ public final class Billing extends GeneratedMessageLite<Billing, Builder> implem
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void addConsumerDestinations(int i, BillingDestination billingDestination) {
-        billingDestination.getClass();
-        ensureConsumerDestinationsIsMutable();
-        this.consumerDestinations_.add(i, billingDestination);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void addAllConsumerDestinations(Iterable<? extends BillingDestination> iterable) {
-        ensureConsumerDestinationsIsMutable();
-        AbstractMessageLite.addAll((Iterable) iterable, (List) this.consumerDestinations_);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
     public void clearConsumerDestinations() {
-        this.consumerDestinations_ = emptyProtobufList();
+        this.consumerDestinations_ = L2.emptyProtobufList();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void removeConsumerDestinations(int i) {
-        ensureConsumerDestinationsIsMutable();
-        this.consumerDestinations_.remove(i);
+    private void ensureConsumerDestinationsIsMutable() {
+        InterfaceC1891d3 interfaceC1891d3 = this.consumerDestinations_;
+        if (!interfaceC1891d3.isModifiable()) {
+            this.consumerDestinations_ = L2.mutableCopy(interfaceC1891d3);
+        }
     }
 
-    public static Billing parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (Billing) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    public static Billing getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    public static Billing parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Billing) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static Billing parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (Billing) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static Billing parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Billing) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static Billing parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (Billing) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static Billing parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Billing) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static Billing parseFrom(InputStream inputStream) throws IOException {
-        return (Billing) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static Billing parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Billing) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static b newBuilder() {
+        return (b) DEFAULT_INSTANCE.createBuilder();
     }
 
     public static Billing parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (Billing) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+        return (Billing) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
     }
 
-    public static Billing parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Billing) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static Billing parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (Billing) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
     }
 
-    public static Billing parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (Billing) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
-    public static Billing parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Billing) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void removeConsumerDestinations(int i9) {
+        ensureConsumerDestinationsIsMutable();
+        this.consumerDestinations_.remove(i9);
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setConsumerDestinations(int i9, BillingDestination billingDestination) {
+        billingDestination.getClass();
+        ensureConsumerDestinationsIsMutable();
+        this.consumerDestinations_.set(i9, billingDestination);
     }
 
-    public static Builder newBuilder(Billing billing) {
-        return DEFAULT_INSTANCE.createBuilder(billing);
-    }
-
-    /* loaded from: classes12.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<Billing, Builder> implements BillingOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(Billing.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.api.BillingOrBuilder
-        public List<BillingDestination> getConsumerDestinationsList() {
-            return Collections.unmodifiableList(((Billing) this.instance).getConsumerDestinationsList());
-        }
-
-        @Override // com.google.api.BillingOrBuilder
-        public int getConsumerDestinationsCount() {
-            return ((Billing) this.instance).getConsumerDestinationsCount();
-        }
-
-        @Override // com.google.api.BillingOrBuilder
-        public BillingDestination getConsumerDestinations(int i) {
-            return ((Billing) this.instance).getConsumerDestinations(i);
-        }
-
-        public Builder setConsumerDestinations(int i, BillingDestination billingDestination) {
-            copyOnWrite();
-            ((Billing) this.instance).setConsumerDestinations(i, billingDestination);
-            return this;
-        }
-
-        public Builder setConsumerDestinations(int i, BillingDestination.Builder builder) {
-            copyOnWrite();
-            ((Billing) this.instance).setConsumerDestinations(i, builder.build());
-            return this;
-        }
-
-        public Builder addConsumerDestinations(BillingDestination billingDestination) {
-            copyOnWrite();
-            ((Billing) this.instance).addConsumerDestinations(billingDestination);
-            return this;
-        }
-
-        public Builder addConsumerDestinations(int i, BillingDestination billingDestination) {
-            copyOnWrite();
-            ((Billing) this.instance).addConsumerDestinations(i, billingDestination);
-            return this;
-        }
-
-        public Builder addConsumerDestinations(BillingDestination.Builder builder) {
-            copyOnWrite();
-            ((Billing) this.instance).addConsumerDestinations(builder.build());
-            return this;
-        }
-
-        public Builder addConsumerDestinations(int i, BillingDestination.Builder builder) {
-            copyOnWrite();
-            ((Billing) this.instance).addConsumerDestinations(i, builder.build());
-            return this;
-        }
-
-        public Builder addAllConsumerDestinations(Iterable<? extends BillingDestination> iterable) {
-            copyOnWrite();
-            ((Billing) this.instance).addAllConsumerDestinations(iterable);
-            return this;
-        }
-
-        public Builder clearConsumerDestinations() {
-            copyOnWrite();
-            ((Billing) this.instance).clearConsumerDestinations();
-            return this;
-        }
-
-        public Builder removeConsumerDestinations(int i) {
-            copyOnWrite();
-            ((Billing) this.instance).removeConsumerDestinations(i);
-            return this;
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (AbstractC0387v.f4054a[k22.ordinal()]) {
             case 1:
                 return new Billing();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0001\u0000\u0000\b\b\u0001\u0000\u0001\u0000\b\u001b", new Object[]{"consumerDestinations_", BillingDestination.class});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0001\u0000\u0000\b\b\u0001\u0000\u0001\u0000\b\u001b", new Object[]{"consumerDestinations_", BillingDestination.class});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<Billing> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (Billing.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -609,17 +326,74 @@ public final class Billing extends GeneratedMessageLite<Billing, Builder> implem
         }
     }
 
-    static {
-        Billing billing = new Billing();
-        DEFAULT_INSTANCE = billing;
-        GeneratedMessageLite.registerDefaultInstance(Billing.class, billing);
+    public BillingDestination getConsumerDestinations(int i9) {
+        return (BillingDestination) this.consumerDestinations_.get(i9);
     }
 
-    public static Billing getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public int getConsumerDestinationsCount() {
+        return this.consumerDestinations_.size();
     }
 
-    public static Parser<Billing> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public List<BillingDestination> getConsumerDestinationsList() {
+        return this.consumerDestinations_;
+    }
+
+    public InterfaceC0389w getConsumerDestinationsOrBuilder(int i9) {
+        return (InterfaceC0389w) this.consumerDestinations_.get(i9);
+    }
+
+    public List<? extends InterfaceC0389w> getConsumerDestinationsOrBuilderList() {
+        return this.consumerDestinations_;
+    }
+
+    public static b newBuilder(Billing billing) {
+        return (b) DEFAULT_INSTANCE.createBuilder(billing);
+    }
+
+    public static Billing parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Billing) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Billing parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (Billing) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static Billing parseFrom(H h6) throws C1912g3 {
+        return (Billing) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void addConsumerDestinations(int i9, BillingDestination billingDestination) {
+        billingDestination.getClass();
+        ensureConsumerDestinationsIsMutable();
+        this.consumerDestinations_.add(i9, billingDestination);
+    }
+
+    public static Billing parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (Billing) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static Billing parseFrom(byte[] bArr) throws C1912g3 {
+        return (Billing) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static Billing parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (Billing) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static Billing parseFrom(InputStream inputStream) throws IOException {
+        return (Billing) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static Billing parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Billing) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Billing parseFrom(S s5) throws IOException {
+        return (Billing) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static Billing parseFrom(S s5, W1 w1) throws IOException {
+        return (Billing) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

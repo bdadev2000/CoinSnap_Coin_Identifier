@@ -1,272 +1,263 @@
 package com.google.android.material.appbar;
 
+import C5.c;
+import F2.h;
+import L3.k;
+import R3.g;
+import W3.a;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.drawable.ColorDrawable;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Pair;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
-import com.google.android.material.R;
-import com.google.android.material.internal.ToolbarUtils;
-import com.google.android.material.shape.MaterialShapeDrawable;
-import com.google.android.material.shape.MaterialShapeUtils;
+import com.tools.arruler.photomeasure.camera.ruler.R;
+import java.util.ArrayList;
+import java.util.Collections;
+import p.MenuC2533l;
+import w3.AbstractC2861a;
+import z2.i;
 
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class MaterialToolbar extends Toolbar {
-    private static final int DEF_STYLE_RES = R.style.Widget_MaterialComponents_Toolbar;
-    private static final ImageView.ScaleType[] LOGO_SCALE_TYPE_ARRAY = {ImageView.ScaleType.MATRIX, ImageView.ScaleType.FIT_XY, ImageView.ScaleType.FIT_START, ImageView.ScaleType.FIT_CENTER, ImageView.ScaleType.FIT_END, ImageView.ScaleType.CENTER, ImageView.ScaleType.CENTER_CROP, ImageView.ScaleType.CENTER_INSIDE};
-    private Boolean logoAdjustViewBounds;
-    private ImageView.ScaleType logoScaleType;
-    private Integer navigationIconTint;
-    private boolean subtitleCentered;
-    private boolean titleCentered;
 
-    public MaterialToolbar(Context context) {
-        this(context, null);
-    }
+    /* renamed from: b0, reason: collision with root package name */
+    public static final ImageView.ScaleType[] f13894b0 = {ImageView.ScaleType.MATRIX, ImageView.ScaleType.FIT_XY, ImageView.ScaleType.FIT_START, ImageView.ScaleType.FIT_CENTER, ImageView.ScaleType.FIT_END, ImageView.ScaleType.CENTER, ImageView.ScaleType.CENTER_CROP, ImageView.ScaleType.CENTER_INSIDE};
 
-    public MaterialToolbar(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, R.attr.toolbarStyle);
-    }
+    /* renamed from: T, reason: collision with root package name */
+    public Integer f13895T;
 
-    /* JADX WARN: Illegal instructions before constructor call */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public MaterialToolbar(android.content.Context r8, android.util.AttributeSet r9, int r10) {
-        /*
-            r7 = this;
-            int r4 = com.google.android.material.appbar.MaterialToolbar.DEF_STYLE_RES
-            android.content.Context r8 = com.google.android.material.theme.overlay.MaterialThemeOverlay.wrap(r8, r9, r10, r4)
-            r7.<init>(r8, r9, r10)
-            android.content.Context r8 = r7.getContext()
-            int[] r2 = com.google.android.material.R.styleable.MaterialToolbar
-            r6 = 0
-            int[] r5 = new int[r6]
-            r0 = r8
-            r1 = r9
-            r3 = r10
-            android.content.res.TypedArray r9 = com.google.android.material.internal.ThemeEnforcement.obtainStyledAttributes(r0, r1, r2, r3, r4, r5)
-            int r10 = com.google.android.material.R.styleable.MaterialToolbar_navigationIconTint
-            boolean r10 = r9.hasValue(r10)
-            r0 = -1
-            if (r10 == 0) goto L2b
-            int r10 = com.google.android.material.R.styleable.MaterialToolbar_navigationIconTint
-            int r10 = r9.getColor(r10, r0)
-            r7.setNavigationIconTint(r10)
-        L2b:
-            int r10 = com.google.android.material.R.styleable.MaterialToolbar_titleCentered
-            boolean r10 = r9.getBoolean(r10, r6)
-            r7.titleCentered = r10
-            int r10 = com.google.android.material.R.styleable.MaterialToolbar_subtitleCentered
-            boolean r10 = r9.getBoolean(r10, r6)
-            r7.subtitleCentered = r10
-            int r10 = com.google.android.material.R.styleable.MaterialToolbar_logoScaleType
-            int r10 = r9.getInt(r10, r0)
-            if (r10 < 0) goto L4c
-            android.widget.ImageView$ScaleType[] r0 = com.google.android.material.appbar.MaterialToolbar.LOGO_SCALE_TYPE_ARRAY
-            int r1 = r0.length
-            if (r10 >= r1) goto L4c
-            r10 = r0[r10]
-            r7.logoScaleType = r10
-        L4c:
-            int r10 = com.google.android.material.R.styleable.MaterialToolbar_logoAdjustViewBounds
-            boolean r10 = r9.hasValue(r10)
-            if (r10 == 0) goto L60
-            int r10 = com.google.android.material.R.styleable.MaterialToolbar_logoAdjustViewBounds
-            boolean r10 = r9.getBoolean(r10, r6)
-            java.lang.Boolean r10 = java.lang.Boolean.valueOf(r10)
-            r7.logoAdjustViewBounds = r10
-        L60:
-            r9.recycle()
-            r7.initBackground(r8)
-            return
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.android.material.appbar.MaterialToolbar.<init>(android.content.Context, android.util.AttributeSet, int):void");
-    }
+    /* renamed from: U, reason: collision with root package name */
+    public boolean f13896U;
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    @Override // androidx.appcompat.widget.Toolbar, android.view.ViewGroup, android.view.View
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        maybeCenterTitleViews();
-        updateLogoImageView();
-    }
+    /* renamed from: V, reason: collision with root package name */
+    public boolean f13897V;
 
-    private void maybeCenterTitleViews() {
-        if (this.titleCentered || this.subtitleCentered) {
-            TextView titleTextView = ToolbarUtils.getTitleTextView(this);
-            TextView subtitleTextView = ToolbarUtils.getSubtitleTextView(this);
-            if (titleTextView == null && subtitleTextView == null) {
-                return;
+    /* renamed from: W, reason: collision with root package name */
+    public ImageView.ScaleType f13898W;
+
+    /* renamed from: a0, reason: collision with root package name */
+    public Boolean f13899a0;
+
+    public MaterialToolbar(@NonNull Context context, @Nullable AttributeSet attributeSet) {
+        super(a.a(context, attributeSet, R.attr.toolbarStyle, R.style.Widget_MaterialComponents_Toolbar), attributeSet, 0);
+        ColorStateList n2;
+        Context context2 = getContext();
+        TypedArray f9 = k.f(context2, attributeSet, AbstractC2861a.f23677s, R.attr.toolbarStyle, R.style.Widget_MaterialComponents_Toolbar, new int[0]);
+        if (f9.hasValue(2)) {
+            setNavigationIconTint(f9.getColor(2, -1));
+        }
+        this.f13896U = f9.getBoolean(4, false);
+        this.f13897V = f9.getBoolean(3, false);
+        int i9 = f9.getInt(1, -1);
+        if (i9 >= 0) {
+            ImageView.ScaleType[] scaleTypeArr = f13894b0;
+            if (i9 < scaleTypeArr.length) {
+                this.f13898W = scaleTypeArr[i9];
             }
-            Pair<Integer, Integer> calculateTitleBoundLimits = calculateTitleBoundLimits(titleTextView, subtitleTextView);
-            if (this.titleCentered && titleTextView != null) {
-                layoutTitleCenteredHorizontally(titleTextView, calculateTitleBoundLimits);
-            }
-            if (!this.subtitleCentered || subtitleTextView == null) {
-                return;
-            }
-            layoutTitleCenteredHorizontally(subtitleTextView, calculateTitleBoundLimits);
+        }
+        if (f9.hasValue(0)) {
+            this.f13899a0 = Boolean.valueOf(f9.getBoolean(0, false));
+        }
+        f9.recycle();
+        Drawable background = getBackground();
+        if (background == null) {
+            n2 = ColorStateList.valueOf(0);
+        } else {
+            n2 = h.n(background);
+        }
+        if (n2 != null) {
+            g gVar = new g();
+            gVar.k(n2);
+            gVar.i(context2);
+            gVar.j(ViewCompat.getElevation(this));
+            ViewCompat.setBackground(this, gVar);
         }
     }
 
-    private Pair<Integer, Integer> calculateTitleBoundLimits(TextView textView, TextView textView2) {
-        int measuredWidth = getMeasuredWidth();
-        int i = measuredWidth / 2;
-        int paddingLeft = getPaddingLeft();
-        int paddingRight = measuredWidth - getPaddingRight();
-        for (int i2 = 0; i2 < getChildCount(); i2++) {
-            View childAt = getChildAt(i2);
-            if (childAt.getVisibility() != 8 && childAt != textView && childAt != textView2) {
-                if (childAt.getRight() < i && childAt.getRight() > paddingLeft) {
-                    paddingLeft = childAt.getRight();
-                }
-                if (childAt.getLeft() > i && childAt.getLeft() < paddingRight) {
-                    paddingRight = childAt.getLeft();
-                }
-            }
-        }
-        return new Pair<>(Integer.valueOf(paddingLeft), Integer.valueOf(paddingRight));
-    }
-
-    private void layoutTitleCenteredHorizontally(View view, Pair<Integer, Integer> pair) {
-        int measuredWidth = getMeasuredWidth();
-        int measuredWidth2 = view.getMeasuredWidth();
-        int i = (measuredWidth / 2) - (measuredWidth2 / 2);
-        int i2 = measuredWidth2 + i;
-        int max = Math.max(Math.max(((Integer) pair.first).intValue() - i, 0), Math.max(i2 - ((Integer) pair.second).intValue(), 0));
-        if (max > 0) {
-            i += max;
-            i2 -= max;
-            view.measure(View.MeasureSpec.makeMeasureSpec(i2 - i, 1073741824), view.getMeasuredHeightAndState());
-        }
-        view.layout(i, view.getTop(), i2, view.getBottom());
-    }
-
-    private void updateLogoImageView() {
-        ImageView logoImageView = ToolbarUtils.getLogoImageView(this);
-        if (logoImageView != null) {
-            Boolean bool = this.logoAdjustViewBounds;
-            if (bool != null) {
-                logoImageView.setAdjustViewBounds(bool.booleanValue());
-            }
-            ImageView.ScaleType scaleType = this.logoScaleType;
-            if (scaleType != null) {
-                logoImageView.setScaleType(scaleType);
-            }
-        }
-    }
-
+    @Nullable
     public ImageView.ScaleType getLogoScaleType() {
-        return this.logoScaleType;
+        return this.f13898W;
     }
 
-    public void setLogoScaleType(ImageView.ScaleType scaleType) {
-        if (this.logoScaleType != scaleType) {
-            this.logoScaleType = scaleType;
-            requestLayout();
-        }
-    }
-
-    public boolean isLogoAdjustViewBounds() {
-        Boolean bool = this.logoAdjustViewBounds;
-        return bool != null && bool.booleanValue();
-    }
-
-    public void setLogoAdjustViewBounds(boolean z) {
-        Boolean bool = this.logoAdjustViewBounds;
-        if (bool == null || bool.booleanValue() != z) {
-            this.logoAdjustViewBounds = Boolean.valueOf(z);
-            requestLayout();
-        }
-    }
-
-    /* JADX INFO: Access modifiers changed from: protected */
-    @Override // androidx.appcompat.widget.Toolbar, android.view.ViewGroup, android.view.View
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        MaterialShapeUtils.setParentAbsoluteElevation(this);
-    }
-
-    @Override // android.view.View
-    public void setElevation(float f) {
-        super.setElevation(f);
-        MaterialShapeUtils.setElevation(this, f);
+    @Nullable
+    public Integer getNavigationIconTint() {
+        return this.f13895T;
     }
 
     @Override // androidx.appcompat.widget.Toolbar
-    public void setNavigationIcon(Drawable drawable) {
-        super.setNavigationIcon(maybeTintNavigationIcon(drawable));
-    }
-
-    public void setNavigationIconTint(int i) {
-        this.navigationIconTint = Integer.valueOf(i);
-        Drawable navigationIcon = getNavigationIcon();
-        if (navigationIcon != null) {
-            setNavigationIcon(navigationIcon);
+    public final void m(int i9) {
+        Menu menu = getMenu();
+        boolean z8 = menu instanceof MenuC2533l;
+        if (z8) {
+            ((MenuC2533l) menu).w();
+        }
+        super.m(i9);
+        if (z8) {
+            ((MenuC2533l) menu).v();
         }
     }
 
-    public void clearNavigationIconTint() {
-        this.navigationIconTint = null;
-        Drawable navigationIcon = getNavigationIcon();
-        if (navigationIcon != null) {
-            DrawableCompat.setTintList(DrawableCompat.wrap(navigationIcon.mutate()), null);
-            setNavigationIcon(navigationIcon);
-        }
-    }
-
-    public Integer getNavigationIconTint() {
-        return this.navigationIconTint;
-    }
-
-    public void setTitleCentered(boolean z) {
-        if (this.titleCentered != z) {
-            this.titleCentered = z;
-            requestLayout();
-        }
-    }
-
-    public boolean isTitleCentered() {
-        return this.titleCentered;
-    }
-
-    public void setSubtitleCentered(boolean z) {
-        if (this.subtitleCentered != z) {
-            this.subtitleCentered = z;
-            requestLayout();
-        }
-    }
-
-    public boolean isSubtitleCentered() {
-        return this.subtitleCentered;
-    }
-
-    private void initBackground(Context context) {
+    @Override // androidx.appcompat.widget.Toolbar, android.view.ViewGroup, android.view.View
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
         Drawable background = getBackground();
-        if (background == null || (background instanceof ColorDrawable)) {
-            MaterialShapeDrawable materialShapeDrawable = new MaterialShapeDrawable();
-            materialShapeDrawable.setFillColor(ColorStateList.valueOf(background != null ? ((ColorDrawable) background).getColor() : 0));
-            materialShapeDrawable.initializeElevationOverlay(context);
-            materialShapeDrawable.setElevation(ViewCompat.getElevation(this));
-            ViewCompat.setBackground(this, materialShapeDrawable);
+        if (background instanceof g) {
+            i.q(this, (g) background);
         }
     }
 
-    private Drawable maybeTintNavigationIcon(Drawable drawable) {
-        if (drawable == null || this.navigationIconTint == null) {
-            return drawable;
+    @Override // androidx.appcompat.widget.Toolbar, android.view.ViewGroup, android.view.View
+    public final void onLayout(boolean z8, int i9, int i10, int i11, int i12) {
+        TextView textView;
+        TextView textView2;
+        ImageView imageView;
+        Drawable drawable;
+        super.onLayout(z8, i9, i10, i11, i12);
+        int i13 = 0;
+        ImageView imageView2 = null;
+        if (this.f13896U || this.f13897V) {
+            ArrayList d2 = k.d(this, getTitle());
+            boolean isEmpty = d2.isEmpty();
+            c cVar = k.f1801c;
+            if (isEmpty) {
+                textView = null;
+            } else {
+                textView = (TextView) Collections.min(d2, cVar);
+            }
+            ArrayList d9 = k.d(this, getSubtitle());
+            if (d9.isEmpty()) {
+                textView2 = null;
+            } else {
+                textView2 = (TextView) Collections.max(d9, cVar);
+            }
+            if (textView != null || textView2 != null) {
+                int measuredWidth = getMeasuredWidth();
+                int i14 = measuredWidth / 2;
+                int paddingLeft = getPaddingLeft();
+                int paddingRight = measuredWidth - getPaddingRight();
+                for (int i15 = 0; i15 < getChildCount(); i15++) {
+                    View childAt = getChildAt(i15);
+                    if (childAt.getVisibility() != 8 && childAt != textView && childAt != textView2) {
+                        if (childAt.getRight() < i14 && childAt.getRight() > paddingLeft) {
+                            paddingLeft = childAt.getRight();
+                        }
+                        if (childAt.getLeft() > i14 && childAt.getLeft() < paddingRight) {
+                            paddingRight = childAt.getLeft();
+                        }
+                    }
+                }
+                Pair pair = new Pair(Integer.valueOf(paddingLeft), Integer.valueOf(paddingRight));
+                if (this.f13896U && textView != null) {
+                    v(textView, pair);
+                }
+                if (this.f13897V && textView2 != null) {
+                    v(textView2, pair);
+                }
+            }
         }
-        Drawable wrap = DrawableCompat.wrap(drawable.mutate());
-        DrawableCompat.setTint(wrap, this.navigationIconTint.intValue());
-        return wrap;
+        Drawable logo = getLogo();
+        if (logo != null) {
+            while (true) {
+                if (i13 >= getChildCount()) {
+                    break;
+                }
+                View childAt2 = getChildAt(i13);
+                if ((childAt2 instanceof ImageView) && (drawable = (imageView = (ImageView) childAt2).getDrawable()) != null && drawable.getConstantState() != null && drawable.getConstantState().equals(logo.getConstantState())) {
+                    imageView2 = imageView;
+                    break;
+                }
+                i13++;
+            }
+        }
+        if (imageView2 != null) {
+            Boolean bool = this.f13899a0;
+            if (bool != null) {
+                imageView2.setAdjustViewBounds(bool.booleanValue());
+            }
+            ImageView.ScaleType scaleType = this.f13898W;
+            if (scaleType != null) {
+                imageView2.setScaleType(scaleType);
+            }
+        }
+    }
+
+    @Override // android.view.View
+    @RequiresApi(21)
+    public void setElevation(float f9) {
+        super.setElevation(f9);
+        Drawable background = getBackground();
+        if (background instanceof g) {
+            ((g) background).j(f9);
+        }
+    }
+
+    public void setLogoAdjustViewBounds(boolean z8) {
+        Boolean bool = this.f13899a0;
+        if (bool == null || bool.booleanValue() != z8) {
+            this.f13899a0 = Boolean.valueOf(z8);
+            requestLayout();
+        }
+    }
+
+    public void setLogoScaleType(@NonNull ImageView.ScaleType scaleType) {
+        if (this.f13898W != scaleType) {
+            this.f13898W = scaleType;
+            requestLayout();
+        }
+    }
+
+    @Override // androidx.appcompat.widget.Toolbar
+    public void setNavigationIcon(@Nullable Drawable drawable) {
+        if (drawable != null && this.f13895T != null) {
+            drawable = drawable.mutate();
+            M.a.g(drawable, this.f13895T.intValue());
+        }
+        super.setNavigationIcon(drawable);
+    }
+
+    public void setNavigationIconTint(int i9) {
+        this.f13895T = Integer.valueOf(i9);
+        Drawable navigationIcon = getNavigationIcon();
+        if (navigationIcon != null) {
+            setNavigationIcon(navigationIcon);
+        }
+    }
+
+    public void setSubtitleCentered(boolean z8) {
+        if (this.f13897V != z8) {
+            this.f13897V = z8;
+            requestLayout();
+        }
+    }
+
+    public void setTitleCentered(boolean z8) {
+        if (this.f13896U != z8) {
+            this.f13896U = z8;
+            requestLayout();
+        }
+    }
+
+    public final void v(TextView textView, Pair pair) {
+        int measuredWidth = getMeasuredWidth();
+        int measuredWidth2 = textView.getMeasuredWidth();
+        int i9 = (measuredWidth / 2) - (measuredWidth2 / 2);
+        int i10 = measuredWidth2 + i9;
+        int max = Math.max(Math.max(((Integer) pair.first).intValue() - i9, 0), Math.max(i10 - ((Integer) pair.second).intValue(), 0));
+        if (max > 0) {
+            i9 += max;
+            i10 -= max;
+            textView.measure(View.MeasureSpec.makeMeasureSpec(i10 - i9, 1073741824), textView.getMeasuredHeightAndState());
+        }
+        textView.layout(i9, textView.getTop(), i10, textView.getBottom());
     }
 }

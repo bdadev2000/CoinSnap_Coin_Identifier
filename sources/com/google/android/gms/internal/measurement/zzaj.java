@@ -3,19 +3,32 @@ package com.google.android.gms.internal.measurement;
 import java.util.Iterator;
 import java.util.List;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzaj implements zzaq {
     private final zzaq zza;
     private final String zzb;
 
-    public final int hashCode() {
-        return (this.zzb.hashCode() * 31) + this.zza.hashCode();
+    public zzaj() {
+        this.zza = zzaq.zzc;
+        this.zzb = "return";
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzaq
-    public final Iterator<zzaq> zzh() {
-        return null;
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof zzaj)) {
+            return false;
+        }
+        zzaj zzajVar = (zzaj) obj;
+        if (this.zzb.equals(zzajVar.zzb) && this.zza.equals(zzajVar.zza)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.zza.hashCode() + (this.zzb.hashCode() * 31);
     }
 
     @Override // com.google.android.gms.internal.measurement.zzaq
@@ -23,13 +36,13 @@ public final class zzaj implements zzaq {
         throw new IllegalStateException("Control does not have functions");
     }
 
+    public final String zzb() {
+        return this.zzb;
+    }
+
     @Override // com.google.android.gms.internal.measurement.zzaq
     public final zzaq zzc() {
         return new zzaj(this.zzb, this.zza.zzc());
-    }
-
-    public final zzaq zza() {
-        return this.zza;
     }
 
     @Override // com.google.android.gms.internal.measurement.zzaq
@@ -47,33 +60,22 @@ public final class zzaj implements zzaq {
         throw new IllegalStateException("Control is not a String");
     }
 
-    public final String zzb() {
-        return this.zzb;
+    @Override // com.google.android.gms.internal.measurement.zzaq
+    public final Iterator<zzaq> zzh() {
+        return null;
     }
 
-    public zzaj() {
-        this.zza = zzc;
-        this.zzb = "return";
+    public final zzaq zza() {
+        return this.zza;
     }
 
     public zzaj(String str) {
-        this.zza = zzc;
+        this.zza = zzaq.zzc;
         this.zzb = str;
     }
 
     public zzaj(String str, zzaq zzaqVar) {
         this.zza = zzaqVar;
         this.zzb = str;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof zzaj)) {
-            return false;
-        }
-        zzaj zzajVar = (zzaj) obj;
-        return this.zzb.equals(zzajVar.zzb) && this.zza.equals(zzajVar.zza);
     }
 }

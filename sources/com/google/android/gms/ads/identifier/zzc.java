@@ -6,8 +6,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/* compiled from: com.google.android.gms:play-services-ads-identifier@@17.1.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzc {
     public static final void zza(String str) {
         try {
@@ -28,8 +27,8 @@ public final class zzc {
                 } finally {
                     httpURLConnection.disconnect();
                 }
-            } catch (IOException e) {
-                e = e;
+            } catch (IOException e4) {
+                e = e4;
                 String message = e.getMessage();
                 StringBuilder sb2 = new StringBuilder(String.valueOf(str).length() + 27 + String.valueOf(message).length());
                 sb2.append("Error while pinging URL: ");
@@ -38,17 +37,17 @@ public final class zzc {
                 sb2.append(message);
                 Log.w("HttpUrlPinger", sb2.toString(), e);
                 zzi.zza();
-            } catch (IndexOutOfBoundsException e2) {
-                String message2 = e2.getMessage();
+            } catch (IndexOutOfBoundsException e9) {
+                String message2 = e9.getMessage();
                 StringBuilder sb3 = new StringBuilder(String.valueOf(str).length() + 32 + String.valueOf(message2).length());
                 sb3.append("Error while parsing ping URL: ");
                 sb3.append(str);
                 sb3.append(". ");
                 sb3.append(message2);
-                Log.w("HttpUrlPinger", sb3.toString(), e2);
+                Log.w("HttpUrlPinger", sb3.toString(), e9);
                 zzi.zza();
-            } catch (RuntimeException e3) {
-                e = e3;
+            } catch (RuntimeException e10) {
+                e = e10;
                 String message3 = e.getMessage();
                 StringBuilder sb22 = new StringBuilder(String.valueOf(str).length() + 27 + String.valueOf(message3).length());
                 sb22.append("Error while pinging URL: ");

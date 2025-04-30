@@ -1,7 +1,11 @@
 package com.google.android.gms.common.util;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
+
+@KeepForSdk
+/* loaded from: classes2.dex */
 public interface BiConsumer<T, U> {
-    void accept(T t, U u);
+    @KeepForSdk
+    void accept(@NonNull T t9, @NonNull U u8);
 }

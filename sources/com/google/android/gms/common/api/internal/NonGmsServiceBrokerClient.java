@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.Feature;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.common.internal.BaseGmsClient;
@@ -21,34 +24,48 @@ import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.Set;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public final class NonGmsServiceBrokerClient implements Api.Client, ServiceConnection {
     private static final String zaa = "NonGmsServiceBrokerClient";
+
+    @Nullable
     private final String zab;
+
+    @Nullable
     private final String zac;
+
+    @Nullable
     private final ComponentName zad;
     private final Context zae;
     private final ConnectionCallbacks zaf;
     private final Handler zag;
     private final OnConnectionFailedListener zah;
+
+    @Nullable
     private IBinder zai;
     private boolean zaj;
+
+    @Nullable
     private String zak;
+
+    @Nullable
     private String zal;
 
-    public NonGmsServiceBrokerClient(Context context, Looper looper, ComponentName componentName, ConnectionCallbacks connectionCallbacks, OnConnectionFailedListener onConnectionFailedListener) {
+    @KeepForSdk
+    public NonGmsServiceBrokerClient(@NonNull Context context, @NonNull Looper looper, @NonNull ComponentName componentName, @NonNull ConnectionCallbacks connectionCallbacks, @NonNull OnConnectionFailedListener onConnectionFailedListener) {
         this(context, looper, null, null, componentName, connectionCallbacks, onConnectionFailedListener);
     }
 
     private final void zad() {
-        if (Thread.currentThread() != this.zag.getLooper().getThread()) {
+        if (Thread.currentThread() == this.zag.getLooper().getThread()) {
+        } else {
             throw new IllegalStateException("This method should only run on the NonGmsServiceBrokerClient's handler thread.");
         }
     }
 
     @Override // com.google.android.gms.common.api.Api.Client
-    public final void connect(BaseGmsClient.ConnectionProgressReportCallbacks connectionProgressReportCallbacks) {
+    public final void connect(@NonNull BaseGmsClient.ConnectionProgressReportCallbacks connectionProgressReportCallbacks) {
         zad();
         String.valueOf(this.zai);
         if (isConnected()) {
@@ -72,10 +89,10 @@ public final class NonGmsServiceBrokerClient implements Api.Client, ServiceConne
                 this.zah.onConnectionFailed(new ConnectionResult(16));
             }
             String.valueOf(this.zai);
-        } catch (SecurityException e) {
+        } catch (SecurityException e4) {
             this.zaj = false;
             this.zai = null;
-            throw e;
+            throw e4;
         }
     }
 
@@ -92,20 +109,24 @@ public final class NonGmsServiceBrokerClient implements Api.Client, ServiceConne
     }
 
     @Override // com.google.android.gms.common.api.Api.Client
-    public final void dump(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
+    public final void dump(@NonNull String str, @Nullable FileDescriptor fileDescriptor, @NonNull PrintWriter printWriter, @Nullable String[] strArr) {
     }
 
     @Override // com.google.android.gms.common.api.Api.Client
+    @NonNull
     public final Feature[] getAvailableFeatures() {
         return new Feature[0];
     }
 
+    @Nullable
+    @KeepForSdk
     public IBinder getBinder() {
         zad();
         return this.zai;
     }
 
     @Override // com.google.android.gms.common.api.Api.Client
+    @NonNull
     public final String getEndpointPackageName() {
         String str = this.zab;
         if (str != null) {
@@ -116,6 +137,7 @@ public final class NonGmsServiceBrokerClient implements Api.Client, ServiceConne
     }
 
     @Override // com.google.android.gms.common.api.Api.Client
+    @Nullable
     public final String getLastDisconnectMessage() {
         return this.zak;
     }
@@ -126,25 +148,29 @@ public final class NonGmsServiceBrokerClient implements Api.Client, ServiceConne
     }
 
     @Override // com.google.android.gms.common.api.Api.Client
-    public final void getRemoteService(IAccountAccessor iAccountAccessor, Set<Scope> set) {
+    public final void getRemoteService(@Nullable IAccountAccessor iAccountAccessor, @Nullable Set<Scope> set) {
     }
 
     @Override // com.google.android.gms.common.api.Api.Client
+    @NonNull
     public final Feature[] getRequiredFeatures() {
         return new Feature[0];
     }
 
     @Override // com.google.android.gms.common.api.Api.Client
+    @NonNull
     public final Set<Scope> getScopesForConnectionlessNonSignIn() {
         return Collections.emptySet();
     }
 
     @Override // com.google.android.gms.common.api.Api.Client
+    @Nullable
     public final IBinder getServiceBrokerBinder() {
         return null;
     }
 
     @Override // com.google.android.gms.common.api.Api.Client
+    @NonNull
     public final Intent getSignInIntent() {
         return new Intent();
     }
@@ -152,7 +178,10 @@ public final class NonGmsServiceBrokerClient implements Api.Client, ServiceConne
     @Override // com.google.android.gms.common.api.Api.Client
     public final boolean isConnected() {
         zad();
-        return this.zai != null;
+        if (this.zai != null) {
+            return true;
+        }
+        return false;
     }
 
     @Override // com.google.android.gms.common.api.Api.Client
@@ -162,7 +191,7 @@ public final class NonGmsServiceBrokerClient implements Api.Client, ServiceConne
     }
 
     @Override // android.content.ServiceConnection
-    public final void onServiceConnected(ComponentName componentName, final IBinder iBinder) {
+    public final void onServiceConnected(@NonNull ComponentName componentName, @NonNull final IBinder iBinder) {
         this.zag.post(new Runnable() { // from class: com.google.android.gms.common.api.internal.zacg
             @Override // java.lang.Runnable
             public final void run() {
@@ -172,7 +201,7 @@ public final class NonGmsServiceBrokerClient implements Api.Client, ServiceConne
     }
 
     @Override // android.content.ServiceConnection
-    public final void onServiceDisconnected(ComponentName componentName) {
+    public final void onServiceDisconnected(@NonNull ComponentName componentName) {
         this.zag.post(new Runnable() { // from class: com.google.android.gms.common.api.internal.zacf
             @Override // java.lang.Runnable
             public final void run() {
@@ -182,7 +211,7 @@ public final class NonGmsServiceBrokerClient implements Api.Client, ServiceConne
     }
 
     @Override // com.google.android.gms.common.api.Api.Client
-    public final void onUserSignOut(BaseGmsClient.SignOutCallbacks signOutCallbacks) {
+    public final void onUserSignOut(@NonNull BaseGmsClient.SignOutCallbacks signOutCallbacks) {
     }
 
     @Override // com.google.android.gms.common.api.Api.Client
@@ -205,7 +234,6 @@ public final class NonGmsServiceBrokerClient implements Api.Client, ServiceConne
         return false;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public final /* synthetic */ void zaa(IBinder iBinder) {
         this.zaj = false;
         this.zai = iBinder;
@@ -213,15 +241,13 @@ public final class NonGmsServiceBrokerClient implements Api.Client, ServiceConne
         this.zaf.onConnected(new Bundle());
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public final /* synthetic */ void zab() {
         this.zaj = false;
         this.zai = null;
-        String.valueOf((Object) null);
         this.zaf.onConnectionSuspended(1);
     }
 
-    public final void zac(String str) {
+    public final void zac(@Nullable String str) {
         this.zal = str;
     }
 
@@ -233,7 +259,7 @@ public final class NonGmsServiceBrokerClient implements Api.Client, ServiceConne
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private NonGmsServiceBrokerClient(android.content.Context r2, android.os.Looper r3, java.lang.String r4, java.lang.String r5, android.content.ComponentName r6, com.google.android.gms.common.api.internal.ConnectionCallbacks r7, com.google.android.gms.common.api.internal.OnConnectionFailedListener r8) {
+    private NonGmsServiceBrokerClient(android.content.Context r2, android.os.Looper r3, @androidx.annotation.Nullable java.lang.String r4, @androidx.annotation.Nullable java.lang.String r5, @androidx.annotation.Nullable android.content.ComponentName r6, com.google.android.gms.common.api.internal.ConnectionCallbacks r7, com.google.android.gms.common.api.internal.OnConnectionFailedListener r8) {
         /*
             r1 = this;
             r1.<init>()
@@ -268,12 +294,13 @@ public final class NonGmsServiceBrokerClient implements Api.Client, ServiceConne
         throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.common.api.internal.NonGmsServiceBrokerClient.<init>(android.content.Context, android.os.Looper, java.lang.String, java.lang.String, android.content.ComponentName, com.google.android.gms.common.api.internal.ConnectionCallbacks, com.google.android.gms.common.api.internal.OnConnectionFailedListener):void");
     }
 
-    public NonGmsServiceBrokerClient(Context context, Looper looper, String str, String str2, ConnectionCallbacks connectionCallbacks, OnConnectionFailedListener onConnectionFailedListener) {
+    @KeepForSdk
+    public NonGmsServiceBrokerClient(@NonNull Context context, @NonNull Looper looper, @NonNull String str, @NonNull String str2, @NonNull ConnectionCallbacks connectionCallbacks, @NonNull OnConnectionFailedListener onConnectionFailedListener) {
         this(context, looper, str, str2, null, connectionCallbacks, onConnectionFailedListener);
     }
 
     @Override // com.google.android.gms.common.api.Api.Client
-    public final void disconnect(String str) {
+    public final void disconnect(@NonNull String str) {
         zad();
         this.zak = str;
         disconnect();

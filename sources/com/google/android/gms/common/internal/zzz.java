@@ -6,8 +6,7 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import com.google.android.gms.dynamic.IObjectWrapper;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class zzz extends com.google.android.gms.internal.common.zzb implements zzaa {
     public zzz() {
         super("com.google.android.gms.common.internal.ICertData");
@@ -15,22 +14,25 @@ public abstract class zzz extends com.google.android.gms.internal.common.zzb imp
 
     public static zzaa zzg(IBinder iBinder) {
         IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.ICertData");
-        return queryLocalInterface instanceof zzaa ? (zzaa) queryLocalInterface : new zzy(iBinder);
+        if (queryLocalInterface instanceof zzaa) {
+            return (zzaa) queryLocalInterface;
+        }
+        return new zzy(iBinder);
     }
 
     @Override // com.google.android.gms.internal.common.zzb
-    protected final boolean zza(int i, Parcel parcel, Parcel parcel2, int i2) throws RemoteException {
-        if (i == 1) {
-            IObjectWrapper zzd = zzd();
-            parcel2.writeNoException();
-            com.google.android.gms.internal.common.zzc.zze(parcel2, zzd);
-        } else {
-            if (i != 2) {
+    public final boolean zza(int i9, Parcel parcel, Parcel parcel2, int i10) throws RemoteException {
+        if (i9 != 1) {
+            if (i9 != 2) {
                 return false;
             }
             int zzc = zzc();
             parcel2.writeNoException();
             parcel2.writeInt(zzc);
+        } else {
+            IObjectWrapper zzd = zzd();
+            parcel2.writeNoException();
+            com.google.android.gms.internal.common.zzc.zze(parcel2, zzd);
         }
         return true;
     }

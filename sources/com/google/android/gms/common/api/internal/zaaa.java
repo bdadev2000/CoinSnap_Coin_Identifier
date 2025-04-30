@@ -5,7 +5,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
-import androidx.collection.ArrayMap;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailabilityLight;
 import com.google.android.gms.common.api.Api;
@@ -24,10 +25,10 @@ import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
+import x.l;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zaaa implements zaca {
     private final Context zaa;
     private final zabe zab;
@@ -35,16 +36,25 @@ public final class zaaa implements zaca {
     private final zabi zad;
     private final zabi zae;
     private final Map zaf;
+
+    @Nullable
     private final Api.Client zah;
+
+    @Nullable
     private Bundle zai;
     private final Lock zam;
     private final Set zag = Collections.newSetFromMap(new WeakHashMap());
+
+    @Nullable
     private ConnectionResult zaj = null;
+
+    @Nullable
     private ConnectionResult zak = null;
     private boolean zal = false;
     private int zan = 0;
 
-    private zaaa(Context context, zabe zabeVar, Lock lock, Looper looper, GoogleApiAvailabilityLight googleApiAvailabilityLight, Map map, Map map2, ClientSettings clientSettings, Api.AbstractClientBuilder abstractClientBuilder, Api.Client client, ArrayList arrayList, ArrayList arrayList2, Map map3, Map map4) {
+    /* JADX WARN: Type inference failed for: r1v5, types: [x.l, java.util.Map] */
+    private zaaa(Context context, zabe zabeVar, Lock lock, Looper looper, GoogleApiAvailabilityLight googleApiAvailabilityLight, Map map, Map map2, ClientSettings clientSettings, Api.AbstractClientBuilder abstractClientBuilder, @Nullable Api.Client client, ArrayList arrayList, ArrayList arrayList2, Map map3, Map map4) {
         this.zaa = context;
         this.zab = zabeVar;
         this.zam = lock;
@@ -52,16 +62,29 @@ public final class zaaa implements zaca {
         this.zah = client;
         this.zad = new zabi(context, zabeVar, lock, looper, googleApiAvailabilityLight, map2, null, map4, null, arrayList2, new zax(this, null));
         this.zae = new zabi(context, zabeVar, lock, looper, googleApiAvailabilityLight, map, clientSettings, map3, abstractClientBuilder, arrayList, new zaz(this, null));
-        ArrayMap arrayMap = new ArrayMap();
+        ?? lVar = new l();
         Iterator it = map2.keySet().iterator();
         while (it.hasNext()) {
-            arrayMap.put((Api.AnyClientKey) it.next(), this.zad);
+            lVar.put((Api.AnyClientKey) it.next(), this.zad);
         }
         Iterator it2 = map.keySet().iterator();
         while (it2.hasNext()) {
-            arrayMap.put((Api.AnyClientKey) it2.next(), this.zae);
+            lVar.put((Api.AnyClientKey) it2.next(), this.zae);
         }
-        this.zaf = Collections.unmodifiableMap(arrayMap);
+        this.zaf = Collections.unmodifiableMap(lVar);
+    }
+
+    private final void zaA(ConnectionResult connectionResult) {
+        int i9 = this.zan;
+        if (i9 != 1) {
+            if (i9 != 2) {
+                Log.wtf("CompositeGAC", "Attempted to call failure callbacks in CONNECTION_MODE_NONE. Callbacks should be disabled via GmsClientSupervisor", new Exception());
+                this.zan = 0;
+            }
+            this.zab.zaa(connectionResult);
+        }
+        zaB();
+        this.zan = 0;
     }
 
     private final void zaB() {
@@ -74,7 +97,10 @@ public final class zaaa implements zaca {
 
     private final boolean zaC() {
         ConnectionResult connectionResult = this.zak;
-        return connectionResult != null && connectionResult.getErrorCode() == 4;
+        if (connectionResult != null && connectionResult.getErrorCode() == 4) {
+            return true;
+        }
+        return false;
     }
 
     private final boolean zaD(BaseImplementation.ApiMethodImpl apiMethodImpl) {
@@ -83,13 +109,20 @@ public final class zaaa implements zaca {
         return zabiVar.equals(this.zae);
     }
 
-    private static boolean zaE(ConnectionResult connectionResult) {
-        return connectionResult != null && connectionResult.isSuccess();
+    private static boolean zaE(@Nullable ConnectionResult connectionResult) {
+        if (connectionResult != null && connectionResult.isSuccess()) {
+            return true;
+        }
+        return false;
     }
 
+    /* JADX WARN: Type inference failed for: r13v0, types: [x.l, java.util.Map] */
+    /* JADX WARN: Type inference failed for: r14v0, types: [x.l, java.util.Map] */
+    /* JADX WARN: Type inference failed for: r6v0, types: [x.l, java.util.Map] */
+    /* JADX WARN: Type inference failed for: r7v0, types: [x.l, java.util.Map] */
     public static zaaa zag(Context context, zabe zabeVar, Lock lock, Looper looper, GoogleApiAvailabilityLight googleApiAvailabilityLight, Map map, ClientSettings clientSettings, Map map2, Api.AbstractClientBuilder abstractClientBuilder, ArrayList arrayList) {
-        ArrayMap arrayMap = new ArrayMap();
-        ArrayMap arrayMap2 = new ArrayMap();
+        ?? lVar = new l();
+        ?? lVar2 = new l();
         Api.Client client = null;
         for (Map.Entry entry : map.entrySet()) {
             Api.Client client2 = (Api.Client) entry.getValue();
@@ -97,20 +130,20 @@ public final class zaaa implements zaca {
                 client = client2;
             }
             if (client2.requiresSignIn()) {
-                arrayMap.put((Api.AnyClientKey) entry.getKey(), client2);
+                lVar.put((Api.AnyClientKey) entry.getKey(), client2);
             } else {
-                arrayMap2.put((Api.AnyClientKey) entry.getKey(), client2);
+                lVar2.put((Api.AnyClientKey) entry.getKey(), client2);
             }
         }
-        Preconditions.checkState(!arrayMap.isEmpty(), "CompositeGoogleApiClient should not be used without any APIs that require sign-in.");
-        ArrayMap arrayMap3 = new ArrayMap();
-        ArrayMap arrayMap4 = new ArrayMap();
+        Preconditions.checkState(!lVar.isEmpty(), "CompositeGoogleApiClient should not be used without any APIs that require sign-in.");
+        ?? lVar3 = new l();
+        ?? lVar4 = new l();
         for (Api api : map2.keySet()) {
             Api.AnyClientKey zab = api.zab();
-            if (arrayMap.containsKey(zab)) {
-                arrayMap3.put(api, (Boolean) map2.get(api));
-            } else if (arrayMap2.containsKey(zab)) {
-                arrayMap4.put(api, (Boolean) map2.get(api));
+            if (lVar.containsKey(zab)) {
+                lVar3.put(api, (Boolean) map2.get(api));
+            } else if (lVar2.containsKey(zab)) {
+                lVar4.put(api, (Boolean) map2.get(api));
             } else {
                 throw new IllegalStateException("Each API in the isOptionalMap must have a corresponding client in the clients map.");
             }
@@ -118,27 +151,25 @@ public final class zaaa implements zaca {
         ArrayList arrayList2 = new ArrayList();
         ArrayList arrayList3 = new ArrayList();
         int size = arrayList.size();
-        for (int i = 0; i < size; i++) {
-            zat zatVar = (zat) arrayList.get(i);
-            if (arrayMap3.containsKey(zatVar.zaa)) {
+        for (int i9 = 0; i9 < size; i9++) {
+            zat zatVar = (zat) arrayList.get(i9);
+            if (lVar3.containsKey(zatVar.zaa)) {
                 arrayList2.add(zatVar);
-            } else if (arrayMap4.containsKey(zatVar.zaa)) {
+            } else if (lVar4.containsKey(zatVar.zaa)) {
                 arrayList3.add(zatVar);
             } else {
                 throw new IllegalStateException("Each ClientCallbacks must have a corresponding API in the isOptionalMap");
             }
         }
-        return new zaaa(context, zabeVar, lock, looper, googleApiAvailabilityLight, arrayMap, arrayMap2, clientSettings, abstractClientBuilder, client, arrayList2, arrayList3, arrayMap3, arrayMap4);
+        return new zaaa(context, zabeVar, lock, looper, googleApiAvailabilityLight, lVar, lVar2, clientSettings, abstractClientBuilder, client, arrayList2, arrayList3, lVar3, lVar4);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* bridge */ /* synthetic */ void zan(zaaa zaaaVar, int i, boolean z) {
-        zaaaVar.zab.zac(i, z);
+    public static /* bridge */ /* synthetic */ void zan(zaaa zaaaVar, int i9, boolean z8) {
+        zaaaVar.zab.zac(i9, z8);
         zaaaVar.zak = null;
         zaaaVar.zaj = null;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public static /* bridge */ /* synthetic */ void zao(zaaa zaaaVar, Bundle bundle) {
         Bundle bundle2 = zaaaVar.zai;
         if (bundle2 == null) {
@@ -148,53 +179,51 @@ public final class zaaa implements zaca {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public static /* bridge */ /* synthetic */ void zap(zaaa zaaaVar) {
         ConnectionResult connectionResult;
         if (zaE(zaaaVar.zaj)) {
-            if (zaE(zaaaVar.zak) || zaaaVar.zaC()) {
-                int i = zaaaVar.zan;
-                if (i != 1) {
-                    if (i == 2) {
-                        ((zabe) Preconditions.checkNotNull(zaaaVar.zab)).zab(zaaaVar.zai);
+            if (!zaE(zaaaVar.zak) && !zaaaVar.zaC()) {
+                ConnectionResult connectionResult2 = zaaaVar.zak;
+                if (connectionResult2 != null) {
+                    if (zaaaVar.zan == 1) {
+                        zaaaVar.zaB();
+                        return;
                     } else {
-                        Log.wtf("CompositeGAC", "Attempted to call success callbacks in CONNECTION_MODE_NONE. Callbacks should be disabled via GmsClientSupervisor", new AssertionError());
-                        zaaaVar.zan = 0;
+                        zaaaVar.zaA(connectionResult2);
+                        zaaaVar.zad.zar();
                         return;
                     }
                 }
-                zaaaVar.zaB();
-                zaaaVar.zan = 0;
                 return;
             }
-            ConnectionResult connectionResult2 = zaaaVar.zak;
-            if (connectionResult2 != null) {
-                if (zaaaVar.zan == 1) {
-                    zaaaVar.zaB();
-                    return;
-                } else {
-                    zaaaVar.zaA(connectionResult2);
-                    zaaaVar.zad.zar();
+            int i9 = zaaaVar.zan;
+            if (i9 != 1) {
+                if (i9 != 2) {
+                    Log.wtf("CompositeGAC", "Attempted to call success callbacks in CONNECTION_MODE_NONE. Callbacks should be disabled via GmsClientSupervisor", new AssertionError());
+                    zaaaVar.zan = 0;
                     return;
                 }
+                ((zabe) Preconditions.checkNotNull(zaaaVar.zab)).zab(zaaaVar.zai);
             }
+            zaaaVar.zaB();
+            zaaaVar.zan = 0;
             return;
         }
-        if (zaaaVar.zaj == null || !zaE(zaaaVar.zak)) {
-            ConnectionResult connectionResult3 = zaaaVar.zaj;
-            if (connectionResult3 == null || (connectionResult = zaaaVar.zak) == null) {
-                return;
-            }
+        if (zaaaVar.zaj != null && zaE(zaaaVar.zak)) {
+            zaaaVar.zae.zar();
+            zaaaVar.zaA((ConnectionResult) Preconditions.checkNotNull(zaaaVar.zaj));
+            return;
+        }
+        ConnectionResult connectionResult3 = zaaaVar.zaj;
+        if (connectionResult3 != null && (connectionResult = zaaaVar.zak) != null) {
             if (zaaaVar.zae.zaf < zaaaVar.zad.zaf) {
                 connectionResult3 = connectionResult;
             }
             zaaaVar.zaA(connectionResult3);
-            return;
         }
-        zaaaVar.zae.zar();
-        zaaaVar.zaA((ConnectionResult) Preconditions.checkNotNull(zaaaVar.zaj));
     }
 
+    @Nullable
     private final PendingIntent zaz() {
         Api.Client client = this.zah;
         if (client == null) {
@@ -209,12 +238,13 @@ public final class zaaa implements zaca {
     }
 
     @Override // com.google.android.gms.common.api.internal.zaca
-    public final ConnectionResult zac(long j, TimeUnit timeUnit) {
+    public final ConnectionResult zac(long j7, @NonNull TimeUnit timeUnit) {
         throw new UnsupportedOperationException();
     }
 
     @Override // com.google.android.gms.common.api.internal.zaca
-    public final ConnectionResult zad(Api api) {
+    @Nullable
+    public final ConnectionResult zad(@NonNull Api api) {
         if (Objects.equal(this.zaf.get(api.zab()), this.zae)) {
             if (zaC()) {
                 return new ConnectionResult(4, zaz());
@@ -225,7 +255,7 @@ public final class zaaa implements zaca {
     }
 
     @Override // com.google.android.gms.common.api.internal.zaca
-    public final BaseImplementation.ApiMethodImpl zae(BaseImplementation.ApiMethodImpl apiMethodImpl) {
+    public final BaseImplementation.ApiMethodImpl zae(@NonNull BaseImplementation.ApiMethodImpl apiMethodImpl) {
         if (zaD(apiMethodImpl)) {
             if (zaC()) {
                 apiMethodImpl.setFailedResult(new Status(4, (String) null, zaz()));
@@ -239,7 +269,7 @@ public final class zaaa implements zaca {
     }
 
     @Override // com.google.android.gms.common.api.internal.zaca
-    public final BaseImplementation.ApiMethodImpl zaf(BaseImplementation.ApiMethodImpl apiMethodImpl) {
+    public final BaseImplementation.ApiMethodImpl zaf(@NonNull BaseImplementation.ApiMethodImpl apiMethodImpl) {
         if (zaD(apiMethodImpl)) {
             if (zaC()) {
                 apiMethodImpl.setFailedResult(new Status(4, (String) null, zaz()));
@@ -271,7 +301,7 @@ public final class zaaa implements zaca {
     }
 
     @Override // com.google.android.gms.common.api.internal.zaca
-    public final void zas(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
+    public final void zas(String str, @Nullable FileDescriptor fileDescriptor, PrintWriter printWriter, @Nullable String[] strArr) {
         printWriter.append((CharSequence) str).append("authClient").println(":");
         this.zae.zas(String.valueOf(str).concat("  "), fileDescriptor, printWriter, strArr);
         printWriter.append((CharSequence) str).append("anonClient").println(":");
@@ -296,8 +326,10 @@ public final class zaaa implements zaca {
             } else {
                 zaB();
             }
-        } finally {
             this.zam.unlock();
+        } catch (Throwable th) {
+            this.zam.unlock();
+            throw th;
         }
     }
 
@@ -315,26 +347,29 @@ public final class zaaa implements zaca {
             r3 = this;
             java.util.concurrent.locks.Lock r0 = r3.zam
             r0.lock()
-            com.google.android.gms.common.api.internal.zabi r0 = r3.zad     // Catch: java.lang.Throwable -> L28
-            boolean r0 = r0.zaw()     // Catch: java.lang.Throwable -> L28
+            com.google.android.gms.common.api.internal.zabi r0 = r3.zad     // Catch: java.lang.Throwable -> L23
+            boolean r0 = r0.zaw()     // Catch: java.lang.Throwable -> L23
             r1 = 0
-            if (r0 == 0) goto L22
-            com.google.android.gms.common.api.internal.zabi r0 = r3.zae     // Catch: java.lang.Throwable -> L28
-            boolean r0 = r0.zaw()     // Catch: java.lang.Throwable -> L28
+            if (r0 == 0) goto L25
+            com.google.android.gms.common.api.internal.zabi r0 = r3.zae     // Catch: java.lang.Throwable -> L23
+            boolean r0 = r0.zaw()     // Catch: java.lang.Throwable -> L23
             r2 = 1
             if (r0 != 0) goto L21
-            boolean r0 = r3.zaC()     // Catch: java.lang.Throwable -> L28
+            boolean r0 = r3.zaC()     // Catch: java.lang.Throwable -> L23
             if (r0 != 0) goto L21
-            int r0 = r3.zan     // Catch: java.lang.Throwable -> L28
-            if (r0 != r2) goto L22
+            int r0 = r3.zan     // Catch: java.lang.Throwable -> L23
+            if (r0 != r2) goto L25
         L21:
             r1 = r2
-        L22:
+            goto L25
+        L23:
+            r0 = move-exception
+            goto L2b
+        L25:
             java.util.concurrent.locks.Lock r0 = r3.zam
             r0.unlock()
             return r1
-        L28:
-            r0 = move-exception
+        L2b:
             java.util.concurrent.locks.Lock r1 = r3.zam
             r1.unlock()
             throw r0
@@ -344,9 +379,15 @@ public final class zaaa implements zaca {
 
     @Override // com.google.android.gms.common.api.internal.zaca
     public final boolean zax() {
+        boolean z8;
         this.zam.lock();
         try {
-            return this.zan == 2;
+            if (this.zan == 2) {
+                z8 = true;
+            } else {
+                z8 = false;
+            }
+            return z8;
         } finally {
             this.zam.unlock();
         }
@@ -356,33 +397,27 @@ public final class zaaa implements zaca {
     public final boolean zay(SignInConnectionListener signInConnectionListener) {
         this.zam.lock();
         try {
-            boolean z = false;
-            if ((zax() || zaw()) && !this.zae.zaw()) {
+            boolean z8 = false;
+            if (!zax()) {
+                if (zaw()) {
+                }
+                this.zam.unlock();
+                return z8;
+            }
+            if (!this.zae.zaw()) {
                 this.zag.add(signInConnectionListener);
-                z = true;
+                z8 = true;
                 if (this.zan == 0) {
                     this.zan = 1;
                 }
                 this.zak = null;
                 this.zae.zaq();
             }
-            return z;
-        } finally {
             this.zam.unlock();
+            return z8;
+        } catch (Throwable th) {
+            this.zam.unlock();
+            throw th;
         }
-    }
-
-    private final void zaA(ConnectionResult connectionResult) {
-        int i = this.zan;
-        if (i != 1) {
-            if (i == 2) {
-                this.zab.zaa(connectionResult);
-            } else {
-                Log.wtf("CompositeGAC", "Attempted to call failure callbacks in CONNECTION_MODE_NONE. Callbacks should be disabled via GmsClientSupervisor", new Exception());
-                this.zan = 0;
-            }
-        }
-        zaB();
-        this.zan = 0;
     }
 }

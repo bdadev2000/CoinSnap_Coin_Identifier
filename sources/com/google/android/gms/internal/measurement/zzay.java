@@ -2,16 +2,15 @@ package com.google.android.gms.internal.measurement;
 
 import java.util.ArrayList;
 import java.util.List;
+import x0.AbstractC2914a;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class zzay {
     final List<zzbv> zza = new ArrayList();
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public final zzaq zza(String str) {
         if (this.zza.contains(zzg.zza(str))) {
-            throw new UnsupportedOperationException("Command not implemented: " + str);
+            throw new UnsupportedOperationException(AbstractC2914a.d("Command not implemented: ", str));
         }
         throw new IllegalArgumentException("Command not supported");
     }

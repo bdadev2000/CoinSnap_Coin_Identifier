@@ -1,22 +1,16 @@
 package com.google.android.gms.internal.measurement;
 
-import com.google.common.base.Supplier;
-import com.google.common.base.Suppliers;
-import org.checkerframework.dataflow.qual.SideEffectFree;
+/* loaded from: classes2.dex */
+public final class zzoq implements zzon {
+    private static final zzgz<Boolean> zza = new zzhh(zzgw.zza("com.google.android.gms.measurement")).zzb().zza().zza("measurement.gmscore_feature_tracking", true);
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzoq implements Supplier<zzot> {
-    private static zzoq zza = new zzoq();
-    private final Supplier<zzot> zzb = Suppliers.ofInstance(new zzos());
-
-    @Override // com.google.common.base.Supplier
-    public final /* synthetic */ zzot get() {
-        return this.zzb.get();
+    @Override // com.google.android.gms.internal.measurement.zzon
+    public final boolean zza() {
+        return true;
     }
 
-    @SideEffectFree
-    public static boolean zza() {
-        return ((zzot) zza.get()).zza();
+    @Override // com.google.android.gms.internal.measurement.zzon
+    public final boolean zzb() {
+        return zza.zza().booleanValue();
     }
 }

@@ -1,18 +1,15 @@
 package com.google.android.gms.common.api.internal;
 
 import android.os.Bundle;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.api.internal.BaseImplementation;
 import java.util.Collections;
 import java.util.Iterator;
-import org.checkerframework.checker.initialization.qual.NotOnlyInitialized;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zaax implements zabf {
-
-    @NotOnlyInitialized
     private final zabi zaa;
 
     public zaax(zabi zabiVar) {
@@ -45,15 +42,15 @@ public final class zaax implements zabf {
     }
 
     @Override // com.google.android.gms.common.api.internal.zabf
-    public final void zag(Bundle bundle) {
+    public final void zag(@Nullable Bundle bundle) {
     }
 
     @Override // com.google.android.gms.common.api.internal.zabf
-    public final void zah(ConnectionResult connectionResult, Api api, boolean z) {
+    public final void zah(ConnectionResult connectionResult, Api api, boolean z8) {
     }
 
     @Override // com.google.android.gms.common.api.internal.zabf
-    public final void zai(int i) {
+    public final void zai(int i9) {
     }
 
     @Override // com.google.android.gms.common.api.internal.zabf

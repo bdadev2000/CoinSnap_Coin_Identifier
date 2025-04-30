@@ -3,12 +3,15 @@ package com.google.android.gms.dynamic;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.Preconditions;
 import com.google.android.gms.dynamic.IFragmentWrapper;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public final class SupportFragmentWrapper extends IFragmentWrapper.Stub {
     private final Fragment zza;
 
@@ -16,7 +19,9 @@ public final class SupportFragmentWrapper extends IFragmentWrapper.Stub {
         this.zza = fragment;
     }
 
-    public static SupportFragmentWrapper wrap(Fragment fragment) {
+    @Nullable
+    @KeepForSdk
+    public static SupportFragmentWrapper wrap(@Nullable Fragment fragment) {
         if (fragment != null) {
             return new SupportFragmentWrapper(fragment);
         }
@@ -39,79 +44,86 @@ public final class SupportFragmentWrapper extends IFragmentWrapper.Stub {
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
+    @Nullable
     public final Bundle zzd() {
         return this.zza.getArguments();
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
+    @Nullable
     public final IFragmentWrapper zze() {
         return wrap(this.zza.getParentFragment());
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
+    @Nullable
     public final IFragmentWrapper zzf() {
         return wrap(this.zza.getTargetFragment());
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
+    @NonNull
     public final IObjectWrapper zzg() {
         return ObjectWrapper.wrap(this.zza.getActivity());
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
+    @NonNull
     public final IObjectWrapper zzh() {
         return ObjectWrapper.wrap(this.zza.getResources());
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
+    @NonNull
     public final IObjectWrapper zzi() {
-        return ObjectWrapper.wrap(this.zza.getRootView());
+        return ObjectWrapper.wrap(this.zza.getView());
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
+    @Nullable
     public final String zzj() {
         return this.zza.getTag();
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
-    public final void zzk(IObjectWrapper iObjectWrapper) {
+    public final void zzk(@NonNull IObjectWrapper iObjectWrapper) {
         View view = (View) ObjectWrapper.unwrap(iObjectWrapper);
         Preconditions.checkNotNull(view);
         this.zza.registerForContextMenu(view);
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
-    public final void zzl(boolean z) {
-        this.zza.setHasOptionsMenu(z);
+    public final void zzl(boolean z8) {
+        this.zza.setHasOptionsMenu(z8);
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
-    public final void zzm(boolean z) {
-        this.zza.setMenuVisibility(z);
+    public final void zzm(boolean z8) {
+        this.zza.setMenuVisibility(z8);
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
-    public final void zzn(boolean z) {
-        this.zza.setRetainInstance(z);
+    public final void zzn(boolean z8) {
+        this.zza.setRetainInstance(z8);
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
-    public final void zzo(boolean z) {
-        this.zza.setUserVisibleHint(z);
+    public final void zzo(boolean z8) {
+        this.zza.setUserVisibleHint(z8);
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
-    public final void zzp(Intent intent) {
+    public final void zzp(@NonNull Intent intent) {
         this.zza.startActivity(intent);
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
-    public final void zzq(Intent intent, int i) {
-        this.zza.startActivityForResult(intent, i);
+    public final void zzq(@NonNull Intent intent, int i9) {
+        this.zza.startActivityForResult(intent, i9);
     }
 
     @Override // com.google.android.gms.dynamic.IFragmentWrapper
-    public final void zzr(IObjectWrapper iObjectWrapper) {
+    public final void zzr(@NonNull IObjectWrapper iObjectWrapper) {
         View view = (View) ObjectWrapper.unwrap(iObjectWrapper);
         Preconditions.checkNotNull(view);
         this.zza.unregisterForContextMenu(view);

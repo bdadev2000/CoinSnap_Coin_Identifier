@@ -6,40 +6,47 @@ import android.os.Parcelable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelReader;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zaw implements Parcelable.Creator {
     @Override // android.os.Parcelable.Creator
     public final /* bridge */ /* synthetic */ Object createFromParcel(Parcel parcel) {
         int validateObjectHeader = SafeParcelReader.validateObjectHeader(parcel);
-        int i = 0;
-        boolean z = false;
-        boolean z2 = false;
+        int i9 = 0;
+        boolean z8 = false;
+        boolean z9 = false;
         IBinder iBinder = null;
         ConnectionResult connectionResult = null;
         while (parcel.dataPosition() < validateObjectHeader) {
             int readHeader = SafeParcelReader.readHeader(parcel);
             int fieldId = SafeParcelReader.getFieldId(readHeader);
-            if (fieldId == 1) {
-                i = SafeParcelReader.readInt(parcel, readHeader);
-            } else if (fieldId == 2) {
-                iBinder = SafeParcelReader.readIBinder(parcel, readHeader);
-            } else if (fieldId == 3) {
-                connectionResult = (ConnectionResult) SafeParcelReader.createParcelable(parcel, readHeader, ConnectionResult.CREATOR);
-            } else if (fieldId == 4) {
-                z = SafeParcelReader.readBoolean(parcel, readHeader);
-            } else if (fieldId == 5) {
-                z2 = SafeParcelReader.readBoolean(parcel, readHeader);
+            if (fieldId != 1) {
+                if (fieldId != 2) {
+                    if (fieldId != 3) {
+                        if (fieldId != 4) {
+                            if (fieldId != 5) {
+                                SafeParcelReader.skipUnknownField(parcel, readHeader);
+                            } else {
+                                z9 = SafeParcelReader.readBoolean(parcel, readHeader);
+                            }
+                        } else {
+                            z8 = SafeParcelReader.readBoolean(parcel, readHeader);
+                        }
+                    } else {
+                        connectionResult = (ConnectionResult) SafeParcelReader.createParcelable(parcel, readHeader, ConnectionResult.CREATOR);
+                    }
+                } else {
+                    iBinder = SafeParcelReader.readIBinder(parcel, readHeader);
+                }
             } else {
-                SafeParcelReader.skipUnknownField(parcel, readHeader);
+                i9 = SafeParcelReader.readInt(parcel, readHeader);
             }
         }
         SafeParcelReader.ensureAtEnd(parcel, validateObjectHeader);
-        return new zav(i, iBinder, connectionResult, z, z2);
+        return new zav(i9, iBinder, connectionResult, z8, z9);
     }
 
     @Override // android.os.Parcelable.Creator
-    public final /* synthetic */ Object[] newArray(int i) {
-        return new zav[i];
+    public final /* synthetic */ Object[] newArray(int i9) {
+        return new zav[i9];
     }
 }

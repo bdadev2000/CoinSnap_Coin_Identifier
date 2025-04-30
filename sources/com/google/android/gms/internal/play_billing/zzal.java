@@ -1,135 +1,152 @@
 package com.google.android.gms.internal.play_billing;
 
-import java.util.AbstractList;
-import java.util.Collection;
-import java.util.List;
-import java.util.RandomAccess;
+import com.mbridge.msdk.foundation.entity.o;
+import java.io.Serializable;
+import java.util.Map;
+import java.util.Set;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-abstract class zzal extends AbstractList implements zzcf {
-    private boolean zza;
+/* loaded from: classes2.dex */
+public abstract class zzal implements Map, Serializable {
+    private transient zzam zza;
+    private transient zzam zzb;
+    private transient zzaf zzc;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzal(boolean z) {
-        this.zza = z;
+    public static zzal zzc(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6) {
+        zzad.zza("com.android.vending.billing.PURCHASES_UPDATED", obj2);
+        zzad.zza("com.android.vending.billing.LOCAL_BROADCAST_PURCHASES_UPDATED", obj4);
+        zzad.zza("com.android.vending.billing.ALTERNATIVE_BILLING", obj6);
+        return zzat.zzg(3, new Object[]{"com.android.vending.billing.PURCHASES_UPDATED", obj2, "com.android.vending.billing.LOCAL_BROADCAST_PURCHASES_UPDATED", obj4, "com.android.vending.billing.ALTERNATIVE_BILLING", obj6}, null);
     }
 
-    @Override // java.util.AbstractList, java.util.List
-    public void add(int i, Object obj) {
-        zza();
-        super.add(i, obj);
+    @Override // java.util.Map
+    @Deprecated
+    public final void clear() {
+        throw new UnsupportedOperationException();
     }
 
-    @Override // java.util.AbstractList, java.util.List
-    public boolean addAll(int i, Collection collection) {
-        zza();
-        return super.addAll(i, collection);
-    }
-
-    @Override // java.util.AbstractList, java.util.AbstractCollection, java.util.Collection, java.util.List
-    public void clear() {
-        zza();
-        super.clear();
-    }
-
-    @Override // java.util.AbstractList, java.util.Collection, java.util.List
-    public boolean equals(Object obj) {
-        if (obj == this) {
+    @Override // java.util.Map
+    public final boolean containsKey(Object obj) {
+        if (get(obj) != null) {
             return true;
         }
-        if (!(obj instanceof List)) {
+        return false;
+    }
+
+    @Override // java.util.Map
+    public final boolean containsValue(Object obj) {
+        return values().contains(obj);
+    }
+
+    @Override // java.util.Map
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Map)) {
             return false;
         }
-        if (!(obj instanceof RandomAccess)) {
-            return super.equals(obj);
+        return entrySet().equals(((Map) obj).entrySet());
+    }
+
+    @Override // java.util.Map
+    public abstract Object get(Object obj);
+
+    @Override // java.util.Map
+    public final Object getOrDefault(Object obj, Object obj2) {
+        Object obj3 = get(obj);
+        if (obj3 != null) {
+            return obj3;
         }
-        List list = (List) obj;
+        return obj2;
+    }
+
+    @Override // java.util.Map
+    public final int hashCode() {
+        return zzau.zza(entrySet());
+    }
+
+    @Override // java.util.Map
+    public final boolean isEmpty() {
+        return size() == 0;
+    }
+
+    @Override // java.util.Map
+    public final /* bridge */ /* synthetic */ Set keySet() {
+        zzam zzamVar = this.zzb;
+        if (zzamVar == null) {
+            zzam zze = zze();
+            this.zzb = zze;
+            return zze;
+        }
+        return zzamVar;
+    }
+
+    @Override // java.util.Map
+    @Deprecated
+    public final Object put(Object obj, Object obj2) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override // java.util.Map
+    @Deprecated
+    public final void putAll(Map map) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override // java.util.Map
+    @Deprecated
+    public final Object remove(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    public final String toString() {
         int size = size();
-        if (size != list.size()) {
-            return false;
-        }
-        for (int i = 0; i < size; i++) {
-            if (!get(i).equals(list.get(i))) {
-                return false;
+        if (size >= 0) {
+            StringBuilder sb = new StringBuilder((int) Math.min(size * 8, 1073741824L));
+            sb.append('{');
+            boolean z8 = true;
+            for (Map.Entry entry : entrySet()) {
+                if (!z8) {
+                    sb.append(", ");
+                }
+                sb.append(entry.getKey());
+                sb.append('=');
+                sb.append(entry.getValue());
+                z8 = false;
             }
+            sb.append('}');
+            return sb.toString();
         }
-        return true;
+        throw new IllegalArgumentException(o.h(size, "size cannot be negative but was: "));
     }
 
-    @Override // java.util.AbstractList, java.util.Collection, java.util.List
-    public int hashCode() {
-        int size = size();
-        int i = 1;
-        for (int i2 = 0; i2 < size; i2++) {
-            i = (i * 31) + get(i2).hashCode();
+    public abstract zzaf zza();
+
+    @Override // java.util.Map
+    /* renamed from: zzb, reason: merged with bridge method [inline-methods] */
+    public final zzaf values() {
+        zzaf zzafVar = this.zzc;
+        if (zzafVar == null) {
+            zzaf zza = zza();
+            this.zzc = zza;
+            return zza;
         }
-        return i;
+        return zzafVar;
     }
 
-    @Override // java.util.AbstractList, java.util.List
-    public Object remove(int i) {
-        zza();
-        return super.remove(i);
-    }
+    public abstract zzam zzd();
 
-    @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
-    public final boolean removeAll(Collection collection) {
-        zza();
-        return super.removeAll(collection);
-    }
+    public abstract zzam zze();
 
-    @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
-    public final boolean retainAll(Collection collection) {
-        zza();
-        return super.retainAll(collection);
-    }
-
-    @Override // java.util.AbstractList, java.util.List
-    public Object set(int i, Object obj) {
-        zza();
-        return super.set(i, obj);
-    }
-
-    /* JADX INFO: Access modifiers changed from: protected */
-    public final void zza() {
-        if (!this.zza) {
-            throw new UnsupportedOperationException();
+    @Override // java.util.Map
+    /* renamed from: zzf, reason: merged with bridge method [inline-methods] */
+    public final zzam entrySet() {
+        zzam zzamVar = this.zza;
+        if (zzamVar == null) {
+            zzam zzd = zzd();
+            this.zza = zzd;
+            return zzd;
         }
-    }
-
-    @Override // com.google.android.gms.internal.play_billing.zzcf
-    public final void zzb() {
-        if (this.zza) {
-            this.zza = false;
-        }
-    }
-
-    @Override // com.google.android.gms.internal.play_billing.zzcf
-    public final boolean zzc() {
-        return this.zza;
-    }
-
-    @Override // java.util.AbstractList, java.util.AbstractCollection, java.util.Collection, java.util.List
-    public boolean add(Object obj) {
-        zza();
-        return super.add(obj);
-    }
-
-    @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
-    public boolean addAll(Collection collection) {
-        zza();
-        return super.addAll(collection);
-    }
-
-    @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
-    public final boolean remove(Object obj) {
-        zza();
-        int indexOf = indexOf(obj);
-        if (indexOf == -1) {
-            return false;
-        }
-        remove(indexOf);
-        return true;
+        return zzamVar;
     }
 }

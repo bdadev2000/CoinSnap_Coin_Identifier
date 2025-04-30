@@ -3,84 +3,101 @@ package com.google.android.gms.internal.measurement;
 import java.util.Iterator;
 import java.util.List;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzbi extends zzay {
+    public zzbi() {
+        this.zza.add(zzbv.FOR_IN);
+        this.zza.add(zzbv.FOR_IN_CONST);
+        this.zza.add(zzbv.FOR_IN_LET);
+        this.zza.add(zzbv.FOR_LET);
+        this.zza.add(zzbv.FOR_OF);
+        this.zza.add(zzbv.FOR_OF_CONST);
+        this.zza.add(zzbv.FOR_OF_LET);
+        this.zza.add(zzbv.WHILE);
+    }
+
+    private static zzaq zzb(zzbm zzbmVar, zzaq zzaqVar, zzaq zzaqVar2) {
+        if (zzaqVar instanceof Iterable) {
+            return zza(zzbmVar, (Iterator<zzaq>) ((Iterable) zzaqVar).iterator(), zzaqVar2);
+        }
+        throw new IllegalArgumentException("Non-iterable type in for...of loop.");
+    }
+
     @Override // com.google.android.gms.internal.measurement.zzay
     public final zzaq zza(String str, zzh zzhVar, List<zzaq> list) {
         switch (zzbl.zza[zzg.zza(str).ordinal()]) {
             case 1:
                 zzg.zza(zzbv.FOR_IN, 3, list);
-                if (!(list.get(0) instanceof zzas)) {
-                    throw new IllegalArgumentException("Variable name in FOR_IN must be a string");
+                if (list.get(0) instanceof zzas) {
+                    return zza(new zzbp(zzhVar, list.get(0).zzf()), zzhVar.zza(list.get(1)), zzhVar.zza(list.get(2)));
                 }
-                return zza(new zzbp(zzhVar, list.get(0).zzf()), zzhVar.zza(list.get(1)), zzhVar.zza(list.get(2)));
+                throw new IllegalArgumentException("Variable name in FOR_IN must be a string");
             case 2:
                 zzg.zza(zzbv.FOR_IN_CONST, 3, list);
-                if (!(list.get(0) instanceof zzas)) {
-                    throw new IllegalArgumentException("Variable name in FOR_IN_CONST must be a string");
+                if (list.get(0) instanceof zzas) {
+                    return zza(new zzbk(zzhVar, list.get(0).zzf()), zzhVar.zza(list.get(1)), zzhVar.zza(list.get(2)));
                 }
-                return zza(new zzbk(zzhVar, list.get(0).zzf()), zzhVar.zza(list.get(1)), zzhVar.zza(list.get(2)));
+                throw new IllegalArgumentException("Variable name in FOR_IN_CONST must be a string");
             case 3:
                 zzg.zza(zzbv.FOR_IN_LET, 3, list);
-                if (!(list.get(0) instanceof zzas)) {
-                    throw new IllegalArgumentException("Variable name in FOR_IN_LET must be a string");
+                if (list.get(0) instanceof zzas) {
+                    return zza(new zzbn(zzhVar, list.get(0).zzf()), zzhVar.zza(list.get(1)), zzhVar.zza(list.get(2)));
                 }
-                return zza(new zzbn(zzhVar, list.get(0).zzf()), zzhVar.zza(list.get(1)), zzhVar.zza(list.get(2)));
+                throw new IllegalArgumentException("Variable name in FOR_IN_LET must be a string");
             case 4:
                 zzg.zza(zzbv.FOR_LET, 4, list);
                 zzaq zza = zzhVar.zza(list.get(0));
-                if (!(zza instanceof zzaf)) {
-                    throw new IllegalArgumentException("Initializer variables in FOR_LET must be an ArrayList");
-                }
-                zzaf zzafVar = (zzaf) zza;
-                zzaq zzaqVar = list.get(1);
-                zzaq zzaqVar2 = list.get(2);
-                zzaq zza2 = zzhVar.zza(list.get(3));
-                zzh zza3 = zzhVar.zza();
-                for (int i = 0; i < zzafVar.zzb(); i++) {
-                    String zzf = zzafVar.zza(i).zzf();
-                    zza3.zzc(zzf, zzhVar.zza(zzf));
-                }
-                while (zzhVar.zza(zzaqVar).zzd().booleanValue()) {
-                    zzaq zza4 = zzhVar.zza((zzaf) zza2);
-                    if (zza4 instanceof zzaj) {
-                        zzaj zzajVar = (zzaj) zza4;
-                        if (!"break".equals(zzajVar.zzb())) {
-                            if ("return".equals(zzajVar.zzb())) {
-                                return zzajVar;
+                if (zza instanceof zzaf) {
+                    zzaf zzafVar = (zzaf) zza;
+                    zzaq zzaqVar = list.get(1);
+                    zzaq zzaqVar2 = list.get(2);
+                    zzaq zza2 = zzhVar.zza(list.get(3));
+                    zzh zza3 = zzhVar.zza();
+                    for (int i9 = 0; i9 < zzafVar.zzb(); i9++) {
+                        String zzf = zzafVar.zza(i9).zzf();
+                        zza3.zzc(zzf, zzhVar.zza(zzf));
+                    }
+                    while (zzhVar.zza(zzaqVar).zzd().booleanValue()) {
+                        zzaq zza4 = zzhVar.zza((zzaf) zza2);
+                        if (zza4 instanceof zzaj) {
+                            zzaj zzajVar = (zzaj) zza4;
+                            if (!"break".equals(zzajVar.zzb())) {
+                                if ("return".equals(zzajVar.zzb())) {
+                                    return zzajVar;
+                                }
+                            } else {
+                                return zzaq.zzc;
                             }
-                        } else {
-                            return zzaq.zzc;
                         }
+                        zzh zza5 = zzhVar.zza();
+                        for (int i10 = 0; i10 < zzafVar.zzb(); i10++) {
+                            String zzf2 = zzafVar.zza(i10).zzf();
+                            zza5.zzc(zzf2, zza3.zza(zzf2));
+                        }
+                        zza5.zza(zzaqVar2);
+                        zza3 = zza5;
                     }
-                    zzh zza5 = zzhVar.zza();
-                    for (int i2 = 0; i2 < zzafVar.zzb(); i2++) {
-                        String zzf2 = zzafVar.zza(i2).zzf();
-                        zza5.zzc(zzf2, zza3.zza(zzf2));
-                    }
-                    zza5.zza(zzaqVar2);
-                    zza3 = zza5;
+                    return zzaq.zzc;
                 }
-                return zzaq.zzc;
+                throw new IllegalArgumentException("Initializer variables in FOR_LET must be an ArrayList");
             case 5:
                 zzg.zza(zzbv.FOR_OF, 3, list);
-                if (!(list.get(0) instanceof zzas)) {
-                    throw new IllegalArgumentException("Variable name in FOR_OF must be a string");
+                if (list.get(0) instanceof zzas) {
+                    return zzb(new zzbp(zzhVar, list.get(0).zzf()), zzhVar.zza(list.get(1)), zzhVar.zza(list.get(2)));
                 }
-                return zzb(new zzbp(zzhVar, list.get(0).zzf()), zzhVar.zza(list.get(1)), zzhVar.zza(list.get(2)));
+                throw new IllegalArgumentException("Variable name in FOR_OF must be a string");
             case 6:
                 zzg.zza(zzbv.FOR_OF_CONST, 3, list);
-                if (!(list.get(0) instanceof zzas)) {
-                    throw new IllegalArgumentException("Variable name in FOR_OF_CONST must be a string");
+                if (list.get(0) instanceof zzas) {
+                    return zzb(new zzbk(zzhVar, list.get(0).zzf()), zzhVar.zza(list.get(1)), zzhVar.zza(list.get(2)));
                 }
-                return zzb(new zzbk(zzhVar, list.get(0).zzf()), zzhVar.zza(list.get(1)), zzhVar.zza(list.get(2)));
+                throw new IllegalArgumentException("Variable name in FOR_OF_CONST must be a string");
             case 7:
                 zzg.zza(zzbv.FOR_OF_LET, 3, list);
-                if (!(list.get(0) instanceof zzas)) {
-                    throw new IllegalArgumentException("Variable name in FOR_OF_LET must be a string");
+                if (list.get(0) instanceof zzas) {
+                    return zzb(new zzbn(zzhVar, list.get(0).zzf()), zzhVar.zza(list.get(1)), zzhVar.zza(list.get(2)));
                 }
-                return zzb(new zzbn(zzhVar, list.get(0).zzf()), zzhVar.zza(list.get(1)), zzhVar.zza(list.get(2)));
+                throw new IllegalArgumentException("Variable name in FOR_OF_LET must be a string");
             case 8:
                 zzg.zza(zzbv.WHILE, 4, list);
                 zzaq zzaqVar3 = list.get(0);
@@ -115,7 +132,7 @@ public final class zzbi extends zzay {
                 }
                 return zzaq.zzc;
             default:
-                return super.zza(str);
+                return zza(str);
         }
     }
 
@@ -139,24 +156,5 @@ public final class zzbi extends zzay {
 
     private static zzaq zza(zzbm zzbmVar, zzaq zzaqVar, zzaq zzaqVar2) {
         return zza(zzbmVar, zzaqVar.zzh(), zzaqVar2);
-    }
-
-    private static zzaq zzb(zzbm zzbmVar, zzaq zzaqVar, zzaq zzaqVar2) {
-        if (zzaqVar instanceof Iterable) {
-            return zza(zzbmVar, (Iterator<zzaq>) ((Iterable) zzaqVar).iterator(), zzaqVar2);
-        }
-        throw new IllegalArgumentException("Non-iterable type in for...of loop.");
-    }
-
-    /* JADX INFO: Access modifiers changed from: protected */
-    public zzbi() {
-        this.zza.add(zzbv.FOR_IN);
-        this.zza.add(zzbv.FOR_IN_CONST);
-        this.zza.add(zzbv.FOR_IN_LET);
-        this.zza.add(zzbv.FOR_LET);
-        this.zza.add(zzbv.FOR_OF);
-        this.zza.add(zzbv.FOR_OF_CONST);
-        this.zza.add(zzbv.FOR_OF_LET);
-        this.zza.add(zzbv.WHILE);
     }
 }

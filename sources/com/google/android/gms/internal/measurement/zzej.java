@@ -1,28 +1,38 @@
 package com.google.android.gms.internal.measurement;
 
+import android.os.Bundle;
 import android.os.RemoteException;
 import com.google.android.gms.common.internal.Preconditions;
-import com.google.android.gms.internal.measurement.zzdy;
+import com.google.android.gms.internal.measurement.zzdq;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-sdk-api@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzej extends zzdy.zza {
-    private final /* synthetic */ long zzc;
-    private final /* synthetic */ zzdy zzd;
+/* loaded from: classes2.dex */
+public final class zzej extends zzdq.zza {
+    private final /* synthetic */ String zzc;
+    private final /* synthetic */ String zzd;
+    private final /* synthetic */ boolean zze;
+    private final /* synthetic */ zzdc zzf;
+    private final /* synthetic */ zzdq zzg;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public zzej(zzdy zzdyVar, long j) {
-        super(zzdyVar);
-        this.zzc = j;
-        this.zzd = zzdyVar;
+    public zzej(zzdq zzdqVar, String str, String str2, boolean z8, zzdc zzdcVar) {
+        super(zzdqVar);
+        this.zzc = str;
+        this.zzd = str2;
+        this.zze = z8;
+        this.zzf = zzdcVar;
+        this.zzg = zzdqVar;
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzdy.zza
-    final void zza() throws RemoteException {
-        zzdj zzdjVar;
-        zzdjVar = this.zzd.zzj;
-        ((zzdj) Preconditions.checkNotNull(zzdjVar)).setSessionTimeoutDuration(this.zzc);
+    @Override // com.google.android.gms.internal.measurement.zzdq.zza
+    public final void zza() throws RemoteException {
+        zzdb zzdbVar;
+        zzdbVar = this.zzg.zzj;
+        ((zzdb) Preconditions.checkNotNull(zzdbVar)).getUserProperties(this.zzc, this.zzd, this.zze, this.zzf);
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzdq.zza
+    public final void zzb() {
+        this.zzf.zza((Bundle) null);
     }
 }

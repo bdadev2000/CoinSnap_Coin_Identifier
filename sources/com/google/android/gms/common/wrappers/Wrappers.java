@@ -1,23 +1,35 @@
 package com.google.android.gms.common.wrappers;
 
 import android.content.Context;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class Wrappers {
     private static final Wrappers zza = new Wrappers();
+
+    @Nullable
     private PackageManagerWrapper zzb = null;
 
-    public static PackageManagerWrapper packageManager(Context context) {
+    @NonNull
+    @KeepForSdk
+    public static PackageManagerWrapper packageManager(@NonNull Context context) {
         return zza.zza(context);
     }
 
-    public final synchronized PackageManagerWrapper zza(Context context) {
-        if (this.zzb == null) {
-            if (context.getApplicationContext() != null) {
-                context = context.getApplicationContext();
+    @NonNull
+    public final synchronized PackageManagerWrapper zza(@NonNull Context context) {
+        try {
+            if (this.zzb == null) {
+                if (context.getApplicationContext() != null) {
+                    context = context.getApplicationContext();
+                }
+                this.zzb = new PackageManagerWrapper(context);
             }
-            this.zzb = new PackageManagerWrapper(context);
+        } catch (Throwable th) {
+            throw th;
         }
         return this.zzb;
     }

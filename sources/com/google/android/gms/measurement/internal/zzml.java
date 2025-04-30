@@ -1,59 +1,42 @@
 package com.google.android.gms.measurement.internal;
 
-import android.os.RemoteException;
-import android.text.TextUtils;
-import com.google.android.gms.common.internal.Preconditions;
-import java.util.Collections;
-import java.util.concurrent.atomic.AtomicReference;
-
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzml implements Runnable {
-    private final /* synthetic */ AtomicReference zza;
-    private final /* synthetic */ String zzb;
-    private final /* synthetic */ String zzc;
-    private final /* synthetic */ String zzd;
-    private final /* synthetic */ zzo zze;
-    private final /* synthetic */ zzls zzf;
+    long zza;
+    long zzb;
+    final /* synthetic */ zzmm zzc;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzml(zzls zzlsVar, AtomicReference atomicReference, String str, String str2, String str3, zzo zzoVar) {
-        this.zza = atomicReference;
-        this.zzb = str;
-        this.zzc = str2;
-        this.zzd = str3;
-        this.zze = zzoVar;
-        this.zzf = zzlsVar;
+    public zzml(zzmm zzmmVar, long j7, long j9) {
+        this.zzc = zzmmVar;
+        this.zza = j7;
+        this.zzb = j9;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        zzgb zzgbVar;
-        synchronized (this.zza) {
-            try {
-                try {
-                    zzgbVar = this.zzf.zzb;
-                } finally {
-                    this.zza.notify();
+        this.zzc.zza.zzl().zzb(new Runnable() { // from class: com.google.android.gms.measurement.internal.zzmo
+            @Override // java.lang.Runnable
+            public final void run() {
+                zzml zzmlVar = zzml.this;
+                zzmm zzmmVar = zzmlVar.zzc;
+                long j7 = zzmlVar.zza;
+                long j9 = zzmlVar.zzb;
+                zzmmVar.zza.zzt();
+                zzmmVar.zza.zzj().zzc().zza("Application going to the background");
+                zzmmVar.zza.zzk().zzn.zza(true);
+                zzmmVar.zza.zza(true);
+                if (!zzmmVar.zza.zze().zzv()) {
+                    if (zzmmVar.zza.zze().zza(zzbf.zzch)) {
+                        zzmmVar.zza.zza(false, false, j9);
+                        zzmmVar.zza.zzb.zzb(j9);
+                    } else {
+                        zzmmVar.zza.zzb.zzb(j9);
+                        zzmmVar.zza.zza(false, false, j9);
+                    }
                 }
-            } catch (RemoteException e) {
-                this.zzf.zzj().zzg().zza("(legacy) Failed to get conditional properties; remote exception", zzgo.zza(this.zzb), this.zzc, e);
-                this.zza.set(Collections.emptyList());
+                zzmmVar.zza.zzj().zzn().zza("Application backgrounded at: timestamp_millis", Long.valueOf(j7));
             }
-            if (zzgbVar == null) {
-                this.zzf.zzj().zzg().zza("(legacy) Failed to get conditional properties; not connected to service", zzgo.zza(this.zzb), this.zzc, this.zzd);
-                this.zza.set(Collections.emptyList());
-                return;
-            }
-            if (TextUtils.isEmpty(this.zzb)) {
-                Preconditions.checkNotNull(this.zze);
-                this.zza.set(zzgbVar.zza(this.zzc, this.zzd, this.zze));
-            } else {
-                this.zza.set(zzgbVar.zza(this.zzb, this.zzc, this.zzd));
-            }
-            this.zzf.zzar();
-            this.zza.notify();
-        }
+        });
     }
 }

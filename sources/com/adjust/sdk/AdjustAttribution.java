@@ -1,13 +1,13 @@
 package com.adjust.sdk;
 
-import com.glority.android.core.utils.device.CorePersistKey;
+import g4.AbstractC2292b;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectStreamField;
 import java.io.Serializable;
 import org.json.JSONObject;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class AdjustAttribution implements Serializable {
     private static final ObjectStreamField[] serialPersistentFields = {new ObjectStreamField("trackerToken", String.class), new ObjectStreamField("trackerName", String.class), new ObjectStreamField("network", String.class), new ObjectStreamField("campaign", String.class), new ObjectStreamField("adgroup", String.class), new ObjectStreamField("creative", String.class), new ObjectStreamField("clickLabel", String.class), new ObjectStreamField("adid", String.class), new ObjectStreamField("costType", String.class), new ObjectStreamField("costAmount", Double.class), new ObjectStreamField("costCurrency", String.class), new ObjectStreamField("fbInstallReferrer", String.class)};
     private static final long serialVersionUID = 1;
@@ -45,7 +45,7 @@ public class AdjustAttribution implements Serializable {
             adjustAttribution.costType = jSONObject.optString("cost_type", "");
             adjustAttribution.costAmount = Double.valueOf(jSONObject.optDouble("cost_amount", 0.0d));
             adjustAttribution.costCurrency = jSONObject.optString("cost_currency", "");
-            optString = jSONObject.optString(CorePersistKey.FB_INSTALL_REFERRER, "");
+            optString = jSONObject.optString("fb_install_referrer", "");
         } else {
             adjustAttribution.trackerToken = jSONObject.optString("tracker_token");
             adjustAttribution.trackerName = jSONObject.optString("tracker_name");
@@ -58,7 +58,7 @@ public class AdjustAttribution implements Serializable {
             adjustAttribution.costType = jSONObject.optString("cost_type");
             adjustAttribution.costAmount = Double.valueOf(jSONObject.optDouble("cost_amount"));
             adjustAttribution.costCurrency = jSONObject.optString("cost_currency");
-            optString = jSONObject.optString(CorePersistKey.FB_INSTALL_REFERRER);
+            optString = jSONObject.optString("fb_install_referrer");
         }
         adjustAttribution.fbInstallReferrer = optString;
         return adjustAttribution;
@@ -84,7 +84,7 @@ public class AdjustAttribution implements Serializable {
     }
 
     public int hashCode() {
-        return Util.hashString(this.fbInstallReferrer) + ((Util.hashString(this.costCurrency) + ((Util.hashDouble(this.costAmount) + ((Util.hashString(this.costType) + ((Util.hashString(this.adid) + ((Util.hashString(this.clickLabel) + ((Util.hashString(this.creative) + ((Util.hashString(this.adgroup) + ((Util.hashString(this.campaign) + ((Util.hashString(this.network) + ((Util.hashString(this.trackerName) + ((Util.hashString(this.trackerToken) + 629) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37);
+        return Util.hashString(this.fbInstallReferrer) + AbstractC2292b.a(this.costCurrency, (Util.hashDouble(this.costAmount) + AbstractC2292b.a(this.costType, AbstractC2292b.a(this.adid, AbstractC2292b.a(this.clickLabel, AbstractC2292b.a(this.creative, AbstractC2292b.a(this.adgroup, AbstractC2292b.a(this.campaign, AbstractC2292b.a(this.network, AbstractC2292b.a(this.trackerName, AbstractC2292b.a(this.trackerToken, 629)))))))))) * 37);
     }
 
     public String toString() {

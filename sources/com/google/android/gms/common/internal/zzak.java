@@ -4,24 +4,27 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
+@SafeParcelable.Class(creator = "ValidateAccountRequestCreator")
 @Deprecated
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzak extends AbstractSafeParcelable {
     public static final Parcelable.Creator<zzak> CREATOR = new zzal();
+
+    @SafeParcelable.VersionField(id = 1)
     final int zza;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzak(int i) {
-        this.zza = i;
+    @SafeParcelable.Constructor
+    public zzak(@SafeParcelable.Param(id = 1) int i9) {
+        this.zza = i9;
     }
 
     @Override // android.os.Parcelable
-    public final void writeToParcel(Parcel parcel, int i) {
-        int i2 = this.zza;
+    public final void writeToParcel(Parcel parcel, int i9) {
+        int i10 = this.zza;
         int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
-        SafeParcelWriter.writeInt(parcel, 1, i2);
+        SafeParcelWriter.writeInt(parcel, 1, i10);
         SafeParcelWriter.finishObjectHeader(parcel, beginObjectHeader);
     }
 }

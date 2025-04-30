@@ -6,10 +6,10 @@ import android.os.Message;
 import android.util.Log;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.internal.BaseGmsClient;
+import com.mbridge.msdk.foundation.entity.o;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzb extends com.google.android.gms.internal.common.zzi {
     final /* synthetic */ BaseGmsClient zza;
 
@@ -26,7 +26,11 @@ public final class zzb extends com.google.android.gms.internal.common.zzi {
     }
 
     private static final boolean zzb(Message message) {
-        return message.what == 2 || message.what == 1 || message.what == 7;
+        int i9 = message.what;
+        if (i9 == 2 || i9 == 1 || i9 == 7) {
+            return true;
+        }
+        return false;
     }
 
     @Override // android.os.Handler
@@ -35,7 +39,9 @@ public final class zzb extends com.google.android.gms.internal.common.zzi {
         BaseGmsClient.BaseConnectionCallbacks baseConnectionCallbacks2;
         ConnectionResult connectionResult;
         ConnectionResult connectionResult2;
-        boolean z;
+        ConnectionResult connectionResult3;
+        ConnectionResult connectionResult4;
+        boolean z8;
         if (this.zza.zzd.get() != message.arg1) {
             if (zzb(message)) {
                 zza(message);
@@ -43,39 +49,54 @@ public final class zzb extends com.google.android.gms.internal.common.zzi {
             }
             return;
         }
-        if ((message.what != 1 && message.what != 7 && ((message.what != 4 || this.zza.enableLocalFallback()) && message.what != 5)) || this.zza.isConnecting()) {
-            if (message.what == 4) {
+        int i9 = message.what;
+        if ((i9 != 1 && i9 != 7 && ((i9 != 4 || this.zza.enableLocalFallback()) && message.what != 5)) || this.zza.isConnecting()) {
+            int i10 = message.what;
+            PendingIntent pendingIntent = null;
+            if (i10 == 4) {
                 this.zza.zzB = new ConnectionResult(message.arg2);
                 if (BaseGmsClient.zzo(this.zza)) {
                     BaseGmsClient baseGmsClient = this.zza;
-                    z = baseGmsClient.zzC;
-                    if (!z) {
+                    z8 = baseGmsClient.zzC;
+                    if (!z8) {
                         baseGmsClient.zzp(3, null);
                         return;
                     }
                 }
                 BaseGmsClient baseGmsClient2 = this.zza;
-                connectionResult2 = baseGmsClient2.zzB;
-                ConnectionResult connectionResult3 = connectionResult2 != null ? baseGmsClient2.zzB : new ConnectionResult(8);
-                this.zza.zzc.onReportServiceBinding(connectionResult3);
-                this.zza.onConnectionFailed(connectionResult3);
-                return;
-            }
-            if (message.what == 5) {
-                BaseGmsClient baseGmsClient3 = this.zza;
-                connectionResult = baseGmsClient3.zzB;
-                ConnectionResult connectionResult4 = connectionResult != null ? baseGmsClient3.zzB : new ConnectionResult(8);
+                connectionResult3 = baseGmsClient2.zzB;
+                if (connectionResult3 != null) {
+                    connectionResult4 = baseGmsClient2.zzB;
+                } else {
+                    connectionResult4 = new ConnectionResult(8);
+                }
                 this.zza.zzc.onReportServiceBinding(connectionResult4);
                 this.zza.onConnectionFailed(connectionResult4);
                 return;
             }
-            if (message.what == 3) {
-                ConnectionResult connectionResult5 = new ConnectionResult(message.arg2, message.obj instanceof PendingIntent ? (PendingIntent) message.obj : null);
+            if (i10 == 5) {
+                BaseGmsClient baseGmsClient3 = this.zza;
+                connectionResult = baseGmsClient3.zzB;
+                if (connectionResult != null) {
+                    connectionResult2 = baseGmsClient3.zzB;
+                } else {
+                    connectionResult2 = new ConnectionResult(8);
+                }
+                this.zza.zzc.onReportServiceBinding(connectionResult2);
+                this.zza.onConnectionFailed(connectionResult2);
+                return;
+            }
+            if (i10 == 3) {
+                Object obj = message.obj;
+                if (obj instanceof PendingIntent) {
+                    pendingIntent = (PendingIntent) obj;
+                }
+                ConnectionResult connectionResult5 = new ConnectionResult(message.arg2, pendingIntent);
                 this.zza.zzc.onReportServiceBinding(connectionResult5);
                 this.zza.onConnectionFailed(connectionResult5);
                 return;
             }
-            if (message.what == 6) {
+            if (i10 == 6) {
                 this.zza.zzp(5, null);
                 BaseGmsClient baseGmsClient4 = this.zza;
                 baseConnectionCallbacks = baseGmsClient4.zzw;
@@ -87,16 +108,16 @@ public final class zzb extends com.google.android.gms.internal.common.zzi {
                 BaseGmsClient.zzn(this.zza, 5, 1, null);
                 return;
             }
-            if (message.what != 2 || this.zza.isConnected()) {
-                if (zzb(message)) {
-                    ((zzc) message.obj).zze();
-                    return;
-                }
-                Log.wtf("GmsClient", "Don't know how to handle message: " + message.what, new Exception());
+            if (i10 == 2 && !this.zza.isConnected()) {
+                zza(message);
+                return;
+            } else if (zzb(message)) {
+                ((zzc) message.obj).zze();
+                return;
+            } else {
+                Log.wtf("GmsClient", o.h(message.what, "Don't know how to handle message: "), new Exception());
                 return;
             }
-            zza(message);
-            return;
         }
         zza(message);
     }

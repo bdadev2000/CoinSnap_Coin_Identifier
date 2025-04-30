@@ -1,10 +1,16 @@
 package com.google.android.gms.internal.measurement;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ThreadFactory;
+import android.os.Handler;
+import android.os.Looper;
 
-/* compiled from: com.google.android.gms:play-services-measurement-sdk-api@@22.1.2 */
-/* loaded from: classes12.dex */
-public interface zzcz {
-    ExecutorService zza(ThreadFactory threadFactory, int i);
+/* loaded from: classes2.dex */
+public final class zzcz extends Handler {
+    public zzcz() {
+        Looper.getMainLooper();
+    }
+
+    public zzcz(Looper looper) {
+        super(looper);
+        Looper.getMainLooper();
+    }
 }

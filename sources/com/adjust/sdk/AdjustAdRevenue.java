@@ -1,9 +1,10 @@
 package com.adjust.sdk;
 
+import com.google.android.gms.measurement.api.AppMeasurementSdk;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class AdjustAdRevenue {
     private static final ILogger logger = AdjustFactory.getLogger();
     public Integer adImpressionsCount;
@@ -35,7 +36,7 @@ public class AdjustAdRevenue {
     }
 
     public void addCallbackParameter(String str, String str2) {
-        if (Util.isValidParameter(str, "key", "Callback") && Util.isValidParameter(str2, "value", "Callback")) {
+        if (Util.isValidParameter(str, "key", "Callback") && Util.isValidParameter(str2, AppMeasurementSdk.ConditionalUserProperty.VALUE, "Callback")) {
             if (this.callbackParameters == null) {
                 this.callbackParameters = new LinkedHashMap();
             }
@@ -46,7 +47,7 @@ public class AdjustAdRevenue {
     }
 
     public void addPartnerParameter(String str, String str2) {
-        if (Util.isValidParameter(str, "key", "Partner") && Util.isValidParameter(str2, "value", "Partner")) {
+        if (Util.isValidParameter(str, "key", "Partner") && Util.isValidParameter(str2, AppMeasurementSdk.ConditionalUserProperty.VALUE, "Partner")) {
             if (this.partnerParameters == null) {
                 this.partnerParameters = new LinkedHashMap();
             }
@@ -76,8 +77,8 @@ public class AdjustAdRevenue {
         this.adRevenueUnit = str;
     }
 
-    public void setRevenue(Double d, String str) {
-        this.revenue = d;
+    public void setRevenue(Double d2, String str) {
+        this.revenue = d2;
         this.currency = str;
     }
 }

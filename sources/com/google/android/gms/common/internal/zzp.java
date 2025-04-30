@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.StrictMode;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.stats.ConnectionTracker;
 import com.google.android.gms.common.util.PlatformVersion;
 import java.util.HashMap;
@@ -14,13 +15,14 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.Executor;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzp implements ServiceConnection, zzt {
     final /* synthetic */ zzs zza;
     private final Map zzb = new HashMap();
     private int zzc = 2;
     private boolean zzd;
+
+    @Nullable
     private IBinder zze;
     private final zzo zzf;
     private ComponentName zzg;
@@ -41,15 +43,19 @@ final class zzp implements ServiceConnection, zzt {
         Handler handler;
         hashMap = this.zza.zzb;
         synchronized (hashMap) {
-            handler = this.zza.zzd;
-            handler.removeMessages(1, this.zzf);
-            this.zze = iBinder;
-            this.zzg = componentName;
-            Iterator it = this.zzb.values().iterator();
-            while (it.hasNext()) {
-                ((ServiceConnection) it.next()).onServiceConnected(componentName, iBinder);
+            try {
+                handler = this.zza.zzd;
+                handler.removeMessages(1, this.zzf);
+                this.zze = iBinder;
+                this.zzg = componentName;
+                Iterator it = this.zzb.values().iterator();
+                while (it.hasNext()) {
+                    ((ServiceConnection) it.next()).onServiceConnected(componentName, iBinder);
+                }
+                this.zzc = 1;
+            } catch (Throwable th) {
+                throw th;
             }
-            this.zzc = 1;
         }
     }
 
@@ -59,15 +65,19 @@ final class zzp implements ServiceConnection, zzt {
         Handler handler;
         hashMap = this.zza.zzb;
         synchronized (hashMap) {
-            handler = this.zza.zzd;
-            handler.removeMessages(1, this.zzf);
-            this.zze = null;
-            this.zzg = componentName;
-            Iterator it = this.zzb.values().iterator();
-            while (it.hasNext()) {
-                ((ServiceConnection) it.next()).onServiceDisconnected(componentName);
+            try {
+                handler = this.zza.zzd;
+                handler.removeMessages(1, this.zzf);
+                this.zze = null;
+                this.zzg = componentName;
+                Iterator it = this.zzb.values().iterator();
+                while (it.hasNext()) {
+                    ((ServiceConnection) it.next()).onServiceDisconnected(componentName);
+                }
+                this.zzc = 2;
+            } catch (Throwable th) {
+                throw th;
             }
-            this.zzc = 2;
         }
     }
 
@@ -79,6 +89,7 @@ final class zzp implements ServiceConnection, zzt {
         return this.zzg;
     }
 
+    @Nullable
     public final IBinder zzc() {
         return this.zze;
     }
@@ -87,7 +98,7 @@ final class zzp implements ServiceConnection, zzt {
         this.zzb.put(serviceConnection, serviceConnection2);
     }
 
-    public final void zze(String str, Executor executor) {
+    public final void zze(String str, @Nullable Executor executor) {
         ConnectionTracker connectionTracker;
         Context context;
         Context context2;
@@ -95,11 +106,13 @@ final class zzp implements ServiceConnection, zzt {
         Context context3;
         Handler handler;
         Handler handler2;
-        long j;
+        long j7;
+        StrictMode.VmPolicy.Builder permitUnsafeIntentLaunch;
         this.zzc = 3;
         StrictMode.VmPolicy vmPolicy = StrictMode.getVmPolicy();
         if (PlatformVersion.isAtLeastS()) {
-            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder(vmPolicy).permitUnsafeIntentLaunch().build());
+            permitUnsafeIntentLaunch = new StrictMode.VmPolicy.Builder(vmPolicy).permitUnsafeIntentLaunch();
+            StrictMode.setVmPolicy(permitUnsafeIntentLaunch.build());
         }
         try {
             zzs zzsVar = this.zza;
@@ -113,8 +126,8 @@ final class zzp implements ServiceConnection, zzt {
                 handler = this.zza.zzd;
                 Message obtainMessage = handler.obtainMessage(1, this.zzf);
                 handler2 = this.zza.zzd;
-                j = this.zza.zzh;
-                handler2.sendMessageDelayed(obtainMessage, j);
+                j7 = this.zza.zzh;
+                handler2.sendMessageDelayed(obtainMessage, j7);
             } else {
                 this.zzc = 2;
                 try {
@@ -125,8 +138,10 @@ final class zzp implements ServiceConnection, zzt {
                 } catch (IllegalArgumentException unused) {
                 }
             }
-        } finally {
             StrictMode.setVmPolicy(vmPolicy);
+        } catch (Throwable th) {
+            StrictMode.setVmPolicy(vmPolicy);
+            throw th;
         }
     }
 

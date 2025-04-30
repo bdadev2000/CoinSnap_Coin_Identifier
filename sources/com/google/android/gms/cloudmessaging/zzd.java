@@ -6,9 +6,9 @@ import android.os.Messenger;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
+import androidx.annotation.Nullable;
 
-/* compiled from: com.google.android.gms:play-services-cloud-messaging@@17.2.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzd implements Parcelable {
     public static final Parcelable.Creator<zzd> CREATOR = new zzb();
     Messenger zza;
@@ -23,7 +23,7 @@ public final class zzd implements Parcelable {
         return 0;
     }
 
-    public final boolean equals(Object obj) {
+    public final boolean equals(@Nullable Object obj) {
         if (obj == null) {
             return false;
         }
@@ -39,7 +39,7 @@ public final class zzd implements Parcelable {
     }
 
     @Override // android.os.Parcelable
-    public final void writeToParcel(Parcel parcel, int i) {
+    public final void writeToParcel(Parcel parcel, int i9) {
         Messenger messenger = this.zza;
         if (messenger != null) {
             parcel.writeStrongBinder(messenger.getBinder());
@@ -50,7 +50,10 @@ public final class zzd implements Parcelable {
 
     public final IBinder zza() {
         Messenger messenger = this.zza;
-        return messenger != null ? messenger.getBinder() : this.zzb.asBinder();
+        if (messenger != null) {
+            return messenger.getBinder();
+        }
+        return this.zzb.asBinder();
     }
 
     public final void zzb(Message message) throws RemoteException {

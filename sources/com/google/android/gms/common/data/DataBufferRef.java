@@ -2,26 +2,37 @@ package com.google.android.gms.common.data;
 
 import android.database.CharArrayBuffer;
 import android.net.Uri;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.Objects;
 import com.google.android.gms.common.internal.Preconditions;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public abstract class DataBufferRef {
+
+    @NonNull
+    @KeepForSdk
     protected final DataHolder mDataHolder;
+
+    @KeepForSdk
     protected int mDataRow;
     private int zaa;
 
-    public DataBufferRef(DataHolder dataHolder, int i) {
+    @KeepForSdk
+    public DataBufferRef(@NonNull DataHolder dataHolder, int i9) {
         this.mDataHolder = (DataHolder) Preconditions.checkNotNull(dataHolder);
-        zaa(i);
+        zaa(i9);
     }
 
-    protected void copyToBuffer(String str, CharArrayBuffer charArrayBuffer) {
+    @KeepForSdk
+    public void copyToBuffer(@NonNull String str, @NonNull CharArrayBuffer charArrayBuffer) {
         this.mDataHolder.zac(str, this.mDataRow, this.zaa, charArrayBuffer);
     }
 
-    public boolean equals(Object obj) {
+    @KeepForSdk
+    public boolean equals(@Nullable Object obj) {
         if (obj instanceof DataBufferRef) {
             DataBufferRef dataBufferRef = (DataBufferRef) obj;
             if (Objects.equal(Integer.valueOf(dataBufferRef.mDataRow), Integer.valueOf(this.mDataRow)) && Objects.equal(Integer.valueOf(dataBufferRef.zaa), Integer.valueOf(this.zaa)) && dataBufferRef.mDataHolder == this.mDataHolder) {
@@ -31,55 +42,74 @@ public abstract class DataBufferRef {
         return false;
     }
 
-    protected boolean getBoolean(String str) {
+    @KeepForSdk
+    public boolean getBoolean(@NonNull String str) {
         return this.mDataHolder.getBoolean(str, this.mDataRow, this.zaa);
     }
 
-    protected byte[] getByteArray(String str) {
+    @NonNull
+    @KeepForSdk
+    public byte[] getByteArray(@NonNull String str) {
         return this.mDataHolder.getByteArray(str, this.mDataRow, this.zaa);
     }
 
-    protected int getDataRow() {
+    @KeepForSdk
+    public int getDataRow() {
         return this.mDataRow;
     }
 
-    protected double getDouble(String str) {
+    @KeepForSdk
+    public double getDouble(@NonNull String str) {
         return this.mDataHolder.zaa(str, this.mDataRow, this.zaa);
     }
 
-    protected float getFloat(String str) {
+    @KeepForSdk
+    public float getFloat(@NonNull String str) {
         return this.mDataHolder.zab(str, this.mDataRow, this.zaa);
     }
 
-    protected int getInteger(String str) {
+    @KeepForSdk
+    public int getInteger(@NonNull String str) {
         return this.mDataHolder.getInteger(str, this.mDataRow, this.zaa);
     }
 
-    protected long getLong(String str) {
+    @KeepForSdk
+    public long getLong(@NonNull String str) {
         return this.mDataHolder.getLong(str, this.mDataRow, this.zaa);
     }
 
-    protected String getString(String str) {
+    @NonNull
+    @KeepForSdk
+    public String getString(@NonNull String str) {
         return this.mDataHolder.getString(str, this.mDataRow, this.zaa);
     }
 
-    public boolean hasColumn(String str) {
+    @KeepForSdk
+    public boolean hasColumn(@NonNull String str) {
         return this.mDataHolder.hasColumn(str);
     }
 
-    protected boolean hasNull(String str) {
+    @KeepForSdk
+    public boolean hasNull(@NonNull String str) {
         return this.mDataHolder.hasNull(str, this.mDataRow, this.zaa);
     }
 
+    @KeepForSdk
     public int hashCode() {
         return Objects.hashCode(Integer.valueOf(this.mDataRow), Integer.valueOf(this.zaa), this.mDataHolder);
     }
 
+    @KeepForSdk
     public boolean isDataValid() {
-        return !this.mDataHolder.isClosed();
+        if (!this.mDataHolder.isClosed()) {
+            return true;
+        }
+        return false;
     }
 
-    protected Uri parseUri(String str) {
+    @Nullable
+    @KeepForSdk
+    public Uri parseUri(@NonNull String str) {
         String string = this.mDataHolder.getString(str, this.mDataRow, this.zaa);
         if (string == null) {
             return null;
@@ -87,14 +117,13 @@ public abstract class DataBufferRef {
         return Uri.parse(string);
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public final void zaa(int i) {
-        boolean z = false;
-        if (i >= 0 && i < this.mDataHolder.getCount()) {
-            z = true;
+    public final void zaa(int i9) {
+        boolean z8 = false;
+        if (i9 >= 0 && i9 < this.mDataHolder.getCount()) {
+            z8 = true;
         }
-        Preconditions.checkState(z);
-        this.mDataRow = i;
-        this.zaa = this.mDataHolder.getWindowIndex(i);
+        Preconditions.checkState(z8);
+        this.mDataRow = i9;
+        this.zaa = this.mDataHolder.getWindowIndex(i9);
     }
 }

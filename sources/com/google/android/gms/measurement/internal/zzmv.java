@@ -1,16 +1,20 @@
 package com.google.android.gms.measurement.internal;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzmv {
-    final String zza;
-    final boolean zzb;
-    final long zzc;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzmv extends zzat {
+    private final /* synthetic */ zzmw zza;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzmv(String str, boolean z, long j) {
-        this.zza = str;
-        this.zzb = z;
-        this.zzc = j;
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public zzmv(zzmw zzmwVar, zzil zzilVar) {
+        super(zzilVar);
+        this.zza = zzmwVar;
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzat
+    public final void zzb() {
+        this.zza.zzu();
+        this.zza.zzj().zzp().zza("Starting upload from DelayedRunnable");
+        this.zza.zzf.zzw();
     }
 }

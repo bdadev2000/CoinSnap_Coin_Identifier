@@ -5,10 +5,10 @@ import android.os.RemoteException;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public abstract class InstallReferrerClient {
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public static final class Builder {
         private final Context mContext;
 
@@ -18,15 +18,15 @@ public abstract class InstallReferrerClient {
 
         public InstallReferrerClient build() {
             Context context = this.mContext;
-            if (context == null) {
-                throw new IllegalArgumentException("Please provide a valid Context.");
+            if (context != null) {
+                return new b(context);
             }
-            return new InstallReferrerClientImpl(context);
+            throw new IllegalArgumentException("Please provide a valid Context.");
         }
     }
 
     @Retention(RetentionPolicy.SOURCE)
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public @interface InstallReferrerResponse {
         public static final int DEVELOPER_ERROR = 3;
         public static final int FEATURE_NOT_SUPPORTED = 2;

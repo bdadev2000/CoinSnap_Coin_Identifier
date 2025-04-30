@@ -1,20 +1,108 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zznc implements zznd {
-    private static final zzhj<Boolean> zza;
+/* loaded from: classes2.dex */
+public interface zznc {
+    long zza();
 
-    static {
-        zzhr zza2 = new zzhr(zzhk.zza("com.google.android.gms.measurement")).zzb().zza();
-        zza = zza2.zza("measurement.service.ad_impression.convert_value_to_double", true);
-        zza2.zza("measurement.client.ad_impression", true);
-        zza2.zza("measurement.service.separate_public_internal_event_blacklisting", true);
-        zza2.zza("measurement.service.ad_impression", true);
-    }
+    long zzaa();
 
-    @Override // com.google.android.gms.internal.measurement.zznd
-    public final boolean zza() {
-        return zza.zza().booleanValue();
-    }
+    long zzab();
+
+    long zzac();
+
+    long zzad();
+
+    long zzae();
+
+    long zzaf();
+
+    long zzag();
+
+    long zzah();
+
+    long zzai();
+
+    long zzaj();
+
+    long zzak();
+
+    long zzal();
+
+    long zzam();
+
+    long zzan();
+
+    String zzao();
+
+    String zzap();
+
+    String zzaq();
+
+    String zzar();
+
+    String zzas();
+
+    String zzat();
+
+    String zzau();
+
+    String zzav();
+
+    String zzaw();
+
+    String zzax();
+
+    String zzay();
+
+    String zzaz();
+
+    long zzb();
+
+    long zzc();
+
+    long zzd();
+
+    long zze();
+
+    long zzf();
+
+    long zzg();
+
+    long zzh();
+
+    long zzi();
+
+    long zzj();
+
+    long zzk();
+
+    long zzl();
+
+    long zzm();
+
+    long zzn();
+
+    long zzo();
+
+    long zzp();
+
+    long zzq();
+
+    long zzr();
+
+    long zzs();
+
+    long zzt();
+
+    long zzu();
+
+    long zzv();
+
+    long zzw();
+
+    long zzx();
+
+    long zzy();
+
+    long zzz();
 }

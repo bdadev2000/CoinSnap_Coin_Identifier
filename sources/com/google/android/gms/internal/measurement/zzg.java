@@ -5,25 +5,40 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import x0.AbstractC2914a;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzg {
-    public static double zza(double d) {
-        if (Double.isNaN(d)) {
+    public static double zza(double d2) {
+        if (Double.isNaN(d2)) {
             return 0.0d;
         }
-        if (Double.isInfinite(d) || d == 0.0d || d == -0.0d) {
-            return d;
+        if (Double.isInfinite(d2) || d2 == 0.0d || d2 == -0.0d) {
+            return d2;
         }
-        return (d > 0.0d ? 1 : -1) * Math.floor(Math.abs(d));
+        return Math.floor(Math.abs(d2)) * (d2 > 0.0d ? 1 : -1);
     }
 
-    public static int zzb(double d) {
-        if (Double.isNaN(d) || Double.isInfinite(d) || d == 0.0d) {
+    public static int zzb(double d2) {
+        if (Double.isNaN(d2) || Double.isInfinite(d2) || d2 == 0.0d) {
             return 0;
         }
-        return (int) (((d > 0.0d ? 1 : -1) * Math.floor(Math.abs(d))) % 4.294967296E9d);
+        return (int) ((Math.floor(Math.abs(d2)) * (d2 > 0.0d ? 1 : -1)) % 4.294967296E9d);
+    }
+
+    public static long zzc(double d2) {
+        return zzb(d2) & 4294967295L;
+    }
+
+    public static void zzc(String str, int i9, List<zzaq> list) {
+        if (list.size() <= i9) {
+            return;
+        }
+        throw new IllegalArgumentException(str + " operation requires at most " + i9 + " parameters found " + list.size());
+    }
+
+    public static void zzb(zzbv zzbvVar, int i9, List<zzaq> list) {
+        zzb(zzbvVar.name(), i9, list);
     }
 
     public static int zza(zzh zzhVar) {
@@ -35,8 +50,11 @@ public final class zzg {
         throw new IllegalStateException("Instructions allowed exceeded");
     }
 
-    public static long zzc(double d) {
-        return zzb(d) & 4294967295L;
+    public static void zzb(String str, int i9, List<zzaq> list) {
+        if (list.size() >= i9) {
+            return;
+        }
+        throw new IllegalArgumentException(str + " operation requires at least " + i9 + " parameters found " + list.size());
     }
 
     public static zzbv zza(String str) {
@@ -44,7 +62,15 @@ public final class zzg {
         if (zza != null) {
             return zza;
         }
-        throw new IllegalArgumentException(String.format("Unsupported commandId %s", str));
+        throw new IllegalArgumentException(AbstractC2914a.d("Unsupported commandId ", str));
+    }
+
+    public static boolean zzb(zzaq zzaqVar) {
+        if (zzaqVar == null) {
+            return false;
+        }
+        Double zze = zzaqVar.zze();
+        return !zze.isNaN() && zze.doubleValue() >= 0.0d && zze.equals(Double.valueOf(Math.floor(zze.doubleValue())));
     }
 
     public static Object zza(zzaq zzaqVar) {
@@ -85,38 +111,15 @@ public final class zzg {
         return hashMap;
     }
 
-    public static void zza(zzbv zzbvVar, int i, List<zzaq> list) {
-        zza(zzbvVar.name(), i, list);
+    public static void zza(zzbv zzbvVar, int i9, List<zzaq> list) {
+        zza(zzbvVar.name(), i9, list);
     }
 
-    public static void zza(String str, int i, List<zzaq> list) {
-        if (list.size() != i) {
-            throw new IllegalArgumentException(String.format("%s operation requires %s parameters found %s", str, Integer.valueOf(i), Integer.valueOf(list.size())));
+    public static void zza(String str, int i9, List<zzaq> list) {
+        if (list.size() == i9) {
+            return;
         }
-    }
-
-    public static void zzb(zzbv zzbvVar, int i, List<zzaq> list) {
-        zzb(zzbvVar.name(), i, list);
-    }
-
-    public static void zzb(String str, int i, List<zzaq> list) {
-        if (list.size() < i) {
-            throw new IllegalArgumentException(String.format("%s operation requires at least %s parameters found %s", str, Integer.valueOf(i), Integer.valueOf(list.size())));
-        }
-    }
-
-    public static void zzc(String str, int i, List<zzaq> list) {
-        if (list.size() > i) {
-            throw new IllegalArgumentException(String.format("%s operation requires at most %s parameters found %s", str, Integer.valueOf(i), Integer.valueOf(list.size())));
-        }
-    }
-
-    public static boolean zzb(zzaq zzaqVar) {
-        if (zzaqVar == null) {
-            return false;
-        }
-        Double zze = zzaqVar.zze();
-        return !zze.isNaN() && zze.doubleValue() >= 0.0d && zze.equals(Double.valueOf(Math.floor(zze.doubleValue())));
+        throw new IllegalArgumentException(str + " operation requires " + i9 + " parameters found " + list.size());
     }
 
     public static boolean zza(zzaq zzaqVar, zzaq zzaqVar2) {

@@ -1,11 +1,10 @@
 package com.google.android.gms.common;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class GooglePlayServicesNotAvailableException extends Exception {
     public final int errorCode;
 
-    public GooglePlayServicesNotAvailableException(int i) {
-        this.errorCode = i;
+    public GooglePlayServicesNotAvailableException(int i9) {
+        this.errorCode = i9;
     }
 }

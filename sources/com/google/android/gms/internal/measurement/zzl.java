@@ -3,9 +3,9 @@ package com.google.android.gms.internal.measurement;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
+import x0.AbstractC2914a;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzl {
     private Map<String, Callable<? extends zzal>> zza = new HashMap();
 
@@ -14,7 +14,7 @@ public final class zzl {
             try {
                 return this.zza.get(str).call();
             } catch (Exception unused) {
-                throw new IllegalStateException("Failed to create API implementation: " + str);
+                throw new IllegalStateException(AbstractC2914a.d("Failed to create API implementation: ", str));
             }
         }
         return zzaq.zzc;

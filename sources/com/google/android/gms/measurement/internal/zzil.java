@@ -1,24 +1,18 @@
 package com.google.android.gms.measurement.internal;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzil implements Runnable {
-    private final /* synthetic */ zzo zza;
-    private final /* synthetic */ zzic zzb;
+import android.content.Context;
+import com.google.android.gms.common.util.Clock;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzil(zzic zzicVar, zzo zzoVar) {
-        this.zza = zzoVar;
-        this.zzb = zzicVar;
-    }
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public interface zzil {
+    Context zza();
 
-    @Override // java.lang.Runnable
-    public final void run() {
-        zznv zznvVar;
-        zznv zznvVar2;
-        zznvVar = this.zzb.zza;
-        zznvVar.zzr();
-        zznvVar2 = this.zzb.zza;
-        zznvVar2.zzc(this.zza);
-    }
+    Clock zzb();
+
+    zzab zzd();
+
+    zzfw zzj();
+
+    zzhc zzl();
 }

@@ -1,19 +1,25 @@
 package com.google.type;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.O3;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import y5.r;
+import y5.s;
 
-/* loaded from: classes5.dex */
-public final class Quaternion extends GeneratedMessageLite<Quaternion, Builder> implements QuaternionOrBuilder {
+/* loaded from: classes3.dex */
+public final class Quaternion extends L2 implements O3 {
     private static final Quaternion DEFAULT_INSTANCE;
-    private static volatile Parser<Quaternion> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int W_FIELD_NUMBER = 4;
     public static final int X_FIELD_NUMBER = 1;
     public static final int Y_FIELD_NUMBER = 2;
@@ -23,62 +29,13 @@ public final class Quaternion extends GeneratedMessageLite<Quaternion, Builder> 
     private double y_;
     private double z_;
 
+    static {
+        Quaternion quaternion = new Quaternion();
+        DEFAULT_INSTANCE = quaternion;
+        L2.registerDefaultInstance(Quaternion.class, quaternion);
+    }
+
     private Quaternion() {
-    }
-
-    @Override // com.google.type.QuaternionOrBuilder
-    public double getX() {
-        return this.x_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setX(double d) {
-        this.x_ = d;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearX() {
-        this.x_ = 0.0d;
-    }
-
-    @Override // com.google.type.QuaternionOrBuilder
-    public double getY() {
-        return this.y_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setY(double d) {
-        this.y_ = d;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearY() {
-        this.y_ = 0.0d;
-    }
-
-    @Override // com.google.type.QuaternionOrBuilder
-    public double getZ() {
-        return this.z_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setZ(double d) {
-        this.z_ = d;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearZ() {
-        this.z_ = 0.0d;
-    }
-
-    @Override // com.google.type.QuaternionOrBuilder
-    public double getW() {
-        return this.w_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setW(double d) {
-        this.w_ = d;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -86,204 +43,87 @@ public final class Quaternion extends GeneratedMessageLite<Quaternion, Builder> 
         this.w_ = 0.0d;
     }
 
-    public static Quaternion parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (Quaternion) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearX() {
+        this.x_ = 0.0d;
     }
 
-    public static Quaternion parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Quaternion) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearY() {
+        this.y_ = 0.0d;
     }
 
-    public static Quaternion parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (Quaternion) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearZ() {
+        this.z_ = 0.0d;
     }
 
-    public static Quaternion parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Quaternion) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
+    public static Quaternion getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    public static Quaternion parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (Quaternion) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static Quaternion parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Quaternion) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static Quaternion parseFrom(InputStream inputStream) throws IOException {
-        return (Quaternion) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static Quaternion parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Quaternion) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static s newBuilder() {
+        return (s) DEFAULT_INSTANCE.createBuilder();
     }
 
     public static Quaternion parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (Quaternion) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+        return (Quaternion) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
     }
 
-    public static Quaternion parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Quaternion) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static Quaternion parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (Quaternion) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
     }
 
-    public static Quaternion parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (Quaternion) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
-    public static Quaternion parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Quaternion) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setW(double d2) {
+        this.w_ = d2;
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setX(double d2) {
+        this.x_ = d2;
     }
 
-    public static Builder newBuilder(Quaternion quaternion) {
-        return DEFAULT_INSTANCE.createBuilder(quaternion);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setY(double d2) {
+        this.y_ = d2;
     }
 
-    /* loaded from: classes5.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<Quaternion, Builder> implements QuaternionOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(Quaternion.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.type.QuaternionOrBuilder
-        public double getX() {
-            return ((Quaternion) this.instance).getX();
-        }
-
-        public Builder setX(double d) {
-            copyOnWrite();
-            ((Quaternion) this.instance).setX(d);
-            return this;
-        }
-
-        public Builder clearX() {
-            copyOnWrite();
-            ((Quaternion) this.instance).clearX();
-            return this;
-        }
-
-        @Override // com.google.type.QuaternionOrBuilder
-        public double getY() {
-            return ((Quaternion) this.instance).getY();
-        }
-
-        public Builder setY(double d) {
-            copyOnWrite();
-            ((Quaternion) this.instance).setY(d);
-            return this;
-        }
-
-        public Builder clearY() {
-            copyOnWrite();
-            ((Quaternion) this.instance).clearY();
-            return this;
-        }
-
-        @Override // com.google.type.QuaternionOrBuilder
-        public double getZ() {
-            return ((Quaternion) this.instance).getZ();
-        }
-
-        public Builder setZ(double d) {
-            copyOnWrite();
-            ((Quaternion) this.instance).setZ(d);
-            return this;
-        }
-
-        public Builder clearZ() {
-            copyOnWrite();
-            ((Quaternion) this.instance).clearZ();
-            return this;
-        }
-
-        @Override // com.google.type.QuaternionOrBuilder
-        public double getW() {
-            return ((Quaternion) this.instance).getW();
-        }
-
-        public Builder setW(double d) {
-            copyOnWrite();
-            ((Quaternion) this.instance).setW(d);
-            return this;
-        }
-
-        public Builder clearW() {
-            copyOnWrite();
-            ((Quaternion) this.instance).clearW();
-            return this;
-        }
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setZ(double d2) {
+        this.z_ = d2;
     }
 
-    /* renamed from: com.google.type.Quaternion$1, reason: invalid class name */
-    /* loaded from: classes5.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (r.f24443a[k22.ordinal()]) {
             case 1:
                 return new Quaternion();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0004\u0000\u0000\u0001\u0004\u0004\u0000\u0000\u0000\u0001\u0000\u0002\u0000\u0003\u0000\u0004\u0000", new Object[]{"x_", "y_", "z_", "w_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0004\u0000\u0000\u0001\u0004\u0004\u0000\u0000\u0000\u0001\u0000\u0002\u0000\u0003\u0000\u0004\u0000", new Object[]{"x_", "y_", "z_", "w_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<Quaternion> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (Quaternion.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -293,17 +133,63 @@ public final class Quaternion extends GeneratedMessageLite<Quaternion, Builder> 
         }
     }
 
-    static {
-        Quaternion quaternion = new Quaternion();
-        DEFAULT_INSTANCE = quaternion;
-        GeneratedMessageLite.registerDefaultInstance(Quaternion.class, quaternion);
+    public double getW() {
+        return this.w_;
     }
 
-    public static Quaternion getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public double getX() {
+        return this.x_;
     }
 
-    public static Parser<Quaternion> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public double getY() {
+        return this.y_;
+    }
+
+    public double getZ() {
+        return this.z_;
+    }
+
+    public static s newBuilder(Quaternion quaternion) {
+        return (s) DEFAULT_INSTANCE.createBuilder(quaternion);
+    }
+
+    public static Quaternion parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Quaternion) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Quaternion parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (Quaternion) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static Quaternion parseFrom(H h6) throws C1912g3 {
+        return (Quaternion) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static Quaternion parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (Quaternion) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static Quaternion parseFrom(byte[] bArr) throws C1912g3 {
+        return (Quaternion) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static Quaternion parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (Quaternion) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static Quaternion parseFrom(InputStream inputStream) throws IOException {
+        return (Quaternion) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static Quaternion parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Quaternion) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Quaternion parseFrom(S s5) throws IOException {
+        return (Quaternion) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static Quaternion parseFrom(S s5, W1 w1) throws IOException {
+        return (Quaternion) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

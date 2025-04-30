@@ -1,357 +1,55 @@
 package com.google.android.gms.internal.play_billing;
 
-import com.google.common.base.Ascii;
-import java.io.IOException;
+import java.util.Objects;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public final class zzao {
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zza(byte[] bArr, int i, zzan zzanVar) throws zzci {
-        int zzj = zzj(bArr, i, zzanVar);
-        int i2 = zzanVar.zza;
-        if (i2 < 0) {
-            throw zzci.zzd();
-        }
-        if (i2 > bArr.length - zzj) {
-            throw zzci.zzg();
-        }
-        if (i2 == 0) {
-            zzanVar.zzc = zzba.zzb;
-            return zzj;
-        }
-        zzanVar.zzc = zzba.zzl(bArr, zzj, i2);
-        return zzj + i2;
+/* loaded from: classes2.dex */
+public final class zzao extends zzai {
+    static final zzai zza = new zzao(new Object[0], 0);
+    final transient Object[] zzb;
+    private final transient int zzc;
+
+    public zzao(Object[] objArr, int i9) {
+        this.zzb = objArr;
+        this.zzc = i9;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zzb(byte[] bArr, int i) {
-        int i2 = bArr[i] & 255;
-        int i3 = bArr[i + 1] & 255;
-        int i4 = bArr[i + 2] & 255;
-        return ((bArr[i + 3] & 255) << 24) | (i3 << 8) | i2 | (i4 << 16);
+    @Override // java.util.List
+    public final Object get(int i9) {
+        zzaa.zza(i9, this.zzc, "index");
+        Object obj = this.zzb[i9];
+        Objects.requireNonNull(obj);
+        return obj;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zzc(zzdp zzdpVar, byte[] bArr, int i, int i2, int i3, zzan zzanVar) throws IOException {
-        Object zze = zzdpVar.zze();
-        int zzn = zzn(zze, zzdpVar, bArr, i, i2, i3, zzanVar);
-        zzdpVar.zzf(zze);
-        zzanVar.zzc = zze;
-        return zzn;
+    @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
+    public final int size() {
+        return this.zzc;
     }
 
-    static int zzd(zzdp zzdpVar, byte[] bArr, int i, int i2, zzan zzanVar) throws IOException {
-        Object zze = zzdpVar.zze();
-        int zzo = zzo(zze, zzdpVar, bArr, i, i2, zzanVar);
-        zzdpVar.zzf(zze);
-        zzanVar.zzc = zze;
-        return zzo;
+    @Override // com.google.android.gms.internal.play_billing.zzai, com.google.android.gms.internal.play_billing.zzaf
+    public final int zza(Object[] objArr, int i9) {
+        System.arraycopy(this.zzb, 0, objArr, 0, this.zzc);
+        return this.zzc;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zze(zzdp zzdpVar, int i, byte[] bArr, int i2, int i3, zzcf zzcfVar, zzan zzanVar) throws IOException {
-        int zzd = zzd(zzdpVar, bArr, i2, i3, zzanVar);
-        zzcfVar.add(zzanVar.zzc);
-        while (zzd < i3) {
-            int zzj = zzj(bArr, zzd, zzanVar);
-            if (i != zzanVar.zza) {
-                break;
-            }
-            zzd = zzd(zzdpVar, bArr, zzj, i3, zzanVar);
-            zzcfVar.add(zzanVar.zzc);
-        }
-        return zzd;
+    @Override // com.google.android.gms.internal.play_billing.zzaf
+    public final int zzb() {
+        return this.zzc;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zzf(byte[] bArr, int i, zzcf zzcfVar, zzan zzanVar) throws IOException {
-        zzcc zzccVar = (zzcc) zzcfVar;
-        int zzj = zzj(bArr, i, zzanVar);
-        int i2 = zzanVar.zza + zzj;
-        while (zzj < i2) {
-            zzj = zzj(bArr, zzj, zzanVar);
-            zzccVar.zzf(zzanVar.zza);
-        }
-        if (zzj == i2) {
-            return zzj;
-        }
-        throw zzci.zzg();
+    @Override // com.google.android.gms.internal.play_billing.zzaf
+    public final int zzc() {
+        return 0;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zzg(byte[] bArr, int i, zzan zzanVar) throws zzci {
-        int zzj = zzj(bArr, i, zzanVar);
-        int i2 = zzanVar.zza;
-        if (i2 < 0) {
-            throw zzci.zzd();
-        }
-        if (i2 == 0) {
-            zzanVar.zzc = "";
-            return zzj;
-        }
-        zzanVar.zzc = new String(bArr, zzj, i2, zzcg.zzb);
-        return zzj + i2;
+    @Override // com.google.android.gms.internal.play_billing.zzaf
+    public final boolean zzf() {
+        return false;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zzh(byte[] bArr, int i, zzan zzanVar) throws zzci {
-        int zzj = zzj(bArr, i, zzanVar);
-        int i2 = zzanVar.zza;
-        if (i2 < 0) {
-            throw zzci.zzd();
-        }
-        if (i2 == 0) {
-            zzanVar.zzc = "";
-            return zzj;
-        }
-        int i3 = zzev.zza;
-        int length = bArr.length;
-        if ((((length - zzj) - i2) | zzj | i2) < 0) {
-            throw new ArrayIndexOutOfBoundsException(String.format("buffer length=%d, index=%d, size=%d", Integer.valueOf(length), Integer.valueOf(zzj), Integer.valueOf(i2)));
-        }
-        int i4 = zzj + i2;
-        char[] cArr = new char[i2];
-        int i5 = 0;
-        while (zzj < i4) {
-            byte b = bArr[zzj];
-            if (!zzer.zzd(b)) {
-                break;
-            }
-            zzj++;
-            cArr[i5] = (char) b;
-            i5++;
-        }
-        int i6 = i5;
-        while (zzj < i4) {
-            int i7 = zzj + 1;
-            byte b2 = bArr[zzj];
-            if (zzer.zzd(b2)) {
-                cArr[i6] = (char) b2;
-                i6++;
-                zzj = i7;
-                while (zzj < i4) {
-                    byte b3 = bArr[zzj];
-                    if (zzer.zzd(b3)) {
-                        zzj++;
-                        cArr[i6] = (char) b3;
-                        i6++;
-                    }
-                }
-            } else if (b2 < -32) {
-                if (i7 < i4) {
-                    zzj += 2;
-                    zzer.zzc(b2, bArr[i7], cArr, i6);
-                    i6++;
-                } else {
-                    throw zzci.zzc();
-                }
-            } else if (b2 < -16) {
-                if (i7 < i4 - 1) {
-                    int i8 = zzj + 2;
-                    zzj += 3;
-                    zzer.zzb(b2, bArr[i7], bArr[i8], cArr, i6);
-                    i6++;
-                } else {
-                    throw zzci.zzc();
-                }
-            } else if (i7 < i4 - 2) {
-                byte b4 = bArr[i7];
-                int i9 = zzj + 3;
-                byte b5 = bArr[zzj + 2];
-                zzj += 4;
-                zzer.zza(b2, b4, b5, bArr[i9], cArr, i6);
-                i6 += 2;
-            } else {
-                throw zzci.zzc();
-            }
-        }
-        zzanVar.zzc = new String(cArr, 0, i6);
-        return i4;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zzi(int i, byte[] bArr, int i2, int i3, zzeh zzehVar, zzan zzanVar) throws zzci {
-        if ((i >>> 3) == 0) {
-            throw zzci.zzb();
-        }
-        int i4 = i & 7;
-        if (i4 == 0) {
-            int zzm = zzm(bArr, i2, zzanVar);
-            zzehVar.zzj(i, Long.valueOf(zzanVar.zzb));
-            return zzm;
-        }
-        if (i4 == 1) {
-            zzehVar.zzj(i, Long.valueOf(zzp(bArr, i2)));
-            return i2 + 8;
-        }
-        if (i4 == 2) {
-            int zzj = zzj(bArr, i2, zzanVar);
-            int i5 = zzanVar.zza;
-            if (i5 < 0) {
-                throw zzci.zzd();
-            }
-            if (i5 > bArr.length - zzj) {
-                throw zzci.zzg();
-            }
-            if (i5 == 0) {
-                zzehVar.zzj(i, zzba.zzb);
-            } else {
-                zzehVar.zzj(i, zzba.zzl(bArr, zzj, i5));
-            }
-            return zzj + i5;
-        }
-        if (i4 != 3) {
-            if (i4 == 5) {
-                zzehVar.zzj(i, Integer.valueOf(zzb(bArr, i2)));
-                return i2 + 4;
-            }
-            throw zzci.zzb();
-        }
-        int i6 = (i & (-8)) | 4;
-        zzeh zzf = zzeh.zzf();
-        int i7 = 0;
-        while (true) {
-            if (i2 >= i3) {
-                break;
-            }
-            int zzj2 = zzj(bArr, i2, zzanVar);
-            int i8 = zzanVar.zza;
-            i7 = i8;
-            if (i8 == i6) {
-                i2 = zzj2;
-                break;
-            }
-            int zzi = zzi(i7, bArr, zzj2, i3, zzf, zzanVar);
-            i7 = i8;
-            i2 = zzi;
-        }
-        if (i2 > i3 || i7 != i6) {
-            throw zzci.zze();
-        }
-        zzehVar.zzj(i, zzf);
-        return i2;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zzj(byte[] bArr, int i, zzan zzanVar) {
-        int i2 = i + 1;
-        byte b = bArr[i];
-        if (b < 0) {
-            return zzk(b, bArr, i2, zzanVar);
-        }
-        zzanVar.zza = b;
-        return i2;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zzk(int i, byte[] bArr, int i2, zzan zzanVar) {
-        byte b = bArr[i2];
-        int i3 = i2 + 1;
-        int i4 = i & 127;
-        if (b >= 0) {
-            zzanVar.zza = i4 | (b << 7);
-            return i3;
-        }
-        int i5 = i4 | ((b & Byte.MAX_VALUE) << 7);
-        int i6 = i2 + 2;
-        byte b2 = bArr[i3];
-        if (b2 >= 0) {
-            zzanVar.zza = i5 | (b2 << Ascii.SO);
-            return i6;
-        }
-        int i7 = i5 | ((b2 & Byte.MAX_VALUE) << 14);
-        int i8 = i2 + 3;
-        byte b3 = bArr[i6];
-        if (b3 >= 0) {
-            zzanVar.zza = i7 | (b3 << Ascii.NAK);
-            return i8;
-        }
-        int i9 = i7 | ((b3 & Byte.MAX_VALUE) << 21);
-        int i10 = i2 + 4;
-        byte b4 = bArr[i8];
-        if (b4 >= 0) {
-            zzanVar.zza = i9 | (b4 << Ascii.FS);
-            return i10;
-        }
-        int i11 = i9 | ((b4 & Byte.MAX_VALUE) << 28);
-        while (true) {
-            int i12 = i10 + 1;
-            if (bArr[i10] >= 0) {
-                zzanVar.zza = i11;
-                return i12;
-            }
-            i10 = i12;
-        }
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zzl(int i, byte[] bArr, int i2, int i3, zzcf zzcfVar, zzan zzanVar) {
-        zzcc zzccVar = (zzcc) zzcfVar;
-        int zzj = zzj(bArr, i2, zzanVar);
-        zzccVar.zzf(zzanVar.zza);
-        while (zzj < i3) {
-            int zzj2 = zzj(bArr, zzj, zzanVar);
-            if (i != zzanVar.zza) {
-                break;
-            }
-            zzj = zzj(bArr, zzj2, zzanVar);
-            zzccVar.zzf(zzanVar.zza);
-        }
-        return zzj;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zzm(byte[] bArr, int i, zzan zzanVar) {
-        long j = bArr[i];
-        int i2 = i + 1;
-        if (j >= 0) {
-            zzanVar.zzb = j;
-            return i2;
-        }
-        int i3 = i + 2;
-        byte b = bArr[i2];
-        long j2 = (j & 127) | ((b & Byte.MAX_VALUE) << 7);
-        int i4 = 7;
-        while (b < 0) {
-            int i5 = i3 + 1;
-            i4 += 7;
-            j2 |= (r10 & Byte.MAX_VALUE) << i4;
-            b = bArr[i3];
-            i3 = i5;
-        }
-        zzanVar.zzb = j2;
-        return i3;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zzn(Object obj, zzdp zzdpVar, byte[] bArr, int i, int i2, int i3, zzan zzanVar) throws IOException {
-        int zzc = ((zzdi) zzdpVar).zzc(obj, bArr, i, i2, i3, zzanVar);
-        zzanVar.zzc = obj;
-        return zzc;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zzo(Object obj, zzdp zzdpVar, byte[] bArr, int i, int i2, zzan zzanVar) throws IOException {
-        int i3 = i + 1;
-        int i4 = bArr[i];
-        if (i4 < 0) {
-            i3 = zzk(i4, bArr, i3, zzanVar);
-            i4 = zzanVar.zza;
-        }
-        int i5 = i3;
-        if (i4 < 0 || i4 > i2 - i5) {
-            throw zzci.zzg();
-        }
-        int i6 = i4 + i5;
-        zzdpVar.zzh(obj, bArr, i5, i6, zzanVar);
-        zzanVar.zzc = obj;
-        return i6;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static long zzp(byte[] bArr, int i) {
-        return (bArr[i] & 255) | ((bArr[i + 1] & 255) << 8) | ((bArr[i + 2] & 255) << 16) | ((bArr[i + 3] & 255) << 24) | ((bArr[i + 4] & 255) << 32) | ((bArr[i + 5] & 255) << 40) | ((bArr[i + 6] & 255) << 48) | ((bArr[i + 7] & 255) << 56);
+    @Override // com.google.android.gms.internal.play_billing.zzaf
+    public final Object[] zzg() {
+        return this.zzb;
     }
 }

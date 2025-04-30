@@ -1,58 +1,63 @@
 package com.google.android.gms.internal.play_billing;
 
-/* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public final class zzaa extends zzu {
-    static final zzu zza = new zzaa(new Object[0], 0);
-    final transient Object[] zzb;
-    private final transient int zzc;
+import com.mbridge.msdk.foundation.entity.o;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzaa(Object[] objArr, int i) {
-        this.zzb = objArr;
-        this.zzc = i;
+/* loaded from: classes2.dex */
+public final class zzaa {
+    public static int zza(int i9, int i10, String str) {
+        String zza;
+        if (i9 >= 0 && i9 < i10) {
+            return i9;
+        }
+        if (i9 >= 0) {
+            if (i10 < 0) {
+                throw new IllegalArgumentException(o.h(i10, "negative size: "));
+            }
+            zza = zzab.zza("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i9), Integer.valueOf(i10));
+        } else {
+            zza = zzab.zza("%s (%s) must not be negative", "index", Integer.valueOf(i9));
+        }
+        throw new IndexOutOfBoundsException(zza);
     }
 
-    @Override // java.util.List
-    public final Object get(int i) {
-        zzm.zza(i, this.zzc, "index");
-        Object obj = this.zzb[i];
-        obj.getClass();
-        return obj;
+    public static int zzb(int i9, int i10, String str) {
+        if (i9 >= 0 && i9 <= i10) {
+            return i9;
+        }
+        throw new IndexOutOfBoundsException(zze(i9, i10, "index"));
     }
 
-    @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
-    public final int size() {
-        return this.zzc;
+    public static Object zzc(Object obj, Object obj2) {
+        if (obj != null) {
+            return obj;
+        }
+        throw new NullPointerException((String) obj2);
     }
 
-    @Override // com.google.android.gms.internal.play_billing.zzu, com.google.android.gms.internal.play_billing.zzr
-    final int zza(Object[] objArr, int i) {
-        System.arraycopy(this.zzb, 0, objArr, 0, this.zzc);
-        return this.zzc;
+    public static void zzd(int i9, int i10, int i11) {
+        String zze;
+        if (i9 >= 0 && i10 >= i9 && i10 <= i11) {
+            return;
+        }
+        if (i9 >= 0 && i9 <= i11) {
+            if (i10 >= 0 && i10 <= i11) {
+                zze = zzab.zza("end index (%s) must not be less than start index (%s)", Integer.valueOf(i10), Integer.valueOf(i9));
+            } else {
+                zze = zze(i10, i11, "end index");
+            }
+        } else {
+            zze = zze(i9, i11, "start index");
+        }
+        throw new IndexOutOfBoundsException(zze);
     }
 
-    @Override // com.google.android.gms.internal.play_billing.zzr
-    final int zzb() {
-        return this.zzc;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    @Override // com.google.android.gms.internal.play_billing.zzr
-    public final int zzc() {
-        return 0;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    @Override // com.google.android.gms.internal.play_billing.zzr
-    public final boolean zzf() {
-        return false;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    @Override // com.google.android.gms.internal.play_billing.zzr
-    public final Object[] zzg() {
-        return this.zzb;
+    private static String zze(int i9, int i10, String str) {
+        if (i9 < 0) {
+            return zzab.zza("%s (%s) must not be negative", str, Integer.valueOf(i9));
+        }
+        if (i10 >= 0) {
+            return zzab.zza("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i9), Integer.valueOf(i10));
+        }
+        throw new IllegalArgumentException(o.h(i10, "negative size: "));
     }
 }

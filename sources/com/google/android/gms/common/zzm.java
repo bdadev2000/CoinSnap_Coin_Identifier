@@ -1,8 +1,7 @@
 package com.google.android.gms.common;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzm {
     static final zzj[] zza = {zzn.zzc, zzn.zzd};
 }

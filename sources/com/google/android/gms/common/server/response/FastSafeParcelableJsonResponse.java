@@ -1,20 +1,30 @@
 package com.google.android.gms.common.server.response;
 
 import android.os.Parcel;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.Objects;
 import com.google.android.gms.common.internal.Preconditions;
+import com.google.android.gms.common.internal.ShowFirstParty;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import com.google.android.gms.common.server.response.FastJsonResponse;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@ShowFirstParty
+@KeepForSdk
+/* loaded from: classes2.dex */
 public abstract class FastSafeParcelableJsonResponse extends FastJsonResponse implements SafeParcelable {
+    @KeepForSdk
+    public FastSafeParcelableJsonResponse() {
+    }
+
     @Override // android.os.Parcelable
     public final int describeContents() {
         return 0;
     }
 
-    public boolean equals(Object obj) {
+    @KeepForSdk
+    public boolean equals(@Nullable Object obj) {
         if (obj == null) {
             return false;
         }
@@ -38,25 +48,29 @@ public abstract class FastSafeParcelableJsonResponse extends FastJsonResponse im
     }
 
     @Override // com.google.android.gms.common.server.response.FastJsonResponse
-    public Object getValueObject(String str) {
+    @Nullable
+    public Object getValueObject(@NonNull String str) {
         return null;
     }
 
+    @KeepForSdk
     public int hashCode() {
-        int i = 0;
+        int i9 = 0;
         for (FastJsonResponse.Field<?, ?> field : getFieldMappings().values()) {
             if (isFieldSet(field)) {
-                i = (i * 31) + Preconditions.checkNotNull(getFieldValue(field)).hashCode();
+                i9 = (i9 * 31) + Preconditions.checkNotNull(getFieldValue(field)).hashCode();
             }
         }
-        return i;
+        return i9;
     }
 
     @Override // com.google.android.gms.common.server.response.FastJsonResponse
-    public boolean isPrimitiveFieldSet(String str) {
+    public boolean isPrimitiveFieldSet(@NonNull String str) {
         return false;
     }
 
+    @NonNull
+    @KeepForSdk
     public byte[] toByteArray() {
         Parcel obtain = Parcel.obtain();
         writeToParcel(obtain, 0);

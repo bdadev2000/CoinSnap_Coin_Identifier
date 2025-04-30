@@ -2,12 +2,16 @@ package com.google.android.gms.common.moduleinstall.internal;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.Feature;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.api.OptionalModuleApi;
 import com.google.android.gms.common.internal.Objects;
 import com.google.android.gms.common.internal.Preconditions;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import com.google.android.gms.common.moduleinstall.ModuleInstallRequest;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,9 +20,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+@SafeParcelable.Class(creator = "ApiFeatureRequestCreator")
+/* loaded from: classes2.dex */
 public class ApiFeatureRequest extends AbstractSafeParcelable {
+
+    @NonNull
     public static final Parcelable.Creator<ApiFeatureRequest> CREATOR = new zac();
     private static final Comparator zaa = new Comparator() { // from class: com.google.android.gms.common.moduleinstall.internal.zab
         @Override // java.util.Comparator
@@ -32,41 +39,58 @@ public class ApiFeatureRequest extends AbstractSafeParcelable {
             return (feature.getVersion() > feature2.getVersion() ? 1 : (feature.getVersion() == feature2.getVersion() ? 0 : -1));
         }
     };
+
+    @SafeParcelable.Field(getter = "getApiFeatures", id = 1)
     private final List zab;
+
+    @SafeParcelable.Field(getter = "getIsUrgent", id = 2)
     private final boolean zac;
+
+    @Nullable
+    @SafeParcelable.Field(getter = "getFeatureRequestSessionId", id = 3)
     private final String zad;
+
+    @Nullable
+    @SafeParcelable.Field(getter = "getCallingPackage", id = 4)
     private final String zae;
 
-    public ApiFeatureRequest(List list, boolean z, String str, String str2) {
+    @SafeParcelable.Constructor
+    public ApiFeatureRequest(@NonNull @SafeParcelable.Param(id = 1) List list, @SafeParcelable.Param(id = 2) boolean z8, @Nullable @SafeParcelable.Param(id = 3) String str, @Nullable @SafeParcelable.Param(id = 4) String str2) {
         Preconditions.checkNotNull(list);
         this.zab = list;
-        this.zac = z;
+        this.zac = z8;
         this.zad = str;
         this.zae = str2;
     }
 
-    public static ApiFeatureRequest fromModuleInstallRequest(ModuleInstallRequest moduleInstallRequest) {
+    @NonNull
+    @KeepForSdk
+    public static ApiFeatureRequest fromModuleInstallRequest(@NonNull ModuleInstallRequest moduleInstallRequest) {
         return zaa(moduleInstallRequest.getApis(), true);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static ApiFeatureRequest zaa(List list, boolean z) {
+    public static ApiFeatureRequest zaa(List list, boolean z8) {
         TreeSet treeSet = new TreeSet(zaa);
         Iterator it = list.iterator();
         while (it.hasNext()) {
             Collections.addAll(treeSet, ((OptionalModuleApi) it.next()).getOptionalFeatures());
         }
-        return new ApiFeatureRequest(new ArrayList(treeSet), z, null, null);
+        return new ApiFeatureRequest(new ArrayList(treeSet), z8, null, null);
     }
 
-    public final boolean equals(Object obj) {
+    public final boolean equals(@Nullable Object obj) {
         if (obj == null || !(obj instanceof ApiFeatureRequest)) {
             return false;
         }
         ApiFeatureRequest apiFeatureRequest = (ApiFeatureRequest) obj;
-        return this.zac == apiFeatureRequest.zac && Objects.equal(this.zab, apiFeatureRequest.zab) && Objects.equal(this.zad, apiFeatureRequest.zad) && Objects.equal(this.zae, apiFeatureRequest.zae);
+        if (this.zac != apiFeatureRequest.zac || !Objects.equal(this.zab, apiFeatureRequest.zab) || !Objects.equal(this.zad, apiFeatureRequest.zad) || !Objects.equal(this.zae, apiFeatureRequest.zae)) {
+            return false;
+        }
+        return true;
     }
 
+    @NonNull
+    @KeepForSdk
     public List<Feature> getApiFeatures() {
         return this.zab;
     }
@@ -76,7 +100,7 @@ public class ApiFeatureRequest extends AbstractSafeParcelable {
     }
 
     @Override // android.os.Parcelable
-    public final void writeToParcel(Parcel parcel, int i) {
+    public final void writeToParcel(@NonNull Parcel parcel, int i9) {
         int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
         SafeParcelWriter.writeTypedList(parcel, 1, getApiFeatures(), false);
         SafeParcelWriter.writeBoolean(parcel, 2, this.zac);

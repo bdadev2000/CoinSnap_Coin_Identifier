@@ -10,6 +10,9 @@ import android.os.Looper;
 import android.os.ParcelFileDescriptor;
 import android.os.ResultReceiver;
 import android.widget.ImageView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepName;
 import com.google.android.gms.common.internal.Asserts;
 import com.google.android.gms.common.internal.Constants;
 import com.google.android.gms.internal.base.zam;
@@ -21,8 +24,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class ImageManager {
     private static final Object zaa = new Object();
     private static final HashSet zab = new HashSet();
@@ -35,14 +37,12 @@ public final class ImageManager {
     private final Map zai = new HashMap();
     private final Map zaj = new HashMap();
 
-    /* JADX INFO: Access modifiers changed from: private */
-    /* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-    /* loaded from: classes12.dex */
+    @KeepName
+    /* loaded from: classes2.dex */
     public final class ImageReceiver extends ResultReceiver {
         private final Uri zab;
         private final ArrayList zac;
 
-        /* JADX INFO: Access modifiers changed from: package-private */
         public ImageReceiver(Uri uri) {
             super(new zau(Looper.getMainLooper()));
             this.zab = uri;
@@ -50,7 +50,7 @@ public final class ImageManager {
         }
 
         @Override // android.os.ResultReceiver
-        public final void onReceiveResult(int i, Bundle bundle) {
+        public final void onReceiveResult(int i9, Bundle bundle) {
             ParcelFileDescriptor parcelFileDescriptor = (ParcelFileDescriptor) bundle.getParcelable("com.google.android.gms.extra.fileDescriptor");
             ImageManager imageManager = ImageManager.this;
             imageManager.zaf.execute(new zaa(imageManager, this.zab, parcelFileDescriptor));
@@ -76,25 +76,25 @@ public final class ImageManager {
         }
     }
 
-    /* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-    /* loaded from: classes12.dex */
+    /* loaded from: classes2.dex */
     public interface OnImageLoadedListener {
-        void onImageLoaded(Uri uri, Drawable drawable, boolean z);
+        void onImageLoaded(@NonNull Uri uri, @Nullable Drawable drawable, boolean z8);
     }
 
-    private ImageManager(Context context, boolean z) {
+    private ImageManager(Context context, boolean z8) {
         this.zad = context.getApplicationContext();
     }
 
-    public static ImageManager create(Context context) {
+    @NonNull
+    public static ImageManager create(@NonNull Context context) {
         if (zac == null) {
             zac = new ImageManager(context, false);
         }
         return zac;
     }
 
-    public void loadImage(ImageView imageView, int i) {
-        zaj(new zae(imageView, i));
+    public void loadImage(@NonNull ImageView imageView, int i9) {
+        zaj(new zae(imageView, i9));
     }
 
     public final void zaj(zag zagVar) {
@@ -102,23 +102,23 @@ public final class ImageManager {
         new zab(this, zagVar).run();
     }
 
-    public void loadImage(ImageView imageView, Uri uri) {
+    public void loadImage(@NonNull ImageView imageView, @NonNull Uri uri) {
         zaj(new zae(imageView, uri));
     }
 
-    public void loadImage(ImageView imageView, Uri uri, int i) {
+    public void loadImage(@NonNull ImageView imageView, @NonNull Uri uri, int i9) {
         zae zaeVar = new zae(imageView, uri);
-        zaeVar.zab = i;
+        zaeVar.zab = i9;
         zaj(zaeVar);
     }
 
-    public void loadImage(OnImageLoadedListener onImageLoadedListener, Uri uri) {
+    public void loadImage(@NonNull OnImageLoadedListener onImageLoadedListener, @NonNull Uri uri) {
         zaj(new zaf(onImageLoadedListener, uri));
     }
 
-    public void loadImage(OnImageLoadedListener onImageLoadedListener, Uri uri, int i) {
+    public void loadImage(@NonNull OnImageLoadedListener onImageLoadedListener, @NonNull Uri uri, int i9) {
         zaf zafVar = new zaf(onImageLoadedListener, uri);
-        zafVar.zab = i;
+        zafVar.zab = i9;
         zaj(zafVar);
     }
 }

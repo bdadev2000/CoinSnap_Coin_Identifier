@@ -4,9 +4,9 @@ import android.os.BadParcelableException;
 import android.os.IInterface;
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.mbridge.msdk.foundation.entity.o;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzc {
     public static final /* synthetic */ int zza = 0;
     private static final ClassLoader zzb = zzc.class.getClassLoader();
@@ -24,9 +24,9 @@ public final class zzc {
     public static void zzb(Parcel parcel) {
         int dataAvail = parcel.dataAvail();
         if (dataAvail <= 0) {
-            return;
+        } else {
+            throw new BadParcelableException(o.h(dataAvail, "Parcel data not fully consumed, unread size: "));
         }
-        throw new BadParcelableException("Parcel data not fully consumed, unread size: " + dataAvail);
     }
 
     public static void zzc(Parcel parcel, Parcelable parcelable) {
@@ -56,6 +56,9 @@ public final class zzc {
     }
 
     public static boolean zzf(Parcel parcel) {
-        return parcel.readInt() != 0;
+        if (parcel.readInt() != 0) {
+            return true;
+        }
+        return false;
     }
 }

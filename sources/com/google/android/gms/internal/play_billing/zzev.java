@@ -1,113 +1,91 @@
 package com.google.android.gms.internal.play_billing;
 
-import com.google.common.base.Ascii;
+import com.mbridge.msdk.foundation.entity.o;
+import java.util.Map;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public final class zzev {
-    public static final /* synthetic */ int zza = 0;
-    private static final zzes zzb;
+/* loaded from: classes2.dex */
+public final class zzev implements Map.Entry, Comparable {
+    final /* synthetic */ zzfb zza;
+    private final Comparable zzb;
+    private Object zzc;
 
-    static {
-        if (zzeq.zzx() && zzeq.zzy()) {
-            int i = zzam.zza;
-        }
-        zzb = new zzet();
+    public zzev(zzfb zzfbVar, Comparable comparable, Object obj) {
+        this.zza = zzfbVar;
+        this.zzb = comparable;
+        this.zzc = obj;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static /* bridge */ /* synthetic */ int zza(byte[] bArr, int i, int i2) {
-        int i3 = i2 - i;
-        byte b = bArr[i - 1];
-        if (i3 != 0) {
-            if (i3 == 1) {
-                byte b2 = bArr[i];
-                if (b <= -12 && b2 <= -65) {
-                    return b ^ (b2 << 8);
-                }
-            } else if (i3 == 2) {
-                byte b3 = bArr[i];
-                byte b4 = bArr[i + 1];
-                if (b <= -12 && b3 <= -65 && b4 <= -65) {
-                    return ((b3 << 8) ^ b) ^ (b4 << Ascii.DLE);
-                }
-            } else {
-                throw new AssertionError();
+    private static final boolean zzb(Object obj, Object obj2) {
+        if (obj == null) {
+            if (obj2 != null) {
+                return false;
             }
-        } else if (b <= -12) {
-            return b;
+            return true;
         }
-        return -1;
+        return obj.equals(obj2);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* JADX WARN: Code restructure failed: missing block: B:12:0x00fc, code lost:
-    
-        return r9 + r0;
-     */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public static int zzb(java.lang.CharSequence r7, byte[] r8, int r9, int r10) {
-        /*
-            Method dump skipped, instructions count: 253
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.internal.play_billing.zzev.zzb(java.lang.CharSequence, byte[], int, int):int");
+    @Override // java.lang.Comparable
+    public final /* bridge */ /* synthetic */ int compareTo(Object obj) {
+        return this.zzb.compareTo(((zzev) obj).zzb);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static int zzc(CharSequence charSequence) {
-        int length = charSequence.length();
-        int i = 0;
-        int i2 = 0;
-        while (i2 < length && charSequence.charAt(i2) < 128) {
-            i2++;
+    @Override // java.util.Map.Entry
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        int i3 = length;
-        while (true) {
-            if (i2 >= length) {
-                break;
-            }
-            char charAt = charSequence.charAt(i2);
-            if (charAt < 2048) {
-                i3 += (127 - charAt) >>> 31;
-                i2++;
-            } else {
-                int length2 = charSequence.length();
-                while (i2 < length2) {
-                    char charAt2 = charSequence.charAt(i2);
-                    if (charAt2 < 2048) {
-                        i += (127 - charAt2) >>> 31;
-                    } else {
-                        i += 2;
-                        if (charAt2 >= 55296 && charAt2 <= 57343) {
-                            if (Character.codePointAt(charSequence, i2) < 65536) {
-                                throw new zzeu(i2, length2);
-                            }
-                            i2++;
-                        }
-                    }
-                    i2++;
-                }
-                i3 += i;
-            }
+        if (!(obj instanceof Map.Entry)) {
+            return false;
         }
-        if (i3 >= length) {
-            return i3;
+        Map.Entry entry = (Map.Entry) obj;
+        if (zzb(this.zzb, entry.getKey()) && zzb(this.zzc, entry.getValue())) {
+            return true;
         }
-        throw new IllegalArgumentException("UTF-8 length does not fit in int: " + (i3 + 4294967296L));
+        return false;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static boolean zzd(byte[] bArr) {
-        return zzb.zzb(bArr, 0, bArr.length);
+    @Override // java.util.Map.Entry
+    public final /* synthetic */ Object getKey() {
+        return this.zzb;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static boolean zze(byte[] bArr, int i, int i2) {
-        return zzb.zzb(bArr, i, i2);
+    @Override // java.util.Map.Entry
+    public final Object getValue() {
+        return this.zzc;
+    }
+
+    @Override // java.util.Map.Entry
+    public final int hashCode() {
+        int hashCode;
+        Comparable comparable = this.zzb;
+        int i9 = 0;
+        if (comparable == null) {
+            hashCode = 0;
+        } else {
+            hashCode = comparable.hashCode();
+        }
+        Object obj = this.zzc;
+        if (obj != null) {
+            i9 = obj.hashCode();
+        }
+        return hashCode ^ i9;
+    }
+
+    @Override // java.util.Map.Entry
+    public final Object setValue(Object obj) {
+        this.zza.zzn();
+        Object obj2 = this.zzc;
+        this.zzc = obj;
+        return obj2;
+    }
+
+    public final String toString() {
+        return o.k(String.valueOf(this.zzb), "=", String.valueOf(this.zzc));
+    }
+
+    public final Comparable zza() {
+        return this.zzb;
     }
 }

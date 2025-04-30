@@ -1,7 +1,10 @@
 package com.google.android.gms.common.api;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
+import com.mbridge.msdk.foundation.entity.o;
+
+/* loaded from: classes2.dex */
 public class CommonStatusCodes {
     public static final int API_NOT_CONNECTED = 17;
     public static final int CANCELED = 16;
@@ -27,8 +30,13 @@ public class CommonStatusCodes {
     public static final int SUCCESS_CACHE = -1;
     public static final int TIMEOUT = 15;
 
-    public static String getStatusCodeString(int i) {
-        switch (i) {
+    @KeepForSdk
+    public CommonStatusCodes() {
+    }
+
+    @NonNull
+    public static String getStatusCodeString(int i9) {
+        switch (i9) {
             case -1:
                 return "SUCCESS_CACHE";
             case 0:
@@ -38,7 +46,7 @@ public class CommonStatusCodes {
             case 11:
             case 12:
             default:
-                return "unknown status code: " + i;
+                return o.h(i9, "unknown status code: ");
             case 2:
                 return "SERVICE_VERSION_UPDATE_REQUIRED";
             case 3:

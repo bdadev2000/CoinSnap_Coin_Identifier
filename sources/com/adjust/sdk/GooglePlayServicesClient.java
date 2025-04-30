@@ -11,10 +11,10 @@ import java.io.IOException;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class GooglePlayServicesClient {
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public static final class GooglePlayServicesInfo {
         private final String gpsAdid;
         private final Boolean trackingEnabled;
@@ -33,16 +33,18 @@ public class GooglePlayServicesClient {
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public static final class a implements ServiceConnection {
 
         /* renamed from: a, reason: collision with root package name */
-        public long f239a;
+        public long f5526a;
         public boolean b = false;
-        public final LinkedBlockingQueue<IBinder> c = new LinkedBlockingQueue<>(1);
 
-        public a(long j) {
-            this.f239a = j;
+        /* renamed from: c, reason: collision with root package name */
+        public final LinkedBlockingQueue<IBinder> f5527c = new LinkedBlockingQueue<>(1);
+
+        public a(long j7) {
+            this.f5526a = j7;
         }
 
         public final IBinder a() {
@@ -50,13 +52,13 @@ public class GooglePlayServicesClient {
                 throw new IllegalStateException();
             }
             this.b = true;
-            return this.c.poll(this.f239a, TimeUnit.MILLISECONDS);
+            return this.f5527c.poll(this.f5526a, TimeUnit.MILLISECONDS);
         }
 
         @Override // android.content.ServiceConnection
         public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             try {
-                this.c.put(iBinder);
+                this.f5527c.put(iBinder);
             } catch (InterruptedException unused) {
             }
         }
@@ -66,46 +68,52 @@ public class GooglePlayServicesClient {
         }
     }
 
-    public static GooglePlayServicesInfo getGooglePlayServicesInfo(Context context, long j) {
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-            throw new IllegalStateException("Google Play Services info can't be accessed from the main thread");
-        }
-        context.getPackageManager().getPackageInfo("com.android.vending", 0);
-        a aVar = new a(j);
-        Intent intent = new Intent("com.google.android.gms.ads.identifier.service.START");
-        intent.setPackage("com.google.android.gms");
-        try {
-            if (!context.bindService(intent, aVar, 1)) {
-                throw new IOException("Google Play connection failed");
-            }
+    public static GooglePlayServicesInfo getGooglePlayServicesInfo(Context context, long j7) {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            boolean z8 = false;
+            context.getPackageManager().getPackageInfo("com.android.vending", 0);
+            a aVar = new a(j7);
+            Intent intent = new Intent("com.google.android.gms.ads.identifier.service.START");
+            intent.setPackage("com.google.android.gms");
             try {
-                IBinder a2 = aVar.a();
-                Parcel obtain = Parcel.obtain();
-                Parcel obtain2 = Parcel.obtain();
-                try {
-                    obtain.writeInterfaceToken("com.google.android.gms.ads.identifier.internal.IAdvertisingIdService");
-                    a2.transact(1, obtain, obtain2, 0);
-                    obtain2.readException();
-                    String readString = obtain2.readString();
-                    obtain2.recycle();
-                    obtain.recycle();
-                    obtain = Parcel.obtain();
-                    obtain2 = Parcel.obtain();
+                if (context.bindService(intent, aVar, 1)) {
                     try {
-                        obtain.writeInterfaceToken("com.google.android.gms.ads.identifier.internal.IAdvertisingIdService");
-                        obtain.writeInt(1);
-                        a2.transact(2, obtain, obtain2, 0);
-                        obtain2.readException();
-                        return new GooglePlayServicesInfo(readString, Boolean.valueOf(obtain2.readInt() != 0) != null ? Boolean.valueOf(!r8.booleanValue()) : null);
-                    } finally {
+                        IBinder a6 = aVar.a();
+                        Parcel obtain = Parcel.obtain();
+                        Parcel obtain2 = Parcel.obtain();
+                        try {
+                            obtain.writeInterfaceToken("com.google.android.gms.ads.identifier.internal.IAdvertisingIdService");
+                            a6.transact(1, obtain, obtain2, 0);
+                            obtain2.readException();
+                            String readString = obtain2.readString();
+                            obtain2.recycle();
+                            obtain.recycle();
+                            obtain = Parcel.obtain();
+                            obtain2 = Parcel.obtain();
+                            try {
+                                obtain.writeInterfaceToken("com.google.android.gms.ads.identifier.internal.IAdvertisingIdService");
+                                obtain.writeInt(1);
+                                a6.transact(2, obtain, obtain2, 0);
+                                obtain2.readException();
+                                if (obtain2.readInt() != 0) {
+                                    z8 = true;
+                                }
+                                obtain2.recycle();
+                                obtain.recycle();
+                                return new GooglePlayServicesInfo(readString, Boolean.valueOf(!z8));
+                            } finally {
+                            }
+                        } finally {
+                        }
+                    } catch (Exception e4) {
+                        throw e4;
                     }
-                } finally {
                 }
-            } catch (Exception e) {
-                throw e;
+                throw new IOException("Google Play connection failed");
+            } finally {
+                context.unbindService(aVar);
             }
-        } finally {
-            context.unbindService(aVar);
         }
+        throw new IllegalStateException("Google Play Services info can't be accessed from the main thread");
     }
 }

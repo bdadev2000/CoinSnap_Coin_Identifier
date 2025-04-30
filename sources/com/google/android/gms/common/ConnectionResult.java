@@ -1,18 +1,23 @@
 package com.google.android.gms.common;
 
+import Q7.n0;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.IntentSender;
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.glority.android.core.data.LogEventArguments;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.internal.Objects;
 import com.google.android.gms.common.internal.Preconditions;
+import com.google.android.gms.common.internal.ShowFirstParty;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@SafeParcelable.Class(creator = "ConnectionResultCreator")
+/* loaded from: classes2.dex */
 public final class ConnectionResult extends AbstractSafeParcelable {
     public static final int API_DISABLED = 23;
     public static final int API_DISABLED_FOR_CONNECTION = 24;
@@ -40,98 +45,108 @@ public final class ConnectionResult extends AbstractSafeParcelable {
     public static final int SIGN_IN_REQUIRED = 4;
     public static final int SUCCESS = 0;
     public static final int TIMEOUT = 14;
+
+    @KeepForSdk
     public static final int UNKNOWN = -1;
+
+    @SafeParcelable.VersionField(id = 1)
     final int zza;
+
+    @SafeParcelable.Field(getter = "getErrorCode", id = 2)
     private final int zzb;
+
+    @Nullable
+    @SafeParcelable.Field(getter = "getResolution", id = 3)
     private final PendingIntent zzc;
+
+    @Nullable
+    @SafeParcelable.Field(getter = "getErrorMessage", id = 4)
     private final String zzd;
+
+    @NonNull
+    @ShowFirstParty
+    @KeepForSdk
     public static final ConnectionResult RESULT_SUCCESS = new ConnectionResult(0);
+
+    @NonNull
     public static final Parcelable.Creator<ConnectionResult> CREATOR = new zzb();
 
-    public ConnectionResult(int i) {
-        this(i, null, null);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public ConnectionResult(int i, int i2, PendingIntent pendingIntent, String str) {
-        this.zza = i;
-        this.zzb = i2;
+    @SafeParcelable.Constructor
+    public ConnectionResult(@SafeParcelable.Param(id = 1) int i9, @SafeParcelable.Param(id = 2) int i10, @Nullable @SafeParcelable.Param(id = 3) PendingIntent pendingIntent, @Nullable @SafeParcelable.Param(id = 4) String str) {
+        this.zza = i9;
+        this.zzb = i10;
         this.zzc = pendingIntent;
         this.zzd = str;
     }
 
-    public ConnectionResult(int i, PendingIntent pendingIntent) {
-        this(i, pendingIntent, null);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static String zza(int i) {
-        if (i == 99) {
-            return "UNFINISHED";
-        }
-        if (i == 1500) {
+    @NonNull
+    public static String zza(int i9) {
+        if (i9 != 99) {
+            if (i9 != 1500) {
+                switch (i9) {
+                    case -1:
+                        return "UNKNOWN";
+                    case 0:
+                        return "SUCCESS";
+                    case 1:
+                        return "SERVICE_MISSING";
+                    case 2:
+                        return "SERVICE_VERSION_UPDATE_REQUIRED";
+                    case 3:
+                        return "SERVICE_DISABLED";
+                    case 4:
+                        return "SIGN_IN_REQUIRED";
+                    case 5:
+                        return "INVALID_ACCOUNT";
+                    case 6:
+                        return "RESOLUTION_REQUIRED";
+                    case 7:
+                        return "NETWORK_ERROR";
+                    case 8:
+                        return "INTERNAL_ERROR";
+                    case 9:
+                        return "SERVICE_INVALID";
+                    case 10:
+                        return "DEVELOPER_ERROR";
+                    case 11:
+                        return "LICENSE_CHECK_FAILED";
+                    default:
+                        switch (i9) {
+                            case 13:
+                                return "CANCELED";
+                            case 14:
+                                return "TIMEOUT";
+                            case 15:
+                                return "INTERRUPTED";
+                            case 16:
+                                return "API_UNAVAILABLE";
+                            case 17:
+                                return "SIGN_IN_FAILED";
+                            case 18:
+                                return "SERVICE_UPDATING";
+                            case 19:
+                                return "SERVICE_MISSING_PERMISSION";
+                            case 20:
+                                return "RESTRICTED_PROFILE";
+                            case 21:
+                                return "API_VERSION_UPDATE_REQUIRED";
+                            case 22:
+                                return "RESOLUTION_ACTIVITY_NOT_FOUND";
+                            case 23:
+                                return "API_DISABLED";
+                            case 24:
+                                return "API_DISABLED_FOR_CONNECTION";
+                            default:
+                                return n0.f(i9, "UNKNOWN_ERROR_CODE(", ")");
+                        }
+                }
+            }
             return "DRIVE_EXTERNAL_STORAGE_REQUIRED";
         }
-        switch (i) {
-            case -1:
-                return "UNKNOWN";
-            case 0:
-                return "SUCCESS";
-            case 1:
-                return "SERVICE_MISSING";
-            case 2:
-                return "SERVICE_VERSION_UPDATE_REQUIRED";
-            case 3:
-                return "SERVICE_DISABLED";
-            case 4:
-                return "SIGN_IN_REQUIRED";
-            case 5:
-                return "INVALID_ACCOUNT";
-            case 6:
-                return "RESOLUTION_REQUIRED";
-            case 7:
-                return "NETWORK_ERROR";
-            case 8:
-                return "INTERNAL_ERROR";
-            case 9:
-                return "SERVICE_INVALID";
-            case 10:
-                return "DEVELOPER_ERROR";
-            case 11:
-                return "LICENSE_CHECK_FAILED";
-            default:
-                switch (i) {
-                    case 13:
-                        return "CANCELED";
-                    case 14:
-                        return "TIMEOUT";
-                    case 15:
-                        return "INTERRUPTED";
-                    case 16:
-                        return "API_UNAVAILABLE";
-                    case 17:
-                        return "SIGN_IN_FAILED";
-                    case 18:
-                        return "SERVICE_UPDATING";
-                    case 19:
-                        return "SERVICE_MISSING_PERMISSION";
-                    case 20:
-                        return "RESTRICTED_PROFILE";
-                    case 21:
-                        return "API_VERSION_UPDATE_REQUIRED";
-                    case 22:
-                        return "RESOLUTION_ACTIVITY_NOT_FOUND";
-                    case 23:
-                        return "API_DISABLED";
-                    case 24:
-                        return "API_DISABLED_FOR_CONNECTION";
-                    default:
-                        return "UNKNOWN_ERROR_CODE(" + i + ")";
-                }
-        }
+        return "UNFINISHED";
     }
 
-    public boolean equals(Object obj) {
+    public boolean equals(@Nullable Object obj) {
         if (obj == this) {
             return true;
         }
@@ -139,17 +154,22 @@ public final class ConnectionResult extends AbstractSafeParcelable {
             return false;
         }
         ConnectionResult connectionResult = (ConnectionResult) obj;
-        return this.zzb == connectionResult.zzb && Objects.equal(this.zzc, connectionResult.zzc) && Objects.equal(this.zzd, connectionResult.zzd);
+        if (this.zzb == connectionResult.zzb && Objects.equal(this.zzc, connectionResult.zzc) && Objects.equal(this.zzd, connectionResult.zzd)) {
+            return true;
+        }
+        return false;
     }
 
     public int getErrorCode() {
         return this.zzb;
     }
 
+    @Nullable
     public String getErrorMessage() {
         return this.zzd;
     }
 
+    @Nullable
     public PendingIntent getResolution() {
         return this.zzc;
     }
@@ -166,34 +186,44 @@ public final class ConnectionResult extends AbstractSafeParcelable {
         return this.zzb == 0;
     }
 
-    public void startResolutionForResult(Activity activity, int i) throws IntentSender.SendIntentException {
-        if (hasResolution()) {
-            PendingIntent pendingIntent = this.zzc;
-            Preconditions.checkNotNull(pendingIntent);
-            activity.startIntentSenderForResult(pendingIntent.getIntentSender(), i, null, 0, 0, 0);
+    public void startResolutionForResult(@NonNull Activity activity, int i9) throws IntentSender.SendIntentException {
+        if (!hasResolution()) {
+            return;
         }
+        PendingIntent pendingIntent = this.zzc;
+        Preconditions.checkNotNull(pendingIntent);
+        activity.startIntentSenderForResult(pendingIntent.getIntentSender(), i9, null, 0, 0, 0);
     }
 
+    @NonNull
     public String toString() {
         Objects.ToStringHelper stringHelper = Objects.toStringHelper(this);
         stringHelper.add("statusCode", zza(this.zzb));
         stringHelper.add("resolution", this.zzc);
-        stringHelper.add(LogEventArguments.ARG_MESSAGE, this.zzd);
+        stringHelper.add("message", this.zzd);
         return stringHelper.toString();
     }
 
     @Override // android.os.Parcelable
-    public void writeToParcel(Parcel parcel, int i) {
-        int i2 = this.zza;
+    public void writeToParcel(@NonNull Parcel parcel, int i9) {
+        int i10 = this.zza;
         int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
-        SafeParcelWriter.writeInt(parcel, 1, i2);
+        SafeParcelWriter.writeInt(parcel, 1, i10);
         SafeParcelWriter.writeInt(parcel, 2, getErrorCode());
-        SafeParcelWriter.writeParcelable(parcel, 3, getResolution(), i, false);
+        SafeParcelWriter.writeParcelable(parcel, 3, getResolution(), i9, false);
         SafeParcelWriter.writeString(parcel, 4, getErrorMessage(), false);
         SafeParcelWriter.finishObjectHeader(parcel, beginObjectHeader);
     }
 
-    public ConnectionResult(int i, PendingIntent pendingIntent, String str) {
-        this(1, i, pendingIntent, str);
+    public ConnectionResult(int i9) {
+        this(i9, null, null);
+    }
+
+    public ConnectionResult(int i9, @Nullable PendingIntent pendingIntent) {
+        this(i9, pendingIntent, null);
+    }
+
+    public ConnectionResult(int i9, @Nullable PendingIntent pendingIntent, @Nullable String str) {
+        this(1, i9, pendingIntent, str);
     }
 }

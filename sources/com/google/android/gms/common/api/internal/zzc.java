@@ -2,14 +2,12 @@ package com.google.android.gms.common.api.internal;
 
 import android.os.Bundle;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzc implements Runnable {
     final /* synthetic */ LifecycleCallback zza;
     final /* synthetic */ String zzb;
     final /* synthetic */ zzd zzc;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zzc(zzd zzdVar, LifecycleCallback lifecycleCallback, String str) {
         this.zzc = zzdVar;
         this.zza = lifecycleCallback;
@@ -18,17 +16,17 @@ final class zzc implements Runnable {
 
     @Override // java.lang.Runnable
     public final void run() {
-        int i;
-        int i2;
-        int i3;
-        int i4;
-        int i5;
+        int i9;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
         Bundle bundle;
         Bundle bundle2;
         Bundle bundle3;
         zzd zzdVar = this.zzc;
-        i = zzdVar.zzc;
-        if (i > 0) {
+        i9 = zzdVar.zzc;
+        if (i9 > 0) {
             LifecycleCallback lifecycleCallback = this.zza;
             bundle = zzdVar.zzd;
             if (bundle != null) {
@@ -40,20 +38,20 @@ final class zzc implements Runnable {
             }
             lifecycleCallback.onCreate(bundle2);
         }
-        i2 = this.zzc.zzc;
-        if (i2 >= 2) {
+        i10 = this.zzc.zzc;
+        if (i10 >= 2) {
             this.zza.onStart();
         }
-        i3 = this.zzc.zzc;
-        if (i3 >= 3) {
+        i11 = this.zzc.zzc;
+        if (i11 >= 3) {
             this.zza.onResume();
         }
-        i4 = this.zzc.zzc;
-        if (i4 >= 4) {
+        i12 = this.zzc.zzc;
+        if (i12 >= 4) {
             this.zza.onStop();
         }
-        i5 = this.zzc.zzc;
-        if (i5 >= 5) {
+        i13 = this.zzc.zzc;
+        if (i13 >= 5) {
             this.zza.onDestroy();
         }
     }

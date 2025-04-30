@@ -5,74 +5,69 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class BaselineLayout extends ViewGroup {
-    private int baseline;
-
-    public BaselineLayout(Context context) {
-        super(context, null, 0);
-        this.baseline = -1;
-    }
+    public int b;
 
     public BaselineLayout(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
-        this.baseline = -1;
-    }
-
-    public BaselineLayout(Context context, AttributeSet attributeSet, int i) {
-        super(context, attributeSet, i);
-        this.baseline = -1;
-    }
-
-    @Override // android.view.View
-    protected void onMeasure(int i, int i2) {
-        int childCount = getChildCount();
-        int i3 = 0;
-        int i4 = 0;
-        int i5 = 0;
-        int i6 = -1;
-        int i7 = -1;
-        for (int i8 = 0; i8 < childCount; i8++) {
-            View childAt = getChildAt(i8);
-            if (childAt.getVisibility() != 8) {
-                measureChild(childAt, i, i2);
-                int baseline = childAt.getBaseline();
-                if (baseline != -1) {
-                    i6 = Math.max(i6, baseline);
-                    i7 = Math.max(i7, childAt.getMeasuredHeight() - baseline);
-                }
-                i4 = Math.max(i4, childAt.getMeasuredWidth());
-                i3 = Math.max(i3, childAt.getMeasuredHeight());
-                i5 = View.combineMeasuredStates(i5, childAt.getMeasuredState());
-            }
-        }
-        if (i6 != -1) {
-            i3 = Math.max(i3, Math.max(i7, getPaddingBottom()) + i6);
-            this.baseline = i6;
-        }
-        setMeasuredDimension(View.resolveSizeAndState(Math.max(i4, getSuggestedMinimumWidth()), i, i5), View.resolveSizeAndState(Math.max(i3, getSuggestedMinimumHeight()), i2, i5 << 16));
-    }
-
-    @Override // android.view.ViewGroup, android.view.View
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int childCount = getChildCount();
-        int paddingLeft = getPaddingLeft();
-        int paddingRight = ((i3 - i) - getPaddingRight()) - paddingLeft;
-        int paddingTop = getPaddingTop();
-        for (int i5 = 0; i5 < childCount; i5++) {
-            View childAt = getChildAt(i5);
-            if (childAt.getVisibility() != 8) {
-                int measuredWidth = childAt.getMeasuredWidth();
-                int measuredHeight = childAt.getMeasuredHeight();
-                int i6 = ((paddingRight - measuredWidth) / 2) + paddingLeft;
-                int baseline = (this.baseline == -1 || childAt.getBaseline() == -1) ? paddingTop : (this.baseline + paddingTop) - childAt.getBaseline();
-                childAt.layout(i6, baseline, measuredWidth + i6, measuredHeight + baseline);
-            }
-        }
+        this.b = -1;
     }
 
     @Override // android.view.View
     public int getBaseline() {
-        return this.baseline;
+        return this.b;
+    }
+
+    @Override // android.view.ViewGroup, android.view.View
+    public final void onLayout(boolean z8, int i9, int i10, int i11, int i12) {
+        int i13;
+        int childCount = getChildCount();
+        int paddingLeft = getPaddingLeft();
+        int paddingRight = ((i11 - i9) - getPaddingRight()) - paddingLeft;
+        int paddingTop = getPaddingTop();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            View childAt = getChildAt(i14);
+            if (childAt.getVisibility() != 8) {
+                int measuredWidth = childAt.getMeasuredWidth();
+                int measuredHeight = childAt.getMeasuredHeight();
+                int i15 = ((paddingRight - measuredWidth) / 2) + paddingLeft;
+                if (this.b != -1 && childAt.getBaseline() != -1) {
+                    i13 = (this.b + paddingTop) - childAt.getBaseline();
+                } else {
+                    i13 = paddingTop;
+                }
+                childAt.layout(i15, i13, measuredWidth + i15, measuredHeight + i13);
+            }
+        }
+    }
+
+    @Override // android.view.View
+    public final void onMeasure(int i9, int i10) {
+        int childCount = getChildCount();
+        int i11 = 0;
+        int i12 = 0;
+        int i13 = 0;
+        int i14 = -1;
+        int i15 = -1;
+        for (int i16 = 0; i16 < childCount; i16++) {
+            View childAt = getChildAt(i16);
+            if (childAt.getVisibility() != 8) {
+                measureChild(childAt, i9, i10);
+                int baseline = childAt.getBaseline();
+                if (baseline != -1) {
+                    i14 = Math.max(i14, baseline);
+                    i15 = Math.max(i15, childAt.getMeasuredHeight() - baseline);
+                }
+                i12 = Math.max(i12, childAt.getMeasuredWidth());
+                i11 = Math.max(i11, childAt.getMeasuredHeight());
+                i13 = View.combineMeasuredStates(i13, childAt.getMeasuredState());
+            }
+        }
+        if (i14 != -1) {
+            i11 = Math.max(i11, Math.max(i15, getPaddingBottom()) + i14);
+            this.b = i14;
+        }
+        setMeasuredDimension(View.resolveSizeAndState(Math.max(i12, getSuggestedMinimumWidth()), i9, i13), View.resolveSizeAndState(Math.max(i11, getSuggestedMinimumHeight()), i10, i13 << 16));
     }
 }

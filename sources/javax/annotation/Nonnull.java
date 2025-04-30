@@ -4,24 +4,11 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import javax.annotation.meta.TypeQualifier;
-import javax.annotation.meta.TypeQualifierValidator;
-import javax.annotation.meta.When;
 
+/* JADX WARN: Method from annotation default annotation not found: when */
 @TypeQualifier
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-/* loaded from: classes6.dex */
+/* loaded from: assets/audience_network.dex */
 public @interface Nonnull {
-    When when() default When.ALWAYS;
-
-    /* loaded from: classes6.dex */
-    public static class Checker implements TypeQualifierValidator<Nonnull> {
-        @Override // javax.annotation.meta.TypeQualifierValidator
-        public When forConstantValue(Nonnull nonnull, Object obj) {
-            if (obj == null) {
-                return When.NEVER;
-            }
-            return When.ALWAYS;
-        }
-    }
 }

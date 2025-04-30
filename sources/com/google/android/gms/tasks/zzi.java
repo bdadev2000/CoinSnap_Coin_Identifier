@@ -1,12 +1,10 @@
 package com.google.android.gms.tasks;
 
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzi implements Runnable {
     final /* synthetic */ Task zza;
     final /* synthetic */ zzj zzb;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zzi(zzj zzjVar, Task task) {
         this.zzb = zzjVar;
         this.zza = task;
@@ -19,11 +17,15 @@ final class zzi implements Runnable {
         OnCompleteListener onCompleteListener2;
         obj = this.zzb.zzb;
         synchronized (obj) {
-            zzj zzjVar = this.zzb;
-            onCompleteListener = zzjVar.zzc;
-            if (onCompleteListener != null) {
-                onCompleteListener2 = zzjVar.zzc;
-                onCompleteListener2.onComplete(this.zza);
+            try {
+                zzj zzjVar = this.zzb;
+                onCompleteListener = zzjVar.zzc;
+                if (onCompleteListener != null) {
+                    onCompleteListener2 = zzjVar.zzc;
+                    onCompleteListener2.onComplete(this.zza);
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }

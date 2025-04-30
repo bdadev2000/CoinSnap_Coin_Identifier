@@ -1,8 +1,23 @@
 package com.google.android.gms.internal.measurement;
 
-import com.google.android.gms.internal.measurement.zzlc;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzif {
+    private final zzit zza;
+    private final byte[] zzb;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public class zzif<MessageType extends zzlc> implements zzll<MessageType> {
+    public final zzia zza() {
+        this.zza.zzb();
+        return new zzij(this.zzb);
+    }
+
+    public final zzit zzb() {
+        return this.zza;
+    }
+
+    private zzif(int i9) {
+        byte[] bArr = new byte[i9];
+        this.zzb = bArr;
+        this.zza = zzit.zzb(bArr);
+    }
 }

@@ -1,31 +1,45 @@
 package com.google.android.gms.measurement.internal;
 
-import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelReader;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzbg implements Parcelable.Creator<zzbe> {
+/* loaded from: classes2.dex */
+public final class zzbg implements Parcelable.Creator<zzbd> {
     @Override // android.os.Parcelable.Creator
-    public final /* synthetic */ zzbe createFromParcel(Parcel parcel) {
+    public final /* synthetic */ zzbd createFromParcel(Parcel parcel) {
         int validateObjectHeader = SafeParcelReader.validateObjectHeader(parcel);
-        Bundle bundle = null;
+        String str = null;
+        zzbc zzbcVar = null;
+        String str2 = null;
+        long j7 = 0;
         while (parcel.dataPosition() < validateObjectHeader) {
             int readHeader = SafeParcelReader.readHeader(parcel);
-            if (SafeParcelReader.getFieldId(readHeader) == 2) {
-                bundle = SafeParcelReader.createBundle(parcel, readHeader);
+            int fieldId = SafeParcelReader.getFieldId(readHeader);
+            if (fieldId != 2) {
+                if (fieldId != 3) {
+                    if (fieldId != 4) {
+                        if (fieldId != 5) {
+                            SafeParcelReader.skipUnknownField(parcel, readHeader);
+                        } else {
+                            j7 = SafeParcelReader.readLong(parcel, readHeader);
+                        }
+                    } else {
+                        str2 = SafeParcelReader.createString(parcel, readHeader);
+                    }
+                } else {
+                    zzbcVar = (zzbc) SafeParcelReader.createParcelable(parcel, readHeader, zzbc.CREATOR);
+                }
             } else {
-                SafeParcelReader.skipUnknownField(parcel, readHeader);
+                str = SafeParcelReader.createString(parcel, readHeader);
             }
         }
         SafeParcelReader.ensureAtEnd(parcel, validateObjectHeader);
-        return new zzbe(bundle);
+        return new zzbd(str, zzbcVar, str2, j7);
     }
 
     @Override // android.os.Parcelable.Creator
-    public final /* synthetic */ zzbe[] newArray(int i) {
-        return new zzbe[i];
+    public final /* synthetic */ zzbd[] newArray(int i9) {
+        return new zzbd[i9];
     }
 }

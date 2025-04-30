@@ -1,59 +1,64 @@
 package com.google.android.gms.internal.measurement;
 
+import java.util.AbstractSet;
 import java.util.Iterator;
 import java.util.Map;
 
-/* JADX INFO: Add missing generic type declarations: [V, K] */
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzlx<K, V> implements Iterator<Map.Entry<K, V>> {
-    private int zza;
-    private Iterator<Map.Entry<K, V>> zzb;
-    private final /* synthetic */ zzlv zzc;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public class zzlx extends AbstractSet {
+    private final /* synthetic */ zzlm zza;
 
-    @Override // java.util.Iterator
-    public final /* synthetic */ Object next() {
-        Object[] objArr;
-        if (zza().hasNext()) {
-            return zza().next();
+    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
+    public /* synthetic */ boolean add(Object obj) {
+        Map.Entry entry = (Map.Entry) obj;
+        if (!contains(entry)) {
+            this.zza.zza((zzlm) entry.getKey(), (Comparable) entry.getValue());
+            return true;
         }
-        objArr = this.zzc.zza;
-        int i = this.zza - 1;
-        this.zza = i;
-        return (zzlz) objArr[i];
+        return false;
     }
 
-    private final Iterator<Map.Entry<K, V>> zza() {
-        Map map;
-        if (this.zzb == null) {
-            map = this.zzc.zzf;
-            this.zzb = map.entrySet().iterator();
-        }
-        return this.zzb;
+    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
+    public void clear() {
+        this.zza.clear();
     }
 
-    private zzlx(zzlv zzlvVar) {
-        int i;
-        this.zzc = zzlvVar;
-        i = zzlvVar.zzb;
-        this.zza = i;
-    }
-
-    @Override // java.util.Iterator
-    public final void remove() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override // java.util.Iterator
-    public final boolean hasNext() {
-        int i;
-        int i2 = this.zza;
-        if (i2 > 0) {
-            i = this.zzc.zzb;
-            if (i2 <= i) {
-                return true;
+    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
+    public boolean contains(Object obj) {
+        Map.Entry entry = (Map.Entry) obj;
+        Object obj2 = this.zza.get(entry.getKey());
+        Object value = entry.getValue();
+        if (obj2 != value) {
+            if (obj2 == null || !obj2.equals(value)) {
+                return false;
             }
+            return true;
         }
-        return zza().hasNext();
+        return true;
+    }
+
+    @Override // java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
+    public Iterator iterator() {
+        return new zzlv(this.zza);
+    }
+
+    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
+    public boolean remove(Object obj) {
+        Map.Entry entry = (Map.Entry) obj;
+        if (contains(entry)) {
+            this.zza.remove(entry.getKey());
+            return true;
+        }
+        return false;
+    }
+
+    @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
+    public int size() {
+        return this.zza.size();
+    }
+
+    private zzlx(zzlm zzlmVar) {
+        this.zza = zzlmVar;
     }
 }

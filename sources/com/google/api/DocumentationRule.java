@@ -1,70 +1,45 @@
 package com.google.api;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import a4.N;
+import a4.O;
+import a4.P;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-/* loaded from: classes12.dex */
-public final class DocumentationRule extends GeneratedMessageLite<DocumentationRule, Builder> implements DocumentationRuleOrBuilder {
+/* loaded from: classes2.dex */
+public final class DocumentationRule extends L2 implements P {
     private static final DocumentationRule DEFAULT_INSTANCE;
     public static final int DEPRECATION_DESCRIPTION_FIELD_NUMBER = 3;
     public static final int DESCRIPTION_FIELD_NUMBER = 2;
-    private static volatile Parser<DocumentationRule> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int SELECTOR_FIELD_NUMBER = 1;
     private String selector_ = "";
     private String description_ = "";
     private String deprecationDescription_ = "";
 
+    static {
+        DocumentationRule documentationRule = new DocumentationRule();
+        DEFAULT_INSTANCE = documentationRule;
+        L2.registerDefaultInstance(DocumentationRule.class, documentationRule);
+    }
+
     private DocumentationRule() {
     }
 
-    @Override // com.google.api.DocumentationRuleOrBuilder
-    public String getSelector() {
-        return this.selector_;
-    }
-
-    @Override // com.google.api.DocumentationRuleOrBuilder
-    public ByteString getSelectorBytes() {
-        return ByteString.copyFromUtf8(this.selector_);
-    }
-
     /* JADX INFO: Access modifiers changed from: private */
-    public void setSelector(String str) {
-        str.getClass();
-        this.selector_ = str;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearSelector() {
-        this.selector_ = getDefaultInstance().getSelector();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setSelectorBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.selector_ = byteString.toStringUtf8();
-    }
-
-    @Override // com.google.api.DocumentationRuleOrBuilder
-    public String getDescription() {
-        return this.description_;
-    }
-
-    @Override // com.google.api.DocumentationRuleOrBuilder
-    public ByteString getDescriptionBytes() {
-        return ByteString.copyFromUtf8(this.description_);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setDescription(String str) {
-        str.getClass();
-        this.description_ = str;
+    public void clearDeprecationDescription() {
+        this.deprecationDescription_ = getDefaultInstance().getDeprecationDescription();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -73,19 +48,28 @@ public final class DocumentationRule extends GeneratedMessageLite<DocumentationR
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setDescriptionBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.description_ = byteString.toStringUtf8();
+    public void clearSelector() {
+        this.selector_ = getDefaultInstance().getSelector();
     }
 
-    @Override // com.google.api.DocumentationRuleOrBuilder
-    public String getDeprecationDescription() {
-        return this.deprecationDescription_;
+    public static DocumentationRule getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    @Override // com.google.api.DocumentationRuleOrBuilder
-    public ByteString getDeprecationDescriptionBytes() {
-        return ByteString.copyFromUtf8(this.deprecationDescription_);
+    public static O newBuilder() {
+        return (O) DEFAULT_INSTANCE.createBuilder();
+    }
+
+    public static DocumentationRule parseDelimitedFrom(InputStream inputStream) throws IOException {
+        return (DocumentationRule) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static DocumentationRule parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (DocumentationRule) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    }
+
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -95,230 +79,61 @@ public final class DocumentationRule extends GeneratedMessageLite<DocumentationR
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearDeprecationDescription() {
-        this.deprecationDescription_ = getDefaultInstance().getDeprecationDescription();
+    public void setDeprecationDescriptionBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.deprecationDescription_ = h6.toStringUtf8();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setDeprecationDescriptionBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.deprecationDescription_ = byteString.toStringUtf8();
+    public void setDescription(String str) {
+        str.getClass();
+        this.description_ = str;
     }
 
-    public static DocumentationRule parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (DocumentationRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setDescriptionBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.description_ = h6.toStringUtf8();
     }
 
-    public static DocumentationRule parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (DocumentationRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setSelector(String str) {
+        str.getClass();
+        this.selector_ = str;
     }
 
-    public static DocumentationRule parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (DocumentationRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setSelectorBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.selector_ = h6.toStringUtf8();
     }
 
-    public static DocumentationRule parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (DocumentationRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static DocumentationRule parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (DocumentationRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static DocumentationRule parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (DocumentationRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static DocumentationRule parseFrom(InputStream inputStream) throws IOException {
-        return (DocumentationRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static DocumentationRule parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (DocumentationRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static DocumentationRule parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (DocumentationRule) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static DocumentationRule parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (DocumentationRule) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static DocumentationRule parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (DocumentationRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
-    }
-
-    public static DocumentationRule parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (DocumentationRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
-    }
-
-    public static Builder newBuilder(DocumentationRule documentationRule) {
-        return DEFAULT_INSTANCE.createBuilder(documentationRule);
-    }
-
-    /* loaded from: classes12.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<DocumentationRule, Builder> implements DocumentationRuleOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(DocumentationRule.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.api.DocumentationRuleOrBuilder
-        public String getSelector() {
-            return ((DocumentationRule) this.instance).getSelector();
-        }
-
-        @Override // com.google.api.DocumentationRuleOrBuilder
-        public ByteString getSelectorBytes() {
-            return ((DocumentationRule) this.instance).getSelectorBytes();
-        }
-
-        public Builder setSelector(String str) {
-            copyOnWrite();
-            ((DocumentationRule) this.instance).setSelector(str);
-            return this;
-        }
-
-        public Builder clearSelector() {
-            copyOnWrite();
-            ((DocumentationRule) this.instance).clearSelector();
-            return this;
-        }
-
-        public Builder setSelectorBytes(ByteString byteString) {
-            copyOnWrite();
-            ((DocumentationRule) this.instance).setSelectorBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.api.DocumentationRuleOrBuilder
-        public String getDescription() {
-            return ((DocumentationRule) this.instance).getDescription();
-        }
-
-        @Override // com.google.api.DocumentationRuleOrBuilder
-        public ByteString getDescriptionBytes() {
-            return ((DocumentationRule) this.instance).getDescriptionBytes();
-        }
-
-        public Builder setDescription(String str) {
-            copyOnWrite();
-            ((DocumentationRule) this.instance).setDescription(str);
-            return this;
-        }
-
-        public Builder clearDescription() {
-            copyOnWrite();
-            ((DocumentationRule) this.instance).clearDescription();
-            return this;
-        }
-
-        public Builder setDescriptionBytes(ByteString byteString) {
-            copyOnWrite();
-            ((DocumentationRule) this.instance).setDescriptionBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.api.DocumentationRuleOrBuilder
-        public String getDeprecationDescription() {
-            return ((DocumentationRule) this.instance).getDeprecationDescription();
-        }
-
-        @Override // com.google.api.DocumentationRuleOrBuilder
-        public ByteString getDeprecationDescriptionBytes() {
-            return ((DocumentationRule) this.instance).getDeprecationDescriptionBytes();
-        }
-
-        public Builder setDeprecationDescription(String str) {
-            copyOnWrite();
-            ((DocumentationRule) this.instance).setDeprecationDescription(str);
-            return this;
-        }
-
-        public Builder clearDeprecationDescription() {
-            copyOnWrite();
-            ((DocumentationRule) this.instance).clearDeprecationDescription();
-            return this;
-        }
-
-        public Builder setDeprecationDescriptionBytes(ByteString byteString) {
-            copyOnWrite();
-            ((DocumentationRule) this.instance).setDeprecationDescriptionBytes(byteString);
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.api.DocumentationRule$1, reason: invalid class name */
-    /* loaded from: classes12.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (N.f3972a[k22.ordinal()]) {
             case 1:
                 return new DocumentationRule();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001Ȉ\u0002Ȉ\u0003Ȉ", new Object[]{"selector_", "description_", "deprecationDescription_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001Ȉ\u0002Ȉ\u0003Ȉ", new Object[]{"selector_", "description_", "deprecationDescription_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<DocumentationRule> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (DocumentationRule.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -328,17 +143,71 @@ public final class DocumentationRule extends GeneratedMessageLite<DocumentationR
         }
     }
 
-    static {
-        DocumentationRule documentationRule = new DocumentationRule();
-        DEFAULT_INSTANCE = documentationRule;
-        GeneratedMessageLite.registerDefaultInstance(DocumentationRule.class, documentationRule);
+    public String getDeprecationDescription() {
+        return this.deprecationDescription_;
     }
 
-    public static DocumentationRule getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public H getDeprecationDescriptionBytes() {
+        return H.copyFromUtf8(this.deprecationDescription_);
     }
 
-    public static Parser<DocumentationRule> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public String getDescription() {
+        return this.description_;
+    }
+
+    public H getDescriptionBytes() {
+        return H.copyFromUtf8(this.description_);
+    }
+
+    public String getSelector() {
+        return this.selector_;
+    }
+
+    public H getSelectorBytes() {
+        return H.copyFromUtf8(this.selector_);
+    }
+
+    public static O newBuilder(DocumentationRule documentationRule) {
+        return (O) DEFAULT_INSTANCE.createBuilder(documentationRule);
+    }
+
+    public static DocumentationRule parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (DocumentationRule) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static DocumentationRule parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (DocumentationRule) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static DocumentationRule parseFrom(H h6) throws C1912g3 {
+        return (DocumentationRule) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static DocumentationRule parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (DocumentationRule) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static DocumentationRule parseFrom(byte[] bArr) throws C1912g3 {
+        return (DocumentationRule) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static DocumentationRule parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (DocumentationRule) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static DocumentationRule parseFrom(InputStream inputStream) throws IOException {
+        return (DocumentationRule) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static DocumentationRule parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (DocumentationRule) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static DocumentationRule parseFrom(S s5) throws IOException {
+        return (DocumentationRule) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static DocumentationRule parseFrom(S s5, W1 w1) throws IOException {
+        return (DocumentationRule) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

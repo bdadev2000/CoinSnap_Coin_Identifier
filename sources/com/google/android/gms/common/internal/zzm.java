@@ -4,8 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelReader;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzm implements Parcelable.Creator {
     @Override // android.os.Parcelable.Creator
     public final /* bridge */ /* synthetic */ Object createFromParcel(Parcel parcel) {
@@ -13,9 +12,9 @@ public final class zzm implements Parcelable.Creator {
         RootTelemetryConfiguration rootTelemetryConfiguration = null;
         int[] iArr = null;
         int[] iArr2 = null;
-        boolean z = false;
-        boolean z2 = false;
-        int i = 0;
+        boolean z8 = false;
+        boolean z9 = false;
+        int i9 = 0;
         while (parcel.dataPosition() < validateObjectHeader) {
             int readHeader = SafeParcelReader.readHeader(parcel);
             switch (SafeParcelReader.getFieldId(readHeader)) {
@@ -23,16 +22,16 @@ public final class zzm implements Parcelable.Creator {
                     rootTelemetryConfiguration = (RootTelemetryConfiguration) SafeParcelReader.createParcelable(parcel, readHeader, RootTelemetryConfiguration.CREATOR);
                     break;
                 case 2:
-                    z = SafeParcelReader.readBoolean(parcel, readHeader);
+                    z8 = SafeParcelReader.readBoolean(parcel, readHeader);
                     break;
                 case 3:
-                    z2 = SafeParcelReader.readBoolean(parcel, readHeader);
+                    z9 = SafeParcelReader.readBoolean(parcel, readHeader);
                     break;
                 case 4:
                     iArr = SafeParcelReader.createIntArray(parcel, readHeader);
                     break;
                 case 5:
-                    i = SafeParcelReader.readInt(parcel, readHeader);
+                    i9 = SafeParcelReader.readInt(parcel, readHeader);
                     break;
                 case 6:
                     iArr2 = SafeParcelReader.createIntArray(parcel, readHeader);
@@ -43,11 +42,11 @@ public final class zzm implements Parcelable.Creator {
             }
         }
         SafeParcelReader.ensureAtEnd(parcel, validateObjectHeader);
-        return new ConnectionTelemetryConfiguration(rootTelemetryConfiguration, z, z2, iArr, i, iArr2);
+        return new ConnectionTelemetryConfiguration(rootTelemetryConfiguration, z8, z9, iArr, i9, iArr2);
     }
 
     @Override // android.os.Parcelable.Creator
-    public final /* synthetic */ Object[] newArray(int i) {
-        return new ConnectionTelemetryConfiguration[i];
+    public final /* synthetic */ Object[] newArray(int i9) {
+        return new ConnectionTelemetryConfiguration[i9];
     }
 }

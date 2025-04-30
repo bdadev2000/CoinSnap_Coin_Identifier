@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <plurals name="exo_controls_fastforward_by_amount_description">
+    <plurals name="al_exo_controls_fastforward_by_amount_description">
         <item quantity="one">Fast forward %d second</item>
         <item quantity="other">Fast forward %d seconds</item>
     </plurals>
-    <plurals name="exo_controls_rewind_by_amount_description">
+    <plurals name="al_exo_controls_rewind_by_amount_description">
         <item quantity="one">Rewind %d second</item>
         <item quantity="other">Rewind %d seconds</item>
     </plurals>
     <plurals name="mtrl_badge_content_description">
         <item quantity="one">%d new notification</item>
         <item quantity="other">%d new notifications</item>
-    </plurals>
-    <plurals name="permission_denied_message">
-        <item quantity="one">Permission denied. Please try again after grant the &lt;b&gt;%s&lt;/b&gt; permission.</item>
-        <item quantity="other">Permissions denied. Please try again after grant &lt;b&gt;%s&lt;/b&gt; permissions.</item>
-    </plurals>
-    <plurals name="permission_set_in_settings_message">
-        <item quantity="one">Permission required.\n\nGrant permission to this application and try again:\n\n Open app info page in settings, tap &apos;Permissions&apos;, enable &lt;b&gt;%s&lt;/b&gt; permission.</item>
-        <item quantity="other">Permissions required.\n\nGrant permissions to this application and try again:\n\n Open app info page in settings, tap &apos;Permissions&apos;, enable &lt;b&gt;%s&lt;/b&gt; permissions.</item>
     </plurals>
 </resources>

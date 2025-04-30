@@ -1,24 +1,12 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class zzcm {
-    public static final zzcm zza = new zzcd().zza("").zza(false).zza(zzco.ALL_CHECKS).zza(zzcn.READ_AND_WRITE).zza();
-    static final zzcm zzb = new zzcd().zza("").zza(false).zza(zzco.NO_CHECKS).zza(zzcn.READ_AND_WRITE).zza();
+    public abstract zzcj zza();
 
-    static {
-        new zzcd().zza("").zza(false).zza(zzco.SKIP_COMPLIANCE_CHECK).zza(zzcn.READ_AND_WRITE).zza();
-    }
+    public abstract zzcm zza(zzcl zzclVar);
 
-    public abstract zzcc zza();
+    public abstract zzcm zza(boolean z8);
 
-    public abstract zzcb zzb();
-
-    public abstract zzco zzc();
-
-    public abstract zzcn zzd();
-
-    public abstract String zze();
-
-    public abstract boolean zzf();
+    public abstract zzcm zzb(boolean z8);
 }

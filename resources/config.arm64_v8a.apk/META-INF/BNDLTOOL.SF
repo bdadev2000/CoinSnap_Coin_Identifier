@@ -1,28 +1,40 @@
 Signature-Version: 1.0
 Created-By: 1.0 (Android)
-SHA1-Digest-Manifest: 1a06wct+Vt4zCvkcX+njlUo9BE4=
+SHA1-Digest-Manifest: A8u+FRboNWy9fODWdNjl1kwSoZo=
 X-Android-APK-Signed: 2, 3
 
 Name: AndroidManifest.xml
-SHA1-Digest: SXcio5ya9f6GWNlWTnKdBSnkxOQ=
+SHA1-Digest: RfY3YK/kcCiibCtzc6CGhWMBjbI=
 
-Name: lib/arm64-v8a/libandroidx.graphics.path.so
-SHA1-Digest: qdPELWZ8G0EiUHhBZOMomwUjY54=
+Name: lib/arm64-v8a/libEncryptorP.so
+SHA1-Digest: /1odvAX5NI+xSpKl1Y25L0SDsSA=
 
-Name: lib/arm64-v8a/libencrypt.so
-SHA1-Digest: 7Rz9Hg/OET7SzhPIbM1ZlIF1Erc=
+Name: lib/arm64-v8a/libapminsighta.so
+SHA1-Digest: FXxi0cMrYl5mcTIt/qB4CR8a+xg=
 
-Name: lib/arm64-v8a/libimage_processing_util_jni.so
-SHA1-Digest: bY/Kgy5V846MW2SSgGRYyfvYwls=
+Name: lib/arm64-v8a/libapminsightb.so
+SHA1-Digest: ZFqzxMwv9wFl0C2GSF22SKN3UYM=
 
-Name: lib/arm64-v8a/libsurface_util_jni.so
-SHA1-Digest: 6EMAtNAjZUtxGFvk9x6kMYc8Y68=
+Name: lib/arm64-v8a/libapplovin-native-crash-reporter.so
+SHA1-Digest: hX2Xrubpk/B03WzTisc8p+h8V+A=
 
-Name: lib/arm64-v8a/libtensorflowlite_jni.so
-SHA1-Digest: I/z4hdhbuJvEZs1V/AOcd5/nIRU=
+Name: lib/arm64-v8a/libarcore_sdk_c.so
+SHA1-Digest: vBp5D95Tsd/o81EOsdL182ElLC8=
 
-Name: lib/arm64-v8a/libtensorflowlite_jni_gms_client.so
-SHA1-Digest: qP0zDKYHxX2X7KqzVGVE2Dd0loI=
+Name: lib/arm64-v8a/libarcore_sdk_jni.so
+SHA1-Digest: UGg8H+exXrpIJA2xGgbWTXnxufk=
+
+Name: lib/arm64-v8a/libbuffer_pg.so
+SHA1-Digest: p0xBdCZ1/IxEk4zE57BNBhj67Cw=
+
+Name: lib/arm64-v8a/libfile_lock_pg.so
+SHA1-Digest: G2y0y6pG7u14RhOBA81DT7a4GI8=
+
+Name: lib/arm64-v8a/libnms.so
+SHA1-Digest: s2obOnp0ohrQhIJKXFtNunZr0BY=
+
+Name: lib/arm64-v8a/libtobEmbedPagEncrypt.so
+SHA1-Digest: LFPChmc8qOR11EI8wAiM3zyzuuk=
 
 Name: stamp-cert-sha256
 SHA1-Digest: Bs40BvDZ1xrbgQrPTD2x5w/NfHQ=

@@ -5,7 +5,7 @@ import android.webkit.GeolocationPermissions;
 import android.webkit.ServiceWorkerController;
 import android.webkit.WebStorage;
 
-/* loaded from: classes9.dex */
+/* loaded from: classes3.dex */
 public interface ProfileBoundaryInterface {
     CookieManager getCookieManager();
 

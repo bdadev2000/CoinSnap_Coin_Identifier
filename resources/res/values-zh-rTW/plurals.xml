@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <plurals name="exo_controls_fastforward_by_amount_description">
-        <item quantity="one">快轉 %d 秒</item>
-        <item quantity="other">快轉 %d 秒</item>
-    </plurals>
-    <plurals name="exo_controls_rewind_by_amount_description">
-        <item quantity="one">倒轉 %d 秒</item>
-        <item quantity="other">倒轉 %d 秒</item>
-    </plurals>
     <plurals name="mtrl_badge_content_description">
         <item quantity="one">%d 則新通知</item>
         <item quantity="other">%d 則新通知</item>
-    </plurals>
-    <plurals name="permission_denied_message">
-        <item quantity="other">沒有許可權，請授予&lt;b&gt;%s&lt;/b&gt;許可權之後再次嘗試。</item>
-    </plurals>
-    <plurals name="permission_set_in_settings_message">
-        <item quantity="other">打開設定的程式資訊頁面，輕觸&quot;許可權&quot;，將&lt;b&gt;%s&lt;/b&gt;設定為打開，並再次嘗試。</item>
     </plurals>
 </resources>

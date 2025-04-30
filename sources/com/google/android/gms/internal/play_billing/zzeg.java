@@ -1,34 +1,112 @@
 package com.google.android.gms.internal.play_billing;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-abstract class zzeg {
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract int zza(Object obj);
+/* loaded from: classes2.dex */
+final class zzeg implements zzeo {
+    private final zzec zza;
+    private final zzff zzb;
+    private final boolean zzc;
+    private final zzce zzd;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract int zzb(Object obj);
+    private zzeg(zzff zzffVar, zzce zzceVar, zzec zzecVar) {
+        this.zzb = zzffVar;
+        this.zzc = zzceVar.zzf(zzecVar);
+        this.zzd = zzceVar;
+        this.zza = zzecVar;
+    }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract Object zzc(Object obj);
+    public static zzeg zzc(zzff zzffVar, zzce zzceVar, zzec zzecVar) {
+        return new zzeg(zzffVar, zzceVar, zzecVar);
+    }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract Object zzd(Object obj);
+    @Override // com.google.android.gms.internal.play_billing.zzeo
+    public final int zza(Object obj) {
+        zzff zzffVar = this.zzb;
+        int zzb = zzffVar.zzb(zzffVar.zzd(obj));
+        if (this.zzc) {
+            return zzb + this.zzd.zzb(obj).zzc();
+        }
+        return zzb;
+    }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract Object zze(Object obj, Object obj2);
+    @Override // com.google.android.gms.internal.play_billing.zzeo
+    public final int zzb(Object obj) {
+        int hashCode = this.zzb.zzd(obj).hashCode();
+        if (this.zzc) {
+            return (hashCode * 53) + this.zzd.zzb(obj).zza.hashCode();
+        }
+        return hashCode;
+    }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract void zzf(Object obj, int i, long j);
+    @Override // com.google.android.gms.internal.play_billing.zzeo
+    public final Object zze() {
+        zzec zzecVar = this.zza;
+        if (zzecVar instanceof zzcs) {
+            return ((zzcs) zzecVar).zzl();
+        }
+        return zzecVar.zzE().zzg();
+    }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract void zzg(Object obj);
+    @Override // com.google.android.gms.internal.play_billing.zzeo
+    public final void zzf(Object obj) {
+        this.zzb.zzg(obj);
+        this.zzd.zzd(obj);
+    }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract void zzh(Object obj, Object obj2);
+    @Override // com.google.android.gms.internal.play_billing.zzeo
+    public final void zzg(Object obj, Object obj2) {
+        zzeq.zzq(this.zzb, obj, obj2);
+        if (this.zzc) {
+            zzeq.zzp(this.zzd, obj, obj2);
+        }
+    }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract void zzi(Object obj, zzey zzeyVar) throws IOException;
+    @Override // com.google.android.gms.internal.play_billing.zzeo
+    public final void zzh(Object obj, byte[] bArr, int i9, int i10, zzbc zzbcVar) throws IOException {
+        zzcs zzcsVar = (zzcs) obj;
+        if (zzcsVar.zzc == zzfg.zzc()) {
+            zzcsVar.zzc = zzfg.zzf();
+        }
+        throw null;
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzeo
+    public final void zzi(Object obj, zzfx zzfxVar) throws IOException {
+        Iterator zzf = this.zzd.zzb(obj).zzf();
+        while (zzf.hasNext()) {
+            Map.Entry entry = (Map.Entry) zzf.next();
+            zzch zzchVar = (zzch) entry.getKey();
+            if (zzchVar.zze() == zzfw.MESSAGE && !zzchVar.zzg() && !zzchVar.zzf()) {
+                if (entry instanceof zzdf) {
+                    zzfxVar.zzw(zzchVar.zza(), ((zzdf) entry).zza().zzb());
+                } else {
+                    zzfxVar.zzw(zzchVar.zza(), entry.getValue());
+                }
+            } else {
+                throw new IllegalStateException("Found invalid MessageSet item.");
+            }
+        }
+        zzff zzffVar = this.zzb;
+        zzffVar.zzi(zzffVar.zzd(obj), zzfxVar);
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzeo
+    public final boolean zzj(Object obj, Object obj2) {
+        zzff zzffVar = this.zzb;
+        if (!zzffVar.zzd(obj).equals(zzffVar.zzd(obj2))) {
+            return false;
+        }
+        if (this.zzc) {
+            return this.zzd.zzb(obj).equals(this.zzd.zzb(obj2));
+        }
+        return true;
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzeo
+    public final boolean zzk(Object obj) {
+        return this.zzd.zzb(obj).zzj();
+    }
 }

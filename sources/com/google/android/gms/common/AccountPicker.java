@@ -3,44 +3,70 @@ package com.google.android.gms.common;
 import android.accounts.Account;
 import android.content.Intent;
 import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.internal.Preconditions;
 import com.google.errorprone.annotations.ResultIgnorabilityUnspecified;
 import java.util.ArrayList;
 import java.util.List;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class AccountPicker {
 
-    /* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-    /* loaded from: classes12.dex */
+    /* loaded from: classes2.dex */
     public static class AccountChooserOptions {
+
+        @Nullable
         private Account zza;
         private boolean zzb;
+
+        @Nullable
         private ArrayList zzc;
+
+        @Nullable
         private ArrayList zzd;
         private boolean zze;
+
+        @Nullable
         private String zzf;
+
+        @Nullable
         private Bundle zzg;
         private boolean zzh;
         private int zzi;
+
+        @Nullable
         private String zzj;
         private boolean zzk;
+
+        @Nullable
         private zza zzl;
+
+        @Nullable
         private String zzm;
         private boolean zzn;
         private boolean zzo;
 
-        /* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-        /* loaded from: classes12.dex */
+        /* loaded from: classes2.dex */
         public static class Builder {
+
+            @Nullable
             private Account zza;
+
+            @Nullable
             private ArrayList zzb;
+
+            @Nullable
             private ArrayList zzc;
             private boolean zzd = false;
+
+            @Nullable
             private String zze;
+
+            @Nullable
             private Bundle zzf;
 
+            @NonNull
             public AccountChooserOptions build() {
                 Preconditions.checkArgument(true, "We only support hostedDomain filter for account chip styled account picker");
                 Preconditions.checkArgument(true, "Consent is only valid for account chip styled account picker");
@@ -63,79 +89,97 @@ public final class AccountPicker {
                 return accountChooserOptions;
             }
 
-            public Builder setAllowableAccounts(List<Account> list) {
-                this.zzb = list == null ? null : new ArrayList(list);
+            @NonNull
+            public Builder setAllowableAccounts(@Nullable List<Account> list) {
+                ArrayList arrayList;
+                if (list == null) {
+                    arrayList = null;
+                } else {
+                    arrayList = new ArrayList(list);
+                }
+                this.zzb = arrayList;
                 return this;
             }
 
-            public Builder setAllowableAccountsTypes(List<String> list) {
-                this.zzc = list == null ? null : new ArrayList(list);
+            @NonNull
+            public Builder setAllowableAccountsTypes(@Nullable List<String> list) {
+                ArrayList arrayList;
+                if (list == null) {
+                    arrayList = null;
+                } else {
+                    arrayList = new ArrayList(list);
+                }
+                this.zzc = arrayList;
                 return this;
             }
 
-            public Builder setAlwaysShowAccountPicker(boolean z) {
-                this.zzd = z;
+            @NonNull
+            public Builder setAlwaysShowAccountPicker(boolean z8) {
+                this.zzd = z8;
                 return this;
             }
 
-            public Builder setOptionsForAddingAccount(Bundle bundle) {
+            @NonNull
+            public Builder setOptionsForAddingAccount(@Nullable Bundle bundle) {
                 this.zzf = bundle;
                 return this;
             }
 
-            public Builder setSelectedAccount(Account account) {
+            @NonNull
+            public Builder setSelectedAccount(@Nullable Account account) {
                 this.zza = account;
                 return this;
             }
 
-            public Builder setTitleOverrideText(String str) {
+            @NonNull
+            public Builder setTitleOverrideText(@Nullable String str) {
                 this.zze = str;
                 return this;
             }
         }
 
-        static /* bridge */ /* synthetic */ boolean zzA(AccountChooserOptions accountChooserOptions) {
-            boolean z = accountChooserOptions.zzo;
+        public static /* bridge */ /* synthetic */ boolean zzA(AccountChooserOptions accountChooserOptions) {
+            boolean z8 = accountChooserOptions.zzo;
             return false;
         }
 
-        static /* bridge */ /* synthetic */ boolean zzB(AccountChooserOptions accountChooserOptions) {
-            boolean z = accountChooserOptions.zzb;
+        public static /* bridge */ /* synthetic */ boolean zzB(AccountChooserOptions accountChooserOptions) {
+            boolean z8 = accountChooserOptions.zzb;
             return false;
         }
 
-        static /* bridge */ /* synthetic */ boolean zzC(AccountChooserOptions accountChooserOptions) {
-            boolean z = accountChooserOptions.zzh;
+        public static /* bridge */ /* synthetic */ boolean zzC(AccountChooserOptions accountChooserOptions) {
+            boolean z8 = accountChooserOptions.zzh;
             return false;
         }
 
-        static /* bridge */ /* synthetic */ boolean zzD(AccountChooserOptions accountChooserOptions) {
-            boolean z = accountChooserOptions.zzk;
+        public static /* bridge */ /* synthetic */ boolean zzD(AccountChooserOptions accountChooserOptions) {
+            boolean z8 = accountChooserOptions.zzk;
             return false;
         }
 
-        static /* bridge */ /* synthetic */ int zza(AccountChooserOptions accountChooserOptions) {
-            int i = accountChooserOptions.zzi;
+        public static /* bridge */ /* synthetic */ int zza(AccountChooserOptions accountChooserOptions) {
+            int i9 = accountChooserOptions.zzi;
             return 0;
         }
 
-        static /* bridge */ /* synthetic */ zza zzd(AccountChooserOptions accountChooserOptions) {
+        public static /* bridge */ /* synthetic */ zza zzd(AccountChooserOptions accountChooserOptions) {
             zza zzaVar = accountChooserOptions.zzl;
             return null;
         }
 
-        static /* bridge */ /* synthetic */ String zze(AccountChooserOptions accountChooserOptions) {
+        public static /* bridge */ /* synthetic */ String zze(AccountChooserOptions accountChooserOptions) {
             String str = accountChooserOptions.zzj;
             return null;
         }
 
-        static /* bridge */ /* synthetic */ String zzf(AccountChooserOptions accountChooserOptions) {
+        public static /* bridge */ /* synthetic */ String zzf(AccountChooserOptions accountChooserOptions) {
             String str = accountChooserOptions.zzm;
             return null;
         }
 
-        static /* bridge */ /* synthetic */ boolean zzz(AccountChooserOptions accountChooserOptions) {
-            boolean z = accountChooserOptions.zzn;
+        public static /* bridge */ /* synthetic */ boolean zzz(AccountChooserOptions accountChooserOptions) {
+            boolean z8 = accountChooserOptions.zzn;
             return false;
         }
     }
@@ -143,9 +187,10 @@ public final class AccountPicker {
     private AccountPicker() {
     }
 
+    @NonNull
     @ResultIgnorabilityUnspecified
     @Deprecated
-    public static Intent newChooseAccountIntent(Account account, ArrayList<Account> arrayList, String[] strArr, boolean z, String str, String str2, String[] strArr2, Bundle bundle) {
+    public static Intent newChooseAccountIntent(@Nullable Account account, @Nullable ArrayList<Account> arrayList, @Nullable String[] strArr, boolean z8, @Nullable String str, @Nullable String str2, @Nullable String[] strArr2, @Nullable Bundle bundle) {
         Intent intent = new Intent();
         Preconditions.checkArgument(true, "We only support hostedDomain filter for account chip styled account picker");
         intent.setAction("com.google.android.gms.common.account.CHOOSE_ACCOUNT");
@@ -154,7 +199,7 @@ public final class AccountPicker {
         intent.putExtra("allowableAccountTypes", strArr);
         intent.putExtra("addAccountOptions", bundle);
         intent.putExtra("selectedAccount", account);
-        intent.putExtra("alwaysPromptForAccount", z);
+        intent.putExtra("alwaysPromptForAccount", z8);
         intent.putExtra("descriptionTextOverride", str);
         intent.putExtra("authTokenType", str2);
         intent.putExtra("addAccountRequiredFeatures", strArr2);
@@ -165,7 +210,8 @@ public final class AccountPicker {
         return intent;
     }
 
-    public static Intent newChooseAccountIntent(AccountChooserOptions accountChooserOptions) {
+    @NonNull
+    public static Intent newChooseAccountIntent(@NonNull AccountChooserOptions accountChooserOptions) {
         Intent intent = new Intent();
         AccountChooserOptions.zzD(accountChooserOptions);
         AccountChooserOptions.zze(accountChooserOptions);

@@ -1,26 +1,23 @@
 package com.google.android.gms.cloudmessaging;
 
 import android.os.Bundle;
+import com.mbridge.msdk.playercommon.exoplayer2.upstream.DataSchemeDataSource;
 
-/* compiled from: com.google.android.gms:play-services-cloud-messaging@@17.2.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzu extends zzs {
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzu(int i, int i2, Bundle bundle) {
-        super(i, i2, bundle);
+    public zzu(int i9, int i10, Bundle bundle) {
+        super(i9, i10, bundle);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.google.android.gms.cloudmessaging.zzs
     public final void zza(Bundle bundle) {
-        Bundle bundle2 = bundle.getBundle("data");
+        Bundle bundle2 = bundle.getBundle(DataSchemeDataSource.SCHEME_DATA);
         if (bundle2 == null) {
             bundle2 = Bundle.EMPTY;
         }
         zzd(bundle2);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.google.android.gms.cloudmessaging.zzs
     public final boolean zzb() {
         return false;

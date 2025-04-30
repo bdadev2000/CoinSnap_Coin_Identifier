@@ -1,34 +1,45 @@
 package com.google.android.gms.measurement.internal;
 
-import android.content.SharedPreferences;
+import android.content.Context;
+import android.content.res.Resources;
+import android.text.TextUtils;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.R;
 import com.google.android.gms.common.internal.Preconditions;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzhd {
-    private final String zza;
-    private boolean zzb;
-    private String zzc;
-    private final /* synthetic */ zzha zzd;
+    private final Resources zza;
+    private final String zzb;
 
-    public final String zza() {
-        if (!this.zzb) {
-            this.zzb = true;
-            this.zzc = this.zzd.zzg().getString(this.zza, null);
+    public zzhd(Context context, @Nullable String str) {
+        Preconditions.checkNotNull(context);
+        this.zza = context.getResources();
+        if (!TextUtils.isEmpty(str)) {
+            this.zzb = str;
+        } else {
+            this.zzb = zza(context);
         }
-        return this.zzc;
     }
 
-    public zzhd(zzha zzhaVar, String str, String str2) {
-        this.zzd = zzhaVar;
-        Preconditions.checkNotEmpty(str);
-        this.zza = str;
+    @Nullable
+    public final String zza(String str) {
+        int identifier = this.zza.getIdentifier(str, "string", this.zzb);
+        if (identifier == 0) {
+            return null;
+        }
+        try {
+            return this.zza.getString(identifier);
+        } catch (Resources.NotFoundException unused) {
+            return null;
+        }
     }
 
-    public final void zza(String str) {
-        SharedPreferences.Editor edit = this.zzd.zzg().edit();
-        edit.putString(this.zza, str);
-        edit.apply();
-        this.zzc = str;
+    public static String zza(Context context) {
+        try {
+            return context.getResources().getResourcePackageName(R.string.common_google_play_services_unknown_issue);
+        } catch (Resources.NotFoundException unused) {
+            return context.getPackageName();
+        }
     }
 }

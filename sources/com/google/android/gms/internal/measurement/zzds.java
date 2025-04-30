@@ -1,34 +1,33 @@
 package com.google.android.gms.internal.measurement;
 
-import android.os.Bundle;
-import android.os.Parcel;
 import android.os.RemoteException;
+import com.google.android.gms.common.internal.Preconditions;
+import com.google.android.gms.dynamic.ObjectWrapper;
+import com.google.android.gms.internal.measurement.zzdq;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public abstract class zzds extends zzbx implements zzdp {
-    public zzds() {
-        super("com.google.android.gms.measurement.api.internal.IEventHandlerProxy");
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzds extends zzdq.zza {
+    private final /* synthetic */ String zzc;
+    private final /* synthetic */ String zzd;
+    private final /* synthetic */ Object zze;
+    private final /* synthetic */ boolean zzf;
+    private final /* synthetic */ zzdq zzg;
+
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public zzds(zzdq zzdqVar, String str, String str2, Object obj, boolean z8) {
+        super(zzdqVar);
+        this.zzc = str;
+        this.zzd = str2;
+        this.zze = obj;
+        this.zzf = z8;
+        this.zzg = zzdqVar;
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzbx
-    protected final boolean zza(int i, Parcel parcel, Parcel parcel2, int i2) throws RemoteException {
-        if (i == 1) {
-            String readString = parcel.readString();
-            String readString2 = parcel.readString();
-            Bundle bundle = (Bundle) zzbw.zza(parcel, Bundle.CREATOR);
-            long readLong = parcel.readLong();
-            zzbw.zzb(parcel);
-            zza(readString, readString2, bundle, readLong);
-            parcel2.writeNoException();
-        } else {
-            if (i != 2) {
-                return false;
-            }
-            int zza = zza();
-            parcel2.writeNoException();
-            parcel2.writeInt(zza);
-        }
-        return true;
+    @Override // com.google.android.gms.internal.measurement.zzdq.zza
+    public final void zza() throws RemoteException {
+        zzdb zzdbVar;
+        zzdbVar = this.zzg.zzj;
+        ((zzdb) Preconditions.checkNotNull(zzdbVar)).setUserProperty(this.zzc, this.zzd, ObjectWrapper.wrap(this.zze), this.zzf, this.zza);
     }
 }

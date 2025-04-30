@@ -1,34 +1,42 @@
 package com.google.android.gms.tasks;
 
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
+
+@KeepForSdk
+/* loaded from: classes2.dex */
 public class NativeOnCompleteListener implements OnCompleteListener<Object> {
     private final long zza;
 
-    public NativeOnCompleteListener(long j) {
-        this.zza = j;
+    @KeepForSdk
+    public NativeOnCompleteListener(long j7) {
+        this.zza = j7;
     }
 
-    public static void createAndAddCallback(Task<Object> task, long j) {
-        task.addOnCompleteListener(new NativeOnCompleteListener(j));
+    @KeepForSdk
+    public static void createAndAddCallback(@NonNull Task<Object> task, long j7) {
+        task.addOnCompleteListener(new NativeOnCompleteListener(j7));
     }
 
-    public native void nativeOnComplete(long j, Object obj, boolean z, boolean z2, String str);
+    @KeepForSdk
+    public native void nativeOnComplete(long j7, @Nullable Object obj, boolean z8, boolean z9, @Nullable String str);
 
     @Override // com.google.android.gms.tasks.OnCompleteListener
-    public void onComplete(Task<Object> task) {
+    @KeepForSdk
+    public void onComplete(@NonNull Task<Object> task) {
         Object obj;
         String str;
         Exception exception;
         if (task.isSuccessful()) {
             obj = task.getResult();
             str = null;
-        } else if (task.isCanceled() || (exception = task.getException()) == null) {
-            obj = null;
-            str = null;
-        } else {
+        } else if (!task.isCanceled() && (exception = task.getException()) != null) {
             str = exception.getMessage();
             obj = null;
+        } else {
+            obj = null;
+            str = null;
         }
         nativeOnComplete(this.zza, obj, task.isSuccessful(), task.isCanceled(), str);
     }

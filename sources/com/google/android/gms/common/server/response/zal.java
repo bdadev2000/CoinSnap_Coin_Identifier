@@ -2,38 +2,48 @@ package com.google.android.gms.common.server.response;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.internal.ShowFirstParty;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import com.google.android.gms.common.server.response.FastJsonResponse;
 import java.util.ArrayList;
 import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@ShowFirstParty
+@SafeParcelable.Class(creator = "FieldMappingDictionaryEntryCreator")
+/* loaded from: classes2.dex */
 public final class zal extends AbstractSafeParcelable {
     public static final Parcelable.Creator<zal> CREATOR = new zap();
+
+    @SafeParcelable.VersionField(id = 1)
     final int zaa;
+
+    @SafeParcelable.Field(id = 2)
     final String zab;
+
+    @Nullable
+    @SafeParcelable.Field(id = 3)
     final ArrayList zac;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zal(int i, String str, ArrayList arrayList) {
-        this.zaa = i;
+    @SafeParcelable.Constructor
+    public zal(@SafeParcelable.Param(id = 1) int i9, @SafeParcelable.Param(id = 2) String str, @SafeParcelable.Param(id = 3) ArrayList arrayList) {
+        this.zaa = i9;
         this.zab = str;
         this.zac = arrayList;
     }
 
     @Override // android.os.Parcelable
-    public final void writeToParcel(Parcel parcel, int i) {
-        int i2 = this.zaa;
+    public final void writeToParcel(Parcel parcel, int i9) {
+        int i10 = this.zaa;
         int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
-        SafeParcelWriter.writeInt(parcel, 1, i2);
+        SafeParcelWriter.writeInt(parcel, 1, i10);
         SafeParcelWriter.writeString(parcel, 2, this.zab, false);
         SafeParcelWriter.writeTypedList(parcel, 3, this.zac, false);
         SafeParcelWriter.finishObjectHeader(parcel, beginObjectHeader);
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zal(String str, Map map) {
         ArrayList arrayList;
         this.zaa = 1;

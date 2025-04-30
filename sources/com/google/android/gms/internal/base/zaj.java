@@ -1,15 +1,14 @@
 package com.google.android.gms.internal.base;
 
 import android.graphics.drawable.Drawable;
+import androidx.annotation.Nullable;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zaj extends Drawable.ConstantState {
     int zaa;
     int zab;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zaj(zaj zajVar) {
+    public zaj(@Nullable zaj zajVar) {
         if (zajVar != null) {
             this.zaa = zajVar.zaa;
             this.zab = zajVar.zab;

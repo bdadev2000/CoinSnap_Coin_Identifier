@@ -7,14 +7,14 @@ import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
-import com.glority.android.xx.constants.LogEvents;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONObject;
+import x0.AbstractC2914a;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class PreinstallUtil {
     private static final long ALL_LOCATION_BITMASK = 255;
     private static final long CONTENT_PROVIDER_BITMASK = 16;
@@ -47,7 +47,7 @@ public class PreinstallUtil {
     }
 
     public static String getPayloadFromSystemProperty(String str, ILogger iLogger) {
-        return readSystemProperty(Constants.ADJUST_PREINSTALL_SYSTEM_PROPERTY_PREFIX + str, iLogger);
+        return readSystemProperty(AbstractC2914a.d(Constants.ADJUST_PREINSTALL_SYSTEM_PROPERTY_PREFIX, str), iLogger);
     }
 
     public static String getPayloadFromSystemPropertyFilePath(String str, ILogger iLogger) {
@@ -69,7 +69,7 @@ public class PreinstallUtil {
     }
 
     public static String getPayloadFromSystemPropertyReflection(String str, ILogger iLogger) {
-        return readSystemPropertyReflection(Constants.ADJUST_PREINSTALL_SYSTEM_PROPERTY_PREFIX + str, iLogger);
+        return readSystemPropertyReflection(AbstractC2914a.d(Constants.ADJUST_PREINSTALL_SYSTEM_PROPERTY_PREFIX, str), iLogger);
     }
 
     public static List<String> getPayloadsFromContentProviderIntentAction(Context context, String str, ILogger iLogger) {
@@ -80,170 +80,168 @@ public class PreinstallUtil {
         return readContentProviderIntentAction(context, str, null, iLogger);
     }
 
-    public static boolean hasAllLocationsBeenRead(long j) {
-        return (j & 255) == 255;
+    public static boolean hasAllLocationsBeenRead(long j7) {
+        return (j7 & ALL_LOCATION_BITMASK) == ALL_LOCATION_BITMASK;
     }
 
-    public static boolean hasNotBeenRead(String str, long j) {
+    public static boolean hasNotBeenRead(String str, long j7) {
         str.getClass();
-        str.hashCode();
-        char c = 65535;
+        char c9 = 65535;
         switch (str.hashCode()) {
             case -1771852303:
                 if (str.equals(Constants.CONTENT_PROVIDER_INTENT_ACTION)) {
-                    c = 0;
+                    c9 = 0;
                     break;
                 }
                 break;
             case -1590804087:
                 if (str.equals(Constants.SYSTEM_PROPERTIES_PATH_REFLECTION)) {
-                    c = 1;
+                    c9 = 1;
                     break;
                 }
                 break;
             case -782042377:
                 if (str.equals(Constants.CONTENT_PROVIDER)) {
-                    c = 2;
+                    c9 = 2;
                     break;
                 }
                 break;
             case -480091743:
                 if (str.equals(Constants.SYSTEM_PROPERTIES_PATH)) {
-                    c = 3;
+                    c9 = 3;
                     break;
                 }
                 break;
             case -468656985:
                 if (str.equals(Constants.SYSTEM_PROPERTIES_REFLECTION)) {
-                    c = 4;
+                    c9 = 4;
                     break;
                 }
                 break;
             case -95318717:
                 if (str.equals(Constants.SYSTEM_PROPERTIES)) {
-                    c = 5;
+                    c9 = 5;
                     break;
                 }
                 break;
             case 2055247442:
                 if (str.equals(Constants.FILE_SYSTEM)) {
-                    c = 6;
+                    c9 = 6;
                     break;
                 }
                 break;
             case 2080271301:
                 if (str.equals(Constants.CONTENT_PROVIDER_NO_PERMISSION)) {
-                    c = 7;
+                    c9 = 7;
                     break;
                 }
                 break;
         }
-        switch (c) {
+        switch (c9) {
             case 0:
-                return (j & 32) != 32;
+                return (j7 & CONTENT_PROVIDER_INTENT_ACTION_BITMASK) != CONTENT_PROVIDER_INTENT_ACTION_BITMASK;
             case 1:
-                return (j & 8) != 8;
+                return (j7 & SYSTEM_PROPERTY_PATH_REFLECTION_BITMASK) != SYSTEM_PROPERTY_PATH_REFLECTION_BITMASK;
             case 2:
-                return (j & 16) != 16;
+                return (j7 & CONTENT_PROVIDER_BITMASK) != CONTENT_PROVIDER_BITMASK;
             case 3:
-                return (j & 4) != 4;
+                return (j7 & SYSTEM_PROPERTY_PATH_BITMASK) != SYSTEM_PROPERTY_PATH_BITMASK;
             case 4:
-                return (j & 2) != 2;
+                return (j7 & SYSTEM_PROPERTY_REFLECTION_BITMASK) != SYSTEM_PROPERTY_REFLECTION_BITMASK;
             case 5:
-                return (j & 1) != 1;
+                return (j7 & 1) != 1;
             case 6:
-                return (j & 64) != 64;
+                return (j7 & FILE_SYSTEM_BITMASK) != FILE_SYSTEM_BITMASK;
             case 7:
-                return (j & 128) != 128;
+                return (j7 & CONTENT_PROVIDER_NO_PERMISSION_BITMASK) != CONTENT_PROVIDER_NO_PERMISSION_BITMASK;
             default:
                 return false;
         }
     }
 
-    public static long markAsRead(String str, long j) {
-        long j2;
+    public static long markAsRead(String str, long j7) {
+        long j9;
         str.getClass();
-        str.hashCode();
-        char c = 65535;
+        char c9 = 65535;
         switch (str.hashCode()) {
             case -1771852303:
                 if (str.equals(Constants.CONTENT_PROVIDER_INTENT_ACTION)) {
-                    c = 0;
+                    c9 = 0;
                     break;
                 }
                 break;
             case -1590804087:
                 if (str.equals(Constants.SYSTEM_PROPERTIES_PATH_REFLECTION)) {
-                    c = 1;
+                    c9 = 1;
                     break;
                 }
                 break;
             case -782042377:
                 if (str.equals(Constants.CONTENT_PROVIDER)) {
-                    c = 2;
+                    c9 = 2;
                     break;
                 }
                 break;
             case -480091743:
                 if (str.equals(Constants.SYSTEM_PROPERTIES_PATH)) {
-                    c = 3;
+                    c9 = 3;
                     break;
                 }
                 break;
             case -468656985:
                 if (str.equals(Constants.SYSTEM_PROPERTIES_REFLECTION)) {
-                    c = 4;
+                    c9 = 4;
                     break;
                 }
                 break;
             case -95318717:
                 if (str.equals(Constants.SYSTEM_PROPERTIES)) {
-                    c = 5;
+                    c9 = 5;
                     break;
                 }
                 break;
             case 2055247442:
                 if (str.equals(Constants.FILE_SYSTEM)) {
-                    c = 6;
+                    c9 = 6;
                     break;
                 }
                 break;
             case 2080271301:
                 if (str.equals(Constants.CONTENT_PROVIDER_NO_PERMISSION)) {
-                    c = 7;
+                    c9 = 7;
                     break;
                 }
                 break;
         }
-        switch (c) {
+        switch (c9) {
             case 0:
-                j2 = 32;
+                j9 = CONTENT_PROVIDER_INTENT_ACTION_BITMASK;
                 break;
             case 1:
-                j2 = 8;
+                j9 = SYSTEM_PROPERTY_PATH_REFLECTION_BITMASK;
                 break;
             case 2:
-                j2 = 16;
+                j9 = CONTENT_PROVIDER_BITMASK;
                 break;
             case 3:
-                j2 = 4;
+                j9 = SYSTEM_PROPERTY_PATH_BITMASK;
                 break;
             case 4:
-                j2 = 2;
+                j9 = SYSTEM_PROPERTY_REFLECTION_BITMASK;
                 break;
             case 5:
-                j2 = 1;
+                j9 = 1;
                 break;
             case 6:
-                j2 = 64;
+                j9 = FILE_SYSTEM_BITMASK;
                 break;
             case 7:
-                j2 = 128;
+                j9 = CONTENT_PROVIDER_NO_PERMISSION_BITMASK;
                 break;
             default:
-                return j;
+                return j7;
         }
-        return j | j2;
+        return j7 | j9;
     }
 
     private static String readContentProvider(Context context, String str, String str2, ILogger iLogger) {
@@ -261,15 +259,24 @@ public class PreinstallUtil {
             iLogger.debug("Read content provider cursor empty content uri [%s]", str);
             query.close();
             return null;
-        } catch (Exception e) {
-            iLogger.error("Exception read content provider uri [%s] error [%s]", str, e.getMessage());
+        } catch (Exception e4) {
+            iLogger.error("Exception read content provider uri [%s] error [%s]", str, e4.getMessage());
             return null;
         }
     }
 
     private static List<String> readContentProviderIntentAction(Context context, String str, String str2, ILogger iLogger) {
+        List<ResolveInfo> queryIntentContentProviders;
         String readContentProvider;
-        List<ResolveInfo> queryIntentContentProviders = Build.VERSION.SDK_INT >= 33 ? context.getPackageManager().queryIntentContentProviders(new Intent(Constants.ADJUST_PREINSTALL_CONTENT_PROVIDER_INTENT_ACTION), PackageManager.ResolveInfoFlags.of(0L)) : context.getPackageManager().queryIntentContentProviders(new Intent(Constants.ADJUST_PREINSTALL_CONTENT_PROVIDER_INTENT_ACTION), 0);
+        PackageManager.ResolveInfoFlags of;
+        if (Build.VERSION.SDK_INT >= 33) {
+            PackageManager packageManager = context.getPackageManager();
+            Intent intent = new Intent(Constants.ADJUST_PREINSTALL_CONTENT_PROVIDER_INTENT_ACTION);
+            of = PackageManager.ResolveInfoFlags.of(0L);
+            queryIntentContentProviders = packageManager.queryIntentContentProviders(intent, of);
+        } else {
+            queryIntentContentProviders = context.getPackageManager().queryIntentContentProviders(new Intent(Constants.ADJUST_PREINSTALL_CONTENT_PROVIDER_INTENT_ACTION), 0);
+        }
         ArrayList arrayList = new ArrayList();
         for (ResolveInfo resolveInfo : queryIntentContentProviders) {
             if (str2 == null || context.getPackageManager().checkPermission(str2, resolveInfo.providerInfo.packageName) == 0) {
@@ -301,17 +308,15 @@ public class PreinstallUtil {
                         fileInputStream.read(bArr);
                         fileInputStream.close();
                         return new String(bArr);
-                    } catch (Exception e) {
-                        iLogger.error("Exception read file input stream error [%s]", e.getMessage());
+                    } finally {
                         fileInputStream.close();
-                        return null;
                     }
-                } catch (Throwable th) {
-                    fileInputStream.close();
-                    throw th;
+                } catch (Exception e4) {
+                    iLogger.error("Exception read file input stream error [%s]", e4.getMessage());
+                    return null;
                 }
-            } catch (Exception e2) {
-                iLogger.error("Exception read file content error [%s]", e2.getMessage());
+            } catch (Exception e9) {
+                iLogger.error("Exception read file content error [%s]", e9.getMessage());
             }
         }
         return null;
@@ -320,8 +325,8 @@ public class PreinstallUtil {
     private static String readPayloadFromJsonString(String str, String str2, ILogger iLogger) {
         try {
             return new JSONObject(str.trim()).optString(str2);
-        } catch (Exception e) {
-            iLogger.error("Exception read payload from json string error [%s]", e.getMessage());
+        } catch (Exception e4) {
+            iLogger.error("Exception read payload from json string error [%s]", e4.getMessage());
             return null;
         }
     }
@@ -329,8 +334,8 @@ public class PreinstallUtil {
     private static String readSystemProperty(String str, ILogger iLogger) {
         try {
             return System.getProperty(str);
-        } catch (Exception e) {
-            iLogger.error("Exception read system property key [%s] error [%s]", str, e.getMessage());
+        } catch (Exception e4) {
+            iLogger.error("Exception read system property key [%s] error [%s]", str, e4.getMessage());
             return null;
         }
     }
@@ -338,9 +343,9 @@ public class PreinstallUtil {
     private static String readSystemPropertyReflection(String str, ILogger iLogger) {
         try {
             Class<?> cls = Class.forName("android.os.SystemProperties");
-            return (String) cls.getDeclaredMethod(LogEvents.exportemptyalert_close_click_type_get, String.class).invoke(cls, str);
-        } catch (Exception e) {
-            iLogger.error("Exception read system property using reflection key [%s] error [%s]", str, e.getMessage());
+            return (String) cls.getDeclaredMethod("get", String.class).invoke(cls, str);
+        } catch (Exception e4) {
+            iLogger.error("Exception read system property using reflection key [%s] error [%s]", str, e4.getMessage());
             return null;
         }
     }

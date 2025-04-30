@@ -1,58 +1,24 @@
 package com.google.android.gms.internal.play_billing;
 
-import sun.misc.Unsafe;
+import java.io.IOException;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final class zzeo extends zzep {
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzeo(Unsafe unsafe) {
-        super(unsafe);
-    }
+/* loaded from: classes2.dex */
+interface zzeo<T> {
+    int zza(Object obj);
 
-    @Override // com.google.android.gms.internal.play_billing.zzep
-    public final double zza(Object obj, long j) {
-        return Double.longBitsToDouble(this.zza.getLong(obj, j));
-    }
+    int zzb(Object obj);
 
-    @Override // com.google.android.gms.internal.play_billing.zzep
-    public final float zzb(Object obj, long j) {
-        return Float.intBitsToFloat(this.zza.getInt(obj, j));
-    }
+    Object zze();
 
-    @Override // com.google.android.gms.internal.play_billing.zzep
-    public final void zzc(Object obj, long j, boolean z) {
-        if (zzeq.zzb) {
-            zzeq.zzD(obj, j, r3 ? (byte) 1 : (byte) 0);
-        } else {
-            zzeq.zzE(obj, j, r3 ? (byte) 1 : (byte) 0);
-        }
-    }
+    void zzf(Object obj);
 
-    @Override // com.google.android.gms.internal.play_billing.zzep
-    public final void zzd(Object obj, long j, byte b) {
-        if (zzeq.zzb) {
-            zzeq.zzD(obj, j, b);
-        } else {
-            zzeq.zzE(obj, j, b);
-        }
-    }
+    void zzg(Object obj, Object obj2);
 
-    @Override // com.google.android.gms.internal.play_billing.zzep
-    public final void zze(Object obj, long j, double d) {
-        this.zza.putLong(obj, j, Double.doubleToLongBits(d));
-    }
+    void zzh(Object obj, byte[] bArr, int i9, int i10, zzbc zzbcVar) throws IOException;
 
-    @Override // com.google.android.gms.internal.play_billing.zzep
-    public final void zzf(Object obj, long j, float f) {
-        this.zza.putInt(obj, j, Float.floatToIntBits(f));
-    }
+    void zzi(Object obj, zzfx zzfxVar) throws IOException;
 
-    @Override // com.google.android.gms.internal.play_billing.zzep
-    public final boolean zzg(Object obj, long j) {
-        if (zzeq.zzb) {
-            return zzeq.zzt(obj, j);
-        }
-        return zzeq.zzu(obj, j);
-    }
+    boolean zzj(Object obj, Object obj2);
+
+    boolean zzk(Object obj);
 }

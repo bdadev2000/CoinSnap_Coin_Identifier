@@ -6,10 +6,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/* JADX WARN: Method from annotation default annotation not found: applicableTo */
 @Target({ElementType.ANNOTATION_TYPE})
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-/* loaded from: classes6.dex */
+/* loaded from: assets/audience_network.dex */
 public @interface TypeQualifier {
-    Class<?> applicableTo() default Object.class;
 }

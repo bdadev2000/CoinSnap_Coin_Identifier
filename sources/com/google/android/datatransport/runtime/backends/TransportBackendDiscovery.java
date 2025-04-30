@@ -4,10 +4,10 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-/* loaded from: classes12.dex */
+/* loaded from: classes.dex */
 public class TransportBackendDiscovery extends Service {
     @Override // android.app.Service
-    public IBinder onBind(Intent intent) {
+    public final IBinder onBind(Intent intent) {
         return null;
     }
 }

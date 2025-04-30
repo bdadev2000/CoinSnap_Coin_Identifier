@@ -1,40 +1,83 @@
 package com.google.api;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.MapEntryLite;
-import com.google.protobuf.MapFieldLite;
-import com.google.protobuf.Parser;
-import com.google.protobuf.WireFormat;
+import a4.AbstractC0379q0;
+import a4.AbstractC0382s0;
+import a4.C0380r0;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.G3;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.O3;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.Collections;
 import java.util.Map;
 
-/* loaded from: classes12.dex */
-public final class Metric extends GeneratedMessageLite<Metric, Builder> implements MetricOrBuilder {
+/* loaded from: classes2.dex */
+public final class Metric extends L2 implements O3 {
     private static final Metric DEFAULT_INSTANCE;
     public static final int LABELS_FIELD_NUMBER = 2;
-    private static volatile Parser<Metric> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int TYPE_FIELD_NUMBER = 3;
-    private MapFieldLite<String, String> labels_ = MapFieldLite.emptyMapField();
+    private G3 labels_ = G3.emptyMapField();
     private String type_ = "";
+
+    static {
+        Metric metric = new Metric();
+        DEFAULT_INSTANCE = metric;
+        L2.registerDefaultInstance(Metric.class, metric);
+    }
 
     private Metric() {
     }
 
-    @Override // com.google.api.MetricOrBuilder
-    public String getType() {
-        return this.type_;
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearType() {
+        this.type_ = getDefaultInstance().getType();
     }
 
-    @Override // com.google.api.MetricOrBuilder
-    public ByteString getTypeBytes() {
-        return ByteString.copyFromUtf8(this.type_);
+    public static Metric getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public Map<String, String> getMutableLabelsMap() {
+        return internalGetMutableLabels();
+    }
+
+    private G3 internalGetLabels() {
+        return this.labels_;
+    }
+
+    private G3 internalGetMutableLabels() {
+        if (!this.labels_.isMutable()) {
+            this.labels_ = this.labels_.mutableCopy();
+        }
+        return this.labels_;
+    }
+
+    public static C0380r0 newBuilder() {
+        return (C0380r0) DEFAULT_INSTANCE.createBuilder();
+    }
+
+    public static Metric parseDelimitedFrom(InputStream inputStream) throws IOException {
+        return (Metric) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static Metric parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (Metric) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    }
+
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -44,303 +87,42 @@ public final class Metric extends GeneratedMessageLite<Metric, Builder> implemen
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearType() {
-        this.type_ = getDefaultInstance().getType();
+    public void setTypeBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.type_ = h6.toStringUtf8();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setTypeBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.type_ = byteString.toStringUtf8();
-    }
-
-    /* loaded from: classes12.dex */
-    private static final class LabelsDefaultEntryHolder {
-        static final MapEntryLite<String, String> defaultEntry = MapEntryLite.newDefaultInstance(WireFormat.FieldType.STRING, "", WireFormat.FieldType.STRING, "");
-
-        private LabelsDefaultEntryHolder() {
-        }
-    }
-
-    private MapFieldLite<String, String> internalGetLabels() {
-        return this.labels_;
-    }
-
-    private MapFieldLite<String, String> internalGetMutableLabels() {
-        if (!this.labels_.isMutable()) {
-            this.labels_ = this.labels_.mutableCopy();
-        }
-        return this.labels_;
-    }
-
-    @Override // com.google.api.MetricOrBuilder
-    public int getLabelsCount() {
-        return internalGetLabels().size();
-    }
-
-    @Override // com.google.api.MetricOrBuilder
     public boolean containsLabels(String str) {
         str.getClass();
         return internalGetLabels().containsKey(str);
     }
 
-    @Override // com.google.api.MetricOrBuilder
-    @Deprecated
-    public Map<String, String> getLabels() {
-        return getLabelsMap();
-    }
-
-    @Override // com.google.api.MetricOrBuilder
-    public Map<String, String> getLabelsMap() {
-        return Collections.unmodifiableMap(internalGetLabels());
-    }
-
-    @Override // com.google.api.MetricOrBuilder
-    public String getLabelsOrDefault(String str, String str2) {
-        str.getClass();
-        MapFieldLite<String, String> internalGetLabels = internalGetLabels();
-        return internalGetLabels.containsKey(str) ? internalGetLabels.get(str) : str2;
-    }
-
-    @Override // com.google.api.MetricOrBuilder
-    public String getLabelsOrThrow(String str) {
-        str.getClass();
-        MapFieldLite<String, String> internalGetLabels = internalGetLabels();
-        if (!internalGetLabels.containsKey(str)) {
-            throw new IllegalArgumentException();
-        }
-        return internalGetLabels.get(str);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public Map<String, String> getMutableLabelsMap() {
-        return internalGetMutableLabels();
-    }
-
-    public static Metric parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (Metric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
-    }
-
-    public static Metric parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Metric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static Metric parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (Metric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static Metric parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Metric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static Metric parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (Metric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static Metric parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Metric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static Metric parseFrom(InputStream inputStream) throws IOException {
-        return (Metric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static Metric parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Metric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static Metric parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (Metric) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static Metric parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Metric) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static Metric parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (Metric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
-    }
-
-    public static Metric parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Metric) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
-    }
-
-    public static Builder newBuilder(Metric metric) {
-        return DEFAULT_INSTANCE.createBuilder(metric);
-    }
-
-    /* loaded from: classes12.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<Metric, Builder> implements MetricOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(Metric.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.api.MetricOrBuilder
-        public String getType() {
-            return ((Metric) this.instance).getType();
-        }
-
-        @Override // com.google.api.MetricOrBuilder
-        public ByteString getTypeBytes() {
-            return ((Metric) this.instance).getTypeBytes();
-        }
-
-        public Builder setType(String str) {
-            copyOnWrite();
-            ((Metric) this.instance).setType(str);
-            return this;
-        }
-
-        public Builder clearType() {
-            copyOnWrite();
-            ((Metric) this.instance).clearType();
-            return this;
-        }
-
-        public Builder setTypeBytes(ByteString byteString) {
-            copyOnWrite();
-            ((Metric) this.instance).setTypeBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.api.MetricOrBuilder
-        public int getLabelsCount() {
-            return ((Metric) this.instance).getLabelsMap().size();
-        }
-
-        @Override // com.google.api.MetricOrBuilder
-        public boolean containsLabels(String str) {
-            str.getClass();
-            return ((Metric) this.instance).getLabelsMap().containsKey(str);
-        }
-
-        public Builder clearLabels() {
-            copyOnWrite();
-            ((Metric) this.instance).getMutableLabelsMap().clear();
-            return this;
-        }
-
-        public Builder removeLabels(String str) {
-            str.getClass();
-            copyOnWrite();
-            ((Metric) this.instance).getMutableLabelsMap().remove(str);
-            return this;
-        }
-
-        @Override // com.google.api.MetricOrBuilder
-        @Deprecated
-        public Map<String, String> getLabels() {
-            return getLabelsMap();
-        }
-
-        @Override // com.google.api.MetricOrBuilder
-        public Map<String, String> getLabelsMap() {
-            return Collections.unmodifiableMap(((Metric) this.instance).getLabelsMap());
-        }
-
-        @Override // com.google.api.MetricOrBuilder
-        public String getLabelsOrDefault(String str, String str2) {
-            str.getClass();
-            Map<String, String> labelsMap = ((Metric) this.instance).getLabelsMap();
-            return labelsMap.containsKey(str) ? labelsMap.get(str) : str2;
-        }
-
-        @Override // com.google.api.MetricOrBuilder
-        public String getLabelsOrThrow(String str) {
-            str.getClass();
-            Map<String, String> labelsMap = ((Metric) this.instance).getLabelsMap();
-            if (!labelsMap.containsKey(str)) {
-                throw new IllegalArgumentException();
-            }
-            return labelsMap.get(str);
-        }
-
-        public Builder putLabels(String str, String str2) {
-            str.getClass();
-            str2.getClass();
-            copyOnWrite();
-            ((Metric) this.instance).getMutableLabelsMap().put(str, str2);
-            return this;
-        }
-
-        public Builder putAllLabels(Map<String, String> map) {
-            copyOnWrite();
-            ((Metric) this.instance).getMutableLabelsMap().putAll(map);
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.api.Metric$1, reason: invalid class name */
-    /* loaded from: classes12.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (AbstractC0379q0.f4035a[k22.ordinal()]) {
             case 1:
                 return new Metric();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0002\u0003\u0002\u0001\u0000\u0000\u00022\u0003Ȉ", new Object[]{"labels_", LabelsDefaultEntryHolder.defaultEntry, "type_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0002\u0003\u0002\u0001\u0000\u0000\u00022\u0003Ȉ", new Object[]{"labels_", AbstractC0382s0.f4040a, "type_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<Metric> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (Metric.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -350,17 +132,86 @@ public final class Metric extends GeneratedMessageLite<Metric, Builder> implemen
         }
     }
 
-    static {
-        Metric metric = new Metric();
-        DEFAULT_INSTANCE = metric;
-        GeneratedMessageLite.registerDefaultInstance(Metric.class, metric);
+    @Deprecated
+    public Map<String, String> getLabels() {
+        return getLabelsMap();
     }
 
-    public static Metric getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public int getLabelsCount() {
+        return internalGetLabels().size();
     }
 
-    public static Parser<Metric> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public Map<String, String> getLabelsMap() {
+        return Collections.unmodifiableMap(internalGetLabels());
+    }
+
+    public String getLabelsOrDefault(String str, String str2) {
+        str.getClass();
+        G3 internalGetLabels = internalGetLabels();
+        if (internalGetLabels.containsKey(str)) {
+            return (String) internalGetLabels.get(str);
+        }
+        return str2;
+    }
+
+    public String getLabelsOrThrow(String str) {
+        str.getClass();
+        G3 internalGetLabels = internalGetLabels();
+        if (internalGetLabels.containsKey(str)) {
+            return (String) internalGetLabels.get(str);
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public String getType() {
+        return this.type_;
+    }
+
+    public H getTypeBytes() {
+        return H.copyFromUtf8(this.type_);
+    }
+
+    public static C0380r0 newBuilder(Metric metric) {
+        return (C0380r0) DEFAULT_INSTANCE.createBuilder(metric);
+    }
+
+    public static Metric parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Metric) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Metric parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (Metric) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static Metric parseFrom(H h6) throws C1912g3 {
+        return (Metric) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static Metric parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (Metric) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static Metric parseFrom(byte[] bArr) throws C1912g3 {
+        return (Metric) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static Metric parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (Metric) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static Metric parseFrom(InputStream inputStream) throws IOException {
+        return (Metric) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static Metric parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Metric) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Metric parseFrom(S s5) throws IOException {
+        return (Metric) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static Metric parseFrom(S s5, W1 w1) throws IOException {
+        return (Metric) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

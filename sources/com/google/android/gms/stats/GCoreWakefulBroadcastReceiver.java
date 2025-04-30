@@ -2,15 +2,21 @@ package com.google.android.gms.stats;
 
 import android.content.Context;
 import android.content.Intent;
-import androidx.legacy.content.WakefulBroadcastReceiver;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
+import com.google.android.gms.common.internal.ShowFirstParty;
+import q0.AbstractC2638a;
 
-/* compiled from: com.google.android.gms:play-services-stats@@17.0.1 */
-/* loaded from: classes12.dex */
-public abstract class GCoreWakefulBroadcastReceiver extends WakefulBroadcastReceiver {
-    public static boolean completeWakefulIntent(Context context, Intent intent) {
+@ShowFirstParty
+@KeepForSdk
+/* loaded from: classes2.dex */
+public abstract class GCoreWakefulBroadcastReceiver extends AbstractC2638a {
+    @KeepForSdk
+    public static boolean completeWakefulIntent(@NonNull Context context, @Nullable Intent intent) {
         if (intent == null) {
             return false;
         }
-        return WakefulBroadcastReceiver.completeWakefulIntent(intent);
+        return AbstractC2638a.completeWakefulIntent(intent);
     }
 }

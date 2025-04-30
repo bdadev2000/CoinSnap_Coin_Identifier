@@ -1,46 +1,45 @@
 package com.google.android.gms.internal.measurement;
 
-import com.google.android.gms.internal.measurement.zzgd;
+import com.google.android.gms.internal.measurement.zzft;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzj {
-    public static zzaq zza(zzgd.zzd zzdVar) {
+    public static zzaq zza(zzft.zzd zzdVar) {
         if (zzdVar == null) {
             return zzaq.zzc;
         }
-        int i = zzi.zza[zzdVar.zzb().ordinal()];
-        if (i == 1) {
+        int i9 = zzi.zza[zzdVar.zzb().ordinal()];
+        if (i9 == 1) {
             if (zzdVar.zzj()) {
                 return new zzas(zzdVar.zze());
             }
             return zzaq.zzj;
         }
-        if (i == 2) {
+        if (i9 == 2) {
             if (zzdVar.zzi()) {
                 return new zzai(Double.valueOf(zzdVar.zza()));
             }
             return new zzai(null);
         }
-        if (i == 3) {
+        if (i9 == 3) {
             if (zzdVar.zzh()) {
                 return new zzag(Boolean.valueOf(zzdVar.zzg()));
             }
             return new zzag(null);
         }
-        if (i != 4) {
-            if (i == 5) {
-                throw new IllegalArgumentException("Unknown type found. Cannot convert entity");
+        if (i9 != 4) {
+            if (i9 != 5) {
+                throw new IllegalStateException("Invalid entity: ".concat(String.valueOf(zzdVar)));
             }
-            throw new IllegalStateException("Invalid entity: " + String.valueOf(zzdVar));
+            throw new IllegalArgumentException("Unknown type found. Cannot convert entity");
         }
-        List<zzgd.zzd> zzf = zzdVar.zzf();
+        List<zzft.zzd> zzf = zzdVar.zzf();
         ArrayList arrayList = new ArrayList();
-        Iterator<zzgd.zzd> it = zzf.iterator();
+        Iterator<zzft.zzd> it = zzf.iterator();
         while (it.hasNext()) {
             arrayList.add(zza(it.next()));
         }

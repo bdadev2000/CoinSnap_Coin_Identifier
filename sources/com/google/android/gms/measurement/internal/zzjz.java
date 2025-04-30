@@ -1,20 +1,30 @@
 package com.google.android.gms.measurement.internal;
 
-import java.util.concurrent.Executor;
+import java.util.concurrent.atomic.AtomicReference;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzjz implements Executor {
-    private final /* synthetic */ zzjq zza;
+/* loaded from: classes2.dex */
+public final class zzjz implements Runnable {
+    private final /* synthetic */ AtomicReference zza;
+    private final /* synthetic */ zziv zzb;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzjz(zzjq zzjqVar) {
-        this.zza = zzjqVar;
+    public zzjz(zziv zzivVar, AtomicReference atomicReference) {
+        this.zza = atomicReference;
+        this.zzb = zzivVar;
     }
 
-    @Override // java.util.concurrent.Executor
-    public final void execute(Runnable runnable) {
-        this.zza.zzl().zzb(runnable);
+    @Override // java.lang.Runnable
+    public final void run() {
+        synchronized (this.zza) {
+            try {
+                try {
+                    this.zza.set(Long.valueOf(this.zzb.zze().zzc(this.zzb.zzg().zzad(), zzbf.zzam)));
+                } finally {
+                    this.zza.notify();
+                }
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
     }
 }

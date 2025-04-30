@@ -1,17 +1,18 @@
 package com.google.android.gms.internal.measurement;
 
-import com.google.android.gms.internal.measurement.zzfo;
-
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzfq implements zzjx {
-    static final zzjx zza = new zzfq();
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzfq implements zzjo {
+    static final zzjo zza = new zzfq();
 
     private zzfq() {
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzjx
-    public final boolean zza(int i) {
-        return zzfo.zzf.zzb.zza(i) != null;
+    @Override // com.google.android.gms.internal.measurement.zzjo
+    public final boolean zza(int i9) {
+        if (zzfo.zza(i9) != null) {
+            return true;
+        }
+        return false;
     }
 }

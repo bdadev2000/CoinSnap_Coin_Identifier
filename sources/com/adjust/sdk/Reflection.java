@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class Reflection {
     public static Object createDefaultInstance(Class cls) {
         try {
@@ -13,14 +13,6 @@ public class Reflection {
         } catch (Throwable unused) {
             return null;
         }
-    }
-
-    public static Object createDefaultInstance(String str) {
-        Class forName = forName(str);
-        if (forName == null) {
-            return null;
-        }
-        return createDefaultInstance(forName);
     }
 
     public static Object createInstance(String str, Class[] clsArr, Object... objArr) {
@@ -75,11 +67,29 @@ public class Reflection {
         }
     }
 
+    public static ReferrerDetails getSamsungReferrer(Context context, ILogger iLogger) {
+        try {
+            return (ReferrerDetails) invokeStaticMethod("com.adjust.sdk.samsung.Util", "getSamsungInstallReferrerDetails", new Class[]{Context.class, ILogger.class}, context, iLogger);
+        } catch (Exception e4) {
+            iLogger.info("invoke getSamsungInstallReferrerDetails : " + e4.getMessage(), new Object[0]);
+            return null;
+        }
+    }
+
+    public static ReferrerDetails getVivoReferrer(Context context, ILogger iLogger) {
+        try {
+            return (ReferrerDetails) invokeStaticMethod("com.adjust.sdk.vivo.Util", "getVivoInstallReferrerDetails", new Class[]{Context.class, ILogger.class}, context, iLogger);
+        } catch (Exception e4) {
+            iLogger.info("invoke getVivoInstallReferrerDetails : " + e4.getMessage(), new Object[0]);
+            return null;
+        }
+    }
+
     public static ReferrerDetails getXiaomiReferrer(Context context, ILogger iLogger) {
         try {
             return (ReferrerDetails) invokeStaticMethod("com.adjust.sdk.xiaomi.Util", "getXiaomiInstallReferrerDetails", new Class[]{Context.class, ILogger.class}, context, iLogger);
-        } catch (Exception e) {
-            iLogger.error("invoke getXiaomiInstallReferrerDetails error: " + e.getMessage(), new Object[0]);
+        } catch (Exception e4) {
+            iLogger.info("invoke getXiaomiInstallReferrerDetails : " + e4.getMessage(), new Object[0]);
             return null;
         }
     }
@@ -113,6 +123,14 @@ public class Reflection {
 
     public static Object readField(String str, String str2) {
         return readField(str, str2, null);
+    }
+
+    public static Object createDefaultInstance(String str) {
+        Class forName = forName(str);
+        if (forName == null) {
+            return null;
+        }
+        return createDefaultInstance(forName);
     }
 
     public static Object readField(String str, String str2, Object obj) {

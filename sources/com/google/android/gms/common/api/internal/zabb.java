@@ -1,6 +1,7 @@
 package com.google.android.gms.common.api.internal;
 
 import android.content.Context;
+import androidx.annotation.NonNull;
 import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Result;
@@ -8,24 +9,22 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zabb implements ResultCallback {
     final /* synthetic */ StatusPendingResult zaa;
     final /* synthetic */ boolean zab;
     final /* synthetic */ GoogleApiClient zac;
     final /* synthetic */ zabe zad;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zabb(zabe zabeVar, StatusPendingResult statusPendingResult, boolean z, GoogleApiClient googleApiClient) {
+    public zabb(zabe zabeVar, StatusPendingResult statusPendingResult, boolean z8, GoogleApiClient googleApiClient) {
         this.zad = zabeVar;
         this.zaa = statusPendingResult;
-        this.zab = z;
+        this.zab = z8;
         this.zac = googleApiClient;
     }
 
     @Override // com.google.android.gms.common.api.ResultCallback
-    public final /* bridge */ /* synthetic */ void onResult(Result result) {
+    public final /* bridge */ /* synthetic */ void onResult(@NonNull Result result) {
         Context context;
         Status status = (Status) result;
         context = this.zad.zan;

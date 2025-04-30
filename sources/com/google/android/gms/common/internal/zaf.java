@@ -3,14 +3,12 @@ package com.google.android.gms.common.internal;
 import android.content.Intent;
 import com.google.android.gms.common.api.internal.LifecycleFragment;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zaf extends zag {
     final /* synthetic */ Intent zaa;
     final /* synthetic */ LifecycleFragment zab;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zaf(Intent intent, LifecycleFragment lifecycleFragment, int i) {
+    public zaf(Intent intent, LifecycleFragment lifecycleFragment, int i9) {
         this.zaa = intent;
         this.zab = lifecycleFragment;
     }

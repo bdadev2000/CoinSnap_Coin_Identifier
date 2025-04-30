@@ -4,8 +4,7 @@ import android.os.IInterface;
 import android.os.RemoteException;
 import com.google.android.gms.dynamic.IObjectWrapper;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public interface zzag extends IInterface {
     com.google.android.gms.common.zzq zze(com.google.android.gms.common.zzo zzoVar) throws RemoteException;
 

@@ -1,25 +1,28 @@
 package com.google.android.gms.measurement.internal;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzmr implements Runnable {
-    private final /* synthetic */ zzgb zza;
-    private final /* synthetic */ zzmq zzb;
+import com.google.android.gms.common.internal.Preconditions;
+import com.google.android.gms.common.util.Clock;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzmr(zzmq zzmqVar, zzgb zzgbVar) {
-        this.zza = zzgbVar;
-        this.zzb = zzmqVar;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzmr {
+    private final Clock zza;
+    private long zzb;
+
+    public zzmr(Clock clock) {
+        Preconditions.checkNotNull(clock);
+        this.zza = clock;
     }
 
-    @Override // java.lang.Runnable
-    public final void run() {
-        synchronized (this.zzb) {
-            this.zzb.zzb = false;
-            if (!this.zzb.zza.zzal()) {
-                this.zzb.zza.zzj().zzc().zza("Connected to remote service");
-                this.zzb.zza.zza(this.zza);
-            }
-        }
+    public final void zza() {
+        this.zzb = 0L;
+    }
+
+    public final void zzb() {
+        this.zzb = this.zza.elapsedRealtime();
+    }
+
+    public final boolean zza(long j7) {
+        return this.zzb == 0 || this.zza.elapsedRealtime() - this.zzb >= 3600000;
     }
 }

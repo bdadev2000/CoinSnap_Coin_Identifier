@@ -2,13 +2,13 @@ package com.google.android.gms.common.images;
 
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.images.ImageManager;
 import com.google.android.gms.common.internal.Asserts;
 import com.google.android.gms.common.internal.Objects;
 import java.lang.ref.WeakReference;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zaf extends zag {
     private final WeakReference zac;
 
@@ -18,7 +18,7 @@ public final class zaf extends zag {
         this.zac = new WeakReference(onImageLoadedListener);
     }
 
-    public final boolean equals(Object obj) {
+    public final boolean equals(@Nullable Object obj) {
         if (this == obj) {
             return true;
         }
@@ -28,20 +28,21 @@ public final class zaf extends zag {
         zaf zafVar = (zaf) obj;
         ImageManager.OnImageLoadedListener onImageLoadedListener = (ImageManager.OnImageLoadedListener) this.zac.get();
         ImageManager.OnImageLoadedListener onImageLoadedListener2 = (ImageManager.OnImageLoadedListener) zafVar.zac.get();
-        return onImageLoadedListener2 != null && onImageLoadedListener != null && Objects.equal(onImageLoadedListener2, onImageLoadedListener) && Objects.equal(zafVar.zaa, this.zaa);
+        if (onImageLoadedListener2 != null && onImageLoadedListener != null && Objects.equal(onImageLoadedListener2, onImageLoadedListener) && Objects.equal(zafVar.zaa, this.zaa)) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
         return Objects.hashCode(this.zaa);
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.google.android.gms.common.images.zag
-    public final void zaa(Drawable drawable, boolean z, boolean z2, boolean z3) {
+    public final void zaa(@Nullable Drawable drawable, boolean z8, boolean z9, boolean z10) {
         ImageManager.OnImageLoadedListener onImageLoadedListener;
-        if (z2 || (onImageLoadedListener = (ImageManager.OnImageLoadedListener) this.zac.get()) == null) {
-            return;
+        if (!z9 && (onImageLoadedListener = (ImageManager.OnImageLoadedListener) this.zac.get()) != null) {
+            onImageLoadedListener.onImageLoaded(this.zaa.zaa, drawable, z10);
         }
-        onImageLoadedListener.onImageLoaded(this.zaa.zaa, drawable, z3);
     }
 }

@@ -1,79 +1,75 @@
 package androidx.work;
 
-import androidx.work.Data;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
-/* loaded from: classes7.dex */
-public final class ArrayCreatingInputMerger extends InputMerger {
-    @Override // androidx.work.InputMerger
-    public Data merge(List<Data> inputs) {
-        Data.Builder builder = new Data.Builder();
+/* loaded from: classes.dex */
+public final class ArrayCreatingInputMerger extends j {
+    @Override // androidx.work.j
+    public final g a(ArrayList arrayList) {
+        Object newInstance;
+        Object newInstance2;
+        f fVar = new f();
         HashMap hashMap = new HashMap();
-        Iterator<Data> it = inputs.iterator();
+        Iterator it = arrayList.iterator();
         while (it.hasNext()) {
-            for (Map.Entry<String, Object> entry : it.next().getKeyValueMap().entrySet()) {
-                String key = entry.getKey();
+            for (Map.Entry entry : Collections.unmodifiableMap(((g) it.next()).f5214a).entrySet()) {
+                String str = (String) entry.getKey();
                 Object value = entry.getValue();
                 Class<?> cls = value.getClass();
-                Object obj = hashMap.get(key);
+                Object obj = hashMap.get(str);
                 if (obj == null) {
                     if (!cls.isArray()) {
-                        value = createArrayFor(value);
+                        newInstance2 = Array.newInstance(value.getClass(), 1);
+                        Array.set(newInstance2, 0, value);
+                        value = newInstance2;
+                        hashMap.put(str, value);
+                    } else {
+                        hashMap.put(str, value);
                     }
                 } else {
                     Class<?> cls2 = obj.getClass();
                     if (cls2.equals(cls)) {
                         if (cls2.isArray()) {
-                            value = concatenateArrays(obj, value);
+                            int length = Array.getLength(obj);
+                            int length2 = Array.getLength(value);
+                            Object newInstance3 = Array.newInstance(obj.getClass().getComponentType(), length + length2);
+                            System.arraycopy(obj, 0, newInstance3, 0, length);
+                            System.arraycopy(value, 0, newInstance3, length, length2);
+                            value = newInstance3;
                         } else {
-                            value = concatenateNonArrays(obj, value);
+                            newInstance2 = Array.newInstance(obj.getClass(), 2);
+                            Array.set(newInstance2, 0, obj);
+                            Array.set(newInstance2, 1, value);
+                            value = newInstance2;
                         }
-                    } else if (cls2.isArray() && cls2.getComponentType().equals(cls)) {
-                        value = concatenateArrayAndNonArray(obj, value);
-                    } else if (cls.isArray() && cls.getComponentType().equals(cls2)) {
-                        value = concatenateArrayAndNonArray(value, obj);
                     } else {
-                        throw new IllegalArgumentException();
+                        if (cls2.isArray() && cls2.getComponentType().equals(cls)) {
+                            int length3 = Array.getLength(obj);
+                            newInstance = Array.newInstance(value.getClass(), length3 + 1);
+                            System.arraycopy(obj, 0, newInstance, 0, length3);
+                            Array.set(newInstance, length3, value);
+                        } else if (cls.isArray() && cls.getComponentType().equals(cls2)) {
+                            int length4 = Array.getLength(value);
+                            newInstance = Array.newInstance(obj.getClass(), length4 + 1);
+                            System.arraycopy(value, 0, newInstance, 0, length4);
+                            Array.set(newInstance, length4, obj);
+                        } else {
+                            throw new IllegalArgumentException();
+                        }
+                        value = newInstance;
                     }
+                    hashMap.put(str, value);
                 }
-                hashMap.put(key, value);
             }
         }
-        builder.putAll(hashMap);
-        return builder.build();
-    }
-
-    private Object concatenateArrays(Object array1, Object array2) {
-        int length = Array.getLength(array1);
-        int length2 = Array.getLength(array2);
-        Object newInstance = Array.newInstance(array1.getClass().getComponentType(), length + length2);
-        System.arraycopy(array1, 0, newInstance, 0, length);
-        System.arraycopy(array2, 0, newInstance, length, length2);
-        return newInstance;
-    }
-
-    private Object concatenateNonArrays(Object obj1, Object obj2) {
-        Object newInstance = Array.newInstance(obj1.getClass(), 2);
-        Array.set(newInstance, 0, obj1);
-        Array.set(newInstance, 1, obj2);
-        return newInstance;
-    }
-
-    private Object concatenateArrayAndNonArray(Object array, Object obj) {
-        int length = Array.getLength(array);
-        Object newInstance = Array.newInstance(obj.getClass(), length + 1);
-        System.arraycopy(array, 0, newInstance, 0, length);
-        Array.set(newInstance, length, obj);
-        return newInstance;
-    }
-
-    private Object createArrayFor(Object obj) {
-        Object newInstance = Array.newInstance(obj.getClass(), 1);
-        Array.set(newInstance, 0, obj);
-        return newInstance;
+        fVar.a(hashMap);
+        g gVar = new g(fVar.f5212a);
+        g.c(gVar);
+        return gVar;
     }
 }

@@ -2,12 +2,11 @@ package com.google.android.gms.common.util.concurrent;
 
 import android.os.Process;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zza implements Runnable {
     private final Runnable zza;
 
-    public zza(Runnable runnable, int i) {
+    public zza(Runnable runnable, int i9) {
         this.zza = runnable;
     }
 

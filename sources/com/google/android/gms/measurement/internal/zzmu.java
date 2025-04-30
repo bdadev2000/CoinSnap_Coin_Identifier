@@ -1,19 +1,38 @@
 package com.google.android.gms.measurement.internal;
 
-import android.content.ComponentName;
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzmu implements Runnable {
-    private final /* synthetic */ zzmq zza;
+@SafeParcelable.Class(creator = "TriggerUriParcelCreator")
+/* loaded from: classes2.dex */
+public final class zzmu extends AbstractSafeParcelable {
+    public static final Parcelable.Creator<zzmu> CREATOR = new zzmt();
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzmu(zzmq zzmqVar) {
-        this.zza = zzmqVar;
+    @SafeParcelable.Field(id = 1)
+    public final String zza;
+
+    @SafeParcelable.Field(id = 2)
+    public final long zzb;
+
+    @SafeParcelable.Field(id = 3)
+    public final int zzc;
+
+    @SafeParcelable.Constructor
+    public zzmu(@SafeParcelable.Param(id = 1) String str, @SafeParcelable.Param(id = 2) long j7, @SafeParcelable.Param(id = 3) int i9) {
+        this.zza = str;
+        this.zzb = j7;
+        this.zzc = i9;
     }
 
-    @Override // java.lang.Runnable
-    public final void run() {
-        zzls.zza(this.zza.zza, new ComponentName(this.zza.zza.zza(), "com.google.android.gms.measurement.AppMeasurementService"));
+    @Override // android.os.Parcelable
+    public final void writeToParcel(Parcel parcel, int i9) {
+        int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
+        SafeParcelWriter.writeString(parcel, 1, this.zza, false);
+        SafeParcelWriter.writeLong(parcel, 2, this.zzb);
+        SafeParcelWriter.writeInt(parcel, 3, this.zzc);
+        SafeParcelWriter.finishObjectHeader(parcel, beginObjectHeader);
     }
 }

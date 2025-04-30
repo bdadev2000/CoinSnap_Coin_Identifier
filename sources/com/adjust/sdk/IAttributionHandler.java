@@ -2,7 +2,7 @@ package com.adjust.sdk;
 
 import com.adjust.sdk.network.IActivityPackageSender;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public interface IAttributionHandler {
     void checkSdkClickResponse(SdkClickResponseData sdkClickResponseData);
 
@@ -10,7 +10,7 @@ public interface IAttributionHandler {
 
     void getAttribution();
 
-    void init(IActivityHandler iActivityHandler, boolean z, IActivityPackageSender iActivityPackageSender);
+    void init(IActivityHandler iActivityHandler, boolean z8, IActivityPackageSender iActivityPackageSender);
 
     void pauseSending();
 

@@ -1,13 +1,22 @@
 package com.google.android.gms.internal.measurement;
 
-import java.util.List;
+import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 interface zzkm {
-    <L> List<L> zza(Object obj, long j);
+    int zza(int i9, Object obj, Object obj2);
 
-    <L> void zza(Object obj, Object obj2, long j);
+    zzkk<?, ?> zza(Object obj);
 
-    void zzb(Object obj, long j);
+    Object zza(Object obj, Object obj2);
+
+    Object zzb(Object obj);
+
+    Object zzc(Object obj);
+
+    Map<?, ?> zzd(Object obj);
+
+    Map<?, ?> zze(Object obj);
+
+    boolean zzf(Object obj);
 }

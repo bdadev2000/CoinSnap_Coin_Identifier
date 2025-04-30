@@ -1,216 +1,89 @@
 package com.google.protobuf;
 
-import com.google.protobuf.GeneratedMessageLite;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-/* loaded from: classes5.dex */
-public final class Timestamp extends GeneratedMessageLite<Timestamp, Builder> implements TimestampOrBuilder {
+/* loaded from: classes3.dex */
+public final class Timestamp extends L2 implements InterfaceC1914g5 {
     private static final Timestamp DEFAULT_INSTANCE;
     public static final int NANOS_FIELD_NUMBER = 2;
-    private static volatile Parser<Timestamp> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int SECONDS_FIELD_NUMBER = 1;
     private int nanos_;
     private long seconds_;
 
+    static {
+        Timestamp timestamp = new Timestamp();
+        DEFAULT_INSTANCE = timestamp;
+        L2.registerDefaultInstance(Timestamp.class, timestamp);
+    }
+
     private Timestamp() {
     }
 
-    @Override // com.google.protobuf.TimestampOrBuilder
-    public long getSeconds() {
-        return this.seconds_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setSeconds(long j) {
-        this.seconds_ = j;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearSeconds() {
-        this.seconds_ = 0L;
-    }
-
-    @Override // com.google.protobuf.TimestampOrBuilder
-    public int getNanos() {
-        return this.nanos_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setNanos(int i) {
-        this.nanos_ = i;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
     public void clearNanos() {
         this.nanos_ = 0;
     }
 
-    public static Timestamp parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (Timestamp) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    public void clearSeconds() {
+        this.seconds_ = 0L;
     }
 
-    public static Timestamp parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Timestamp) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
+    public static Timestamp getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    public static Timestamp parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (Timestamp) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static Timestamp parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Timestamp) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static Timestamp parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (Timestamp) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static Timestamp parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Timestamp) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static Timestamp parseFrom(InputStream inputStream) throws IOException {
-        return (Timestamp) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static Timestamp parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Timestamp) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static C1907f5 newBuilder() {
+        return (C1907f5) DEFAULT_INSTANCE.createBuilder();
     }
 
     public static Timestamp parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (Timestamp) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+        return (Timestamp) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
     }
 
-    public static Timestamp parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Timestamp) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static Timestamp parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (Timestamp) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
     }
 
-    public static Timestamp parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (Timestamp) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
-    public static Timestamp parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Timestamp) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
+    public void setNanos(int i9) {
+        this.nanos_ = i9;
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
+    public void setSeconds(long j7) {
+        this.seconds_ = j7;
     }
 
-    public static Builder newBuilder(Timestamp timestamp) {
-        return DEFAULT_INSTANCE.createBuilder(timestamp);
-    }
-
-    /* loaded from: classes5.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<Timestamp, Builder> implements TimestampOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(Timestamp.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.protobuf.TimestampOrBuilder
-        public long getSeconds() {
-            return ((Timestamp) this.instance).getSeconds();
-        }
-
-        public Builder setSeconds(long j) {
-            copyOnWrite();
-            ((Timestamp) this.instance).setSeconds(j);
-            return this;
-        }
-
-        public Builder clearSeconds() {
-            copyOnWrite();
-            ((Timestamp) this.instance).clearSeconds();
-            return this;
-        }
-
-        @Override // com.google.protobuf.TimestampOrBuilder
-        public int getNanos() {
-            return ((Timestamp) this.instance).getNanos();
-        }
-
-        public Builder setNanos(int i) {
-            copyOnWrite();
-            ((Timestamp) this.instance).setNanos(i);
-            return this;
-        }
-
-        public Builder clearNanos() {
-            copyOnWrite();
-            ((Timestamp) this.instance).clearNanos();
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.protobuf.Timestamp$1, reason: invalid class name */
-    /* loaded from: classes5.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (AbstractC1900e5.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[k22.ordinal()]) {
             case 1:
                 return new Timestamp();
             case 2:
-                return new Builder(anonymousClass1);
+                return new C1907f5(null);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001\u0002\u0002\u0004", new Object[]{"seconds_", "nanos_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001\u0002\u0002\u0004", new Object[]{"seconds_", "nanos_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<Timestamp> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (Timestamp.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -220,17 +93,57 @@ public final class Timestamp extends GeneratedMessageLite<Timestamp, Builder> im
         }
     }
 
-    static {
-        Timestamp timestamp = new Timestamp();
-        DEFAULT_INSTANCE = timestamp;
-        GeneratedMessageLite.registerDefaultInstance(Timestamp.class, timestamp);
+    @Override // com.google.protobuf.InterfaceC1914g5
+    public int getNanos() {
+        return this.nanos_;
     }
 
-    public static Timestamp getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    @Override // com.google.protobuf.InterfaceC1914g5
+    public long getSeconds() {
+        return this.seconds_;
     }
 
-    public static Parser<Timestamp> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public static C1907f5 newBuilder(Timestamp timestamp) {
+        return (C1907f5) DEFAULT_INSTANCE.createBuilder(timestamp);
+    }
+
+    public static Timestamp parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Timestamp) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Timestamp parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (Timestamp) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static Timestamp parseFrom(H h6) throws C1912g3 {
+        return (Timestamp) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static Timestamp parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (Timestamp) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static Timestamp parseFrom(byte[] bArr) throws C1912g3 {
+        return (Timestamp) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static Timestamp parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (Timestamp) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static Timestamp parseFrom(InputStream inputStream) throws IOException {
+        return (Timestamp) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static Timestamp parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Timestamp) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Timestamp parseFrom(S s5) throws IOException {
+        return (Timestamp) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static Timestamp parseFrom(S s5, W1 w1) throws IOException {
+        return (Timestamp) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

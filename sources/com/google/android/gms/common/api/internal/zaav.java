@@ -2,8 +2,7 @@ package com.google.android.gms.common.api.internal;
 
 import java.util.concurrent.locks.Lock;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 abstract class zaav implements Runnable {
     final /* synthetic */ zaaw zab;
 
@@ -19,9 +18,9 @@ abstract class zaav implements Runnable {
                 if (!Thread.interrupted()) {
                     zaa();
                 }
-            } catch (RuntimeException e) {
+            } catch (RuntimeException e4) {
                 zabiVar = this.zab.zaa;
-                zabiVar.zam(e);
+                zabiVar.zam(e4);
             }
         } finally {
             lock2 = this.zab.zab;
@@ -29,5 +28,5 @@ abstract class zaav implements Runnable {
         }
     }
 
-    protected abstract void zaa();
+    public abstract void zaa();
 }

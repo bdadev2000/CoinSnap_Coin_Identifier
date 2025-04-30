@@ -3,13 +3,12 @@ package com.google.android.gms.common.internal;
 import android.os.IBinder;
 import android.os.Parcel;
 import android.os.RemoteException;
+import androidx.annotation.Nullable;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzad implements IGmsServiceBroker {
     private final IBinder zza;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zzad(IBinder iBinder) {
         this.zza = iBinder;
     }
@@ -20,12 +19,18 @@ final class zzad implements IGmsServiceBroker {
     }
 
     @Override // com.google.android.gms.common.internal.IGmsServiceBroker
-    public final void getService(IGmsCallbacks iGmsCallbacks, GetServiceRequest getServiceRequest) throws RemoteException {
+    public final void getService(IGmsCallbacks iGmsCallbacks, @Nullable GetServiceRequest getServiceRequest) throws RemoteException {
+        IBinder iBinder;
         Parcel obtain = Parcel.obtain();
         Parcel obtain2 = Parcel.obtain();
         try {
             obtain.writeInterfaceToken("com.google.android.gms.common.internal.IGmsServiceBroker");
-            obtain.writeStrongBinder(iGmsCallbacks != null ? iGmsCallbacks.asBinder() : null);
+            if (iGmsCallbacks != null) {
+                iBinder = iGmsCallbacks.asBinder();
+            } else {
+                iBinder = null;
+            }
+            obtain.writeStrongBinder(iBinder);
             if (getServiceRequest != null) {
                 obtain.writeInt(1);
                 zzn.zza(getServiceRequest, obtain, 0);
@@ -34,9 +39,12 @@ final class zzad implements IGmsServiceBroker {
             }
             this.zza.transact(46, obtain, obtain2, 0);
             obtain2.readException();
-        } finally {
             obtain2.recycle();
             obtain.recycle();
+        } catch (Throwable th) {
+            obtain2.recycle();
+            obtain.recycle();
+            throw th;
         }
     }
 }

@@ -1,50 +1,35 @@
 package com.google.android.gms.internal.play_billing;
 
-import java.util.Arrays;
+import android.os.Binder;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.RemoteException;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public final class zzw {
-    Object[] zza = new Object[8];
-    int zzb = 0;
-    zzv zzc;
+/* loaded from: classes2.dex */
+public class zzw extends Binder implements IInterface {
+    public zzw(String str) {
+        attachInterface(this, str);
+    }
 
-    public final zzw zza(Object obj, Object obj2) {
-        int i = this.zzb + 1;
-        Object[] objArr = this.zza;
-        int length = objArr.length;
-        int i2 = i + i;
-        if (i2 > length) {
-            int i3 = length + (length >> 1) + 1;
-            if (i3 < i2) {
-                int highestOneBit = Integer.highestOneBit(i2 - 1);
-                i3 = highestOneBit + highestOneBit;
-            }
-            if (i3 < 0) {
-                i3 = Integer.MAX_VALUE;
-            }
-            this.zza = Arrays.copyOf(objArr, i3);
-        }
-        zzp.zza(obj, obj2);
-        Object[] objArr2 = this.zza;
-        int i4 = this.zzb;
-        int i5 = i4 + i4;
-        objArr2[i5] = obj;
-        objArr2[i5 + 1] = obj2;
-        this.zzb = i4 + 1;
+    @Override // android.os.IInterface
+    public final IBinder asBinder() {
         return this;
     }
 
-    public final zzx zzb() {
-        zzv zzvVar = this.zzc;
-        if (zzvVar != null) {
-            throw zzvVar.zza();
+    @Override // android.os.Binder
+    public final boolean onTransact(int i9, Parcel parcel, Parcel parcel2, int i10) throws RemoteException {
+        if (i9 > 16777215) {
+            if (super.onTransact(i9, parcel, parcel2, i10)) {
+                return true;
+            }
+        } else {
+            parcel.enforceInterface(getInterfaceDescriptor());
         }
-        zzaf zzf = zzaf.zzf(this.zzb, this.zza, this);
-        zzv zzvVar2 = this.zzc;
-        if (zzvVar2 == null) {
-            return zzf;
-        }
-        throw zzvVar2.zza();
+        return zzb(i9, parcel, parcel2, i10);
+    }
+
+    public boolean zzb(int i9, Parcel parcel, Parcel parcel2, int i10) throws RemoteException {
+        throw null;
     }
 }

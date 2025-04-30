@@ -1,208 +1,183 @@
 package com.google.android.gms.measurement.internal;
 
-import android.os.Bundle;
-import com.google.android.gms.measurement.internal.zzje;
-import java.util.EnumMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Objects;
+import I.h;
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.accounts.AuthenticatorException;
+import android.accounts.OperationCanceledException;
+import android.content.Context;
+import com.google.android.gms.common.internal.AccountType;
+import com.google.android.gms.common.util.Clock;
+import com.mbridge.msdk.foundation.entity.o;
+import com.vungle.ads.internal.signals.j;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzax {
-    private static final zzax zza = new zzax(null, 100);
-    private final int zzb;
-    private final String zzc;
-    private final Boolean zzd;
-    private final String zze;
-    private final EnumMap<zzje.zza, zzjh> zzf;
+/* loaded from: classes2.dex */
+public final class zzax extends zzii {
+    private long zza;
+    private String zzb;
+    private AccountManager zzc;
+    private Boolean zzd;
+    private long zze;
 
-    public final int zza() {
-        return this.zzb;
+    public zzax(zzhj zzhjVar) {
+        super(zzhjVar);
     }
 
-    public final int hashCode() {
-        int i;
-        Boolean bool = this.zzd;
-        if (bool == null) {
-            i = 3;
-        } else {
-            i = bool == Boolean.TRUE ? 7 : 13;
-        }
-        String str = this.zze;
-        return this.zzc.hashCode() + (i * 29) + ((str == null ? 17 : str.hashCode()) * 137);
+    @Override // com.google.android.gms.measurement.internal.zzij, com.google.android.gms.measurement.internal.zzil
+    public final /* bridge */ /* synthetic */ Context zza() {
+        return super.zza();
     }
 
-    public final Bundle zzb() {
-        Bundle bundle = new Bundle();
-        for (Map.Entry<zzje.zza, zzjh> entry : this.zzf.entrySet()) {
-            String zzb = zzje.zzb(entry.getValue());
-            if (zzb != null) {
-                bundle.putString(entry.getKey().zze, zzb);
-            }
-        }
-        Boolean bool = this.zzd;
-        if (bool != null) {
-            bundle.putString("is_dma_region", bool.toString());
-        }
-        String str = this.zze;
-        if (str != null) {
-            bundle.putString("cps_display_str", str);
-        }
-        return bundle;
+    @Override // com.google.android.gms.measurement.internal.zzij, com.google.android.gms.measurement.internal.zzil
+    public final /* bridge */ /* synthetic */ Clock zzb() {
+        return super.zzb();
     }
 
-    public static zzax zza(Bundle bundle, int i) {
-        if (bundle == null) {
-            return new zzax(null, i);
-        }
-        EnumMap enumMap = new EnumMap(zzje.zza.class);
-        for (zzje.zza zzaVar : zzjg.DMA.zza()) {
-            enumMap.put((EnumMap) zzaVar, (zzje.zza) zzje.zza(bundle.getString(zzaVar.zze)));
-        }
-        return new zzax((EnumMap<zzje.zza, zzjh>) enumMap, i, bundle.containsKey("is_dma_region") ? Boolean.valueOf(bundle.getString("is_dma_region")) : null, bundle.getString("cps_display_str"));
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zzax zza(zzjh zzjhVar, int i) {
-        EnumMap enumMap = new EnumMap(zzje.zza.class);
-        enumMap.put((EnumMap) zzje.zza.AD_USER_DATA, (zzje.zza) zzjhVar);
-        return new zzax((EnumMap<zzje.zza, zzjh>) enumMap, -10, (Boolean) null, (String) null);
-    }
-
-    public static zzax zza(String str) {
-        if (str == null || str.length() <= 0) {
-            return zza;
-        }
-        String[] split = str.split(":");
-        int parseInt = Integer.parseInt(split[0]);
-        EnumMap enumMap = new EnumMap(zzje.zza.class);
-        zzje.zza[] zza2 = zzjg.DMA.zza();
-        int length = zza2.length;
-        int i = 1;
-        int i2 = 0;
-        while (i2 < length) {
-            enumMap.put((EnumMap) zza2[i2], (zzje.zza) zzje.zza(split[i].charAt(0)));
-            i2++;
-            i++;
-        }
-        return new zzax((EnumMap<zzje.zza, zzjh>) enumMap, parseInt, (Boolean) null, (String) null);
-    }
-
-    public final zzjh zzc() {
-        zzjh zzjhVar = this.zzf.get(zzje.zza.AD_USER_DATA);
-        return zzjhVar == null ? zzjh.UNINITIALIZED : zzjhVar;
-    }
-
-    public static Boolean zza(Bundle bundle) {
-        zzjh zza2;
-        if (bundle == null || (zza2 = zzje.zza(bundle.getString("ad_personalization"))) == null) {
-            return null;
-        }
-        int i = zzba.zza[zza2.ordinal()];
-        if (i != 3) {
-            return i != 4 ? null : true;
-        }
-        return false;
-    }
-
-    public final Boolean zzd() {
-        return this.zzd;
-    }
-
-    private final String zzh() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.zzb);
-        for (zzje.zza zzaVar : zzjg.DMA.zza()) {
-            sb.append(":");
-            sb.append(zzje.zza(this.zzf.get(zzaVar)));
-        }
-        return sb.toString();
-    }
-
-    public final String zze() {
+    public final long zzc() {
+        zzt();
         return this.zze;
     }
 
-    public final String zzf() {
-        return this.zzc;
+    @Override // com.google.android.gms.measurement.internal.zzij, com.google.android.gms.measurement.internal.zzil
+    public final /* bridge */ /* synthetic */ zzab zzd() {
+        return super.zzd();
     }
 
-    public final String toString() {
-        StringBuilder append = new StringBuilder("source=").append(zzje.zza(this.zzb));
-        for (zzje.zza zzaVar : zzjg.DMA.zza()) {
-            append.append(",");
-            append.append(zzaVar.zze);
-            append.append("=");
-            zzjh zzjhVar = this.zzf.get(zzaVar);
-            if (zzjhVar == null) {
-                append.append("uninitialized");
-            } else {
-                int i = zzba.zza[zzjhVar.ordinal()];
-                if (i == 1) {
-                    append.append("uninitialized");
-                } else if (i == 2) {
-                    append.append("eu_consent_policy");
-                } else if (i == 3) {
-                    append.append("denied");
-                } else if (i == 4) {
-                    append.append("granted");
-                }
-            }
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ zzag zze() {
+        return super.zze();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ zzax zzf() {
+        return super.zzf();
+    }
+
+    public final long zzg() {
+        zzac();
+        return this.zza;
+    }
+
+    public final String zzh() {
+        zzac();
+        return this.zzb;
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ zzfr zzi() {
+        return super.zzi();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij, com.google.android.gms.measurement.internal.zzil
+    public final /* bridge */ /* synthetic */ zzfw zzj() {
+        return super.zzj();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ zzgh zzk() {
+        return super.zzk();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij, com.google.android.gms.measurement.internal.zzil
+    public final /* bridge */ /* synthetic */ zzhc zzl() {
+        return super.zzl();
+    }
+
+    public final void zzm() {
+        zzt();
+        this.zzd = null;
+        this.zze = 0L;
+    }
+
+    public final boolean zzn() {
+        Account[] result;
+        zzt();
+        long currentTimeMillis = zzb().currentTimeMillis();
+        if (currentTimeMillis - this.zze > j.TWENTY_FOUR_HOURS_MILLIS) {
+            this.zzd = null;
         }
-        if (this.zzd != null) {
-            append.append(",isDmaRegion=").append(this.zzd);
+        Boolean bool = this.zzd;
+        if (bool != null) {
+            return bool.booleanValue();
         }
-        if (this.zze != null) {
-            append.append(",cpsDisplayStr=").append(this.zze);
-        }
-        return append.toString();
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzax(Boolean bool, int i) {
-        this((Boolean) null, i, (Boolean) null, (String) null);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzax(Boolean bool, int i, Boolean bool2, String str) {
-        EnumMap<zzje.zza, zzjh> enumMap = new EnumMap<>((Class<zzje.zza>) zzje.zza.class);
-        this.zzf = enumMap;
-        enumMap.put((EnumMap<zzje.zza, zzjh>) zzje.zza.AD_USER_DATA, (zzje.zza) zzje.zza(bool));
-        this.zzb = i;
-        this.zzc = zzh();
-        this.zzd = bool2;
-        this.zze = str;
-    }
-
-    private zzax(EnumMap<zzje.zza, zzjh> enumMap, int i, Boolean bool, String str) {
-        EnumMap<zzje.zza, zzjh> enumMap2 = new EnumMap<>((Class<zzje.zza>) zzje.zza.class);
-        this.zzf = enumMap2;
-        enumMap2.putAll(enumMap);
-        this.zzb = i;
-        this.zzc = zzh();
-        this.zzd = bool;
-        this.zze = str;
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof zzax)) {
+        if (h.checkSelfPermission(zza(), "android.permission.GET_ACCOUNTS") != 0) {
+            zzj().zzw().zza("Permission error checking for dasher/unicorn accounts");
+            this.zze = currentTimeMillis;
+            this.zzd = Boolean.FALSE;
             return false;
         }
-        zzax zzaxVar = (zzax) obj;
-        if (this.zzc.equalsIgnoreCase(zzaxVar.zzc) && Objects.equals(this.zzd, zzaxVar.zzd)) {
-            return Objects.equals(this.zze, zzaxVar.zze);
+        if (this.zzc == null) {
+            this.zzc = AccountManager.get(zza());
         }
+        try {
+            result = this.zzc.getAccountsByTypeAndFeatures(AccountType.GOOGLE, new String[]{"service_HOSTED"}, null, null).getResult();
+        } catch (AuthenticatorException e4) {
+            e = e4;
+            zzj().zzm().zza("Exception checking account types", e);
+            this.zze = currentTimeMillis;
+            this.zzd = Boolean.FALSE;
+            return false;
+        } catch (OperationCanceledException e9) {
+            e = e9;
+            zzj().zzm().zza("Exception checking account types", e);
+            this.zze = currentTimeMillis;
+            this.zzd = Boolean.FALSE;
+            return false;
+        } catch (IOException e10) {
+            e = e10;
+            zzj().zzm().zza("Exception checking account types", e);
+            this.zze = currentTimeMillis;
+            this.zzd = Boolean.FALSE;
+            return false;
+        }
+        if (result != null && result.length > 0) {
+            this.zzd = Boolean.TRUE;
+            this.zze = currentTimeMillis;
+            return true;
+        }
+        Account[] result2 = this.zzc.getAccountsByTypeAndFeatures(AccountType.GOOGLE, new String[]{"service_uca"}, null, null).getResult();
+        if (result2 != null && result2.length > 0) {
+            this.zzd = Boolean.TRUE;
+            this.zze = currentTimeMillis;
+            return true;
+        }
+        this.zze = currentTimeMillis;
+        this.zzd = Boolean.FALSE;
         return false;
     }
 
-    public final boolean zzg() {
-        Iterator<zzjh> it = this.zzf.values().iterator();
-        while (it.hasNext()) {
-            if (it.next() != zzjh.UNINITIALIZED) {
-                return true;
-            }
-        }
+    @Override // com.google.android.gms.measurement.internal.zzii
+    public final boolean zzo() {
+        Calendar calendar = Calendar.getInstance();
+        this.zza = TimeUnit.MINUTES.convert(calendar.get(16) + calendar.get(15), TimeUnit.MILLISECONDS);
+        Locale locale = Locale.getDefault();
+        String language = locale.getLanguage();
+        Locale locale2 = Locale.ENGLISH;
+        this.zzb = o.k(language.toLowerCase(locale2), "-", locale.getCountry().toLowerCase(locale2));
         return false;
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ zznp zzq() {
+        return super.zzq();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ void zzr() {
+        super.zzr();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ void zzs() {
+        super.zzs();
+    }
+
+    @Override // com.google.android.gms.measurement.internal.zzij
+    public final /* bridge */ /* synthetic */ void zzt() {
+        super.zzt();
     }
 }

@@ -1,5 +1,6 @@
 package com.google.android.gms.common.internal.safeparcel;
 
+import Q7.n0;
 import android.app.PendingIntent;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -9,20 +10,20 @@ import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
 import android.util.SparseLongArray;
-import androidx.core.internal.view.SupportMenu;
+import androidx.annotation.NonNull;
+import com.mbridge.msdk.foundation.entity.o;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import x0.AbstractC2914a;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class SafeParcelReader {
 
-    /* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-    /* loaded from: classes12.dex */
+    /* loaded from: classes2.dex */
     public static class ParseException extends RuntimeException {
-        public ParseException(String str, Parcel parcel) {
+        public ParseException(@NonNull String str, @NonNull Parcel parcel) {
             super(str + " Parcel: pos=" + parcel.dataPosition() + " size=" + parcel.dataSize());
         }
     }
@@ -30,8 +31,9 @@ public class SafeParcelReader {
     private SafeParcelReader() {
     }
 
-    public static BigDecimal createBigDecimal(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static BigDecimal createBigDecimal(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -42,24 +44,26 @@ public class SafeParcelReader {
         return new BigDecimal(new BigInteger(createByteArray), readInt);
     }
 
-    public static BigDecimal[] createBigDecimalArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static BigDecimal[] createBigDecimalArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         int readInt = parcel.readInt();
         BigDecimal[] bigDecimalArr = new BigDecimal[readInt];
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i10 = 0; i10 < readInt; i10++) {
             byte[] createByteArray = parcel.createByteArray();
-            bigDecimalArr[i2] = new BigDecimal(new BigInteger(createByteArray), parcel.readInt());
+            bigDecimalArr[i10] = new BigDecimal(new BigInteger(createByteArray), parcel.readInt());
         }
         parcel.setDataPosition(dataPosition + readSize);
         return bigDecimalArr;
     }
 
-    public static BigInteger createBigInteger(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static BigInteger createBigInteger(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -69,23 +73,25 @@ public class SafeParcelReader {
         return new BigInteger(createByteArray);
     }
 
-    public static BigInteger[] createBigIntegerArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static BigInteger[] createBigIntegerArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         int readInt = parcel.readInt();
         BigInteger[] bigIntegerArr = new BigInteger[readInt];
-        for (int i2 = 0; i2 < readInt; i2++) {
-            bigIntegerArr[i2] = new BigInteger(parcel.createByteArray());
+        for (int i10 = 0; i10 < readInt; i10++) {
+            bigIntegerArr[i10] = new BigInteger(parcel.createByteArray());
         }
         parcel.setDataPosition(dataPosition + readSize);
         return bigIntegerArr;
     }
 
-    public static boolean[] createBooleanArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static boolean[] createBooleanArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -95,23 +101,31 @@ public class SafeParcelReader {
         return createBooleanArray;
     }
 
-    public static ArrayList<Boolean> createBooleanList(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static ArrayList<Boolean> createBooleanList(@NonNull Parcel parcel, int i9) {
+        boolean z8;
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         ArrayList<Boolean> arrayList = new ArrayList<>();
         int readInt = parcel.readInt();
-        for (int i2 = 0; i2 < readInt; i2++) {
-            arrayList.add(Boolean.valueOf(parcel.readInt() != 0));
+        for (int i10 = 0; i10 < readInt; i10++) {
+            if (parcel.readInt() != 0) {
+                z8 = true;
+            } else {
+                z8 = false;
+            }
+            arrayList.add(Boolean.valueOf(z8));
         }
         parcel.setDataPosition(dataPosition + readSize);
         return arrayList;
     }
 
-    public static Bundle createBundle(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static Bundle createBundle(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -121,8 +135,9 @@ public class SafeParcelReader {
         return readBundle;
     }
 
-    public static byte[] createByteArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static byte[] createByteArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -132,38 +147,41 @@ public class SafeParcelReader {
         return createByteArray;
     }
 
-    public static byte[][] createByteArrayArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static byte[][] createByteArrayArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         int readInt = parcel.readInt();
         byte[][] bArr = new byte[readInt];
-        for (int i2 = 0; i2 < readInt; i2++) {
-            bArr[i2] = parcel.createByteArray();
+        for (int i10 = 0; i10 < readInt; i10++) {
+            bArr[i10] = parcel.createByteArray();
         }
         parcel.setDataPosition(dataPosition + readSize);
         return bArr;
     }
 
-    public static SparseArray<byte[]> createByteArraySparseArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static SparseArray<byte[]> createByteArraySparseArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         int readInt = parcel.readInt();
         SparseArray<byte[]> sparseArray = new SparseArray<>(readInt);
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i10 = 0; i10 < readInt; i10++) {
             sparseArray.append(parcel.readInt(), parcel.createByteArray());
         }
         parcel.setDataPosition(dataPosition + readSize);
         return sparseArray;
     }
 
-    public static char[] createCharArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static char[] createCharArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -173,8 +191,9 @@ public class SafeParcelReader {
         return createCharArray;
     }
 
-    public static double[] createDoubleArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static double[] createDoubleArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -184,38 +203,41 @@ public class SafeParcelReader {
         return createDoubleArray;
     }
 
-    public static ArrayList<Double> createDoubleList(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static ArrayList<Double> createDoubleList(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         ArrayList<Double> arrayList = new ArrayList<>();
         int readInt = parcel.readInt();
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i10 = 0; i10 < readInt; i10++) {
             arrayList.add(Double.valueOf(parcel.readDouble()));
         }
         parcel.setDataPosition(dataPosition + readSize);
         return arrayList;
     }
 
-    public static SparseArray<Double> createDoubleSparseArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static SparseArray<Double> createDoubleSparseArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         SparseArray<Double> sparseArray = new SparseArray<>();
         int readInt = parcel.readInt();
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i10 = 0; i10 < readInt; i10++) {
             sparseArray.append(parcel.readInt(), Double.valueOf(parcel.readDouble()));
         }
         parcel.setDataPosition(dataPosition + readSize);
         return sparseArray;
     }
 
-    public static float[] createFloatArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static float[] createFloatArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -225,38 +247,41 @@ public class SafeParcelReader {
         return createFloatArray;
     }
 
-    public static ArrayList<Float> createFloatList(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static ArrayList<Float> createFloatList(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         ArrayList<Float> arrayList = new ArrayList<>();
         int readInt = parcel.readInt();
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i10 = 0; i10 < readInt; i10++) {
             arrayList.add(Float.valueOf(parcel.readFloat()));
         }
         parcel.setDataPosition(dataPosition + readSize);
         return arrayList;
     }
 
-    public static SparseArray<Float> createFloatSparseArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static SparseArray<Float> createFloatSparseArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         SparseArray<Float> sparseArray = new SparseArray<>();
         int readInt = parcel.readInt();
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i10 = 0; i10 < readInt; i10++) {
             sparseArray.append(parcel.readInt(), Float.valueOf(parcel.readFloat()));
         }
         parcel.setDataPosition(dataPosition + readSize);
         return sparseArray;
     }
 
-    public static IBinder[] createIBinderArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static IBinder[] createIBinderArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -266,8 +291,9 @@ public class SafeParcelReader {
         return createBinderArray;
     }
 
-    public static ArrayList<IBinder> createIBinderList(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static ArrayList<IBinder> createIBinderList(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -277,23 +303,25 @@ public class SafeParcelReader {
         return createBinderArrayList;
     }
 
-    public static SparseArray<IBinder> createIBinderSparseArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static SparseArray<IBinder> createIBinderSparseArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         int readInt = parcel.readInt();
         SparseArray<IBinder> sparseArray = new SparseArray<>(readInt);
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i10 = 0; i10 < readInt; i10++) {
             sparseArray.append(parcel.readInt(), parcel.readStrongBinder());
         }
         parcel.setDataPosition(dataPosition + readSize);
         return sparseArray;
     }
 
-    public static int[] createIntArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static int[] createIntArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -303,23 +331,25 @@ public class SafeParcelReader {
         return createIntArray;
     }
 
-    public static ArrayList<Integer> createIntegerList(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static ArrayList<Integer> createIntegerList(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         ArrayList<Integer> arrayList = new ArrayList<>();
         int readInt = parcel.readInt();
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i10 = 0; i10 < readInt; i10++) {
             arrayList.add(Integer.valueOf(parcel.readInt()));
         }
         parcel.setDataPosition(dataPosition + readSize);
         return arrayList;
     }
 
-    public static long[] createLongArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static long[] createLongArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -329,23 +359,25 @@ public class SafeParcelReader {
         return createLongArray;
     }
 
-    public static ArrayList<Long> createLongList(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static ArrayList<Long> createLongList(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         ArrayList<Long> arrayList = new ArrayList<>();
         int readInt = parcel.readInt();
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i10 = 0; i10 < readInt; i10++) {
             arrayList.add(Long.valueOf(parcel.readLong()));
         }
         parcel.setDataPosition(dataPosition + readSize);
         return arrayList;
     }
 
-    public static Parcel createParcel(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static Parcel createParcel(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -356,39 +388,41 @@ public class SafeParcelReader {
         return obtain;
     }
 
-    public static Parcel[] createParcelArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static Parcel[] createParcelArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         int readInt = parcel.readInt();
         Parcel[] parcelArr = new Parcel[readInt];
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i10 = 0; i10 < readInt; i10++) {
             int readInt2 = parcel.readInt();
             if (readInt2 != 0) {
                 int dataPosition2 = parcel.dataPosition();
                 Parcel obtain = Parcel.obtain();
                 obtain.appendFrom(parcel, dataPosition2, readInt2);
-                parcelArr[i2] = obtain;
+                parcelArr[i10] = obtain;
                 parcel.setDataPosition(dataPosition2 + readInt2);
             } else {
-                parcelArr[i2] = null;
+                parcelArr[i10] = null;
             }
         }
         parcel.setDataPosition(dataPosition + readSize);
         return parcelArr;
     }
 
-    public static ArrayList<Parcel> createParcelList(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static ArrayList<Parcel> createParcelList(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         int readInt = parcel.readInt();
         ArrayList<Parcel> arrayList = new ArrayList<>();
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i10 = 0; i10 < readInt; i10++) {
             int readInt2 = parcel.readInt();
             if (readInt2 != 0) {
                 int dataPosition2 = parcel.dataPosition();
@@ -404,15 +438,16 @@ public class SafeParcelReader {
         return arrayList;
     }
 
-    public static SparseArray<Parcel> createParcelSparseArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static SparseArray<Parcel> createParcelSparseArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         int readInt = parcel.readInt();
         SparseArray<Parcel> sparseArray = new SparseArray<>();
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i10 = 0; i10 < readInt; i10++) {
             int readInt2 = parcel.readInt();
             int readInt3 = parcel.readInt();
             if (readInt3 != 0) {
@@ -429,8 +464,9 @@ public class SafeParcelReader {
         return sparseArray;
     }
 
-    public static <T extends Parcelable> T createParcelable(Parcel parcel, int i, Parcelable.Creator<T> creator) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static <T extends Parcelable> T createParcelable(@NonNull Parcel parcel, int i9, @NonNull Parcelable.Creator<T> creator) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -440,8 +476,9 @@ public class SafeParcelReader {
         return createFromParcel;
     }
 
-    public static SparseBooleanArray createSparseBooleanArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static SparseBooleanArray createSparseBooleanArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -451,38 +488,41 @@ public class SafeParcelReader {
         return readSparseBooleanArray;
     }
 
-    public static SparseIntArray createSparseIntArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static SparseIntArray createSparseIntArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         SparseIntArray sparseIntArray = new SparseIntArray();
         int readInt = parcel.readInt();
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i10 = 0; i10 < readInt; i10++) {
             sparseIntArray.append(parcel.readInt(), parcel.readInt());
         }
         parcel.setDataPosition(dataPosition + readSize);
         return sparseIntArray;
     }
 
-    public static SparseLongArray createSparseLongArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static SparseLongArray createSparseLongArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         SparseLongArray sparseLongArray = new SparseLongArray();
         int readInt = parcel.readInt();
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i10 = 0; i10 < readInt; i10++) {
             sparseLongArray.append(parcel.readInt(), parcel.readLong());
         }
         parcel.setDataPosition(dataPosition + readSize);
         return sparseLongArray;
     }
 
-    public static String createString(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static String createString(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -492,8 +532,9 @@ public class SafeParcelReader {
         return readString;
     }
 
-    public static String[] createStringArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static String[] createStringArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -503,8 +544,9 @@ public class SafeParcelReader {
         return createStringArray;
     }
 
-    public static ArrayList<String> createStringList(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static ArrayList<String> createStringList(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -514,23 +556,25 @@ public class SafeParcelReader {
         return createStringArrayList;
     }
 
-    public static SparseArray<String> createStringSparseArray(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static SparseArray<String> createStringSparseArray(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         SparseArray<String> sparseArray = new SparseArray<>();
         int readInt = parcel.readInt();
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i10 = 0; i10 < readInt; i10++) {
             sparseArray.append(parcel.readInt(), parcel.readString());
         }
         parcel.setDataPosition(dataPosition + readSize);
         return sparseArray;
     }
 
-    public static <T> T[] createTypedArray(Parcel parcel, int i, Parcelable.Creator<T> creator) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static <T> T[] createTypedArray(@NonNull Parcel parcel, int i9, @NonNull Parcelable.Creator<T> creator) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -540,8 +584,9 @@ public class SafeParcelReader {
         return tArr;
     }
 
-    public static <T> ArrayList<T> createTypedList(Parcel parcel, int i, Parcelable.Creator<T> creator) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static <T> ArrayList<T> createTypedList(@NonNull Parcel parcel, int i9, @NonNull Parcelable.Creator<T> creator) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -551,90 +596,111 @@ public class SafeParcelReader {
         return createTypedArrayList;
     }
 
-    public static <T> SparseArray<T> createTypedSparseArray(Parcel parcel, int i, Parcelable.Creator<T> creator) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static <T> SparseArray<T> createTypedSparseArray(@NonNull Parcel parcel, int i9, @NonNull Parcelable.Creator<T> creator) {
+        T t9;
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
         }
         int readInt = parcel.readInt();
         SparseArray<T> sparseArray = new SparseArray<>();
-        for (int i2 = 0; i2 < readInt; i2++) {
-            sparseArray.append(parcel.readInt(), parcel.readInt() != 0 ? creator.createFromParcel(parcel) : null);
+        for (int i10 = 0; i10 < readInt; i10++) {
+            int readInt2 = parcel.readInt();
+            if (parcel.readInt() != 0) {
+                t9 = creator.createFromParcel(parcel);
+            } else {
+                t9 = null;
+            }
+            sparseArray.append(readInt2, t9);
         }
         parcel.setDataPosition(dataPosition + readSize);
         return sparseArray;
     }
 
-    public static void ensureAtEnd(Parcel parcel, int i) {
-        if (parcel.dataPosition() == i) {
-            return;
+    public static void ensureAtEnd(@NonNull Parcel parcel, int i9) {
+        if (parcel.dataPosition() == i9) {
+        } else {
+            throw new ParseException(o.h(i9, "Overread allowed size end="), parcel);
         }
-        throw new ParseException("Overread allowed size end=" + i, parcel);
     }
 
-    public static int getFieldId(int i) {
-        return (char) i;
+    public static int getFieldId(int i9) {
+        return (char) i9;
     }
 
-    public static boolean readBoolean(Parcel parcel, int i) {
-        zzb(parcel, i, 4);
-        return parcel.readInt() != 0;
+    public static boolean readBoolean(@NonNull Parcel parcel, int i9) {
+        zzb(parcel, i9, 4);
+        if (parcel.readInt() != 0) {
+            return true;
+        }
+        return false;
     }
 
-    public static Boolean readBooleanObject(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static Boolean readBooleanObject(@NonNull Parcel parcel, int i9) {
+        boolean z8;
+        int readSize = readSize(parcel, i9);
         if (readSize == 0) {
             return null;
         }
-        zza(parcel, i, readSize, 4);
-        return Boolean.valueOf(parcel.readInt() != 0);
+        zza(parcel, i9, readSize, 4);
+        if (parcel.readInt() != 0) {
+            z8 = true;
+        } else {
+            z8 = false;
+        }
+        return Boolean.valueOf(z8);
     }
 
-    public static byte readByte(Parcel parcel, int i) {
-        zzb(parcel, i, 4);
+    public static byte readByte(@NonNull Parcel parcel, int i9) {
+        zzb(parcel, i9, 4);
         return (byte) parcel.readInt();
     }
 
-    public static char readChar(Parcel parcel, int i) {
-        zzb(parcel, i, 4);
+    public static char readChar(@NonNull Parcel parcel, int i9) {
+        zzb(parcel, i9, 4);
         return (char) parcel.readInt();
     }
 
-    public static double readDouble(Parcel parcel, int i) {
-        zzb(parcel, i, 8);
+    public static double readDouble(@NonNull Parcel parcel, int i9) {
+        zzb(parcel, i9, 8);
         return parcel.readDouble();
     }
 
-    public static Double readDoubleObject(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static Double readDoubleObject(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         if (readSize == 0) {
             return null;
         }
-        zza(parcel, i, readSize, 8);
+        zza(parcel, i9, readSize, 8);
         return Double.valueOf(parcel.readDouble());
     }
 
-    public static float readFloat(Parcel parcel, int i) {
-        zzb(parcel, i, 4);
+    public static float readFloat(@NonNull Parcel parcel, int i9) {
+        zzb(parcel, i9, 4);
         return parcel.readFloat();
     }
 
-    public static Float readFloatObject(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static Float readFloatObject(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         if (readSize == 0) {
             return null;
         }
-        zza(parcel, i, readSize, 4);
+        zza(parcel, i9, readSize, 4);
         return Float.valueOf(parcel.readFloat());
     }
 
-    public static int readHeader(Parcel parcel) {
+    public static int readHeader(@NonNull Parcel parcel) {
         return parcel.readInt();
     }
 
-    public static IBinder readIBinder(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static IBinder readIBinder(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -644,22 +710,23 @@ public class SafeParcelReader {
         return readStrongBinder;
     }
 
-    public static int readInt(Parcel parcel, int i) {
-        zzb(parcel, i, 4);
+    public static int readInt(@NonNull Parcel parcel, int i9) {
+        zzb(parcel, i9, 4);
         return parcel.readInt();
     }
 
-    public static Integer readIntegerObject(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static Integer readIntegerObject(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         if (readSize == 0) {
             return null;
         }
-        zza(parcel, i, readSize, 4);
+        zza(parcel, i9, readSize, 4);
         return Integer.valueOf(parcel.readInt());
     }
 
-    public static void readList(Parcel parcel, int i, List list, ClassLoader classLoader) {
-        int readSize = readSize(parcel, i);
+    public static void readList(@NonNull Parcel parcel, int i9, @NonNull List list, @NonNull ClassLoader classLoader) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return;
@@ -668,22 +735,24 @@ public class SafeParcelReader {
         parcel.setDataPosition(dataPosition + readSize);
     }
 
-    public static long readLong(Parcel parcel, int i) {
-        zzb(parcel, i, 8);
+    public static long readLong(@NonNull Parcel parcel, int i9) {
+        zzb(parcel, i9, 8);
         return parcel.readLong();
     }
 
-    public static Long readLongObject(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static Long readLongObject(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         if (readSize == 0) {
             return null;
         }
-        zza(parcel, i, readSize, 8);
+        zza(parcel, i9, readSize, 8);
         return Long.valueOf(parcel.readLong());
     }
 
-    public static PendingIntent readPendingIntent(Parcel parcel, int i) {
-        int readSize = readSize(parcel, i);
+    @NonNull
+    public static PendingIntent readPendingIntent(@NonNull Parcel parcel, int i9) {
+        int readSize = readSize(parcel, i9);
         int dataPosition = parcel.dataPosition();
         if (readSize == 0) {
             return null;
@@ -693,46 +762,49 @@ public class SafeParcelReader {
         return readPendingIntentOrNullFromParcel;
     }
 
-    public static short readShort(Parcel parcel, int i) {
-        zzb(parcel, i, 4);
+    public static short readShort(@NonNull Parcel parcel, int i9) {
+        zzb(parcel, i9, 4);
         return (short) parcel.readInt();
     }
 
-    public static int readSize(Parcel parcel, int i) {
-        return (i & SupportMenu.CATEGORY_MASK) != -65536 ? (char) (i >> 16) : parcel.readInt();
+    public static int readSize(@NonNull Parcel parcel, int i9) {
+        if ((i9 & (-65536)) != -65536) {
+            return (char) (i9 >> 16);
+        }
+        return parcel.readInt();
     }
 
-    public static void skipUnknownField(Parcel parcel, int i) {
-        parcel.setDataPosition(parcel.dataPosition() + readSize(parcel, i));
+    public static void skipUnknownField(@NonNull Parcel parcel, int i9) {
+        parcel.setDataPosition(parcel.dataPosition() + readSize(parcel, i9));
     }
 
-    public static int validateObjectHeader(Parcel parcel) {
+    public static int validateObjectHeader(@NonNull Parcel parcel) {
         int readHeader = readHeader(parcel);
         int readSize = readSize(parcel, readHeader);
         int fieldId = getFieldId(readHeader);
         int dataPosition = parcel.dataPosition();
-        if (fieldId != 20293) {
-            throw new ParseException("Expected object header. Got 0x".concat(String.valueOf(Integer.toHexString(readHeader))), parcel);
+        if (fieldId == 20293) {
+            int i9 = readSize + dataPosition;
+            if (i9 >= dataPosition && i9 <= parcel.dataSize()) {
+                return i9;
+            }
+            throw new ParseException(n0.e(dataPosition, i9, "Size read is invalid start=", " end="), parcel);
         }
-        int i = readSize + dataPosition;
-        if (i >= dataPosition && i <= parcel.dataSize()) {
-            return i;
-        }
-        throw new ParseException("Size read is invalid start=" + dataPosition + " end=" + i, parcel);
+        throw new ParseException("Expected object header. Got 0x".concat(String.valueOf(Integer.toHexString(readHeader))), parcel);
     }
 
-    private static void zza(Parcel parcel, int i, int i2, int i3) {
-        if (i2 == i3) {
+    private static void zza(Parcel parcel, int i9, int i10, int i11) {
+        if (i10 == i11) {
             return;
         }
-        throw new ParseException("Expected size " + i3 + " got " + i2 + " (0x" + Integer.toHexString(i2) + ")", parcel);
+        throw new ParseException(AbstractC2914a.h(n0.o(i11, i10, "Expected size ", " got ", " (0x"), Integer.toHexString(i10), ")"), parcel);
     }
 
-    private static void zzb(Parcel parcel, int i, int i2) {
-        int readSize = readSize(parcel, i);
-        if (readSize == i2) {
+    private static void zzb(Parcel parcel, int i9, int i10) {
+        int readSize = readSize(parcel, i9);
+        if (readSize == i10) {
             return;
         }
-        throw new ParseException("Expected size " + i2 + " got " + readSize + " (0x" + Integer.toHexString(readSize) + ")", parcel);
+        throw new ParseException(AbstractC2914a.h(n0.o(i10, readSize, "Expected size ", " got ", " (0x"), Integer.toHexString(readSize), ")"), parcel);
     }
 }

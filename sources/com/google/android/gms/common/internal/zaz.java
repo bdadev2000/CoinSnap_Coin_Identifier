@@ -1,5 +1,6 @@
 package com.google.android.gms.common.internal;
 
+import Q7.n0;
 import android.content.Context;
 import android.os.IBinder;
 import android.os.IInterface;
@@ -7,8 +8,7 @@ import android.view.View;
 import com.google.android.gms.dynamic.ObjectWrapper;
 import com.google.android.gms.dynamic.RemoteCreator;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zaz extends RemoteCreator {
     private static final zaz zaa = new zaz();
 
@@ -16,12 +16,13 @@ public final class zaz extends RemoteCreator {
         super("com.google.android.gms.common.ui.SignInButtonCreatorImpl");
     }
 
-    public static View zaa(Context context, int i, int i2) throws RemoteCreator.RemoteCreatorException {
+    public static View zaa(Context context, int i9, int i10) throws RemoteCreator.RemoteCreatorException {
         zaz zazVar = zaa;
         try {
-            return (View) ObjectWrapper.unwrap(((zam) zazVar.getRemoteCreatorInstance(context)).zae(ObjectWrapper.wrap(context), new zax(1, i, i2, null)));
-        } catch (Exception e) {
-            throw new RemoteCreator.RemoteCreatorException("Could not get button with size " + i + " and color " + i2, e);
+            zax zaxVar = new zax(1, i9, i10, null);
+            return (View) ObjectWrapper.unwrap(((zam) zazVar.getRemoteCreatorInstance(context)).zae(ObjectWrapper.wrap(context), zaxVar));
+        } catch (Exception e4) {
+            throw new RemoteCreator.RemoteCreatorException(n0.e(i9, i10, "Could not get button with size ", " and color "), e4);
         }
     }
 
@@ -31,6 +32,9 @@ public final class zaz extends RemoteCreator {
             return null;
         }
         IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.ISignInButtonCreator");
-        return queryLocalInterface instanceof zam ? (zam) queryLocalInterface : new zam(iBinder);
+        if (queryLocalInterface instanceof zam) {
+            return (zam) queryLocalInterface;
+        }
+        return new zam(iBinder);
     }
 }

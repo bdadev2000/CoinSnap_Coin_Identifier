@@ -1,37 +1,80 @@
 package com.google.api;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import a4.v1;
+import a4.w1;
+import a4.x1;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-/* loaded from: classes12.dex */
-public final class UsageRule extends GeneratedMessageLite<UsageRule, Builder> implements UsageRuleOrBuilder {
+/* loaded from: classes2.dex */
+public final class UsageRule extends L2 implements x1 {
     public static final int ALLOW_UNREGISTERED_CALLS_FIELD_NUMBER = 2;
     private static final UsageRule DEFAULT_INSTANCE;
-    private static volatile Parser<UsageRule> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int SELECTOR_FIELD_NUMBER = 1;
     public static final int SKIP_SERVICE_CONTROL_FIELD_NUMBER = 3;
     private boolean allowUnregisteredCalls_;
     private String selector_ = "";
     private boolean skipServiceControl_;
 
+    static {
+        UsageRule usageRule = new UsageRule();
+        DEFAULT_INSTANCE = usageRule;
+        L2.registerDefaultInstance(UsageRule.class, usageRule);
+    }
+
     private UsageRule() {
     }
 
-    @Override // com.google.api.UsageRuleOrBuilder
-    public String getSelector() {
-        return this.selector_;
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearAllowUnregisteredCalls() {
+        this.allowUnregisteredCalls_ = false;
     }
 
-    @Override // com.google.api.UsageRuleOrBuilder
-    public ByteString getSelectorBytes() {
-        return ByteString.copyFromUtf8(this.selector_);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearSelector() {
+        this.selector_ = getDefaultInstance().getSelector();
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearSkipServiceControl() {
+        this.skipServiceControl_ = false;
+    }
+
+    public static UsageRule getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    public static w1 newBuilder() {
+        return (w1) DEFAULT_INSTANCE.createBuilder();
+    }
+
+    public static UsageRule parseDelimitedFrom(InputStream inputStream) throws IOException {
+        return (UsageRule) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static UsageRule parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (UsageRule) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    }
+
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setAllowUnregisteredCalls(boolean z8) {
+        this.allowUnregisteredCalls_ = z8;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -41,238 +84,42 @@ public final class UsageRule extends GeneratedMessageLite<UsageRule, Builder> im
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearSelector() {
-        this.selector_ = getDefaultInstance().getSelector();
+    public void setSelectorBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.selector_ = h6.toStringUtf8();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setSelectorBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.selector_ = byteString.toStringUtf8();
+    public void setSkipServiceControl(boolean z8) {
+        this.skipServiceControl_ = z8;
     }
 
-    @Override // com.google.api.UsageRuleOrBuilder
-    public boolean getAllowUnregisteredCalls() {
-        return this.allowUnregisteredCalls_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setAllowUnregisteredCalls(boolean z) {
-        this.allowUnregisteredCalls_ = z;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearAllowUnregisteredCalls() {
-        this.allowUnregisteredCalls_ = false;
-    }
-
-    @Override // com.google.api.UsageRuleOrBuilder
-    public boolean getSkipServiceControl() {
-        return this.skipServiceControl_;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setSkipServiceControl(boolean z) {
-        this.skipServiceControl_ = z;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearSkipServiceControl() {
-        this.skipServiceControl_ = false;
-    }
-
-    public static UsageRule parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (UsageRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
-    }
-
-    public static UsageRule parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (UsageRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static UsageRule parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (UsageRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static UsageRule parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (UsageRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static UsageRule parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (UsageRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static UsageRule parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (UsageRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static UsageRule parseFrom(InputStream inputStream) throws IOException {
-        return (UsageRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static UsageRule parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (UsageRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static UsageRule parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (UsageRule) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static UsageRule parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (UsageRule) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static UsageRule parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (UsageRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
-    }
-
-    public static UsageRule parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (UsageRule) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
-    }
-
-    public static Builder newBuilder(UsageRule usageRule) {
-        return DEFAULT_INSTANCE.createBuilder(usageRule);
-    }
-
-    /* loaded from: classes12.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<UsageRule, Builder> implements UsageRuleOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(UsageRule.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.api.UsageRuleOrBuilder
-        public String getSelector() {
-            return ((UsageRule) this.instance).getSelector();
-        }
-
-        @Override // com.google.api.UsageRuleOrBuilder
-        public ByteString getSelectorBytes() {
-            return ((UsageRule) this.instance).getSelectorBytes();
-        }
-
-        public Builder setSelector(String str) {
-            copyOnWrite();
-            ((UsageRule) this.instance).setSelector(str);
-            return this;
-        }
-
-        public Builder clearSelector() {
-            copyOnWrite();
-            ((UsageRule) this.instance).clearSelector();
-            return this;
-        }
-
-        public Builder setSelectorBytes(ByteString byteString) {
-            copyOnWrite();
-            ((UsageRule) this.instance).setSelectorBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.api.UsageRuleOrBuilder
-        public boolean getAllowUnregisteredCalls() {
-            return ((UsageRule) this.instance).getAllowUnregisteredCalls();
-        }
-
-        public Builder setAllowUnregisteredCalls(boolean z) {
-            copyOnWrite();
-            ((UsageRule) this.instance).setAllowUnregisteredCalls(z);
-            return this;
-        }
-
-        public Builder clearAllowUnregisteredCalls() {
-            copyOnWrite();
-            ((UsageRule) this.instance).clearAllowUnregisteredCalls();
-            return this;
-        }
-
-        @Override // com.google.api.UsageRuleOrBuilder
-        public boolean getSkipServiceControl() {
-            return ((UsageRule) this.instance).getSkipServiceControl();
-        }
-
-        public Builder setSkipServiceControl(boolean z) {
-            copyOnWrite();
-            ((UsageRule) this.instance).setSkipServiceControl(z);
-            return this;
-        }
-
-        public Builder clearSkipServiceControl() {
-            copyOnWrite();
-            ((UsageRule) this.instance).clearSkipServiceControl();
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.api.UsageRule$1, reason: invalid class name */
-    /* loaded from: classes12.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (v1.f4063a[k22.ordinal()]) {
             case 1:
                 return new UsageRule();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001Ȉ\u0002\u0007\u0003\u0007", new Object[]{"selector_", "allowUnregisteredCalls_", "skipServiceControl_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001Ȉ\u0002\u0007\u0003\u0007", new Object[]{"selector_", "allowUnregisteredCalls_", "skipServiceControl_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<UsageRule> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (UsageRule.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -282,17 +129,63 @@ public final class UsageRule extends GeneratedMessageLite<UsageRule, Builder> im
         }
     }
 
-    static {
-        UsageRule usageRule = new UsageRule();
-        DEFAULT_INSTANCE = usageRule;
-        GeneratedMessageLite.registerDefaultInstance(UsageRule.class, usageRule);
+    public boolean getAllowUnregisteredCalls() {
+        return this.allowUnregisteredCalls_;
     }
 
-    public static UsageRule getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public String getSelector() {
+        return this.selector_;
     }
 
-    public static Parser<UsageRule> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public H getSelectorBytes() {
+        return H.copyFromUtf8(this.selector_);
+    }
+
+    public boolean getSkipServiceControl() {
+        return this.skipServiceControl_;
+    }
+
+    public static w1 newBuilder(UsageRule usageRule) {
+        return (w1) DEFAULT_INSTANCE.createBuilder(usageRule);
+    }
+
+    public static UsageRule parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (UsageRule) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static UsageRule parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (UsageRule) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static UsageRule parseFrom(H h6) throws C1912g3 {
+        return (UsageRule) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static UsageRule parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (UsageRule) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static UsageRule parseFrom(byte[] bArr) throws C1912g3 {
+        return (UsageRule) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static UsageRule parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (UsageRule) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static UsageRule parseFrom(InputStream inputStream) throws IOException {
+        return (UsageRule) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static UsageRule parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (UsageRule) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static UsageRule parseFrom(S s5) throws IOException {
+        return (UsageRule) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static UsageRule parseFrom(S s5, W1 w1) throws IOException {
+        return (UsageRule) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

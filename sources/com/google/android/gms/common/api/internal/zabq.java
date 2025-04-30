@@ -8,7 +8,8 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
 import android.util.Log;
-import androidx.collection.ArrayMap;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.Feature;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -23,6 +24,7 @@ import com.google.android.gms.common.internal.Preconditions;
 import com.google.android.gms.common.util.ArrayUtils;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.errorprone.annotations.ResultIgnorabilityUnspecified;
+import com.mbridge.msdk.playercommon.exoplayer2.DefaultRenderersFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -32,24 +34,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
-import org.checkerframework.checker.initialization.qual.NotOnlyInitialized;
+import x.b;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, zau {
     final /* synthetic */ GoogleApiManager zaa;
-
-    @NotOnlyInitialized
     private final Api.Client zac;
     private final ApiKey zad;
     private final zaad zae;
     private final int zah;
+
+    @Nullable
     private final zact zai;
     private boolean zaj;
     private final Queue zab = new LinkedList();
     private final Set zaf = new HashSet();
     private final Map zag = new HashMap();
     private final List zak = new ArrayList();
+
+    @Nullable
     private ConnectionResult zal = null;
     private int zam = 0;
 
@@ -64,28 +67,28 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
         this.zad = googleApi.getApiKey();
         this.zae = new zaad();
         this.zah = googleApi.zaa();
-        if (!zab.requiresSignIn()) {
-            this.zai = null;
+        if (zab.requiresSignIn()) {
+            context = googleApiManager.zai;
+            handler2 = googleApiManager.zar;
+            this.zai = googleApi.zac(context, handler2);
             return;
         }
-        context = googleApiManager.zai;
-        handler2 = googleApiManager.zar;
-        this.zai = googleApi.zac(context, handler2);
+        this.zai = null;
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    private final Feature zaC(Feature[] featureArr) {
+    @Nullable
+    private final Feature zaC(@Nullable Feature[] featureArr) {
         if (featureArr != null && featureArr.length != 0) {
             Feature[] availableFeatures = this.zac.getAvailableFeatures();
             if (availableFeatures == null) {
                 availableFeatures = new Feature[0];
             }
-            ArrayMap arrayMap = new ArrayMap(availableFeatures.length);
+            b bVar = new b(availableFeatures.length);
             for (Feature feature : availableFeatures) {
-                arrayMap.put(feature.getName(), Long.valueOf(feature.getVersion()));
+                bVar.put(feature.getName(), Long.valueOf(feature.getVersion()));
             }
             for (Feature feature2 : featureArr) {
-                Long l = (Long) arrayMap.get(feature2.getName());
+                Long l = (Long) bVar.get(feature2.getName());
                 if (l == null || l.longValue() < feature2.getVersion()) {
                     return feature2;
                 }
@@ -95,9 +98,14 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
     }
 
     private final void zaD(ConnectionResult connectionResult) {
-        Iterator it = this.zaf.iterator();
-        while (it.hasNext()) {
-            ((zal) it.next()).zac(this.zad, connectionResult, Objects.equal(connectionResult, ConnectionResult.RESULT_SUCCESS) ? this.zac.getEndpointPackageName() : null);
+        String str;
+        for (zal zalVar : this.zaf) {
+            if (Objects.equal(connectionResult, ConnectionResult.RESULT_SUCCESS)) {
+                str = this.zac.getEndpointPackageName();
+            } else {
+                str = null;
+            }
+            zalVar.zac(this.zad, connectionResult, str);
         }
         this.zaf.clear();
     }
@@ -109,37 +117,49 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
         zaF(status, null, false);
     }
 
-    private final void zaF(Status status, Exception exc, boolean z) {
+    private final void zaF(@Nullable Status status, @Nullable Exception exc, boolean z8) {
         Handler handler;
+        boolean z9;
         handler = this.zaa.zar;
         Preconditions.checkHandlerThread(handler);
-        if ((status == null) == (exc == null)) {
-            throw new IllegalArgumentException("Status XOR exception should be null");
+        boolean z10 = true;
+        if (status != null) {
+            z9 = false;
+        } else {
+            z9 = true;
         }
-        Iterator it = this.zab.iterator();
-        while (it.hasNext()) {
-            zai zaiVar = (zai) it.next();
-            if (!z || zaiVar.zac == 2) {
-                if (status != null) {
-                    zaiVar.zad(status);
-                } else {
-                    zaiVar.zae(exc);
+        if (exc != null) {
+            z10 = false;
+        }
+        if (z9 != z10) {
+            Iterator it = this.zab.iterator();
+            while (it.hasNext()) {
+                zai zaiVar = (zai) it.next();
+                if (!z8 || zaiVar.zac == 2) {
+                    if (status != null) {
+                        zaiVar.zad(status);
+                    } else {
+                        zaiVar.zae(exc);
+                    }
+                    it.remove();
                 }
-                it.remove();
             }
+            return;
         }
+        throw new IllegalArgumentException("Status XOR exception should be null");
     }
 
     private final void zaG() {
         ArrayList arrayList = new ArrayList(this.zab);
         int size = arrayList.size();
-        for (int i = 0; i < size; i++) {
-            zai zaiVar = (zai) arrayList.get(i);
-            if (!this.zac.isConnected()) {
+        for (int i9 = 0; i9 < size; i9++) {
+            zai zaiVar = (zai) arrayList.get(i9);
+            if (this.zac.isConnected()) {
+                if (zaM(zaiVar)) {
+                    this.zab.remove(zaiVar);
+                }
+            } else {
                 return;
-            }
-            if (zaM(zaiVar)) {
-                this.zab.remove(zaiVar);
             }
         }
     }
@@ -168,7 +188,7 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
         zaJ();
     }
 
-    public final void zaI(int i) {
+    public final void zaI(int i9) {
         Handler handler;
         Handler handler2;
         Handler handler3;
@@ -176,12 +196,12 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
         com.google.android.gms.common.internal.zal zalVar;
         zan();
         this.zaj = true;
-        this.zae.zae(i, this.zac.getLastDisconnectMessage());
+        this.zae.zae(i9, this.zac.getLastDisconnectMessage());
         ApiKey apiKey = this.zad;
         GoogleApiManager googleApiManager = this.zaa;
         handler = googleApiManager.zar;
         handler2 = googleApiManager.zar;
-        handler.sendMessageDelayed(Message.obtain(handler2, 9, apiKey), 5000L);
+        handler.sendMessageDelayed(Message.obtain(handler2, 9, apiKey), DefaultRenderersFactory.DEFAULT_ALLOWED_VIDEO_JOINING_TIME_MS);
         ApiKey apiKey2 = this.zad;
         GoogleApiManager googleApiManager2 = this.zaa;
         handler3 = googleApiManager2.zar;
@@ -199,7 +219,7 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
         Handler handler;
         Handler handler2;
         Handler handler3;
-        long j;
+        long j7;
         ApiKey apiKey = this.zad;
         handler = this.zaa.zar;
         handler.removeMessages(12, apiKey);
@@ -208,8 +228,8 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
         handler2 = googleApiManager.zar;
         handler3 = googleApiManager.zar;
         Message obtainMessage = handler3.obtainMessage(12, apiKey2);
-        j = this.zaa.zae;
-        handler2.sendMessageDelayed(obtainMessage, j);
+        j7 = this.zaa.zae;
+        handler2.sendMessageDelayed(obtainMessage, j7);
     }
 
     private final void zaK(zai zaiVar) {
@@ -239,7 +259,7 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
     }
 
     private final boolean zaM(zai zaiVar) {
-        boolean z;
+        boolean z8;
         Handler handler;
         Handler handler2;
         Handler handler3;
@@ -258,76 +278,80 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
             return true;
         }
         Log.w("GoogleApiManager", this.zac.getClass().getName() + " could not execute call because it requires feature (" + zaC.getName() + ", " + zaC.getVersion() + ").");
-        z = this.zaa.zas;
-        if (!z || !zacVar.zaa(this)) {
-            zacVar.zae(new UnsupportedApiCallException(zaC));
-            return true;
-        }
-        zabs zabsVar = new zabs(this.zad, zaC, null);
-        int indexOf = this.zak.indexOf(zabsVar);
-        if (indexOf >= 0) {
-            zabs zabsVar2 = (zabs) this.zak.get(indexOf);
-            handler5 = this.zaa.zar;
-            handler5.removeMessages(15, zabsVar2);
-            GoogleApiManager googleApiManager = this.zaa;
-            handler6 = googleApiManager.zar;
-            handler7 = googleApiManager.zar;
-            handler6.sendMessageDelayed(Message.obtain(handler7, 15, zabsVar2), 5000L);
+        z8 = this.zaa.zas;
+        if (z8 && zacVar.zaa(this)) {
+            zabs zabsVar = new zabs(this.zad, zaC, null);
+            int indexOf = this.zak.indexOf(zabsVar);
+            if (indexOf >= 0) {
+                zabs zabsVar2 = (zabs) this.zak.get(indexOf);
+                handler5 = this.zaa.zar;
+                handler5.removeMessages(15, zabsVar2);
+                GoogleApiManager googleApiManager = this.zaa;
+                handler6 = googleApiManager.zar;
+                handler7 = googleApiManager.zar;
+                handler6.sendMessageDelayed(Message.obtain(handler7, 15, zabsVar2), DefaultRenderersFactory.DEFAULT_ALLOWED_VIDEO_JOINING_TIME_MS);
+                return false;
+            }
+            this.zak.add(zabsVar);
+            GoogleApiManager googleApiManager2 = this.zaa;
+            handler = googleApiManager2.zar;
+            handler2 = googleApiManager2.zar;
+            handler.sendMessageDelayed(Message.obtain(handler2, 15, zabsVar), DefaultRenderersFactory.DEFAULT_ALLOWED_VIDEO_JOINING_TIME_MS);
+            GoogleApiManager googleApiManager3 = this.zaa;
+            handler3 = googleApiManager3.zar;
+            handler4 = googleApiManager3.zar;
+            handler3.sendMessageDelayed(Message.obtain(handler4, 16, zabsVar), 120000L);
+            ConnectionResult connectionResult = new ConnectionResult(2, null);
+            if (!zaN(connectionResult)) {
+                this.zaa.zaE(connectionResult, this.zah);
+                return false;
+            }
             return false;
         }
-        this.zak.add(zabsVar);
-        GoogleApiManager googleApiManager2 = this.zaa;
-        handler = googleApiManager2.zar;
-        handler2 = googleApiManager2.zar;
-        handler.sendMessageDelayed(Message.obtain(handler2, 15, zabsVar), 5000L);
-        GoogleApiManager googleApiManager3 = this.zaa;
-        handler3 = googleApiManager3.zar;
-        handler4 = googleApiManager3.zar;
-        handler3.sendMessageDelayed(Message.obtain(handler4, 16, zabsVar), 120000L);
-        ConnectionResult connectionResult = new ConnectionResult(2, null);
-        if (zaN(connectionResult)) {
-            return false;
-        }
-        this.zaa.zaE(connectionResult, this.zah);
-        return false;
+        zacVar.zae(new UnsupportedApiCallException(zaC));
+        return true;
     }
 
-    private final boolean zaN(ConnectionResult connectionResult) {
+    private final boolean zaN(@NonNull ConnectionResult connectionResult) {
         Object obj;
         zaae zaaeVar;
         Set set;
         zaae zaaeVar2;
         obj = GoogleApiManager.zac;
         synchronized (obj) {
-            GoogleApiManager googleApiManager = this.zaa;
-            zaaeVar = googleApiManager.zao;
-            if (zaaeVar != null) {
-                set = googleApiManager.zap;
-                if (set.contains(this.zad)) {
-                    zaaeVar2 = this.zaa.zao;
-                    zaaeVar2.zah(connectionResult, this.zah);
-                    return true;
+            try {
+                GoogleApiManager googleApiManager = this.zaa;
+                zaaeVar = googleApiManager.zao;
+                if (zaaeVar != null) {
+                    set = googleApiManager.zap;
+                    if (set.contains(this.zad)) {
+                        zaaeVar2 = this.zaa.zao;
+                        zaaeVar2.zah(connectionResult, this.zah);
+                        return true;
+                    }
                 }
+                return false;
+            } catch (Throwable th) {
+                throw th;
             }
-            return false;
         }
     }
 
-    public final boolean zaO(boolean z) {
+    public final boolean zaO(boolean z8) {
         Handler handler;
         handler = this.zaa.zar;
         Preconditions.checkHandlerThread(handler);
-        if (!this.zac.isConnected() || !this.zag.isEmpty()) {
-            return false;
-        }
-        if (!this.zae.zag()) {
+        if (this.zac.isConnected() && this.zag.isEmpty()) {
+            if (this.zae.zag()) {
+                if (z8) {
+                    zaJ();
+                    return false;
+                }
+                return false;
+            }
             this.zac.disconnect("Timing out service connection.");
             return true;
         }
-        if (!z) {
-            return false;
-        }
-        zaJ();
         return false;
     }
 
@@ -367,20 +391,20 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
                 }
             }
             int size = arrayList.size();
-            for (int i = 0; i < size; i++) {
-                zai zaiVar2 = (zai) arrayList.get(i);
+            for (int i9 = 0; i9 < size; i9++) {
+                zai zaiVar2 = (zai) arrayList.get(i9);
                 zabqVar.zab.remove(zaiVar2);
                 zaiVar2.zae(new UnsupportedApiCallException(feature));
             }
         }
     }
 
-    public static /* bridge */ /* synthetic */ boolean zay(zabq zabqVar, boolean z) {
+    public static /* bridge */ /* synthetic */ boolean zay(zabq zabqVar, boolean z8) {
         return zabqVar.zaO(false);
     }
 
     @Override // com.google.android.gms.common.api.internal.ConnectionCallbacks
-    public final void onConnected(Bundle bundle) {
+    public final void onConnected(@Nullable Bundle bundle) {
         Handler handler;
         Handler handler2;
         GoogleApiManager googleApiManager = this.zaa;
@@ -395,22 +419,22 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
     }
 
     @Override // com.google.android.gms.common.api.internal.OnConnectionFailedListener
-    public final void onConnectionFailed(ConnectionResult connectionResult) {
+    public final void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         zar(connectionResult, null);
     }
 
     @Override // com.google.android.gms.common.api.internal.ConnectionCallbacks
-    public final void onConnectionSuspended(int i) {
+    public final void onConnectionSuspended(int i9) {
         Handler handler;
         Handler handler2;
         GoogleApiManager googleApiManager = this.zaa;
         Looper myLooper = Looper.myLooper();
         handler = googleApiManager.zar;
         if (myLooper == handler.getLooper()) {
-            zaI(i);
+            zaI(i9);
         } else {
             handler2 = this.zaa.zar;
-            handler2.post(new zabn(this, i));
+            handler2.post(new zabn(this, i9));
         }
     }
 
@@ -424,7 +448,7 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
     }
 
     @Override // com.google.android.gms.common.api.internal.zau
-    public final void zaa(ConnectionResult connectionResult, Api api, boolean z) {
+    public final void zaa(ConnectionResult connectionResult, Api api, boolean z8) {
         throw null;
     }
 
@@ -436,6 +460,7 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
         return this.zam;
     }
 
+    @Nullable
     public final ConnectionResult zad() {
         Handler handler;
         handler = this.zaa.zar;
@@ -464,15 +489,18 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
         Context context;
         handler = this.zaa.zar;
         Preconditions.checkHandlerThread(handler);
-        if (this.zac.isConnected() || this.zac.isConnecting()) {
-            return;
-        }
-        try {
-            GoogleApiManager googleApiManager = this.zaa;
-            zalVar = googleApiManager.zak;
-            context = googleApiManager.zai;
-            int zab = zalVar.zab(context, this.zac);
-            if (zab == 0) {
+        if (!this.zac.isConnected() && !this.zac.isConnecting()) {
+            try {
+                GoogleApiManager googleApiManager = this.zaa;
+                zalVar = googleApiManager.zak;
+                context = googleApiManager.zai;
+                int zab = zalVar.zab(context, this.zac);
+                if (zab != 0) {
+                    ConnectionResult connectionResult = new ConnectionResult(zab, null);
+                    Log.w("GoogleApiManager", "The service for " + this.zac.getClass().getName() + " is not available: " + connectionResult.toString());
+                    zar(connectionResult, null);
+                    return;
+                }
                 GoogleApiManager googleApiManager2 = this.zaa;
                 Api.Client client = this.zac;
                 zabu zabuVar = new zabu(googleApiManager2, client, this.zad);
@@ -481,17 +509,12 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
                 }
                 try {
                     this.zac.connect(zabuVar);
-                    return;
-                } catch (SecurityException e) {
-                    zar(new ConnectionResult(10), e);
-                    return;
+                } catch (SecurityException e4) {
+                    zar(new ConnectionResult(10), e4);
                 }
+            } catch (IllegalStateException e9) {
+                zar(new ConnectionResult(10), e9);
             }
-            ConnectionResult connectionResult = new ConnectionResult(zab, null);
-            Log.w("GoogleApiManager", "The service for " + this.zac.getClass().getName() + " is not available: " + connectionResult.toString());
-            zar(connectionResult, null);
-        } catch (IllegalStateException e2) {
-            zar(new ConnectionResult(10), e2);
         }
     }
 
@@ -510,10 +533,10 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
         }
         this.zab.add(zaiVar);
         ConnectionResult connectionResult = this.zal;
-        if (connectionResult == null || !connectionResult.hasResolution()) {
-            zao();
-        } else {
+        if (connectionResult != null && connectionResult.hasResolution()) {
             zar(this.zal, null);
+        } else {
+            zao();
         }
     }
 
@@ -521,10 +544,10 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
         this.zam++;
     }
 
-    public final void zar(ConnectionResult connectionResult, Exception exc) {
+    public final void zar(@NonNull ConnectionResult connectionResult, @Nullable Exception exc) {
         Handler handler;
         com.google.android.gms.common.internal.zal zalVar;
-        boolean z;
+        boolean z8;
         Status zaF;
         Status zaF2;
         Status zaF3;
@@ -566,33 +589,33 @@ public final class zabq implements GoogleApiClient.ConnectionCallbacks, GoogleAp
             zaF(null, exc, false);
             return;
         }
-        z = this.zaa.zas;
-        if (z) {
+        z8 = this.zaa.zas;
+        if (z8) {
             zaF2 = GoogleApiManager.zaF(this.zad, connectionResult);
             zaF(zaF2, null, true);
-            if (this.zab.isEmpty() || zaN(connectionResult) || this.zaa.zaE(connectionResult, this.zah)) {
-                return;
-            }
-            if (connectionResult.getErrorCode() == 18) {
-                this.zaj = true;
-            }
-            if (!this.zaj) {
+            if (!this.zab.isEmpty() && !zaN(connectionResult) && !this.zaa.zaE(connectionResult, this.zah)) {
+                if (connectionResult.getErrorCode() == 18) {
+                    this.zaj = true;
+                }
+                if (this.zaj) {
+                    GoogleApiManager googleApiManager2 = this.zaa;
+                    ApiKey apiKey = this.zad;
+                    handler2 = googleApiManager2.zar;
+                    handler3 = googleApiManager2.zar;
+                    handler2.sendMessageDelayed(Message.obtain(handler3, 9, apiKey), DefaultRenderersFactory.DEFAULT_ALLOWED_VIDEO_JOINING_TIME_MS);
+                    return;
+                }
                 zaF3 = GoogleApiManager.zaF(this.zad, connectionResult);
                 zaE(zaF3);
                 return;
             }
-            GoogleApiManager googleApiManager2 = this.zaa;
-            ApiKey apiKey = this.zad;
-            handler2 = googleApiManager2.zar;
-            handler3 = googleApiManager2.zar;
-            handler2.sendMessageDelayed(Message.obtain(handler3, 9, apiKey), 5000L);
             return;
         }
         zaF = GoogleApiManager.zaF(this.zad, connectionResult);
         zaE(zaF);
     }
 
-    public final void zas(ConnectionResult connectionResult) {
+    public final void zas(@NonNull ConnectionResult connectionResult) {
         Handler handler;
         handler = this.zaa.zar;
         Preconditions.checkHandlerThread(handler);

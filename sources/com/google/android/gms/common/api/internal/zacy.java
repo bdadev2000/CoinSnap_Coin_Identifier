@@ -7,13 +7,11 @@ import com.google.android.gms.common.api.ResultTransform;
 import com.google.android.gms.common.internal.Preconditions;
 import java.lang.ref.WeakReference;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zacy implements Runnable {
     final /* synthetic */ Result zaa;
     final /* synthetic */ zada zab;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zacy(zada zadaVar, Result result) {
         this.zab = zadaVar;
         this.zaa = result;
@@ -21,25 +19,26 @@ final class zacy implements Runnable {
 
     @Override // java.lang.Runnable
     public final void run() {
+        WeakReference weakReference;
         zacz zaczVar;
         zacz zaczVar2;
-        WeakReference weakReference;
-        GoogleApiClient googleApiClient;
         WeakReference weakReference2;
+        GoogleApiClient googleApiClient;
         ResultTransform resultTransform;
         zacz zaczVar3;
         zacz zaczVar4;
         WeakReference weakReference3;
         try {
             try {
-                BasePendingResult.zaa.set(true);
+                ThreadLocal threadLocal = BasePendingResult.zaa;
+                threadLocal.set(Boolean.TRUE);
                 resultTransform = this.zab.zaa;
                 PendingResult onSuccess = ((ResultTransform) Preconditions.checkNotNull(resultTransform)).onSuccess(this.zaa);
                 zada zadaVar = this.zab;
                 zaczVar3 = zadaVar.zah;
                 zaczVar4 = zadaVar.zah;
                 zaczVar3.sendMessage(zaczVar4.obtainMessage(0, onSuccess));
-                BasePendingResult.zaa.set(false);
+                threadLocal.set(Boolean.FALSE);
                 zada zadaVar2 = this.zab;
                 zada.zan(this.zaa);
                 weakReference3 = this.zab.zag;
@@ -47,27 +46,27 @@ final class zacy implements Runnable {
                 if (googleApiClient == null) {
                     return;
                 }
-            } catch (RuntimeException e) {
+            } catch (RuntimeException e4) {
                 zada zadaVar3 = this.zab;
                 zaczVar = zadaVar3.zah;
                 zaczVar2 = zadaVar3.zah;
-                zaczVar.sendMessage(zaczVar2.obtainMessage(1, e));
-                BasePendingResult.zaa.set(false);
+                zaczVar.sendMessage(zaczVar2.obtainMessage(1, e4));
+                BasePendingResult.zaa.set(Boolean.FALSE);
                 zada zadaVar4 = this.zab;
                 zada.zan(this.zaa);
-                weakReference = this.zab.zag;
-                googleApiClient = (GoogleApiClient) weakReference.get();
+                weakReference2 = this.zab.zag;
+                googleApiClient = (GoogleApiClient) weakReference2.get();
                 if (googleApiClient == null) {
                     return;
                 }
             }
             googleApiClient.zap(this.zab);
         } catch (Throwable th) {
-            BasePendingResult.zaa.set(false);
+            BasePendingResult.zaa.set(Boolean.FALSE);
             zada zadaVar5 = this.zab;
             zada.zan(this.zaa);
-            weakReference2 = this.zab.zag;
-            GoogleApiClient googleApiClient2 = (GoogleApiClient) weakReference2.get();
+            weakReference = this.zab.zag;
+            GoogleApiClient googleApiClient2 = (GoogleApiClient) weakReference.get();
             if (googleApiClient2 != null) {
                 googleApiClient2.zap(this.zab);
             }

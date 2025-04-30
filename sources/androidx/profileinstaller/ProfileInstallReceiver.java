@@ -1,89 +1,72 @@
 package androidx.profileinstaller;
 
+import A0.c;
+import C0.e;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Process;
-import androidx.privacysandbox.ads.adservices.adid.AdIdManager$Api33Ext4Impl$$ExternalSyntheticLambda0;
-import androidx.profileinstaller.ProfileInstaller;
+import android.util.Log;
+import java.io.File;
+import n1.C2475f;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class ProfileInstallReceiver extends BroadcastReceiver {
-    public static final String ACTION_BENCHMARK_OPERATION = "androidx.profileinstaller.action.BENCHMARK_OPERATION";
-    public static final String ACTION_INSTALL_PROFILE = "androidx.profileinstaller.action.INSTALL_PROFILE";
-    public static final String ACTION_SAVE_PROFILE = "androidx.profileinstaller.action.SAVE_PROFILE";
-    public static final String ACTION_SKIP_FILE = "androidx.profileinstaller.action.SKIP_FILE";
-    private static final String EXTRA_BENCHMARK_OPERATION = "EXTRA_BENCHMARK_OPERATION";
-    private static final String EXTRA_BENCHMARK_OPERATION_DROP_SHADER_CACHE = "DROP_SHADER_CACHE";
-    private static final String EXTRA_SKIP_FILE_OPERATION = "EXTRA_SKIP_FILE_OPERATION";
-    private static final String EXTRA_SKIP_FILE_OPERATION_DELETE = "DELETE_SKIP_FILE";
-    private static final String EXTRA_SKIP_FILE_OPERATION_WRITE = "WRITE_SKIP_FILE";
-
     @Override // android.content.BroadcastReceiver
-    public void onReceive(Context context, Intent intent) {
+    public final void onReceive(Context context, Intent intent) {
         Bundle extras;
         if (intent == null) {
             return;
         }
         String action = intent.getAction();
-        if (ACTION_INSTALL_PROFILE.equals(action)) {
-            ProfileInstaller.writeProfile(context, new AdIdManager$Api33Ext4Impl$$ExternalSyntheticLambda0(), new ResultDiagnostics(), true);
+        if ("androidx.profileinstaller.action.INSTALL_PROFILE".equals(action)) {
+            e.s(context, new c(0), new C2475f(this, 2), true);
             return;
         }
-        if (ACTION_SKIP_FILE.equals(action)) {
+        if ("androidx.profileinstaller.action.SKIP_FILE".equals(action)) {
             Bundle extras2 = intent.getExtras();
             if (extras2 != null) {
-                String string = extras2.getString(EXTRA_SKIP_FILE_OPERATION);
-                if (EXTRA_SKIP_FILE_OPERATION_WRITE.equals(string)) {
-                    ProfileInstaller.writeSkipFile(context, new AdIdManager$Api33Ext4Impl$$ExternalSyntheticLambda0(), new ResultDiagnostics());
-                    return;
-                } else {
-                    if (EXTRA_SKIP_FILE_OPERATION_DELETE.equals(string)) {
-                        ProfileInstaller.deleteSkipFile(context, new AdIdManager$Api33Ext4Impl$$ExternalSyntheticLambda0(), new ResultDiagnostics());
+                String string = extras2.getString("EXTRA_SKIP_FILE_OPERATION");
+                if ("WRITE_SKIP_FILE".equals(string)) {
+                    C2475f c2475f = new C2475f(this, 2);
+                    try {
+                        e.e(context.getPackageManager().getPackageInfo(context.getApplicationContext().getPackageName(), 0), context.getFilesDir());
+                        c2475f.a(10, null);
+                        return;
+                    } catch (PackageManager.NameNotFoundException e4) {
+                        c2475f.a(7, e4);
                         return;
                     }
+                }
+                if ("DELETE_SKIP_FILE".equals(string)) {
+                    new File(context.getFilesDir(), "profileinstaller_profileWrittenFor_lastUpdateTime.dat").delete();
+                    Log.d("ProfileInstaller", "RESULT_DELETE_SKIP_FILE_SUCCESS");
+                    setResultCode(11);
                     return;
                 }
+                return;
             }
             return;
         }
-        if (ACTION_SAVE_PROFILE.equals(action)) {
-            saveProfile(new ResultDiagnostics());
-            return;
-        }
-        if (!ACTION_BENCHMARK_OPERATION.equals(action) || (extras = intent.getExtras()) == null) {
-            return;
-        }
-        String string2 = extras.getString(EXTRA_BENCHMARK_OPERATION);
-        ResultDiagnostics resultDiagnostics = new ResultDiagnostics();
-        if (EXTRA_BENCHMARK_OPERATION_DROP_SHADER_CACHE.equals(string2)) {
-            BenchmarkOperation.dropShaderCache(context, resultDiagnostics);
-        } else {
-            resultDiagnostics.onResultReceived(16, null);
-        }
-    }
-
-    static void saveProfile(ProfileInstaller.DiagnosticsCallback diagnosticsCallback) {
-        Process.sendSignal(Process.myPid(), 10);
-        diagnosticsCallback.onResultReceived(12, null);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* loaded from: classes7.dex */
-    public class ResultDiagnostics implements ProfileInstaller.DiagnosticsCallback {
-        ResultDiagnostics() {
-        }
-
-        @Override // androidx.profileinstaller.ProfileInstaller.DiagnosticsCallback
-        public void onDiagnosticReceived(int i, Object obj) {
-            ProfileInstaller.LOG_DIAGNOSTICS.onDiagnosticReceived(i, obj);
-        }
-
-        @Override // androidx.profileinstaller.ProfileInstaller.DiagnosticsCallback
-        public void onResultReceived(int i, Object obj) {
-            ProfileInstaller.LOG_DIAGNOSTICS.onResultReceived(i, obj);
-            ProfileInstallReceiver.this.setResultCode(i);
+        if ("androidx.profileinstaller.action.SAVE_PROFILE".equals(action)) {
+            Process.sendSignal(Process.myPid(), 10);
+            Log.d("ProfileInstaller", "");
+            setResultCode(12);
+        } else if ("androidx.profileinstaller.action.BENCHMARK_OPERATION".equals(action) && (extras = intent.getExtras()) != null) {
+            String string2 = extras.getString("EXTRA_BENCHMARK_OPERATION");
+            C2475f c2475f2 = new C2475f(this, 2);
+            if ("DROP_SHADER_CACHE".equals(string2)) {
+                if (e.c(context.createDeviceProtectedStorageContext().getCodeCacheDir())) {
+                    c2475f2.a(14, null);
+                    return;
+                } else {
+                    c2475f2.a(15, null);
+                    return;
+                }
+            }
+            c2475f2.a(16, null);
         }
     }
 }

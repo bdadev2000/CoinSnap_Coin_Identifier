@@ -2,7 +2,7 @@ package com.adjust.sdk;
 
 import android.content.Context;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class AdjustTestOptions {
     public String basePath;
     public String baseUrl;

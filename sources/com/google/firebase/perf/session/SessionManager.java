@@ -1,10 +1,15 @@
 package com.google.firebase.perf.session;
 
+import U4.RunnableC0311g;
+import X4.c;
+import X4.d;
+import android.annotation.SuppressLint;
 import android.content.Context;
-import com.google.firebase.perf.application.AppStateMonitor;
-import com.google.firebase.perf.application.AppStateUpdateHandler;
+import androidx.annotation.Keep;
 import com.google.firebase.perf.session.gauges.GaugeManager;
-import com.google.firebase.perf.v1.ApplicationProcessState;
+import e5.C2221a;
+import e5.InterfaceC2222b;
+import i5.EnumC2355j;
 import java.lang.ref.WeakReference;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -13,131 +18,138 @@ import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-/* loaded from: classes3.dex */
-public class SessionManager extends AppStateUpdateHandler {
+@Keep
+/* loaded from: classes2.dex */
+public class SessionManager extends d {
+
+    @SuppressLint({"StaticFieldLeak"})
     private static final SessionManager instance = new SessionManager();
-    private final AppStateMonitor appStateMonitor;
-    private final Set<WeakReference<SessionAwareObject>> clients;
+    private final c appStateMonitor;
+    private final Set<WeakReference<InterfaceC2222b>> clients;
     private final GaugeManager gaugeManager;
-    private PerfSession perfSession;
+    private C2221a perfSession;
     private Future syncInitFuture;
+
+    public SessionManager(GaugeManager gaugeManager, C2221a c2221a, c cVar) {
+        super(c.a());
+        this.clients = new HashSet();
+        this.gaugeManager = gaugeManager;
+        this.perfSession = c2221a;
+        this.appStateMonitor = cVar;
+        registerForAppState();
+    }
+
+    public static /* synthetic */ void b(SessionManager sessionManager, Context context, C2221a c2221a) {
+        sessionManager.lambda$setApplicationContext$0(context, c2221a);
+    }
 
     public static SessionManager getInstance() {
         return instance;
     }
 
-    public final PerfSession perfSession() {
-        return this.perfSession;
-    }
-
-    private SessionManager() {
-        this(GaugeManager.getInstance(), PerfSession.createWithId(UUID.randomUUID().toString()), AppStateMonitor.getInstance());
-    }
-
-    public SessionManager(GaugeManager gaugeManager, PerfSession perfSession, AppStateMonitor appStateMonitor) {
-        this.clients = new HashSet();
-        this.gaugeManager = gaugeManager;
-        this.perfSession = perfSession;
-        this.appStateMonitor = appStateMonitor;
-        registerForAppState();
-    }
-
-    public void setApplicationContext(final Context context) {
-        final PerfSession perfSession = this.perfSession;
-        this.syncInitFuture = Executors.newSingleThreadExecutor().submit(new Runnable() { // from class: com.google.firebase.perf.session.SessionManager$$ExternalSyntheticLambda0
-            @Override // java.lang.Runnable
-            public final void run() {
-                SessionManager.this.m8232xa16819e0(context, perfSession);
-            }
-        });
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* renamed from: lambda$setApplicationContext$0$com-google-firebase-perf-session-SessionManager, reason: not valid java name */
-    public /* synthetic */ void m8232xa16819e0(Context context, PerfSession perfSession) {
+    public void lambda$setApplicationContext$0(Context context, C2221a c2221a) {
         this.gaugeManager.initializeGaugeMetadataManager(context);
-        if (perfSession.isGaugeAndEventCollectionEnabled()) {
-            this.gaugeManager.logGaugeMetadata(perfSession.sessionId(), ApplicationProcessState.FOREGROUND);
+        if (c2221a.f20111d) {
+            this.gaugeManager.logGaugeMetadata(c2221a.b, EnumC2355j.FOREGROUND);
         }
     }
 
-    @Override // com.google.firebase.perf.application.AppStateUpdateHandler, com.google.firebase.perf.application.AppStateMonitor.AppStateCallback
-    public void onUpdateAppState(ApplicationProcessState applicationProcessState) {
-        super.onUpdateAppState(applicationProcessState);
-        if (this.appStateMonitor.isColdStart()) {
-            return;
+    private void logGaugeMetadataIfCollectionEnabled(EnumC2355j enumC2355j) {
+        C2221a c2221a = this.perfSession;
+        if (c2221a.f20111d) {
+            this.gaugeManager.logGaugeMetadata(c2221a.b, enumC2355j);
         }
-        if (applicationProcessState == ApplicationProcessState.FOREGROUND) {
-            updatePerfSession(PerfSession.createWithId(UUID.randomUUID().toString()));
-        } else if (this.perfSession.isSessionRunningTooLong()) {
-            updatePerfSession(PerfSession.createWithId(UUID.randomUUID().toString()));
+    }
+
+    private void startOrStopCollectingGauges(EnumC2355j enumC2355j) {
+        C2221a c2221a = this.perfSession;
+        if (c2221a.f20111d) {
+            this.gaugeManager.startCollectingGauges(c2221a, enumC2355j);
         } else {
-            startOrStopCollectingGauges(applicationProcessState);
-        }
-    }
-
-    public void stopGaugeCollectionIfSessionRunningTooLong() {
-        if (this.perfSession.isSessionRunningTooLong()) {
             this.gaugeManager.stopCollectingGauges();
         }
     }
 
-    public void updatePerfSession(PerfSession perfSession) {
-        if (perfSession.sessionId() == this.perfSession.sessionId()) {
-            return;
-        }
-        this.perfSession = perfSession;
-        synchronized (this.clients) {
-            Iterator<WeakReference<SessionAwareObject>> it = this.clients.iterator();
-            while (it.hasNext()) {
-                SessionAwareObject sessionAwareObject = it.next().get();
-                if (sessionAwareObject != null) {
-                    sessionAwareObject.updateSession(perfSession);
-                } else {
-                    it.remove();
-                }
-            }
-        }
-        logGaugeMetadataIfCollectionEnabled(this.appStateMonitor.getAppState());
-        startOrStopCollectingGauges(this.appStateMonitor.getAppState());
+    public Future getSyncInitFuture() {
+        return this.syncInitFuture;
     }
 
     public void initializeGaugeCollection() {
-        logGaugeMetadataIfCollectionEnabled(ApplicationProcessState.FOREGROUND);
-        startOrStopCollectingGauges(ApplicationProcessState.FOREGROUND);
+        EnumC2355j enumC2355j = EnumC2355j.FOREGROUND;
+        logGaugeMetadataIfCollectionEnabled(enumC2355j);
+        startOrStopCollectingGauges(enumC2355j);
     }
 
-    public void registerForSessionUpdates(WeakReference<SessionAwareObject> weakReference) {
+    @Override // X4.d, X4.b
+    public void onUpdateAppState(EnumC2355j enumC2355j) {
+        super.onUpdateAppState(enumC2355j);
+        if (this.appStateMonitor.f3691s) {
+            return;
+        }
+        if (enumC2355j == EnumC2355j.FOREGROUND) {
+            updatePerfSession(C2221a.e(UUID.randomUUID().toString()));
+        } else if (this.perfSession.f()) {
+            updatePerfSession(C2221a.e(UUID.randomUUID().toString()));
+        } else {
+            startOrStopCollectingGauges(enumC2355j);
+        }
+    }
+
+    public final C2221a perfSession() {
+        return this.perfSession;
+    }
+
+    public void registerForSessionUpdates(WeakReference<InterfaceC2222b> weakReference) {
         synchronized (this.clients) {
             this.clients.add(weakReference);
         }
     }
 
-    public void unregisterForSessionUpdates(WeakReference<SessionAwareObject> weakReference) {
+    public void setApplicationContext(Context context) {
+        this.syncInitFuture = Executors.newSingleThreadExecutor().submit(new RunnableC0311g(this, context, this.perfSession, 15));
+    }
+
+    public void setPerfSession(C2221a c2221a) {
+        this.perfSession = c2221a;
+    }
+
+    public void stopGaugeCollectionIfSessionRunningTooLong() {
+        if (this.perfSession.f()) {
+            this.gaugeManager.stopCollectingGauges();
+        }
+    }
+
+    public void unregisterForSessionUpdates(WeakReference<InterfaceC2222b> weakReference) {
         synchronized (this.clients) {
             this.clients.remove(weakReference);
         }
     }
 
-    private void logGaugeMetadataIfCollectionEnabled(ApplicationProcessState applicationProcessState) {
-        if (this.perfSession.isGaugeAndEventCollectionEnabled()) {
-            this.gaugeManager.logGaugeMetadata(this.perfSession.sessionId(), applicationProcessState);
+    public void updatePerfSession(C2221a c2221a) {
+        if (c2221a.b == this.perfSession.b) {
+            return;
         }
-    }
-
-    private void startOrStopCollectingGauges(ApplicationProcessState applicationProcessState) {
-        if (this.perfSession.isGaugeAndEventCollectionEnabled()) {
-            this.gaugeManager.startCollectingGauges(this.perfSession, applicationProcessState);
-        } else {
-            this.gaugeManager.stopCollectingGauges();
+        this.perfSession = c2221a;
+        synchronized (this.clients) {
+            try {
+                Iterator<WeakReference<InterfaceC2222b>> it = this.clients.iterator();
+                while (it.hasNext()) {
+                    InterfaceC2222b interfaceC2222b = it.next().get();
+                    if (interfaceC2222b != null) {
+                        interfaceC2222b.a(c2221a);
+                    } else {
+                        it.remove();
+                    }
+                }
+            } catch (Throwable th) {
+                throw th;
+            }
         }
+        logGaugeMetadataIfCollectionEnabled(this.appStateMonitor.f3689q);
+        startOrStopCollectingGauges(this.appStateMonitor.f3689q);
     }
 
-    public void setPerfSession(PerfSession perfSession) {
-        this.perfSession = perfSession;
-    }
-
-    public Future getSyncInitFuture() {
-        return this.syncInitFuture;
+    private SessionManager() {
+        this(GaugeManager.getInstance(), C2221a.e(UUID.randomUUID().toString()), c.a());
     }
 }

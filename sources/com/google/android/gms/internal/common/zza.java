@@ -5,13 +5,11 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class zza implements IInterface {
     private final IBinder zza;
     private final String zzb;
 
-    /* JADX INFO: Access modifiers changed from: protected */
     public zza(IBinder iBinder, String str) {
         this.zza = iBinder;
         this.zzb = str;
@@ -22,25 +20,23 @@ public class zza implements IInterface {
         return this.zza;
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public final Parcel zzB(int i, Parcel parcel) throws RemoteException {
+    public final Parcel zzB(int i9, Parcel parcel) throws RemoteException {
         Parcel obtain = Parcel.obtain();
         try {
             try {
-                this.zza.transact(i, parcel, obtain, 0);
+                this.zza.transact(i9, parcel, obtain, 0);
                 obtain.readException();
                 return obtain;
-            } catch (RuntimeException e) {
+            } catch (RuntimeException e4) {
                 obtain.recycle();
-                throw e;
+                throw e4;
             }
         } finally {
             parcel.recycle();
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public final void zzC(int i, Parcel parcel) throws RemoteException {
+    public final void zzC(int i9, Parcel parcel) throws RemoteException {
         Parcel obtain = Parcel.obtain();
         try {
             this.zza.transact(1, parcel, obtain, 0);
@@ -51,8 +47,7 @@ public class zza implements IInterface {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    public final void zzD(int i, Parcel parcel) throws RemoteException {
+    public final void zzD(int i9, Parcel parcel) throws RemoteException {
         try {
             this.zza.transact(2, parcel, null, 1);
         } finally {
@@ -60,7 +55,6 @@ public class zza implements IInterface {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     public final Parcel zza() {
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken(this.zzb);

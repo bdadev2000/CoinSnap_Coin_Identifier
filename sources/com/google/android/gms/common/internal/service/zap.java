@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Looper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.Feature;
 import com.google.android.gms.common.api.internal.ConnectionCallbacks;
 import com.google.android.gms.common.api.internal.OnConnectionFailedListener;
@@ -12,8 +14,7 @@ import com.google.android.gms.common.internal.ClientSettings;
 import com.google.android.gms.common.internal.GmsClient;
 import com.google.android.gms.common.internal.TelemetryLoggingOptions;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zap extends GmsClient {
     private final TelemetryLoggingOptions zaa;
 
@@ -22,14 +23,17 @@ public final class zap extends GmsClient {
         this.zaa = telemetryLoggingOptions;
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.google.android.gms.common.internal.BaseGmsClient
+    @Nullable
     public final /* synthetic */ IInterface createServiceInterface(IBinder iBinder) {
         if (iBinder == null) {
             return null;
         }
         IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.service.IClientTelemetryService");
-        return queryLocalInterface instanceof zai ? (zai) queryLocalInterface : new zai(iBinder);
+        if (queryLocalInterface instanceof zai) {
+            return (zai) queryLocalInterface;
+        }
+        return new zai(iBinder);
     }
 
     @Override // com.google.android.gms.common.internal.BaseGmsClient
@@ -38,7 +42,7 @@ public final class zap extends GmsClient {
     }
 
     @Override // com.google.android.gms.common.internal.BaseGmsClient
-    protected final Bundle getGetServiceRequestExtraArgs() {
+    public final Bundle getGetServiceRequestExtraArgs() {
         return this.zaa.zaa();
     }
 
@@ -47,19 +51,20 @@ public final class zap extends GmsClient {
         return 203400000;
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.google.android.gms.common.internal.BaseGmsClient
+    @NonNull
     public final String getServiceDescriptor() {
         return "com.google.android.gms.common.internal.service.IClientTelemetryService";
     }
 
     @Override // com.google.android.gms.common.internal.BaseGmsClient
-    protected final String getStartServiceAction() {
+    @NonNull
+    public final String getStartServiceAction() {
         return "com.google.android.gms.common.telemetry.service.START";
     }
 
     @Override // com.google.android.gms.common.internal.BaseGmsClient
-    protected final boolean getUseDynamicLookup() {
+    public final boolean getUseDynamicLookup() {
         return true;
     }
 }

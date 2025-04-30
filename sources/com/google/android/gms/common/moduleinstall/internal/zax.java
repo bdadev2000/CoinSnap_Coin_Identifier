@@ -5,12 +5,10 @@ import com.google.android.gms.common.api.internal.IStatusCallback;
 import com.google.android.gms.common.api.internal.TaskUtil;
 import com.google.android.gms.tasks.TaskCompletionSource;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zax extends IStatusCallback.Stub {
     final /* synthetic */ TaskCompletionSource zaa;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zax(zay zayVar, TaskCompletionSource taskCompletionSource) {
         this.zaa = taskCompletionSource;
     }

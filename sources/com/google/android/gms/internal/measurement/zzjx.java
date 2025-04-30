@@ -1,7 +1,18 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public interface zzjx {
-    boolean zza(int i);
+/* loaded from: classes2.dex */
+public final class zzjx extends zzkb {
+    @Override // com.google.android.gms.internal.measurement.zzkb
+    public final boolean equals(Object obj) {
+        throw new NoSuchMethodError();
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzkb
+    public final int hashCode() {
+        throw new NoSuchMethodError();
+    }
+
+    public final String toString() {
+        throw new NoSuchMethodError();
+    }
 }

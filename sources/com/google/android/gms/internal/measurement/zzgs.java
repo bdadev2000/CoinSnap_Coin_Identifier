@@ -1,80 +1,80 @@
 package com.google.android.gms.internal.measurement;
 
 import android.content.Context;
-import android.os.Process;
-import android.os.UserManager;
+import android.database.ContentObserver;
 import android.util.Log;
+import z2.i;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public class zzgs {
-    private static UserManager zza;
-    private static volatile boolean zzb = !zza();
-
-    public static boolean zza() {
-        return true;
-    }
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzgs implements zzgn {
+    private static zzgs zza;
+    private final Context zzb;
+    private final ContentObserver zzc;
 
     private zzgs() {
+        this.zzb = null;
+        this.zzc = null;
     }
 
-    private static boolean zzc(Context context) {
-        if (zzb) {
-            return true;
-        }
+    public static zzgs zza(Context context) {
+        zzgs zzgsVar;
         synchronized (zzgs.class) {
-            if (zzb) {
-                return true;
-            }
-            boolean zzd = zzd(context);
-            if (zzd) {
-                zzb = zzd;
-            }
-            return zzd;
-        }
-    }
-
-    private static boolean zzd(Context context) {
-        boolean z;
-        boolean z2 = true;
-        int i = 1;
-        while (true) {
-            z = false;
-            if (i > 2) {
-                break;
-            }
-            if (zza == null) {
-                zza = (UserManager) context.getSystemService(UserManager.class);
-            }
-            UserManager userManager = zza;
-            if (userManager == null) {
-                return true;
-            }
             try {
-                if (userManager.isUserUnlocked()) {
-                    break;
+                if (zza == null) {
+                    zza = i.e(context, "com.google.android.providers.gsf.permission.READ_GSERVICES") == 0 ? new zzgs(context) : new zzgs();
                 }
-                if (userManager.isUserRunning(Process.myUserHandle())) {
-                    z2 = false;
-                }
-            } catch (NullPointerException e) {
-                Log.w("DirectBootUtils", "Failed to check if user is unlocked.", e);
-                zza = null;
-                i++;
+                zzgsVar = zza;
+            } catch (Throwable th) {
+                throw th;
             }
         }
-        z = z2;
-        if (z) {
-            zza = null;
+        return zzgsVar;
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    @Override // com.google.android.gms.internal.measurement.zzgn
+    /* renamed from: zzc, reason: merged with bridge method [inline-methods] */
+    public final String zza(final String str) {
+        Context context = this.zzb;
+        if (context != null && !zzgi.zza(context)) {
+            try {
+                return (String) zzgq.zza(new zzgp() { // from class: com.google.android.gms.internal.measurement.zzgr
+                    @Override // com.google.android.gms.internal.measurement.zzgp
+                    public final Object zza() {
+                        return zzgs.this.zzb(str);
+                    }
+                });
+            } catch (IllegalStateException | NullPointerException | SecurityException e4) {
+                Log.e("GservicesLoader", "Unable to read GServices for: " + str, e4);
+            }
         }
-        return z;
+        return null;
     }
 
-    public static boolean zza(Context context) {
-        return zza() && !zzc(context);
+    public final /* synthetic */ String zzb(String str) {
+        return zzfv.zza(this.zzb.getContentResolver(), str, null);
     }
 
-    public static boolean zzb(Context context) {
-        return !zza() || zzc(context);
+    private zzgs(Context context) {
+        this.zzb = context;
+        zzgu zzguVar = new zzgu(this, null);
+        this.zzc = zzguVar;
+        context.getContentResolver().registerContentObserver(zzfy.zza, true, zzguVar);
+    }
+
+    public static synchronized void zza() {
+        Context context;
+        synchronized (zzgs.class) {
+            try {
+                zzgs zzgsVar = zza;
+                if (zzgsVar != null && (context = zzgsVar.zzb) != null && zzgsVar.zzc != null) {
+                    context.getContentResolver().unregisterContentObserver(zza.zzc);
+                }
+                zza = null;
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
     }
 }

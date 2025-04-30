@@ -1,11 +1,9 @@
 package com.google.android.gms.tasks;
 
-/* compiled from: com.google.android.gms:play-services-tasks@@18.1.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zza implements OnSuccessListener {
     final /* synthetic */ OnTokenCanceledListener zza;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zza(zzb zzbVar, OnTokenCanceledListener onTokenCanceledListener) {
         this.zza = onTokenCanceledListener;
     }

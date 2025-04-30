@@ -1,18 +1,22 @@
 package com.google.android.gms.common.api;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.api.Result;
 import com.google.android.gms.common.api.internal.zacp;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public abstract class ResultTransform<R extends Result, S extends Result> {
-    public final PendingResult<S> createFailedResult(Status status) {
+    @NonNull
+    public final PendingResult<S> createFailedResult(@NonNull Status status) {
         return new zacp(status);
     }
 
-    public Status onFailure(Status status) {
+    @NonNull
+    public Status onFailure(@NonNull Status status) {
         return status;
     }
 
-    public abstract PendingResult<S> onSuccess(R r);
+    @Nullable
+    public abstract PendingResult<S> onSuccess(@NonNull R r9);
 }

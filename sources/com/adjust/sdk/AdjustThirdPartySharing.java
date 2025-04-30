@@ -3,7 +3,7 @@ package com.adjust.sdk;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class AdjustThirdPartySharing {
     public Boolean isEnabled;
     public Map<String, Map<String, String>> granularOptions = new HashMap();
@@ -26,7 +26,7 @@ public class AdjustThirdPartySharing {
         map.put(str2, str3);
     }
 
-    public void addPartnerSharingSetting(String str, String str2, boolean z) {
+    public void addPartnerSharingSetting(String str, String str2, boolean z8) {
         if (str == null || str2 == null) {
             AdjustFactory.getLogger().error("Cannot add partner sharing setting with any null value", new Object[0]);
             return;
@@ -36,6 +36,6 @@ public class AdjustThirdPartySharing {
             map = new HashMap<>();
             this.partnerSharingSettings.put(str, map);
         }
-        map.put(str2, Boolean.valueOf(z));
+        map.put(str2, Boolean.valueOf(z8));
     }
 }

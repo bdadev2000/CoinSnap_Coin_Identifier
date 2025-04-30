@@ -1,17 +1,23 @@
 package com.google.android.gms.internal.measurement;
 
-import com.google.android.gms.internal.measurement.zzfy;
+import android.database.ContentObserver;
+import android.os.Handler;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzgb implements zzjx {
-    static final zzjx zza = new zzgb();
+/* loaded from: classes2.dex */
+final class zzgb extends ContentObserver {
+    private final /* synthetic */ zzfz zza;
 
-    private zzgb() {
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public zzgb(zzfz zzfzVar, Handler handler) {
+        super(null);
+        this.zza = zzfzVar;
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzjx
-    public final boolean zza(int i) {
-        return zzfy.zzj.zzb.zza(i) != null;
+    @Override // android.database.ContentObserver
+    public final void onChange(boolean z8) {
+        AtomicBoolean atomicBoolean;
+        atomicBoolean = this.zza.zza;
+        atomicBoolean.set(true);
     }
 }

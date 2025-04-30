@@ -1,52 +1,24 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-impl@@22.1.2 */
-/* loaded from: classes12.dex */
-public final class zzpj implements zzpg {
-    private static final zzhj<Boolean> zza;
-    private static final zzhj<Long> zzb;
-    private static final zzhj<Double> zzc;
-    private static final zzhj<Long> zzd;
-    private static final zzhj<Long> zze;
-    private static final zzhj<String> zzf;
-
-    @Override // com.google.android.gms.internal.measurement.zzpg
-    public final double zza() {
-        return zzc.zza().doubleValue();
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzpg
-    public final long zzb() {
-        return zzb.zza().longValue();
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzpg
-    public final long zzc() {
-        return zzd.zza().longValue();
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzpg
-    public final long zzd() {
-        return zze.zza().longValue();
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zzpg
-    public final String zze() {
-        return zzf.zza();
-    }
+/* loaded from: classes2.dex */
+public final class zzpj implements zzpk {
+    private static final zzgz<Boolean> zza;
 
     static {
-        zzhr zza2 = new zzhr(zzhk.zza("com.google.android.gms.measurement")).zzb().zza();
-        zza = zza2.zza("measurement.test.boolean_flag", false);
-        zzb = zza2.zza("measurement.test.cached_long_flag", -1L);
-        zzc = zza2.zza("measurement.test.double_flag", -3.0d);
-        zzd = zza2.zza("measurement.test.int_flag", -2L);
-        zze = zza2.zza("measurement.test.long_flag", -1L);
-        zzf = zza2.zza("measurement.test.string_flag", "---");
+        zzhh zza2 = new zzhh(zzgw.zza("com.google.android.gms.measurement")).zzb().zza();
+        zza2.zza("measurement.collection.enable_session_stitching_token.client.dev", true);
+        zza2.zza("measurement.collection.enable_session_stitching_token.first_open_fix", true);
+        zza = zza2.zza("measurement.session_stitching_token_enabled", false);
+        zza2.zza("measurement.link_sst_to_sid", true);
     }
 
-    @Override // com.google.android.gms.internal.measurement.zzpg
-    public final boolean zzf() {
+    @Override // com.google.android.gms.internal.measurement.zzpk
+    public final boolean zza() {
+        return true;
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zzpk
+    public final boolean zzb() {
         return zza.zza().booleanValue();
     }
 }

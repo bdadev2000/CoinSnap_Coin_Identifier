@@ -3,9 +3,9 @@ package com.google.android.gms.internal.measurement;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.TreeMap;
+import x0.AbstractC2914a;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzaa {
     private final TreeMap<Integer, zzar> zza = new TreeMap<>();
     private final TreeMap<Integer, zzar> zzb = new TreeMap<>();
@@ -18,19 +18,19 @@ public final class zzaa {
         return -1;
     }
 
-    public final void zza(String str, int i, zzar zzarVar, String str2) {
+    public final void zza(String str, int i9, zzar zzarVar, String str2) {
         TreeMap<Integer, zzar> treeMap;
         if ("create".equals(str2)) {
             treeMap = this.zzb;
         } else if ("edit".equals(str2)) {
             treeMap = this.zza;
         } else {
-            throw new IllegalStateException("Unknown callback type: " + str2);
+            throw new IllegalStateException(AbstractC2914a.d("Unknown callback type: ", str2));
         }
-        if (treeMap.containsKey(Integer.valueOf(i))) {
-            i = treeMap.lastKey().intValue() + 1;
+        if (treeMap.containsKey(Integer.valueOf(i9))) {
+            i9 = treeMap.lastKey().intValue() + 1;
         }
-        treeMap.put(Integer.valueOf(i), zzarVar);
+        treeMap.put(Integer.valueOf(i9), zzarVar);
     }
 
     public final void zza(zzh zzhVar, zzac zzacVar) {

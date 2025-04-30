@@ -1,60 +1,60 @@
 package com.google.android.gms.internal.common;
 
+import Q7.n0;
+import com.mbridge.msdk.foundation.entity.o;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.CheckForNull;
 import org.jspecify.nullness.NullMarked;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
 @NullMarked
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzy {
-    public static String zza(@CheckForNull String str, @CheckForNull Object... objArr) {
+    public static String zza(String str, Object... objArr) {
         int length;
         int length2;
         int indexOf;
-        String str2;
-        int i = 0;
-        int i2 = 0;
+        String j7;
+        int i9 = 0;
+        int i10 = 0;
         while (true) {
             length = objArr.length;
-            if (i2 >= length) {
+            if (i10 >= length) {
                 break;
             }
-            Object obj = objArr[i2];
+            Object obj = objArr[i10];
             if (obj == null) {
-                str2 = "null";
+                j7 = "null";
             } else {
                 try {
-                    str2 = obj.toString();
-                } catch (Exception e) {
-                    String str3 = obj.getClass().getName() + "@" + Integer.toHexString(System.identityHashCode(obj));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(str3), (Throwable) e);
-                    str2 = "<" + str3 + " threw " + e.getClass().getName() + ">";
+                    j7 = obj.toString();
+                } catch (Exception e4) {
+                    String k6 = o.k(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(k6), (Throwable) e4);
+                    j7 = n0.j("<", k6, " threw ", e4.getClass().getName(), ">");
                 }
             }
-            objArr[i2] = str2;
-            i2++;
+            objArr[i10] = j7;
+            i10++;
         }
         StringBuilder sb = new StringBuilder(str.length() + (length * 16));
-        int i3 = 0;
+        int i11 = 0;
         while (true) {
             length2 = objArr.length;
-            if (i >= length2 || (indexOf = str.indexOf("%s", i3)) == -1) {
+            if (i9 >= length2 || (indexOf = str.indexOf("%s", i11)) == -1) {
                 break;
             }
-            sb.append((CharSequence) str, i3, indexOf);
-            sb.append(objArr[i]);
-            i3 = indexOf + 2;
-            i++;
+            sb.append((CharSequence) str, i11, indexOf);
+            sb.append(objArr[i9]);
+            i11 = indexOf + 2;
+            i9++;
         }
-        sb.append((CharSequence) str, i3, str.length());
-        if (i < length2) {
+        sb.append((CharSequence) str, i11, str.length());
+        if (i9 < length2) {
             sb.append(" [");
-            sb.append(objArr[i]);
-            for (int i4 = i + 1; i4 < objArr.length; i4++) {
+            sb.append(objArr[i9]);
+            for (int i12 = i9 + 1; i12 < objArr.length; i12++) {
                 sb.append(", ");
-                sb.append(objArr[i4]);
+                sb.append(objArr[i12]);
             }
             sb.append(']');
         }

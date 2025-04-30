@@ -4,15 +4,20 @@ import android.accounts.Account;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.auth.api.signin.internal.GoogleSignInOptionsExtensionParcelable;
 import com.google.android.gms.auth.api.signin.internal.HashAccumulator;
 import com.google.android.gms.common.Scopes;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.internal.AccountType;
 import com.google.android.gms.common.internal.Preconditions;
 import com.google.android.gms.common.internal.ReflectedParcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,42 +32,88 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-@Deprecated
-/* loaded from: classes12.dex */
+@SafeParcelable.Class(creator = "GoogleSignInOptionsCreator")
+/* loaded from: classes2.dex */
 public class GoogleSignInOptions extends AbstractSafeParcelable implements Api.ApiOptions.Optional, ReflectedParcelable {
+
+    @NonNull
     public static final Parcelable.Creator<GoogleSignInOptions> CREATOR;
+
+    @NonNull
     public static final GoogleSignInOptions DEFAULT_GAMES_SIGN_IN;
+
+    @NonNull
     public static final GoogleSignInOptions DEFAULT_SIGN_IN;
+
+    @NonNull
     public static final Scope zaa = new Scope(Scopes.PROFILE);
+
+    @NonNull
     public static final Scope zab = new Scope("email");
+
+    @NonNull
     public static final Scope zac = new Scope(Scopes.OPEN_ID);
+
+    @NonNull
     public static final Scope zad;
+
+    @NonNull
     public static final Scope zae;
     private static final Comparator zag;
+
+    @SafeParcelable.VersionField(id = 1)
     final int zaf;
+
+    @SafeParcelable.Field(getter = "getScopes", id = 2)
     private final ArrayList zah;
+
+    @Nullable
+    @SafeParcelable.Field(getter = "getAccount", id = 3)
     private Account zai;
+
+    @SafeParcelable.Field(getter = "isIdTokenRequested", id = 4)
     private boolean zaj;
+
+    @SafeParcelable.Field(getter = "isServerAuthCodeRequested", id = 5)
     private final boolean zak;
+
+    @SafeParcelable.Field(getter = "isForceCodeForRefreshToken", id = 6)
     private final boolean zal;
+
+    @Nullable
+    @SafeParcelable.Field(getter = "getServerClientId", id = 7)
     private String zam;
+
+    @Nullable
+    @SafeParcelable.Field(getter = "getHostedDomain", id = 8)
     private String zan;
+
+    @SafeParcelable.Field(getter = "getExtensions", id = 9)
     private ArrayList zao;
+
+    @Nullable
+    @SafeParcelable.Field(getter = "getLogSessionId", id = 10)
     private String zap;
     private Map zaq;
 
-    /* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-    /* loaded from: classes12.dex */
+    /* loaded from: classes2.dex */
     public static final class Builder {
         private Set zaa;
         private boolean zab;
         private boolean zac;
         private boolean zad;
+
+        @Nullable
         private String zae;
+
+        @Nullable
         private Account zaf;
+
+        @Nullable
         private String zag;
         private Map zah;
+
+        @Nullable
         private String zai;
 
         public Builder() {
@@ -73,29 +124,35 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements Api.A
         private final String zaa(String str) {
             Preconditions.checkNotEmpty(str);
             String str2 = this.zae;
-            boolean z = true;
+            boolean z8 = true;
             if (str2 != null && !str2.equals(str)) {
-                z = false;
+                z8 = false;
             }
-            Preconditions.checkArgument(z, "two different server client ids provided");
+            Preconditions.checkArgument(z8, "two different server client ids provided");
             return str;
         }
 
-        public Builder addExtension(GoogleSignInOptionsExtension googleSignInOptionsExtension) {
-            if (this.zah.containsKey(Integer.valueOf(googleSignInOptionsExtension.getExtensionType()))) {
-                throw new IllegalStateException("Only one extension per type may be added");
+        @NonNull
+        public Builder addExtension(@NonNull GoogleSignInOptionsExtension googleSignInOptionsExtension) {
+            if (!this.zah.containsKey(Integer.valueOf(googleSignInOptionsExtension.getExtensionType()))) {
+                List<Scope> impliedScopes = googleSignInOptionsExtension.getImpliedScopes();
+                if (impliedScopes != null) {
+                    this.zaa.addAll(impliedScopes);
+                }
+                this.zah.put(Integer.valueOf(googleSignInOptionsExtension.getExtensionType()), new GoogleSignInOptionsExtensionParcelable(googleSignInOptionsExtension));
+                return this;
             }
-            List<Scope> impliedScopes = googleSignInOptionsExtension.getImpliedScopes();
-            if (impliedScopes != null) {
-                this.zaa.addAll(impliedScopes);
-            }
-            this.zah.put(Integer.valueOf(googleSignInOptionsExtension.getExtensionType()), new GoogleSignInOptionsExtensionParcelable(googleSignInOptionsExtension));
-            return this;
+            throw new IllegalStateException("Only one extension per type may be added");
         }
 
+        @NonNull
         public GoogleSignInOptions build() {
-            if (this.zaa.contains(GoogleSignInOptions.zae) && this.zaa.contains(GoogleSignInOptions.zad)) {
-                this.zaa.remove(GoogleSignInOptions.zad);
+            if (this.zaa.contains(GoogleSignInOptions.zae)) {
+                Set set = this.zaa;
+                Scope scope = GoogleSignInOptions.zad;
+                if (set.contains(scope)) {
+                    this.zaa.remove(scope);
+                }
             }
             if (this.zad && (this.zaf == null || !this.zaa.isEmpty())) {
                 requestId();
@@ -103,63 +160,74 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements Api.A
             return new GoogleSignInOptions(new ArrayList(this.zaa), this.zaf, this.zad, this.zab, this.zac, this.zae, this.zag, this.zah, this.zai);
         }
 
+        @NonNull
         public Builder requestEmail() {
             this.zaa.add(GoogleSignInOptions.zab);
             return this;
         }
 
+        @NonNull
         public Builder requestId() {
             this.zaa.add(GoogleSignInOptions.zac);
             return this;
         }
 
-        public Builder requestIdToken(String str) {
+        @NonNull
+        public Builder requestIdToken(@NonNull String str) {
             this.zad = true;
             zaa(str);
             this.zae = str;
             return this;
         }
 
+        @NonNull
         public Builder requestProfile() {
             this.zaa.add(GoogleSignInOptions.zaa);
             return this;
         }
 
-        public Builder requestScopes(Scope scope, Scope... scopeArr) {
+        @NonNull
+        public Builder requestScopes(@NonNull Scope scope, @NonNull Scope... scopeArr) {
             this.zaa.add(scope);
             this.zaa.addAll(Arrays.asList(scopeArr));
             return this;
         }
 
-        public Builder requestServerAuthCode(String str) {
+        @NonNull
+        public Builder requestServerAuthCode(@NonNull String str) {
             requestServerAuthCode(str, false);
             return this;
         }
 
-        public Builder setAccountName(String str) {
-            this.zaf = new Account(Preconditions.checkNotEmpty(str), "com.google");
+        @NonNull
+        public Builder setAccountName(@NonNull String str) {
+            this.zaf = new Account(Preconditions.checkNotEmpty(str), AccountType.GOOGLE);
             return this;
         }
 
-        public Builder setHostedDomain(String str) {
+        @NonNull
+        public Builder setHostedDomain(@NonNull String str) {
             this.zag = Preconditions.checkNotEmpty(str);
             return this;
         }
 
-        public Builder setLogSessionId(String str) {
+        @NonNull
+        @KeepForSdk
+        public Builder setLogSessionId(@NonNull String str) {
             this.zai = str;
             return this;
         }
 
-        public Builder requestServerAuthCode(String str, boolean z) {
+        @NonNull
+        public Builder requestServerAuthCode(@NonNull String str, boolean z8) {
             this.zab = true;
             zaa(str);
             this.zae = str;
-            this.zac = z;
+            this.zac = z8;
             return this;
         }
 
-        public Builder(GoogleSignInOptions googleSignInOptions) {
+        public Builder(@NonNull GoogleSignInOptions googleSignInOptions) {
             this.zaa = new HashSet();
             this.zah = new HashMap();
             Preconditions.checkNotNull(googleSignInOptions);
@@ -190,12 +258,12 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements Api.A
         zag = new zac();
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public GoogleSignInOptions(int i, ArrayList arrayList, Account account, boolean z, boolean z2, boolean z3, String str, String str2, ArrayList arrayList2, String str3) {
-        this(i, arrayList, account, z, z2, z3, str, str2, zam(arrayList2), str3);
-    }
-
-    public static GoogleSignInOptions zab(String str) throws JSONException {
+    @Nullable
+    public static GoogleSignInOptions zab(@Nullable String str) throws JSONException {
+        String str2;
+        Account account;
+        String str3;
+        String str4 = null;
         if (TextUtils.isEmpty(str)) {
             return null;
         }
@@ -203,15 +271,36 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements Api.A
         HashSet hashSet = new HashSet();
         JSONArray jSONArray = jSONObject.getJSONArray("scopes");
         int length = jSONArray.length();
-        for (int i = 0; i < length; i++) {
-            hashSet.add(new Scope(jSONArray.getString(i)));
+        for (int i9 = 0; i9 < length; i9++) {
+            hashSet.add(new Scope(jSONArray.getString(i9)));
         }
-        String optString = jSONObject.has("accountName") ? jSONObject.optString("accountName") : null;
-        return new GoogleSignInOptions(3, new ArrayList(hashSet), !TextUtils.isEmpty(optString) ? new Account(optString, "com.google") : null, jSONObject.getBoolean("idTokenRequested"), jSONObject.getBoolean("serverAuthRequested"), jSONObject.getBoolean("forceCodeForRefreshToken"), jSONObject.has("serverClientId") ? jSONObject.optString("serverClientId") : null, jSONObject.has("hostedDomain") ? jSONObject.optString("hostedDomain") : null, new HashMap(), (String) null);
+        if (jSONObject.has("accountName")) {
+            str2 = jSONObject.optString("accountName");
+        } else {
+            str2 = null;
+        }
+        if (!TextUtils.isEmpty(str2)) {
+            account = new Account(str2, AccountType.GOOGLE);
+        } else {
+            account = null;
+        }
+        ArrayList arrayList = new ArrayList(hashSet);
+        boolean z8 = jSONObject.getBoolean("idTokenRequested");
+        boolean z9 = jSONObject.getBoolean("serverAuthRequested");
+        boolean z10 = jSONObject.getBoolean("forceCodeForRefreshToken");
+        if (jSONObject.has("serverClientId")) {
+            str3 = jSONObject.optString("serverClientId");
+        } else {
+            str3 = null;
+        }
+        if (jSONObject.has("hostedDomain")) {
+            str4 = jSONObject.optString("hostedDomain");
+        }
+        return new GoogleSignInOptions(3, arrayList, account, z8, z9, z10, str3, str4, new HashMap(), (String) null);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public static Map zam(List list) {
+    public static Map zam(@Nullable List list) {
         HashMap hashMap = new HashMap();
         if (list != null) {
             Iterator it = list.iterator();
@@ -231,7 +320,7 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements Api.A
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public boolean equals(java.lang.Object r4) {
+    public boolean equals(@androidx.annotation.Nullable java.lang.Object r4) {
         /*
             r3 = this;
             r0 = 0
@@ -303,26 +392,37 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements Api.A
         throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.auth.api.signin.GoogleSignInOptions.equals(java.lang.Object):boolean");
     }
 
+    @Nullable
+    @KeepForSdk
     public Account getAccount() {
         return this.zai;
     }
 
+    @NonNull
+    @KeepForSdk
     public ArrayList<GoogleSignInOptionsExtensionParcelable> getExtensions() {
         return this.zao;
     }
 
+    @Nullable
+    @KeepForSdk
     public String getLogSessionId() {
         return this.zap;
     }
 
+    @NonNull
     public Scope[] getScopeArray() {
         return (Scope[]) this.zah.toArray(new Scope[this.zah.size()]);
     }
 
+    @NonNull
+    @KeepForSdk
     public ArrayList<Scope> getScopes() {
         return new ArrayList<>(this.zah);
     }
 
+    @Nullable
+    @KeepForSdk
     public String getServerClientId() {
         return this.zam;
     }
@@ -331,8 +431,8 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements Api.A
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = this.zah;
         int size = arrayList2.size();
-        for (int i = 0; i < size; i++) {
-            arrayList.add(((Scope) arrayList2.get(i)).getScopeUri());
+        for (int i9 = 0; i9 < size; i9++) {
+            arrayList.add(((Scope) arrayList2.get(i9)).getScopeUri());
         }
         Collections.sort(arrayList);
         HashAccumulator hashAccumulator = new HashAccumulator();
@@ -346,25 +446,28 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements Api.A
         return hashAccumulator.hash();
     }
 
+    @KeepForSdk
     public boolean isForceCodeForRefreshToken() {
         return this.zal;
     }
 
+    @KeepForSdk
     public boolean isIdTokenRequested() {
         return this.zaj;
     }
 
+    @KeepForSdk
     public boolean isServerAuthCodeRequested() {
         return this.zak;
     }
 
     @Override // android.os.Parcelable
-    public void writeToParcel(Parcel parcel, int i) {
-        int i2 = this.zaf;
+    public void writeToParcel(@NonNull Parcel parcel, int i9) {
+        int i10 = this.zaf;
         int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
-        SafeParcelWriter.writeInt(parcel, 1, i2);
+        SafeParcelWriter.writeInt(parcel, 1, i10);
         SafeParcelWriter.writeTypedList(parcel, 2, getScopes(), false);
-        SafeParcelWriter.writeParcelable(parcel, 3, getAccount(), i, false);
+        SafeParcelWriter.writeParcelable(parcel, 3, getAccount(), i9, false);
         SafeParcelWriter.writeBoolean(parcel, 4, isIdTokenRequested());
         SafeParcelWriter.writeBoolean(parcel, 5, isServerAuthCodeRequested());
         SafeParcelWriter.writeBoolean(parcel, 6, isForceCodeForRefreshToken());
@@ -375,6 +478,7 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements Api.A
         SafeParcelWriter.finishObjectHeader(parcel, beginObjectHeader);
     }
 
+    @NonNull
     public final String zaf() {
         JSONObject jSONObject = new JSONObject();
         try {
@@ -399,18 +503,23 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements Api.A
                 jSONObject.put("hostedDomain", this.zan);
             }
             return jSONObject.toString();
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
+        } catch (JSONException e4) {
+            throw new RuntimeException(e4);
         }
     }
 
-    private GoogleSignInOptions(int i, ArrayList arrayList, Account account, boolean z, boolean z2, boolean z3, String str, String str2, Map map, String str3) {
-        this.zaf = i;
+    @SafeParcelable.Constructor
+    public GoogleSignInOptions(@SafeParcelable.Param(id = 1) int i9, @SafeParcelable.Param(id = 2) ArrayList arrayList, @Nullable @SafeParcelable.Param(id = 3) Account account, @SafeParcelable.Param(id = 4) boolean z8, @SafeParcelable.Param(id = 5) boolean z9, @SafeParcelable.Param(id = 6) boolean z10, @Nullable @SafeParcelable.Param(id = 7) String str, @Nullable @SafeParcelable.Param(id = 8) String str2, @SafeParcelable.Param(id = 9) ArrayList arrayList2, @Nullable @SafeParcelable.Param(id = 10) String str3) {
+        this(i9, arrayList, account, z8, z9, z10, str, str2, zam(arrayList2), str3);
+    }
+
+    private GoogleSignInOptions(int i9, ArrayList arrayList, @Nullable Account account, boolean z8, boolean z9, boolean z10, @Nullable String str, @Nullable String str2, Map map, @Nullable String str3) {
+        this.zaf = i9;
         this.zah = arrayList;
         this.zai = account;
-        this.zaj = z;
-        this.zak = z2;
-        this.zal = z3;
+        this.zaj = z8;
+        this.zak = z9;
+        this.zal = z10;
         this.zam = str;
         this.zan = str2;
         this.zao = new ArrayList(map.values());

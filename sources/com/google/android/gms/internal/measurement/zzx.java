@@ -3,10 +3,14 @@ package com.google.android.gms.internal.measurement;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzx extends zzal {
     private final Callable<Object> zzk;
+
+    public zzx(String str, Callable<Object> callable) {
+        super(str);
+        this.zzk = callable;
+    }
 
     @Override // com.google.android.gms.internal.measurement.zzal
     public final zzaq zza(zzh zzhVar, List<zzaq> list) {
@@ -15,10 +19,5 @@ public final class zzx extends zzal {
         } catch (Exception unused) {
             return zzaq.zzc;
         }
-    }
-
-    public zzx(String str, Callable<Object> callable) {
-        super(str);
-        this.zzk = callable;
     }
 }

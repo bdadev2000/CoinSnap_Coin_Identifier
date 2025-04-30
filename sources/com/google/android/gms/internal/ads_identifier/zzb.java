@@ -6,8 +6,7 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
 
-/* compiled from: com.google.android.gms:play-services-ads-identifier@@17.1.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public class zzb extends Binder implements IInterface {
     @Override // android.os.IInterface
     public final IBinder asBinder() {
@@ -15,7 +14,7 @@ public class zzb extends Binder implements IInterface {
     }
 
     @Override // android.os.Binder
-    public final boolean onTransact(int i, Parcel parcel, Parcel parcel2, int i2) throws RemoteException {
+    public final boolean onTransact(int i9, Parcel parcel, Parcel parcel2, int i10) throws RemoteException {
         throw null;
     }
 }

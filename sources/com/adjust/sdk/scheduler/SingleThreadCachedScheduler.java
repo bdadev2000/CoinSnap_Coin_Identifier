@@ -8,78 +8,82 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class SingleThreadCachedScheduler implements ThreadScheduler {
     private ThreadPoolExecutor threadPoolExecutor;
     private final List<Runnable> queue = new ArrayList();
     private boolean isThreadProcessing = false;
     private boolean isTeardown = false;
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class a implements RejectedExecutionHandler {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ String f264a;
+        public final /* synthetic */ String f5589a;
 
         public a(String str) {
-            this.f264a = str;
+            this.f5589a = str;
         }
 
         @Override // java.util.concurrent.RejectedExecutionHandler
         public final void rejectedExecution(Runnable runnable, ThreadPoolExecutor threadPoolExecutor) {
-            AdjustFactory.getLogger().warn("Runnable [%s] rejected from [%s] ", runnable.toString(), this.f264a);
+            AdjustFactory.getLogger().warn("Runnable [%s] rejected from [%s] ", runnable.toString(), this.f5589a);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class b implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ long f265a;
+        public final /* synthetic */ long f5590a;
         public final /* synthetic */ Runnable b;
 
-        public b(long j, Runnable runnable) {
-            this.f265a = j;
+        public b(long j7, Runnable runnable) {
+            this.f5590a = j7;
             this.b = runnable;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
             try {
-                Thread.sleep(this.f265a);
-            } catch (InterruptedException e) {
-                AdjustFactory.getLogger().warn("Sleep delay exception: %s", e.getMessage());
+                Thread.sleep(this.f5590a);
+            } catch (InterruptedException e4) {
+                AdjustFactory.getLogger().warn("Sleep delay exception: %s", e4.getMessage());
             }
             SingleThreadCachedScheduler.this.submit(this.b);
         }
     }
 
-    /* loaded from: classes7.dex */
+    /* loaded from: classes.dex */
     public class c implements Runnable {
 
         /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ Runnable f266a;
+        public final /* synthetic */ Runnable f5592a;
 
         public c(Runnable runnable) {
-            this.f266a = runnable;
+            this.f5592a = runnable;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
             SingleThreadCachedScheduler singleThreadCachedScheduler = SingleThreadCachedScheduler.this;
-            Runnable runnable = this.f266a;
+            Runnable runnable = this.f5592a;
             while (true) {
                 singleThreadCachedScheduler.tryExecuteRunnable(runnable);
                 synchronized (SingleThreadCachedScheduler.this.queue) {
-                    if (SingleThreadCachedScheduler.this.isTeardown) {
-                        return;
-                    }
-                    if (SingleThreadCachedScheduler.this.queue.isEmpty()) {
-                        SingleThreadCachedScheduler.this.isThreadProcessing = false;
-                        return;
-                    } else {
-                        runnable = (Runnable) SingleThreadCachedScheduler.this.queue.get(0);
-                        SingleThreadCachedScheduler.this.queue.remove(0);
+                    try {
+                        if (SingleThreadCachedScheduler.this.isTeardown) {
+                            return;
+                        }
+                        if (SingleThreadCachedScheduler.this.queue.isEmpty()) {
+                            SingleThreadCachedScheduler.this.isThreadProcessing = false;
+                            return;
+                        } else {
+                            runnable = (Runnable) SingleThreadCachedScheduler.this.queue.get(0);
+                            SingleThreadCachedScheduler.this.queue.remove(0);
+                        }
+                    } catch (Throwable th) {
+                        throw th;
                     }
                 }
                 singleThreadCachedScheduler = SingleThreadCachedScheduler.this;
@@ -108,26 +112,34 @@ public class SingleThreadCachedScheduler implements ThreadScheduler {
     }
 
     @Override // com.adjust.sdk.scheduler.ThreadScheduler
-    public void schedule(Runnable runnable, long j) {
+    public void schedule(Runnable runnable, long j7) {
         synchronized (this.queue) {
-            if (this.isTeardown) {
-                return;
+            try {
+                if (this.isTeardown) {
+                    return;
+                }
+                this.threadPoolExecutor.submit(new b(j7, runnable));
+            } catch (Throwable th) {
+                throw th;
             }
-            this.threadPoolExecutor.submit(new b(j, runnable));
         }
     }
 
     @Override // com.adjust.sdk.scheduler.ThreadExecutor
     public void submit(Runnable runnable) {
         synchronized (this.queue) {
-            if (this.isTeardown) {
-                return;
-            }
-            if (this.isThreadProcessing) {
-                this.queue.add(runnable);
-            } else {
-                this.isThreadProcessing = true;
-                processQueue(runnable);
+            try {
+                if (this.isTeardown) {
+                    return;
+                }
+                if (this.isThreadProcessing) {
+                    this.queue.add(runnable);
+                } else {
+                    this.isThreadProcessing = true;
+                    processQueue(runnable);
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }

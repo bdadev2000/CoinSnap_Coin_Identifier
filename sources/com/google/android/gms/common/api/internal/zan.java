@@ -2,13 +2,11 @@ package com.google.android.gms.common.api.internal;
 
 import android.app.Dialog;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zan extends zabw {
     final /* synthetic */ Dialog zaa;
     final /* synthetic */ zao zab;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public zan(zao zaoVar, Dialog dialog) {
         this.zab = zaoVar;
         this.zaa = dialog;

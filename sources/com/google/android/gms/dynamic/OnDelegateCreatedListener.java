@@ -1,9 +1,12 @@
 package com.google.android.gms.dynamic;
 
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.dynamic.LifecycleDelegate;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public interface OnDelegateCreatedListener<T extends LifecycleDelegate> {
-    void onDelegateCreated(T t);
+    @KeepForSdk
+    void onDelegateCreated(@NonNull T t9);
 }

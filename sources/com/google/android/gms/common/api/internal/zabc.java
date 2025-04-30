@@ -2,15 +2,13 @@ package com.google.android.gms.common.api.internal;
 
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
+import com.mbridge.msdk.foundation.entity.o;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zabc extends com.google.android.gms.internal.base.zau {
     final /* synthetic */ zabe zaa;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public zabc(zabe zabeVar, Looper looper) {
         super(looper);
@@ -19,15 +17,16 @@ public final class zabc extends com.google.android.gms.internal.base.zau {
 
     @Override // android.os.Handler
     public final void handleMessage(Message message) {
-        int i = message.what;
-        if (i == 1) {
-            zabe.zaj(this.zaa);
-            return;
+        int i9 = message.what;
+        if (i9 != 1) {
+            if (i9 != 2) {
+                o.z(i9, "Unknown message id: ", "GoogleApiClientImpl");
+                return;
+            } else {
+                zabe.zai(this.zaa);
+                return;
+            }
         }
-        if (i == 2) {
-            zabe.zai(this.zaa);
-            return;
-        }
-        Log.w("GoogleApiClientImpl", "Unknown message id: " + message.what);
+        zabe.zaj(this.zaa);
     }
 }

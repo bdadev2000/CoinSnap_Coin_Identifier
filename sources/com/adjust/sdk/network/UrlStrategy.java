@@ -7,19 +7,22 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-/* loaded from: classes7.dex */
+/* loaded from: classes.dex */
 public class UrlStrategy {
     private static final String BASE_URL_CHINA = "https://app.adjust.world";
+    private static final String BASE_URL_CN = "https://app.adjust.cn";
     private static final String BASE_URL_EU = "https://app.eu.adjust.com";
     private static final String BASE_URL_INDIA = "https://app.adjust.net.in";
     private static final String BASE_URL_TR = "https://app.tr.adjust.com";
     private static final String BASE_URL_US = "https://app.us.adjust.com";
     private static final String GDPR_URL_CHINA = "https://gdpr.adjust.world";
+    private static final String GDPR_URL_CN = "https://gdpr.adjust.com";
     private static final String GDPR_URL_EU = "https://gdpr.eu.adjust.com";
     private static final String GDPR_URL_INDIA = "https://gdpr.adjust.net.in";
     private static final String GDPR_URL_TR = "https://gdpr.tr.adjust.com";
     private static final String GDPR_URL_US = "https://gdpr.us.adjust.com";
     private static final String SUBSCRIPTION_URL_CHINA = "https://subscription.adjust.world";
+    private static final String SUBSCRIPTION_URL_CN = "https://subscription.adjust.com";
     private static final String SUBSCRIPTION_URL_EU = "https://subscription.eu.adjust.com";
     private static final String SUBSCRIPTION_URL_INDIA = "https://subscription.adjust.net.in";
     private static final String SUBSCRIPTION_URL_TR = "https://subscription.tr.adjust.com";
@@ -45,15 +48,15 @@ public class UrlStrategy {
     }
 
     private static List<String> baseUrlChoices(String str) {
-        return AdjustConfig.URL_STRATEGY_INDIA.equals(str) ? Arrays.asList(BASE_URL_INDIA, Constants.BASE_URL) : AdjustConfig.URL_STRATEGY_CHINA.equals(str) ? Arrays.asList(BASE_URL_CHINA, Constants.BASE_URL) : AdjustConfig.DATA_RESIDENCY_EU.equals(str) ? Collections.singletonList(BASE_URL_EU) : AdjustConfig.DATA_RESIDENCY_TR.equals(str) ? Collections.singletonList(BASE_URL_TR) : AdjustConfig.DATA_RESIDENCY_US.equals(str) ? Collections.singletonList(BASE_URL_US) : Arrays.asList(Constants.BASE_URL, BASE_URL_INDIA, BASE_URL_CHINA);
+        return AdjustConfig.URL_STRATEGY_INDIA.equals(str) ? Arrays.asList(BASE_URL_INDIA, Constants.BASE_URL) : AdjustConfig.URL_STRATEGY_CHINA.equals(str) ? Arrays.asList(BASE_URL_CHINA, Constants.BASE_URL) : AdjustConfig.URL_STRATEGY_CN.equals(str) ? Arrays.asList(BASE_URL_CN, Constants.BASE_URL) : AdjustConfig.DATA_RESIDENCY_EU.equals(str) ? Collections.singletonList(BASE_URL_EU) : AdjustConfig.DATA_RESIDENCY_TR.equals(str) ? Collections.singletonList(BASE_URL_TR) : AdjustConfig.DATA_RESIDENCY_US.equals(str) ? Collections.singletonList(BASE_URL_US) : Arrays.asList(Constants.BASE_URL, BASE_URL_INDIA, BASE_URL_CHINA);
     }
 
     private static List<String> gdprUrlChoices(String str) {
-        return AdjustConfig.URL_STRATEGY_INDIA.equals(str) ? Arrays.asList(GDPR_URL_INDIA, Constants.GDPR_URL) : AdjustConfig.URL_STRATEGY_CHINA.equals(str) ? Arrays.asList(GDPR_URL_CHINA, Constants.GDPR_URL) : AdjustConfig.DATA_RESIDENCY_EU.equals(str) ? Collections.singletonList(GDPR_URL_EU) : AdjustConfig.DATA_RESIDENCY_TR.equals(str) ? Collections.singletonList(GDPR_URL_TR) : AdjustConfig.DATA_RESIDENCY_US.equals(str) ? Collections.singletonList(GDPR_URL_US) : Arrays.asList(Constants.GDPR_URL, GDPR_URL_INDIA, GDPR_URL_CHINA);
+        return AdjustConfig.URL_STRATEGY_INDIA.equals(str) ? Arrays.asList(GDPR_URL_INDIA, "https://gdpr.adjust.com") : AdjustConfig.URL_STRATEGY_CHINA.equals(str) ? Arrays.asList(GDPR_URL_CHINA, "https://gdpr.adjust.com") : AdjustConfig.URL_STRATEGY_CN.equals(str) ? Arrays.asList("https://gdpr.adjust.com", "https://gdpr.adjust.com") : AdjustConfig.DATA_RESIDENCY_EU.equals(str) ? Collections.singletonList(GDPR_URL_EU) : AdjustConfig.DATA_RESIDENCY_TR.equals(str) ? Collections.singletonList(GDPR_URL_TR) : AdjustConfig.DATA_RESIDENCY_US.equals(str) ? Collections.singletonList(GDPR_URL_US) : Arrays.asList("https://gdpr.adjust.com", GDPR_URL_INDIA, GDPR_URL_CHINA);
     }
 
     private static List<String> subscriptionUrlChoices(String str) {
-        return AdjustConfig.URL_STRATEGY_INDIA.equals(str) ? Arrays.asList(SUBSCRIPTION_URL_INDIA, Constants.SUBSCRIPTION_URL) : AdjustConfig.URL_STRATEGY_CHINA.equals(str) ? Arrays.asList(SUBSCRIPTION_URL_CHINA, Constants.SUBSCRIPTION_URL) : AdjustConfig.DATA_RESIDENCY_EU.equals(str) ? Collections.singletonList(SUBSCRIPTION_URL_EU) : AdjustConfig.DATA_RESIDENCY_TR.equals(str) ? Collections.singletonList(SUBSCRIPTION_URL_TR) : AdjustConfig.DATA_RESIDENCY_US.equals(str) ? Collections.singletonList(SUBSCRIPTION_URL_US) : Arrays.asList(Constants.SUBSCRIPTION_URL, SUBSCRIPTION_URL_INDIA, SUBSCRIPTION_URL_CHINA);
+        return AdjustConfig.URL_STRATEGY_INDIA.equals(str) ? Arrays.asList(SUBSCRIPTION_URL_INDIA, "https://subscription.adjust.com") : AdjustConfig.URL_STRATEGY_CHINA.equals(str) ? Arrays.asList(SUBSCRIPTION_URL_CHINA, "https://subscription.adjust.com") : AdjustConfig.URL_STRATEGY_CN.equals(str) ? Arrays.asList("https://subscription.adjust.com", "https://subscription.adjust.com") : AdjustConfig.DATA_RESIDENCY_EU.equals(str) ? Collections.singletonList(SUBSCRIPTION_URL_EU) : AdjustConfig.DATA_RESIDENCY_TR.equals(str) ? Collections.singletonList(SUBSCRIPTION_URL_TR) : AdjustConfig.DATA_RESIDENCY_US.equals(str) ? Collections.singletonList(SUBSCRIPTION_URL_US) : Arrays.asList("https://subscription.adjust.com", SUBSCRIPTION_URL_INDIA, SUBSCRIPTION_URL_CHINA);
     }
 
     public void resetAfterSuccess() {

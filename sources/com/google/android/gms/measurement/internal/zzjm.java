@@ -1,9 +1,16 @@
 package com.google.android.gms.measurement.internal;
 
-import android.os.Bundle;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzjm implements Runnable {
+    private final /* synthetic */ zziv zza;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-public interface zzjm {
-    void interceptEvent(String str, String str2, Bundle bundle, long j);
+    public zzjm(zziv zzivVar) {
+        this.zza = zzivVar;
+    }
+
+    @Override // java.lang.Runnable
+    public final void run() {
+        this.zza.zza.zza();
+    }
 }

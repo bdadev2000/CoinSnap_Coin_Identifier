@@ -4,16 +4,14 @@ import android.content.ComponentName;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import androidx.core.os.EnvironmentCompat;
+import com.applovin.sdk.AppLovinMediationProvider;
 import java.util.HashMap;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzr implements Handler.Callback {
     final /* synthetic */ zzs zza;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public /* synthetic */ zzr(zzs zzsVar, zzq zzqVar) {
         this.zza = zzsVar;
     }
@@ -25,43 +23,49 @@ public final class zzr implements Handler.Callback {
         HashMap hashMap3;
         HashMap hashMap4;
         HashMap hashMap5;
-        int i = message.what;
-        if (i == 0) {
-            hashMap = this.zza.zzb;
-            synchronized (hashMap) {
-                zzo zzoVar = (zzo) message.obj;
-                hashMap2 = this.zza.zzb;
-                zzp zzpVar = (zzp) hashMap2.get(zzoVar);
-                if (zzpVar != null && zzpVar.zzi()) {
-                    if (zzpVar.zzj()) {
-                        zzpVar.zzg("GmsClientSupervisor");
+        int i9 = message.what;
+        if (i9 != 0) {
+            if (i9 != 1) {
+                return false;
+            }
+            hashMap4 = this.zza.zzb;
+            synchronized (hashMap4) {
+                try {
+                    zzo zzoVar = (zzo) message.obj;
+                    hashMap5 = this.zza.zzb;
+                    zzp zzpVar = (zzp) hashMap5.get(zzoVar);
+                    if (zzpVar != null && zzpVar.zza() == 3) {
+                        Log.e("GmsClientSupervisor", "Timeout waiting for ServiceConnection callback ".concat(String.valueOf(zzoVar)), new Exception());
+                        ComponentName zzb = zzpVar.zzb();
+                        if (zzb == null) {
+                            zzb = zzoVar.zza();
+                        }
+                        if (zzb == null) {
+                            String zzc = zzoVar.zzc();
+                            Preconditions.checkNotNull(zzc);
+                            zzb = new ComponentName(zzc, AppLovinMediationProvider.UNKNOWN);
+                        }
+                        zzpVar.onServiceDisconnected(zzb);
                     }
-                    hashMap3 = this.zza.zzb;
-                    hashMap3.remove(zzoVar);
+                } finally {
                 }
             }
             return true;
         }
-        if (i != 1) {
-            return false;
-        }
-        hashMap4 = this.zza.zzb;
-        synchronized (hashMap4) {
-            zzo zzoVar2 = (zzo) message.obj;
-            hashMap5 = this.zza.zzb;
-            zzp zzpVar2 = (zzp) hashMap5.get(zzoVar2);
-            if (zzpVar2 != null && zzpVar2.zza() == 3) {
-                Log.e("GmsClientSupervisor", "Timeout waiting for ServiceConnection callback " + String.valueOf(zzoVar2), new Exception());
-                ComponentName zzb = zzpVar2.zzb();
-                if (zzb == null) {
-                    zzb = zzoVar2.zza();
+        hashMap = this.zza.zzb;
+        synchronized (hashMap) {
+            try {
+                zzo zzoVar2 = (zzo) message.obj;
+                hashMap2 = this.zza.zzb;
+                zzp zzpVar2 = (zzp) hashMap2.get(zzoVar2);
+                if (zzpVar2 != null && zzpVar2.zzi()) {
+                    if (zzpVar2.zzj()) {
+                        zzpVar2.zzg("GmsClientSupervisor");
+                    }
+                    hashMap3 = this.zza.zzb;
+                    hashMap3.remove(zzoVar2);
                 }
-                if (zzb == null) {
-                    String zzc = zzoVar2.zzc();
-                    Preconditions.checkNotNull(zzc);
-                    zzb = new ComponentName(zzc, EnvironmentCompat.MEDIA_UNKNOWN);
-                }
-                zzpVar2.onServiceDisconnected(zzb);
+            } finally {
             }
         }
         return true;

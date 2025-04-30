@@ -1,43 +1,45 @@
 package com.google.api;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import a4.l1;
+import a4.m1;
+import a4.n1;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-/* loaded from: classes12.dex */
-public final class SystemParameter extends GeneratedMessageLite<SystemParameter, Builder> implements SystemParameterOrBuilder {
+/* loaded from: classes2.dex */
+public final class SystemParameter extends L2 implements n1 {
     private static final SystemParameter DEFAULT_INSTANCE;
     public static final int HTTP_HEADER_FIELD_NUMBER = 2;
     public static final int NAME_FIELD_NUMBER = 1;
-    private static volatile Parser<SystemParameter> PARSER = null;
+    private static volatile InterfaceC1948l4 PARSER = null;
     public static final int URL_QUERY_PARAMETER_FIELD_NUMBER = 3;
     private String name_ = "";
     private String httpHeader_ = "";
     private String urlQueryParameter_ = "";
 
+    static {
+        SystemParameter systemParameter = new SystemParameter();
+        DEFAULT_INSTANCE = systemParameter;
+        L2.registerDefaultInstance(SystemParameter.class, systemParameter);
+    }
+
     private SystemParameter() {
     }
 
-    @Override // com.google.api.SystemParameterOrBuilder
-    public String getName() {
-        return this.name_;
-    }
-
-    @Override // com.google.api.SystemParameterOrBuilder
-    public ByteString getNameBytes() {
-        return ByteString.copyFromUtf8(this.name_);
-    }
-
     /* JADX INFO: Access modifiers changed from: private */
-    public void setName(String str) {
-        str.getClass();
-        this.name_ = str;
+    public void clearHttpHeader() {
+        this.httpHeader_ = getDefaultInstance().getHttpHeader();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -46,19 +48,28 @@ public final class SystemParameter extends GeneratedMessageLite<SystemParameter,
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setNameBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.name_ = byteString.toStringUtf8();
+    public void clearUrlQueryParameter() {
+        this.urlQueryParameter_ = getDefaultInstance().getUrlQueryParameter();
     }
 
-    @Override // com.google.api.SystemParameterOrBuilder
-    public String getHttpHeader() {
-        return this.httpHeader_;
+    public static SystemParameter getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    @Override // com.google.api.SystemParameterOrBuilder
-    public ByteString getHttpHeaderBytes() {
-        return ByteString.copyFromUtf8(this.httpHeader_);
+    public static m1 newBuilder() {
+        return (m1) DEFAULT_INSTANCE.createBuilder();
+    }
+
+    public static SystemParameter parseDelimitedFrom(InputStream inputStream) throws IOException {
+        return (SystemParameter) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static SystemParameter parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (SystemParameter) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    }
+
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -68,24 +79,21 @@ public final class SystemParameter extends GeneratedMessageLite<SystemParameter,
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearHttpHeader() {
-        this.httpHeader_ = getDefaultInstance().getHttpHeader();
+    public void setHttpHeaderBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.httpHeader_ = h6.toStringUtf8();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void setHttpHeaderBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.httpHeader_ = byteString.toStringUtf8();
+    public void setName(String str) {
+        str.getClass();
+        this.name_ = str;
     }
 
-    @Override // com.google.api.SystemParameterOrBuilder
-    public String getUrlQueryParameter() {
-        return this.urlQueryParameter_;
-    }
-
-    @Override // com.google.api.SystemParameterOrBuilder
-    public ByteString getUrlQueryParameterBytes() {
-        return ByteString.copyFromUtf8(this.urlQueryParameter_);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setNameBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.name_ = h6.toStringUtf8();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -95,230 +103,37 @@ public final class SystemParameter extends GeneratedMessageLite<SystemParameter,
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearUrlQueryParameter() {
-        this.urlQueryParameter_ = getDefaultInstance().getUrlQueryParameter();
+    public void setUrlQueryParameterBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.urlQueryParameter_ = h6.toStringUtf8();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setUrlQueryParameterBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.urlQueryParameter_ = byteString.toStringUtf8();
-    }
-
-    public static SystemParameter parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (SystemParameter) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
-    }
-
-    public static SystemParameter parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (SystemParameter) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static SystemParameter parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (SystemParameter) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static SystemParameter parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (SystemParameter) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static SystemParameter parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (SystemParameter) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static SystemParameter parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (SystemParameter) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static SystemParameter parseFrom(InputStream inputStream) throws IOException {
-        return (SystemParameter) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static SystemParameter parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (SystemParameter) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static SystemParameter parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (SystemParameter) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static SystemParameter parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (SystemParameter) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static SystemParameter parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (SystemParameter) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
-    }
-
-    public static SystemParameter parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (SystemParameter) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
-    }
-
-    public static Builder newBuilder(SystemParameter systemParameter) {
-        return DEFAULT_INSTANCE.createBuilder(systemParameter);
-    }
-
-    /* loaded from: classes12.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<SystemParameter, Builder> implements SystemParameterOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(SystemParameter.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.api.SystemParameterOrBuilder
-        public String getName() {
-            return ((SystemParameter) this.instance).getName();
-        }
-
-        @Override // com.google.api.SystemParameterOrBuilder
-        public ByteString getNameBytes() {
-            return ((SystemParameter) this.instance).getNameBytes();
-        }
-
-        public Builder setName(String str) {
-            copyOnWrite();
-            ((SystemParameter) this.instance).setName(str);
-            return this;
-        }
-
-        public Builder clearName() {
-            copyOnWrite();
-            ((SystemParameter) this.instance).clearName();
-            return this;
-        }
-
-        public Builder setNameBytes(ByteString byteString) {
-            copyOnWrite();
-            ((SystemParameter) this.instance).setNameBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.api.SystemParameterOrBuilder
-        public String getHttpHeader() {
-            return ((SystemParameter) this.instance).getHttpHeader();
-        }
-
-        @Override // com.google.api.SystemParameterOrBuilder
-        public ByteString getHttpHeaderBytes() {
-            return ((SystemParameter) this.instance).getHttpHeaderBytes();
-        }
-
-        public Builder setHttpHeader(String str) {
-            copyOnWrite();
-            ((SystemParameter) this.instance).setHttpHeader(str);
-            return this;
-        }
-
-        public Builder clearHttpHeader() {
-            copyOnWrite();
-            ((SystemParameter) this.instance).clearHttpHeader();
-            return this;
-        }
-
-        public Builder setHttpHeaderBytes(ByteString byteString) {
-            copyOnWrite();
-            ((SystemParameter) this.instance).setHttpHeaderBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.api.SystemParameterOrBuilder
-        public String getUrlQueryParameter() {
-            return ((SystemParameter) this.instance).getUrlQueryParameter();
-        }
-
-        @Override // com.google.api.SystemParameterOrBuilder
-        public ByteString getUrlQueryParameterBytes() {
-            return ((SystemParameter) this.instance).getUrlQueryParameterBytes();
-        }
-
-        public Builder setUrlQueryParameter(String str) {
-            copyOnWrite();
-            ((SystemParameter) this.instance).setUrlQueryParameter(str);
-            return this;
-        }
-
-        public Builder clearUrlQueryParameter() {
-            copyOnWrite();
-            ((SystemParameter) this.instance).clearUrlQueryParameter();
-            return this;
-        }
-
-        public Builder setUrlQueryParameterBytes(ByteString byteString) {
-            copyOnWrite();
-            ((SystemParameter) this.instance).setUrlQueryParameterBytes(byteString);
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.api.SystemParameter$1, reason: invalid class name */
-    /* loaded from: classes12.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (l1.f4030a[k22.ordinal()]) {
             case 1:
                 return new SystemParameter();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001Ȉ\u0002Ȉ\u0003Ȉ", new Object[]{"name_", "httpHeader_", "urlQueryParameter_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001Ȉ\u0002Ȉ\u0003Ȉ", new Object[]{"name_", "httpHeader_", "urlQueryParameter_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<SystemParameter> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (SystemParameter.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -328,17 +143,71 @@ public final class SystemParameter extends GeneratedMessageLite<SystemParameter,
         }
     }
 
-    static {
-        SystemParameter systemParameter = new SystemParameter();
-        DEFAULT_INSTANCE = systemParameter;
-        GeneratedMessageLite.registerDefaultInstance(SystemParameter.class, systemParameter);
+    public String getHttpHeader() {
+        return this.httpHeader_;
     }
 
-    public static SystemParameter getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public H getHttpHeaderBytes() {
+        return H.copyFromUtf8(this.httpHeader_);
     }
 
-    public static Parser<SystemParameter> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public String getName() {
+        return this.name_;
+    }
+
+    public H getNameBytes() {
+        return H.copyFromUtf8(this.name_);
+    }
+
+    public String getUrlQueryParameter() {
+        return this.urlQueryParameter_;
+    }
+
+    public H getUrlQueryParameterBytes() {
+        return H.copyFromUtf8(this.urlQueryParameter_);
+    }
+
+    public static m1 newBuilder(SystemParameter systemParameter) {
+        return (m1) DEFAULT_INSTANCE.createBuilder(systemParameter);
+    }
+
+    public static SystemParameter parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (SystemParameter) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static SystemParameter parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (SystemParameter) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static SystemParameter parseFrom(H h6) throws C1912g3 {
+        return (SystemParameter) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static SystemParameter parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (SystemParameter) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static SystemParameter parseFrom(byte[] bArr) throws C1912g3 {
+        return (SystemParameter) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static SystemParameter parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (SystemParameter) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static SystemParameter parseFrom(InputStream inputStream) throws IOException {
+        return (SystemParameter) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static SystemParameter parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (SystemParameter) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static SystemParameter parseFrom(S s5) throws IOException {
+        return (SystemParameter) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static SystemParameter parseFrom(S s5, W1 w1) throws IOException {
+        return (SystemParameter) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

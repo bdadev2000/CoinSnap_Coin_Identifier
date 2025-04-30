@@ -1,10 +1,13 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final class zzeu extends IllegalArgumentException {
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzeu(int i, int i2) {
-        super("Unpaired surrogate at index " + i + " of " + i2);
+import java.util.Iterator;
+
+/* loaded from: classes2.dex */
+final class zzeu {
+    private static final Iterator zza = new zzes();
+    private static final Iterable zzb = new zzet();
+
+    public static Iterable zza() {
+        return zzb;
     }
 }

@@ -1,21 +1,74 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-public enum zzex {
-    INT(0),
-    LONG(0L),
-    FLOAT(Float.valueOf(0.0f)),
-    DOUBLE(Double.valueOf(0.0d)),
-    BOOLEAN(false),
-    STRING(""),
-    BYTE_STRING(zzba.zzb),
-    ENUM(null),
-    MESSAGE(null);
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
-    private final Object zzk;
+/* loaded from: classes2.dex */
+final class zzex implements Iterator {
+    final /* synthetic */ zzfb zza;
+    private int zzb = -1;
+    private boolean zzc;
+    private Iterator zzd;
 
-    zzex(Object obj) {
-        this.zzk = obj;
+    private final Iterator zza() {
+        Map map;
+        if (this.zzd == null) {
+            map = this.zza.zzc;
+            this.zzd = map.entrySet().iterator();
+        }
+        return this.zzd;
+    }
+
+    @Override // java.util.Iterator
+    public final boolean hasNext() {
+        List list;
+        Map map;
+        int i9 = this.zzb + 1;
+        list = this.zza.zzb;
+        if (i9 < list.size()) {
+            return true;
+        }
+        map = this.zza.zzc;
+        if (!map.isEmpty() && zza().hasNext()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override // java.util.Iterator
+    public final /* bridge */ /* synthetic */ Object next() {
+        List list;
+        List list2;
+        this.zzc = true;
+        int i9 = this.zzb + 1;
+        this.zzb = i9;
+        list = this.zza.zzb;
+        if (i9 < list.size()) {
+            list2 = this.zza.zzb;
+            return (Map.Entry) list2.get(this.zzb);
+        }
+        return (Map.Entry) zza().next();
+    }
+
+    @Override // java.util.Iterator
+    public final void remove() {
+        List list;
+        if (this.zzc) {
+            this.zzc = false;
+            this.zza.zzn();
+            int i9 = this.zzb;
+            list = this.zza.zzb;
+            if (i9 < list.size()) {
+                zzfb zzfbVar = this.zza;
+                int i10 = this.zzb;
+                this.zzb = i10 - 1;
+                zzfbVar.zzl(i10);
+                return;
+            }
+            zza().remove();
+            return;
+        }
+        throw new IllegalStateException("remove() was called before next()");
     }
 }

@@ -12,20 +12,30 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.annotation.KeepForSdk;
 import com.google.android.gms.dynamic.LifecycleDelegate;
 import com.google.errorprone.annotations.ResultIgnorabilityUnspecified;
 import java.util.LinkedList;
 
-/* compiled from: com.google.android.gms:play-services-base@@18.4.0 */
-/* loaded from: classes12.dex */
+@KeepForSdk
+/* loaded from: classes2.dex */
 public abstract class DeferredLifecycleHelper<T extends LifecycleDelegate> {
     private LifecycleDelegate zaa;
+
+    @Nullable
     private Bundle zab;
     private LinkedList zac;
     private final OnDelegateCreatedListener zad = new zaa(this);
 
-    public static void showGooglePlayUnavailableMessage(FrameLayout frameLayout) {
+    @KeepForSdk
+    public DeferredLifecycleHelper() {
+    }
+
+    @KeepForSdk
+    public static void showGooglePlayUnavailableMessage(@NonNull FrameLayout frameLayout) {
         GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
         Context context = frameLayout.getContext();
         int isGooglePlayServicesAvailable = googleApiAvailability.isGooglePlayServicesAvailable(context);
@@ -50,13 +60,13 @@ public abstract class DeferredLifecycleHelper<T extends LifecycleDelegate> {
         }
     }
 
-    private final void zae(int i) {
-        while (!this.zac.isEmpty() && ((zah) this.zac.getLast()).zaa() >= i) {
+    private final void zae(int i9) {
+        while (!this.zac.isEmpty() && ((zah) this.zac.getLast()).zaa() >= i9) {
             this.zac.removeLast();
         }
     }
 
-    private final void zaf(Bundle bundle, zah zahVar) {
+    private final void zaf(@Nullable Bundle bundle, zah zahVar) {
         LifecycleDelegate lifecycleDelegate = this.zaa;
         if (lifecycleDelegate != null) {
             zahVar.zab(lifecycleDelegate);
@@ -77,22 +87,29 @@ public abstract class DeferredLifecycleHelper<T extends LifecycleDelegate> {
         createDelegate(this.zad);
     }
 
-    protected abstract void createDelegate(OnDelegateCreatedListener<T> onDelegateCreatedListener);
+    @KeepForSdk
+    public abstract void createDelegate(@NonNull OnDelegateCreatedListener<T> onDelegateCreatedListener);
 
+    @NonNull
+    @KeepForSdk
     public T getDelegate() {
         return (T) this.zaa;
     }
 
-    protected void handleGooglePlayUnavailable(FrameLayout frameLayout) {
+    @KeepForSdk
+    public void handleGooglePlayUnavailable(@NonNull FrameLayout frameLayout) {
         showGooglePlayUnavailableMessage(frameLayout);
     }
 
-    public void onCreate(Bundle bundle) {
+    @KeepForSdk
+    public void onCreate(@Nullable Bundle bundle) {
         zaf(bundle, new zac(this, bundle));
     }
 
+    @NonNull
     @ResultIgnorabilityUnspecified
-    public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
+    @KeepForSdk
+    public View onCreateView(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
         FrameLayout frameLayout = new FrameLayout(layoutInflater.getContext());
         zaf(bundle, new zad(this, frameLayout, layoutInflater, viewGroup, bundle));
         if (this.zaa == null) {
@@ -101,6 +118,7 @@ public abstract class DeferredLifecycleHelper<T extends LifecycleDelegate> {
         return frameLayout;
     }
 
+    @KeepForSdk
     public void onDestroy() {
         LifecycleDelegate lifecycleDelegate = this.zaa;
         if (lifecycleDelegate != null) {
@@ -110,6 +128,7 @@ public abstract class DeferredLifecycleHelper<T extends LifecycleDelegate> {
         }
     }
 
+    @KeepForSdk
     public void onDestroyView() {
         LifecycleDelegate lifecycleDelegate = this.zaa;
         if (lifecycleDelegate != null) {
@@ -119,10 +138,12 @@ public abstract class DeferredLifecycleHelper<T extends LifecycleDelegate> {
         }
     }
 
-    public void onInflate(Activity activity, Bundle bundle, Bundle bundle2) {
+    @KeepForSdk
+    public void onInflate(@NonNull Activity activity, @NonNull Bundle bundle, @Nullable Bundle bundle2) {
         zaf(bundle2, new zab(this, activity, bundle, bundle2));
     }
 
+    @KeepForSdk
     public void onLowMemory() {
         LifecycleDelegate lifecycleDelegate = this.zaa;
         if (lifecycleDelegate != null) {
@@ -130,6 +151,7 @@ public abstract class DeferredLifecycleHelper<T extends LifecycleDelegate> {
         }
     }
 
+    @KeepForSdk
     public void onPause() {
         LifecycleDelegate lifecycleDelegate = this.zaa;
         if (lifecycleDelegate != null) {
@@ -139,11 +161,13 @@ public abstract class DeferredLifecycleHelper<T extends LifecycleDelegate> {
         }
     }
 
+    @KeepForSdk
     public void onResume() {
         zaf(null, new zag(this));
     }
 
-    public void onSaveInstanceState(Bundle bundle) {
+    @KeepForSdk
+    public void onSaveInstanceState(@NonNull Bundle bundle) {
         LifecycleDelegate lifecycleDelegate = this.zaa;
         if (lifecycleDelegate != null) {
             lifecycleDelegate.onSaveInstanceState(bundle);
@@ -155,10 +179,12 @@ public abstract class DeferredLifecycleHelper<T extends LifecycleDelegate> {
         }
     }
 
+    @KeepForSdk
     public void onStart() {
         zaf(null, new zaf(this));
     }
 
+    @KeepForSdk
     public void onStop() {
         LifecycleDelegate lifecycleDelegate = this.zaa;
         if (lifecycleDelegate != null) {

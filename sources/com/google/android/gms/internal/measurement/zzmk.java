@@ -1,100 +1,101 @@
 package com.google.android.gms.internal.measurement;
 
-import java.io.IOException;
+import Q7.n0;
+import com.applovin.exoplayer2.common.base.Ascii;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-abstract class zzmk<T, B> {
-    private static volatile int zza = 100;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzmk {
+    private static final zzmm zza;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract int zza(T t);
-
-    abstract B zza();
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract T zza(T t, T t2);
-
-    abstract void zza(B b, int i, int i2);
-
-    abstract void zza(B b, int i, long j);
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract void zza(B b, int i, zzik zzikVar);
-
-    abstract void zza(B b, int i, T t);
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract void zza(T t, zznb zznbVar) throws IOException;
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract boolean zza(zzlr zzlrVar);
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract int zzb(T t);
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract void zzb(B b, int i, long j);
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract void zzb(T t, zznb zznbVar) throws IOException;
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract void zzb(Object obj, B b);
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract B zzc(Object obj);
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract void zzc(Object obj, T t);
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract T zzd(Object obj);
-
-    abstract T zze(B b);
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public abstract void zzf(Object obj);
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public final boolean zza(B b, zzlr zzlrVar, int i) throws IOException {
-        int zzd = zzlrVar.zzd();
-        int i2 = zzd >>> 3;
-        int i3 = zzd & 7;
-        if (i3 == 0) {
-            zzb(b, i2, zzlrVar.zzl());
-            return true;
+    static {
+        if (zzmg.zzc()) {
+            zzmg.zzd();
         }
-        if (i3 == 1) {
-            zza((zzmk<T, B>) b, i2, zzlrVar.zzk());
-            return true;
-        }
-        if (i3 == 2) {
-            zza((zzmk<T, B>) b, i2, zzlrVar.zzp());
-            return true;
-        }
-        if (i3 != 3) {
-            if (i3 == 4) {
-                return false;
+        zza = new zzml();
+    }
+
+    public static /* synthetic */ int zza(byte[] bArr, int i9, int i10) {
+        byte b = bArr[i9 - 1];
+        int i11 = i10 - i9;
+        if (i11 == 0) {
+            if (b > -12) {
+                return -1;
             }
-            if (i3 == 5) {
-                zza((zzmk<T, B>) b, i2, zzlrVar.zzf());
-                return true;
+            return b;
+        }
+        if (i11 == 1) {
+            byte b8 = bArr[i9];
+            if (b > -12 || b8 > -65) {
+                return -1;
             }
-            throw zzkb.zza();
+            return (b8 << 8) ^ b;
         }
-        B zza2 = zza();
-        int i4 = 4 | (i2 << 3);
-        int i5 = i + 1;
-        if (i5 >= zza) {
-            throw zzkb.zzh();
+        if (i11 == 2) {
+            byte b9 = bArr[i9];
+            byte b10 = bArr[i9 + 1];
+            if (b > -12 || b9 > -65 || b10 > -65) {
+                return -1;
+            }
+            return (b10 << Ascii.DLE) ^ ((b9 << 8) ^ b);
         }
-        while (zzlrVar.zzc() != Integer.MAX_VALUE && zza((zzmk<T, B>) zza2, zzlrVar, i5)) {
+        throw new AssertionError();
+    }
+
+    public static String zzb(byte[] bArr, int i9, int i10) throws zzjs {
+        return zza.zza(bArr, i9, i10);
+    }
+
+    public static boolean zzc(byte[] bArr, int i9, int i10) {
+        if (zza.zza(0, bArr, i9, i10) != 0) {
+            return false;
         }
-        if (i4 != zzlrVar.zzd()) {
-            throw zzkb.zzb();
-        }
-        zza((zzmk<T, B>) b, i2, (int) zze(zza2));
         return true;
+    }
+
+    public static int zza(String str, byte[] bArr, int i9, int i10) {
+        return zza.zza(str, bArr, i9, i10);
+    }
+
+    public static int zza(String str) {
+        int length = str.length();
+        int i9 = 0;
+        int i10 = 0;
+        while (i10 < length && str.charAt(i10) < 128) {
+            i10++;
+        }
+        int i11 = length;
+        while (true) {
+            if (i10 >= length) {
+                break;
+            }
+            char charAt = str.charAt(i10);
+            if (charAt < 2048) {
+                i11 += (127 - charAt) >>> 31;
+                i10++;
+            } else {
+                int length2 = str.length();
+                while (i10 < length2) {
+                    char charAt2 = str.charAt(i10);
+                    if (charAt2 < 2048) {
+                        i9 += (127 - charAt2) >>> 31;
+                    } else {
+                        i9 += 2;
+                        if (55296 <= charAt2 && charAt2 <= 57343) {
+                            if (Character.codePointAt(str, i10) < 65536) {
+                                throw new zzmo(i10, length2);
+                            }
+                            i10++;
+                        }
+                    }
+                    i10++;
+                }
+                i11 += i9;
+            }
+        }
+        if (i11 >= length) {
+            return i11;
+        }
+        throw new IllegalArgumentException(n0.g(i11 + 4294967296L, "UTF-8 length does not fit in int: "));
     }
 }

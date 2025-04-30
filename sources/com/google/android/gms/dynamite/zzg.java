@@ -3,8 +3,7 @@ package com.google.android.gms.dynamite;
 import android.content.Context;
 import com.google.android.gms.dynamite.DynamiteModule;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 final class zzg implements DynamiteModule.VersionPolicy {
     @Override // com.google.android.gms.dynamite.DynamiteModule.VersionPolicy
     public final DynamiteModule.VersionPolicy.SelectionResult selectModule(Context context, String str, DynamiteModule.VersionPolicy.IVersions iVersions) throws DynamiteModule.LoadingException {

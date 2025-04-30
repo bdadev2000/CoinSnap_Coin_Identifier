@@ -4,10 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/* compiled from: com.google.android.gms:play-services-measurement@@22.1.2 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public final class zzk extends zzal {
     private final zzac zzk;
+
+    public zzk(zzac zzacVar) {
+        super("internal.eventLogger");
+        this.zzk = zzacVar;
+    }
 
     @Override // com.google.android.gms.internal.measurement.zzal
     public final zzaq zza(zzh zzhVar, List<zzaq> list) {
@@ -23,10 +27,5 @@ public final class zzk extends zzal {
         }
         this.zzk.zza(zzf, zza, hashMap);
         return zzaq.zzc;
-    }
-
-    public zzk(zzac zzacVar) {
-        super("internal.eventLogger");
-        this.zzk = zzacVar;
     }
 }

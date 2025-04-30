@@ -1,44 +1,83 @@
 package com.google.android.gms.internal.measurement;
 
-/* compiled from: com.google.android.gms:play-services-measurement-base@@22.1.2 */
-/* loaded from: classes12.dex */
-final class zzio extends zziv {
-    private final int zzc;
-    private final int zzd;
+import java.io.IOException;
 
-    @Override // com.google.android.gms.internal.measurement.zziv, com.google.android.gms.internal.measurement.zzik
-    public final byte zza(int i) {
-        int zzb = zzb();
-        if (((zzb - (i + 1)) | i) >= 0) {
-            return this.zzb[this.zzc + i];
+/* loaded from: classes2.dex */
+public abstract class zzio {
+    private static volatile int zzd = 100;
+    int zza;
+    int zzb;
+    zzis zzc;
+
+    public static long zza(long j7) {
+        return (-(j7 & 1)) ^ (j7 >>> 1);
+    }
+
+    public static int zze(int i9) {
+        return (-(i9 & 1)) ^ (i9 >>> 1);
+    }
+
+    public abstract double zza() throws IOException;
+
+    public abstract int zza(int i9) throws zzjs;
+
+    public abstract float zzb() throws IOException;
+
+    public abstract void zzb(int i9) throws zzjs;
+
+    public abstract int zzc();
+
+    public abstract void zzc(int i9);
+
+    public abstract int zzd() throws IOException;
+
+    public abstract boolean zzd(int i9) throws IOException;
+
+    public abstract int zze() throws IOException;
+
+    public abstract int zzf() throws IOException;
+
+    public abstract int zzg() throws IOException;
+
+    public abstract int zzh() throws IOException;
+
+    public abstract int zzi() throws IOException;
+
+    public abstract int zzj() throws IOException;
+
+    public abstract long zzk() throws IOException;
+
+    public abstract long zzl() throws IOException;
+
+    public abstract long zzm() throws IOException;
+
+    public abstract long zzn() throws IOException;
+
+    public abstract long zzo() throws IOException;
+
+    public abstract long zzp() throws IOException;
+
+    public abstract zzia zzq() throws IOException;
+
+    public abstract String zzr() throws IOException;
+
+    public abstract String zzs() throws IOException;
+
+    public abstract boolean zzt() throws IOException;
+
+    public abstract boolean zzu() throws IOException;
+
+    private zzio() {
+        this.zzb = zzd;
+    }
+
+    public static zzio zza(byte[] bArr, int i9, int i10, boolean z8) {
+        zzin zzinVar = new zzin(bArr, i10);
+        try {
+            zzinVar.zza(i10);
+            return zzinVar;
+        } catch (zzjs e4) {
+            throw new IllegalArgumentException(e4);
         }
-        if (i < 0) {
-            throw new ArrayIndexOutOfBoundsException("Index < 0: " + i);
-        }
-        throw new ArrayIndexOutOfBoundsException("Index > length: " + i + ", " + zzb);
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    @Override // com.google.android.gms.internal.measurement.zziv, com.google.android.gms.internal.measurement.zzik
-    public final byte zzb(int i) {
-        return this.zzb[this.zzc + i];
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zziv
-    protected final int zzc() {
-        return this.zzc;
-    }
-
-    @Override // com.google.android.gms.internal.measurement.zziv, com.google.android.gms.internal.measurement.zzik
-    public final int zzb() {
-        return this.zzd;
-    }
-
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public zzio(byte[] bArr, int i, int i2) {
-        super(bArr);
-        zza(i, i + i2, bArr.length);
-        this.zzc = i;
-        this.zzd = i2;
     }
 }

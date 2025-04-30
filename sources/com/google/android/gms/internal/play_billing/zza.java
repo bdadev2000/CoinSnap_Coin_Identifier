@@ -1,8 +1,7 @@
 package com.google.android.gms.internal.play_billing;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
+/* loaded from: classes2.dex */
 public enum zza {
     RESPONSE_CODE_UNSPECIFIED(-999),
     SERVICE_TIMEOUT(-3),
@@ -20,25 +19,27 @@ public enum zza {
     EXPIRED_OFFER_TOKEN(11),
     NETWORK_ERROR(12);
 
-    private static final zzx zzp;
+    private static final zzal zzp;
     private final int zzr;
 
     static {
-        zzw zzwVar = new zzw();
+        zzak zzakVar = new zzak();
         for (zza zzaVar : values()) {
-            zzwVar.zza(Integer.valueOf(zzaVar.zzr), zzaVar);
+            zzakVar.zza(Integer.valueOf(zzaVar.zzr), zzaVar);
         }
-        zzp = zzwVar.zzb();
+        zzp = zzakVar.zzb();
     }
 
-    zza(int i) {
-        this.zzr = i;
+    zza(int i9) {
+        this.zzr = i9;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    public static zza zza(int i) {
-        zzx zzxVar = zzp;
-        Integer valueOf = Integer.valueOf(i);
-        return !zzxVar.containsKey(valueOf) ? RESPONSE_CODE_UNSPECIFIED : (zza) zzxVar.get(valueOf);
+    public static zza zza(int i9) {
+        zzal zzalVar = zzp;
+        Integer valueOf = Integer.valueOf(i9);
+        if (!zzalVar.containsKey(valueOf)) {
+            return RESPONSE_CODE_UNSPECIFIED;
+        }
+        return (zza) zzalVar.get(valueOf);
     }
 }

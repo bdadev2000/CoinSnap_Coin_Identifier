@@ -1,33 +1,61 @@
 package com.google.longrunning;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import com.google.protobuf.AbstractC1880c;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.O3;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import v5.e;
+import v5.f;
 
-/* loaded from: classes5.dex */
-public final class GetOperationRequest extends GeneratedMessageLite<GetOperationRequest, Builder> implements GetOperationRequestOrBuilder {
+/* loaded from: classes2.dex */
+public final class GetOperationRequest extends L2 implements O3 {
     private static final GetOperationRequest DEFAULT_INSTANCE;
     public static final int NAME_FIELD_NUMBER = 1;
-    private static volatile Parser<GetOperationRequest> PARSER;
+    private static volatile InterfaceC1948l4 PARSER;
     private String name_ = "";
+
+    static {
+        GetOperationRequest getOperationRequest = new GetOperationRequest();
+        DEFAULT_INSTANCE = getOperationRequest;
+        L2.registerDefaultInstance(GetOperationRequest.class, getOperationRequest);
+    }
 
     private GetOperationRequest() {
     }
 
-    @Override // com.google.longrunning.GetOperationRequestOrBuilder
-    public String getName() {
-        return this.name_;
+    /* JADX INFO: Access modifiers changed from: private */
+    public void clearName() {
+        this.name_ = getDefaultInstance().getName();
     }
 
-    @Override // com.google.longrunning.GetOperationRequestOrBuilder
-    public ByteString getNameBytes() {
-        return ByteString.copyFromUtf8(this.name_);
+    public static GetOperationRequest getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    public static f newBuilder() {
+        return (f) DEFAULT_INSTANCE.createBuilder();
+    }
+
+    public static GetOperationRequest parseDelimitedFrom(InputStream inputStream) throws IOException {
+        return (GetOperationRequest) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static GetOperationRequest parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (GetOperationRequest) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    }
+
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -37,174 +65,37 @@ public final class GetOperationRequest extends GeneratedMessageLite<GetOperation
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void clearName() {
-        this.name_ = getDefaultInstance().getName();
+    public void setNameBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.name_ = h6.toStringUtf8();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setNameBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.name_ = byteString.toStringUtf8();
-    }
-
-    public static GetOperationRequest parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (GetOperationRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
-    }
-
-    public static GetOperationRequest parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (GetOperationRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
-    }
-
-    public static GetOperationRequest parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (GetOperationRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static GetOperationRequest parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (GetOperationRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static GetOperationRequest parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (GetOperationRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static GetOperationRequest parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (GetOperationRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static GetOperationRequest parseFrom(InputStream inputStream) throws IOException {
-        return (GetOperationRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static GetOperationRequest parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (GetOperationRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static GetOperationRequest parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (GetOperationRequest) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static GetOperationRequest parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (GetOperationRequest) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
-    }
-
-    public static GetOperationRequest parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (GetOperationRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
-    }
-
-    public static GetOperationRequest parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (GetOperationRequest) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
-    }
-
-    public static Builder newBuilder(GetOperationRequest getOperationRequest) {
-        return DEFAULT_INSTANCE.createBuilder(getOperationRequest);
-    }
-
-    /* loaded from: classes5.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<GetOperationRequest, Builder> implements GetOperationRequestOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(GetOperationRequest.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.longrunning.GetOperationRequestOrBuilder
-        public String getName() {
-            return ((GetOperationRequest) this.instance).getName();
-        }
-
-        @Override // com.google.longrunning.GetOperationRequestOrBuilder
-        public ByteString getNameBytes() {
-            return ((GetOperationRequest) this.instance).getNameBytes();
-        }
-
-        public Builder setName(String str) {
-            copyOnWrite();
-            ((GetOperationRequest) this.instance).setName(str);
-            return this;
-        }
-
-        public Builder clearName() {
-            copyOnWrite();
-            ((GetOperationRequest) this.instance).clearName();
-            return this;
-        }
-
-        public Builder setNameBytes(ByteString byteString) {
-            copyOnWrite();
-            ((GetOperationRequest) this.instance).setNameBytes(byteString);
-            return this;
-        }
-    }
-
-    /* renamed from: com.google.longrunning.GetOperationRequest$1, reason: invalid class name */
-    /* loaded from: classes5.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (e.f23633a[k22.ordinal()]) {
             case 1:
                 return new GetOperationRequest();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0000\u0000\u0001Ȉ", new Object[]{"name_"});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0000\u0000\u0001Ȉ", new Object[]{"name_"});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<GetOperationRequest> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (GetOperationRequest.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -214,17 +105,55 @@ public final class GetOperationRequest extends GeneratedMessageLite<GetOperation
         }
     }
 
-    static {
-        GetOperationRequest getOperationRequest = new GetOperationRequest();
-        DEFAULT_INSTANCE = getOperationRequest;
-        GeneratedMessageLite.registerDefaultInstance(GetOperationRequest.class, getOperationRequest);
+    public String getName() {
+        return this.name_;
     }
 
-    public static GetOperationRequest getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public H getNameBytes() {
+        return H.copyFromUtf8(this.name_);
     }
 
-    public static Parser<GetOperationRequest> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public static f newBuilder(GetOperationRequest getOperationRequest) {
+        return (f) DEFAULT_INSTANCE.createBuilder(getOperationRequest);
+    }
+
+    public static GetOperationRequest parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (GetOperationRequest) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static GetOperationRequest parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (GetOperationRequest) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static GetOperationRequest parseFrom(H h6) throws C1912g3 {
+        return (GetOperationRequest) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    public static GetOperationRequest parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (GetOperationRequest) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static GetOperationRequest parseFrom(byte[] bArr) throws C1912g3 {
+        return (GetOperationRequest) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static GetOperationRequest parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (GetOperationRequest) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static GetOperationRequest parseFrom(InputStream inputStream) throws IOException {
+        return (GetOperationRequest) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static GetOperationRequest parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (GetOperationRequest) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static GetOperationRequest parseFrom(S s5) throws IOException {
+        return (GetOperationRequest) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static GetOperationRequest parseFrom(S s5, W1 w1) throws IOException {
+        return (GetOperationRequest) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

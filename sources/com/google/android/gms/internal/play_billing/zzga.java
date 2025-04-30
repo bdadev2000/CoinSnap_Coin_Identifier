@@ -1,41 +1,71 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final /* synthetic */ class zzga {
-    static final /* synthetic */ int[] zza;
+/* loaded from: classes2.dex */
+public final class zzga extends zzcs implements zzed {
+    private static final zzga zzb;
+    private int zzd;
+    private int zze = 0;
+    private Object zzf;
+    private int zzg;
+    private zzgk zzh;
 
     static {
-        zzca.zza();
-        int[] iArr = new int[7];
-        zza = iArr;
-        try {
-            iArr[3] = 1;
-        } catch (NoSuchFieldError unused) {
+        zzga zzgaVar = new zzga();
+        zzb = zzgaVar;
+        zzcs.zzt(zzga.class, zzgaVar);
+    }
+
+    private zzga() {
+    }
+
+    public static zzga zzA(byte[] bArr, zzcd zzcdVar) throws zzdc {
+        return (zzga) zzcs.zzm(zzb, bArr, zzcdVar);
+    }
+
+    public static /* synthetic */ void zzB(zzga zzgaVar, zzgk zzgkVar) {
+        zzgkVar.getClass();
+        zzgaVar.zzh = zzgkVar;
+        zzgaVar.zzd |= 2;
+    }
+
+    public static /* synthetic */ void zzC(zzga zzgaVar, zzhb zzhbVar) {
+        zzhbVar.getClass();
+        zzgaVar.zzf = zzhbVar;
+        zzgaVar.zze = 4;
+    }
+
+    public static /* synthetic */ void zzD(zzga zzgaVar, int i9) {
+        zzgaVar.zzg = i9 - 1;
+        zzgaVar.zzd |= 1;
+    }
+
+    public static zzfz zzy() {
+        return (zzfz) zzb.zzg();
+    }
+
+    public static /* synthetic */ zzga zzz() {
+        return zzb;
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.zzcs
+    public final Object zzx(int i9, Object obj, Object obj2) {
+        int i10 = i9 - 1;
+        if (i10 != 0) {
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    zzfy zzfyVar = null;
+                    if (i10 != 4) {
+                        if (i10 != 5) {
+                            return null;
+                        }
+                        return zzb;
+                    }
+                    return new zzfz(zzfyVar);
+                }
+                return new zzga();
+            }
+            return zzcs.zzq(zzb, "\u0001\u0003\u0001\u0001\u0001\u0004\u0003\u0000\u0000\u0000\u0001᠌\u0000\u0002ဉ\u0001\u0004<\u0000", new Object[]{"zzf", "zze", "zzd", "zzg", zzgb.zza, "zzh", zzhb.class});
         }
-        try {
-            zza[4] = 2;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            zza[2] = 3;
-        } catch (NoSuchFieldError unused3) {
-        }
-        try {
-            zza[5] = 4;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            zza[6] = 5;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            zza[0] = 6;
-        } catch (NoSuchFieldError unused6) {
-        }
-        try {
-            zza[1] = 7;
-        } catch (NoSuchFieldError unused7) {
-        }
+        return (byte) 1;
     }
 }

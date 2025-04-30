@@ -1,113 +1,50 @@
 package com.google.rpc;
 
-import com.google.protobuf.AbstractMessageLite;
+import com.google.protobuf.AbstractC1880c;
 import com.google.protobuf.Any;
-import com.google.protobuf.AnyOrBuilder;
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
-import com.google.protobuf.GeneratedMessageLite;
-import com.google.protobuf.Internal;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
+import com.google.protobuf.C1912g3;
+import com.google.protobuf.D2;
+import com.google.protobuf.E2;
+import com.google.protobuf.H;
+import com.google.protobuf.InterfaceC1891d3;
+import com.google.protobuf.InterfaceC1922i;
+import com.google.protobuf.InterfaceC1948l4;
+import com.google.protobuf.K2;
+import com.google.protobuf.L2;
+import com.google.protobuf.O3;
+import com.google.protobuf.S;
+import com.google.protobuf.W1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.Collections;
 import java.util.List;
+import w5.v;
+import w5.w;
 
-/* loaded from: classes5.dex */
-public final class Status extends GeneratedMessageLite<Status, Builder> implements StatusOrBuilder {
+/* loaded from: classes3.dex */
+public final class Status extends L2 implements O3 {
     public static final int CODE_FIELD_NUMBER = 1;
     private static final Status DEFAULT_INSTANCE;
     public static final int DETAILS_FIELD_NUMBER = 3;
     public static final int MESSAGE_FIELD_NUMBER = 2;
-    private static volatile Parser<Status> PARSER;
+    private static volatile InterfaceC1948l4 PARSER;
     private int code_;
     private String message_ = "";
-    private Internal.ProtobufList<Any> details_ = emptyProtobufList();
+    private InterfaceC1891d3 details_ = L2.emptyProtobufList();
+
+    static {
+        Status status = new Status();
+        DEFAULT_INSTANCE = status;
+        L2.registerDefaultInstance(Status.class, status);
+    }
 
     private Status() {
     }
 
-    @Override // com.google.rpc.StatusOrBuilder
-    public int getCode() {
-        return this.code_;
-    }
-
     /* JADX INFO: Access modifiers changed from: private */
-    public void setCode(int i) {
-        this.code_ = i;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearCode() {
-        this.code_ = 0;
-    }
-
-    @Override // com.google.rpc.StatusOrBuilder
-    public String getMessage() {
-        return this.message_;
-    }
-
-    @Override // com.google.rpc.StatusOrBuilder
-    public ByteString getMessageBytes() {
-        return ByteString.copyFromUtf8(this.message_);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setMessage(String str) {
-        str.getClass();
-        this.message_ = str;
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void clearMessage() {
-        this.message_ = getDefaultInstance().getMessage();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setMessageBytes(ByteString byteString) {
-        checkByteStringIsUtf8(byteString);
-        this.message_ = byteString.toStringUtf8();
-    }
-
-    @Override // com.google.rpc.StatusOrBuilder
-    public List<Any> getDetailsList() {
-        return this.details_;
-    }
-
-    public List<? extends AnyOrBuilder> getDetailsOrBuilderList() {
-        return this.details_;
-    }
-
-    @Override // com.google.rpc.StatusOrBuilder
-    public int getDetailsCount() {
-        return this.details_.size();
-    }
-
-    @Override // com.google.rpc.StatusOrBuilder
-    public Any getDetails(int i) {
-        return this.details_.get(i);
-    }
-
-    public AnyOrBuilder getDetailsOrBuilder(int i) {
-        return this.details_.get(i);
-    }
-
-    private void ensureDetailsIsMutable() {
-        Internal.ProtobufList<Any> protobufList = this.details_;
-        if (protobufList.isModifiable()) {
-            return;
-        }
-        this.details_ = GeneratedMessageLite.mutableCopy(protobufList);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setDetails(int i, Any any) {
-        any.getClass();
+    public void addAllDetails(Iterable<? extends Any> iterable) {
         ensureDetailsIsMutable();
-        this.details_.set(i, any);
+        AbstractC1880c.addAll((Iterable) iterable, (List) this.details_);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -118,273 +55,103 @@ public final class Status extends GeneratedMessageLite<Status, Builder> implemen
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void addDetails(int i, Any any) {
-        any.getClass();
-        ensureDetailsIsMutable();
-        this.details_.add(i, any);
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    public void addAllDetails(Iterable<? extends Any> iterable) {
-        ensureDetailsIsMutable();
-        AbstractMessageLite.addAll((Iterable) iterable, (List) this.details_);
+    public void clearCode() {
+        this.code_ = 0;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void clearDetails() {
-        this.details_ = emptyProtobufList();
+        this.details_ = L2.emptyProtobufList();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void removeDetails(int i) {
-        ensureDetailsIsMutable();
-        this.details_.remove(i);
+    public void clearMessage() {
+        this.message_ = getDefaultInstance().getMessage();
     }
 
-    public static Status parseFrom(ByteBuffer byteBuffer) throws InvalidProtocolBufferException {
-        return (Status) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer);
+    private void ensureDetailsIsMutable() {
+        InterfaceC1891d3 interfaceC1891d3 = this.details_;
+        if (!interfaceC1891d3.isModifiable()) {
+            this.details_ = L2.mutableCopy(interfaceC1891d3);
+        }
     }
 
-    public static Status parseFrom(ByteBuffer byteBuffer, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Status) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteBuffer, extensionRegistryLite);
+    public static Status getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
-    public static Status parseFrom(ByteString byteString) throws InvalidProtocolBufferException {
-        return (Status) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString);
-    }
-
-    public static Status parseFrom(ByteString byteString, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Status) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, byteString, extensionRegistryLite);
-    }
-
-    public static Status parseFrom(byte[] bArr) throws InvalidProtocolBufferException {
-        return (Status) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr);
-    }
-
-    public static Status parseFrom(byte[] bArr, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
-        return (Status) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, bArr, extensionRegistryLite);
-    }
-
-    public static Status parseFrom(InputStream inputStream) throws IOException {
-        return (Status) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream);
-    }
-
-    public static Status parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Status) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static w newBuilder() {
+        return (w) DEFAULT_INSTANCE.createBuilder();
     }
 
     public static Status parseDelimitedFrom(InputStream inputStream) throws IOException {
-        return (Status) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
+        return (Status) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream);
     }
 
-    public static Status parseDelimitedFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Status) parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, extensionRegistryLite);
+    public static Status parseFrom(ByteBuffer byteBuffer) throws C1912g3 {
+        return (Status) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer);
     }
 
-    public static Status parseFrom(CodedInputStream codedInputStream) throws IOException {
-        return (Status) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream);
+    public static InterfaceC1948l4 parser() {
+        return DEFAULT_INSTANCE.getParserForType();
     }
 
-    public static Status parseFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
-        return (Status) GeneratedMessageLite.parseFrom(DEFAULT_INSTANCE, codedInputStream, extensionRegistryLite);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void removeDetails(int i9) {
+        ensureDetailsIsMutable();
+        this.details_.remove(i9);
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.createBuilder();
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setCode(int i9) {
+        this.code_ = i9;
     }
 
-    public static Builder newBuilder(Status status) {
-        return DEFAULT_INSTANCE.createBuilder(status);
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setDetails(int i9, Any any) {
+        any.getClass();
+        ensureDetailsIsMutable();
+        this.details_.set(i9, any);
     }
 
-    /* loaded from: classes5.dex */
-    public static final class Builder extends GeneratedMessageLite.Builder<Status, Builder> implements StatusOrBuilder {
-        /* synthetic */ Builder(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private Builder() {
-            super(Status.DEFAULT_INSTANCE);
-        }
-
-        @Override // com.google.rpc.StatusOrBuilder
-        public int getCode() {
-            return ((Status) this.instance).getCode();
-        }
-
-        public Builder setCode(int i) {
-            copyOnWrite();
-            ((Status) this.instance).setCode(i);
-            return this;
-        }
-
-        public Builder clearCode() {
-            copyOnWrite();
-            ((Status) this.instance).clearCode();
-            return this;
-        }
-
-        @Override // com.google.rpc.StatusOrBuilder
-        public String getMessage() {
-            return ((Status) this.instance).getMessage();
-        }
-
-        @Override // com.google.rpc.StatusOrBuilder
-        public ByteString getMessageBytes() {
-            return ((Status) this.instance).getMessageBytes();
-        }
-
-        public Builder setMessage(String str) {
-            copyOnWrite();
-            ((Status) this.instance).setMessage(str);
-            return this;
-        }
-
-        public Builder clearMessage() {
-            copyOnWrite();
-            ((Status) this.instance).clearMessage();
-            return this;
-        }
-
-        public Builder setMessageBytes(ByteString byteString) {
-            copyOnWrite();
-            ((Status) this.instance).setMessageBytes(byteString);
-            return this;
-        }
-
-        @Override // com.google.rpc.StatusOrBuilder
-        public List<Any> getDetailsList() {
-            return Collections.unmodifiableList(((Status) this.instance).getDetailsList());
-        }
-
-        @Override // com.google.rpc.StatusOrBuilder
-        public int getDetailsCount() {
-            return ((Status) this.instance).getDetailsCount();
-        }
-
-        @Override // com.google.rpc.StatusOrBuilder
-        public Any getDetails(int i) {
-            return ((Status) this.instance).getDetails(i);
-        }
-
-        public Builder setDetails(int i, Any any) {
-            copyOnWrite();
-            ((Status) this.instance).setDetails(i, any);
-            return this;
-        }
-
-        public Builder setDetails(int i, Any.Builder builder) {
-            copyOnWrite();
-            ((Status) this.instance).setDetails(i, builder.build());
-            return this;
-        }
-
-        public Builder addDetails(Any any) {
-            copyOnWrite();
-            ((Status) this.instance).addDetails(any);
-            return this;
-        }
-
-        public Builder addDetails(int i, Any any) {
-            copyOnWrite();
-            ((Status) this.instance).addDetails(i, any);
-            return this;
-        }
-
-        public Builder addDetails(Any.Builder builder) {
-            copyOnWrite();
-            ((Status) this.instance).addDetails(builder.build());
-            return this;
-        }
-
-        public Builder addDetails(int i, Any.Builder builder) {
-            copyOnWrite();
-            ((Status) this.instance).addDetails(i, builder.build());
-            return this;
-        }
-
-        public Builder addAllDetails(Iterable<? extends Any> iterable) {
-            copyOnWrite();
-            ((Status) this.instance).addAllDetails(iterable);
-            return this;
-        }
-
-        public Builder clearDetails() {
-            copyOnWrite();
-            ((Status) this.instance).clearDetails();
-            return this;
-        }
-
-        public Builder removeDetails(int i) {
-            copyOnWrite();
-            ((Status) this.instance).removeDetails(i);
-            return this;
-        }
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setMessage(String str) {
+        str.getClass();
+        this.message_ = str;
     }
 
-    /* renamed from: com.google.rpc.Status$1, reason: invalid class name */
-    /* loaded from: classes5.dex */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke;
-
-        static {
-            int[] iArr = new int[GeneratedMessageLite.MethodToInvoke.values().length];
-            $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke = iArr;
-            try {
-                iArr[GeneratedMessageLite.MethodToInvoke.NEW_MUTABLE_INSTANCE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.NEW_BUILDER.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.BUILD_MESSAGE_INFO.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_DEFAULT_INSTANCE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_PARSER.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.GET_MEMOIZED_IS_INITIALIZED.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[GeneratedMessageLite.MethodToInvoke.SET_MEMOIZED_IS_INITIALIZED.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setMessageBytes(H h6) {
+        AbstractC1880c.checkByteStringIsUtf8(h6);
+        this.message_ = h6.toStringUtf8();
     }
 
-    @Override // com.google.protobuf.GeneratedMessageLite
-    protected final Object dynamicMethod(GeneratedMessageLite.MethodToInvoke methodToInvoke, Object obj, Object obj2) {
-        AnonymousClass1 anonymousClass1 = null;
-        switch (AnonymousClass1.$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke[methodToInvoke.ordinal()]) {
+    @Override // com.google.protobuf.L2
+    public final Object dynamicMethod(K2 k22, Object obj, Object obj2) {
+        switch (v.f23993a[k22.ordinal()]) {
             case 1:
                 return new Status();
             case 2:
-                return new Builder(anonymousClass1);
+                return new D2(DEFAULT_INSTANCE);
             case 3:
-                return newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0001\u0000\u0001\u0004\u0002Ȉ\u0003\u001b", new Object[]{"code_", "message_", "details_", Any.class});
+                return L2.newMessageInfo(DEFAULT_INSTANCE, "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0001\u0000\u0001\u0004\u0002Ȉ\u0003\u001b", new Object[]{"code_", "message_", "details_", Any.class});
             case 4:
                 return DEFAULT_INSTANCE;
             case 5:
-                Parser<Status> parser = PARSER;
-                if (parser == null) {
+                InterfaceC1948l4 interfaceC1948l4 = PARSER;
+                if (interfaceC1948l4 == null) {
                     synchronized (Status.class) {
-                        parser = PARSER;
-                        if (parser == null) {
-                            parser = new GeneratedMessageLite.DefaultInstanceBasedParser<>(DEFAULT_INSTANCE);
-                            PARSER = parser;
+                        try {
+                            interfaceC1948l4 = PARSER;
+                            if (interfaceC1948l4 == null) {
+                                interfaceC1948l4 = new E2(DEFAULT_INSTANCE);
+                                PARSER = interfaceC1948l4;
+                            }
+                        } finally {
                         }
                     }
                 }
-                return parser;
+                return interfaceC1948l4;
             case 6:
                 return (byte) 1;
             case 7:
@@ -394,17 +161,86 @@ public final class Status extends GeneratedMessageLite<Status, Builder> implemen
         }
     }
 
-    static {
-        Status status = new Status();
-        DEFAULT_INSTANCE = status;
-        GeneratedMessageLite.registerDefaultInstance(Status.class, status);
+    public int getCode() {
+        return this.code_;
     }
 
-    public static Status getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    public Any getDetails(int i9) {
+        return (Any) this.details_.get(i9);
     }
 
-    public static Parser<Status> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+    public int getDetailsCount() {
+        return this.details_.size();
+    }
+
+    public List<Any> getDetailsList() {
+        return this.details_;
+    }
+
+    public InterfaceC1922i getDetailsOrBuilder(int i9) {
+        return (InterfaceC1922i) this.details_.get(i9);
+    }
+
+    public List<? extends InterfaceC1922i> getDetailsOrBuilderList() {
+        return this.details_;
+    }
+
+    public String getMessage() {
+        return this.message_;
+    }
+
+    public H getMessageBytes() {
+        return H.copyFromUtf8(this.message_);
+    }
+
+    public static w newBuilder(Status status) {
+        return (w) DEFAULT_INSTANCE.createBuilder(status);
+    }
+
+    public static Status parseDelimitedFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Status) L2.parseDelimitedFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Status parseFrom(ByteBuffer byteBuffer, W1 w1) throws C1912g3 {
+        return (Status) L2.parseFrom(DEFAULT_INSTANCE, byteBuffer, w1);
+    }
+
+    public static Status parseFrom(H h6) throws C1912g3 {
+        return (Status) L2.parseFrom(DEFAULT_INSTANCE, h6);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void addDetails(int i9, Any any) {
+        any.getClass();
+        ensureDetailsIsMutable();
+        this.details_.add(i9, any);
+    }
+
+    public static Status parseFrom(H h6, W1 w1) throws C1912g3 {
+        return (Status) L2.parseFrom(DEFAULT_INSTANCE, h6, w1);
+    }
+
+    public static Status parseFrom(byte[] bArr) throws C1912g3 {
+        return (Status) L2.parseFrom(DEFAULT_INSTANCE, bArr);
+    }
+
+    public static Status parseFrom(byte[] bArr, W1 w1) throws C1912g3 {
+        return (Status) L2.parseFrom(DEFAULT_INSTANCE, bArr, w1);
+    }
+
+    public static Status parseFrom(InputStream inputStream) throws IOException {
+        return (Status) L2.parseFrom(DEFAULT_INSTANCE, inputStream);
+    }
+
+    public static Status parseFrom(InputStream inputStream, W1 w1) throws IOException {
+        return (Status) L2.parseFrom(DEFAULT_INSTANCE, inputStream, w1);
+    }
+
+    public static Status parseFrom(S s5) throws IOException {
+        return (Status) L2.parseFrom(DEFAULT_INSTANCE, s5);
+    }
+
+    public static Status parseFrom(S s5, W1 w1) throws IOException {
+        return (Status) L2.parseFrom(DEFAULT_INSTANCE, s5, w1);
     }
 }

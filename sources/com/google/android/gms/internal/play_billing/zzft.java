@@ -1,41 +1,11 @@
 package com.google.android.gms.internal.play_billing;
 
-/* compiled from: com.android.billingclient:billing@@6.0.1 */
-/* loaded from: classes12.dex */
-final /* synthetic */ class zzft {
-    static final /* synthetic */ int[] zza;
+import Q7.n0;
 
-    static {
-        zzca.zza();
-        int[] iArr = new int[7];
-        zza = iArr;
-        try {
-            iArr[3] = 1;
-        } catch (NoSuchFieldError unused) {
-        }
-        try {
-            zza[4] = 2;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            zza[2] = 3;
-        } catch (NoSuchFieldError unused3) {
-        }
-        try {
-            zza[5] = 4;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            zza[6] = 5;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            zza[0] = 6;
-        } catch (NoSuchFieldError unused6) {
-        }
-        try {
-            zza[1] = 7;
-        } catch (NoSuchFieldError unused7) {
-        }
+/* JADX INFO: Access modifiers changed from: package-private */
+/* loaded from: classes2.dex */
+public final class zzft extends IllegalArgumentException {
+    public zzft(int i9, int i10) {
+        super(n0.e(i9, i10, "Unpaired surrogate at index ", " of "));
     }
 }

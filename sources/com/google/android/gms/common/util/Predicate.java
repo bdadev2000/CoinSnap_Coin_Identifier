@@ -1,7 +1,11 @@
 package com.google.android.gms.common.util;
 
-/* compiled from: com.google.android.gms:play-services-basement@@18.3.0 */
-/* loaded from: classes12.dex */
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
+
+@KeepForSdk
+/* loaded from: classes2.dex */
 public interface Predicate<T> {
-    boolean apply(T t);
+    @KeepForSdk
+    boolean apply(@NonNull T t9);
 }
